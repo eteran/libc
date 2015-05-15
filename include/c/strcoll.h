@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int strcoll(const char *s1, const char *s2) __ELIBC_NOTHROW;
+__ELIBC_PURE int strcoll(const char *s1, const char *s2) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

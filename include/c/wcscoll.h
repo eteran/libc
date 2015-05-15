@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int wcscoll(const wchar_t *ws1, const wchar_t *ws2) __ELIBC_NOTHROW;
+__ELIBC_PURE int wcscoll(const wchar_t *ws1, const wchar_t *ws2) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

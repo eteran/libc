@@ -1,10 +1,8 @@
 
 SHELL=/bin/sh
 
-CXX     := g++
-CC      := gcc
-AS      := gcc
-LD      := gcc
+AS      := $(CC)
+LD      := $(CC)
 MKDIR   := mkdir -p
 OBJ_DIR := .obj
 
@@ -23,8 +21,11 @@ VPATH := src src/math src/arch/x86_64
 
 TARGET = libc.a
 
+# -Wsuggest-attribute=pure -Wsuggest-attribute=const -Wsuggest-attribute=noreturn -Wsuggest-attribute=format
+# -Wstrict-overflow=2
+
 CXXFLAGS  := -DENABLE_FPU -std=c++03 -pedantic -Wextra -Wall -Iinclude -ffreestanding -march=native -O2 -g3 -Iinclude/arch/x86_64 -Wno-long-long -Wold-style-cast -fno-rtti -fno-exceptions
-CFLAGS    := -Wsuggest-attribute=noreturn -DENABLE_FPU -std=c99   -pedantic -Wextra -Wall -Iinclude -ffreestanding -march=native -O2 -g3 -Iinclude/arch/x86_64 -Wno-long-long
+CFLAGS    := -DENABLE_FPU -std=c99   -pedantic -Wextra -Wall -Iinclude -ffreestanding -march=native -O2 -g3 -Iinclude/arch/x86_64 -Wno-long-long
 AFLAGS    := -Iinclude/arch/x86_64
 LDFLAGS   := -static -nostdlib #-nodefaultlibs -nostartfiles
 

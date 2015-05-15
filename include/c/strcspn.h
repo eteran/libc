@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-size_t strcspn(const char *s, const char *reject) __ELIBC_NOTHROW;
+__ELIBC_PURE size_t strcspn(const char *s, const char *reject) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }
