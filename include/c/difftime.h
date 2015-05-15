@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-double difftime(time_t time1, time_t time0) __ELIBC_NOTHROW;
+__ELIBC_CONST double difftime(time_t time1, time_t time0) __ELIBC_NOTHROW;
 
 /* TODO: does the standard say this is a macro? */
 #define difftime difftime

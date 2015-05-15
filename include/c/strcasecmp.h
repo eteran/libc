@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int strcasecmp(const char *s1, const char *s2) __ELIBC_NOTHROW;
+__ELIBC_PURE int strcasecmp(const char *s1, const char *s2) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-int memcmp(const void *s1, const void *s2, size_t n) __ELIBC_NOTHROW;
+__ELIBC_PURE int memcmp(const void *s1, const void *s2, size_t n) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

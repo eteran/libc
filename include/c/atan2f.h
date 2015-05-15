@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-float atan2f(float x, float y) __ELIBC_NOTHROW;
+__ELIBC_CONST float atan2f(float x, float y) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

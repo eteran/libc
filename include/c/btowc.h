@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-wint_t btowc(int) __ELIBC_NOTHROW;
+__ELIBC_CONST wint_t btowc(int) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

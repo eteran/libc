@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-long double tgammal(long double x) __ELIBC_NOTHROW;
+__ELIBC_CONST long double tgammal(long double x) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

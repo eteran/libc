@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-float tanhf(float x) __ELIBC_NOTHROW;
+__ELIBC_CONST float tanhf(float x) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

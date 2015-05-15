@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int iswxdigit(wint_t wc) __ELIBC_NOTHROW;
+__ELIBC_CONST int iswxdigit(wint_t wc) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

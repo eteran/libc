@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-int iswctype(wint_t wc, wctype_t desc) __ELIBC_NOTHROW;
+__ELIBC_CONST int iswctype(wint_t wc, wctype_t desc) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

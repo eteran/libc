@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-double fma(double x, double y, double z) __ELIBC_NOTHROW;
+__ELIBC_CONST double fma(double x, double y, double z) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

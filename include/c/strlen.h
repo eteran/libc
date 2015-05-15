@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-size_t strlen(const char *s) __ELIBC_NOTHROW;
+__ELIBC_PURE size_t strlen(const char *s) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

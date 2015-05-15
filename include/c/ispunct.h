@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int ispunct(int c) __ELIBC_NOTHROW;
+__ELIBC_CONST int ispunct(int c) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

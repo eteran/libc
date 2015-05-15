@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-double nexttoward(double x, double y) __ELIBC_NOTHROW;
+__ELIBC_CONST double nexttoward(double x, double y) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

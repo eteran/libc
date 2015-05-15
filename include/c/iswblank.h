@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int iswblank(wint_t wc) __ELIBC_NOTHROW;
+__ELIBC_CONST int iswblank(wint_t wc) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

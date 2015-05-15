@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-wctrans_t wctrans(const char *str) __ELIBC_NOTHROW;
+__ELIBC_PURE wctrans_t wctrans(const char *str) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

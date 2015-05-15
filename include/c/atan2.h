@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-double atan2(double y, double x) __ELIBC_NOTHROW;
+__ELIBC_CONST double atan2(double y, double x) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

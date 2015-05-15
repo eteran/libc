@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-float remainderf(float x, float y) __ELIBC_NOTHROW;
+__ELIBC_CONST float remainderf(float x, float y) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }
