@@ -16,6 +16,7 @@
 #define SIGFPE  8
 #define SIGILL  4
 #define SIGINT  2
+#define SIGQUIT 3
 #define SIGSEGV 11
 #define SIGTERM 15
 
