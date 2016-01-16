@@ -12,7 +12,7 @@ void __assert_fail(const char *expr, const char *file, unsigned int line, const 
 	if(func) {
 		fprintf(
 			stderr,
-			"%s:%d: %s: Assertion '%s' failed.\n",
+			"%s:%u: %s: Assertion '%s' failed.\n",
 			file,
 			line,
 			func,
@@ -21,7 +21,7 @@ void __assert_fail(const char *expr, const char *file, unsigned int line, const 
 	} else {
 		fprintf(
 			stderr,
-			"%s:%d: Assertion '%s' failed.\n",
+			"%s:%u: Assertion '%s' failed.\n",
 			file,
 			line,
 			expr
