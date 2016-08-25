@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST double lround(double x) __ELIBC_NOTHROW;
+__ELIBC_CONST long int lround(double x) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

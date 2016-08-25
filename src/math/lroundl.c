@@ -6,6 +6,6 @@
 /*------------------------------------------------------------------------------
 // Name: lroundl
 //----------------------------------------------------------------------------*/
-long double lroundl(long double x) {
+long int lroundl(long double x) {
 	return __builtin_lroundl(x);
 }

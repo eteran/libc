@@ -6,6 +6,6 @@
 /*------------------------------------------------------------------------------
 // Name: llrintl
 //----------------------------------------------------------------------------*/
-long double llrintl(long double x) {
+long long int llrintl(long double x) {
 	return __builtin_llrintl(x);
 }

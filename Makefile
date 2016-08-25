@@ -14,7 +14,7 @@ $(OBJ_DIR)/%.o: %.cc
 $(OBJ_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -MMD -c $< -o $@
 
-$(OBJ_DIR)/%.o: %.S
+$(OBJ_DIR)/%.o: %.s
 	$(AS) $(AFLAGS) -MMD -c $< -o $@
 	
 VPATH := src src/math src/arch/x86_64 
@@ -62,9 +62,9 @@ H_FILES := \
 	include/wctype.h      \
 
 S_FILES := \
-	_start.S          \
-	setjmp.S          \
-	longjmp.S         \
+	_start.s          \
+	setjmp.s          \
+	longjmp.s         \
 
 	
 CXX_FILES := \
@@ -451,7 +451,7 @@ C_FILES := \
 
 
 
-O_FILES := $(patsubst %.cc, $(OBJ_DIR)/%.o, $(CXX_FILES)) $(patsubst %.c, $(OBJ_DIR)/%.o, $(C_FILES)) $(patsubst %.S, $(OBJ_DIR)/%.o, $(S_FILES))
+O_FILES := $(patsubst %.cc, $(OBJ_DIR)/%.o, $(CXX_FILES)) $(patsubst %.c, $(OBJ_DIR)/%.o, $(C_FILES)) $(patsubst %.s, $(OBJ_DIR)/%.o, $(S_FILES))
 D_FILES := $(O_FILES:.o=.d)
 
 SOURCEFILES :=	$(H_FILES) $(CXX_FILES) $(C_FILES) $(S_FILES)

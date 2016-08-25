@@ -255,6 +255,5 @@ int main(void) {
 	result |= utf8_test();
 	
 
-
 	return result;
 }

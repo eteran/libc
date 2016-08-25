@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST long double ilogbl(long double x) __ELIBC_NOTHROW;
+__ELIBC_CONST int ilogbl(long double x) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }
