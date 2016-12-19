@@ -1,0 +1,198 @@
+cmake_minimum_required(VERSION 2.6)
+
+enable_language(ASM)
+
+set(CMAKE_C_FLAGS           "${CMAKE_C_FLAGS} -pedantic -W -Wall -ffreestanding")
+set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} -pedantic -W -Wall -ffreestanding")
+set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -nostdlib")
+
+set(SOURCE_FILES
+	acos.c
+	acosf.c
+	acosh.c
+	acoshf.c
+	acoshl.c
+	acosl.c
+	asin.c
+	asinf.c
+	asinh.c
+	asinhf.c
+	asinhl.c
+	asinl.c
+	atan2f.c
+	atan2l.c
+	atanf.c
+	atanh.c
+	atanhf.c
+	atanhl.c
+	atanl.c
+	cbrt.c
+	cbrtf.c
+	cbrtl.c
+	ceilf.c
+	ceill.c
+	copysignf.c
+	copysignl.c
+	cos.c
+	cosf.c
+	cosh.c
+	coshf.c
+	coshl.c
+	cosl.c
+	erf.c
+	erfc.c
+	erfcf.c
+	erfcl.c
+	erff.c
+	erfl.c
+	exp2.c
+	exp2f.c
+	exp2l.c
+	exp.c
+	expf.c
+	expl.c
+	expm1.c
+	expm1f.c
+	expm1l.c
+	fabsf.c
+	fabsl.c
+	fdim.c
+	fdimf.c
+	fdiml.c
+	floorf.c
+	floorl.c
+	fma.c
+	fmaf.c
+	fmal.c
+	fmax.c
+	fmaxf.c
+	fmaxl.c
+	fmin.c
+	fminf.c
+	fminl.c
+	fmodf.c
+	fmodl.c
+	frexp.c
+	frexpf.c
+	frexpl.c
+	hypot.c
+	hypotf.c
+	hypotl.c
+	ilogb.c
+	ilogbf.c
+	ilogbl.c
+	ldexp.c
+	ldexpf.c
+	ldexpl.c
+	lgamma.c
+	lgammaf.c
+	lgammal.c
+	llrint.c
+	llrintf.c
+	llrintl.c
+	llround.c
+	llroundf.c
+	llroundl.c
+	log10f.c
+	log10l.c
+	log1p.c
+	log1pf.c
+	log1pl.c
+	log2.c
+	log2f.c
+	log2l.c
+	logb.c
+	logbf.c
+	logbl.c
+	logf.c
+	logl.c
+	lrint.c
+	lrintf.c
+	lrintl.c
+	lround.c
+	lroundf.c
+	lroundl.c
+	modf.c
+	modff.c
+	modfl.c
+	nan.c
+	nanf.c
+	nanl.c
+	nearbyint.c
+	nearbyintf.c
+	nearbyintl.c
+	nextafter.c
+	nextafterf.c
+	nextafterl.c
+	nexttoward.c
+	nexttowardf.c
+	nexttowardl.c
+	pow.c
+	powf.c
+	powl.c
+	remainder.c
+	remainderf.c
+	remainderl.c
+	remquo.c
+	remquof.c
+	remquol.c
+	rint.c
+	rintf.c
+	rintl.c
+	roundf.c
+	roundl.c
+	scalbln.c
+	scalblnf.c
+	scalblnl.c
+	scalbn.c
+	scalbnf.c
+	scalbnl.c
+	sinf.c
+	sinh.c
+	sinhf.c
+	sinhl.c
+	sinl.c
+	sqrtf.c
+	sqrtl.c
+	tan.c
+	tanf.c
+	tanh.c
+	tanhf.c
+	tanhl.c
+	tanl.c
+	tgamma.c
+	tgammaf.c
+	tgammal.c
+	truncf.c
+	truncl.c
+)
+
+set(ARCH_SOURCE_FILES
+	arch/x86_64/atan2.c
+	arch/x86_64/atan.c
+	arch/x86_64/ceil.c
+	arch/x86_64/copysign.c
+	arch/x86_64/fabs.c
+	arch/x86_64/fenv.c
+	arch/x86_64/floor.c
+	arch/x86_64/fmod.c
+	arch/x86_64/log10.c
+	arch/x86_64/log.c
+	arch/x86_64/round.c
+	arch/x86_64/sin.c
+	arch/x86_64/sqrt.c
+	arch/x86_64/trunc.c
+)
+
+add_library (Math STATIC ${SOURCE_FILES} ${ARCH_SOURCE_FILES})
+
+target_include_directories (Math PUBLIC 
+	${PROJECT_SOURCE_DIR}/include
+	${PROJECT_SOURCE_DIR}/include/arch/x86_64
+)
+
+add_definitions("-DENABLE_FPU")
+
+set_property(TARGET Math PROPERTY C_STANDARD 99)
+
+
