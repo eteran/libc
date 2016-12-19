@@ -5,8 +5,8 @@
 
 #ifdef __KERNEL__
 #include "SystemLock.h"
-#include "AutoLock.h"
-#include "mmu.h"
+#include "ScopedLock.h"
+#include "MMU.h"
 #endif
 
 #include "c/_support.h"
@@ -65,7 +65,7 @@ namespace heap {
 		// however, the bigger this value is, the more of your maximum brk
 		// value that can get wasted
 #ifdef __KERNEL__
-		static const unsigned int expand_slack = mmu::page_size;
+		static const unsigned int expand_slack = MMU::page_size;
 #else
 		static const unsigned int expand_slack = 0x1000;
 #endif
@@ -188,7 +188,7 @@ namespace heap {
 		void internal_deallocate(void *p) {
 		#ifdef __KERNEL__
 			SystemLock system_lock;
-			Autolock<SystemLock> lock(&system_lock);
+			ScopedLock<SystemLock> lock(&system_lock);
 		#endif
 
 			if(p) {
@@ -344,8 +344,8 @@ namespace heap {
 		// processes page structures whenever we grow
 		// the heap
 
-		for(uintptr_t i = mmu::virt_kernel_heap_start; i < mmu::virt_kernel_heap_end; i += mmu::page_size) {
-			mmu::map_page_1st_level(i);
+		for(uintptr_t i = MMU::virt_kernel_heap_start; i < MMU::virt_kernel_heap_end; i += MMU::page_size) {
+			MMU::map_page_1st_level(i);
 		}
 	#endif
 
@@ -362,7 +362,7 @@ namespace heap {
 	size_t block_size(void *p) {
 	#ifdef __KERNEL__
 		SystemLock system_lock;
-		Autolock<SystemLock> lock(&system_lock);
+		ScopedLock<SystemLock> lock(&system_lock);
 	#endif
 
 		if(p) {
@@ -381,7 +381,7 @@ namespace heap {
 	void *internal_allocate(size_t size) {
 	#ifdef __KERNEL__
 		SystemLock system_lock;
-		Autolock<SystemLock> lock(&system_lock);
+		ScopedLock<SystemLock> lock(&system_lock);
 	#endif
 
 		const size_t orig_size = size;
