@@ -37,17 +37,15 @@ static int utf8_test_1(void) {
 	wchar_t wc;
 	mbstate_t s;
 
-	wc = 42;                  /* arbitrary number */
-	memset(&s, 0, sizeof(s)); /* get s into initial state */
-	assert(mbrtowc(&wc, "\xE2", 1, &s) ==
-	       (size_t) - 2); /* 1st byte processed */
-	assert(mbrtowc(&wc, "\x89", 1, &s) ==
-	       (size_t) - 2); /* 2nd byte processed */
-	assert(wc == 42);     /* no value has not been stored into &wc yet */
-	assert(mbrtowc(&wc, "\xA0", 1, &s) == 1); /* 3nd byte processed */
-	assert(wc == 0x2260); /* E2 89 A0 = U+2260 (not equal) decoded correctly */
-	assert(mbrtowc(&wc, "", 1, &s) == 0); /* test final byte processing */
-	assert(wc == 0);                      /* test final byte decoding */
+	wc = 42;                                           /* arbitrary number */
+	memset(&s, 0, sizeof(s));                          /* get s into initial state */
+	assert(mbrtowc(&wc, "\xE2", 1, &s) == (size_t)-2); /* 1st byte processed */
+	assert(mbrtowc(&wc, "\x89", 1, &s) == (size_t)-2); /* 2nd byte processed */
+	assert(wc == 42);                                  /* no value has not been stored into &wc yet */
+	assert(mbrtowc(&wc, "\xA0", 1, &s) == 1);          /* 3nd byte processed */
+	assert(wc == 0x2260);                              /* E2 89 A0 = U+2260 (not equal) decoded correctly */
+	assert(mbrtowc(&wc, "", 1, &s) == 0);              /* test final byte processing */
+	assert(wc == 0);                                   /* test final byte decoding */
 
 	/* The following test is by Al Viro <aviro@redhat.com>.  */
 	{
@@ -55,7 +53,7 @@ static int utf8_test_1(void) {
 
 		wc = 42;                  /* arbitrary number */
 		memset(&s, 0, sizeof(s)); /* get s into initial state */
-		assert(mbrtowc(&wc, str, 1, &s) == (size_t) - 2);
+		assert(mbrtowc(&wc, str, 1, &s) == (size_t)-2);
 		assert(mbrtowc(&wc, str + 1, 2, &s) == 2);
 		assert(wc == 0x800);
 
@@ -78,28 +76,23 @@ static int utf8_test_2(void) {
 	assert(mbrtowc(NULL, "", 1, &s) == 0); /* valid terminator */
 	assert(mbsinit(&s));
 
-	wc = 42;                  /* arbitrary number */
-	memset(&s, 0, sizeof(s)); /* get s into initial state */
-	assert(mbrtowc(&wc, "\xE2", 1, &s) ==
-	       (size_t) - 2);                             /* 1st byte processed */
-	assert(mbrtowc(NULL, "", 1, &s) == (size_t) - 1); /* invalid terminator */
+	wc = 42;                                           /* arbitrary number */
+	memset(&s, 0, sizeof(s));                          /* get s into initial state */
+	assert(mbrtowc(&wc, "\xE2", 1, &s) == (size_t)-2); /* 1st byte processed */
+	assert(mbrtowc(NULL, "", 1, &s) == (size_t)-1);    /* invalid terminator */
 
-	wc = 42;                  /* arbitrary number */
-	memset(&s, 0, sizeof(s)); /* get s into initial state */
-	assert(mbrtowc(&wc, "\xE2", 1, &s) ==
-	       (size_t) - 2); /* 1st byte processed */
-	assert(mbrtowc(&wc, "\x89", 1, &s) ==
-	       (size_t) - 2);                             /* 2nd byte processed */
-	assert(mbrtowc(NULL, "", 1, &s) == (size_t) - 1); /* invalid terminator */
+	wc = 42;                                           /* arbitrary number */
+	memset(&s, 0, sizeof(s));                          /* get s into initial state */
+	assert(mbrtowc(&wc, "\xE2", 1, &s) == (size_t)-2); /* 1st byte processed */
+	assert(mbrtowc(&wc, "\x89", 1, &s) == (size_t)-2); /* 2nd byte processed */
+	assert(mbrtowc(NULL, "", 1, &s) == (size_t)-1);    /* invalid terminator */
 
-	wc = 42;                  /* arbitrary number */
-	memset(&s, 0, sizeof(s)); /* get s into initial state */
-	assert(mbrtowc(&wc, "\xE2", 1, &s) ==
-	       (size_t) - 2); /* 1st byte processed */
-	assert(mbrtowc(&wc, "\x89", 1, &s) ==
-	       (size_t) - 2);                     /* 2nd byte processed */
-	assert(mbrtowc(&wc, "\xA0", 1, &s) == 1); /* 3nd byte processed */
-	assert(mbrtowc(NULL, "", 1, &s) == 0);    /* valid terminator */
+	wc = 42;                                           /* arbitrary number */
+	memset(&s, 0, sizeof(s));                          /* get s into initial state */
+	assert(mbrtowc(&wc, "\xE2", 1, &s) == (size_t)-2); /* 1st byte processed */
+	assert(mbrtowc(&wc, "\x89", 1, &s) == (size_t)-2); /* 2nd byte processed */
+	assert(mbrtowc(&wc, "\xA0", 1, &s) == 1);          /* 3nd byte processed */
+	assert(mbrtowc(NULL, "", 1, &s) == 0);             /* valid terminator */
 	assert(mbsinit(&s));
 
 	return 0;
@@ -115,28 +108,23 @@ static int utf8_test_3(void) {
 	assert(mbrtowc(NULL, NULL, 0, &s) == 0); /* valid terminator */
 	assert(mbsinit(&s));
 
-	wc = 42;                  /* arbitrary number */
-	memset(&s, 0, sizeof(s)); /* get s into initial state */
-	assert(mbrtowc(&wc, "\xE2", 1, &s) ==
-	       (size_t) - 2);                               /* 1st byte processed */
-	assert(mbrtowc(NULL, NULL, 0, &s) == (size_t) - 1); /* invalid terminator */
+	wc = 42;                                           /* arbitrary number */
+	memset(&s, 0, sizeof(s));                          /* get s into initial state */
+	assert(mbrtowc(&wc, "\xE2", 1, &s) == (size_t)-2); /* 1st byte processed */
+	assert(mbrtowc(NULL, NULL, 0, &s) == (size_t)-1);  /* invalid terminator */
 
-	wc = 42;                  /* arbitrary number */
-	memset(&s, 0, sizeof(s)); /* get s into initial state */
-	assert(mbrtowc(&wc, "\xE2", 1, &s) ==
-	       (size_t) - 2); /* 1st byte processed */
-	assert(mbrtowc(&wc, "\x89", 1, &s) ==
-	       (size_t) - 2);                               /* 2nd byte processed */
-	assert(mbrtowc(NULL, NULL, 0, &s) == (size_t) - 1); /* invalid terminator */
+	wc = 42;                                           /* arbitrary number */
+	memset(&s, 0, sizeof(s));                          /* get s into initial state */
+	assert(mbrtowc(&wc, "\xE2", 1, &s) == (size_t)-2); /* 1st byte processed */
+	assert(mbrtowc(&wc, "\x89", 1, &s) == (size_t)-2); /* 2nd byte processed */
+	assert(mbrtowc(NULL, NULL, 0, &s) == (size_t)-1);  /* invalid terminator */
 
-	wc = 42;                  /* arbitrary number */
-	memset(&s, 0, sizeof(s)); /* get s into initial state */
-	assert(mbrtowc(&wc, "\xE2", 1, &s) ==
-	       (size_t) - 2); /* 1st byte processed */
-	assert(mbrtowc(&wc, "\x89", 1, &s) ==
-	       (size_t) - 2);                     /* 2nd byte processed */
-	assert(mbrtowc(&wc, "\xA0", 1, &s) == 1); /* 3nd byte processed */
-	assert(mbrtowc(NULL, NULL, 0, &s) == 0);  /* valid terminator */
+	wc = 42;                                           /* arbitrary number */
+	memset(&s, 0, sizeof(s));                          /* get s into initial state */
+	assert(mbrtowc(&wc, "\xE2", 1, &s) == (size_t)-2); /* 1st byte processed */
+	assert(mbrtowc(&wc, "\x89", 1, &s) == (size_t)-2); /* 2nd byte processed */
+	assert(mbrtowc(&wc, "\xA0", 1, &s) == 1);          /* 3nd byte processed */
+	assert(mbrtowc(NULL, NULL, 0, &s) == 0);           /* valid terminator */
 	assert(mbsinit(&s));
 
 	return 0;
@@ -176,10 +164,10 @@ static int check_ascii(const char *locname) {
 		memset(&s, '\0', sizeof(s));
 
 		n = mbrtowc(&wc, buf, MB_CUR_MAX, &s);
-		if (n == (size_t) - 1) {
+		if (n == (size_t)-1) {
 			printf("%s: '\\x%x': encoding error\n", locname, c);
 			++res;
-		} else if (n == (size_t) - 2) {
+		} else if (n == (size_t)-2) {
 			printf("%s: '\\x%x': incomplete character\n", locname, c);
 			++res;
 		} else if (n == 0 && c != 0) {
@@ -202,24 +190,47 @@ static int check_ascii(const char *locname) {
 	return res != 0;
 }
 
+void test_printf(void) {
+	
+	char buffer[256];
+	snprintf(buffer, sizeof(buffer), "%s%c%s", "hello", ' ', "world");
+	assert(strcmp(buffer, "hello world") == 0);
+
+
+	snprintf(buffer, sizeof(buffer), "%d", 0x1234);
+	assert(strcmp(buffer, "4660") == 0);
+
+
+	snprintf(buffer, sizeof(buffer), "%x", 0x1234);
+	assert(strcmp(buffer, "1234") == 0);
+
+	snprintf(buffer, sizeof(buffer), "%08x", 0x1234);
+	assert(strcmp(buffer, "00001234") == 0);
+
+	snprintf(buffer, sizeof(buffer), "%08x", -1);
+	assert(strcmp(buffer, "ffffffff") == 0);
+}
+
 int main(void) {
 
 	int result = 0;
+	
+	test_printf();
 
-#if 0
+#if 1
 	double x = sin((double)rand());
 	double y = cos(x);
 	double z = tan(y);
 	printf("%f\n", z);
 #endif
 
-	long long x =  strtoll("-9223372036854775809", NULL, 10);
-	printf("%lld\n", x);
+	long long x2 = strtoll("-9223372036854775809", NULL, 10);
+	printf("%lld\n", x2);
 
 #if 1
-	printf("sizeof(float) = %lu\n", sizeof(float));
-	printf("sizeof(double) = %lu\n", sizeof(double));
-	printf("sizeof(long double) = %lu\n", sizeof(long double));
+	printf("sizeof(float)         = %lu\n", sizeof(float));
+	printf("sizeof(double)        = %lu\n", sizeof(double));
+	printf("sizeof(long double)   = %lu\n", sizeof(long double));
 	printf("sizeof(unsigned long) = %lu\n", sizeof(unsigned long));
 	printf("\n");
 #endif
@@ -231,29 +242,28 @@ int main(void) {
 	printf("%ld : %d : %p\n", n, e, p);
 #endif
 
-#if 0
+#if 1
 	assert((unsigned int)strtoul("4294967295", 0, 0) == (unsigned int)4294967295);
-	assert((int)strtol("4294967295",  0, 0) == (int)-1);
+	assert((int)strtol("4294967295", 0, 0) == (int)-1);
 	assert((int)strtol("-4294967295", 0, 0) == (int)1);
-	assert((int)strtol("2147483647",  0, 0) == (int)2147483647);  /* INT_MAX  */
+	assert((int)strtol("2147483647", 0, 0) == (int)2147483647);   /* INT_MAX  */
 	assert((int)strtol("-2147483647", 0, 0) == (int)-2147483647); /* overflow */
-	assert((int)strtol("4294967296",  0, 0) == (int)4294967296);  /* overflow */
+	assert((int)strtol("4294967296", 0, 0) == (int)4294967296);   /* overflow */
 	assert((int)strtol("-4294967296", 0, 0) == (int)-4294967296); /* overflow */
-	assert((int)strtol("2147483648",  0, 0) == (int)2147483648);  /* overflow */
+	assert((int)strtol("2147483648", 0, 0) == (int)2147483648);   /* overflow */
 	assert((int)strtol("-2147483648", 0, 0) == (int)-2147483648); /* INT_MIN  */
 #endif
 	return 0;
 
 	/* Check mapping of ASCII range for some character sets which have
-	ASCII as a subset.  For those the wide char generated must have
-	the same value.  */
+	   ASCII as a subset.  For those the wide char generated must have
+	   the same value.  */
 	setlocale(LC_ALL, "C");
 	result |= check_ascii(setlocale(LC_ALL, NULL));
 
 	setlocale(LC_ALL, "en_US.UTF-8");
 	result |= check_ascii(setlocale(LC_ALL, NULL));
 	result |= utf8_test();
-	
 
 	return result;
 }

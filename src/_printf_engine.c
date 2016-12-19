@@ -689,6 +689,45 @@ static const char *_get_modifier(const char *format, int *modifier) {
 	return format;
 }
 
+
+/* NOTE(eteran): ch is the current format specifier */
+static void _output_string(char ch, const char *s_ptr, int precision, long int *width, uint8_t flags, struct __elibc_write *const ctx) {
+	int len;
+	PRINTF_ASSERT(s_ptr);
+
+	/* on release builds, we are somewhat forgiving ... */
+	if(!s_ptr) {
+		s_ptr = "(null)";
+	}
+
+	/* TODO: is this correct? */
+	len = strlen(s_ptr);
+	len = (ch == 's' && precision >= 0 && precision < len) ? precision : len;
+
+	/* if not left justified padding goes first.. */
+	if(!GET_FLAG(flags, PRINTF_JUSTIFY)) {
+		/* spaces go before the prefix...*/
+		while(*width > len) {
+			ctx->write(ctx, ' ');
+			--*width;
+		}
+	}
+
+	/* output the string */
+	while(*s_ptr != '\0' && len--) {
+		ctx->write(ctx, *s_ptr++);
+		--*width;
+	}
+
+	/* if left justified padding goes last.. */
+	if(GET_FLAG(flags, PRINTF_JUSTIFY)) {
+		while(*width > 0) {
+			ctx->write(ctx, ' ');
+			--*width;
+		}
+	}
+}
+
 #define FLT_BUF_SIZE 1024
 
 /*------------------------------------------------------------------------------
@@ -783,7 +822,8 @@ int __elibc_printf_engine(void *c, const char *__ELIBC_RESTRICT format, va_list 
 #else
 				s_ptr = "0.0";
 #endif
-				goto do_string;
+				_output_string(ch, s_ptr, precision, &width, flags, ctx);
+				break;
 
 			/* integer format of sorts */
 			case 'p':
@@ -791,7 +831,8 @@ int __elibc_printf_engine(void *c, const char *__ELIBC_RESTRICT format, va_list 
 				ch = 'x';
 				SET_FLAGS(flags, PRINTF_PREFIX);
 				s_ptr = _unsigned_itoa(num_buf, sizeof(num_buf), ch, precision, (uintptr_t)va_arg(aq, void *), width, flags);
-				goto do_string;
+				_output_string(ch, s_ptr, precision, &width, flags, ctx);
+				break;
 			case 'x':
 			case 'X':
 			case 'u':
@@ -828,7 +869,8 @@ int __elibc_printf_engine(void *c, const char *__ELIBC_RESTRICT format, va_list 
 					s_ptr = _unsigned_itoa(num_buf, sizeof(num_buf), ch, precision, va_arg(aq, unsigned int), width, flags);
 					break;
 				}
-				goto do_string;
+				_output_string(ch, s_ptr, precision, &width, flags, ctx);
+				break;
 
 			case 'i':
 			case 'd':
@@ -862,54 +904,20 @@ int __elibc_printf_engine(void *c, const char *__ELIBC_RESTRICT format, va_list 
 					s_ptr = _signed_itoa(num_buf, sizeof(num_buf), ch, precision, va_arg(aq, int), width, flags);
 					break;
 				}
-				goto do_string;
+				_output_string(ch, s_ptr, precision, &width, flags, ctx);
+				break;
 
 			case 'c':
 				/* char is promoted to an int when pushed on the stack */
 				num_buf[0] = va_arg(aq, long int);
 				num_buf[1] = '\0';
 				s_ptr = num_buf;
-				goto do_string;
+				_output_string(ch, s_ptr, precision, &width, flags, ctx);
+				break;
 
 			case 's':
 				s_ptr = va_arg(aq, char *);
-			do_string:
-				do {
-					int len;
-					PRINTF_ASSERT(s_ptr);
-
-					/* on release builds, we are somewhat forgiving ... */
-					if(s_ptr == 0) {
-						s_ptr = "(null)";
-					}
-
-					/* TODO: is this correct? */
-					len = strlen(s_ptr);
-					len = (ch == 's' && precision >= 0 && precision < len) ? precision : len;
-
-					/* if not left justified padding goes first.. */
-					if(!GET_FLAG(flags, PRINTF_JUSTIFY)) {
-						/* spaces go before the prefix...*/
-						while(width > len) {
-							ctx->write(ctx, ' ');
-							--width;
-						}
-					}
-
-					/* output the string */
-					while(*s_ptr != '\0' && len--) {
-						ctx->write(ctx, *s_ptr++);
-						--width;
-					}
-
-					/* if left justified padding goes last.. */
-					if(GET_FLAG(flags, PRINTF_JUSTIFY)) {
-						while(width > 0) {
-							ctx->write(ctx, ' ');
-							--width;
-						}
-					}
-				} while(0);
+				_output_string(ch, s_ptr, precision, &width, flags, ctx);
 				break;
 
 			case 'n':

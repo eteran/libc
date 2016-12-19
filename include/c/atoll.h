@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-long double atoll(long double x) __ELIBC_NOTHROW;
+long long atoll(const char *nptr) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }
