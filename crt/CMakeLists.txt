@@ -17,5 +17,4 @@ target_include_directories (Crt PUBLIC
 	${PROJECT_SOURCE_DIR}/include/arch/x86_64
 )
 
-
 set_property(TARGET Crt PROPERTY C_STANDARD 99)

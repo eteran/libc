@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 2.6)
 
-enable_language(ASM)
-
 set(CMAKE_C_FLAGS           "${CMAKE_C_FLAGS} -pedantic -W -Wall -ffreestanding")
 set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} -pedantic -W -Wall -ffreestanding")
 set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -nostdlib")
@@ -9,9 +7,7 @@ set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -nostdlib")
 set(SOURCE_FILES 
 	heap.cc
 	_support.cc
-
 )
-
 
 add_library (Sys STATIC ${SOURCE_FILES})
 

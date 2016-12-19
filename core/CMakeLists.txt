@@ -225,6 +225,4 @@ target_include_directories (Core PUBLIC
 	${PROJECT_SOURCE_DIR}/include/arch/x86_64
 )
 
-add_definitions("-DENABLE_FPU")
-
 set_property(TARGET Core PROPERTY C_STANDARD 99)

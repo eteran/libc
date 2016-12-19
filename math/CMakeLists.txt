@@ -191,8 +191,6 @@ target_include_directories (Math PUBLIC
 	${PROJECT_SOURCE_DIR}/include/arch/x86_64
 )
 
-add_definitions("-DENABLE_FPU")
-
 set_property(TARGET Math PROPERTY C_STANDARD 99)
 
 
