@@ -24,7 +24,6 @@ set(SOURCE_FILES
 	calloc.c
 	clearerr.c
 	clock.c
-	_crt.c
 	ctime.c
 	ctype.c
 	difftime.c
