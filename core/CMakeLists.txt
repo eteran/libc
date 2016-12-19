@@ -213,8 +213,8 @@ set(SOURCE_FILES
 )
 
 set(ARCH_SOURCE_FILES
-	arch/x86_64/longjmp.s
-	arch/x86_64/setjmp.s
+	arch/x86_64/longjmp.S
+	arch/x86_64/setjmp.S
 )
 
 add_library (Core STATIC ${SOURCE_FILES} ${ARCH_SOURCE_FILES})

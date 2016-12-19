@@ -8,7 +8,7 @@ set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -nostdlib")
 
 set(SOURCE_FILES
 	_crt.c
-	arch/x86_64/_start.s
+	arch/x86_64/_start.S
 )
 
 add_library (Crt STATIC ${SOURCE_FILES})
