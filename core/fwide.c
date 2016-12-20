@@ -11,7 +11,8 @@ int __elibc_fwide(FILE *stream, int mode) {
 
 	assert(stream);
 
-	/* TODO: implement this */
+	/* TODO(eteran): implement this */
+	(void)stream;
 
 	if(mode > 0) {
 		return 0;

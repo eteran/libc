@@ -85,11 +85,15 @@ FILE *const stderr = __elibc_stderr;
 FILE *__elibc_root_file_struct = __elibc_stdin;
 
 void __elibc_lock_stream(FILE *stream) {
-	/* TODO: locking */
 	assert(stream);
+	
+	/* TODO(eteran): locking */
+	(void)stream;
 }
 
 void __elibc_unlock_stream(FILE *stream) {
-	/* TODO: unlocking */
 	assert(stream);
+	
+	/* TODO(eteran): unlocking */
+	(void)stream;
 }
