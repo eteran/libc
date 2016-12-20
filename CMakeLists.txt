@@ -16,8 +16,8 @@ add_executable (libc-test test.c)
 set_property(TARGET libc-test PROPERTY C_STANDARD 99)
 
 target_link_libraries(libc-test LINK_PUBLIC 
-	Crt 
-	Core 
-	Math
-	Sys
+	c-crt 
+	c-core 
+	c-math
+	c-sys
 )

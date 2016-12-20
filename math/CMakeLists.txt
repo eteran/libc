@@ -184,13 +184,13 @@ set(ARCH_SOURCE_FILES
 	arch/x86_64/trunc.c
 )
 
-add_library (Math STATIC ${SOURCE_FILES} ${ARCH_SOURCE_FILES})
+add_library (c-math STATIC ${SOURCE_FILES} ${ARCH_SOURCE_FILES})
 
-target_include_directories (Math PUBLIC 
+target_include_directories (c-math PUBLIC 
 	${PROJECT_SOURCE_DIR}/include
 	${PROJECT_SOURCE_DIR}/include/arch/x86_64
 )
 
-set_property(TARGET Math PROPERTY C_STANDARD 99)
+set_property(TARGET c-math PROPERTY C_STANDARD 99)
 
 

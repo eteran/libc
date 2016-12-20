@@ -9,12 +9,12 @@ set(SOURCE_FILES
 	_support.cc
 )
 
-add_library (Sys STATIC ${SOURCE_FILES})
+add_library (c-sys STATIC ${SOURCE_FILES})
 
-target_include_directories (Sys PUBLIC 
+target_include_directories (c-sys PUBLIC 
 	${PROJECT_SOURCE_DIR}/include
 	${PROJECT_SOURCE_DIR}/include/arch/x86_64
 )
 
-set_property(TARGET Sys PROPERTY C_STANDARD 99)
-set_property(TARGET Sys PROPERTY CXX_STANDARD 11)
+set_property(TARGET c-sys PROPERTY C_STANDARD 99)
+set_property(TARGET c-sys PROPERTY CXX_STANDARD 11)

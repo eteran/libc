@@ -10,11 +10,11 @@ set(SOURCE_FILES
 	arch/x86_64/_start.s
 )
 
-add_library (Crt STATIC ${SOURCE_FILES})
+add_library (c-crt STATIC ${SOURCE_FILES})
 
-target_include_directories (Crt PUBLIC 
+target_include_directories (c-crt PUBLIC 
 	${PROJECT_SOURCE_DIR}/include
 	${PROJECT_SOURCE_DIR}/include/arch/x86_64
 )
 
-set_property(TARGET Crt PROPERTY C_STANDARD 99)
+set_property(TARGET c-crt PROPERTY C_STANDARD 99)
