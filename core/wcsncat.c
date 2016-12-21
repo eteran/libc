@@ -5,7 +5,6 @@
 
 /*------------------------------------------------------------------------------
 // Name: wcsncat
-// TODO: double check this for correctness
 //----------------------------------------------------------------------------*/
 wchar_t *wcsncat(wchar_t *__ELIBC_RESTRICT dest, const wchar_t *__ELIBC_RESTRICT src, size_t n) {
 	wchar_t *dest_ptr = dest;

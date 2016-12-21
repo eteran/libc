@@ -27,12 +27,8 @@ int vfprintf(FILE *__ELIBC_RESTRICT stream, const char *__ELIBC_RESTRICT format,
 		__elibc_stream_writer,
 		0,
 		0,
-		0
+		stream
 	};
-
-	/* TODO: is stream or format allowed to be NULL? */
-
-	ctx.stream = stream;
 
 	return __elibc_printf_engine(&ctx, format, ap);
 }

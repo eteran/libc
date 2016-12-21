@@ -32,8 +32,6 @@ int vsscanf(const char *__ELIBC_RESTRICT str, const char *__ELIBC_RESTRICT forma
 	char *endptr        = 0;
 	const char *str_ptr = str;
 
-	/* TODO: can str or format be NULL? */
-
 	/* we use this because it would be silly to have a variable of each type
 	 * when just one will do.  The union eliminates the need for casting
 	 * which would be neccessary if we just used a single void *

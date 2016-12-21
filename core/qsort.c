@@ -28,7 +28,7 @@ do {                                                                 \
 /*------------------------------------------------------------------------------
 // Name: __elibc_partition
 //----------------------------------------------------------------------------*/
-static size_t __elibc_partition(void *base, size_t left, size_t right, size_t size, _compar_t compar) {
+static size_t __elibc_partition(void *base, size_t left, size_t right, size_t size, __compar_fn_t compar) {
 
 	const void *const x = ELEMENT_PTR(base, right, size);
 	size_t index = left - 1;
@@ -51,7 +51,7 @@ static size_t __elibc_partition(void *base, size_t left, size_t right, size_t si
 /*------------------------------------------------------------------------------
 // Name: __elibc_quick_sort
 //----------------------------------------------------------------------------*/
-static void __elibc_quick_sort(void *base, int l, int r, size_t size, _compar_t compar) {
+static void __elibc_quick_sort(void *base, int l, int r, size_t size, __compar_fn_t compar) {
 	assert(base);
 	assert(compar);
 
@@ -65,7 +65,7 @@ static void __elibc_quick_sort(void *base, int l, int r, size_t size, _compar_t 
 /*------------------------------------------------------------------------------
 // Name: qsort
 //----------------------------------------------------------------------------*/
-void qsort(void *base, size_t nmemb, size_t size, _compar_t compar) {
+void qsort(void *base, size_t nmemb, size_t size, __compar_fn_t compar) {
 	assert(base);
 	assert(compar);
 

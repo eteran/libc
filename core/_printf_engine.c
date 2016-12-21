@@ -305,7 +305,6 @@ char *_format_float(char *buf, size_t sz, double value, int precision, char form
 
 /*------------------------------------------------------------------------------
 // Name: _signed_itoa
-// TODO: double check correctness
 //----------------------------------------------------------------------------*/
 static const char *_signed_itoa(char *buf, size_t size, char base, int precision, intmax_t d, int width, uint8_t flags) {
 
@@ -420,7 +419,6 @@ static const char *_signed_itoa(char *buf, size_t size, char base, int precision
 
 /*------------------------------------------------------------------------------
 // Name: _unsigned_itoa
-// TODO: double check correctness
 //----------------------------------------------------------------------------*/
 static const char *_unsigned_itoa(char *buf, size_t size, char base, int precision, uintmax_t ud, int width, uint8_t flags) {
 
@@ -592,7 +590,6 @@ static const char *_get_width(const char *format, long int *width, va_list *ap) 
 		/* pull an int off the stack for processing */
 		*width = va_arg(*ap, long int);
 	} else {
-		/* TODO: what if the number causes an overflow */
 		*width = strtol(format, 0, 10);
 		while(isdigit(*format)) {
 			++format;
@@ -625,7 +622,6 @@ static const char *_get_precision(const char *format, long int *precision, va_li
 			p = va_arg(*ap, long int);
 
 		} else {
-			/* TODO: what if the number causes an overflow */
 			p = strtol(format, 0, 10);
 			PRINTF_ASSERT(p >= 0);
 			while(isdigit(*format)) {

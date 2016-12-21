@@ -27,9 +27,6 @@ size_t wcsftime(wchar_t *s, size_t max, const wchar_t *format, const struct tm *
 	(void)max;
 	(void)tm;
 
-	/* TODO: can s, format or tm be NULL? */
-
-
 	while(*format != L'\0') {
 		if(*format == L'%') {
 			++format;

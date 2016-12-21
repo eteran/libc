@@ -4,7 +4,6 @@
 
 /*------------------------------------------------------------------------------
 // Name: strncat
-// TODO: double check this for correctness
 //----------------------------------------------------------------------------*/
 char *strncat(char *__ELIBC_RESTRICT dest, const char *__ELIBC_RESTRICT src, size_t n) {
 	char *dest_ptr = dest;

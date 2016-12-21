@@ -39,7 +39,7 @@ static int expected_length(char ch) {
 /*------------------------------------------------------------------------------
 // Name: __elibc_fgetwc
 // Desc: reads a single byte from the stream for use in a MB character
-// TODO: figure out the best way to reuse the code from __elibc_fgetc here
+// TODO(eteran): figure out the best way to reuse the code from __elibc_fgetc here
 //----------------------------------------------------------------------------*/
 wint_t __elibc_fgetwc(FILE *stream) {
 
@@ -122,7 +122,7 @@ static wint_t __elibc_fgetwc_unlocked(FILE *stream, char *buf) {
 	 * how many bytes do we expect to come?
 	 */
 
-	/* TODO: we assume UTF-8 for now */
+	/* NOTE(eteran): we assume UTF-8 for now */
 	n = expected_length(r);
 	if(n < 1) {
 		return WEOF;

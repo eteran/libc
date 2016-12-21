@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-void qsort(void *base, size_t nmemb, size_t size, _compar_t compar);
+void qsort(void *base, size_t nmemb, size_t size, __compar_fn_t compar);
 
 #ifdef __cplusplus
 }

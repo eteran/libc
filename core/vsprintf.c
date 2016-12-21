@@ -36,12 +36,8 @@ int vsprintf(char *__ELIBC_RESTRICT str, const char *__ELIBC_RESTRICT format, va
 		__elibc_buffer_writer,
 		__elibc_buffer_writer_done,
 		0,
-		0
+		str
 	};
-
-	/* TODO: is str or format allowed to be NULL? */
-
-	ctx.p = str;
 
 	return __elibc_printf_engine(&ctx, format, ap);
 }

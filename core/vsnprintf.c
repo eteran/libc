@@ -40,14 +40,9 @@ int vsnprintf(char *__ELIBC_RESTRICT str, size_t size, const char *__ELIBC_RESTR
 		__elibc_buffer_writer,
 		__elibc_buffer_writer_done,
 		0,
-		0,
-		0
+		str,
+		size
 	};
-
-	/* TODO: is str or format allowed to be NULL? */
-
-	ctx.p = str;
-	ctx.size = size;
 
 	return __elibc_printf_engine(&ctx, format, ap);
 }

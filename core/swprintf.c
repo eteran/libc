@@ -10,7 +10,6 @@
 int swprintf(wchar_t *__ELIBC_RESTRICT str, size_t n, const wchar_t *__ELIBC_RESTRICT format, ...) {
 	int ret;
 	va_list ap;
-	/* TODO: is str or format allowed to be NULL? */
 	va_start(ap, format);
 	ret = vswprintf(str, n, format, ap);
 	va_end(ap);

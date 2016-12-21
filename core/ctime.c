@@ -13,8 +13,6 @@ char *ctime_r(const time_t *timer, char *buf) {
 // Name: ctime
 //----------------------------------------------------------------------------*/
 char *ctime(const time_t *timer) {
-	/* TODO: should we use asctime_r here so this doesn't
-	 * share the internal buffer with asctime?
-	 */
-	return asctime(localtime(timer));
+	_Thread_local static char buf[64];
+	return ctime_r(timer, buf);
 }
