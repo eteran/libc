@@ -13,8 +13,18 @@ add_library (c-sys STATIC ${SOURCE_FILES})
 
 target_include_directories (c-sys PUBLIC 
 	${PROJECT_SOURCE_DIR}/include
-	${PROJECT_SOURCE_DIR}/include/arch/x86_64
 )
+
+
+if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
+	target_include_directories (c-sys PUBLIC 
+		${PROJECT_SOURCE_DIR}/include/arch/x86_64
+	)
+elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
+	target_include_directories (c-sys PUBLIC 
+		${PROJECT_SOURCE_DIR}/include/arch/i686
+	)
+endif()
 
 set_property(TARGET c-sys PROPERTY C_STANDARD 99)
 set_property(TARGET c-sys PROPERTY CXX_STANDARD 11)

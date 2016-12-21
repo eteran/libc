@@ -167,29 +167,57 @@ set(SOURCE_FILES
 	truncl.c
 )
 
-set(ARCH_SOURCE_FILES
-	arch/x86_64/atan2.c
-	arch/x86_64/atan.c
-	arch/x86_64/ceil.c
-	arch/x86_64/copysign.c
-	arch/x86_64/fabs.c
-	arch/x86_64/fenv.c
-	arch/x86_64/floor.c
-	arch/x86_64/fmod.c
-	arch/x86_64/log10.c
-	arch/x86_64/log.c
-	arch/x86_64/round.c
-	arch/x86_64/sin.c
-	arch/x86_64/sqrt.c
-	arch/x86_64/trunc.c
-)
+if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
+	set(SOURCE_FILES ${SOURCE_FILES}
+		arch/x86_64/atan2.c
+		arch/x86_64/atan.c
+		arch/x86_64/ceil.c
+		arch/x86_64/copysign.c
+		arch/x86_64/fabs.c
+		arch/x86_64/fenv.c
+		arch/x86_64/floor.c
+		arch/x86_64/fmod.c
+		arch/x86_64/log10.c
+		arch/x86_64/log.c
+		arch/x86_64/round.c
+		arch/x86_64/sin.c
+		arch/x86_64/sqrt.c
+		arch/x86_64/trunc.c	
+	)
+elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
+	set(SOURCE_FILES ${SOURCE_FILES}
+		arch/i686/atan2.c
+		arch/i686/atan.c
+		arch/i686/ceil.c
+		arch/i686/copysign.c
+		arch/i686/fabs.c
+		arch/i686/fenv.c
+		arch/i686/floor.c
+		arch/i686/fmod.c
+		arch/i686/log10.c
+		arch/i686/log.c
+		arch/i686/round.c
+		arch/i686/sin.c
+		arch/i686/sqrt.c
+		arch/i686/trunc.c
+	)
+endif()
 
-add_library (c-math STATIC ${SOURCE_FILES} ${ARCH_SOURCE_FILES})
+add_library (c-math STATIC ${SOURCE_FILES})
 
 target_include_directories (c-math PUBLIC 
 	${PROJECT_SOURCE_DIR}/include
-	${PROJECT_SOURCE_DIR}/include/arch/x86_64
 )
+
+if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
+	target_include_directories (c-math PUBLIC 
+		${PROJECT_SOURCE_DIR}/include/arch/x86_64
+	)
+elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
+	target_include_directories (c-math PUBLIC 
+		${PROJECT_SOURCE_DIR}/include/arch/i686
+	)
+endif()
 
 set_property(TARGET c-math PROPERTY C_STANDARD 99)
 

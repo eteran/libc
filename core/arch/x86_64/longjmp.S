@@ -1,3 +1,4 @@
+.code64
 .text
 .globl longjmp
 

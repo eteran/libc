@@ -212,16 +212,32 @@ set(SOURCE_FILES
 	wscanf.c
 )
 
-set(ARCH_SOURCE_FILES
-	arch/x86_64/longjmp.S
-	arch/x86_64/setjmp.S
-)
+if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
+	set(SOURCE_FILES ${SOURCE_FILES}
+		arch/x86_64/longjmp.S
+		arch/x86_64/setjmp.S			
+	)
+elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
+	set(SOURCE_FILES ${SOURCE_FILES}
+		arch/i686/longjmp.S
+		arch/i686/setjmp.S			
+	)
+endif()
 
-add_library (c-core STATIC ${SOURCE_FILES} ${ARCH_SOURCE_FILES})
+add_library (c-core STATIC ${SOURCE_FILES})
 
 target_include_directories (c-core PUBLIC 
 	${PROJECT_SOURCE_DIR}/include
-	${PROJECT_SOURCE_DIR}/include/arch/x86_64
 )
+
+if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
+	target_include_directories (c-core PUBLIC 
+		${PROJECT_SOURCE_DIR}/include/arch/x86_64
+	)
+elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
+	target_include_directories (c-core PUBLIC 
+		${PROJECT_SOURCE_DIR}/include/arch/i686
+	)
+endif()
 
 set_property(TARGET c-core PROPERTY C_STANDARD 99)
