@@ -7,7 +7,6 @@
 #include <math.h>
 #include <assert.h>
 
-#if !defined(__x86_64__) || defined(__SSE__)
 /*------------------------------------------------------------------------------
 // Name: strtod
 // TODO: finish this code!
@@ -142,4 +141,4 @@ double strtod(const char *__ELIBC_RESTRICT nptr, char **__ELIBC_RESTRICT endptr)
 
 	return ret;
 }
-#endif
+
