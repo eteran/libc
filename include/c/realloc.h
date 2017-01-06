@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-void *realloc(void *ptr, size_t size) __ELIBC_NOTHROW __attribute__((__alloc_size__(2)));
+void *realloc(void *ptr, size_t size) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }

@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-void *calloc(size_t nmemb, size_t size) __ELIBC_NOTHROW __attribute__((__alloc_size__(1, 2)));
+void *calloc(size_t nmemb, size_t size) __ELIBC_NOTHROW;
 
 #ifdef __cplusplus
 }
