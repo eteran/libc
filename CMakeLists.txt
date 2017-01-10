@@ -25,33 +25,44 @@ endif()
 
 add_definitions("-DENABLE_FPU")
 
-add_subdirectory(math)
-add_subdirectory(string)
-add_subdirectory(stdlib)
+add_subdirectory(assert)
 add_subdirectory(core)
 add_subdirectory(crt)
-add_subdirectory(time)
-add_subdirectory(stdio)
-add_subdirectory(assert)
 add_subdirectory(ctype)
 add_subdirectory(errno)
-add_subdirectory(wchar)
+add_subdirectory(math)
+add_subdirectory(stdio)
+add_subdirectory(stdlib)
+add_subdirectory(string)
+add_subdirectory(strings)
 add_subdirectory(sys)
+add_subdirectory(time)
+add_subdirectory(wchar)
+add_subdirectory(signal)
+add_subdirectory(locale)
+add_subdirectory(inttypes)
+add_subdirectory(wctype)
 
 add_executable (libc-test test.c)
 set_property(TARGET libc-test PROPERTY C_STANDARD 99)
 
 target_link_libraries(libc-test LINK_PUBLIC 
-	c-crt 
-	c-math
-	c-stdlib
+	c-assert
 	c-core 	
+	c-crt 
+	c-ctype
+	c-errno
+	c-math
+	c-stdio
+	c-stdlib
 	c-string	
+	c-strings
 	c-sys
 	c-time
-	c-stdio
-	c-ctype
-	c-assert
-	c-errno
 	c-wchar
+	c-signal
+	c-locale
+	c-inttypes
+	c-wctype
 )
+

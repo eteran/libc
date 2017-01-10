@@ -7,6 +7,7 @@ set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} -pedantic -W -Wall -ffreestandin
 set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -nostdlib")
 
 set(SOURCE_FILES
+	stdlib.c
 	abort.c
 	abs.c
 	atexit.c
@@ -66,4 +67,11 @@ set_property(TARGET c-stdlib PROPERTY C_STANDARD 99)
 
 target_link_libraries(c-stdlib LINK_PUBLIC 
 	c-string
+	c-stdio
+	c-ctype
+)
+
+set_target_properties(c-stdlib
+        PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
 )

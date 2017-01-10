@@ -28,3 +28,13 @@ endif()
 
 set_property(TARGET c-sys PROPERTY C_STANDARD 99)
 set_property(TARGET c-sys PROPERTY CXX_STANDARD 11)
+
+
+target_link_libraries(c-sys LINK_PUBLIC 
+	c-errno
+)
+
+set_target_properties(c-sys
+        PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
+)

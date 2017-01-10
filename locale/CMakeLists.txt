@@ -7,29 +7,30 @@ set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} -pedantic -W -Wall -ffreestandin
 set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -nostdlib")
 
 set(SOURCE_FILES
-	errno.c
+	localeconv.c
+	setlocale.c
 )
 
-add_library (c-errno STATIC ${SOURCE_FILES})
+add_library (c-locale STATIC ${SOURCE_FILES})
 
-target_include_directories (c-errno PUBLIC 
+target_include_directories (c-locale PUBLIC 
 	${PROJECT_SOURCE_DIR}/include
 )
 
 if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
-	target_include_directories (c-errno PUBLIC 
+	target_include_directories (c-locale PUBLIC 
 		${PROJECT_SOURCE_DIR}/include/arch/x86_64
 	)
 elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
-	target_include_directories (c-errno PUBLIC 
+	target_include_directories (c-locale PUBLIC 
 		${PROJECT_SOURCE_DIR}/include/arch/i686
 	)
 endif()
 
-set_property(TARGET c-errno PROPERTY C_STANDARD 99)
+set_property(TARGET c-locale PROPERTY C_STANDARD 99)
 
 
-set_target_properties(c-errno
+set_target_properties(c-locale
         PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
 )

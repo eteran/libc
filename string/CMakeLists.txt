@@ -54,3 +54,7 @@ endif()
 set_property(TARGET c-string PROPERTY C_STANDARD 99)
 
 
+set_target_properties(c-string
+        PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
+)

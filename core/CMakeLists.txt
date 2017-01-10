@@ -7,31 +7,10 @@ set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} -pedantic -W -Wall -ffreestandin
 set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -nostdlib")
 
 set(SOURCE_FILES 
-	bcmp.c
-	bcopy.c
-	bzero.c
 	fegetexceptflag.c
 	feholdexcept.c
 	fesetexceptflag.c
 	feupdateenv.c
-	ffs.c
-	imaxabs.c
-	imaxdiv.c
-	index.c
-	localeconv.c
-	raise.c
-	rindex.c
-	setlocale.c
-	signal.c
-	stdio.c
-	stdlib.c
-	strcasecmp.c
-	strncasecmp.c
-	strtoimax.c
-	strtoumax.c
-	wcstoimax.c
-	wcstoumax.c
-	wctype.c	
 )
 
 if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
@@ -68,4 +47,9 @@ target_link_libraries(c-core LINK_PUBLIC
 	c-stdlib
 	c-math
 	c-string	
+)
+
+set_target_properties(c-core
+        PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
 )

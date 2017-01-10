@@ -222,3 +222,7 @@ endif()
 set_property(TARGET c-math PROPERTY C_STANDARD 99)
 
 
+set_target_properties(c-math
+        PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
+)

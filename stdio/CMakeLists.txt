@@ -7,6 +7,7 @@ set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} -pedantic -W -Wall -ffreestandin
 set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -nostdlib")
 
 set(SOURCE_FILES
+	stdio.c
 	clearerr.c
 	fclose.c
 	feof.c
@@ -75,4 +76,9 @@ set_property(TARGET c-stdio PROPERTY C_STANDARD 99)
 
 target_link_libraries(c-stdio LINK_PUBLIC 
 	c-core
+)
+
+set_target_properties(c-stdio
+        PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
 )
