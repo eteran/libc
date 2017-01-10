@@ -33,8 +33,4 @@ set_property(TARGET c-sys PROPERTY CXX_STANDARD 11)
 target_link_libraries(c-sys LINK_PUBLIC 
 	c-errno
 )
-
-set_target_properties(c-sys
-        PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
-)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})

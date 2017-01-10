@@ -44,8 +44,4 @@ target_link_libraries(c-setjmp LINK_PUBLIC
 	c-math
 	c-string	
 )
-
-set_target_properties(c-setjmp
-        PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
-)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})

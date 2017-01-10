@@ -90,8 +90,4 @@ set_property(TARGET c-wchar PROPERTY C_STANDARD 99)
 target_link_libraries(c-wchar LINK_PUBLIC 
 
 )
-
-set_target_properties(c-wchar
-        PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
-)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})

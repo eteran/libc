@@ -32,8 +32,4 @@ set_property(TARGET c-assert PROPERTY C_STANDARD 99)
 target_link_libraries(c-assert LINK_PUBLIC 
 	c-stdio
 )
-
-set_target_properties(c-assert
-        PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
-)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})

@@ -71,8 +71,4 @@ target_link_libraries(c-stdlib LINK_PUBLIC
 	c-ctype
 	c-signal
 )
-
-set_target_properties(c-stdlib
-        PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
-)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})

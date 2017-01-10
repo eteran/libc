@@ -36,9 +36,4 @@ elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
 endif()
 
 set_property(TARGET c-time PROPERTY C_STANDARD 99)
-
-
-set_target_properties(c-time
-        PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
-)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})
