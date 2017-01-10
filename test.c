@@ -28,10 +28,11 @@
 #include <wchar.h>
 #include <fenv.h>
 #include <limits.h>
-//#include <tgmath.h>
+#include <tgmath.h>
 #include <math.h>
 #include <errno.h>
 
+#if 0
 /* UTF-8 single byte feeding test for mbrtowc(),
    contributed by Markus Kuhn <mkuhn@acm.org>.  */
 static int utf8_test_1(void) {
@@ -190,6 +191,7 @@ static int check_ascii(const char *locname) {
 
 	return res != 0;
 }
+#endif
 
 void test_printf(void) {
 	

@@ -18,31 +18,19 @@
 #if defined(__STDC_NO_COMPLEX__)
 
 #define __ELIBC_TGCALL(x, func) \
-	__builtin_choose_expr(                                                        \
-		__builtin_types_compatible_p(__typeof__(x), long double), (func ## l)(x), \
-	__builtin_choose_expr(                                                        \
-		__builtin_types_compatible_p(__typeof__(x), float), (func ## f)(x),       \
-	__builtin_choose_expr(                                                        \
-		__builtin_types_compatible_p(__typeof__(x), double), (func)(x),           \
-	(void)0)))
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), long double), (func ## l)(x), \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), float), (func ## f)(x),       \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), double), (func)(x),           \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), int), (func)(x),              \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), long), (func)(x),             \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), short), (func)(x),            \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), unsigned int), (func)(x),     \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), unsigned long), (func)(x),    \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), unsigned short), (func)(x),   \
+	(void)0)))))))))
 
 #else
-
-#define __ELIBC_TGCALL(x, func) \
-	__builtin_choose_expr(                                                                      \
-		__builtin_types_compatible_p(__typeof__(x), long double), (func ## l)(x),               \
-	__builtin_choose_expr(                                                                      \
-		__builtin_types_compatible_p(__typeof__(x), float), (func ## f)(x),                     \
-	__builtin_choose_expr(                                                                      \
-		__builtin_types_compatible_p(__typeof__(x), double), (func)(x),                         \
-	__builtin_choose_expr(                                                                      \
-		__builtin_types_compatible_p(__typeof__(x), long double _Complex), (c ## func ## l)(x), \
-	__builtin_choose_expr(                                                                      \
-		__builtin_types_compatible_p(__typeof__(x), float _Complex), (c ## func ## f)(x),       \
-	__builtin_choose_expr(                                                                      \
-		__builtin_types_compatible_p(__typeof__(x), double _Complex), (c ## func)(x),           \
-	(void)0))))))
-
+#error "Complex Is Not Implemented"
 #endif
 
 #define acos(x)        __ELIBC_TGCALL((x), acos)
@@ -70,7 +58,6 @@
 #define floor(x)       __ELIBC_TGCALL((x), floor)
 #define frexp(x)       __ELIBC_TGCALL((x), frexp)
 #define ilogb(x)       __ELIBC_TGCALL((x), ilogb)
-#define ldexp(x)       __ELIBC_TGCALL((x), ldexp)
 #define lgamma(x)      __ELIBC_TGCALL((x), lgamma)
 #define llrint(x)      __ELIBC_TGCALL((x), llrint)
 #define llround(x)     __ELIBC_TGCALL((x), llround)
@@ -96,29 +83,19 @@
 /* TODO: how do we account for the type of y? */
 #if defined(__STDC_NO_COMPLEX__)
 #define __ELIBC_TGCALL2(x, y, func) \
-	__builtin_choose_expr(                                                        \
-		__builtin_types_compatible_p(__typeof__(x), long double), (func ## l)((x), (y)), \
-	__builtin_choose_expr(                                                        \
-		__builtin_types_compatible_p(__typeof__(x), float), (func ## f)((x), (y)),       \
-	__builtin_choose_expr(                                                        \
-		__builtin_types_compatible_p(__typeof__(x), double), (func)((x), (y)),           \
-	(void)0)))
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), long double),    (func ## l)((x), (y)), \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), float),          (func ## f)((x), (y)), \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), double),         (func)((x), (y)),	  \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), int),            (func)((x), (y)),	  \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), long),           (func)((x), (y)),	  \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), short),          (func)((x), (y)),	  \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), unsigned int),   (func)((x), (y)),      \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), unsigned long),  (func)((x), (y)),      \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), unsigned short), (func)((x), (y)),      \
+	(void)0)))))))))
 
 #else
-#define __ELIBC_TGCALL2(x, y, func) \
-	__builtin_choose_expr(                                                                             \
-		__builtin_types_compatible_p(__typeof__(x), long double), (func ## l)((x), (y)),               \
-	__builtin_choose_expr(                                                                             \
-		__builtin_types_compatible_p(__typeof__(x), float), (func ## f)((x), (y)),                     \
-	__builtin_choose_expr(                                                                             \
-		__builtin_types_compatible_p(__typeof__(x), double), (func)((x), (y)),                         \
-	__builtin_choose_expr(                                                                             \
-		__builtin_types_compatible_p(__typeof__(x), long double _Complex), (c ## func ## l)((x), (y)), \
-	__builtin_choose_expr(                                                                             \
-		__builtin_types_compatible_p(__typeof__(x), float _Complex), (c ## func ## f)((x), (y)),       \
-	__builtin_choose_expr(                                                                             \
-		__builtin_types_compatible_p(__typeof__(x), double _Complex), (c ## func)((x), (y)),           \
-	(void)0))))))
+#error "Complex Is Not Implemented"
 #endif
 
 #define atan2(x, y)       __ELIBC_TGCALL2((x), (y), atan2)
@@ -128,6 +105,7 @@
 #define copysign(x, y)    __ELIBC_TGCALL2((x), (y), copysign)	
 #define fdim(x, y)        __ELIBC_TGCALL2((x), (y), fdim)
 #define fmax(x, y)        __ELIBC_TGCALL2((x), (y), fmax)
+#define ldexp(x, y)       __ELIBC_TGCALL2((x), (y), ldexp)
 #define fmin(x, y)        __ELIBC_TGCALL2((x), (y), fmin)
 #define hypot(x, y)       __ELIBC_TGCALL2((x), (y), hypot)
 #define nextafter(x, y)   __ELIBC_TGCALL2((x), (y), nextafter)
@@ -140,35 +118,22 @@
 /* TODO: how do we account for the type of y and z? */
 #if defined(__STDC_NO_COMPLEX__)
 #define __ELIBC_TGCALL3(x, y, z, func) \
-	__builtin_choose_expr(                                                                    \
-		__builtin_types_compatible_p(__typeof__(x), long double), (func ## l)((x), (y), (z)), \
-	__builtin_choose_expr(                                                                    \
-		__builtin_types_compatible_p(__typeof__(x), float), (func ## f)((x), (y), (z)),       \
-	__builtin_choose_expr(                                                                    \
-		__builtin_types_compatible_p(__typeof__(x), double), (func)((x), (y), (z)),           \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), long double),    (func ## l)((x), (y), (z)), \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), float),          (func ## f)((x), (y), (z)), \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), double),         (func)((x), (y), (z)),      \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), int),            (func)((x), (y), (z)),      \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), long),           (func)((x), (y), (z)),      \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), short),          (func)((x), (y), (z)),      \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), unsigned int),   (func)((x), (y), (z)),      \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), unsigned long),  (func)((x), (y), (z)),      \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), unsigned short), (func)((x), (y), (z)),      \
 	(void)0)))
 
 #else
-#define __ELIBC_TGCALL3(x, y, z, func) \
-	__builtin_choose_expr(                                                                                  \
-		__builtin_types_compatible_p(__typeof__(x), long double), (func ## l)((x), (y), (z)),               \
-	__builtin_choose_expr(                                                                                  \
-		__builtin_types_compatible_p(__typeof__(x), float), (func ## f)((x), (y), (z)),                     \
-	__builtin_choose_expr(                                                                                  \
-		__builtin_types_compatible_p(__typeof__(x), double), (func)((x), (y), (z)),                         \
-	__builtin_choose_expr(                                                                                  \
-		__builtin_types_compatible_p(__typeof__(x), long double _Complex), (c ## func ## l)((x), (y), (z)), \
-	__builtin_choose_expr(                                                                                  \
-		__builtin_types_compatible_p(__typeof__(x), float _Complex), (c ## func ## f)((x), (y), (z)),       \
-	__builtin_choose_expr(                                                                                  \
-		__builtin_types_compatible_p(__typeof__(x), double _Complex), (c ## func)((x), (y), (z)),           \
-	(void)0))))))
+#error "Complex Is Not Implemented"
 #endif
 
-#define remquo(x, y, z)      __ELIBC_TGCALL3((x), (y), (z), remquo)
-#define fma(x, y, z)         __ELIBC_TGCALL3((x), (y), (z), fma)
-
-
-
+#define remquo(x, y, z) __ELIBC_TGCALL3((x), (y), (z), remquo)
+#define fma(x, y, z)    __ELIBC_TGCALL3((x), (y), (z), fma)
 
 #endif
