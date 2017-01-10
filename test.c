@@ -28,7 +28,8 @@
 #include <wchar.h>
 #include <fenv.h>
 #include <limits.h>
-#include <tgmath.h>
+//#include <tgmath.h>
+#include <math.h>
 #include <errno.h>
 
 /* UTF-8 single byte feeding test for mbrtowc(),
@@ -214,16 +215,21 @@ void test_printf(void) {
 int main(void) {
 
 	int result = 0;
+	printf("Starting Tests...\n");
 	
 	test_printf();
 
+
+	printf("ldexp: %f\n", ldexp(2, -4));
+
 #if 1
-	double x = sin((double)rand());
+	double x = sin(45);
 	double y = cos(x);
 	double z = tan(y);
-	printf("%f\n", z);
+	printf("%f %f %f\n", x, y, z);
 #endif
 
+#if 0
 	long long x2 = strtoll("-9223372036854775809", NULL, 10);
 	printf("%lld\n", x2);
 
@@ -264,6 +270,6 @@ int main(void) {
 	setlocale(LC_ALL, "en_US.UTF-8");
 	result |= check_ascii(setlocale(LC_ALL, NULL));
 	result |= utf8_test();
-
+#endif
 	return result;
 }

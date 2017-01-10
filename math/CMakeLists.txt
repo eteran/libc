@@ -45,10 +45,10 @@ set(SOURCE_FILES
 	erfcl.c
 	erff.c
 	erfl.c
+	exp.c
 	exp2.c
 	exp2f.c
 	exp2l.c
-	exp.c
 	expf.c
 	expl.c
 	expm1.c
@@ -147,6 +147,7 @@ set(SOURCE_FILES
 	scalbn.c
 	scalbnf.c
 	scalbnl.c
+	sin.c
 	sinf.c
 	sinh.c
 	sinhf.c
@@ -180,7 +181,6 @@ if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
 		arch/x86_64/log10.c
 		arch/x86_64/log.c
 		arch/x86_64/round.c
-		arch/x86_64/sin.c
 		arch/x86_64/sqrt.c
 		arch/x86_64/trunc.c	
 	)
