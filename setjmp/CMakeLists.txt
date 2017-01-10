@@ -21,31 +21,31 @@ elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
 	)
 endif()
 
-add_library (c-core STATIC ${SOURCE_FILES})
+add_library (c-setjmp STATIC ${SOURCE_FILES})
 
-target_include_directories (c-core PUBLIC 
+target_include_directories (c-setjmp PUBLIC 
 	${PROJECT_SOURCE_DIR}/include
 )
 
 if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
-	target_include_directories (c-core PUBLIC 
+	target_include_directories (c-setjmp PUBLIC 
 		${PROJECT_SOURCE_DIR}/include/arch/x86_64
 	)
 elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
-	target_include_directories (c-core PUBLIC 
+	target_include_directories (c-setjmp PUBLIC 
 		${PROJECT_SOURCE_DIR}/include/arch/i686
 	)
 endif()
 
-set_property(TARGET c-core PROPERTY C_STANDARD 99)
+set_property(TARGET c-setjmp PROPERTY C_STANDARD 99)
 
-target_link_libraries(c-core LINK_PUBLIC 
+target_link_libraries(c-setjmp LINK_PUBLIC 
 	c-stdlib
 	c-math
 	c-string	
 )
 
-set_target_properties(c-core
+set_target_properties(c-setjmp
         PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
 )

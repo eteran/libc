@@ -75,7 +75,7 @@ set_property(TARGET c-stdio PROPERTY C_STANDARD 99)
 
 
 target_link_libraries(c-stdio LINK_PUBLIC 
-	c-core
+	c-stdlib
 )
 
 set_target_properties(c-stdio

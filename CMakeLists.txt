@@ -26,7 +26,6 @@ endif()
 add_definitions("-DENABLE_FPU")
 
 add_subdirectory(assert)
-add_subdirectory(core)
 add_subdirectory(crt)
 add_subdirectory(ctype)
 add_subdirectory(errno)
@@ -42,17 +41,23 @@ add_subdirectory(signal)
 add_subdirectory(locale)
 add_subdirectory(inttypes)
 add_subdirectory(wctype)
+add_subdirectory(fenv)
+add_subdirectory(setjmp)
 
 add_executable (libc-test test.c)
 set_property(TARGET libc-test PROPERTY C_STANDARD 99)
 
 target_link_libraries(libc-test LINK_PUBLIC 
 	c-assert
-	c-core 	
 	c-crt 
 	c-ctype
 	c-errno
+	c-fenv
+	c-inttypes
+	c-locale
 	c-math
+	c-setjmp
+	c-signal
 	c-stdio
 	c-stdlib
 	c-string	
@@ -60,9 +65,6 @@ target_link_libraries(libc-test LINK_PUBLIC
 	c-sys
 	c-time
 	c-wchar
-	c-signal
-	c-locale
-	c-inttypes
 	c-wctype
 )
 

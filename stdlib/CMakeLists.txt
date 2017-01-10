@@ -69,6 +69,7 @@ target_link_libraries(c-stdlib LINK_PUBLIC
 	c-string
 	c-stdio
 	c-ctype
+	c-signal
 )
 
 set_target_properties(c-stdlib
