@@ -7,35 +7,18 @@ set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} -pedantic -W -Wall -ffreestandin
 set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -nostdlib")
 
 set(SOURCE_FILES 
-	assert.c
 	bcmp.c
 	bcopy.c
-	btowc.c
 	bzero.c
-	ctype.c
-	errno.c
 	fegetexceptflag.c
 	feholdexcept.c
 	fesetexceptflag.c
 	feupdateenv.c
 	ffs.c
-	fgetwc.c
-	fgetws.c
-	fputwc.c
-	fputws.c
-	fwide.c
-	fwprintf.c
-	fwscanf.c
-	getwchar.c
 	imaxabs.c
 	imaxdiv.c
 	index.c
 	localeconv.c
-	mbrlen.c
-	mbrtowc.c
-	mbsinit.c
-	mbsrtowcs.c
-	putwchar.c
 	raise.c
 	rindex.c
 	setlocale.c
@@ -46,54 +29,9 @@ set(SOURCE_FILES
 	strncasecmp.c
 	strtoimax.c
 	strtoumax.c
-	swprintf.c
-	swscanf.c
-	ungetwc.c
-	vfwprintf.c
-	vfwscanf.c
-	vswprintf.c
-	vswscanf.c
-	vwprintf.c
-	vwscanf.c
-	wcrtomb.c
-	wcscat.c
-	wcschr.c
-	wcscmp.c
-	wcscoll.c
-	wcscpy.c
-	wcscspn.c
-	wcsftime.c
-	wcslen.c
-	wcsncat.c
-	wcsncmp.c
-	wcsncpy.c
-	wcspbrk.c
-	wcsrchr.c
-	wcsrtombs.c
-	wcsspn.c
-	wcsstr.c
-	wcstod.c
-	wcstof.c
 	wcstoimax.c
-	wcstok.c
-	wcstol.c
-	wcstold.c
-	wcstoll.c
-	wcstoul.c
-	wcstoull.c
 	wcstoumax.c
-	wcswidth.c
-	wcsxfrm.c
-	wctob.c
-	wctype.c
-	wcwidth.c
-	wmemchr.c
-	wmemcmp.c
-	wmemcpy.c
-	wmemmove.c
-	wmemset.c
-	wprintf.c
-	wscanf.c
+	wctype.c	
 )
 
 if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")

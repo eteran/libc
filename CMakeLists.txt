@@ -32,6 +32,10 @@ add_subdirectory(core)
 add_subdirectory(crt)
 add_subdirectory(time)
 add_subdirectory(stdio)
+add_subdirectory(assert)
+add_subdirectory(ctype)
+add_subdirectory(errno)
+add_subdirectory(wchar)
 add_subdirectory(sys)
 
 add_executable (libc-test test.c)
@@ -46,4 +50,8 @@ target_link_libraries(libc-test LINK_PUBLIC
 	c-sys
 	c-time
 	c-stdio
+	c-ctype
+	c-assert
+	c-errno
+	c-wchar
 )
