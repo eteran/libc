@@ -12,41 +12,20 @@ set(SOURCE_FILES
 	bcopy.c
 	btowc.c
 	bzero.c
-	clearerr.c
 	ctype.c
 	errno.c
-	fclose.c
 	fegetexceptflag.c
 	feholdexcept.c
-	feof.c
-	ferror.c
 	fesetexceptflag.c
 	feupdateenv.c
-	fflush.c
 	ffs.c
-	fgetc.c
-	fgetpos.c
-	fgets.c
 	fgetwc.c
 	fgetws.c
-	fopen.c
-	fprintf.c
-	fputc.c
-	fputs.c
 	fputwc.c
 	fputws.c
-	fread.c
-	freopen.c
-	fscanf.c
-	fseek.c
-	fsetpos.c
-	ftell.c
 	fwide.c
 	fwprintf.c
-	fwrite.c
 	fwscanf.c
-	getchar.c
-	gets.c
 	getwchar.c
 	imaxabs.c
 	imaxdiv.c
@@ -56,25 +35,11 @@ set(SOURCE_FILES
 	mbrtowc.c
 	mbsinit.c
 	mbsrtowcs.c
-	perror.c
-	printf.c
-	_printf_engine.c
-	putchar.c
-	puts.c
 	putwchar.c
 	raise.c
-	remove.c
-	rename.c
-	rewind.c
 	rindex.c
-	scanf.c
-	setbuf.c
 	setlocale.c
-	setvbuf.c
 	signal.c
-	snprintf.c
-	sprintf.c
-	sscanf.c
 	stdio.c
 	stdlib.c
 	strcasecmp.c
@@ -83,19 +48,9 @@ set(SOURCE_FILES
 	strtoumax.c
 	swprintf.c
 	swscanf.c
-	tmpfile.c
-	tmpnam.c
-	ungetc.c
 	ungetwc.c
-	vfprintf.c
-	vfscanf.c
 	vfwprintf.c
 	vfwscanf.c
-	vprintf.c
-	vscanf.c
-	vsnprintf.c
-	vsprintf.c
-	vsscanf.c
 	vswprintf.c
 	vswscanf.c
 	vwprintf.c

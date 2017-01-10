@@ -31,6 +31,7 @@ add_subdirectory(stdlib)
 add_subdirectory(core)
 add_subdirectory(crt)
 add_subdirectory(time)
+add_subdirectory(stdio)
 add_subdirectory(sys)
 
 add_executable (libc-test test.c)
@@ -44,4 +45,5 @@ target_link_libraries(libc-test LINK_PUBLIC
 	c-string	
 	c-sys
 	c-time
+	c-stdio
 )
