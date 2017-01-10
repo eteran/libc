@@ -109,7 +109,7 @@
 #define fmin(x, y)        __ELIBC_TGCALL2((x), (y), fmin)
 #define hypot(x, y)       __ELIBC_TGCALL2((x), (y), hypot)
 #define nextafter(x, y)   __ELIBC_TGCALL2((x), (y), nextafter)
-#define nexttowards(x, y) __ELIBC_TGCALL2((x), (y), nexttowards)
+#define nexttoward(x, y)  __ELIBC_TGCALL2((x), (y), nexttoward)
 #define remainder(x, y)   __ELIBC_TGCALL2((x), (y), remainder)
 #define scalbn(x, y)      __ELIBC_TGCALL2((x), (y), scalbn)
 #define scalbln(x, y)     __ELIBC_TGCALL2((x), (y), scalbln)
