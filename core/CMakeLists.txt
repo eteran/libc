@@ -7,30 +7,14 @@ set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} -pedantic -W -Wall -ffreestandin
 set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -nostdlib")
 
 set(SOURCE_FILES 
-	abort.c
-	abs.c
-	asctime.c
 	assert.c
-	atexit.c
-	atof.c
-	atoi.c
-	atol.c
-	atoll.c
 	bcmp.c
 	bcopy.c
-	bsearch.c
 	btowc.c
 	bzero.c
-	calloc.c
 	clearerr.c
-	clock.c
-	ctime.c
 	ctype.c
-	difftime.c
-	div.c
 	errno.c
-	exit.c
-	_Exit.c
 	fclose.c
 	fegetexceptflag.c
 	feholdexcept.c
@@ -52,7 +36,6 @@ set(SOURCE_FILES
 	fputwc.c
 	fputws.c
 	fread.c
-	free.c
 	freopen.c
 	fscanf.c
 	fseek.c
@@ -63,38 +46,23 @@ set(SOURCE_FILES
 	fwrite.c
 	fwscanf.c
 	getchar.c
-	getenv.c
 	gets.c
 	getwchar.c
-	gmtime.c
 	imaxabs.c
 	imaxdiv.c
 	index.c
-	labs.c
-	ldiv.c
-	llabs.c
-	lldiv.c
 	localeconv.c
-	localtime.c
-	malloc.c
-	mblen.c
 	mbrlen.c
 	mbrtowc.c
 	mbsinit.c
 	mbsrtowcs.c
-	mbstowcs.c
-	mbtowc.c
-	mktime.c
 	perror.c
 	printf.c
 	_printf_engine.c
 	putchar.c
 	puts.c
 	putwchar.c
-	qsort.c
 	raise.c
-	rand.c
-	realloc.c
 	remove.c
 	rename.c
 	rewind.c
@@ -106,26 +74,15 @@ set(SOURCE_FILES
 	signal.c
 	snprintf.c
 	sprintf.c
-	srand.c
 	sscanf.c
 	stdio.c
 	stdlib.c
 	strcasecmp.c
-	strftime.c
 	strncasecmp.c
-	strtod.c
-	strtof.c
 	strtoimax.c
-	strtol.c
-	strtold.c
-	strtoll.c
-	strtoul.c
-	strtoull.c
 	strtoumax.c
 	swprintf.c
 	swscanf.c
-	system.c
-	time.c
 	tmpfile.c
 	tmpnam.c
 	ungetc.c
@@ -167,14 +124,12 @@ set(SOURCE_FILES
 	wcstol.c
 	wcstold.c
 	wcstoll.c
-	wcstombs.c
 	wcstoul.c
 	wcstoull.c
 	wcstoumax.c
 	wcswidth.c
 	wcsxfrm.c
 	wctob.c
-	wctomb.c
 	wctype.c
 	wcwidth.c
 	wmemchr.c
@@ -215,3 +170,9 @@ elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
 endif()
 
 set_property(TARGET c-core PROPERTY C_STANDARD 99)
+
+target_link_libraries(c-core LINK_PUBLIC 
+	c-stdlib
+	c-math
+	c-string	
+)

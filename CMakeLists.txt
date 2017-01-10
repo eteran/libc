@@ -23,13 +23,14 @@ elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
 endif()
 
 
-
 add_definitions("-DENABLE_FPU")
 
 add_subdirectory(math)
 add_subdirectory(string)
+add_subdirectory(stdlib)
 add_subdirectory(core)
 add_subdirectory(crt)
+add_subdirectory(time)
 add_subdirectory(sys)
 
 add_executable (libc-test test.c)
@@ -37,8 +38,10 @@ set_property(TARGET libc-test PROPERTY C_STANDARD 99)
 
 target_link_libraries(libc-test LINK_PUBLIC 
 	c-crt 
-	c-core 
 	c-math
-	c-string
+	c-stdlib
+	c-core 	
+	c-string	
 	c-sys
+	c-time
 )
