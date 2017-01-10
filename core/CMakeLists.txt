@@ -84,11 +84,6 @@ set(SOURCE_FILES
 	mbsrtowcs.c
 	mbstowcs.c
 	mbtowc.c
-	memchr.c
-	memcmp.c
-	memcpy.c
-	memmove.c
-	memset.c
 	mktime.c
 	perror.c
 	printf.c
@@ -116,38 +111,17 @@ set(SOURCE_FILES
 	stdio.c
 	stdlib.c
 	strcasecmp.c
-	strcat.c
-	strchr.c
-	strcmp.c
-	strcoll.c
-	strcpy.c
-	strcspn.c
-	strdup.c
-	strerror.c
 	strftime.c
-	strlcat.c
-	strlcpy.c
-	strlen.c
 	strncasecmp.c
-	strncat.c
-	strncmp.c
-	strncpy.c
-	strndup.c
-	strpbrk.c
-	strrchr.c
-	strspn.c
-	strstr.c
 	strtod.c
 	strtof.c
 	strtoimax.c
-	strtok.c
 	strtol.c
 	strtold.c
 	strtoll.c
 	strtoul.c
 	strtoull.c
 	strtoumax.c
-	strxfrm.c
 	swprintf.c
 	swscanf.c
 	system.c

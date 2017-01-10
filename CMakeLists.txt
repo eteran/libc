@@ -27,6 +27,7 @@ endif()
 add_definitions("-DENABLE_FPU")
 
 add_subdirectory(math)
+add_subdirectory(string)
 add_subdirectory(core)
 add_subdirectory(crt)
 add_subdirectory(sys)
@@ -38,5 +39,6 @@ target_link_libraries(libc-test LINK_PUBLIC
 	c-crt 
 	c-core 
 	c-math
+	c-string
 	c-sys
 )
