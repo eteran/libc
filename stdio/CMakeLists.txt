@@ -77,5 +77,6 @@ set_property(TARGET c-stdio PROPERTY C_STANDARD 99)
 target_link_libraries(c-stdio LINK_PUBLIC 
 	c-stdlib
 	c-math
+	c-errno
 )
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})
