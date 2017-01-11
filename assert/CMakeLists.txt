@@ -30,6 +30,7 @@ set_property(TARGET c-assert PROPERTY C_STANDARD 99)
 
 
 target_link_libraries(c-assert LINK_PUBLIC 
+	c-stdlib
 	c-stdio
 )
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})

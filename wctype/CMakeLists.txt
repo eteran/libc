@@ -26,5 +26,8 @@ elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
 	)
 endif()
 
+target_link_libraries(c-wctype LINK_PUBLIC 
+	c-ctype
+)
 set_property(TARGET c-wctype PROPERTY C_STANDARD 99)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})

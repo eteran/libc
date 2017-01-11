@@ -27,5 +27,8 @@ elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
 	)
 endif()
 
+target_link_libraries(c-signal LINK_PUBLIC 
+	c-sys
+)
 set_property(TARGET c-signal PROPERTY C_STANDARD 99)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})

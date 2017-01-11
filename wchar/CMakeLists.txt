@@ -88,6 +88,7 @@ set_property(TARGET c-wchar PROPERTY C_STANDARD 99)
 
 
 target_link_libraries(c-wchar LINK_PUBLIC 
-
+	c-stdio
+	c-stdlib
 )
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})

@@ -16,7 +16,6 @@ set(SOURCE_FILES
 	mktime.c
 	strftime.c
 	time.c
-
 )
 
 add_library (c-time STATIC ${SOURCE_FILES})
@@ -35,5 +34,8 @@ elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
 	)
 endif()
 
+target_link_libraries(c-time LINK_PUBLIC 
+	c-stdio
+)
 set_property(TARGET c-time PROPERTY C_STANDARD 99)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})

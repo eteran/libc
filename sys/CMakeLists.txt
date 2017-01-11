@@ -32,5 +32,6 @@ set_property(TARGET c-sys PROPERTY CXX_STANDARD 11)
 
 target_link_libraries(c-sys LINK_PUBLIC 
 	c-errno
+	c-stdlib
 )
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})

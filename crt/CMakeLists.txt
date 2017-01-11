@@ -39,5 +39,10 @@ elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
 	)
 endif()
 
+target_link_libraries(c-crt LINK_PUBLIC 
+	c-stdlib
+	c-locale
+)
+
 set_property(TARGET c-crt PROPERTY C_STANDARD 99)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})
