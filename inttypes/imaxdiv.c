@@ -14,13 +14,10 @@ imaxdiv_t imaxdiv(intmax_t numerator, intmax_t denominator) {
 	
 	assert(denominator != 0);
 	
-	(void)numerator;
-	(void)denominator;
-#if 0 /* we need to implement compiler support functions
-       * such as __moddi3 and __divdi3
-       */
+	/* On some platforms, we need to implement compiler support functions
+	 * such as __moddi3 and __divdi3
+	 */
 	ret.quot = numerator / denominator;
 	ret.rem  = numerator % denominator;
-#endif
 	return ret;
 }
