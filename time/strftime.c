@@ -24,10 +24,9 @@ if(n != 0) {                    \
 size_t strftime(char *s, size_t max, const char *format, const struct tm *tm) {
 
 	(void)max;
-	(void)tm;
 
-	/* TODO: can s, format or tm be NULL? */
-
+	assert(tm);
+	assert(format);
 
 	while(*format != '\0') {
 		if(*format == '%') {
