@@ -1,6 +1,7 @@
 
 #define __ELIBC_SOURCE
 #include <time.h>
+#include <assert.h>
 
 #define DO_H(s) (void)0
 #define DO_M(s) (void)0
