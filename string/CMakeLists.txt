@@ -41,6 +41,10 @@ target_include_directories (c-string PUBLIC
 	${PROJECT_SOURCE_DIR}/include
 )
 
+target_link_libraries(c-string LINK_PUBLIC 
+	c-assert
+)
+
 if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
 	target_include_directories (c-string PUBLIC 
 		${PROJECT_SOURCE_DIR}/include/arch/x86_64
