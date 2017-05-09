@@ -71,6 +71,7 @@ size_t wcsftime(wchar_t *s, size_t max, const wchar_t *format, const struct tm *
 				DO_S(s);
 				*s++ = ' ';
 				DO_p(s);
+				break;
 
 			case L'D':
 				DO_m(s);

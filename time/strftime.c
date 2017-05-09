@@ -74,6 +74,7 @@ size_t strftime(char *s, size_t max, const char *format, const struct tm *tm) {
 				DO_S(s);
 				*s++ = ' ';
 				DO_p(s);
+				break;
 
 			case 'D':
 				DO_m(s);
