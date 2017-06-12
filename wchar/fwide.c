@@ -10,16 +10,29 @@
 int __elibc_fwide(FILE *stream, int mode) {
 
 	assert(stream);
-
-	/* TODO(eteran): implement this */
-	(void)stream;
-
-	if(mode > 0) {
+	
+	/* When mode is nonzero, we first attempt to set the orientation */
+	if(mode != 0) {
+		if(_FDATA(stream)->orientation == 0) {
+			if(mode > 0) {
+				_FDATA(stream)->orientation = 3;
+			} else if(mode < 0) {
+				_FDATA(stream)->orientation = 2;
+			}
+		}
+	}
+	
+	switch(_FDATA(stream)->orientation) {
+	case 0: /* unset */
 		return 0;
-	} else if(mode < 0) {
-		return 0;
-	} else {
-		return 0;
+	case 1: /* invalid */
+		assert(0);
+	case 2: /* char */
+		/* It returns a negative value if stream is byte oriented. */
+		return -1;
+	case 3: /* wchar */
+		/* It returns a positive value if stream is wide-character oriented */
+		return 1;
 	}
 }
 
