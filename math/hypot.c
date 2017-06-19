@@ -7,5 +7,8 @@
 // Name: hypot
 //----------------------------------------------------------------------------*/
 double hypot(double x, double y) {
-	return __builtin_hypot(x, y);
+	/* TODO(eteran): check for overflow */
+	const double x2 = x * x;
+	const double y2 = y * y;
+	return sqrt(x2 + y2);
 }

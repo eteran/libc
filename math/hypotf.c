@@ -7,5 +7,8 @@
 // Name: hypotf
 //----------------------------------------------------------------------------*/
 float hypotf(float x, float y) {
-	return __builtin_hypotf(x, y);
+	/* TODO(eteran): check for overflow */
+	const float x2 = x * x;
+	const float y2 = y * y;
+	return sqrtf(x2 + y2);
 }
