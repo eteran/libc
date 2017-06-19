@@ -7,5 +7,14 @@
 // Name: fdiml
 //----------------------------------------------------------------------------*/
 long double fdiml(long double x, long double y) {
-	return __builtin_fdiml(x, y);
+#ifndef __FAST_MATH__
+	if(isnan(x)) {
+		return x;
+	}
+
+	if(isnan(y)) {
+		return y;
+	}
+#endif
+	return fmaxl(x - y, 0);
 }

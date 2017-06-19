@@ -7,5 +7,6 @@
 // Name: fmaf
 //----------------------------------------------------------------------------*/
 float fmaf(float x, float y, float z) {
-	return __builtin_fmaf(x, y, z);
+	// TODO(eteran): account for errors, and rounding mode
+	return x * y * z;
 }

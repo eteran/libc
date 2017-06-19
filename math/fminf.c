@@ -7,5 +7,14 @@
 // Name: fminf
 //----------------------------------------------------------------------------*/
 float fminf(float x, float y) {
-	return __builtin_fminf(x, y);
+#ifndef __FAST_MATH__
+	if(isnan(x)) {
+		return y;
+	}
+
+	if(isnan(y)) {
+		return x;
+	}
+#endif
+	return x < y ? x : y;
 }

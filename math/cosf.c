@@ -7,5 +7,19 @@
 // Name: cosf
 //----------------------------------------------------------------------------*/
 float cosf(float x) {
-	return __builtin_cosf(x);
+
+#ifndef __FAST_MATH__
+#if 0
+	if(isnan(x)) {
+		return x;
+	}
+
+	if(isinf(x)) {
+		errno = EDOM;
+		return NAN;
+	}
+#endif
+#endif
+
+	return sinf(x + (M_PI / 2.0));
 }

@@ -7,5 +7,14 @@
 // Name: fdimf
 //----------------------------------------------------------------------------*/
 float fdimf(float x, float y) {
-	return __builtin_fdimf(x, y);
+#ifndef __FAST_MATH__
+	if(isnan(x)) {
+		return x;
+	}
+
+	if(isnan(y)) {
+		return y;
+	}
+#endif
+	return fmaxf(x - y, 0);
 }

@@ -7,5 +7,5 @@
 // Name: expm1
 //----------------------------------------------------------------------------*/
 double expm1(double x) {
-	return __builtin_expm1(x);
+	return exp(x) - 1;
 }

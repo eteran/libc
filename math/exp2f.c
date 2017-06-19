@@ -7,5 +7,21 @@
 // Name: exp2f
 //----------------------------------------------------------------------------*/
 float exp2f(float x) {
-	return __builtin_exp2f(x);
+#ifndef __FAST_MATH__
+	if(isnan(x)) {
+		return x;
+	}
+
+	if(isinf(x)) {
+		if(x > 0.0) {
+			return x;
+		} else {
+			return 0.0;
+		}
+	}
+
+	/* TODO: handle underflow/overflow */
+#endif
+
+	return powf(2, x);
 }

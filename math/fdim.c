@@ -7,5 +7,14 @@
 // Name: fdim
 //----------------------------------------------------------------------------*/
 double fdim(double x, double y) {
-	return __builtin_fdim(x, y);
+#ifndef __FAST_MATH__
+	if(isnan(x)) {
+		return x;
+	}
+
+	if(isnan(y)) {
+		return y;
+	}
+#endif
+	return fmax(x - y, 0);
 }

@@ -7,5 +7,14 @@
 // Name: fmin
 //----------------------------------------------------------------------------*/
 double fmin(double x, double y) {
-	return __builtin_fmin(x, y);
+#ifndef __FAST_MATH__
+	if(isnan(x)) {
+		return y;
+	}
+
+	if(isnan(y)) {
+		return x;
+	}
+#endif
+	return x < y ? x : y;
 }

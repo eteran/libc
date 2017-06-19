@@ -7,5 +7,6 @@
 // Name: fmal
 //----------------------------------------------------------------------------*/
 long double fmal(long double x, long double y, long double z) {
-	return __builtin_fmal(x, y, z);
+	// TODO(eteran): account for errors, and rounding mode
+	return x * y * z;
 }

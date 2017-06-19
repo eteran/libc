@@ -7,5 +7,7 @@
 // Name: fma
 //----------------------------------------------------------------------------*/
 double fma(double x, double y, double z) {
-	return __builtin_fma(x, y, z);
+	
+	// TODO(eteran): account for errors, and rounding mode
+	return x * y * z;
 }
