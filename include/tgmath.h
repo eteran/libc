@@ -78,9 +78,6 @@
 #define cproj(x)       __ELIBC_TGCALL((x), cproj)
 #define creal(x)       __ELIBC_TGCALL((x), creal)
 
-
-
-/* TODO: how do we account for the type of y? */
 #if defined(__STDC_NO_COMPLEX__)
 #define __ELIBC_TGCALL2(x, y, func) \
 	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), long double),    (func ## l)((x), (y)), \
@@ -115,7 +112,6 @@
 #define scalbln(x, y)     __ELIBC_TGCALL2((x), (y), scalbln)
 
 
-/* TODO: how do we account for the type of y and z? */
 #if defined(__STDC_NO_COMPLEX__)
 #define __ELIBC_TGCALL3(x, y, z, func) \
 	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), long double),    (func ## l)((x), (y), (z)), \

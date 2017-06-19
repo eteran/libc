@@ -6,6 +6,6 @@
 /*------------------------------------------------------------------------------
 // Name: nexttoward
 //----------------------------------------------------------------------------*/
-double nexttoward(double x, long double y) {
+double nexttoward(double x, double y) {
 	return __builtin_nexttoward(x, y);
 }
