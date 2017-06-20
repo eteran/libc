@@ -21,7 +21,7 @@ struct tm *localtime_r(const time_t *timer, struct tm *result) {
 // Name: localtime
 //----------------------------------------------------------------------------*/
 struct tm *localtime(const time_t *timer) {
-	_Thread_local static struct tm result;
+	static _Thread_local struct tm result;
 	return localtime_r(timer, &result);
 }
 

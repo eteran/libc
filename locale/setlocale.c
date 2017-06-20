@@ -132,7 +132,7 @@ static char *__elibc_setlocale(struct lconv *current_lconv, int category, const 
 char *setlocale(int category, const char *locname) {
 
 	/* ugly, but prevents us from returning a writeable pointer to an entry in that table! */
-	_Thread_local static char locale_name[256];
+	static _Thread_local char locale_name[256];
 
 	/* get the global locale structure */
 	struct lconv *const current_lconv = localeconv();

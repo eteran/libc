@@ -9,6 +9,6 @@
 //----------------------------------------------------------------------------*/
 int mbtowc(wchar_t *__ELIBC_RESTRICT pwc, const char *__ELIBC_RESTRICT s, size_t n) {
 
-	_Thread_local static mbstate_t ps;
+	static _Thread_local mbstate_t ps;
 	return (int)mbrtowc(pwc, s, n, &ps);
 }

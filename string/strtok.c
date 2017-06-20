@@ -6,7 +6,7 @@
 // Name: strtok
 //----------------------------------------------------------------------------*/
 char *strtok(char *__ELIBC_RESTRICT s, const char *__ELIBC_RESTRICT delim) {
-	_Thread_local static char *ptr = 0;
+	static _Thread_local char *ptr = 0;
 	return strtok_r(s, delim, &ptr);
 }
 

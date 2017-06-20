@@ -6,6 +6,6 @@
 // Name: localeconv
 //----------------------------------------------------------------------------*/
 struct lconv *localeconv(void) {
-	_Thread_local static struct lconv __current_lconv;
+	static _Thread_local struct lconv __current_lconv;
 	return &__current_lconv;
 }

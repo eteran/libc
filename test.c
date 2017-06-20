@@ -223,6 +223,15 @@ int main(void) {
 
 
 	printf("ldexp: %f\n", ldexp(2, -4));
+	
+	
+	{
+		char s[] = "Hello World";
+		for(char *p = strtok(s, " "); p; p = strtok(0, " ")) {
+			printf("Token: %s\n", p);
+		}
+	}
+	
 
 #if 1
 	double x = sin(45);

@@ -127,6 +127,6 @@ struct tm *gmtime_r(const time_t *timep, struct tm *result) {
 // Name: gmtime
 //----------------------------------------------------------------------------*/
 struct tm *gmtime(const time_t *timep) {
-	_Thread_local static struct tm result;
+	static _Thread_local struct tm result;
 	return gmtime_r(timep, &result);
 }

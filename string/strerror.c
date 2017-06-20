@@ -134,7 +134,7 @@ int strerror_r(int errnum, char *buf, size_t n) {
 // Name: strerror
 //----------------------------------------------------------------------------*/
 char *strerror(int errnum) {
-	_Thread_local static char errstr[0x100];
+	static _Thread_local char errstr[0x100];
 	strerror_r(errnum, errstr, sizeof(errstr));
 	return errstr;
 }

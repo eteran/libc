@@ -6,6 +6,6 @@
 // Name: __errno_location
 //----------------------------------------------------------------------------*/
 __elibc_errno_t *__errno_location(void) {
-	_Thread_local static __elibc_errno_t __internal_errno = 0;
+	static _Thread_local __elibc_errno_t __internal_errno = 0;
 	return &__internal_errno;
 }

@@ -6,7 +6,7 @@
 // Name: wcstok
 //----------------------------------------------------------------------------*/
 wchar_t *wcstok(wchar_t *__ELIBC_RESTRICT s, const wchar_t *__ELIBC_RESTRICT delim) {
-	_Thread_local static wchar_t *ptr = 0;
+	static _Thread_local wchar_t *ptr = 0;
 	return wcstok_r(s, delim, &ptr);
 }
 

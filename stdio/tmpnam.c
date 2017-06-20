@@ -11,8 +11,8 @@
 //----------------------------------------------------------------------------*/
 char *tmpnam(char *s) {
 	char *p = 0;
-	_Thread_local static char buf[L_tmpnam];
-	_Thread_local static int limit = 0;
+	static _Thread_local char buf[L_tmpnam];
+	static _Thread_local int limit = 0;
 
 	if(limit < TMP_MAX) {
 		++limit;

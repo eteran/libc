@@ -13,6 +13,6 @@ char *ctime_r(const time_t *timer, char *buf) {
 // Name: ctime
 //----------------------------------------------------------------------------*/
 char *ctime(const time_t *timer) {
-	_Thread_local static char buf[64];
+	static _Thread_local char buf[64];
 	return ctime_r(timer, buf);
 }

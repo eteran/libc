@@ -43,6 +43,6 @@ char *asctime_r(const struct tm *timeptr, char *buf) {
 // Name: asctime
 //----------------------------------------------------------------------------*/
 char *asctime(const struct tm *timeptr) {
-	_Thread_local static char result[64];
+	static _Thread_local char result[64];
 	return asctime_r(timeptr, result);
 }
