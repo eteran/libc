@@ -26,6 +26,7 @@ int __elibc_fwide(FILE *stream, int mode) {
 	case 0: /* unset */
 		return 0;
 	case 1: /* invalid */
+	default:
 		assert(0);
 	case 2: /* char */
 		/* It returns a negative value if stream is byte oriented. */
