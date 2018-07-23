@@ -17,6 +17,27 @@
 #include <unistd.h>
 #include <sys/syscall.h>
 
+#if 0
+	environ
+	fork
+	fstat
+	getpid
+	isatty
+	link
+	stat
+	unlink
+	wait
+#	write
+?	times
+x	_exit
+x	close
+x	kill
+x	lseek
+x	open
+x	read
+x	sbrk
+#endif
+
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
