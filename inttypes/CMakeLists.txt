@@ -1,12 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 
-enable_language(ASM)
-
-set(CMAKE_C_FLAGS           "${CMAKE_C_FLAGS} -pedantic -W -Wall -ffreestanding")
-set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} -pedantic -W -Wall -ffreestanding")
-set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -nostdlib")
-
-set(SOURCE_FILES
+add_library (c-inttypes STATIC 
 	imaxabs.c
 	imaxdiv.c
 	strtoimax.c
@@ -15,21 +9,10 @@ set(SOURCE_FILES
 	wcstoumax.c
 )
 
-add_library (c-inttypes STATIC ${SOURCE_FILES})
-
 target_include_directories (c-inttypes PUBLIC 
 	${PROJECT_SOURCE_DIR}/include
+	${PROJECT_SOURCE_DIR}/include/arch/${LIBC_ARCH}
 )
-
-if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
-	target_include_directories (c-inttypes PUBLIC 
-		${PROJECT_SOURCE_DIR}/include/arch/x86_64
-	)
-elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
-	target_include_directories (c-inttypes PUBLIC 
-		${PROJECT_SOURCE_DIR}/include/arch/i686
-	)
-endif()
 
 target_link_libraries(c-inttypes LINK_PUBLIC 
 	c-stdlib

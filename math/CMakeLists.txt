@@ -1,12 +1,6 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.0)
 
-enable_language(ASM)
-
-set(CMAKE_C_FLAGS           "${CMAKE_C_FLAGS} -pedantic -W -Wall -ffreestanding")
-set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} -pedantic -W -Wall -ffreestanding")
-set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -nostdlib")
-
-set(SOURCE_FILES
+add_library (c-math STATIC
 	acos.c
 	acosf.c
 	acosh.c
@@ -166,58 +160,25 @@ set(SOURCE_FILES
 	tgammal.c
 	truncf.c
 	truncl.c
+	arch/${LIBC_ARCH}/atan2.c
+	arch/${LIBC_ARCH}/atan.c
+	arch/${LIBC_ARCH}/ceil.c
+	arch/${LIBC_ARCH}/copysign.c
+	arch/${LIBC_ARCH}/fabs.c
+	arch/${LIBC_ARCH}/fenv.c
+	arch/${LIBC_ARCH}/floor.c
+	arch/${LIBC_ARCH}/fmod.c
+	arch/${LIBC_ARCH}/log10.c
+	arch/${LIBC_ARCH}/log.c
+	arch/${LIBC_ARCH}/round.c
+	arch/${LIBC_ARCH}/sqrt.c
+	arch/${LIBC_ARCH}/trunc.c
 )
-
-if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
-	set(SOURCE_FILES ${SOURCE_FILES}
-		arch/x86_64/atan2.c
-		arch/x86_64/atan.c
-		arch/x86_64/ceil.c
-		arch/x86_64/copysign.c
-		arch/x86_64/fabs.c
-		arch/x86_64/fenv.c
-		arch/x86_64/floor.c
-		arch/x86_64/fmod.c
-		arch/x86_64/log10.c
-		arch/x86_64/log.c
-		arch/x86_64/round.c
-		arch/x86_64/sqrt.c
-		arch/x86_64/trunc.c	
-	)
-elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
-	set(SOURCE_FILES ${SOURCE_FILES}
-		arch/i686/atan2.c
-		arch/i686/atan.c
-		arch/i686/ceil.c
-		arch/i686/copysign.c
-		arch/i686/fabs.c
-		arch/i686/fenv.c
-		arch/i686/floor.c
-		arch/i686/fmod.c
-		arch/i686/log10.c
-		arch/i686/log.c
-		arch/i686/round.c
-		arch/i686/sin.c
-		arch/i686/sqrt.c
-		arch/i686/trunc.c
-	)
-endif()
-
-add_library (c-math STATIC ${SOURCE_FILES})
 
 target_include_directories (c-math PUBLIC 
 	${PROJECT_SOURCE_DIR}/include
+	${PROJECT_SOURCE_DIR}/include/arch/${LIBC_ARCH}
 )
-
-if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
-	target_include_directories (c-math PUBLIC 
-		${PROJECT_SOURCE_DIR}/include/arch/x86_64
-	)
-elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
-	target_include_directories (c-math PUBLIC 
-		${PROJECT_SOURCE_DIR}/include/arch/i686
-	)
-endif()
 
 set_property(TARGET c-math PROPERTY C_STANDARD 99)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})
