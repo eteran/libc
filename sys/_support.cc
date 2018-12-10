@@ -212,8 +212,6 @@ void do_div64(const T &numerator, const T &denominator, T &quotient, T &remainde
 
 	if(denominator == 0) {
 		abort();
-		quotient = 0;
-		remainder = 0;
 	} else {
 		T n      = numerator;
 		T d      = denominator;
