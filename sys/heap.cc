@@ -188,7 +188,7 @@ namespace heap {
 		void internal_deallocate(void *p) {
 		#ifdef __KERNEL__
 			SystemLock system_lock;
-			ScopedLock<SystemLock> lock(&system_lock);
+			auto lock = make_scoped_lock(&system_lock);
 		#endif
 
 			if(p) {
@@ -362,7 +362,7 @@ namespace heap {
 	size_t block_size(void *p) {
 	#ifdef __KERNEL__
 		SystemLock system_lock;
-		ScopedLock<SystemLock> lock(&system_lock);
+		auto lock = make_scoped_lock(&system_lock);
 	#endif
 
 		if(p) {
@@ -381,7 +381,7 @@ namespace heap {
 	void *internal_allocate(size_t size) {
 	#ifdef __KERNEL__
 		SystemLock system_lock;
-		ScopedLock<SystemLock> lock(&system_lock);
+		auto lock = make_scoped_lock(&system_lock);
 	#endif
 
 		const size_t orig_size = size;
