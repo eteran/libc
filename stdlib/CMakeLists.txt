@@ -45,13 +45,13 @@ target_include_directories (c-stdlib PUBLIC
 	${PROJECT_SOURCE_DIR}/include/arch/${LIBC_ARCH}
 )
 
-set_property(TARGET c-stdlib PROPERTY C_STANDARD 99)
-
-
 target_link_libraries(c-stdlib LINK_PUBLIC 
 	c-string
 	c-stdio
 	c-ctype
 	c-signal
 )
-set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})
+
+set_property(TARGET c-stdlib PROPERTY C_STANDARD 99)
+set_property(TARGET c-stdlib PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
+

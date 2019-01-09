@@ -16,4 +16,4 @@ target_link_libraries(c-signal LINK_PUBLIC
 )
 
 set_property(TARGET c-signal PROPERTY C_STANDARD 99)
-set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})
+set_property(TARGET c-signal PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})

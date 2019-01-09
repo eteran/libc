@@ -39,4 +39,4 @@ target_link_libraries(c-string LINK_PUBLIC
 )
 
 set_property(TARGET c-string PROPERTY C_STANDARD 99)
-set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})
+set_property(TARGET c-string PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})

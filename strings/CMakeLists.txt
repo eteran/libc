@@ -17,4 +17,4 @@ target_include_directories (c-strings PUBLIC
 )
 
 set_property(TARGET c-strings PROPERTY C_STANDARD 99)
-set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})
+set_property(TARGET c-strings PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})

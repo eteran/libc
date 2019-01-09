@@ -12,11 +12,9 @@ target_include_directories (c-sys PUBLIC
 
 set_property(TARGET c-sys PROPERTY C_STANDARD 99)
 set_property(TARGET c-sys PROPERTY CXX_STANDARD 11)
-
+set_property(TARGET c-sys PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 
 target_link_libraries(c-sys LINK_PUBLIC 
 	c-errno
 	c-stdlib
 )
-
-set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})

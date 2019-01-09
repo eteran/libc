@@ -13,4 +13,4 @@ target_include_directories (c-locale PUBLIC
 )
 
 set_property(TARGET c-locale PROPERTY C_STANDARD 99)
-set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})
+set_property(TARGET c-locale PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})

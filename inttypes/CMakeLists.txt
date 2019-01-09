@@ -18,4 +18,4 @@ target_link_libraries(c-inttypes LINK_PUBLIC
 	c-stdlib
 )
 set_property(TARGET c-inttypes PROPERTY C_STANDARD 99)
-set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR})
+set_property(TARGET c-inttypes PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
