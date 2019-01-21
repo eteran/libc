@@ -6,9 +6,9 @@
 #include "c/c-config.h"
 
 #include "arch_size_t.h" /* size_t */
-#include "c/_file.h"  /* FILE   */
+#include "c/_file.h"     /* FILE   */
 #include "arch_fpos_t.h" /* fpos_t */
-#include "c/_null.h"  /* NULL   */
+#include "c/_null.h"     /* NULL   */
 
 #define _IOFBF 0
 #define _IOLBF 1
@@ -26,14 +26,15 @@
 
 #define TMP_MAX      0x7fff
 
+extern FILE *__elibc_root_file_struct;
+extern FILE __elibc_stdin[1];
+extern FILE __elibc_stdout[1];
+extern FILE __elibc_stderr[1];
 
-extern FILE *const stderr;
-extern FILE *const stdin;
-extern FILE *const stdout;
-
-#define stdin  (stdin)
-#define stdout (stdout)
-#define stderr (stderr)
+/* standard C I/O file objects */
+#define stdin  (__elibc_stdin)
+#define stdout (__elibc_stdout)
+#define stderr (__elibc_stderr)
 
 /* prototypes for all necessary functions */
 #include "c/remove.h"

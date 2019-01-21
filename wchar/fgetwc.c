@@ -11,7 +11,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_fgetwc
 //----------------------------------------------------------------------------*/
-static int expected_length(char ch) {
+static int expected_length(wint_t ch) {
 	if((ch & 0x80) == 0) {
 		return 1;
 	} else if((ch & 0xe0) == 0xc0) {
@@ -150,7 +150,7 @@ static wint_t __elibc_fgetwc_unlocked(FILE *stream, char *buf) {
 //----------------------------------------------------------------------------*/
 wint_t fgetwc(FILE *stream) {
 
-	int     n;
+	wint_t  n;
 	char    buf[MB_LEN_MAX];
 	wchar_t wc;
 

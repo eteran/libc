@@ -48,10 +48,6 @@ static struct __elibc_internal_file_data __elibc_stderr_internal = {
 	{ "" }
 };
 
-extern FILE __elibc_stdin[1];
-extern FILE __elibc_stdout[1];
-extern FILE __elibc_stderr[1];
-
 FILE __elibc_stdin[1] = {
 	{
 		__elibc_stdout,
@@ -76,10 +72,6 @@ FILE __elibc_stderr[1] = {
 	}
 };
 
-/* standard C I/O file objects */
-FILE *const stdin  = __elibc_stdin;
-FILE *const stdout = __elibc_stdout;
-FILE *const stderr = __elibc_stderr;
 
 /* this is the root of our linked list of open file objects */
 FILE *__elibc_root_file_struct = __elibc_stdin;

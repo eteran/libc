@@ -14,9 +14,6 @@ imaxdiv_t imaxdiv(intmax_t numerator, intmax_t denominator) {
 	
 	assert(denominator != 0);
 	
-	/* On some platforms, we need to implement compiler support functions
-	 * such as __moddi3 and __divdi3
-	 */
 	ret.quot = numerator / denominator;
 	ret.rem  = numerator % denominator;
 	return ret;

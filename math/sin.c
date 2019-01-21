@@ -191,7 +191,7 @@ double sin(double x) {
 	z = floor(z);        /* integer part of y/8 */
 	z = y - ldexp(z, 4); /* y - 16 * (y/16) */
 
-	j = z; /* convert to integer for tests on the phase angle */
+	j = (int)z; /* convert to integer for tests on the phase angle */
 	
 	/* map zeros to origin */
 	if (j & 1) {

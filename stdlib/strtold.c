@@ -1,9 +1,13 @@
 
 #include <stdlib.h>
 
-/* TODO(eteran): implement this */
+//------------------------------------------------------------------------------
+// Name:
+//------------------------------------------------------------------------------
 long double strtold(const char *nptr, char **endptr) {
 	(void)nptr;
 	(void)endptr;
+
+	/* TODO(eteran): implement this */
 	return 0;
 }

@@ -2,6 +2,8 @@
 #ifndef _POSIX_TIME_20140704_H_
 #define _POSIX_TIME_20140704_H_
 
+#include "_time.h"
+
 typedef long int suseconds_t;
 
 struct timeval {

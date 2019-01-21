@@ -5,11 +5,6 @@
 #include <assert.h>
 #include "c/_support.h"
 
-extern FILE *__elibc_root_file_struct;
-extern FILE __elibc_stdin[1];
-extern FILE __elibc_stdout[1];
-extern FILE __elibc_stderr[1];
-
 /*------------------------------------------------------------------------------
 // Name: __elibc_fclose
 //----------------------------------------------------------------------------*/

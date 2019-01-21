@@ -41,10 +41,10 @@ long double ldexpl(long double x, int exp) {
 
 	/* TODO(eteran): detect overflow/underflow */
 	if(exp > 0) {
-		const long double y = pow(2, exp);
+		const long double y = powl(2, exp);
 		return x * y;
 	} else {
-		const long double y = pow(2, -exp);		
+		const long double y = powl(2, -exp);
 		return x * (1 / y);	
 	}
 }

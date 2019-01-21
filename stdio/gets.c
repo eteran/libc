@@ -7,7 +7,7 @@
 //----------------------------------------------------------------------------*/
 char *gets(char *s) {
 	char *s_ptr = s;
-	char ch;
+	int ch;
 
 	while((ch = getchar()) != '\n') {
 		*s_ptr++ = ch;

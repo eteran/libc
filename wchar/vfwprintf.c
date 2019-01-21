@@ -5,6 +5,10 @@
 #include <wchar.h>
 
 /* TODO: implement this */
+
+/*------------------------------------------------------------------------------
+// Name:
+//----------------------------------------------------------------------------*/
 int vfwprintf(FILE *stream, const wchar_t *format, va_list args) {
 	(void)stream;
 	(void)format;

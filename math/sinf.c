@@ -7,5 +7,5 @@
 // Name: sinf
 //----------------------------------------------------------------------------*/
 float sinf(float x) {
-	return (float)sin(x);
+	return (float)sin((double)x);
 }

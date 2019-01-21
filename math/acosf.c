@@ -12,7 +12,7 @@ float acosf(float x) {
 		return x;
 	}
 
-	if(x == 1.0) {
+	if(x == 1.0f) {
 		return 0.0;
 	}
 

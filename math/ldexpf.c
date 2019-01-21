@@ -41,10 +41,10 @@ float ldexpf(float x, int exp) {
 
 	/* TODO(eteran): detect overflow/underflow */
 	if(exp > 0) {
-		const float y = pow(2, exp);
+		const float y = powf(2, exp);
 		return x * y;
 	} else {
-		const float y = pow(2, -exp);		
+		const float y = powf(2, -exp);
 		return x * (1 / y);	
 	}
 }

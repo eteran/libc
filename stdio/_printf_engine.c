@@ -128,7 +128,7 @@ char *_format_float_decimal(char *buf, size_t sz, double value, int precision, c
 	p1        = p;
 
 	do {
-		const int digit = fmod(int_part, 10);
+		const int digit = (int)fmod(int_part, 10);
 		*p++ = (digit + '0');
 
 		int_part /= 10;
@@ -204,7 +204,7 @@ char *_format_float_exponent(char *buf, size_t sz, double value, int precision, 
 	p1        = p;
 
 	do {
-		const int digit = fmod(int_part, 10);
+		const int digit = (int)fmod(int_part, 10);
 		*p++ = (digit + '0');
 
 		int_part /= 10;
@@ -252,7 +252,6 @@ char *_format_float(char *buf, size_t sz, double value, int precision, char form
 	if(precision < 0) {
 		precision = 6;
 	}
-
 
 	if(isnan(value)) {
 		if(format == 'e' || format == 'f' || format == 'g') {
