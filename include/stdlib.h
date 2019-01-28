@@ -58,6 +58,6 @@
 #include "c/wctomb.h"
 #endif
 
-extern size_t __ctype_get_mb_cur_max(void) __ELIBC_NOTHROW;
+extern __ELIBC_CONST size_t __ctype_get_mb_cur_max(void) __ELIBC_NOTHROW;
 
 #endif

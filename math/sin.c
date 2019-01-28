@@ -91,7 +91,7 @@ Copyright 1985, 1995, 2000 by Stephen L. Moshier
 
 static const double PIO4 = 7.85398163397448309616E-1; /* pi/4 */
 
-double polevl(double x, const double coef[], int N) {
+static double polevl(double x, const double coef[], int N) {
 	
 	const double *p  = coef;
 	double ans = *p++;
@@ -109,8 +109,8 @@ double polevl(double x, const double coef[], int N) {
  * Evaluate polynomial when coefficient of x  is 1.0.
  * Otherwise same as polevl.
  */
-
-double p1evl(double x, const double coef[], int N) {
+#if 0
+static double p1evl(double x, const double coef[], int N) {
 
 	const double *p = coef;
 	double ans      = x + *p++;
@@ -122,6 +122,7 @@ double p1evl(double x, const double coef[], int N) {
 
 	return ans;
 }
+#endif
 
 static const double sincof[] = {
      1.58962301576546568060E-10, 
