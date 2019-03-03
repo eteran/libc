@@ -159,7 +159,7 @@ wint_t fgetwc(FILE *stream) {
 	__elibc_unlock_stream(stream);
 
 	if(n > 0) {
-		if(mbtowc(&wc, buf, n) == n) {
+		if((wint_t)mbtowc(&wc, buf, n) == n) {
 			return (wint_t)wc;
 		}
 	}

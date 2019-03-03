@@ -9,5 +9,5 @@
 //       0x80 maps directly
 //----------------------------------------------------------------------------*/
 wint_t btowc(int c) {
-	return (unsigned int)c < 128u ? c : WEOF;
+	return (wint_t)c < 128u ? (wint_t)c : WEOF;
 }
