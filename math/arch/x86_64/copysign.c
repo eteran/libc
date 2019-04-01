@@ -1,6 +1,5 @@
 
 #define __ELIBC_SOURCE
-#define __STDC_CONSTANT_MACROS
 #include <math.h>
 #include <stdint.h>
 
