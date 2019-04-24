@@ -53,7 +53,7 @@ FILE *fopen(const char *path, const char *mode) {
 		return 0;
 	}
 
-	/* TODO: handle the new C11 mode strings */
+	/* TODO(eteran): handle the new C11 mode strings */
 
 	++mode;
 
@@ -82,7 +82,7 @@ FILE *fopen(const char *path, const char *mode) {
 	if(*mode != '\0') {
 		free(_FDATA(f));
 		free(f);
-		/* TODO: invalid mode string? */
+		/* TODO(eteran): invalid mode string? */
 		errno = EINVAL;
 		return 0;
 	}

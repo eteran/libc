@@ -20,7 +20,7 @@ double exp(double x) {
 		}
 	}
 
-	/* TODO: handle underflow/overflow */
+	/* TODO(eteran): handle underflow/overflow */
 #endif
 
 	return pow(M_E, x);

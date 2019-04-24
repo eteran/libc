@@ -21,7 +21,7 @@ float expf(float x) {
 		}
 	}
 
-	/* TODO: handle underflow/overflow */
+	/* TODO(eteran): handle underflow/overflow */
 #endif
 
 	return powf(M_E, x);

@@ -21,7 +21,7 @@ double exp2(double x) {
 		}
 	}
 
-	/* TODO: handle underflow/overflow */
+	/* TODO(eteran): handle underflow/overflow */
 #endif
 
 	return pow(2, x);

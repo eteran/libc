@@ -16,13 +16,13 @@ int __elibc_fclose(FILE *stream) {
 		return EOF;
 	}
 
-	/* TODO: deal with any errors __elibc_sys_close might return */
+	/* TODO(eteran): deal with any errors __elibc_sys_close might return */
 	__elibc_sys_close(__ELIBC_FILENO(stream));
 
 	/* if the file is marked to remove on close, do it */
 	if(_FDATA(stream)->flags & __ELIBC_FILE_DEL_ON_CLOSE) {
 
-		/* TODO: deleting it by the original open name
+		/* TODO(eteran): deleting it by the original open name
 		 * is flawed. I believe the UNIX way is to
 		 * actually delete the file immidiately after
 		 * the open, and the OS will automatically

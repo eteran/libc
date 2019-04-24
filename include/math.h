@@ -165,7 +165,7 @@
 
 #if defined(__ISOC99_SOURCE) || defined(__ISOCXX11_SOURCE) || defined(__ELIBC_SOURCE)
 
-/* TODO: should we make these depend on FLT_EVAL_METHOD directly ? */
+/* TODO(eteran): should we make these depend on FLT_EVAL_METHOD directly ? */
 typedef double double_t;
 typedef float  float_t;
 
@@ -191,7 +191,7 @@ typedef float  float_t;
 
 #define MATH_ERRNO       1
 #define MATH_ERREXCEPT   2
-#define math_errhandling 2 /* TODO: is this true? */
+#define math_errhandling 2 /* TODO(eteran): is this true? */
 
 #include "c/acosh.h"
 #include "c/asinh.h"

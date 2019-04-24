@@ -2,7 +2,7 @@
 #define __ELIBC_SOURCE
 #include <ctype.h>
 
-/* TODO: locale awareness of any kind ? */
+/* TODO(eteran): locale awareness of any kind ? */
 
 #define CTYPE_ALNUM  0x0001
 #define CTYPE_ALPHA  0x0002

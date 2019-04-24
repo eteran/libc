@@ -37,8 +37,8 @@ namespace heap {
 			return ((value + N - 1) & ~(N - 1));
 		}
 
-		// TODO: come up with a more clever way to store this data..
-		// TODO: perhaps do like dlmalloc and have the used flag
+		// TODO(eteran): come up with a more clever way to store this data..
+		// TODO(eteran): perhaps do like dlmalloc and have the used flag
 		//       be the LSB of curr_size (since curr_size is never odd)
 		//       there is no gain in this though unless we can cleverly
 		//       deal withe cache_next too

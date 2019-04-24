@@ -5,7 +5,7 @@
 #include <limits.h>
 #include <ctype.h>
 
-/* TODO: finish this! */
+/* TODO(eteran): finish this! */
 
 #define CONVERT_NUMBER(temp_name, type, base)                        \
 do {                                                                 \

@@ -17,7 +17,7 @@ char *__elibc_fgets(char *__ELIBC_RESTRICT s, int size, FILE *__ELIBC_RESTRICT s
 			}
 
 			if(ch == EOF && s_ptr == s) {
-				/* TODO: NUL terminate this buffer? */
+				/* TODO(eteran): NUL terminate this buffer? */
 				return NULL;
 			}
 
@@ -29,7 +29,7 @@ char *__elibc_fgets(char *__ELIBC_RESTRICT s, int size, FILE *__ELIBC_RESTRICT s
 		*s_ptr = '\0';
 	}
 
-	/* TODO: I've seen at least one implementation that NUL terminates even
+	/* TODO(eteran): I've seen at least one implementation that NUL terminates even
 	 * with a size of 0, check with the standard
 	 */
 	return s;

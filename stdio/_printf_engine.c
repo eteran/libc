@@ -695,7 +695,7 @@ static void _output_string(char ch, const char *s_ptr, int precision, long int *
 		s_ptr = "(null)";
 	}
 
-	/* TODO: is this correct? */
+	/* TODO(eteran): is this correct? */
 	len = strlen(s_ptr);
 	len = (ch == 's' && precision >= 0 && precision < len) ? precision : len;
 
@@ -737,7 +737,7 @@ int __elibc_printf_engine(void *c, const char *__ELIBC_RESTRICT format, va_list 
 	/* enough to contain a 64-bit number in bin notation */
 	char num_buf[65];
 
-	/* TODO: big enough?, we need the _format_float_* stuff to actually enforce maximum length */
+	/* TODO(eteran): big enough?, we need the _format_float_* stuff to actually enforce maximum length */
 #ifdef ENABLE_FPU
 	char flt_buf[FLT_BUF_SIZE];
 #endif

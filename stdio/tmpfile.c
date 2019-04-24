@@ -9,7 +9,7 @@ FILE *tmpfile(void) {
 	FILE *file = 0;
 	char tmp_file[L_tmpnam];
 
-	/* TODO: is this function supposed to be atomic if possible? */
+	/* TODO(eteran): is this function supposed to be atomic if possible? */
 
 	const char *const name = tmpnam(tmp_file);
 

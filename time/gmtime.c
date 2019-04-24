@@ -18,7 +18,7 @@ static int __elibc_is_leapyear(int year) {
 static int __elibc_get_year(time_t t, time_t *out) {
 	int year = 1970;
 	/* 64 bit so we can handle the edge cases near INT_MAX/INT_MIN */
-	/* TODO: handle this better */
+	/* TODO(eteran): handle this better */
 	int64_t x = 0;
 
 	while(x < t) {
@@ -85,7 +85,7 @@ static int __elibc_get_date(time_t t, int year, int *mon, int *day, int *wday) {
 //----------------------------------------------------------------------------*/
 struct tm *gmtime_r(const time_t *timep, struct tm *result) {
 	if(!timep) {
-		/* TODO: set errno */
+		/* TODO(eteran): set errno */
 		return 0;
 	} else {
 		time_t year_offset;
@@ -116,7 +116,7 @@ struct tm *gmtime_r(const time_t *timep, struct tm *result) {
 			&result->tm_mday,
 			&result->tm_wday);
 
-		/* TODO: get this from the system */
+		/* TODO(eteran): get this from the system */
 		result->tm_isdst = 0;
 
 		return result;

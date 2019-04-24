@@ -7,7 +7,7 @@
 //----------------------------------------------------------------------------*/
 int remove(const char *pathname) {
 
-	/* TODO: can pathname be NULL? */
+	/* TODO(eteran): can pathname be NULL? */
 
 	(void)pathname;
 
@@ -30,9 +30,9 @@ int remove(const char *pathname) {
 	*/
 
 	#ifdef __KERNEL__
-		/* TODO: panic here, it is clearly a kernel bug... */
+		/* TODO(eteran): panic here, it is clearly a kernel bug... */
 	#else
-		/* TODO: something along these lines
+		/* TODO(eteran): something along these lines
 
 		if (unlink(filename)) {
 			if (errno == EISDIR) {

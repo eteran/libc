@@ -13,7 +13,7 @@
 #define DO_I(s) (void)0
 #define DO_p(s) (void)0
 
-/* TODO: implement this */
+/* TODO(eteran): implement this */
 
 #define DO_WRITE_CHAR(s, n, ch) \
 if(n != 0) {                    \

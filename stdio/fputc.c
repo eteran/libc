@@ -12,7 +12,7 @@
 //----------------------------------------------------------------------------*/
 int __elibc_fputc(int c, FILE *stream, int orientation) {
 
-	/* TODO: set stream.err on error */
+	/* TODO(eteran): set stream.err on error */
 
 	const unsigned char ch = (unsigned char)c;
 	int r;

@@ -11,7 +11,7 @@
 #include <wctype.h>
 #include <string.h>
 
-/* TODO: locale awareness of any kind ? */
+/* TODO(eteran): locale awareness of any kind ? */
 
 #define WCTYPE_ALNUM  0x0001
 #define WCTYPE_ALPHA  0x0002

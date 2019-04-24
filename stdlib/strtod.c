@@ -9,7 +9,7 @@
 
 /*------------------------------------------------------------------------------
 // Name: strtod
-// TODO: finish this code!
+// TODO(eteran): finish this code!
 //----------------------------------------------------------------------------*/
 double strtod(const char *__ELIBC_RESTRICT nptr, char **__ELIBC_RESTRICT endptr) {
 
@@ -56,7 +56,7 @@ double strtod(const char *__ELIBC_RESTRICT nptr, char **__ELIBC_RESTRICT endptr)
 			nptr = strchr(nptr, ')');
 		}
 
-		/* TODO: what do we pass here, if anything? */
+		/* TODO(eteran): what do we pass here, if anything? */
 		return NAN;
 	}
 
@@ -77,7 +77,7 @@ double strtod(const char *__ELIBC_RESTRICT nptr, char **__ELIBC_RESTRICT endptr)
 		if(isdigit(c)) {
             ret *= 10.0;
             ret += (c - '0');
-		} else if(c == '.') { /* TODO: make this locale dependant */
+		} else if(c == '.') { /* TODO(eteran): make this locale dependant */
 			radix_index = nptr;
 		} else {
 			break;

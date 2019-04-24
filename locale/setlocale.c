@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* TODO: support restoring locales with overrides: setlocale(LC_ALL, "LC_COLLATE=C;LC_CTYPE=C;LC_MONETARY=C;LC_NUMERIC=C;LC_TIME=C") */
+/* TODO(eteran): support restoring locales with overrides: setlocale(LC_ALL, "LC_COLLATE=C;LC_CTYPE=C;LC_MONETARY=C;LC_NUMERIC=C;LC_TIME=C") */
 
 static const struct locale_support_t {
 	const char *const  name;
@@ -157,7 +157,7 @@ char *setlocale(int category, const char *locname) {
 				{
 					char *ret = __elibc_setlocale(current_lconv, LC_ALL, getenv("LC_ALL"), locale_name, sizeof(locale_name));
 					if(!ret) {
-						/* TODO: fetch each category from the environment here, but first check they are all valid
+						/* TODO(eteran): fetch each category from the environment here, but first check they are all valid
 						 * before doing anything since POSIX says so
 						 */
 

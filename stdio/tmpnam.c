@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* TODO: what standard defines this? */
+/* TODO(eteran): what standard defines this? */
 #define P_tmpnam "/tmp/"
 
 /*------------------------------------------------------------------------------
@@ -36,7 +36,7 @@ char *tmpnam(char *s) {
 				alphabet[rand() % (sizeof(alphabet) - 1)],
 				alphabet[rand() % (sizeof(alphabet) - 1)]
 				);
-				/* TODO: change this while to a condition to test if the file exists,
+				/* TODO(eteran): change this while to a condition to test if the file exists,
 				 * it is actually more probable then it looks because an unseeded rand()
 				 * is the same for all processes, perhaps we should integrate the PID
 				 * as well?

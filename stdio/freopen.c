@@ -22,7 +22,7 @@ FILE *__elibc_freopen(const char *path, const char *mode, FILE *stream) {
 		/* close the old file, it is now located here */
 		(void)__elibc_fclose(new_file);
 
-		/* TODO: catch any errors fclose might cause */
+		/* TODO(eteran): catch any errors fclose might cause */
 	} else {
 		return 0;
 	}

@@ -8,7 +8,7 @@
 #endif
 
 /*
- * TODO:
+ * TODO(eteran):
  *
  * The abort() first unblocks the SIGABRT signal, and then raises that signal
  * for the calling process. This results in the abnormal termination of the

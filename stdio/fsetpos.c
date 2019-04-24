@@ -11,7 +11,7 @@ int fsetpos(FILE *stream, const fpos_t *pos) {
 	assert(stream);
 	assert(pos);
 
-	/* TODO: catch any errors */
+	/* TODO(eteran): catch any errors */
 	fseek(stream, *pos, SEEK_SET);
 	return 0;
 }

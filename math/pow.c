@@ -27,7 +27,7 @@ double pow(double x, double y) {
 		return 1.0;
 	}
 
-	/* TODO:
+	/* TODO(eteran):
 	 *
 	 * If x is a finite value less than 0, and y is a finite non-integer, a domain error occurs, and a NaN is returned.
 	 * If the result overflows, a range error occurs, and the functions return HUGE_VAL, HUGE_VALF, or HUGE_VALL, respectively, with the mathematically cor‐

@@ -149,32 +149,17 @@ static const double DP3 = 2.69515142907905952645E-15;
 static const double lossth = 1.073741824e9;
 
 /*------------------------------------------------------------------------------
-// Name: sin
+// Name: __elibc_sin
 //----------------------------------------------------------------------------*/
-double sin(double x) {
+static double __elibc_sin(double x) {
+
 	double y;
 	double z;
 	double zz;
 	int j;
-	int sign;
-
-#ifndef __FAST_MATH__
-	if (x == 0.0) {
-		return x;
-	}
-
-	if (isnan(x)) {
-		return x;
-	}
-		
-	if (isinf(x)) {
-		errno = EDOM;
-		return NAN;
-	}
-#endif
 
 	/* make argument positive but save the sign */
-	sign = 1;
+	int sign = 1;
 	if (x < 0) {
 		x    = -x;
 		sign = -1;
@@ -225,4 +210,27 @@ double sin(double x) {
 	}
 
 	return (y);
+}
+
+/*------------------------------------------------------------------------------
+// Name: sin
+//----------------------------------------------------------------------------*/
+double sin(double x) {
+#ifndef __FAST_MATH__
+	if (x == 0.0) {
+		return x;
+	}
+
+	if (isnan(x)) {
+		return x;
+	}
+		
+	if (isinf(x)) {
+		errno = EDOM;
+		return NAN;
+	}
+#endif
+
+	return __elibc_sin(x);
+
 }

@@ -60,7 +60,7 @@
 #define __ELIBC_DEPRECATED
 #endif
 
-/* TODO: enable TLS */
+/* TODO(eteran): enable TLS */
 #if !defined(__ISOC11_SOURCE) && defined(__GNUC__) && !defined(__KERNEL__)
 #define _Thread_local /*__thread*/
 #else

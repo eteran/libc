@@ -7,16 +7,15 @@
 // Name: __elibc_tan
 //----------------------------------------------------------------------------*/
 static double __elibc_tan(double x) {
-	double ret = 0.0;
+
+	/* TODO(eteran): account for possible overflow */
 	const double cos_val = cos(x);
 	if(cos_val != 0.0) {
-		ret = sin(x) / cos_val;
+		return sin(x) / cos_val;
 	} else {
 		errno = EDOM;
+		return 0.0;
 	}
-
-	/* TODO: account for possible overflow */
-	return ret;
 }
 
 /*------------------------------------------------------------------------------

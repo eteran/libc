@@ -22,7 +22,7 @@ int __elibc_fflush(FILE *stream) {
 						n);
 
 					if(r < 0) {
-						/* TODO: set errno */
+						/* TODO(eteran): set errno */
 						return EOF;
 					}
 				}

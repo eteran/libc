@@ -9,7 +9,7 @@
 //----------------------------------------------------------------------------*/
 clock_t clock(void) {
 
-	/* TODO: this is incorrect, because it is wall time, not time used
+	/* TODO(eteran): this is incorrect, because it is wall time, not time used
 	 * by the process which is a big difference getrusage(RUSAGE_SELF, &ru)
 	 * would be more appropriate
 	 */

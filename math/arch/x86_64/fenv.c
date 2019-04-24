@@ -1,5 +1,5 @@
 
-/* TODO: confirm correctness of these functions */
+/* TODO(eteran): confirm correctness of these functions */
 
 #define __ELIBC_SOURCE
 #include <fenv.h>

@@ -3,7 +3,7 @@
 #include <fenv.h>
 #include <stdint.h>
 
-/* TODO:
+/* TODO(eteran):
 int feclearexcept(int excepts);
 int fegetexceptflag(fexcept_t *flagp, int excepts);
 int feraiseexcept(int excepts);

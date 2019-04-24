@@ -19,7 +19,7 @@ size_t strxfrm(char *__ELIBC_RESTRICT dest, const char *__ELIBC_RESTRICT src, si
 	 * because the zero filling nature of strncpy isn't in the strxfrm spec
 	 */
 
-	/* TODO: be locale aware */
+	/* TODO(eteran): be locale aware */
 
 	strncpy(dest, src, n);
 	dest[n - 1] = '\0';

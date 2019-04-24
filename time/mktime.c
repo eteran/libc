@@ -28,8 +28,8 @@ time_t mktime(struct tm *tptr) {
 		const int *const d = __elibc_is_leapyear(year) ? leap_day_tab : day_tab;
 		int y = 1970;
 
-		/* TODO: modify tptr->tm_wday and tptr->tm_yday to make sense if needed */
-		/* TODO: for some reason the result is off by about a 1.5 days */
+		/* TODO(eteran): modify tptr->tm_wday and tptr->tm_yday to make sense if needed */
+		/* TODO(eteran): for some reason the result is off by about a 1.5 days */
 		time_t t = 0;
 		int i;
 

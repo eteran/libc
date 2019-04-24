@@ -20,7 +20,7 @@ float exp2f(float x) {
 		}
 	}
 
-	/* TODO: handle underflow/overflow */
+	/* TODO(eteran): handle underflow/overflow */
 #endif
 
 	return powf(2, x);

@@ -19,7 +19,7 @@ double atan2(double y, double x) {
 		return y;
 	}
 	
-	/* TODO: is intel special cases, the same as C's? */
+	/* TODO(eteran): are intel's special cases, the same as C's? */
 #endif
 #endif
 

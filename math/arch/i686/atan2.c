@@ -17,7 +17,7 @@ double atan2(double y, double x) {
 		return y;
 	}
 	
-	/* TODO: is intel special cases, the same as C's? */
+	/* TODO(eteran): is intel special cases, the same as C's? */
 	
 	__asm__ __volatile__("fpatan" : "=t" (value) : "0" (x), "u" (y) : "st(1)");
 	return value;

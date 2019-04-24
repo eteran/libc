@@ -20,7 +20,7 @@ int __elibc_fseek(FILE *stream, long offset, int whence) {
 	_FDATA(stream)->buffer_first = _FDATA(stream)->buffer_ptr;
 	_FDATA(stream)->buffer_last  = _FDATA(stream)->buffer_ptr;
 
-	/* TODO: catch any errors at all */
+	/* TODO(eteran): catch any errors at all */
 	__elibc_sys_lseek(__ELIBC_FILENO(stream), offset, whence);
 
 	__elibc_clearerr(stream);

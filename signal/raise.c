@@ -11,7 +11,7 @@ int raise(int sig) {
 	(void)sig;
 	return -1;
 #else
-	/* TODO: replace 0 with getpid? */
+	/* TODO(eteran): replace 0 with getpid? */
 	return __elibc_sys_kill(0, sig);
 #endif
 

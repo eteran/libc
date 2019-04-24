@@ -21,7 +21,7 @@ long double expl(long double x) {
 		}
 	}
 
-	/* TODO: handle underflow/overflow */
+	/* TODO(eteran): handle underflow/overflow */
 #endif
 
 	return powl(M_E, x);

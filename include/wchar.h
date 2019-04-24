@@ -14,7 +14,7 @@
 
 struct tm;
 
-/* TODO: does FILE get defined in this header? seems required ... */
+/* TODO(eteran): does FILE get defined in this header? seems required ... */
 #include "c/_file.h"      /* FILE      */
 
 #ifndef WEOF
