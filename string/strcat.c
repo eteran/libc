@@ -8,7 +8,6 @@
 char *strcat(char *__ELIBC_RESTRICT dest, const char *__ELIBC_RESTRICT src) {
 	char *dest_ptr = dest;
 
-
 	/* find the end of the string... */
 	while(*dest_ptr != '\0') {
 		++dest_ptr;
