@@ -1,3 +1,0 @@
-
-* Make these functions thread safe: rand, strtok, asctime, ctime, gmtime, localtime
-* General thread safety. Doens't have to be anything special, just enough to avoid crashes (in addition to any safety mandated by the standard)
