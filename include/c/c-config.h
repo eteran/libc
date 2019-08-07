@@ -37,7 +37,7 @@
 #endif
 
 #if !defined(__GNUC__) && defined(__clang__)
-#define __attribute__(x)
+#define __attribute__(__x)
 #endif
 
 #if defined(__ISOCXX11_SOURCE)
@@ -70,8 +70,8 @@
 #if defined(__ISOCXX11_SOURCE)
 	#define _Noreturn   /* [[noreturn]] */ __attribute__((__noreturn__))
 	#if defined(__GNUC__)
-		#define _Alignas(t) __attribute__((__aligned__(t)))
-		#define _Alignof(t) __alignof__(t)
+		#define _Alignas(__t) __attribute__((__aligned__(__t)))
+		#define _Alignof(__t) __alignof__(__t)
 	#else
 		#define _Alignas(t)
 		#define _Alignof(t)	
@@ -79,13 +79,13 @@
 #else
 	#if !defined(__ISOC11_SOURCE)
 	#if defined(__GNUC__)
-	#define _Noreturn   __attribute__((__noreturn__))
-	#define _Alignas(t) __attribute__((__aligned__(t)))
-	#define _Alignof(t) __alignof__(t)
+	#define _Noreturn     __attribute__((__noreturn__))
+	#define _Alignas(__t) __attribute__((__aligned__(__t)))
+	#define _Alignof(__t) __alignof__(__t)
 	#else
 	#define _Noreturn
-	#define _Alignas(t)
-	#define _Alignof(t)
+	#define _Alignas(__t)
+	#define _Alignof(__t)
 	#endif
 	#endif
 #endif

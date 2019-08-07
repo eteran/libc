@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-void longjmp(jmp_buf env, int val);
+_Noreturn void longjmp(jmp_buf env, int val);
 
 #ifdef __cplusplus
 }
