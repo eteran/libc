@@ -1,56 +1,147 @@
 
 #define __ELIBC_SOURCE
-#include <time.h>
 #include <assert.h>
+#include <stdio.h>
+#include <time.h>
 
-#define DO_H(s) (void)0
-#define DO_M(s) (void)0
-#define DO_S(s) (void)0
-#define DO_Y(s) (void)0
-#define DO_m(s) (void)0
-#define DO_d(s) (void)0
-#define DO_y(s) (void)0
-#define DO_I(s) (void)0
-#define DO_p(s) (void)0
+#define DO_H()                                               \
+	do {                                                     \
+		int chunk = snprintf(s, space, "%.2i", tm->tm_hour); \
+		if (chunk >= space) {                                \
+			return 0;                                        \
+		}                                                    \
+		s += chunk;                                          \
+	} while (0)
+
+#define DO_M()                                              \
+	do {                                                    \
+		int chunk = snprintf(s, space, "%.2i", tm->tm_min); \
+		if (chunk >= space) {                               \
+			return 0;                                       \
+		}                                                   \
+		s += chunk;                                         \
+	} while (0)
+
+#define DO_S()                                              \
+	do {                                                    \
+		int chunk = snprintf(s, space, "%.2d", tm->tm_sec); \
+		if (chunk >= space) {                               \
+			return 0;                                       \
+		}                                                   \
+		s += chunk;                                         \
+	} while (0)
+
+#define DO_Y()                                                    \
+	do {                                                          \
+		int chunk = snprintf(s, space, "%d", 1900 + tm->tm_year); \
+		if (chunk >= space) {                                     \
+			return 0;                                             \
+		}                                                         \
+		s += chunk;                                               \
+	} while (0)
+
+#define DO_m()                                                  \
+	do {                                                        \
+		int chunk = snprintf(s, space, "%.2d", tm->tm_mon + 1); \
+		if (chunk >= space) {                                   \
+			return 0;                                           \
+		}                                                       \
+		s += chunk;                                             \
+	} while (0)
+
+#define DO_d()                                               \
+	do {                                                     \
+		int chunk = snprintf(s, space, "%.2d", tm->tm_mday); \
+		if (chunk >= space) {                                \
+			return 0;                                        \
+		}                                                    \
+		s += chunk;                                          \
+	} while (0)
+	
+#define DO_e()                                               \
+	do {                                                     \
+		int chunk = snprintf(s, space, "%2d", tm->tm_mday); \
+		if (chunk >= space) {                                \
+			return 0;                                        \
+		}                                                    \
+		s += chunk;                                          \
+	} while (0)
+
+#define DO_y()                                                     \
+	do {                                                           \
+		int chunk = snprintf(s, space, "%.2i", tm->tm_year % 100); \
+		if (chunk >= space) {                                      \
+			return 0;                                              \
+		}                                                          \
+		s += chunk;                                                \
+	} while (0)
+
+#define DO_I()                                        \
+	do {                                              \
+		int hour = tm->tm_hour;                       \
+		if (hour > 12)                                \
+			hour -= 12;                               \
+		int chunk = snprintf(s, space, "%.2i", hour); \
+		if (chunk >= space) {                         \
+			return 0;                                 \
+		}                                             \
+		s += chunk;                                   \
+	} while (0)
+
+#define DO_p()                                                                  \
+	do {                                                                        \
+		int chunk = snprintf(s, space, "%s", (tm->tm_hour < 12) ? "AM" : "PM"); \
+		if (chunk >= space)                                                     \
+			return 0;                                                           \
+		s += chunk;                                                             \
+	} while (0)
+
+#define DO_char(ch)                               \
+	do {                                          \
+		int chunk = snprintf(s, space, "%c", ch); \
+		if (chunk >= space)                       \
+			return 0;                             \
+		s += chunk;                               \
+	} while (0)
 
 /* TODO(eteran): implement this */
-
-#define DO_WRITE_CHAR(s, n, ch) \
-if(n != 0) {                    \
-}
 
 /*------------------------------------------------------------------------------
 // Name: strftime
 //----------------------------------------------------------------------------*/
 size_t strftime(char *s, size_t max, const char *format, const struct tm *tm) {
 
-	(void)max;
-	(void)tm;
-
 	assert(tm);
 	assert(format);
 
-	while(*format != '\0') {
-		if(*format == '%') {
+	char *const dest = s;
+
+	int space = (s + max) - s;
+
+	while (*format != '\0') {
+		if (*format == '%') {
 			++format;
-			switch(*format) {
+			switch (*format) {
 			case 'a':
 			case 'A':
+			case 'h': /* NOTE(eteran): Equivalent to %b. */
 			case 'b':
 			case 'B':
 			case 'c':
 			case 'C':
+				break;
+				
 			case 'e':
+				DO_e();
+				break;
+				
 			case 'E':
 			case 'G':
-			case 'g':
-			case 'h':
-			case 'I':
+			case 'g':			
 			case 'j':
 			case 'k':
 			case 'l':
 			case 'O':
-			case 'p':
 			case 'P':
 			case 's':
 			case 'u':
@@ -60,90 +151,107 @@ size_t strftime(char *s, size_t max, const char *format, const struct tm *tm) {
 			case 'W':
 			case 'x':
 			case 'X':
-			case 'y':
 			case 'z':
 			case 'Z':
 			case '+':
 				break;
 
+			case 'y':
+				DO_y();
+				break;
+
+			case 'p':
+				DO_p();
+				break;
+
+			case 'I':
+				DO_I();
+				break;
+
 			case 'r':
-				DO_I(s);
-				*s++ = '/';
-				DO_M(s);
-				*s++ = '/';
-				DO_S(s);
-				*s++ = ' ';
-				DO_p(s);
+				DO_I();
+				DO_char('/');
+				DO_M();
+				DO_char('/');
+				DO_S();
+				DO_char(' ');
+				DO_p();
 				break;
 
 			case 'D':
-				DO_m(s);
-				*s++ = '/';
-				DO_d(s);
-				*s++ = '/';
-				DO_y(s);
+				DO_m();
+				DO_char('/');
+				DO_d();
+				DO_char('/');
+				DO_y();
 				break;
 
 			case 'd':
-				DO_d(s);
+				DO_d();
 				break;
 
 			case 'F':
-				DO_Y(s);
-				*s++ = '-';
-				DO_M(s);
-				*s++ = '-';
-				DO_d(s);
+				DO_Y();
+				DO_char('-');
+				DO_M();
+				DO_char('-');
+				DO_d();
 				break;
 
 			case 'H':
-				DO_H(s);
+				DO_H();
 				break;
 
 			case 'm':
-				DO_m(s);
+				DO_m();
 				break;
 
 			case 'M':
-				DO_M(s);
+				DO_M();
 				break;
 
 			case 'n':
-				*s++ = '\n';
+				DO_char('\n');
 				break;
+
 			case 'R':
-				DO_H(s);
-				*s++ = ':';
-				DO_M(s);
+				DO_H();
+				DO_char(':');
+				DO_M();
 				break;
 
 			case 'S':
-				DO_S(s);
+				DO_S();
 				break;
 
 			case 't':
-				*s++ = '\t';
+				DO_char('\t');
 				break;
 
 			case 'T':
-				DO_H(s);
-				*s++ = ':';
-				DO_M(s);
-				*s++ = ':';
-				DO_S(s);
+				DO_H();
+				DO_char(':');
+				DO_M();
+				DO_char(':');
+				DO_S();
 				break;
 
 			case 'Y':
-				DO_Y(s);
+				DO_Y();
 				break;
 
 			case '%':
-				*s++ = '%';
+				DO_char('%');
 				break;
+			
+			default:
+				assert(0);
 			}
+		} else {
+			DO_char(*format);
 		}
 		++format;
 	}
 
-	return 0;
+	return s - dest;
 }

@@ -7,8 +7,8 @@
 #include <stdint.h>
 
 #include "c/_support.h"
-#include "heap.h"
-#include "syscall.h"
+#include "heap.hpp"
+#include "syscall.hpp"
 
 #define __intptr_t_defined
 #define __off_t_defined

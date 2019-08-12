@@ -1,8 +1,10 @@
 cmake_minimum_required(VERSION 3.0)
 
 add_library (c-sys STATIC
-	heap.cc
-	_support.cc
+	heap.cpp
+	heap.hpp
+	syscall.hpp
+	system.cpp
 )
 
 target_include_directories (c-sys PUBLIC 

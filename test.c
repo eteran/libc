@@ -31,6 +31,7 @@
 #include <tgmath.h>
 #include <math.h>
 #include <errno.h>
+#include <time.h>
 
 #if 0
 /* UTF-8 single byte feeding test for mbrtowc(),
@@ -214,12 +215,22 @@ void test_printf(void) {
 	assert(strcmp(buffer, "ffffffff") == 0);
 }
 
+void test_strftime(void) {
+    time_t t = time(0);
+	printf("Time: %ld\n", t);
+    char buf[100];
+    if (strftime(buf, sizeof(buf), "[%d]", localtime(&t))) {
+		printf("SNPRINTF: %s\n", buf);
+    }
+}
+
 int main(void) {
 
 	int result = 0;
 	printf("Starting Tests...\n");
 	
 	test_printf();
+	test_strftime();
 
 
 	printf("ldexp: %f\n", ldexp(2, -4));
