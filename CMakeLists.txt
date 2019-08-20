@@ -1,9 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(libstdc)
 
-if(NOT CMAKE_BUILD_TYPE)
-	set(CMAKE_BUILD_TYPE "RelWithDebInfo" CACHE STRING "Choose the type of build, options are: Debug Release RelWithDebInfo MinSizeRel." FORCE)
-endif()
+enable_testing()
 
 set(CMAKE_C_FLAGS           "${CMAKE_C_FLAGS} -pedantic -W -Wall -ffreestanding")
 set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} -pedantic -W -Wall -ffreestanding")
@@ -45,29 +43,6 @@ add_subdirectory(wchar)
 add_subdirectory(wctype)
 add_subdirectory(include)
 
-add_executable (libc-test test.c)
-
-set_property(TARGET libc-test PROPERTY C_STANDARD 99)
-set_property(TARGET libc-test PROPERTY RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
-
-target_link_libraries(libc-test LINK_PUBLIC
-	c-assert
-	c-crt 
-	c-ctype
-	c-errno
-	c-fenv
-	c-inttypes
-	c-locale
-	c-math
-	c-setjmp
-	c-signal
-	c-stdio
-	c-stdlib
-	c-string	
-	c-strings
-	c-sys
-	c-time
-	c-wchar
-	c-wctype
-)
-
+if(LIBC_BUILD_TESTS)
+	add_subdirectory(tests)
+endif()
