@@ -5,24 +5,7 @@ add_executable(libc-test
 )
 
 target_link_libraries(libc-test LINK_PUBLIC
-	c-assert
-	c-crt 
-	c-ctype
-	c-errno
-	c-fenv
-	c-inttypes
-	c-locale
-	c-math
-	c-setjmp
-	c-signal
-	c-stdio
-	c-stdlib
-	c-string	
-	c-strings
-	c-sys
-	c-time
-	c-wchar
-	c-wctype
+	c-all
 )
 
 target_compile_options(libc-test PRIVATE
