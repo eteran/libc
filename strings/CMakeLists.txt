@@ -11,9 +11,8 @@ add_library (c-strings STATIC
 	strncasecmp.c
 )
 
-target_include_directories (c-strings PUBLIC 
-	${PROJECT_SOURCE_DIR}/include
-	${PROJECT_SOURCE_DIR}/include/arch/${LIBC_ARCH}
+target_link_libraries(c-strings LINK_PUBLIC 
+	libc-headers
 )
 
 set_property(TARGET c-strings PROPERTY C_STANDARD 99)

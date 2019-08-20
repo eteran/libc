@@ -7,14 +7,10 @@ add_library (c-crt STATIC
 	arch/${LIBC_ARCH}/_start.S
 )
 
-target_include_directories (c-crt PUBLIC 
-	${PROJECT_SOURCE_DIR}/include
-	${PROJECT_SOURCE_DIR}/include/arch/${LIBC_ARCH}
-)
-
 target_link_libraries(c-crt LINK_PUBLIC 
 	c-stdlib
 	c-locale
+	libc-headers
 )
 
 set_property(TARGET c-crt PROPERTY C_STANDARD 99)

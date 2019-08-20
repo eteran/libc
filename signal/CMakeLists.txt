@@ -7,12 +7,8 @@ set(SOURCE_FILES
 
 add_library (c-signal STATIC ${SOURCE_FILES})
 
-target_include_directories (c-signal PUBLIC 
-	${PROJECT_SOURCE_DIR}/include
-	${PROJECT_SOURCE_DIR}/include/arch/${LIBC_ARCH}
-)
-
 target_link_libraries(c-signal LINK_PUBLIC 
+	libc-headers
 )
 
 set_property(TARGET c-signal PROPERTY C_STANDARD 99)

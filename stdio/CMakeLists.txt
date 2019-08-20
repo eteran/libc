@@ -49,15 +49,11 @@ add_library (c-stdio STATIC
 	_printf_engine.c
 )
 
-target_include_directories (c-stdio PUBLIC 
-	${PROJECT_SOURCE_DIR}/include
-	${PROJECT_SOURCE_DIR}/include/arch/${LIBC_ARCH}
-)
-
 target_link_libraries(c-stdio LINK_PUBLIC 
 	c-stdlib
 	c-math
 	c-errno
+	libc-headers
 )
 
 set_property(TARGET c-stdio PROPERTY C_STANDARD 99)

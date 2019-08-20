@@ -12,13 +12,10 @@ add_library (c-time STATIC
 	time.c
 )
 
-target_include_directories (c-time PUBLIC 
-	${PROJECT_SOURCE_DIR}/include
-	${PROJECT_SOURCE_DIR}/include/arch/${LIBC_ARCH}
-)
-
 target_link_libraries(c-time LINK_PUBLIC 
 	c-stdio
+	libc-headers
 )
+
 set_property(TARGET c-time PROPERTY C_STANDARD 99)
 set_property(TARGET c-time PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})

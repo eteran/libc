@@ -29,13 +29,9 @@ add_library (c-string STATIC
 	strxfrm.c
 )
 
-target_include_directories (c-string PUBLIC 
-	${PROJECT_SOURCE_DIR}/include
-	${PROJECT_SOURCE_DIR}/include/arch/${LIBC_ARCH}
-)
-
 target_link_libraries(c-string LINK_PUBLIC 
 	c-assert
+	libc-headers
 )
 
 set_property(TARGET c-string PROPERTY C_STANDARD 99)

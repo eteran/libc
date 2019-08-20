@@ -7,15 +7,11 @@ add_library (c-setjmp STATIC
 	arch/${LIBC_ARCH}/setjmp.S	
 )
 
-target_include_directories (c-setjmp PUBLIC 
-	${PROJECT_SOURCE_DIR}/include
-	${PROJECT_SOURCE_DIR}/include/arch/${LIBC_ARCH}
-)
-
 target_link_libraries(c-setjmp LINK_PUBLIC 
 	c-stdlib
 	c-math
-	c-string	
+	c-string
+	libc-headers
 )
 
 set_property(TARGET c-setjmp PROPERTY C_STANDARD 99)

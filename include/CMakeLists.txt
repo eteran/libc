@@ -1,0 +1,42 @@
+cmake_minimum_required(VERSION 3.2)
+
+add_library(libc-headers INTERFACE)
+
+target_sources(libc-headers INTERFACE 
+	${CMAKE_CURRENT_SOURCE_DIR}/assert.h
+	${CMAKE_CURRENT_SOURCE_DIR}/complex.h
+	${CMAKE_CURRENT_SOURCE_DIR}/ctype.h
+	${CMAKE_CURRENT_SOURCE_DIR}/errno.h
+	${CMAKE_CURRENT_SOURCE_DIR}/fenv.h
+	${CMAKE_CURRENT_SOURCE_DIR}/float.h
+	${CMAKE_CURRENT_SOURCE_DIR}/inttypes.h
+	${CMAKE_CURRENT_SOURCE_DIR}/iso646.h
+	${CMAKE_CURRENT_SOURCE_DIR}/limits.h
+	${CMAKE_CURRENT_SOURCE_DIR}/locale.h
+	${CMAKE_CURRENT_SOURCE_DIR}/math.h
+	${CMAKE_CURRENT_SOURCE_DIR}/setjmp.h
+	${CMAKE_CURRENT_SOURCE_DIR}/signal.h
+	${CMAKE_CURRENT_SOURCE_DIR}/stdalign.h
+	${CMAKE_CURRENT_SOURCE_DIR}/stdarg.h
+	${CMAKE_CURRENT_SOURCE_DIR}/stdatomic.h
+	${CMAKE_CURRENT_SOURCE_DIR}/stdbool.h
+	${CMAKE_CURRENT_SOURCE_DIR}/stddef.h
+	${CMAKE_CURRENT_SOURCE_DIR}/stdint.h
+	${CMAKE_CURRENT_SOURCE_DIR}/stdio.h
+	${CMAKE_CURRENT_SOURCE_DIR}/stdlib.h
+	${CMAKE_CURRENT_SOURCE_DIR}/stdnoreturn.h
+	${CMAKE_CURRENT_SOURCE_DIR}/string.h
+	${CMAKE_CURRENT_SOURCE_DIR}/strings.h
+	${CMAKE_CURRENT_SOURCE_DIR}/tgmath.h
+	${CMAKE_CURRENT_SOURCE_DIR}/threads.h
+	${CMAKE_CURRENT_SOURCE_DIR}/time.h
+	${CMAKE_CURRENT_SOURCE_DIR}/uchar.h
+	${CMAKE_CURRENT_SOURCE_DIR}/wchar.h
+	${CMAKE_CURRENT_SOURCE_DIR}/wctype.h
+)
+
+target_include_directories(libc-headers INTERFACE
+	${CMAKE_CURRENT_SOURCE_DIR}
+	${CMAKE_CURRENT_SOURCE_DIR}/arch/${LIBC_ARCH}
+)
+

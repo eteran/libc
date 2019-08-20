@@ -7,9 +7,8 @@ add_library (c-fenv STATIC
 	feupdateenv.c
 )
 
-target_include_directories (c-fenv PUBLIC 
-	${PROJECT_SOURCE_DIR}/include
-	${PROJECT_SOURCE_DIR}/include/arch/${LIBC_ARCH}
+target_link_libraries(c-fenv LINK_PUBLIC 
+	libc-headers
 )
 
 set_property(TARGET c-fenv PROPERTY C_STANDARD 99)

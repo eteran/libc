@@ -43,13 +43,14 @@ add_subdirectory(sys)
 add_subdirectory(time)
 add_subdirectory(wchar)
 add_subdirectory(wctype)
+add_subdirectory(include)
 
 add_executable (libc-test test.c)
 
 set_property(TARGET libc-test PROPERTY C_STANDARD 99)
 set_property(TARGET libc-test PROPERTY RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 
-target_link_libraries(libc-test LINK_PUBLIC 
+target_link_libraries(libc-test LINK_PUBLIC
 	c-assert
 	c-crt 
 	c-ctype

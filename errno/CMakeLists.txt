@@ -4,9 +4,8 @@ add_library (c-errno STATIC
 	errno.c
 )
 
-target_include_directories (c-errno PUBLIC 
-	${PROJECT_SOURCE_DIR}/include
-	${PROJECT_SOURCE_DIR}/include/arch/${LIBC_ARCH}
+target_link_libraries(c-errno LINK_PUBLIC 
+	libc-headers
 )
 
 set_property(TARGET c-errno PROPERTY C_STANDARD 99)
