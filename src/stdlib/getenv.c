@@ -2,8 +2,7 @@
 #define __ELIBC_SOURCE
 #include <stdlib.h>
 #include <string.h>
-
-extern char **__elibc_environment;
+#include "c/_support.h"
 
 /*------------------------------------------------------------------------------
 // Name: getenv

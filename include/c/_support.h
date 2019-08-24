@@ -30,6 +30,9 @@ void   __elibc_free(void *ptr);
 void * __elibc_malloc(size_t size);
 size_t __elibc_size(void *ptr);
 
+/* globals */
+extern char **__elibc_environment;
+
 #ifdef __cplusplus
 }
 #endif
