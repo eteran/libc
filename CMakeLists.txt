@@ -26,6 +26,8 @@ add_definitions("-DENABLE_FPU")
 add_subdirectory(include)
 add_subdirectory(src)
 
+option(LIBC_BUILD_TESTS "Enable Tests")
+
 if(LIBC_BUILD_TESTS)
 	add_subdirectory(tests)
 endif()
