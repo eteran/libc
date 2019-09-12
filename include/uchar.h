@@ -7,12 +7,17 @@
 #include "c/_c11_warning.h"
 #include "c/_mbstate_t.h"
 
+
+#if !defined(__cplusplus) || __cplusplus < 201103L
+
 #ifdef __CHAR16_TYPE__
 typedef __CHAR16_TYPE__ char16_t;
 #endif
 
 #ifdef __CHAR32_TYPE__
 typedef __CHAR32_TYPE__ char32_t;
+#endif
+
 #endif
 
 #ifndef __STDC_UTF_16__
