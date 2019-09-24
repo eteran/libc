@@ -25,7 +25,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_memcpy64
 //----------------------------------------------------------------------------*/
-void __elibc_memcpy64(uint64_t *__ELIBC_RESTRICT dest, const uint64_t *__ELIBC_RESTRICT src, size_t n) {
+static void __elibc_memcpy64(uint64_t *__ELIBC_RESTRICT dest, const uint64_t *__ELIBC_RESTRICT src, size_t n) {
 	n /= 8;
 	while(n--) {
 		*dest++ = *src++;
@@ -35,7 +35,7 @@ void __elibc_memcpy64(uint64_t *__ELIBC_RESTRICT dest, const uint64_t *__ELIBC_R
 /*------------------------------------------------------------------------------
 // Name: __elibc_memcpy32
 //----------------------------------------------------------------------------*/
-void __elibc_memcpy32(uint32_t *__ELIBC_RESTRICT dest, const uint32_t *__ELIBC_RESTRICT src, size_t n) {
+static void __elibc_memcpy32(uint32_t *__ELIBC_RESTRICT dest, const uint32_t *__ELIBC_RESTRICT src, size_t n) {
 	n /= 4;
 	while(n--) {
 		*dest++ = *src++;
@@ -45,7 +45,7 @@ void __elibc_memcpy32(uint32_t *__ELIBC_RESTRICT dest, const uint32_t *__ELIBC_R
 /*------------------------------------------------------------------------------
 // Name: __elibc_memcpy16
 //----------------------------------------------------------------------------*/
-void __elibc_memcpy16(uint16_t *__ELIBC_RESTRICT dest, const uint16_t *__ELIBC_RESTRICT src, size_t n) {
+static void __elibc_memcpy16(uint16_t *__ELIBC_RESTRICT dest, const uint16_t *__ELIBC_RESTRICT src, size_t n) {
 	n /= 2;
 	while(n--) {
 		*dest++ = *src++;
@@ -55,7 +55,7 @@ void __elibc_memcpy16(uint16_t *__ELIBC_RESTRICT dest, const uint16_t *__ELIBC_R
 /*------------------------------------------------------------------------------
 // Name: __elibc_memcpy8
 //----------------------------------------------------------------------------*/
-void __elibc_memcpy8(uint8_t *__ELIBC_RESTRICT dest, const uint8_t *__ELIBC_RESTRICT src, size_t n) {
+static void __elibc_memcpy8(uint8_t *__ELIBC_RESTRICT dest, const uint8_t *__ELIBC_RESTRICT src, size_t n) {
 	while(n--) {
 		*dest++ = *src++;
 	}
