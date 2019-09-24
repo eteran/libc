@@ -8,7 +8,7 @@
 #include "c/_mbstate_t.h"
 
 
-#if !defined(__cplusplus) || __cplusplus < 201103L
+#if !defined(__cpp_unicode_characters)
 
 #ifdef __CHAR16_TYPE__
 typedef __CHAR16_TYPE__ char16_t;
