@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-_PURE int bcmp(const void *s1, const void *s2, size_t n) _NOEXCEPT _DEPRECATED;
+_DEPRECATED _PURE int bcmp(const void *s1, const void *s2, size_t n) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

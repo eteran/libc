@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-char *index(const char *s, int c) _NOEXCEPT _DEPRECATED;
+_DEPRECATED char *index(const char *s, int c) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

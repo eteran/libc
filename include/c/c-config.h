@@ -44,6 +44,7 @@
 #endif
 
 /* restrict keyword support */
+#ifndef _RESTRICT
 #if defined(_HAS_C99)
 #define _RESTRICT restrict
 #elif defined(__GNUC__) || defined(__clang__)
@@ -51,12 +52,14 @@
 #else
 #define _RESTRICT
 #endif
+#endif
 
 /* support compilers without the attribute syntax */
 #if !defined(__GNUC__) && defined(__clang__)
 #define __attribute__(__x)
 #endif
 
+#ifndef _NOEXCEPT
 #if defined(_HAS_CXX11)
 #define _NOEXCEPT noexcept
 #elif defined(_HAS_CXX89)
@@ -66,13 +69,16 @@
 #else
 #define _NOEXCEPT
 #endif
+#endif
 
+#ifndef _DEPRECATED
 #ifdef _HAS_CXX14
 #define _DEPRECATED [[deprecated]]
 #elif defined(__GNUC__)
 #define _DEPRECATED __attribute__((deprecated))
 #else
 #define _DEPRECATED
+#endif
 #endif
 
 #if defined(__GNUC__)

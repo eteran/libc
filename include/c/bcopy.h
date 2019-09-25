@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-void bcopy(const void *src, void *dest, size_t n) _NOEXCEPT _DEPRECATED;
+_DEPRECATED void bcopy(const void *src, void *dest, size_t n) _NOEXCEPT;
 
 #ifdef __cplusplus
 }
