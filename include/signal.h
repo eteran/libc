@@ -19,6 +19,8 @@
 #define SIGQUIT 3
 #define SIGSEGV 11
 #define SIGTERM 15
+#define SIGTSTP 20
+#define SIGWINCH 28
 
 #include "c/signal.h"
 #include "c/raise.h"
