@@ -11,7 +11,7 @@ typedef struct {
 	long rem;
 } ldiv_t;
 
-ldiv_t ldiv(long numerator, long denominator) __ELIBC_NOTHROW;
+ldiv_t ldiv(long numerator, long denominator) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

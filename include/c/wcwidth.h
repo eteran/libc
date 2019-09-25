@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST int wcwidth(wchar_t wc) __ELIBC_NOTHROW;
+_CONST int wcwidth(wchar_t wc) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

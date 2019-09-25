@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-int mblen(const char *s, size_t n) __ELIBC_NOTHROW;
+int mblen(const char *s, size_t n) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

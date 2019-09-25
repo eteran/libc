@@ -11,7 +11,7 @@
 #include "c/_null.h"     /* NULL      */
 #include "c/offsetof.h"  /* offsetof  */
 
-#if defined(__ISOC11_SOURCE) || defined(__ELIBC_SOURCE)
+#if defined(_HAS_C11) || defined(__ELIBC_SOURCE)
 #include "arch_max_align_t.h"
 #endif
 

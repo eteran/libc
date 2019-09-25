@@ -38,7 +38,7 @@
 #define DBL_EPSILON     ((double)2.22044604925031308085e-16L)
 #define LDBL_EPSILON    1.08420217248550443401e-19L
 
-#if defined(__ISOC99_SOURCE) || defined(__ELIBC_SOURCE)
+#if defined(_HAS_C99) || defined(__ELIBC_SOURCE)
 #define FLT_EVAL_METHOD 0
 #define DECIMAL_DIG     21
 #endif

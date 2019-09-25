@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_PURE int wmemcmp(const wchar_t *, const wchar_t *, size_t) __ELIBC_NOTHROW;
+_PURE int wmemcmp(const wchar_t *, const wchar_t *, size_t) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

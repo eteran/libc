@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------------
 // Name: fwscanf
 //----------------------------------------------------------------------------*/
-int fwscanf(FILE *__ELIBC_RESTRICT stream, const wchar_t *format, ...) {
+int fwscanf(FILE *_RESTRICT stream, const wchar_t *format, ...) {
 	(void)stream;
 	(void)format;
 	return -1;

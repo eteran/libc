@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------------
 // Name:strtof(const char *nptr, char **endptr)
 //----------------------------------------------------------------------------*/
-float strtof(const char *__ELIBC_RESTRICT nptr, char **__ELIBC_RESTRICT endptr) {
+float strtof(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 	assert(nptr);
 	return (float)strtod(nptr, endptr);
 }

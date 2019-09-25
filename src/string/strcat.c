@@ -5,7 +5,7 @@
 /*------------------------------------------------------------------------------
 // Name: strcat
 //----------------------------------------------------------------------------*/
-char *strcat(char *__ELIBC_RESTRICT dest, const char *__ELIBC_RESTRICT src) {
+char *strcat(char *_RESTRICT dest, const char *_RESTRICT src) {
 	char *dest_ptr = dest;
 
 	/* find the end of the string... */

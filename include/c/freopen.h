@@ -8,8 +8,8 @@
 extern "C" {
 #endif
 
-FILE *__elibc_freopen(const char *path, const char *mode, FILE *stream) __ELIBC_NOTHROW;
-FILE *freopen(const char *path, const char *mode, FILE *stream) __ELIBC_NOTHROW;
+FILE *__elibc_freopen(const char *path, const char *mode, FILE *stream) _NOEXCEPT;
+FILE *freopen(const char *path, const char *mode, FILE *stream) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

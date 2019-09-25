@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-double modf(double x, double *iptr) __ELIBC_NOTHROW;
+double modf(double x, double *iptr) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -8,8 +8,8 @@
 extern "C" {
 #endif
 
-int strerror_r(int errnum, char *buf, size_t n) __ELIBC_NOTHROW;
-char *strerror(int errnum) __ELIBC_NOTHROW;
+int strerror_r(int errnum, char *buf, size_t n) _NOEXCEPT;
+char *strerror(int errnum) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-char *setlocale(int category, const char *locname) __ELIBC_NOTHROW;
+char *setlocale(int category, const char *locname) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

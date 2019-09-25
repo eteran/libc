@@ -19,7 +19,7 @@
 #include "c/tolower.h"
 #include "c/toupper.h"
 
-#if defined(__ISOC99_SOURCE) || defined(__ISOCXX11_SOURCE) || defined(__ELIBC_SOURCE)
+#if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(__ELIBC_SOURCE)
 #include "c/isblank.h"
 #endif
 

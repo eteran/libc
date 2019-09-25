@@ -9,8 +9,8 @@
 extern "C" {
 #endif
 
-size_t __elibc_fwrite(const void *ptr, size_t size, size_t nelem, FILE *stream) __ELIBC_NOTHROW;
-size_t fwrite(const void *ptr, size_t size, size_t nelem, FILE *stream) __ELIBC_NOTHROW;
+size_t __elibc_fwrite(const void *ptr, size_t size, size_t nelem, FILE *stream) _NOEXCEPT;
+size_t fwrite(const void *ptr, size_t size, size_t nelem, FILE *stream) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

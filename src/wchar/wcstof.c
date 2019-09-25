@@ -4,7 +4,7 @@
 /*------------------------------------------------------------------------------
 // Name:
 //----------------------------------------------------------------------------*/
-float wcstof(const wchar_t *__ELIBC_RESTRICT nptr, wchar_t **__ELIBC_RESTRICT endptr) {
+float wcstof(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr) {
 	(void)nptr;
 	(void)endptr;
 

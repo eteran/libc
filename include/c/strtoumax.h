@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-uintmax_t strtoumax(const char *__ELIBC_RESTRICT nptr, char **__ELIBC_RESTRICT endptr, int base) __ELIBC_NOTHROW;
+uintmax_t strtoumax(const char *_RESTRICT nptr, char **_RESTRICT endptr, int base) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

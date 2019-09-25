@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-char *strndup(const char *s, size_t n) __ELIBC_NOTHROW;
+char *strndup(const char *s, size_t n) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-void setbuf(FILE *__ELIBC_RESTRICT stream, char *__ELIBC_RESTRICT buf) __ELIBC_NOTHROW;
+void setbuf(FILE *_RESTRICT stream, char *_RESTRICT buf) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

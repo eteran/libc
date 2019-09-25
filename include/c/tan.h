@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST double tan(double x) __ELIBC_NOTHROW;
+_CONST double tan(double x) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

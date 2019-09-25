@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-intmax_t wcstoimax(const wchar_t *__ELIBC_RESTRICT, wchar_t **__ELIBC_RESTRICT, int) __ELIBC_NOTHROW;
+intmax_t wcstoimax(const wchar_t *_RESTRICT, wchar_t **_RESTRICT, int) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-size_t strlcat(char *__ELIBC_RESTRICT dest, const char *__ELIBC_RESTRICT src, size_t n) __ELIBC_NOTHROW;
+size_t strlcat(char *_RESTRICT dest, const char *_RESTRICT src, size_t n) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

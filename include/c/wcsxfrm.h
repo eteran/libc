@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-size_t wcsxfrm(wchar_t *__ELIBC_RESTRICT ws1, const wchar_t *__ELIBC_RESTRICT ws2, size_t n) __ELIBC_NOTHROW;
+size_t wcsxfrm(wchar_t *_RESTRICT ws1, const wchar_t *_RESTRICT ws2, size_t n) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

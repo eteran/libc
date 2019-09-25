@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_PURE int wcswidth(const wchar_t *wcs, size_t n) __ELIBC_NOTHROW;
+_PURE int wcswidth(const wchar_t *wcs, size_t n) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

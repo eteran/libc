@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_fputs
 //----------------------------------------------------------------------------*/
-int __elibc_fputs(const char *__ELIBC_RESTRICT s, FILE *__ELIBC_RESTRICT stream) {
+int __elibc_fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) {
 
 	assert(s);
 	assert(stream);
@@ -23,7 +23,7 @@ int __elibc_fputs(const char *__ELIBC_RESTRICT s, FILE *__ELIBC_RESTRICT stream)
 /*------------------------------------------------------------------------------
 // Name: fputs
 //----------------------------------------------------------------------------*/
-int fputs(const char *__ELIBC_RESTRICT s, FILE *__ELIBC_RESTRICT stream) {
+int fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) {
 
 	int r;
 	__elibc_lock_stream(stream);

@@ -2,105 +2,127 @@
 #ifndef FEATURES_20051228_H_
 #define FEATURES_20051228_H_
 
+/* C Version detection */
 #ifdef __STDC_VERSION__
 #if __STDC_VERSION__ >= 201112L
-#define __ISOC11_SOURCE
+#define _HAS_C11
 #endif
 
 #if __STDC_VERSION__ >= 199901L
-#define __ISOC99_SOURCE
+#define _HAS_C99
 #endif
 
 #if __STDC_VERSION__ >= 199409L
-#define __ISOC94_SOURCE
+#define _HAS_C94
 #endif
 
-#define __ISOC90_SOURCE
+#define _HAS_C90
 #endif
 
+/* C++ Version detection */
 #ifdef __cplusplus
+#if __cplusplus > 201703L /* TODO(eteran): change this to correct value when it's ready */
+#define _HAS_CXX20
+#endif
+
+#if __cplusplus >= 201703L
+#define _HAS_CXX17
+#endif
+
+#if __cplusplus >= 201402L
+#define _HAS_CXX14
+#endif
+
 #if __cplusplus >= 201103L
-#define __ISOCXX11_SOURCE
+#define _HAS_CXX11
 #endif
 
-#define __ISOCXX03_SOURCE
-#define __ISOCXX89_SOURCE
+#if __cplusplus >= 199711L
+#define _HAS_CXX03
+#define _HAS_CXX89
+#endif
 #endif
 
-
-#if defined(__ISOC99_SOURCE)
-#define __ELIBC_RESTRICT restrict
+/* restrict keyword support */
+#if defined(_HAS_C99)
+#define _RESTRICT restrict
 #elif defined(__GNUC__) || defined(__clang__)
-#define __ELIBC_RESTRICT __restrict
+#define _RESTRICT __restrict
 #else
-#define __ELIBC_RESTRICT
+#define _RESTRICT
 #endif
 
+/* support compilers without the attribute syntax */
 #if !defined(__GNUC__) && defined(__clang__)
 #define __attribute__(__x)
 #endif
 
-#if defined(__ISOCXX11_SOURCE)
-	#define __ELIBC_NOTHROW noexcept
-#elif defined(__ISOCXX89_SOURCE)
-	#define __ELIBC_NOTHROW throw()
+#if defined(_HAS_CXX11)
+#define _NOEXCEPT noexcept
+#elif defined(_HAS_CXX89)
+#define _NOEXCEPT throw()
 #elif defined(__GNUC__)
-	#define __ELIBC_NOTHROW __attribute__((__nothrow__))
+#define _NOEXCEPT __attribute__((__nothrow__))
 #else
-	#define __ELIBC_NOTHROW
+#define _NOEXCEPT
+#endif
+
+#ifdef _HAS_CXX14
+#define _DEPRECATED [[deprecated]]
+#elif defined(__GNUC__)
+#define _DEPRECATED __attribute__((deprecated))
+#else
+#define _DEPRECATED
 #endif
 
 #if defined(__GNUC__)
-#define __ELIBC_CONST      __attribute__((__const__))
-#define __ELIBC_PURE       __attribute__((__pure__))
-#define __ELIBC_DEPRECATED __attribute__((__deprecated__))
+#define _CONST __attribute__((__const__))
+#define _PURE __attribute__((__pure__))
 #else
-#define __ELIBC_CONST 
-#define __ELIBC_PURE
-#define __ELIBC_DEPRECATED
+#define _CONST
+#define _PURE
 #endif
 
 /* TODO(eteran): enable TLS */
-#if !defined(__ISOC11_SOURCE) && defined(__GNUC__) && !defined(__KERNEL__)
+#if !defined(_HAS_C11) && defined(__GNUC__) && !defined(__KERNEL__)
 #define _Thread_local /*__thread*/
 #else
 #define _Thread_local
 #endif
 
-#if defined(__ISOCXX11_SOURCE)
-	#define _Noreturn   /* [[noreturn]] */ __attribute__((__noreturn__))
-	#if defined(__GNUC__)
-		#define _Alignas(__t) __attribute__((__aligned__(__t)))
-		#define _Alignof(__t) __alignof__(__t)
-	#else
-		#define _Alignas(t)
-		#define _Alignof(t)	
-	#endif
+#if defined(_HAS_CXX11)
+#define _Noreturn [[noreturn]]
+#if defined(__GNUC__)
+#define _Alignas(__t) __attribute__((__aligned__(__t)))
+#define _Alignof(__t) __alignof__(__t)
 #else
-	#if !defined(__ISOC11_SOURCE)
-	#if defined(__GNUC__)
-	#define _Noreturn     __attribute__((__noreturn__))
-	#define _Alignas(__t) __attribute__((__aligned__(__t)))
-	#define _Alignof(__t) __alignof__(__t)
-	#else
-	#define _Noreturn
-	#define _Alignas(__t)
-	#define _Alignof(__t)
-	#endif
-	#endif
+#define _Alignas(t)
+#define _Alignof(t)
+#endif
+#else
+#if !defined(_HAS_C11)
+#if defined(__GNUC__)
+#define _Noreturn __attribute__((__noreturn__))
+#define _Alignas(__t) __attribute__((__aligned__(__t)))
+#define _Alignof(__t) __alignof__(__t)
+#else
+#define _Noreturn
+#define _Alignas(__t)
+#define _Alignof(__t)
+#endif
+#endif
 #endif
 
-
 /* requires c11 or c++11, otherwise we fake it with a negative size array */
-#if !defined(__ISOC11_SOURCE)
-#if defined(__ISOCXX11_SOURCE)
-	#define _Static_assert(expr, error) static_assert((expr), error)
+#if !defined(_HAS_C11)
+#if defined(_HAS_CXX11)
+#define _Static_assert(expr, error) static_assert((expr), error)
 #else
-	#define _Static_assert(x, error)                             \
+#define _Static_assert(x, error)                                 \
 	do {                                                         \
 		static const char static_assertion_failed[(x) ? 1 : -1]; \
 		(void)static_assertion_failed;                           \
-	} while(0)
+	} while (0)
 #endif
 #endif
 

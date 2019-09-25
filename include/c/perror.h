@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-void perror(const char *s) __ELIBC_NOTHROW;
+void perror(const char *s) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

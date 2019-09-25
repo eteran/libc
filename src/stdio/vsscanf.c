@@ -26,7 +26,7 @@ do {                                                                 \
 /*------------------------------------------------------------------------------
 // Name: vsscanf
 //----------------------------------------------------------------------------*/
-int vsscanf(const char *__ELIBC_RESTRICT str, const char *__ELIBC_RESTRICT format, va_list ap) {
+int vsscanf(const char *_RESTRICT str, const char *_RESTRICT format, va_list ap) {
 	int assign_count    = 0;
 	int done            = 0;
 	char *endptr        = 0;

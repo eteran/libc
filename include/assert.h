@@ -9,19 +9,19 @@
 extern "C" {
 #endif
 
-_Noreturn void __assert_fail(const char *expr, const char *file, unsigned int line, const char *func) __ELIBC_NOTHROW;
+_Noreturn void __assert_fail(const char *expr, const char *file, unsigned int line, const char *func) _NOEXCEPT;
 
 #if defined(NDEBUG)
 	#define assert(ignore)   ((void)0)
 #else
-	#if defined(__ISOC99_SOURCE) || defined(__ISOCXX11_SOURCE)
+	#if defined(_HAS_C99) || defined(_HAS_CXX11)
 		#define assert(test) (!(test)) ? __assert_fail(# test, __FILE__, __LINE__, __func__) : (void)0
 	#else
 		#define assert(test) (!(test)) ? __assert_fail(# test, __FILE__, __LINE__, 0       ) : (void)0
 	#endif
 #endif
 
-#ifdef __ISOC11_SOURCE
+#ifdef _HAS_C11
 #define static_assert(expr, error) _Static_assert((expr), error)
 #endif
 

@@ -8,7 +8,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_setvbuf
 //----------------------------------------------------------------------------*/
-int __elibc_setvbuf(FILE *__ELIBC_RESTRICT stream, char *__ELIBC_RESTRICT buf, int mode, size_t size) {
+int __elibc_setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode, size_t size) {
 	int ret = 0;
 
 	assert(stream);
@@ -52,7 +52,7 @@ int __elibc_setvbuf(FILE *__ELIBC_RESTRICT stream, char *__ELIBC_RESTRICT buf, i
 /*------------------------------------------------------------------------------
 // Name: setvbuf
 //----------------------------------------------------------------------------*/
-int setvbuf(FILE *__ELIBC_RESTRICT stream, char *__ELIBC_RESTRICT buf, int mode, size_t size) {
+int setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode, size_t size) {
 	int r;
 	__elibc_lock_stream(stream);
 	r = __elibc_setvbuf(stream, buf, mode, size);

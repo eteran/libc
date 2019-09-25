@@ -11,7 +11,7 @@ typedef struct {
 	int rem;
 } div_t;
 
-div_t div(int numerator, int denominator) __ELIBC_NOTHROW;
+div_t div(int numerator, int denominator) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

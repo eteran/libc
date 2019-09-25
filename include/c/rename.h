@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int rename(const char *oldpath, const char *newpath) __ELIBC_NOTHROW;
+int rename(const char *oldpath, const char *newpath) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

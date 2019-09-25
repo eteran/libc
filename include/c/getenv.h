@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-char *getenv(const char *name) __ELIBC_NOTHROW;
+char *getenv(const char *name) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------------
 // Name: printf
 //----------------------------------------------------------------------------*/
-int printf(const char *__ELIBC_RESTRICT format, ...) {
+int printf(const char *_RESTRICT format, ...) {
 	int ret;
 	va_list ap;
 	va_start(ap, format);

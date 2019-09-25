@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-float modff(float x, float *iptr) __ELIBC_NOTHROW;
+float modff(float x, float *iptr) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

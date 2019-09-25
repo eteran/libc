@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST long double fdiml(long double x, long double y) __ELIBC_NOTHROW;
+_CONST long double fdiml(long double x, long double y) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

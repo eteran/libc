@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-__ELIBC_PURE int bcmp(const void *s1, const void *s2, size_t n) __ELIBC_NOTHROW __ELIBC_DEPRECATED;
+_PURE int bcmp(const void *s1, const void *s2, size_t n) _NOEXCEPT _DEPRECATED;
 
 #ifdef __cplusplus
 }

@@ -9,8 +9,8 @@
 extern "C" {
 #endif
 
-struct tm *localtime(const time_t *timer) __ELIBC_NOTHROW;
-struct tm *localtime_r(const time_t *timep, struct tm *result) __ELIBC_NOTHROW;
+struct tm *localtime(const time_t *timer) _NOEXCEPT;
+struct tm *localtime_r(const time_t *timep, struct tm *result) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

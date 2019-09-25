@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-void srand(unsigned int seed) __ELIBC_NOTHROW;
+void srand(unsigned int seed) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

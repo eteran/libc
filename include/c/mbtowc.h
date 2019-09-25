@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-int mbtowc(wchar_t * __ELIBC_RESTRICT pwc, const char *__ELIBC_RESTRICT s, size_t n) __ELIBC_NOTHROW;
+int mbtowc(wchar_t * _RESTRICT pwc, const char *_RESTRICT s, size_t n) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

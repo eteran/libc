@@ -5,10 +5,10 @@
 #include "arch_wchar_t.h"
 
 #ifdef __cplusplus
-__ELIBC_PURE const wchar_t *wcsrchr(const wchar_t *, wchar_t) __ELIBC_NOTHROW __asm__("wcsrchr");
-__ELIBC_PURE       wchar_t *wcsrchr(      wchar_t *, wchar_t) __ELIBC_NOTHROW __asm__("wcsrchr");
+_PURE const wchar_t *wcsrchr(const wchar_t *, wchar_t) _NOEXCEPT __asm__("wcsrchr");
+_PURE       wchar_t *wcsrchr(      wchar_t *, wchar_t) _NOEXCEPT __asm__("wcsrchr");
 #else
-__ELIBC_PURE wchar_t *wcsrchr(const wchar_t *, wchar_t) __ELIBC_NOTHROW;
+_PURE wchar_t *wcsrchr(const wchar_t *, wchar_t) _NOEXCEPT;
 #endif
 
 #endif

@@ -6,8 +6,8 @@
 extern "C" {
 #endif
 
-wchar_t *wcstok(wchar_t *__ELIBC_RESTRICT s, const wchar_t *__ELIBC_RESTRICT delim) __ELIBC_NOTHROW;
-wchar_t *wcstok_r(wchar_t *__ELIBC_RESTRICT s, const wchar_t *__ELIBC_RESTRICT delim, wchar_t **ptrptr) __ELIBC_NOTHROW;
+wchar_t *wcstok(wchar_t *_RESTRICT s, const wchar_t *_RESTRICT delim) _NOEXCEPT;
+wchar_t *wcstok_r(wchar_t *_RESTRICT s, const wchar_t *_RESTRICT delim, wchar_t **ptrptr) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

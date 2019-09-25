@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-wint_t putwchar(wchar_t) __ELIBC_NOTHROW;
+wint_t putwchar(wchar_t) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -40,7 +40,7 @@ static int __elibc_properly_encoded_length(wchar_t wc) {
 /*------------------------------------------------------------------------------
 // Name: mbrtowc
 //----------------------------------------------------------------------------*/
-size_t mbrtowc(wchar_t *__ELIBC_RESTRICT pwc, const char *__ELIBC_RESTRICT s, size_t n, mbstate_t *ps) {
+size_t mbrtowc(wchar_t *_RESTRICT pwc, const char *_RESTRICT s, size_t n, mbstate_t *ps) {
 
 	const int locale_type = __elibc_get_locale_type(LC_CTYPE);
 

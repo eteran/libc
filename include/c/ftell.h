@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-long ftell(FILE *stream) __ELIBC_NOTHROW;
+long ftell(FILE *stream) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

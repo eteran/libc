@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------------
 // Name:
 //----------------------------------------------------------------------------*/
-int sscanf(const char *__ELIBC_RESTRICT str, const char *__ELIBC_RESTRICT format, ...) {
+int sscanf(const char *_RESTRICT str, const char *_RESTRICT format, ...) {
 	int ret;
 	va_list ap;
 	va_start(ap, format);

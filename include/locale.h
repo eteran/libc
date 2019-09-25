@@ -25,7 +25,7 @@
 #define LC_TIME     (1 << __ELIBC_LC_TIME)
 #define LC_ALL      (LC_COLLATE | LC_CTYPE | LC_MONETARY | LC_NUMERIC | LC_TIME)
 
-int __elibc_get_locale_type(int category) __ELIBC_NOTHROW;
+int __elibc_get_locale_type(int category) _NOEXCEPT;
 
 #include "c/setlocale.h"
 #include "c/localeconv.h"

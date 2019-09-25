@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-int vprintf(const char *__ELIBC_RESTRICT format, va_list ap) __ELIBC_NOTHROW __attribute__((__format__ (printf, 1, 0)));
+int vprintf(const char *_RESTRICT format, va_list ap) _NOEXCEPT __attribute__((__format__ (printf, 1, 0)));
 
 #ifdef __cplusplus
 }

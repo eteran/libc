@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-long int strtol(const char *__ELIBC_RESTRICT nptr, char **__ELIBC_RESTRICT endptr, int base) __ELIBC_NOTHROW;
+long int strtol(const char *_RESTRICT nptr, char **_RESTRICT endptr, int base) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -5,7 +5,7 @@
 /*------------------------------------------------------------------------------
 // Name: wcstok
 //----------------------------------------------------------------------------*/
-wchar_t *wcstok(wchar_t *__ELIBC_RESTRICT s, const wchar_t *__ELIBC_RESTRICT delim) {
+wchar_t *wcstok(wchar_t *_RESTRICT s, const wchar_t *_RESTRICT delim) {
 	static _Thread_local wchar_t *ptr = 0;
 	return wcstok_r(s, delim, &ptr);
 }
@@ -13,7 +13,7 @@ wchar_t *wcstok(wchar_t *__ELIBC_RESTRICT s, const wchar_t *__ELIBC_RESTRICT del
 /*------------------------------------------------------------------------------
 // Name: wcstok_r
 //----------------------------------------------------------------------------*/
-wchar_t *wcstok_r(wchar_t *__ELIBC_RESTRICT s, const wchar_t *__ELIBC_RESTRICT delim, wchar_t **ptrptr) {
+wchar_t *wcstok_r(wchar_t *_RESTRICT s, const wchar_t *_RESTRICT delim, wchar_t **ptrptr) {
 
 	wchar_t *start;
 

@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-float frexpf(float x, int *exp) __ELIBC_NOTHROW;
+float frexpf(float x, int *exp) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

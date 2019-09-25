@@ -21,7 +21,7 @@ static void __elibc_stream_writer(void *context, char ch) {
 /*------------------------------------------------------------------------------
 // Name: vfprintf
 //----------------------------------------------------------------------------*/
-int vfprintf(FILE *__ELIBC_RESTRICT stream, const char *__ELIBC_RESTRICT format, va_list ap) {
+int vfprintf(FILE *_RESTRICT stream, const char *_RESTRICT format, va_list ap) {
 
 	struct __elibc_stream_write ctx = {
 		__elibc_stream_writer,

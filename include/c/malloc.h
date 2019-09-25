@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-void *malloc(size_t size) __ELIBC_NOTHROW __attribute__((__malloc__));
+void *malloc(size_t size) _NOEXCEPT __attribute__((__malloc__));
 
 #ifdef __cplusplus
 }

@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_PURE size_t wcslen(const wchar_t *) __ELIBC_NOTHROW;
+_PURE size_t wcslen(const wchar_t *) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-size_t wcstombs(char *s, const wchar_t *wcs, size_t n) __ELIBC_NOTHROW;
+size_t wcstombs(char *s, const wchar_t *wcs, size_t n) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

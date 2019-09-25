@@ -8,8 +8,8 @@
 extern "C" {
 #endif
 
-char *ctime(const time_t *timer) __ELIBC_NOTHROW;
-char *ctime_r(const time_t *timer, char *buf) __ELIBC_NOTHROW;
+char *ctime(const time_t *timer) _NOEXCEPT;
+char *ctime_r(const time_t *timer, char *buf) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-size_t mbrlen(const char *__ELIBC_RESTRICT s, size_t n, mbstate_t *__ELIBC_RESTRICT ps) __ELIBC_NOTHROW;
+size_t mbrlen(const char *_RESTRICT s, size_t n, mbstate_t *_RESTRICT ps) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-long long wcstoll(const wchar_t *__ELIBC_RESTRICT nptr, wchar_t **__ELIBC_RESTRICT endptr, int base) __ELIBC_NOTHROW;
+long long wcstoll(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr, int base) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

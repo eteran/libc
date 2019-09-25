@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-int vsscanf(const char *__ELIBC_RESTRICT str, const char *__ELIBC_RESTRICT format, va_list ap) __ELIBC_NOTHROW;
+int vsscanf(const char *_RESTRICT str, const char *_RESTRICT format, va_list ap) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

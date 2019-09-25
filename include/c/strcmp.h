@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_PURE int strcmp(const char *s1, const char *s2) __ELIBC_NOTHROW;
+_PURE int strcmp(const char *s1, const char *s2) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

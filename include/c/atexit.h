@@ -10,7 +10,7 @@ extern "C" {
 
 typedef void (*_atexit_t)(void);
 
-int atexit(_atexit_t function) __ELIBC_NOTHROW;
+int atexit(_atexit_t function) _NOEXCEPT;
 void __elibc_doexit(void);
 
 #ifdef __cplusplus

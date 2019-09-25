@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int wctomb(char *s, wchar_t wc) __ELIBC_NOTHROW;
+int wctomb(char *s, wchar_t wc) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

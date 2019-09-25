@@ -7,7 +7,7 @@ extern "C" {
 #endif
 
 struct lconv;
-struct lconv *localeconv(void) __ELIBC_NOTHROW;
+struct lconv *localeconv(void) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

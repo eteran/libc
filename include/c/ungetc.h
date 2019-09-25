@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int ungetc(int c, FILE *stream) __ELIBC_NOTHROW;
+int ungetc(int c, FILE *stream) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

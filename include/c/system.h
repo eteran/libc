@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int system(const char *string) __ELIBC_NOTHROW;
+int system(const char *string) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

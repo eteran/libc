@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST float exp2f(float x) __ELIBC_NOTHROW;
+_CONST float exp2f(float x) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

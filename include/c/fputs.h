@@ -8,8 +8,8 @@
 extern "C" {
 #endif
 
-int __elibc_fputs(const char *__ELIBC_RESTRICT s, FILE *__ELIBC_RESTRICT stream) __ELIBC_NOTHROW;
-int fputs(const char *__ELIBC_RESTRICT s, FILE *__ELIBC_RESTRICT stream) __ELIBC_NOTHROW;
+int __elibc_fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) _NOEXCEPT;
+int fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

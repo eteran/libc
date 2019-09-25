@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST int wctob(wint_t c) __ELIBC_NOTHROW;
+_CONST int wctob(wint_t c) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

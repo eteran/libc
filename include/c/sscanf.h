@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int sscanf(const char *__ELIBC_RESTRICT str, const char *__ELIBC_RESTRICT format, ...) __ELIBC_NOTHROW;
+int sscanf(const char *_RESTRICT str, const char *_RESTRICT format, ...) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

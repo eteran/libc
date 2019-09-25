@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST float roundf(float x) __ELIBC_NOTHROW;
+_CONST float roundf(float x) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

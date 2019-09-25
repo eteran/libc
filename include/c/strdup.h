@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-char *strdup(const char *s) __ELIBC_NOTHROW __attribute__((__malloc__));
+char *strdup(const char *s) _NOEXCEPT __attribute__((__malloc__));
 
 #ifdef __cplusplus
 }

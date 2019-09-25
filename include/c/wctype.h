@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-__ELIBC_PURE wctype_t wctype(const char *str) __ELIBC_NOTHROW;
+_PURE wctype_t wctype(const char *str) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

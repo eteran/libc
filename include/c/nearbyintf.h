@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST float nearbyintf(float x) __ELIBC_NOTHROW;
+_CONST float nearbyintf(float x) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

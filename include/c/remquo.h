@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-double remquo(double x, double y, int *quo) __ELIBC_NOTHROW;
+double remquo(double x, double y, int *quo) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

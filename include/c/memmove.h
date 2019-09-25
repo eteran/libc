@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-void *memmove(void *dest, const void *src, size_t n) __ELIBC_NOTHROW;
+void *memmove(void *dest, const void *src, size_t n) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

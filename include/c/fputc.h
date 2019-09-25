@@ -8,8 +8,8 @@
 extern "C" {
 #endif
 
-int __elibc_fputc(int c, FILE *stream, int orientation) __ELIBC_NOTHROW;
-int fputc(int c, FILE *stream) __ELIBC_NOTHROW;
+int __elibc_fputc(int c, FILE *stream, int orientation) _NOEXCEPT;
+int fputc(int c, FILE *stream) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

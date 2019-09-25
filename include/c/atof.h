@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-double atof(const char *nptr) __ELIBC_NOTHROW;
+double atof(const char *nptr) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

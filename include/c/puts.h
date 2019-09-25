@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int puts(const char *s) __ELIBC_NOTHROW;
+int puts(const char *s) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

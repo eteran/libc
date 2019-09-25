@@ -5,7 +5,7 @@
 /*------------------------------------------------------------------------------
 // Name: strtok
 //----------------------------------------------------------------------------*/
-char *strtok(char *__ELIBC_RESTRICT s, const char *__ELIBC_RESTRICT delim) {
+char *strtok(char *_RESTRICT s, const char *_RESTRICT delim) {
 	static _Thread_local char *ptr = 0;
 	return strtok_r(s, delim, &ptr);
 }
@@ -13,7 +13,7 @@ char *strtok(char *__ELIBC_RESTRICT s, const char *__ELIBC_RESTRICT delim) {
 /*------------------------------------------------------------------------------
 // Name: strtok_r
 //----------------------------------------------------------------------------*/
-char *strtok_r(char *__ELIBC_RESTRICT s, const char *__ELIBC_RESTRICT delim, char **ptrptr) {
+char *strtok_r(char *_RESTRICT s, const char *_RESTRICT delim, char **ptrptr) {
 
 	char *start;
 

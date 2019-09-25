@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-double nan(const char *tagp) __ELIBC_NOTHROW;
+double nan(const char *tagp) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

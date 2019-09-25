@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-time_t mktime(struct tm *tptr) __ELIBC_NOTHROW;
+time_t mktime(struct tm *tptr) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

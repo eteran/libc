@@ -9,8 +9,8 @@
 extern "C" {
 #endif
 
-int __elibc_setvbuf(FILE *__ELIBC_RESTRICT stream, char *__ELIBC_RESTRICT buf, int mode, size_t size) __ELIBC_NOTHROW;
-int setvbuf(FILE *__ELIBC_RESTRICT stream, char *__ELIBC_RESTRICT buf, int mode , size_t size) __ELIBC_NOTHROW;
+int __elibc_setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode, size_t size) _NOEXCEPT;
+int setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode , size_t size) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

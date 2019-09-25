@@ -78,13 +78,13 @@ extern FILE __elibc_stderr[1];
 #include "c/ferror.h"
 #include "c/perror.h"
 
-#if defined(__ISOC99_SOURCE) || defined(__ISOCXX89_SOURCE) || defined(__ELIBC_SOURCE)
+#if defined(_HAS_C99) || defined(_HAS_CXX89) || defined(__ELIBC_SOURCE)
 	#include "c/vprintf.h"
 	#include "c/vsprintf.h"
 	#include "c/vfprintf.h"
 #endif
 
-#if defined(__ISOC99_SOURCE) || defined(__ISOCXX11_SOURCE) || defined(__ELIBC_SOURCE)
+#if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(__ELIBC_SOURCE)
 	#include "c/snprintf.h"
 	#include "c/vfscanf.h"
 	#include "c/vscanf.h"

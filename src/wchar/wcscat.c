@@ -5,7 +5,7 @@
 /*------------------------------------------------------------------------------
 // Name: strcat
 //----------------------------------------------------------------------------*/
-wchar_t *wcscat(wchar_t *__ELIBC_RESTRICT dest, const wchar_t *__ELIBC_RESTRICT src) {
+wchar_t *wcscat(wchar_t *_RESTRICT dest, const wchar_t *_RESTRICT src) {
 	wchar_t *dest_ptr = dest;
 
 

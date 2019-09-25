@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-wchar_t *fgetws(wchar_t *ws, int n, FILE *stream) __ELIBC_NOTHROW;
+wchar_t *fgetws(wchar_t *ws, int n, FILE *stream) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -9,8 +9,8 @@
 extern "C" {
 #endif
 
-size_t __elibc_fread(void *ptr, size_t size, size_t nmemb, FILE *stream) __ELIBC_NOTHROW;
-size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream) __ELIBC_NOTHROW;
+size_t __elibc_fread(void *ptr, size_t size, size_t nmemb, FILE *stream) _NOEXCEPT;
+size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

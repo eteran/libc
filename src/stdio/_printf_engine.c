@@ -728,7 +728,7 @@ static void _output_string(char ch, const char *s_ptr, int precision, long int *
 /*------------------------------------------------------------------------------
 // Name: __elibc_printf_engine
 //----------------------------------------------------------------------------*/
-int __elibc_printf_engine(void *c, const char *__ELIBC_RESTRICT format, va_list ap) {
+int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 
 	va_list aq;
 

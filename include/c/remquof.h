@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-float remquof(float x, float y, int *quo) __ELIBC_NOTHROW;
+float remquof(float x, float y, int *quo) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

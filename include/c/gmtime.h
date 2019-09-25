@@ -8,8 +8,8 @@
 extern "C" {
 #endif
 
-struct tm *gmtime_r(const time_t *timep, struct tm *result) __ELIBC_NOTHROW;
-struct tm *gmtime(const time_t *timep) __ELIBC_NOTHROW;
+struct tm *gmtime_r(const time_t *timep, struct tm *result) _NOEXCEPT;
+struct tm *gmtime(const time_t *timep) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

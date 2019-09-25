@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-time_t time(time_t *tod) __ELIBC_NOTHROW;
+time_t time(time_t *tod) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

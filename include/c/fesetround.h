@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int fesetround(int round) __ELIBC_NOTHROW;
+int fesetround(int round) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

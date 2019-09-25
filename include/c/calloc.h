@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-void *calloc(size_t nmemb, size_t size) __ELIBC_NOTHROW;
+void *calloc(size_t nmemb, size_t size) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

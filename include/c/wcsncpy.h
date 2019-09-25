@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-wchar_t *wcsncpy(wchar_t *, const wchar_t *, size_t) __ELIBC_NOTHROW;
+wchar_t *wcsncpy(wchar_t *, const wchar_t *, size_t) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

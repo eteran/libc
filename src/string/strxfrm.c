@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------------
 // Name: strxfrm
 //----------------------------------------------------------------------------*/
-size_t strxfrm(char *__ELIBC_RESTRICT dest, const char *__ELIBC_RESTRICT src, size_t n) {
+size_t strxfrm(char *_RESTRICT dest, const char *_RESTRICT src, size_t n) {
 
 	assert(dest);
 	assert(src);

@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-size_t wcsftime(wchar_t *s, size_t max, const wchar_t *format, const struct tm *tm) __ELIBC_NOTHROW;
+size_t wcsftime(wchar_t *s, size_t max, const wchar_t *format, const struct tm *tm) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

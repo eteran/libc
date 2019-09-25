@@ -11,7 +11,7 @@
 // Name: strtod
 // TODO(eteran): finish this code!
 //----------------------------------------------------------------------------*/
-double strtod(const char *__ELIBC_RESTRICT nptr, char **__ELIBC_RESTRICT endptr) {
+double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 
 	double sign             = 1.0;
 	const char *radix_index = 0;

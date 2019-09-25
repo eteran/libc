@@ -8,7 +8,7 @@
 /*------------------------------------------------------------------------------
 // Name: fwprintf
 //----------------------------------------------------------------------------*/
-int fwprintf(FILE *__ELIBC_RESTRICT stream, const wchar_t *__ELIBC_RESTRICT format, ...) {
+int fwprintf(FILE *_RESTRICT stream, const wchar_t *_RESTRICT format, ...) {
 	int ret;
 	va_list ap;
 	va_start(ap, format);

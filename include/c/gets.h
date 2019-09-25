@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-char *gets(char *s) __ELIBC_NOTHROW __ELIBC_DEPRECATED;
+char *gets(char *s) _NOEXCEPT _DEPRECATED;
 
 #ifdef __cplusplus
 }

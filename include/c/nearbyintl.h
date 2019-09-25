@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST long double nearbyintl(long double x) __ELIBC_NOTHROW;
+_CONST long double nearbyintl(long double x) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

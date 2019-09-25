@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-void free(void *ptr) __ELIBC_NOTHROW;
+void free(void *ptr) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

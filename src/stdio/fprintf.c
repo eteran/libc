@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------------
 // Name: fprintf
 //----------------------------------------------------------------------------*/
-int fprintf(FILE *__ELIBC_RESTRICT stream, const char *__ELIBC_RESTRICT format, ...) {
+int fprintf(FILE *_RESTRICT stream, const char *_RESTRICT format, ...) {
 	int ret;
 	va_list ap;
 	va_start(ap, format);

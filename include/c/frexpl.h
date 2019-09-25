@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-long double frexpl(long double x, int *exp) __ELIBC_NOTHROW;
+long double frexpl(long double x, int *exp) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

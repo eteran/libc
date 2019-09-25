@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-size_t wcrtomb(char *, wchar_t, mbstate_t *) __ELIBC_NOTHROW;
+size_t wcrtomb(char *, wchar_t, mbstate_t *) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

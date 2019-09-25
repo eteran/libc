@@ -2,7 +2,7 @@
 #ifndef ARCH_INTTYPES_20140706_H_
 #define ARCH_INTTYPES_20140706_H_
 
-#if !defined(__cplusplus) || defined(__ISOCXX11_SOURCE) || defined(__STDC_FORMAT_MACROS)
+#if !defined(__cplusplus) || defined(_HAS_CXX11) || defined(__STDC_FORMAT_MACROS)
 
 #define __PRI64_PREFIX  "l"
 #define __PRIPTR_PREFIX "l"

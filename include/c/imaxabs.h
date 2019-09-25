@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST intmax_t imaxabs(intmax_t j) __ELIBC_NOTHROW;
+_CONST intmax_t imaxabs(intmax_t j) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

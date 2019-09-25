@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-double frexp(double x, int *exp) __ELIBC_NOTHROW;
+double frexp(double x, int *exp) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

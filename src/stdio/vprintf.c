@@ -6,6 +6,6 @@
 /*------------------------------------------------------------------------------
 // Name: vprintf
 //----------------------------------------------------------------------------*/
-int vprintf(const char *__ELIBC_RESTRICT format, va_list ap) {
+int vprintf(const char *_RESTRICT format, va_list ap) {
 	return vfprintf(stdout, format, ap);
 }

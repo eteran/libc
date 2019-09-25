@@ -6,8 +6,8 @@
 extern "C" {
 #endif
 
-int rand(void) __ELIBC_NOTHROW;
-int rand_r(unsigned int *seedp) __ELIBC_NOTHROW;
+int rand(void) _NOEXCEPT;
+int rand_r(unsigned int *seedp) _NOEXCEPT;
 
 unsigned int *__elibc_rand_next(void);
 

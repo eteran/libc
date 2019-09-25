@@ -8,8 +8,8 @@
 extern "C" {
 #endif
 
-int __elibc_fflush(FILE *stream) __ELIBC_NOTHROW;
-int fflush(FILE *stream) __ELIBC_NOTHROW;
+int __elibc_fflush(FILE *stream) _NOEXCEPT;
+int fflush(FILE *stream) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

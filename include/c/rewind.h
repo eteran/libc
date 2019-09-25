@@ -8,8 +8,8 @@
 extern "C" {
 #endif
 
-void __elibc_rewind(FILE *stream) __ELIBC_NOTHROW;
-void rewind(FILE *stream) __ELIBC_NOTHROW;
+void __elibc_rewind(FILE *stream) _NOEXCEPT;
+void rewind(FILE *stream) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

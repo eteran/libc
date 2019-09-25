@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-int feupdateenv(const fenv_t *envp) __ELIBC_NOTHROW;
+int feupdateenv(const fenv_t *envp) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

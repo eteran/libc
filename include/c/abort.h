@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-_Noreturn void abort(void) __ELIBC_NOTHROW;
+_Noreturn void abort(void) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

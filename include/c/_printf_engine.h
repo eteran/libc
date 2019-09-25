@@ -19,7 +19,7 @@ struct __elibc_write {
 	size_t                     written;
 };
 
-int __elibc_printf_engine(void *ctx, const char *__ELIBC_RESTRICT format, va_list ap);
+int __elibc_printf_engine(void *ctx, const char *_RESTRICT format, va_list ap);
 
 #ifdef __cplusplus
 }

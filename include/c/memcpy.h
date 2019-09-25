@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-void *memcpy(void * __ELIBC_RESTRICT dest, const void * __ELIBC_RESTRICT src, size_t n) __ELIBC_NOTHROW;
+void *memcpy(void * _RESTRICT dest, const void * _RESTRICT src, size_t n) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-int vfprintf(FILE *__ELIBC_RESTRICT stream, const char *__ELIBC_RESTRICT format, va_list ap) __ELIBC_NOTHROW __attribute__((__format__ (printf, 2, 0)));
+int vfprintf(FILE *_RESTRICT stream, const char *_RESTRICT format, va_list ap) _NOEXCEPT __attribute__((__format__ (printf, 2, 0)));
 
 #ifdef __cplusplus
 }

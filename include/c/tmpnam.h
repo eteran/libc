@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-char *tmpnam(char *s) __ELIBC_NOTHROW;
+char *tmpnam(char *s) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

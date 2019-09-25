@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST int isspace(int c) __ELIBC_NOTHROW;
+_CONST int isspace(int c) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST int toupper(int c) __ELIBC_NOTHROW;
+_CONST int toupper(int c) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

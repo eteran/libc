@@ -5,7 +5,7 @@
 /*------------------------------------------------------------------------------
 // Name: strncat
 //----------------------------------------------------------------------------*/
-char *strncat(char *__ELIBC_RESTRICT dest, const char *__ELIBC_RESTRICT src, size_t n) {
+char *strncat(char *_RESTRICT dest, const char *_RESTRICT src, size_t n) {
 	char *dest_ptr = dest;
 
 	if(n != 0) {

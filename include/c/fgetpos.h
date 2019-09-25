@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-int fgetpos(FILE *stream, fpos_t *pos) __ELIBC_NOTHROW;
+int fgetpos(FILE *stream, fpos_t *pos) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

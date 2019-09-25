@@ -34,7 +34,7 @@ static void __elibc_buffer_writer_done(void *context) {
 /*------------------------------------------------------------------------------
 // Name: vsnprintf
 //----------------------------------------------------------------------------*/
-int vsnprintf(char *__ELIBC_RESTRICT str, size_t size, const char *__ELIBC_RESTRICT format, va_list ap) {
+int vsnprintf(char *_RESTRICT str, size_t size, const char *_RESTRICT format, va_list ap) {
 
 	struct __elibc_buffer_write ctx = {
 		__elibc_buffer_writer,

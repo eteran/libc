@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-int fprintf(FILE *__ELIBC_RESTRICT stream, const char *__ELIBC_RESTRICT format, ...) __ELIBC_NOTHROW __attribute__((__format__ (printf, 2, 3)));
+int fprintf(FILE *_RESTRICT stream, const char *_RESTRICT format, ...) _NOEXCEPT __attribute__((__format__ (printf, 2, 3)));
 
 #ifdef __cplusplus
 }

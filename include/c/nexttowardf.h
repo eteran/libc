@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST float nexttowardf(float x, long double y) __ELIBC_NOTHROW;
+_CONST float nexttowardf(float x, long double y) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

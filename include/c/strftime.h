@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-size_t strftime(char *s, size_t max, const char *format, const struct tm *tm) __ELIBC_NOTHROW __attribute__ ((format (__strftime__, 3, 0)));
+size_t strftime(char *s, size_t max, const char *format, const struct tm *tm) _NOEXCEPT __attribute__ ((format (__strftime__, 3, 0)));
 
 #ifdef __cplusplus
 }

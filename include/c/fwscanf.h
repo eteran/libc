@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int fwscanf(FILE *__ELIBC_RESTRICT stream, const wchar_t *format, ...) __ELIBC_NOTHROW;
+int fwscanf(FILE *_RESTRICT stream, const wchar_t *format, ...) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_PURE int wcscmp(const wchar_t *, const wchar_t *) __ELIBC_NOTHROW;
+_PURE int wcscmp(const wchar_t *, const wchar_t *) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

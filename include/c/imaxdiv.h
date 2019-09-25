@@ -11,7 +11,7 @@ typedef struct {
 	intmax_t rem;
 } imaxdiv_t;
 
-imaxdiv_t imaxdiv(intmax_t numerator, intmax_t denominator) __ELIBC_NOTHROW;
+imaxdiv_t imaxdiv(intmax_t numerator, intmax_t denominator) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

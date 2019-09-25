@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int vwscanf(const wchar_t *__ELIBC_RESTRICT format, va_list ap);
+int vwscanf(const wchar_t *_RESTRICT format, va_list ap);
 
 #ifdef __cplusplus
 }

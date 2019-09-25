@@ -6,8 +6,8 @@
 extern "C" {
 #endif
 
-int __elibc_fwide(FILE *stream, int mode) __ELIBC_NOTHROW;
-int fwide(FILE *stream, int mode) __ELIBC_NOTHROW;
+int __elibc_fwide(FILE *stream, int mode) _NOEXCEPT;
+int fwide(FILE *stream, int mode) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

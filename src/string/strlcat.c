@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------------
 // Name: strlcat
 //----------------------------------------------------------------------------*/
-size_t strlcat(char *__ELIBC_RESTRICT dest, const char *__ELIBC_RESTRICT src, size_t siz) {
+size_t strlcat(char *_RESTRICT dest, const char *_RESTRICT src, size_t siz) {
 
 	char *d       = dest;
 	const char *s = src;

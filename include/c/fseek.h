@@ -8,8 +8,8 @@
 extern "C" {
 #endif
 
-int __elibc_fseek(FILE *stream, long offset, int whence) __ELIBC_NOTHROW;
-int fseek(FILE *stream, long offset, int whence) __ELIBC_NOTHROW;
+int __elibc_fseek(FILE *stream, long offset, int whence) _NOEXCEPT;
+int fseek(FILE *stream, long offset, int whence) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

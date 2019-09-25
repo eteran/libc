@@ -133,11 +133,11 @@ extern "C" {
 
 typedef int __elibc_errno_t;
 
-#ifdef __ISOC11_SOURCE
+#ifdef _HAS_C11
 typedef __elibc_errno_t errno_t;
 #endif
 
-extern __elibc_errno_t *__errno_location(void) __ELIBC_CONST;
+extern __elibc_errno_t *__errno_location(void) _CONST;
 
 /* errno is a macro resolving to a function call so that
  * we can use TLS to have a proper thread local

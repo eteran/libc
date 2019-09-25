@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST double log1p(double x) __ELIBC_NOTHROW;
+_CONST double log1p(double x) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

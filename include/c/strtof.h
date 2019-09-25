@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-float strtof(const char *__ELIBC_RESTRICT nptr, char **__ELIBC_RESTRICT endptr) __ELIBC_NOTHROW;
+float strtof(const char *_RESTRICT nptr, char **_RESTRICT endptr) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

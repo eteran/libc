@@ -5,7 +5,7 @@
 /*------------------------------------------------------------------------------
 // Name: 
 //----------------------------------------------------------------------------*/
-int swscanf(const wchar_t *__ELIBC_RESTRICT ws, const wchar_t *__ELIBC_RESTRICT format, ...) {
+int swscanf(const wchar_t *_RESTRICT ws, const wchar_t *_RESTRICT format, ...) {
 	(void)ws;
 	(void)format;
 	return -1;

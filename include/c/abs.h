@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST int abs(int j) __ELIBC_NOTHROW;
+_CONST int abs(int j) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

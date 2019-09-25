@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int feraiseexcept(int excepts) __ELIBC_NOTHROW;
+int feraiseexcept(int excepts) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

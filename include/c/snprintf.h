@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-int snprintf(char *str, size_t size, const char *format, ...) __ELIBC_NOTHROW __attribute__((__format__ (printf, 3, 4)));
+int snprintf(char *str, size_t size, const char *format, ...) _NOEXCEPT __attribute__((__format__ (printf, 3, 4)));
 
 #ifdef __cplusplus
 }

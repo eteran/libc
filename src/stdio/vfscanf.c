@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 /* TODO(eteran): implement */
-int vfscanf(FILE *__ELIBC_RESTRICT stream, const char *__ELIBC_RESTRICT format, va_list ap) {
+int vfscanf(FILE *_RESTRICT stream, const char *_RESTRICT format, va_list ap) {
 	(void)stream;
 	(void)format;
 	(void)ap;

@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-__sighandler_t signal(int signum, __sighandler_t handler) __ELIBC_NOTHROW;
+__sighandler_t signal(int signum, __sighandler_t handler) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

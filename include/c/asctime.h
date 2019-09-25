@@ -9,8 +9,8 @@
 extern "C" {
 #endif
 
-char *asctime(const struct tm *timeptr) __ELIBC_NOTHROW;
-char *asctime_r(const struct tm *timeptr, char *buf) __ELIBC_NOTHROW;
+char *asctime(const struct tm *timeptr) _NOEXCEPT;
+char *asctime_r(const struct tm *timeptr, char *buf) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

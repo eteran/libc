@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-__ELIBC_PURE int strncmp(const char *s1, const char *s2, size_t n) __ELIBC_NOTHROW;
+_PURE int strncmp(const char *s1, const char *s2, size_t n) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

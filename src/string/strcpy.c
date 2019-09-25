@@ -5,7 +5,7 @@
 /*------------------------------------------------------------------------------
 // Name: strcpy
 //----------------------------------------------------------------------------*/
-char *strcpy(char *__ELIBC_RESTRICT dest, const char *__ELIBC_RESTRICT src) {
+char *strcpy(char *_RESTRICT dest, const char *_RESTRICT src) {
 	char *dest_ptr = dest;
 
 	while(*src != '\0') {

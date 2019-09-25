@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int vfscanf(FILE *__ELIBC_RESTRICT stream, const char *__ELIBC_RESTRICT format, va_list ap) __ELIBC_NOTHROW;
+int vfscanf(FILE *_RESTRICT stream, const char *_RESTRICT format, va_list ap) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

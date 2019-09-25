@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST double erfc(double x) __ELIBC_NOTHROW;
+_CONST double erfc(double x) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

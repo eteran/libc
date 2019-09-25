@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST float scalblnf(float x, long int exp) __ELIBC_NOTHROW;
+_CONST float scalblnf(float x, long int exp) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

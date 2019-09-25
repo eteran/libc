@@ -81,7 +81,7 @@ struct tm;
 #include "c/wprintf.h"
 #include "c/wscanf.h"
 
-#if defined(__ISOC99_SOURCE) || defined(__ISOCXX11_SOURCE) || defined(__ELIBC_SOURCE)
+#if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(__ELIBC_SOURCE)
 #include "c/vfwscanf.h"
 #include "c/vswscanf.h"
 #include "c/vwscanf.h" 

@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST wint_t towctrans(wint_t wc, wctrans_t desc) __ELIBC_NOTHROW;
+_CONST wint_t towctrans(wint_t wc, wctrans_t desc) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

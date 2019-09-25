@@ -38,7 +38,7 @@ typedef uint64_t           uintptr_t;
 typedef int64_t            intmax_t;
 typedef uint64_t           uintmax_t;
 
-#if !defined(__cplusplus) || defined(__ISOCXX11_SOURCE) || defined(__STDC_LIMIT_MACROS)
+#if !defined(__cplusplus) || defined(_HAS_CXX11) || defined(__STDC_LIMIT_MACROS)
 
 /* Signed integers : minimum value */
 #define INT8_MIN   (-127)
@@ -121,7 +121,7 @@ typedef uint64_t           uintmax_t;
 
 #endif
 
-#if !defined(__cplusplus) || defined(__ISOCXX11_SOURCE) || defined(__STDC_CONSTANT_MACROS)
+#if !defined(__cplusplus) || defined(_HAS_CXX11) || defined(__STDC_CONSTANT_MACROS)
 
 #define INT8_C(value)    value
 #define INT16_C(value)   value

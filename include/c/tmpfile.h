@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-FILE *tmpfile(void) __ELIBC_NOTHROW;
+FILE *tmpfile(void) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

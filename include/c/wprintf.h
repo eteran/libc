@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int wprintf(const wchar_t *, ...) __ELIBC_NOTHROW;
+int wprintf(const wchar_t *, ...) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

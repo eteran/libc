@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-clock_t clock(void) __ELIBC_NOTHROW;
+clock_t clock(void) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

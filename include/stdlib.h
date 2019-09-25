@@ -43,7 +43,7 @@
 #include "c/mbstowcs.h"
 #include "c/wcstombs.h"
 
-#if defined(__ISOC99_SOURCE) || defined(__ISOCXX11_SOURCE) || defined(__ELIBC_SOURCE)
+#if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(__ELIBC_SOURCE)
 #include "c/atoll.h"
 #include "c/strtof.h"
 #include "c/strtold.h"
@@ -54,10 +54,10 @@
 #include "c/lldiv.h"
 #endif
 
-#if defined(__ISOC99_SOURCE) || defined(__ISOCXX89_SOURCE) || defined(__ELIBC_SOURCE)
+#if defined(_HAS_C99) || defined(_HAS_CXX89) || defined(__ELIBC_SOURCE)
 #include "c/wctomb.h"
 #endif
 
-extern __ELIBC_CONST size_t __ctype_get_mb_cur_max(void) __ELIBC_NOTHROW;
+extern _CONST size_t __ctype_get_mb_cur_max(void) _NOEXCEPT;
 
 #endif

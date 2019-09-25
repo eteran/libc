@@ -8,8 +8,8 @@
 extern "C" {
 #endif
 
-int __elibc_ferror(FILE *stream) __ELIBC_NOTHROW;
-int ferror(FILE *stream) __ELIBC_NOTHROW;
+int __elibc_ferror(FILE *stream) _NOEXCEPT;
+int ferror(FILE *stream) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

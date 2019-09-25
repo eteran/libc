@@ -8,8 +8,8 @@
 extern "C" {
 #endif
 
-int __elibc_fclose(FILE *stream) __ELIBC_NOTHROW;
-int fclose(FILE *stream) __ELIBC_NOTHROW;
+int __elibc_fclose(FILE *stream) _NOEXCEPT;
+int fclose(FILE *stream) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

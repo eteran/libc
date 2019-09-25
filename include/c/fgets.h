@@ -8,8 +8,8 @@
 extern "C" {
 #endif
 
-char *__elibc_fgets(char *__ELIBC_RESTRICT s, int size, FILE *__ELIBC_RESTRICT stream) __ELIBC_NOTHROW;
-char *fgets(char *__ELIBC_RESTRICT s, int size, FILE *__ELIBC_RESTRICT stream) __ELIBC_NOTHROW;
+char *__elibc_fgets(char *_RESTRICT s, int size, FILE *_RESTRICT stream) _NOEXCEPT;
+char *fgets(char *_RESTRICT s, int size, FILE *_RESTRICT stream) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

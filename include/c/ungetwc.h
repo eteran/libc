@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-wint_t ungetwc(wint_t wc, FILE *stream) __ELIBC_NOTHROW;
+wint_t ungetwc(wint_t wc, FILE *stream) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-void bzero(void *s, size_t n) __ELIBC_NOTHROW __ELIBC_DEPRECATED;
+void bzero(void *s, size_t n) _NOEXCEPT _DEPRECATED;
 
 #ifdef __cplusplus
 }

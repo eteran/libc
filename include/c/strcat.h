@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-char *strcat(char *__ELIBC_RESTRICT dest, const char *__ELIBC_RESTRICT src) __ELIBC_NOTHROW;
+char *strcat(char *_RESTRICT dest, const char *_RESTRICT src) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-size_t mbstowcs(wchar_t *pwcs, const char *s, size_t n) __ELIBC_NOTHROW;
+size_t mbstowcs(wchar_t *pwcs, const char *s, size_t n) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

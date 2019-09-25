@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------------
 // Name: fscanf
 //----------------------------------------------------------------------------*/
-int fscanf(FILE *__ELIBC_RESTRICT stream, const char *__ELIBC_RESTRICT format, ...) {
+int fscanf(FILE *_RESTRICT stream, const char *_RESTRICT format, ...) {
 	int ret;
 	va_list ap;
 

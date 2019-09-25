@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------------
 // Name: swprintf
 //----------------------------------------------------------------------------*/
-int swprintf(wchar_t *__ELIBC_RESTRICT str, size_t n, const wchar_t *__ELIBC_RESTRICT format, ...) {
+int swprintf(wchar_t *_RESTRICT str, size_t n, const wchar_t *_RESTRICT format, ...) {
 	int ret;
 	va_list ap;
 	va_start(ap, format);

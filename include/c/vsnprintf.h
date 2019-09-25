@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-int vsnprintf(char *__ELIBC_RESTRICT str, size_t size, const char *__ELIBC_RESTRICT format, va_list ap) __ELIBC_NOTHROW __attribute__((__format__ (printf, 3, 0)));
+int vsnprintf(char *_RESTRICT str, size_t size, const char *_RESTRICT format, va_list ap) _NOEXCEPT __attribute__((__format__ (printf, 3, 0)));
 
 #ifdef __cplusplus
 }

@@ -40,7 +40,7 @@
 #include "c/floor.h"
 #include "c/fmod.h"
 
-#if defined(__ISOC99_SOURCE) || defined(__ELIBC_SOURCE)
+#if defined(_HAS_C99) || defined(__ELIBC_SOURCE)
 
 /*
 #pragma STDC FP_CONTRACT on-off-switch
@@ -163,7 +163,7 @@
 #include "c/truncl.h"
 #endif
 
-#if defined(__ISOC99_SOURCE) || defined(__ISOCXX11_SOURCE) || defined(__ELIBC_SOURCE)
+#if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(__ELIBC_SOURCE)
 
 /* TODO(eteran): should we make these depend on FLT_EVAL_METHOD directly ? */
 typedef double double_t;

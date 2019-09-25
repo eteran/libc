@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-int vfwprintf(FILE *stream, const wchar_t *format, va_list ap) __ELIBC_NOTHROW;
+int vfwprintf(FILE *stream, const wchar_t *format, va_list ap) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

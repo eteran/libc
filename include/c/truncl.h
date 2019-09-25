@@ -1,4 +1,4 @@
-__ELIBC_CONST 
+_CONST 
 #ifndef TRUNCL_20140701_H_
 #define TRUNCL_20140701_H_
 
@@ -6,7 +6,7 @@ __ELIBC_CONST
 extern "C" {
 #endif
 
-__ELIBC_CONST long double truncl(long double x) __ELIBC_NOTHROW;
+_CONST long double truncl(long double x) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

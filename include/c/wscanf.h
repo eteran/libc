@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int wscanf(const wchar_t *__ELIBC_RESTRICT format, ...) __ELIBC_NOTHROW;
+int wscanf(const wchar_t *_RESTRICT format, ...) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

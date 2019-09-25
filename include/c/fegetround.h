@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int fegetround(void) __ELIBC_NOTHROW;
+int fegetround(void) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-int fsetpos(FILE *stream, const fpos_t *pos) __ELIBC_NOTHROW;
+int fsetpos(FILE *stream, const fpos_t *pos) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

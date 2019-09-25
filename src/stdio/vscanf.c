@@ -6,6 +6,6 @@
 /*------------------------------------------------------------------------------
 // Name: vscanf
 //----------------------------------------------------------------------------*/
-int vscanf(const char *__ELIBC_RESTRICT format, va_list ap) {
+int vscanf(const char *_RESTRICT format, va_list ap) {
 	return vfscanf(stdin, format, ap);
 }

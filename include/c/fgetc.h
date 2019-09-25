@@ -8,8 +8,8 @@
 extern "C" {
 #endif
 
-int __elibc_fgetc(FILE *stream) __ELIBC_NOTHROW;
-int fgetc(FILE *stream) __ELIBC_NOTHROW;
+int __elibc_fgetc(FILE *stream) _NOEXCEPT;
+int fgetc(FILE *stream) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

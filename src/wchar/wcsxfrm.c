@@ -5,7 +5,7 @@
 /*------------------------------------------------------------------------------
 // Name: 
 //----------------------------------------------------------------------------*/
-size_t wcsxfrm(wchar_t *__ELIBC_RESTRICT ws1, const wchar_t *__ELIBC_RESTRICT ws2, size_t n) {
+size_t wcsxfrm(wchar_t *_RESTRICT ws1, const wchar_t *_RESTRICT ws2, size_t n) {
 	(void)ws1;
 	(void)ws2;
 	(void)n;

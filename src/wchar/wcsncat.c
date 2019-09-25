@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------------
 // Name: wcsncat
 //----------------------------------------------------------------------------*/
-wchar_t *wcsncat(wchar_t *__ELIBC_RESTRICT dest, const wchar_t *__ELIBC_RESTRICT src, size_t n) {
+wchar_t *wcsncat(wchar_t *_RESTRICT dest, const wchar_t *_RESTRICT src, size_t n) {
 	wchar_t *dest_ptr = dest;
 
 	assert(dest);

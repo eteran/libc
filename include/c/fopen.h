@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-FILE *fopen(const char *path, const char *mode) __ELIBC_NOTHROW;
+FILE *fopen(const char *path, const char *mode) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int printf(const char *__ELIBC_RESTRICT format, ...) __ELIBC_NOTHROW __attribute__((__format__ (printf, 1, 2)));
+int printf(const char *_RESTRICT format, ...) _NOEXCEPT __attribute__((__format__ (printf, 1, 2)));
 
 #ifdef __cplusplus
 }

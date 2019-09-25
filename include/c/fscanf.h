@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-int fscanf(FILE *__ELIBC_RESTRICT stream, const char *__ELIBC_RESTRICT format, ...) __ELIBC_NOTHROW;
+int fscanf(FILE *_RESTRICT stream, const char *_RESTRICT format, ...) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

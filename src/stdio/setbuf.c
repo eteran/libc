@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------------
 // Name: setbuf
 //----------------------------------------------------------------------------*/
-void setbuf(FILE *__ELIBC_RESTRICT stream, char *__ELIBC_RESTRICT buf) {
+void setbuf(FILE *_RESTRICT stream, char *_RESTRICT buf) {
 	assert(stream);
 	setvbuf(stream, buf, buf ? _IOFBF : _IONBF, BUFSIZ);
 }

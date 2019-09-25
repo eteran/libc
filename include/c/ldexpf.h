@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST float ldexpf(float x, int exp) __ELIBC_NOTHROW;
+_CONST float ldexpf(float x, int exp) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

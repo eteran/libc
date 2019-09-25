@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-int fesetexceptflag(const fexcept_t *flagp, int excepts) __ELIBC_NOTHROW;
+int fesetexceptflag(const fexcept_t *flagp, int excepts) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

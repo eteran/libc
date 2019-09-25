@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-__ELIBC_CONST float fmaf(float x, float y, float z) __ELIBC_NOTHROW;
+_CONST float fmaf(float x, float y, float z) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-void *memset(void *s, int c, size_t n) __ELIBC_NOTHROW;
+void *memset(void *s, int c, size_t n) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

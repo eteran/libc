@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------------
 // Name: wprintf
 //----------------------------------------------------------------------------*/
-int wprintf(const wchar_t *__ELIBC_RESTRICT format, ...) {
+int wprintf(const wchar_t *_RESTRICT format, ...) {
 	int ret;
 	va_list ap;
 	va_start(ap, format);

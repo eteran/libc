@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int fputws(const wchar_t *ws, FILE *stream) __ELIBC_NOTHROW;
+int fputws(const wchar_t *ws, FILE *stream) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

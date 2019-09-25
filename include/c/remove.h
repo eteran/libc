@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int remove(const char *pathname) __ELIBC_NOTHROW;
+int remove(const char *pathname) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

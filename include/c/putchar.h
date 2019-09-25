@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int putchar(int c) __ELIBC_NOTHROW;
+int putchar(int c) _NOEXCEPT;
 
 #ifdef __cplusplus
 }

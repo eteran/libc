@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-double wcstod(const wchar_t *__ELIBC_RESTRICT nptr, wchar_t **__ELIBC_RESTRICT endptr) __ELIBC_NOTHROW;
+double wcstod(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr) _NOEXCEPT;
 
 #ifdef __cplusplus
 }
