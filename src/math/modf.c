@@ -1,21 +1,20 @@
 
 #define __ELIBC_SOURCE
-#include <math.h>
 #include <assert.h>
+#include <math.h>
 
 /*------------------------------------------------------------------------------
-// Name: modf
+// Name: __elibc_modf
 //----------------------------------------------------------------------------*/
-double modf(double x, double *iptr) {
-
-	int sign = 1;
+static double __elibc_modf(double x, double *iptr) {
+	int    sign = 1;
 	double i_portion;
 	double f_portion;
 
 	assert(iptr);
 
-	if(x < 0) {
-		x = -x;
+	if (x < 0) {
+		x    = -x;
 		sign = -1;
 	}
 
@@ -23,5 +22,12 @@ double modf(double x, double *iptr) {
 	f_portion = x - i_portion;
 
 	*iptr = (i_portion * sign);
-	return f_portion * sign;;
+	return f_portion * sign;
+}
+
+/*------------------------------------------------------------------------------
+// Name: modf
+//----------------------------------------------------------------------------*/
+double modf(double x, double *iptr) {
+	return __elibc_modf(x, iptr);
 }

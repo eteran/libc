@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_floor
 //----------------------------------------------------------------------------*/
-double __elibc_floor(double x) {
+static double __elibc_floor(double x) {
 	double value;
 	fesetround(FE_DOWNWARD);
 	__asm__ __volatile__("frndint"

@@ -1,7 +1,14 @@
 
 #define __ELIBC_SOURCE
-#include <math.h>
 #include <errno.h>
+#include <math.h>
+
+/*------------------------------------------------------------------------------
+// Name: __elibc_cosf
+//----------------------------------------------------------------------------*/
+static float __elibc_cosf(float x) {
+	return sinf(x + (M_PI / 2.0));
+}
 
 /*------------------------------------------------------------------------------
 // Name: cosf
@@ -9,17 +16,15 @@
 float cosf(float x) {
 
 #ifndef __FAST_MATH__
-#if 0
-	if(isnan(x)) {
+	if (isnan(x)) {
 		return x;
 	}
 
-	if(isinf(x)) {
+	if (isinf(x)) {
 		errno = EDOM;
 		return NAN;
 	}
 #endif
-#endif
 
-	return sinf(x + (M_PI / 2.0));
+	return __elibc_cosf(x);
 }

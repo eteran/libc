@@ -1,7 +1,14 @@
 
 #define __ELIBC_SOURCE
-#include <math.h>
 #include <errno.h>
+#include <math.h>
+
+/*------------------------------------------------------------------------------
+// Name: __elibc_cos
+//----------------------------------------------------------------------------*/
+static double __elibc_cos(double x) {
+	return sin(x + (M_PI / 2.0));
+}
 
 /*------------------------------------------------------------------------------
 // Name: cos
@@ -9,17 +16,15 @@
 double cos(double x) {
 
 #ifndef __FAST_MATH__
-#if 0
-	if(isnan(x)) {
+	if (isnan(x)) {
 		return x;
 	}
 
-	if(isinf(x)) {
+	if (isinf(x)) {
 		errno = EDOM;
 		return NAN;
 	}
 #endif
-#endif
 
-	return sin(x + (M_PI / 2.0));
+	return __elibc_cos(x);
 }

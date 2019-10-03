@@ -5,7 +5,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_atan2
 //----------------------------------------------------------------------------*/
-double __elibc_atan2(double y, double x) {
+static double __elibc_atan2(double y, double x) {
 	double value;
 	__asm__ __volatile__("fpatan"
 						 : "=t"(value)

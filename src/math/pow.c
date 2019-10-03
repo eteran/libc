@@ -10,7 +10,7 @@ static double __elibc_pow(double x, double y) {
 	long int       i;
 	const long int y_int = (long int)y;
 
-	for(i = 0; i < y_int; ++i) {
+	for (i = 0; i < y_int; ++i) {
 		ret *= x;
 	}
 
@@ -23,7 +23,7 @@ static double __elibc_pow(double x, double y) {
 double pow(double x, double y) {
 
 #ifndef __FAST_MATH__
-	if(x == 1.0 || y == 0.0) {
+	if (x == 1.0 || y == 0.0) {
 		return 1.0;
 	}
 
@@ -50,11 +50,11 @@ double pow(double x, double y) {
 	 * If x is +0 or -0, and y is less than 0 and not an odd integer, a pole error occurs and +HUGE_VAL, +HUGE_VALF, or +HUGE_VALL, is returned.
 	 */
 
-	if(isnan(x)) {
+	if (isnan(x)) {
 		return x;
 	}
 
-	if(isnan(y)) {
+	if (isnan(y)) {
 		return y;
 	}
 #endif

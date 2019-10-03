@@ -1,31 +1,38 @@
 
 #define __ELIBC_SOURCE
-#include <math.h>
 #include <errno.h>
+#include <math.h>
+
+/*------------------------------------------------------------------------------
+// Name: __elibc_acosf
+//----------------------------------------------------------------------------*/
+static float __elibc_acosf(float x) {
+	return (M_PI / 2) - asinf(x);
+}
 
 /*------------------------------------------------------------------------------
 // Name: acosf
 //----------------------------------------------------------------------------*/
 float acosf(float x) {
 #ifndef __FAST_MATH__
-	if(isnan(x)) {
+	if (isnan(x)) {
 		return x;
 	}
 
-	if(x == 1.0f) {
+	if (x == 1.0f) {
 		return 0.0;
 	}
 
-	if(isinf(x)) {
+	if (isinf(x)) {
 		errno = EDOM;
 		return NAN;
 	}
 
-	if(x < -1 || x > 1) {
+	if (x < -1 || x > 1) {
 		errno = EDOM;
 		return NAN;
 	}
 #endif
 
-	return (M_PI / 2) - asinf(x);
+	return __elibc_acosf(x);
 }

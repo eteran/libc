@@ -5,7 +5,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_fabs
 //----------------------------------------------------------------------------*/
-double __elibc_fabs(double x) {
+static double __elibc_fabs(double x) {
 	double value;
 	__asm__ __volatile__("fabs"
 						 : "=t"(value)

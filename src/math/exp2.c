@@ -1,7 +1,14 @@
 
 #define __ELIBC_SOURCE
-#include <math.h>
 #include <errno.h>
+#include <math.h>
+
+/*------------------------------------------------------------------------------
+// Name: __elibc_exp2
+//----------------------------------------------------------------------------*/
+static double __elibc_exp2(double x) {
+	return pow(2, x);
+}
 
 /*------------------------------------------------------------------------------
 // Name: exp2
@@ -9,12 +16,12 @@
 double exp2(double x) {
 
 #ifndef __FAST_MATH__
-	if(isnan(x)) {
+	if (isnan(x)) {
 		return x;
 	}
 
-	if(isinf(x)) {
-		if(x > 0.0) {
+	if (isinf(x)) {
+		if (x > 0.0) {
 			return x;
 		} else {
 			return 0.0;
@@ -24,5 +31,5 @@ double exp2(double x) {
 	/* TODO(eteran): handle underflow/overflow */
 #endif
 
-	return pow(2, x);
+	return __elibc_exp2(x);
 }

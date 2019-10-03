@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <math.h>
 #include <errno.h>
+#include <math.h>
 
 /*
 	If the result underflows, a range error occurs, and zero is returned.
@@ -18,33 +18,41 @@
 */
 
 /*------------------------------------------------------------------------------
+// Name: __elibc_ldexpl
+// Desc: On success, these functions return x * (2^exp).
+//----------------------------------------------------------------------------*/
+static long double __elibc_ldexpl(long double x, int exp) {
+	/* TODO(eteran): detect overflow/underflow */
+	if (exp > 0) {
+		const long double y = powl(2, exp);
+		return x * y;
+	} else {
+		const long double y = powl(2, -exp);
+		return x * (1 / y);
+	}
+}
+
+/*------------------------------------------------------------------------------
 // Name: ldexpl
 // Desc: On success, these functions return x * (2^exp).
 //----------------------------------------------------------------------------*/
 long double ldexpl(long double x, int exp) {
 #ifndef __FAST_MATH__
-	if(exp == 0) {
+	if (exp == 0) {
 		/* If exp is zero, then x is returned. */
 		return x;
 	}
-	
-	if(isnan(x)) {
+
+	if (isnan(x)) {
 		/* If x is a NaN, a NaN is returned. */
 		return x;
 	}
-	
-	if(isinf(x)) {
+
+	if (isinf(x)) {
 		/* If x is a NaN, a NaN is returned. */
 		return x;
 	}
 #endif
 
-	/* TODO(eteran): detect overflow/underflow */
-	if(exp > 0) {
-		const long double y = powl(2, exp);
-		return x * y;
-	} else {
-		const long double y = powl(2, -exp);
-		return x * (1 / y);	
-	}
+	return __elibc_ldexpl(x, exp);
 }

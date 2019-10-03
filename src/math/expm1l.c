@@ -1,11 +1,18 @@
 
 #define __ELIBC_SOURCE
-#include <math.h>
 #include <errno.h>
+#include <math.h>
+
+/*------------------------------------------------------------------------------
+// Name: __elibc_expm1l
+//----------------------------------------------------------------------------*/
+static long double __elibc_expm1l(long double x) {
+	return expl(x) - 1;
+}
 
 /*------------------------------------------------------------------------------
 // Name: expm1l
 //----------------------------------------------------------------------------*/
 long double expm1l(long double x) {
-	return expl(x) - 1;
+	return __elibc_expm1l(x);
 }

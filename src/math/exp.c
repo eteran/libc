@@ -3,17 +3,24 @@
 #include <math.h>
 
 /*------------------------------------------------------------------------------
+// Name: __elibc_exp
+//----------------------------------------------------------------------------*/
+static double __elibc_exp(double x) {
+	return pow(M_E, x);
+}
+
+/*------------------------------------------------------------------------------
 // Name: exp
 //----------------------------------------------------------------------------*/
 double exp(double x) {
 
 #ifndef __FAST_MATH__
-	if(isnan(x)) {
+	if (isnan(x)) {
 		return x;
 	}
 
-	if(isinf(x)) {
-		if(x > 0.0) {
+	if (isinf(x)) {
+		if (x > 0.0) {
 			return x;
 		} else {
 			return 0.0;
@@ -23,5 +30,5 @@ double exp(double x) {
 	/* TODO(eteran): handle underflow/overflow */
 #endif
 
-	return pow(M_E, x);
+	return __elibc_exp(x);
 }

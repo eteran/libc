@@ -1,20 +1,27 @@
 
 #define __ELIBC_SOURCE
-#include <math.h>
 #include <errno.h>
+#include <math.h>
+
+/*------------------------------------------------------------------------------
+// Name: __elibc_fminf
+//----------------------------------------------------------------------------*/
+static float __elibc_fminf(float x, float y) {
+	return x < y ? x : y;
+}
 
 /*------------------------------------------------------------------------------
 // Name: fminf
 //----------------------------------------------------------------------------*/
 float fminf(float x, float y) {
 #ifndef __FAST_MATH__
-	if(isnan(x)) {
+	if (isnan(x)) {
 		return y;
 	}
 
-	if(isnan(y)) {
+	if (isnan(y)) {
 		return x;
 	}
 #endif
-	return x < y ? x : y;
+	return __elibc_fminf(x, y);
 }
