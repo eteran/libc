@@ -100,7 +100,7 @@ static void __elibc_memswp8(uint8_t *_RESTRICT dest, uint8_t *_RESTRICT src, siz
 static void *memswp(void *_RESTRICT dest, void *_RESTRICT src, size_t n) {
 
 #ifdef NAIVE_VERSION
-	/* traditional memory copy */
+    /* traditional version */
 	char *d_ptr = dest;
 	char *s_ptr = src;
 
@@ -108,12 +108,12 @@ static void *memswp(void *_RESTRICT dest, void *_RESTRICT src, size_t n) {
 	assert(src);
 
 	while(n--) {
-		const char temp = *dest; 
-		*dest = *src;
-		*src = temp;                     
+        const char temp = *d_ptr;
+        *d_ptr = *s_ptr;
+        *s_ptr = temp;
 	
-		++dest;
-		++src;
+        ++d_ptr;
+        ++s_ptr;
 	}
 #else
 
