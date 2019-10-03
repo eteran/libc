@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <stdlib.h>
 #include <assert.h>
+#include <stdlib.h>
 
 /*------------------------------------------------------------------------------
 // Name: atol

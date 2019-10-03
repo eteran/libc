@@ -1,8 +1,8 @@
 
 #define __ELIBC_SOURCE
+#include <assert.h>
 #include <stdlib.h>
 #include <wchar.h>
-#include <assert.h>
 
 /*------------------------------------------------------------------------------
 // Name: mbtowc

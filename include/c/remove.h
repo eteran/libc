@@ -2,14 +2,10 @@
 #ifndef REMOVE_20051228_H_
 #define REMOVE_20051228_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 int remove(const char *pathname) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

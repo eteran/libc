@@ -4,14 +4,10 @@
 
 #include "arch_va_list.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 int vsscanf(const char *_RESTRICT str, const char *_RESTRICT format, va_list ap) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

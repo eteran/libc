@@ -5,15 +5,11 @@
 #include "arch_size_t.h"
 #include "_time.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 char *asctime(const struct tm *timeptr) _NOEXCEPT;
 char *asctime_r(const struct tm *timeptr, char *buf) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

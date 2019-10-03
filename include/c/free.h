@@ -2,14 +2,10 @@
 #ifndef FREE_20051228_H_
 #define FREE_20051228_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 void free(void *ptr) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

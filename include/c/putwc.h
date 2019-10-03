@@ -4,16 +4,12 @@
 
 #include "fputwc.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 #ifndef putwc
 #define putwc(wc, stream) fputwc((wc), (stream))
 #endif
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

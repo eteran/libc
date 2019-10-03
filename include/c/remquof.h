@@ -2,14 +2,10 @@
 #ifndef REMQUOF_20140701_H_
 #define REMQUOF_20140701_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 float remquof(float x, float y, int *quo) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

@@ -1,26 +1,25 @@
 
 #define __ELIBC_SOURCE
-#include <wchar.h>
 #include <assert.h>
 #include <stdio.h>
+#include <wchar.h>
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_fputws
 //----------------------------------------------------------------------------*/
-int __elibc_fputws(const wchar_t *ws, FILE *stream) {
+static int __elibc_fputws(const wchar_t *ws, FILE *stream) {
 
 	assert(ws);
 	assert(stream);
 
-	while(*ws != '\0') {
-		if(__elibc_fputc(*ws++, stream, 0x03) == -1) {
+	while (*ws != '\0') {
+		if (__elibc_fputc(*ws++, stream, 0x03) == -1) {
 			return EOF;
 		}
 	}
 
 	return 0;
 }
-
 
 /*------------------------------------------------------------------------------
 // Name: fputws

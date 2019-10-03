@@ -1,8 +1,8 @@
 
 #define __ELIBC_SOURCE
-#include <strings.h>
-#include <string.h>
 #include <assert.h>
+#include <string.h>
+#include <strings.h>
 
 /*------------------------------------------------------------------------------
 // Name: bzero

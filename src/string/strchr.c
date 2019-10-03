@@ -8,8 +8,8 @@
 char *strchr(const char *s, int c) {
 	const char cmp = c;
 
-	while(*s != '\0') {
-		if(*s == cmp) {
+	while (*s != '\0') {
+		if (*s == cmp) {
 			return (char *)s;
 		}
 		++s;

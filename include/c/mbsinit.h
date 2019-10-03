@@ -4,14 +4,10 @@
 
 #include "_mbstate_t.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 int mbsinit(const mbstate_t *ps) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

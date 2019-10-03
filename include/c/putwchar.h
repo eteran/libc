@@ -3,15 +3,12 @@
 #define PUTWCHAR_20140316_H_
 
 #include "_wint_t.h"
+#include "arch_wchar_t.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 wint_t putwchar(wchar_t) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

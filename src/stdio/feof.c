@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_feof
 //----------------------------------------------------------------------------*/
-int __elibc_feof(FILE *stream) {
+static int __elibc_feof(FILE *stream) {
 	assert(stream);
 	return _FDATA(stream)->eof != 0;
 }

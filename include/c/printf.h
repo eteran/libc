@@ -2,14 +2,10 @@
 #ifndef PRINTF_20051228_H_
 #define PRINTF_20051228_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 int printf(const char *_RESTRICT format, ...) _NOEXCEPT __attribute__((__format__ (printf, 1, 2)));
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

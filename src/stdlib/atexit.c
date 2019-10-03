@@ -10,7 +10,7 @@ static unsigned int __elibc_f_index = 0;
 //----------------------------------------------------------------------------*/
 int atexit(_atexit_t function) {
 
-	if(__elibc_f_index < ATEXIT_MAX) {
+	if (__elibc_f_index < ATEXIT_MAX) {
 		__elibc_f_list[__elibc_f_index++] = function;
 		return 0;
 	}
@@ -23,10 +23,10 @@ int atexit(_atexit_t function) {
 //----------------------------------------------------------------------------*/
 void __elibc_doexit(void) {
 	/* execute them in reverse order */
-	while(__elibc_f_index > 0) {
+	while (__elibc_f_index > 0) {
 		/* even though it should never be null, we'll check anyway */
 		const _atexit_t func = __elibc_f_list[--__elibc_f_index];
-		if(func) {
+		if (func) {
 			(*func)();
 		}
 	}

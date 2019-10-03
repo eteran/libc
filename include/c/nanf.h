@@ -2,14 +2,10 @@
 #ifndef NANF_20140701_H_
 #define NANF_20140701_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 float nanf(const char *tagp) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

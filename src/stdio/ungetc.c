@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_ungetc
 //----------------------------------------------------------------------------*/
-int __elibc_ungetc(int c, FILE *stream) {
+static int __elibc_ungetc(int c, FILE *stream) {
 
 	assert(stream);
 	assert(_FDATA(stream)->orientation != 0x03);

@@ -2,14 +2,10 @@
 #ifndef FMAF_20140701_H_
 #define FMAF_20140701_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 _CONST float fmaf(float x, float y, float z) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

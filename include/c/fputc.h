@@ -4,15 +4,11 @@
 
 #include "_file.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 int __elibc_fputc(int c, FILE *stream, int orientation) _NOEXCEPT;
 int fputc(int c, FILE *stream) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

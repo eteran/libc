@@ -1,11 +1,11 @@
 
 #define __ELIBC_SOURCE
-#include <stdlib.h>
 #include <locale.h>
+#include <stdlib.h>
 
 /* system specific */
-#include <elf.h>
 #include <asm/auxvec.h>
+#include <elf.h>
 
 #include "c/_support.h"
 
@@ -16,25 +16,24 @@ typedef Elf32_auxv_t auxv_t;
 #endif
 
 extern char **__elibc_environment;
-char **__elibc_environment = 0;
+char **       __elibc_environment = 0;
 
 extern int main(int, char *[], char *[]);
-
-static void __elibc_scan_auxv(char *envp[]);
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_scan_auxv
 // Desc: 
 //----------------------------------------------------------------------------*/
-void __elibc_scan_auxv(char *envp[]) {
+static void __elibc_scan_auxv(char *envp[]) {
 	/* skip the envp and get to the auxv */
-	while(*envp++) {}
-	
+	while (*envp++) {
+	}
+
 	{
-		const auxv_t *auxv = (void*)envp;
-	
-		while(auxv->a_type != AT_NULL) {
-			if(auxv->a_type == AT_SYSINFO) {
+		const auxv_t *auxv = (void *)envp;
+
+		while (auxv->a_type != AT_NULL) {
+			if (auxv->a_type == AT_SYSINFO) {
 				/* now what? */
 			}
 			++auxv;
@@ -49,7 +48,7 @@ void __elibc_scan_auxv(char *envp[]) {
 //       to exit.
 //----------------------------------------------------------------------------*/
 _Noreturn void __elibc_init(int argc, char *argv[], char *envp[]) {
-	
+
 	/* store the environment */
 	__elibc_environment = envp;
 	__elibc_scan_auxv(envp);
@@ -58,4 +57,3 @@ _Noreturn void __elibc_init(int argc, char *argv[], char *envp[]) {
 	setlocale(LC_ALL, "C");
 	exit(main(argc, argv, envp));
 }
-

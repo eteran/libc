@@ -5,9 +5,7 @@
 
 #include "c/c-config.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 _Noreturn void __assert_fail(const char *expr, const char *file, unsigned int line, const char *func) _NOEXCEPT;
 
@@ -25,8 +23,6 @@ _Noreturn void __assert_fail(const char *expr, const char *file, unsigned int li
 #define static_assert(expr, error) _Static_assert((expr), error)
 #endif
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

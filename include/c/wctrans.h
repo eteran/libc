@@ -4,14 +4,10 @@
 
 #include "_wctrans_t.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 _PURE wctrans_t wctrans(const char *str) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

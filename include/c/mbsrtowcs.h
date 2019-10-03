@@ -2,14 +2,13 @@
 #ifndef MBSRTOWCS_20140316_H_
 #define MBSRTOWCS_20140316_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include "arch_wchar_t.h"
+#include "arch_size_t.h"
+
+_LIBC_BEGIN
 
 size_t mbsrtowcs(wchar_t *dest, const char **src, size_t len, mbstate_t *ps) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

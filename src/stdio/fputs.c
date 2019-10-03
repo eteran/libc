@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_fputs
 //----------------------------------------------------------------------------*/
-int __elibc_fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) {
+static int __elibc_fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) {
 
 	assert(s);
 	assert(stream);

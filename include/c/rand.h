@@ -2,17 +2,13 @@
 #ifndef RAND_20051228_H_
 #define RAND_20051228_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 int rand(void) _NOEXCEPT;
 int rand_r(unsigned int *seedp) _NOEXCEPT;
 
 unsigned int *__elibc_rand_next(void);
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

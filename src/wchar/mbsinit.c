@@ -7,7 +7,7 @@
 //----------------------------------------------------------------------------*/
 int mbsinit(const mbstate_t *ps) {
 
-	if(ps) {
+	if (ps) {
 		return ps->expected == 0 && ps->seen == 0;
 	}
 

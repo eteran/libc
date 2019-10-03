@@ -2,14 +2,10 @@
 #ifndef STRCPY_20051228_H_
 #define STRCPY_20051228_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 char *strcpy(char *_RESTRICT dest, const char *_RESTRICT src) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

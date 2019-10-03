@@ -5,15 +5,10 @@
 #include "_file.h"
 #include "arch_size_t.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
-int __elibc_setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode, size_t size) _NOEXCEPT;
 int setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode , size_t size) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

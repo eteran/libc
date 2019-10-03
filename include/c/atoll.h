@@ -2,14 +2,10 @@
 #ifndef ATOLL_20140701_H_
 #define ATOLL_20140701_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 long long atoll(const char *nptr) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

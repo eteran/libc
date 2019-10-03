@@ -4,14 +4,10 @@
 
 #include "arch_size_t.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 int snprintf(char *str, size_t size, const char *format, ...) _NOEXCEPT __attribute__((__format__ (printf, 3, 4)));
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

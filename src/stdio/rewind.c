@@ -1,12 +1,12 @@
 
 #define __ELIBC_SOURCE
-#include <stdio.h>
 #include <assert.h>
+#include <stdio.h>
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_rewind
 //----------------------------------------------------------------------------*/
-void __elibc_rewind(FILE *stream) {
+static void __elibc_rewind(FILE *stream) {
 	assert(stream);
 	__elibc_fseek(stream, 0L, SEEK_SET);
 	__elibc_clearerr(stream);

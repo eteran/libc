@@ -5,9 +5,7 @@
 #include "arch_va_list.h"
 #include "arch_size_t.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 typedef void (*__elibc_write_func_t)(void *, char);
 typedef void (*__elibc_done_func_t)(void *);
@@ -21,8 +19,6 @@ struct __elibc_write {
 
 int __elibc_printf_engine(void *ctx, const char *_RESTRICT format, va_list ap);
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

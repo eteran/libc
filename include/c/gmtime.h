@@ -4,15 +4,11 @@
 
 #include "_time.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 struct tm *gmtime_r(const time_t *timep, struct tm *result) _NOEXCEPT;
 struct tm *gmtime(const time_t *timep) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

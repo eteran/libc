@@ -2,14 +2,10 @@
 #ifndef NAN_20140701_H_
 #define NAN_20140701_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 double nan(const char *tagp) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

@@ -2,15 +2,11 @@
 #ifndef FERAISEEXCEPT_20140402_H_
 #define FERAISEEXCEPT_20140402_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 int feraiseexcept(int excepts) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif
 

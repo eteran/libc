@@ -2,14 +2,10 @@
 #ifndef FMODL_20140701_H_
 #define FMODL_20140701_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 _CONST long double fmodl(long double x, long double y) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

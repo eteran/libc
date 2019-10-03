@@ -4,14 +4,10 @@
 
 #include "arch_va_list.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 int vprintf(const char *_RESTRICT format, va_list ap) _NOEXCEPT __attribute__((__format__ (printf, 1, 0)));
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

@@ -8,8 +8,8 @@
 #include "arch_ptrdiff_t.h" /* ptrdiff_t */
 #include "arch_size_t.h"    /* size_t    */
 #include "arch_wchar_t.h"   /* wchar_t   */
-#include "c/_null.h"     /* NULL      */
-#include "c/offsetof.h"  /* offsetof  */
+#include "c/_null.h"        /* NULL      */
+#include "c/offsetof.h"     /* offsetof  */
 
 #if defined(_HAS_C11) || defined(__ELIBC_SOURCE)
 #include "arch_max_align_t.h"

@@ -2,14 +2,10 @@
 #ifndef PERROR_20051228_H_
 #define PERROR_20051228_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 void perror(const char *s) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

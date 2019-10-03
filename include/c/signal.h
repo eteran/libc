@@ -4,14 +4,10 @@
 
 #include "_sighandler_t.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 __sighandler_t signal(int signum, __sighandler_t handler) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

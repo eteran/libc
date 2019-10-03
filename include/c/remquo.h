@@ -2,14 +2,10 @@
 #ifndef REMQUO_20140701_H_
 #define REMQUO_20140701_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 double remquo(double x, double y, int *quo) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

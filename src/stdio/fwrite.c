@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_fwrite
 //----------------------------------------------------------------------------*/
-size_t __elibc_fwrite(const void *ptr, size_t size, size_t nelem, FILE *stream) {
+static size_t __elibc_fwrite(const void *ptr, size_t size, size_t nelem, FILE *stream) {
 	size_t elem_it;
 	size_t size_it;
 	const char *p = ptr;

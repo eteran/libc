@@ -4,15 +4,10 @@
 
 #include "_file.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
-int __elibc_fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) _NOEXCEPT;
 int fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

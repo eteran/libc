@@ -4,17 +4,13 @@
 
 #include "_time.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 _CONST double difftime(time_t time1, time_t time0) _NOEXCEPT;
 
 /* TODO(eteran): does the standard say this is a macro? */
 #define difftime difftime
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

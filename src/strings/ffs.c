@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <strings.h>
 #include <limits.h>
+#include <strings.h>
 
 /*
 0000 - 0
@@ -27,15 +27,15 @@
 //----------------------------------------------------------------------------*/
 int ffs(int i) {
 	int ret = 0;
-	int j = 0;
+	int j   = 0;
 
 	static const int _ffs_tab[] =
-		{ 0, 1, 2, 1, 3, 1, 2, 1, 4, 1, 2, 1, 3, 1, 2, 1 };
+		{0, 1, 2, 1, 3, 1, 2, 1, 4, 1, 2, 1, 3, 1, 2, 1};
 
-	while((i != 0) && (ret == 0)) {
+	while ((i != 0) && (ret == 0)) {
 		ret = _ffs_tab[i & 0x0f];
 
-		if(ret > 0) {
+		if (ret > 0) {
 			break;
 		}
 
@@ -46,7 +46,7 @@ int ffs(int i) {
 		i &= INT_MAX;
 	}
 
-	if(ret != 0) {
+	if (ret != 0) {
 		ret += j;
 	}
 

@@ -2,14 +2,10 @@
 #ifndef MODF_20130922_H_
 #define MODF_20130922_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 double modf(double x, double *iptr) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

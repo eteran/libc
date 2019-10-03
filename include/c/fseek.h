@@ -4,15 +4,11 @@
 
 #include "_file.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 int __elibc_fseek(FILE *stream, long offset, int whence) _NOEXCEPT;
 int fseek(FILE *stream, long offset, int whence) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

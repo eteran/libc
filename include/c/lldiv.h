@@ -2,9 +2,7 @@
 #ifndef LLDIV_20051228_H_
 #define LLDIV_20051228_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 typedef struct {
 	long long quot;
@@ -13,8 +11,6 @@ typedef struct {
 
 lldiv_t lldiv(long long numerator, long long denominator) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

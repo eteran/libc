@@ -5,9 +5,7 @@
 
 #include "c/c-config.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 /* constants made to match those in LSB */
 #define EPERM           1
@@ -145,8 +143,6 @@ extern __elibc_errno_t *__errno_location(void) _CONST;
  */
 #define errno (*__errno_location())
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

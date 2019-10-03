@@ -13,7 +13,7 @@ int strerror_r(int errnum, char *buf, size_t n) {
 
 	assert(buf);
 
-	switch(errnum) {
+	switch (errnum) {
 	case 0:
 		strlcpy(buf, "Success", n);
 		break;

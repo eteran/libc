@@ -4,14 +4,10 @@
 
 #include "_file.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 FILE *fopen(const char *path, const char *mode) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

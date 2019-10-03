@@ -2,14 +2,10 @@
 #ifndef SCALBLNL_20140701_H_
 #define SCALBLNL_20140701_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 _CONST long double scalblnl(long double x, long int exp) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

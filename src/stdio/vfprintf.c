@@ -27,12 +27,7 @@ int vfprintf(FILE *_RESTRICT stream, const char *_RESTRICT format, va_list ap) {
 		__elibc_stream_writer,
 		0,
 		0,
-		stream
-	};
+		stream};
 
 	return __elibc_printf_engine(&ctx, format, ap);
 }
-
-
-
-

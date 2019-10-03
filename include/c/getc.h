@@ -4,16 +4,12 @@
 
 #include "fgetc.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 #ifndef getc
 #define getc(stream) fgetc(stream)
 #endif
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

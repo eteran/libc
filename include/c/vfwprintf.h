@@ -3,15 +3,13 @@
 #define VFWPRINTF_20140316_H_
 
 #include <stdarg.h>
+#include "arch_wchar_t.h"
+#include "_file.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 int vfwprintf(FILE *stream, const wchar_t *format, va_list ap) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

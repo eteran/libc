@@ -2,14 +2,13 @@
 #ifndef FGETWS_20140316_H_
 #define FGETWS_20140316_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include "arch_wchar_t.h"
+#include "_file.h"
+
+_LIBC_BEGIN
 
 wchar_t *fgetws(wchar_t *ws, int n, FILE *stream) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

@@ -2,14 +2,10 @@
 #ifndef ISDIGIT_20140425_H_
 #define ISDIGIT_20140425_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 _CONST int isdigit(int c) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

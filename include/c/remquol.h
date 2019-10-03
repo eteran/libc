@@ -2,14 +2,10 @@
 #ifndef REMQUOL_20140701_H_
 #define REMQUOL_20140701_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 long double remquol(long double x, long double y, int *quo) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

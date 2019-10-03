@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_fread
 //----------------------------------------------------------------------------*/
-size_t __elibc_fread(void *ptr, size_t size, size_t nmemb, FILE *stream) {
+static size_t __elibc_fread(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 
 	size_t elem_it;
 	size_t size_it;

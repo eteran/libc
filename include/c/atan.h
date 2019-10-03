@@ -2,14 +2,10 @@
 #ifndef ATAN_20081228_H_
 #define ATAN_20081228_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 _CONST double atan(double x) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

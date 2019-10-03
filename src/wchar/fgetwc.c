@@ -9,9 +9,9 @@
 #include "c/_support.h"
 
 /*------------------------------------------------------------------------------
-// Name: __elibc_fgetwc
+// Name: __elibc_expected_length
 //----------------------------------------------------------------------------*/
-static int expected_length(wint_t ch) {
+static int __elibc_expected_length(wint_t ch) {
 	if((ch & 0x80) == 0) {
 		return 1;
 	} else if((ch & 0xe0) == 0xc0) {
@@ -41,7 +41,7 @@ static int expected_length(wint_t ch) {
 // Desc: reads a single byte from the stream for use in a MB character
 // TODO(eteran): figure out the best way to reuse the code from __elibc_fgetc here
 //----------------------------------------------------------------------------*/
-wint_t __elibc_fgetwc(FILE *stream) {
+static wint_t __elibc_fgetwc(FILE *stream) {
 
 	assert(stream);
 	assert(_FDATA(stream)->orientation != 0x02);
@@ -123,7 +123,7 @@ static wint_t __elibc_fgetwc_unlocked(FILE *stream, char *buf) {
 	 */
 
 	/* NOTE(eteran): we assume UTF-8 for now */
-	n = expected_length(r);
+	n = __elibc_expected_length(r);
 	if(n < 1) {
 		return WEOF;
 	}

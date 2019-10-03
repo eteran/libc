@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_freopen
 //----------------------------------------------------------------------------*/
-FILE *__elibc_freopen(const char *path, const char *mode, FILE *stream) {
+static FILE *__elibc_freopen(const char *path, const char *mode, FILE *stream) {
 
 	/* open up the new file */
 	FILE *const new_file = fopen(path, mode);

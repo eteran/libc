@@ -2,14 +2,10 @@
 #ifndef ISWPUNCT_20140316_H_
 #define ISWPUNCT_20140316_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 _CONST int iswpunct(wint_t wc) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

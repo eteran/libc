@@ -5,14 +5,10 @@
 #include "_file.h"
 #include "arch_fpos_t.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 int fgetpos(FILE *stream, fpos_t *pos) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

@@ -8,9 +8,8 @@
 char *strpbrk(const char *s, const char *accept) {
 	const char *ret = 0;
 
-
-	while(*s != '\0') {
-		if(strchr(accept, *s) != 0) {
+	while (*s != '\0') {
+		if (strchr(accept, *s) != 0) {
 			ret = s;
 			break;
 		}

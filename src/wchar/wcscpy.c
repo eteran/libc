@@ -8,8 +8,7 @@
 wchar_t *wcscpy(wchar_t *_RESTRICT dest, const wchar_t *_RESTRICT src) {
 	wchar_t *dest_ptr = dest;
 
-
-	while(*src != '\0') {
+	while (*src != '\0') {
 		*dest_ptr++ = *src++;
 	}
 

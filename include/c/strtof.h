@@ -2,14 +2,10 @@
 #ifndef STRTOF_20012285_H_
 #define STRTOF_20012285_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 float strtof(const char *_RESTRICT nptr, char **_RESTRICT endptr) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

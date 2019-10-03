@@ -5,14 +5,10 @@
 #include "_wctrans_t.h"
 #include "_wint_t.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 _CONST wint_t towctrans(wint_t wc, wctrans_t desc) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

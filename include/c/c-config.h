@@ -19,6 +19,15 @@
 #define _HAS_C90
 #endif
 
+#ifdef __cplusplus
+#define _LIBC_BEGIN extern "C" {
+#define _LIBC_END   }
+#else
+#define _LIBC_BEGIN
+#define _LIBC_END
+#endif
+
+
 /* C++ Version detection */
 #ifdef __cplusplus
 #if __cplusplus > 201703L /* TODO(eteran): change this to correct value when it's ready */

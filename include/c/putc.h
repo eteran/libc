@@ -4,16 +4,12 @@
 
 #include "fputc.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 #ifndef putc
 #define putc(c, stream) fputc((c), (stream))
 #endif
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

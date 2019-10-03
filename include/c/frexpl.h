@@ -2,14 +2,10 @@
 #ifndef FREXPL_20140701_H_
 #define FREXPL_20140701_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 long double frexpl(long double x, int *exp) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

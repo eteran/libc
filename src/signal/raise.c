@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <signal.h>
 #include "c/_support.h"
+#include <signal.h>
 
 /*------------------------------------------------------------------------------
 // Name: raise
@@ -14,5 +14,4 @@ int raise(int sig) {
 	/* TODO(eteran): replace 0 with getpid? */
 	return __elibc_sys_kill(0, sig);
 #endif
-
 }

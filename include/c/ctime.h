@@ -4,15 +4,11 @@
 
 #include "_time.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 char *ctime(const time_t *timer) _NOEXCEPT;
 char *ctime_r(const time_t *timer, char *buf) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

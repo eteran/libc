@@ -2,18 +2,13 @@
 #ifndef FREAD_20090209_H_
 #define FREAD_20090209_H_
 
-#include "arch_size_t.h"
 #include "_file.h"
+#include "arch_size_t.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
-size_t __elibc_fread(void *ptr, size_t size, size_t nmemb, FILE *stream) _NOEXCEPT;
 size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

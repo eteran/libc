@@ -5,7 +5,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_fgets
 //----------------------------------------------------------------------------*/
-char *__elibc_fgets(char *_RESTRICT s, int size, FILE *_RESTRICT stream) {
+static char *__elibc_fgets(char *_RESTRICT s, int size, FILE *_RESTRICT stream) {
 	char *s_ptr = s;
 
 	if(size > 1) {

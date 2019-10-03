@@ -1,8 +1,8 @@
 
 #define __ELIBC_SOURCE
-#include <stdio.h>
-#include <assert.h>
 #include "c/_support.h"
+#include <assert.h>
+#include <stdio.h>
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_fseek
@@ -12,7 +12,7 @@ int __elibc_fseek(FILE *stream, long offset, int whence) {
 	assert(stream);
 
 	/* a seek is a syncronizing operation */
-	if(__elibc_fflush(stream) != 0) {
+	if (__elibc_fflush(stream) != 0) {
 		return -1;
 	}
 

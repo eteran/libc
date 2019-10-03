@@ -5,16 +5,11 @@
 #include "arch_size_t.h"
 #include "_file.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
-size_t __elibc_fwrite(const void *ptr, size_t size, size_t nelem, FILE *stream) _NOEXCEPT;
 size_t fwrite(const void *ptr, size_t size, size_t nelem, FILE *stream) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif
 

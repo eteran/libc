@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_ferror
 //----------------------------------------------------------------------------*/
-int __elibc_ferror(FILE *stream) {
+static int __elibc_ferror(FILE *stream) {
 	assert(stream);
 	return _FDATA(stream)->err != 0;
 }

@@ -2,9 +2,7 @@
 #ifndef IMAXDIV_20081002_H_
 #define IMAXDIV_20081002_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 typedef struct {
 	intmax_t quot;
@@ -13,8 +11,6 @@ typedef struct {
 
 imaxdiv_t imaxdiv(intmax_t numerator, intmax_t denominator) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

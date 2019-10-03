@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_calloc
 //----------------------------------------------------------------------------*/
-void *__elibc_calloc(size_t nmemb, size_t size) {
+static void *__elibc_calloc(size_t nmemb, size_t size) {
 	
 	void *ret = 0;
 	const size_t len = nmemb * size;

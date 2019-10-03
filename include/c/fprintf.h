@@ -4,14 +4,10 @@
 
 #include "_file.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 int fprintf(FILE *_RESTRICT stream, const char *_RESTRICT format, ...) _NOEXCEPT __attribute__((__format__ (printf, 2, 3)));
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

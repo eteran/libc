@@ -6,7 +6,6 @@
 // Name: exit
 //----------------------------------------------------------------------------*/
 void exit(int status) {
-
 	/* call any functions registered with atexit */
 	__elibc_doexit();
 

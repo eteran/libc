@@ -3,15 +3,12 @@
 #define FGETWC_20140316_H_
 
 #include "_wint_t.h"
+#include "_file.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 wint_t fgetwc(FILE *stream) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif

@@ -4,15 +4,11 @@
 
 #include "arch_size_t.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_LIBC_BEGIN
 
 int strerror_r(int errnum, char *buf, size_t n) _NOEXCEPT;
 char *strerror(int errnum) _NOEXCEPT;
 
-#ifdef __cplusplus
-}
-#endif
+_LIBC_END
 
 #endif
