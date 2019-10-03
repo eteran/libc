@@ -3,22 +3,31 @@
 #include <math.h>
 
 /*------------------------------------------------------------------------------
-// Name: 
+// Name: __elibc_atan2
+//----------------------------------------------------------------------------*/
+double __elibc_atan2(double y, double x) {
+	double value;
+	__asm__ __volatile__("fpatan"
+						 : "=t"(value)
+						 : "0"(x), "u"(y)
+						 : "st(1)");
+	return value;
+}
+
+/*------------------------------------------------------------------------------
+// Name: atan2
 //----------------------------------------------------------------------------*/
 double atan2(double y, double x) {
 
-	double value;
-
-	if(isnan(x)) {
+#ifndef __FAST_MATH__
+	if (isnan(x)) {
 		return x;
 	}
 
-	if(isnan(y)) {
+	if (isnan(y)) {
 		return y;
 	}
-	
-	/* TODO(eteran): is intel special cases, the same as C's? */
-	
-	__asm__ __volatile__("fpatan" : "=t" (value) : "0" (x), "u" (y) : "st(1)");
-	return value;
+#endif
+
+	return __elibc_atan2(y, x);
 }

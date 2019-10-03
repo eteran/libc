@@ -141,7 +141,6 @@ add_library (c-math STATIC
 	scalbn.c
 	scalbnf.c
 	scalbnl.c
-	sin.c
 	sinf.c
 	sinh.c
 	sinhf.c
@@ -160,6 +159,7 @@ add_library (c-math STATIC
 	tgammal.c
 	truncf.c
 	truncl.c
+	arch/${LIBC_ARCH}/sin.c
 	arch/${LIBC_ARCH}/atan2.c
 	arch/${LIBC_ARCH}/atan.c
 	arch/${LIBC_ARCH}/ceil.c

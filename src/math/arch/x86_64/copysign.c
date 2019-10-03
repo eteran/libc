@@ -8,6 +8,10 @@
 // Note: assumes IEEE floats
 //----------------------------------------------------------------------------*/
 static double __elibc_copysign(double x, double y) {
+
+	/* we currently assume 64-bit doubles */
+	_Static_assert(sizeof(double) == sizeof(uint64_t), "Size of double must be 64-bits");
+
 	union double_bits {
 		double   f_value;
 		uint64_t i_value;
@@ -21,8 +25,8 @@ static double __elibc_copysign(double x, double y) {
 	y1.f_value = y;
 
 	r.i_value =
-			(y1.i_value & UINT64_C(0x8000000000000000)) |
-			(x1.i_value & UINT64_C(0x7fffffffffffffff));
+		(y1.i_value & UINT64_C(0x8000000000000000)) |
+		(x1.i_value & UINT64_C(0x7fffffffffffffff));
 
 	return r.f_value;
 }
@@ -31,9 +35,5 @@ static double __elibc_copysign(double x, double y) {
 // Name: copysign
 //----------------------------------------------------------------------------*/
 double copysign(double x, double y) {
-
-	/* we currently assume 64-bit doubles */
-	_Static_assert(sizeof(double) == sizeof(uint64_t), "Size of double must be 64-bits");
-
 	return __elibc_copysign(x, y);
 }

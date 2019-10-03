@@ -1,37 +1,37 @@
 
 #define __ELIBC_SOURCE
-#include <fenv.h>
+#include <errno.h>
 #include <math.h>
 
 /*------------------------------------------------------------------------------
-// Name: __elibc_trunc
+// Name: __elibc_sin
 //----------------------------------------------------------------------------*/
-static double __elibc_trunc(double x) {
+static double __elibc_sin(double x) {
 	double value;
-	fesetround(FE_TOWARDZERO);
-	__asm__ __volatile__("frndint"
+	__asm__ __volatile__("fsin"
 						 : "=t"(value)
 						 : "0"(x));
 	return value;
 }
 
 /*------------------------------------------------------------------------------
-// Name: trunc
+// Name: sin
 //----------------------------------------------------------------------------*/
-double trunc(double x) {
+double sin(double x) {
 #ifndef __FAST_MATH__
+	if (x == 0.0) {
+		return x;
+	}
+
 	if (isnan(x)) {
 		return x;
 	}
 
-	if (x == 0.0 || x == -0.0) {
-		return x;
-	}
-
 	if (isinf(x)) {
-		return x;
+		errno = EDOM;
+		return NAN;
 	}
 #endif
 
-	return __elibc_trunc(x);
+	return __elibc_sin(x);
 }
