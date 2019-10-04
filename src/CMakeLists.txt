@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0)
 
 add_library(c-all STATIC)
 
-set(LIBC_STANDARD 90)
+set(LIBC_STANDARD 99)
 set(CMAKE_C_FLAGS          "${CMAKE_C_FLAGS}   -Wno-long-long -Werror")
 set(CMAKE_CXX_FLAGS        "${CMAKE_CXX_FLAGS} -Wno-long-long -Werror")
 
