@@ -1,8 +1,8 @@
 
 #define __ELIBC_SOURCE
-#include <stdlib.h>
-#include <stdio.h>
 #include <errno.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_freopen
@@ -12,7 +12,7 @@ static FILE *__elibc_freopen(const char *path, const char *mode, FILE *stream) {
 	/* open up the new file */
 	FILE *const new_file = fopen(path, mode);
 
-	if(new_file) {
+	if (new_file) {
 
 		/* swap internal structures */
 		struct __elibc_internal_file_data *const temp_data = _FDATA(stream);
@@ -34,7 +34,6 @@ static FILE *__elibc_freopen(const char *path, const char *mode, FILE *stream) {
 // Name: freopen
 //----------------------------------------------------------------------------*/
 FILE *freopen(const char *path, const char *mode, FILE *stream) {
-
 	FILE *f;
 	__elibc_lock_stream(stream);
 	f = __elibc_freopen(path, mode, stream);

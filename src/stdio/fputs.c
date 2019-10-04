@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <stdio.h>
 #include <assert.h>
+#include <stdio.h>
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_fputs
@@ -11,8 +11,8 @@ static int __elibc_fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) {
 	assert(s);
 	assert(stream);
 
-	while(*s != '\0') {
-		if(__elibc_fputc(*s++, stream, 0x02) == -1) {
+	while (*s != '\0') {
+		if (__elibc_fputc(*s++, stream, 0x02) == -1) {
 			return EOF;
 		}
 	}

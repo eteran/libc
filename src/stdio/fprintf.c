@@ -1,8 +1,8 @@
 
 #define __ELIBC_SOURCE
-#include <stdio.h>
-#include <stddef.h>
 #include <stdarg.h>
+#include <stddef.h>
+#include <stdio.h>
 
 /*------------------------------------------------------------------------------
 // Name: fprintf

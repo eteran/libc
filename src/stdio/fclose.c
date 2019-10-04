@@ -1,9 +1,9 @@
 
 #define __ELIBC_SOURCE
-#include <stdlib.h>
-#include <stdio.h>
-#include <assert.h>
 #include "c/_support.h"
+#include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_fclose
@@ -12,7 +12,7 @@ int __elibc_fclose(FILE *stream) {
 
 	assert(stream);
 
-	if(__elibc_fflush(stream) != 0) {
+	if (__elibc_fflush(stream) != 0) {
 		return EOF;
 	}
 
@@ -20,7 +20,7 @@ int __elibc_fclose(FILE *stream) {
 	__elibc_sys_close(__ELIBC_FILENO(stream));
 
 	/* if the file is marked to remove on close, do it */
-	if(_FDATA(stream)->flags & __ELIBC_FILE_DEL_ON_CLOSE) {
+	if (_FDATA(stream)->flags & __ELIBC_FILE_DEL_ON_CLOSE) {
 
 		/* TODO(eteran): deleting it by the original open name
 		 * is flawed. I believe the UNIX way is to
@@ -35,27 +35,31 @@ int __elibc_fclose(FILE *stream) {
 		FILE *const prev = stream->prev;
 		FILE *const next = stream->next;
 
-		if(prev) { prev->next = next; }
-		if(next) { next->prev = prev; }
+		if (prev) {
+			prev->next = next;
+		}
+		
+		if (next) {
+			next->prev = prev;
+		}
 
-		if(__elibc_root_file_struct == stream) {
+		if (__elibc_root_file_struct == stream) {
 			__elibc_root_file_struct = next;
 		}
-	} while(0);
+	} while (0);
 
 	free(_FDATA(stream)->internal_buffer_ptr);
 
-	if(!(_FDATA(stream)->flags & __ELIBC_FILE_STATIC_ALLOC)) {
+	if (!(_FDATA(stream)->flags & __ELIBC_FILE_STATIC_ALLOC)) {
 		free(_FDATA(stream));
 	}
 
-	if(stream != __elibc_stdin && stream != __elibc_stdout && stream != __elibc_stderr) {
+	if (stream != __elibc_stdin && stream != __elibc_stdout && stream != __elibc_stderr) {
 		free(stream);
 	}
 
 	return 0;
 }
-
 
 /*------------------------------------------------------------------------------
 // Name: fclose

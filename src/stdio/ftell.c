@@ -1,8 +1,8 @@
 
 #define __ELIBC_SOURCE
-#include <stdio.h>
-#include <assert.h>
 #include "c/_support.h"
+#include <assert.h>
+#include <stdio.h>
 
 /*------------------------------------------------------------------------------
 // Name: ftell

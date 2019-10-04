@@ -29,10 +29,10 @@ int remove(const char *pathname) {
 	removed but processes which have the object open may continue to use it.
 	*/
 
-	#ifdef __KERNEL__
-		/* TODO(eteran): panic here, it is clearly a kernel bug... */
-	#else
-		/* TODO(eteran): something along these lines
+#ifdef __KERNEL__
+	/* TODO(eteran): panic here, it is clearly a kernel bug... */
+#else
+	/* TODO(eteran): something along these lines
 
 		if (unlink(filename)) {
 			if (errno == EISDIR) {
@@ -43,7 +43,7 @@ int remove(const char *pathname) {
 		return 0;
 		*/
 
-	#endif
+#endif
 
 	return 0;
 }

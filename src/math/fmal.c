@@ -7,6 +7,7 @@
 // Name: __elibc_fmal
 //----------------------------------------------------------------------------*/
 static long double __elibc_fmal(long double x, long double y, long double z) {
+	/* TODO(eteran): account for errors, and rounding mode */
 	return x * y * z;
 }
 
@@ -14,6 +15,5 @@ static long double __elibc_fmal(long double x, long double y, long double z) {
 // Name: fmal
 //----------------------------------------------------------------------------*/
 long double fmal(long double x, long double y, long double z) {
-	// TODO(eteran): account for errors, and rounding mode
 	return __elibc_fmal(x, y, z);
 }

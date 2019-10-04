@@ -1,8 +1,8 @@
 
 #define __ELIBC_SOURCE
-#include <stdio.h>
-#include <assert.h>
 #include "c/_support.h"
+#include <assert.h>
+#include <stdio.h>
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_fwrite
@@ -15,9 +15,9 @@ static size_t __elibc_fwrite(const void *ptr, size_t size, size_t nelem, FILE *s
 	assert(ptr);
 	assert(stream);
 
-	for(elem_it = 0; elem_it < nelem; ++elem_it) {
-		for(size_it = 0; size_it < size; ++size_it) {
-			if(__elibc_fputc(*p++, stream, 0x02) == -1) {
+	for (elem_it = 0; elem_it < nelem; ++elem_it) {
+		for (size_it = 0; size_it < size; ++size_it) {
+			if (__elibc_fputc(*p++, stream, 0x02) == -1) {
 				return elem_it;
 			}
 		}

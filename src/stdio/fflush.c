@@ -1,19 +1,18 @@
 
 #define __ELIBC_SOURCE
-#include <stdio.h>
 #include "c/_support.h"
+#include <stdio.h>
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_fflush
 //----------------------------------------------------------------------------*/
 int __elibc_fflush(FILE *stream) {
-
-	if(stream) {
-		if(__ELIBC_FILENO(stream) != -1) {
-			if(_FDATA(stream)->buffer_first != _FDATA(stream)->buffer_ptr) {
+	if (stream) {
+		if (__ELIBC_FILENO(stream) != -1) {
+			if (_FDATA(stream)->buffer_first != _FDATA(stream)->buffer_ptr) {
 
 				/* if p2 == ptr then the last operation was a write */
-				if(_FDATA(stream)->buffer_last == _FDATA(stream)->buffer_ptr) {
+				if (_FDATA(stream)->buffer_last == _FDATA(stream)->buffer_ptr) {
 					const size_t n = _FDATA(stream)->buffer_first - _FDATA(stream)->buffer_ptr;
 
 					const ssize_t r = __elibc_sys_write(
@@ -21,7 +20,7 @@ int __elibc_fflush(FILE *stream) {
 						_FDATA(stream)->buffer_ptr,
 						n);
 
-					if(r < 0) {
+					if (r < 0) {
 						/* TODO(eteran): set errno */
 						return EOF;
 					}
@@ -35,8 +34,8 @@ int __elibc_fflush(FILE *stream) {
 	} else {
 		/* flush all open output streams */
 		FILE *p = __elibc_root_file_struct;
-		while(p) {
-			if(__elibc_fflush(p) != 0) {
+		while (p) {
+			if (__elibc_fflush(p) != 0) {
 				return EOF;
 			}
 			p = p->next;

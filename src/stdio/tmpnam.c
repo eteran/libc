@@ -10,11 +10,11 @@
 // Name: tmpnam
 //----------------------------------------------------------------------------*/
 char *tmpnam(char *s) {
-	char *p = 0;
+	char *                    p = 0;
 	static _Thread_local char buf[L_tmpnam];
-	static _Thread_local int limit = 0;
+	static _Thread_local int  limit = 0;
 
-	if(limit < TMP_MAX) {
+	if (limit < TMP_MAX) {
 		++limit;
 		p = (!s) ? buf : s;
 
@@ -34,16 +34,15 @@ char *tmpnam(char *s) {
 				alphabet[rand() % (sizeof(alphabet) - 1)],
 				alphabet[rand() % (sizeof(alphabet) - 1)],
 				alphabet[rand() % (sizeof(alphabet) - 1)],
-				alphabet[rand() % (sizeof(alphabet) - 1)]
-				);
-				/* TODO(eteran): change this while to a condition to test if the file exists,
-				 * it is actually more probable then it looks because an unseeded rand()
-				 * is the same for all processes, perhaps we should integrate the PID
-				 * as well?
-				 */
-		} while(0);
+				alphabet[rand() % (sizeof(alphabet) - 1)]);
+
+			/* TODO(eteran): change this while to a condition to test if the file exists,
+			 * it is actually more probable then it looks because an unseeded rand()
+			 * is the same for all processes, perhaps we should integrate the PID
+			 * as well?
+			 */
+		} while (0);
 	}
 
 	return p;
-
 }

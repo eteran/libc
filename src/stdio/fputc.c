@@ -1,9 +1,9 @@
 
 #define __ELIBC_SOURCE
+#include "c/_support.h"
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
-#include "c/_support.h"
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_fputc
@@ -22,8 +22,8 @@ int __elibc_fputc(int c, FILE *stream, int orientation) {
 
 	_FDATA(stream)->orientation = orientation;
 
-	if(!_FDATA(stream)->buffer_ptr) {
-		char * const buffer = malloc(BUFSIZ);
+	if (!_FDATA(stream)->buffer_ptr) {
+		char *const buffer              = malloc(BUFSIZ);
 		_FDATA(stream)->buffer_ptr      = buffer;
 		_FDATA(stream)->buffer_first    = buffer;
 		_FDATA(stream)->buffer_last     = buffer;
@@ -35,10 +35,10 @@ int __elibc_fputc(int c, FILE *stream, int orientation) {
 
 	/* this is only true after a read into the buffer */
 
-	switch(_FDATA(stream)->buf_mod) {
+	switch (_FDATA(stream)->buf_mod) {
 	case _IOFBF:
 		*_FDATA(stream)->buffer_first++ = ch;
-		if(_FDATA(stream)->buffer_first == _FDATA(stream)->buffer_ptr + _FDATA(stream)->buffer_capacity) {
+		if (_FDATA(stream)->buffer_first == _FDATA(stream)->buffer_ptr + _FDATA(stream)->buffer_capacity) {
 			r = __elibc_fflush(stream) == 0 ? 0 : -1;
 		} else {
 			r = 0;
@@ -47,7 +47,7 @@ int __elibc_fputc(int c, FILE *stream, int orientation) {
 
 	case _IOLBF:
 		*_FDATA(stream)->buffer_first++ = ch;
-		if(ch == '\n' || (_FDATA(stream)->buffer_first == _FDATA(stream)->buffer_ptr + _FDATA(stream)->buffer_capacity)) {
+		if (ch == '\n' || (_FDATA(stream)->buffer_first == _FDATA(stream)->buffer_ptr + _FDATA(stream)->buffer_capacity)) {
 			r = __elibc_fflush(stream) == 0 ? 0 : -1;
 		} else {
 			r = 0;
@@ -65,7 +65,6 @@ int __elibc_fputc(int c, FILE *stream, int orientation) {
 
 	return r;
 }
-
 
 /*------------------------------------------------------------------------------
 // Name: fputc

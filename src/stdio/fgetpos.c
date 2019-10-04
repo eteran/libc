@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <stdio.h>
 #include <assert.h>
+#include <stdio.h>
 
 /*------------------------------------------------------------------------------
 // Name: fgetpos
@@ -14,9 +14,9 @@ int fgetpos(FILE *stream, fpos_t *pos) {
 
 	ret = ftell(stream);
 
-	if(ret != -1) {
+	if (ret != -1) {
 		*pos = (fpos_t)ret;
-		ret = 0;
+		ret  = 0;
 	}
 
 	return (int)ret;

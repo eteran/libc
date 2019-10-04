@@ -8,20 +8,20 @@
 static char *__elibc_fgets(char *_RESTRICT s, int size, FILE *_RESTRICT stream) {
 	char *s_ptr = s;
 
-	if(size > 1) {
-		while(--size) {
+	if (size > 1) {
+		while (--size) {
 			const int ch = __elibc_fgetc(stream);
 
-			if(ch != EOF) {
+			if (ch != EOF) {
 				*s_ptr++ = ch;
 			}
 
-			if(ch == EOF && s_ptr == s) {
+			if (ch == EOF && s_ptr == s) {
 				/* TODO(eteran): NUL terminate this buffer? */
 				return NULL;
 			}
 
-			if(ch == EOF || ch == '\n') {
+			if (ch == EOF || ch == '\n') {
 				break;
 			}
 		}

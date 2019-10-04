@@ -7,6 +7,7 @@
 // Name: __elibc_fmaf
 //----------------------------------------------------------------------------*/
 static float __elibc_fmaf(float x, float y, float z) {
+	/* TODO(eteran): account for errors, and rounding mode */
 	return x * y * z;
 }
 
@@ -14,6 +15,5 @@ static float __elibc_fmaf(float x, float y, float z) {
 // Name: fmaf
 //----------------------------------------------------------------------------*/
 float fmaf(float x, float y, float z) {
-	// TODO(eteran): account for errors, and rounding mode
 	return __elibc_fmaf(x, y, z);
 }

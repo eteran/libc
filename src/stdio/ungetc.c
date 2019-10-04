@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <stdio.h>
 #include <assert.h>
+#include <stdio.h>
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_ungetc
@@ -13,7 +13,7 @@ static int __elibc_ungetc(int c, FILE *stream) {
 
 	_FDATA(stream)->orientation = 0x02;
 
-	if(_FDATA(stream)->buffer_first == _FDATA(stream)->buffer_ptr) {
+	if (_FDATA(stream)->buffer_first == _FDATA(stream)->buffer_ptr) {
 		return EOF;
 	}
 

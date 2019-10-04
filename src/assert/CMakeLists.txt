@@ -4,7 +4,7 @@ add_library (c-assert STATIC
 	assert.c
 )
 
-set_property(TARGET c-assert PROPERTY C_STANDARD 99)
+set_property(TARGET c-assert PROPERTY C_STANDARD ${LIBC_STANDARD})
 set_property(TARGET c-assert PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 
 target_link_libraries(c-assert LINK_PUBLIC 

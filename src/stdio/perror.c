@@ -1,14 +1,14 @@
 
 #define __ELIBC_SOURCE
-#include <stdio.h>
 #include <errno.h>
+#include <stdio.h>
 #include <string.h>
 
 /*------------------------------------------------------------------------------
 // Name: perror
 //----------------------------------------------------------------------------*/
 void perror(const char *s) {
-	if(s) {
+	if (s) {
 		fputs(s, stderr);
 	}
 

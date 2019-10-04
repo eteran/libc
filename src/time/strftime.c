@@ -57,14 +57,14 @@
 		}                                                    \
 		s += chunk;                                          \
 	} while (0)
-	
-#define DO_e()                                               \
-	do {                                                     \
+
+#define DO_e()                                              \
+	do {                                                    \
 		int chunk = snprintf(s, space, "%2d", tm->tm_mday); \
-		if (chunk >= space) {                                \
-			return 0;                                        \
-		}                                                    \
-		s += chunk;                                          \
+		if (chunk >= space) {                               \
+			return 0;                                       \
+		}                                                   \
+		s += chunk;                                         \
 	} while (0)
 
 #define DO_y()                                                     \
@@ -76,16 +76,17 @@
 		s += chunk;                                                \
 	} while (0)
 
-#define DO_I()                                        \
-	do {                                              \
-		int hour = tm->tm_hour;                       \
-		if (hour > 12)                                \
-			hour -= 12;                               \
-		int chunk = snprintf(s, space, "%.2i", hour); \
-		if (chunk >= space) {                         \
-			return 0;                                 \
-		}                                             \
-		s += chunk;                                   \
+#define DO_I()                                    \
+	do {                                          \
+		int chunk;                                \
+		int hour = tm->tm_hour;                   \
+		if (hour > 12)                            \
+			hour -= 12;                           \
+		chunk = snprintf(s, space, "%.2i", hour); \
+		if (chunk >= space) {                     \
+			return 0;                             \
+		}                                         \
+		s += chunk;                               \
 	} while (0)
 
 #define DO_p()                                                                  \
@@ -111,12 +112,12 @@
 //----------------------------------------------------------------------------*/
 size_t strftime(char *s, size_t max, const char *format, const struct tm *tm) {
 
-	assert(tm);
-	assert(format);
-
 	char *const dest = s;
 
 	int space = (s + max) - s;
+
+	assert(tm);
+	assert(format);
 
 	while (*format != '\0') {
 		if (*format == '%') {
@@ -130,14 +131,14 @@ size_t strftime(char *s, size_t max, const char *format, const struct tm *tm) {
 			case 'c':
 			case 'C':
 				break;
-				
+
 			case 'e':
 				DO_e();
 				break;
-				
+
 			case 'E':
 			case 'G':
-			case 'g':			
+			case 'g':
 			case 'j':
 			case 'k':
 			case 'l':
@@ -243,7 +244,7 @@ size_t strftime(char *s, size_t max, const char *format, const struct tm *tm) {
 			case '%':
 				DO_char('%');
 				break;
-			
+
 			default:
 				assert(0);
 			}

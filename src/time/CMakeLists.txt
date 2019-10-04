@@ -17,5 +17,5 @@ target_link_libraries(c-time LINK_PUBLIC
 	libc-headers
 )
 
-set_property(TARGET c-time PROPERTY C_STANDARD 99)
+set_property(TARGET c-time PROPERTY C_STANDARD ${LIBC_STANDARD})
 set_property(TARGET c-time PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})

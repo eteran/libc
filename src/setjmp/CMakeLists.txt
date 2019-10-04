@@ -14,5 +14,5 @@ target_link_libraries(c-setjmp LINK_PUBLIC
 	libc-headers
 )
 
-set_property(TARGET c-setjmp PROPERTY C_STANDARD 99)
+set_property(TARGET c-setjmp PROPERTY C_STANDARD ${LIBC_STANDARD})
 set_property(TARGET c-setjmp PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})

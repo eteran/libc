@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <stdio.h>
 #include <assert.h>
+#include <stdio.h>
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_ferror

@@ -1,9 +1,9 @@
 
 #define __ELIBC_SOURCE
+#include <assert.h>
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <errno.h>
-#include <assert.h>
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_setvbuf
@@ -21,14 +21,13 @@ static int __elibc_setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode
 	 */
 
 	/* ignore invalid modes entirely */
-	if(mode != _IONBF && mode != _IOLBF && mode != _IOFBF) {
+	if (mode != _IONBF && mode != _IOLBF && mode != _IOFBF) {
 		errno = EINVAL;
 		return -1;
 	}
 
-
 	/* if either buf or size are 0, the other should be too */
-	if((!buf && size != 0) || (buf && size == 0)) {
+	if ((!buf && size != 0) || (buf && size == 0)) {
 		errno = EINVAL;
 		return -1;
 	}
@@ -39,7 +38,7 @@ static int __elibc_setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode
 	/* if they specified a buffer, use it, if they didn't the next read/write
 	 * will cause an allocation of one of the default size
 	 */
-	if(buf) {
+	if (buf) {
 		_FDATA(stream)->buffer_ptr      = buf;
 		_FDATA(stream)->buffer_first    = buf;
 		_FDATA(stream)->buffer_last     = buf;

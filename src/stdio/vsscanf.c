@@ -21,8 +21,6 @@ do {                                                                 \
 #define TEST_BIT(name, I)  (int)(name[I / CHAR_BIT] & (1 << (I % CHAR_BIT)))
 #define FLIP_BITS(name, N) do { int i; for(i = 0; i < (N / CHAR_BIT); ++i) { name[i] = ~name[i]; } } while(0)
 
-/*#define ENABLE_FPU*/
-
 /*------------------------------------------------------------------------------
 // Name: vsscanf
 //----------------------------------------------------------------------------*/
@@ -32,10 +30,6 @@ int vsscanf(const char *_RESTRICT str, const char *_RESTRICT format, va_list ap)
 	char *endptr        = 0;
 	const char *str_ptr = str;
 
-	/* we use this because it would be silly to have a variable of each type
-	 * when just one will do.  The union eliminates the need for casting
-	 * which would be neccessary if we just used a single void *
-	 */
 	union {
 		char         *char_ptr;
 		unsigned int *uint_ptr;

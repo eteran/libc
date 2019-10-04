@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <stdio.h>
 #include <assert.h>
+#include <stdio.h>
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_fread
@@ -15,10 +15,10 @@ static size_t __elibc_fread(void *ptr, size_t size, size_t nmemb, FILE *stream) 
 	assert(ptr);
 	assert(stream);
 
-	for(elem_it = 0; elem_it < nmemb; ++elem_it) {
-		for(size_it = 0; size_it < size; ++size_it) {
+	for (elem_it = 0; elem_it < nmemb; ++elem_it) {
+		for (size_it = 0; size_it < size; ++size_it) {
 			const int ch = __elibc_fgetc(stream);
-			if(ch != EOF) {
+			if (ch != EOF) {
 				*p++ = ch;
 			} else {
 				return elem_it;

@@ -14,7 +14,7 @@ add_test(NAME trig-test COMMAND $<TARGET_FILE:trig-test>)
 
 set_target_properties(trig-test qsort-test libc-test
 	PROPERTIES 
-		C_STANDARD               99
+		C_STANDARD               ${LIBC_STANDARD}
 		C_EXTENSIONS             OFF
 		RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}
 )

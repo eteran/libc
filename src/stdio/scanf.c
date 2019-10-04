@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <stdio.h>
 #include <stdarg.h>
+#include <stdio.h>
 
 /*------------------------------------------------------------------------------
 // Name: scanf
