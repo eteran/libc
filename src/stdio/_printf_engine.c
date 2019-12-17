@@ -19,7 +19,7 @@
 #define PRINTF_ASSERT(ignore) ((void)0)
 #else
 #include <stdio.h>
-#define PRINTF_ASSERT(test) do { if(!(test)) { puts( # test ); abort(); } } while(0);
+#define PRINTF_ASSERT(test) do { if(!(test)) { puts( # test ); abort(); } } while(0)
 #endif
 
 /*#define ENABLE_FPU */

@@ -1,6 +1,7 @@
 
 #define __ELIBC_SOURCE
 #include <ctype.h>
+#include <stdint.h>
 
 /* TODO(eteran): locale awareness of any kind ? */
 
@@ -18,7 +19,7 @@
 #define CTYPE_BLANK  0x0800
 
 /* a simple table, valid for "C" local only */
-static const unsigned short __elibc_ctype_tab[] = {
+static const uint16_t __elibc_ctype_tab[] = {
 	0x0004, 0x0004, 0x0004, 0x0004, 0x0004, 0x0004, 0x0004, 0x0004,
 	0x0004, 0x0904, 0x0104, 0x0104, 0x0104, 0x0104, 0x0004, 0x0004,
 	0x0004, 0x0004, 0x0004, 0x0004, 0x0004, 0x0004, 0x0004, 0x0004,
