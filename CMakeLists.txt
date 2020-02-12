@@ -21,8 +21,6 @@ elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
 	set(LIBC_ARCH               "i686")
 endif()
 
-add_definitions("-DENABLE_FPU")
-
 add_subdirectory(include)
 add_subdirectory(src)
 

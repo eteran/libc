@@ -3,6 +3,8 @@
 #include <errno.h>
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: hypotl
 //----------------------------------------------------------------------------*/
@@ -19,3 +21,5 @@ static long double __elibc_hypotl(long double x, long double y) {
 long double hypotl(long double x, long double y) {
 	return __elibc_hypotl(x, y);
 }
+
+#endif

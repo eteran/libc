@@ -19,8 +19,8 @@
 #define SSE_GETCW(xcw) __asm__ __volatile__ ("stmxcsr %0" : "=m" (xcw))
 #define SSE_SETCW(xcw) __asm__ __volatile__ ("ldmxcsr %0" : : "m" (xcw))
 #else
-#define SSE_GETCW(xcw) do {} while(0)
-#define SSE_SETCW(xcw) do {} while(0)
+#define SSE_GETCW(xcw) do { (xcw) = 0; } while(0)
+#define SSE_SETCW(xcw) do { (void)xcw; } while(0)
 #endif
 
 /*------------------------------------------------------------------------------

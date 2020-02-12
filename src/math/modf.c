@@ -3,11 +3,13 @@
 #include <assert.h>
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_modf
 //----------------------------------------------------------------------------*/
 static double __elibc_modf(double x, double *iptr) {
-	int    sign = 1;
+	int sign = 1;
 	double i_portion;
 	double f_portion;
 
@@ -31,3 +33,5 @@ static double __elibc_modf(double x, double *iptr) {
 double modf(double x, double *iptr) {
 	return __elibc_modf(x, iptr);
 }
+
+#endif

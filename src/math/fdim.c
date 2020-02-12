@@ -3,6 +3,8 @@
 #include <errno.h>
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_fdim
 //----------------------------------------------------------------------------*/
@@ -25,3 +27,5 @@ double fdim(double x, double y) {
 #endif
 	return __elibc_fdim(x, y);
 }
+
+#endif

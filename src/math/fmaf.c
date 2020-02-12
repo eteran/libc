@@ -3,6 +3,8 @@
 #include <errno.h>
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_fmaf
 //----------------------------------------------------------------------------*/
@@ -17,3 +19,5 @@ static float __elibc_fmaf(float x, float y, float z) {
 float fmaf(float x, float y, float z) {
 	return __elibc_fmaf(x, y, z);
 }
+
+#endif

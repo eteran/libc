@@ -3,6 +3,8 @@
 #include <errno.h>
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_fmal
 //----------------------------------------------------------------------------*/
@@ -17,3 +19,5 @@ static long double __elibc_fmal(long double x, long double y, long double z) {
 long double fmal(long double x, long double y, long double z) {
 	return __elibc_fmal(x, y, z);
 }
+
+#endif

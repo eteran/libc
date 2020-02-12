@@ -1,11 +1,13 @@
 
 #define __ELIBC_SOURCE
+#include <assert.h>
+#include <ctype.h>
+#include <math.h>
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
-#include <ctype.h>
-#include <math.h>
-#include <assert.h>
+
+#ifdef _HAS_FPU
 
 /*------------------------------------------------------------------------------
 // Name: strtod
@@ -26,12 +28,12 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 	hexadecimal number, or (iii) an infinity, or (iv) a NAN (not-a-number).
 	*/
 
-	while(isspace(*nptr)) {
+	while (isspace(*nptr)) {
 		++nptr;
 	}
 
 	/* single optional sign */
-	switch(*nptr) {
+	switch (*nptr) {
 	case '-':
 		sign = -1.0;
 		/* FALL THROUGH */
@@ -39,9 +41,8 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 		++nptr;
 	}
 
-
 	/* An infinity is either "INF" or "INFINITY", disregarding case. */
-	if(strcasecmp(nptr, "inf") == 0 || strcasecmp(nptr, "infinity") == 0) {
+	if (strcasecmp(nptr, "inf") == 0 || strcasecmp(nptr, "infinity") == 0) {
 		return INFINITY;
 	}
 
@@ -50,16 +51,15 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 	sequence  of  characters, followed by ')'.  The character string speci-
 	fies in an implementation-dependent way the type of NAN.
 	*/
-	if(strncasecmp(nptr, "nan", 3) == 0) {
+	if (strncasecmp(nptr, "nan", 3) == 0) {
 		nptr += 3;
-		if(*nptr == '(') {
+		if (*nptr == '(') {
 			nptr = strchr(nptr, ')');
 		}
 
 		/* TODO(eteran): what do we pass here, if anything? */
 		return NAN;
 	}
-
 
 	/*
 	A decimal number consists of a nonempty sequence of decimal digits pos-
@@ -70,14 +70,14 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 	indicates multiplication by a power of 10.
 	*/
 
-	while(*nptr != '\0') {
+	while (*nptr != '\0') {
 
 		const char c = *nptr;
 
-		if(isdigit(c)) {
-            ret *= 10.0;
-            ret += (c - '0');
-		} else if(c == '.') { /* TODO(eteran): make this locale dependant */
+		if (isdigit(c)) {
+			ret *= 10.0;
+			ret += (c - '0');
+		} else if (c == '.') { /* TODO(eteran): make this locale dependant */
 			radix_index = nptr;
 		} else {
 			break;
@@ -86,19 +86,19 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 	}
 
 	/* did we see a radix, if so, account for it */
-	if(radix_index) {
+	if (radix_index) {
 		ret /= pow(10, nptr - radix_index - 1);
 	}
 
 	/* ok, time for exponent processing */
-	if(*nptr != '\0') {
-		if(*nptr == 'E' || *nptr == 'e') {
-			double exponent = 0.0;
+	if (*nptr != '\0') {
+		if (*nptr == 'E' || *nptr == 'e') {
+			double exponent      = 0.0;
 			double exponent_sign = 1.0;
 
 			++nptr;
 
-			switch(*nptr) {
+			switch (*nptr) {
 			case '-':
 				exponent_sign = -1.0;
 				/* FALL THROUGH */
@@ -106,11 +106,11 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 				++nptr;
 			}
 
-			while(*nptr != '\0') {
+			while (*nptr != '\0') {
 
 				const char c = *nptr;
 
-				if(isdigit(c)) {
+				if (isdigit(c)) {
 					exponent *= 10.0;
 					exponent += (c - '0');
 				} else {
@@ -133,7 +133,7 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 	must be present.
 	*/
 
-	if(endptr) {
+	if (endptr) {
 		*endptr = (char *)nptr;
 	}
 
@@ -142,3 +142,4 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 	return ret;
 }
 
+#endif

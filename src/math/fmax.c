@@ -3,6 +3,8 @@
 #include <errno.h>
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_fmax
 //----------------------------------------------------------------------------*/
@@ -25,3 +27,5 @@ double fmax(double x, double y) {
 #endif
 	return __elibc_fmax(x, y);
 }
+
+#endif

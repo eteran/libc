@@ -3,6 +3,8 @@
 #include <errno.h>
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_expm1
 //----------------------------------------------------------------------------*/
@@ -16,3 +18,5 @@ static double __elibc_expm1(double x) {
 double expm1(double x) {
 	return __elibc_expm1(x);
 }
+
+#endif

@@ -22,8 +22,6 @@
 #define PRINTF_ASSERT(test) do { if(!(test)) { puts( # test ); abort(); } } while(0)
 #endif
 
-/*#define ENABLE_FPU */
-
 enum __flags {
 	PRINTF_ALL     = -1,
 	PRINTF_JUSTIFY = 0x01,
@@ -77,14 +75,14 @@ static const char *_get_modifier(const char *format, int *modifier);
 
 static const char *_signed_itoa(char *buf, size_t size, char base, int precision, intmax_t d, int width, uint8_t flags);
 static const char *_unsigned_itoa(char *buf, size_t size, char base, int precision, uintmax_t d, int width, uint8_t flags);
-#ifdef ENABLE_FPU
+#ifdef _HAS_FPU
 static double _round_double(double value, int precision);
 static char *_format_float_decimal(char *buf, size_t sz, double value, int precision, char format, uint8_t flags);
 static char *_format_float_exponent(char *buf, size_t sz, double value, int precision, char format, uint8_t flags);
 static char *_format_float(char *buf, size_t sz, double value, int precision, char format, uint8_t flags);
 #endif
 
-#ifdef ENABLE_FPU
+#ifdef _HAS_FPU
 /*------------------------------------------------------------------------------
 // Name:
 //----------------------------------------------------------------------------*/
@@ -738,7 +736,7 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 	char num_buf[65];
 
 	/* TODO(eteran): big enough?, we need the _format_float_* stuff to actually enforce maximum length */
-#ifdef ENABLE_FPU
+#ifdef _HAS_FPU
 	char flt_buf[FLT_BUF_SIZE];
 #endif
 
@@ -804,7 +802,7 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 				}
 
 			do_float:
-#ifdef ENABLE_FPU
+#ifdef _HAS_FPU
 				if(modifier == MOD_LONG_DOUBLE) {
 					/* unsupported (as of yet), but we still need to pluck an argument off the stack
 					 * so any following arguments work correctly!

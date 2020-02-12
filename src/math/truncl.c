@@ -3,6 +3,8 @@
 #include <errno.h>
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: truncl
 //----------------------------------------------------------------------------*/
@@ -23,3 +25,5 @@ long double truncl(long double x) {
 
 	return __builtin_truncl(x);
 }
+
+#endif

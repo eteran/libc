@@ -3,6 +3,8 @@
 #include <errno.h>
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_hypotf
 //----------------------------------------------------------------------------*/
@@ -19,3 +21,5 @@ static float __elibc_hypotf(float x, float y) {
 float hypotf(float x, float y) {
 	return __elibc_hypotf(x, y);
 }
+
+#endif

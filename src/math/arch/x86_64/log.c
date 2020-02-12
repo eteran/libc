@@ -2,6 +2,8 @@
 #define __ELIBC_SOURCE
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_log
 //----------------------------------------------------------------------------*/
@@ -20,3 +22,5 @@ static double __elibc_log(double x) {
 double log(double x) {
 	return __elibc_log(x);
 }
+
+#endif

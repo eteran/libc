@@ -3,6 +3,8 @@
 #include <errno.h>
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_expl
 //----------------------------------------------------------------------------*/
@@ -32,3 +34,5 @@ long double expl(long double x) {
 
 	return __elibc_expl(x);
 }
+
+#endif

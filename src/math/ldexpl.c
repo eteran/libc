@@ -3,6 +3,8 @@
 #include <errno.h>
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*
 	If the result underflows, a range error occurs, and zero is returned.
 
@@ -56,3 +58,5 @@ long double ldexpl(long double x, int exp) {
 
 	return __elibc_ldexpl(x, exp);
 }
+
+#endif

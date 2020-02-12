@@ -3,6 +3,8 @@
 #include <errno.h>
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_fminf
 //----------------------------------------------------------------------------*/
@@ -25,3 +27,5 @@ float fminf(float x, float y) {
 #endif
 	return __elibc_fminf(x, y);
 }
+
+#endif

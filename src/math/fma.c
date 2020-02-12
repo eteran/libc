@@ -3,6 +3,8 @@
 #include <errno.h>
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_fma
 //----------------------------------------------------------------------------*/
@@ -17,3 +19,5 @@ static double __elibc_fma(double x, double y, double z) {
 double fma(double x, double y, double z) {
 	return __elibc_fma(x, y, z);
 }
+
+#endif

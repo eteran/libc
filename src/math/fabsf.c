@@ -2,6 +2,8 @@
 #define __ELIBC_SOURCE
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_fabsf
 //----------------------------------------------------------------------------*/
@@ -15,3 +17,5 @@ static float __elibc_fabsf(float x) {
 float fabsf(float x) {
 	return __elibc_fabsf(x);
 }
+
+#endif

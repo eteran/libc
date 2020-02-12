@@ -3,6 +3,8 @@
 #include <fenv.h>
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_ceil
 //----------------------------------------------------------------------------*/
@@ -21,3 +23,5 @@ static double __elibc_ceil(double x) {
 double ceil(double x) {
 	return __elibc_ceil(x);
 }
+
+#endif

@@ -3,6 +3,8 @@
 #include <errno.h>
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_fminl
 //----------------------------------------------------------------------------*/
@@ -25,3 +27,5 @@ long double fminl(long double x, long double y) {
 #endif
 	return __elibc_fminl(x, y);
 }
+
+#endif

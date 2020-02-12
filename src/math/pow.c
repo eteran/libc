@@ -2,12 +2,14 @@
 #define __ELIBC_SOURCE
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_pow
 //----------------------------------------------------------------------------*/
 static double __elibc_pow(double x, double y) {
-	double         ret = 1;
-	long int       i;
+	double ret = 1;
+	long int i;
 	const long int y_int = (long int)y;
 
 	for (i = 0; i < y_int; ++i) {
@@ -61,3 +63,5 @@ double pow(double x, double y) {
 
 	return __elibc_pow(x, y);
 }
+
+#endif

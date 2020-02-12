@@ -52,6 +52,11 @@
 #endif
 #endif
 
+/* floating point math supported */
+#if defined(__SSE2_MATH__) || defined(__SSE_MATH__)
+#define _HAS_FPU
+#endif
+
 /* restrict keyword support */
 #ifndef _RESTRICT
 #if defined(_HAS_C99)

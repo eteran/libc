@@ -1,5 +1,6 @@
 
 #define __ELIBC_SOURCE
+#define __STDC_CONSTANT_MACROS
 #include <string.h>
 #include <stdint.h>
 #include <assert.h>
@@ -22,6 +23,7 @@
 #endif
 
 #ifndef NAIVE_VERSION
+#if MAX_MULTIBYTE >= 8
 /*------------------------------------------------------------------------------
 // Name: __elibc_memset64
 //----------------------------------------------------------------------------*/
@@ -32,6 +34,7 @@ static void __elibc_memset64(uint64_t *p, char ch, size_t n) {
 		*p++ = source;
 	}
 }
+#endif
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_memset32

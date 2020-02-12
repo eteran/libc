@@ -68,7 +68,7 @@ int vsscanf(const char *_RESTRICT str, const char *_RESTRICT format, va_list ap)
 			case 'e':
 			case 'g':
 			case 'E':
-#ifdef ENABLE_FPU
+#ifdef _HAS_FPU
 				conversion_pointers.float_ptr = va_arg(ap, float *);
 				*(conversion_pointers.float_ptr) = strtof(str, &endptr);
 				++assign_count;
