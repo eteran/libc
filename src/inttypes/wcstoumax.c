@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <wchar.h>
 #include <inttypes.h>
+#include <wchar.h>
 
 /*------------------------------------------------------------------------------
 // Name: wcstoumax

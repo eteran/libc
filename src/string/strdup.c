@@ -11,7 +11,7 @@ char *strdup(const char *s) {
 	const size_t len = strlen(s) + 1;
 	char *const ret  = malloc(len);
 
-	if(ret) {
+	if (ret) {
 		strcpy(ret, s);
 	}
 

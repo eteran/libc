@@ -6,8 +6,8 @@
 
 struct __elibc_stream_write {
 	__elibc_write_func_t write;
-	__elibc_done_func_t  done;
-	size_t               written;
+	__elibc_done_func_t done;
+	size_t written;
 	/* end common */
 	FILE *stream;
 };

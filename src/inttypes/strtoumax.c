@@ -1,8 +1,8 @@
 
 #define __ELIBC_SOURCE
-#include <wchar.h> /* supposed to be necessary */
 #include <inttypes.h>
 #include <stdlib.h>
+#include <wchar.h> /* supposed to be necessary */
 
 /*------------------------------------------------------------------------------
 // Name: strtoumax

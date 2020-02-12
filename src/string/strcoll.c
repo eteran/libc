@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <string.h>
 #include <assert.h>
+#include <string.h>
 
 /*------------------------------------------------------------------------------
 // Name: strcoll

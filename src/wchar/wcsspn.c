@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <wchar.h>
 #include <assert.h>
+#include <wchar.h>
 
 /*------------------------------------------------------------------------------
 // Name: wcsspn
@@ -12,8 +12,8 @@ size_t wcsspn(const wchar_t *s, const wchar_t *accept) {
 	assert(s);
 	assert(accept);
 
-	while(*s_ptr != '\0') {
-		if(wcschr(accept, *s_ptr) == 0) {
+	while (*s_ptr != '\0') {
+		if (wcschr(accept, *s_ptr) == 0) {
 			break;
 		}
 

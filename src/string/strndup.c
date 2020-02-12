@@ -9,7 +9,7 @@
 //----------------------------------------------------------------------------*/
 char *strndup(const char *s, size_t n) {
 	const size_t len = (n + 1);
-	char *const  ret = malloc(len);
+	char *const ret  = malloc(len);
 
 	if (ret) {
 		strncpy(ret, s, n);

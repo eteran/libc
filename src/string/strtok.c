@@ -17,25 +17,25 @@ char *strtok_r(char *_RESTRICT s, const char *_RESTRICT delim, char **ptrptr) {
 
 	char *start;
 
-	if(s) {
+	if (s) {
 		/* if s != 0 then we consider this the "first call" */
 		*ptrptr = s;
 	}
 
 	start = *ptrptr;
 
-	if(start) {
+	if (start) {
 		/* skip first delimiters */
 		start += strspn(*ptrptr, delim);
 
 		/* did we find a non-delimiter */
-		if(start) {
+		if (start) {
 			/* find the end of this token */
 			char *end = strpbrk(start + 1, delim);
 
 			/* if it did not end at the end of the string, replace
 			   that delimiter with a NULL terminator */
-			if(end) {
+			if (end) {
 				*end++ = '\0';
 			}
 			*ptrptr = end;

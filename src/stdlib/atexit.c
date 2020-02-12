@@ -2,7 +2,7 @@
 #define __ELIBC_SOURCE
 #include <stdlib.h>
 
-static _atexit_t    __elibc_f_list[ATEXIT_MAX];
+static _atexit_t __elibc_f_list[ATEXIT_MAX];
 static unsigned int __elibc_f_index = 0;
 
 /*------------------------------------------------------------------------------

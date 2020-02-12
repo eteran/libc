@@ -19,7 +19,13 @@
 #define PRINTF_ASSERT(ignore) ((void)0)
 #else
 #include <stdio.h>
-#define PRINTF_ASSERT(test) do { if(!(test)) { puts( # test ); abort(); } } while(0)
+#define PRINTF_ASSERT(test) \
+	do {                    \
+		if (!(test)) {      \
+			puts(#test);    \
+			abort();        \
+		}                   \
+	} while (0)
 #endif
 
 enum __flags {
@@ -43,30 +49,36 @@ enum __modifiers {
 	MOD_PTRDIFF_T
 };
 
-#define SET_FLAGS(x, flag)   do { (x) |= (flag);  } while(0)
-#define CLEAR_FLAGS(x, flag) do { (x) &= ~(flag); } while(0)
-#define GET_FLAG(x, flag)    (((x) & (flag)) != 0)
+#define SET_FLAGS(x, flag) \
+	do {                   \
+		(x) |= (flag);     \
+	} while (0)
+#define CLEAR_FLAGS(x, flag) \
+	do {                     \
+		(x) &= ~(flag);      \
+	} while (0)
+#define GET_FLAG(x, flag) (((x) & (flag)) != 0)
 
-#define REVERSE_STRING(p1, p2) \
-do {                           \
-	while (p1 < p2) {          \
-		const char t_ = *p2;   \
-		*p2 = *p1;             \
-		*p1 = t_;              \
-		p1++;                  \
-		p2--;                  \
-	}                          \
-} while(0)
+#define REVERSE_STRING(p1, p2)   \
+	do {                         \
+		while (p1 < p2) {        \
+			const char t_ = *p2; \
+			*p2           = *p1; \
+			*p1           = t_;  \
+			p1++;                \
+			p2--;                \
+		}                        \
+	} while (0)
 
 #define WRITE_CHAR_ITOA(str, ch, size) \
-do {                                   \
-	if((size) != 1) {                  \
-		*(str)++ = (ch);               \
-		--(size);                      \
-	}                                  \
-} while(0)
+	do {                               \
+		if ((size) != 1) {             \
+			*(str)++ = (ch);           \
+			--(size);                  \
+		}                              \
+	} while (0)
 
-typedef va_list* va_list_ptr;
+typedef va_list *va_list_ptr;
 
 static const char *_get_flags(const char *format, uint8_t *flags);
 static const char *_get_width(const char *format, long int *width, va_list *ap);
@@ -88,7 +100,7 @@ static char *_format_float(char *buf, size_t sz, double value, int precision, ch
 //----------------------------------------------------------------------------*/
 double _round_double(double value, int precision) {
 	const double x = 0.5 / pow(10, precision);
-	if(value < 0) {
+	if (value < 0) {
 		value -= x;
 	} else {
 		value += x;
@@ -111,12 +123,12 @@ char *_format_float_decimal(char *buf, size_t sz, double value, int precision, c
 	(void)format;
 	(void)sz;
 
-	if(signbit(x)) {
+	if (signbit(x)) {
 		*p++ = '-';
-		x = -x;
-	} else if(GET_FLAG(flags, PRINTF_SPACE)) {
+		x    = -x;
+	} else if (GET_FLAG(flags, PRINTF_SPACE)) {
 		*p++ = ' ';
-	} else if(GET_FLAG(flags, PRINTF_SIGN)) {
+	} else if (GET_FLAG(flags, PRINTF_SIGN)) {
 		*p++ = '+';
 	}
 
@@ -127,30 +139,30 @@ char *_format_float_decimal(char *buf, size_t sz, double value, int precision, c
 
 	do {
 		const int digit = (int)fmod(int_part, 10);
-		*p++ = (digit + '0');
+		*p++            = (digit + '0');
 
 		int_part /= 10;
-	} while(int_part >= 1.0);
+	} while (int_part >= 1.0);
 
 	/* reverse buffer */
 	p2 = p - 1;
 	REVERSE_STRING(p1, p2);
 
-	if(precision > 0) {
+	if (precision > 0) {
 		int i;
 		*p++ = '.';
-		if(frac_part == 0.0) {
-			for(i = 1; i <= precision; ++i) {
+		if (frac_part == 0.0) {
+			for (i = 1; i <= precision; ++i) {
 				*p++ = '0';
 			}
 		} else {
-			for(i = 1; i <= precision; ++i) {
+			for (i = 1; i <= precision; ++i) {
 				x *= 10;
 				do {
 					const double digit_d = fmod(x, 10);
-					const int digit = (int)digit_d;
-					*p++ = (digit + '0');
-				} while(0);
+					const int digit      = (int)digit_d;
+					*p++                 = (digit + '0');
+				} while (0);
 			}
 		}
 	}
@@ -174,25 +186,25 @@ char *_format_float_exponent(char *buf, size_t sz, double value, int precision, 
 
 	(void)sz;
 
-	if(x != 0.0) {
-		while(x < 1.0) {
+	if (x != 0.0) {
+		while (x < 1.0) {
 			x *= 10;
 			exponent -= 1;
 		}
 
-		while(x > 10.0) {
+		while (x > 10.0) {
 			x /= 10;
 			exponent += 1;
 		}
 	}
 
 	p = buf;
-	if(signbit(x)) {
+	if (signbit(x)) {
 		*p++ = '-';
-		x = -x;
-	} else if(GET_FLAG(flags, PRINTF_SPACE)) {
+		x    = -x;
+	} else if (GET_FLAG(flags, PRINTF_SPACE)) {
 		*p++ = ' ';
-	} else if(GET_FLAG(flags, PRINTF_SIGN)) {
+	} else if (GET_FLAG(flags, PRINTF_SIGN)) {
 		*p++ = '+';
 	}
 
@@ -203,30 +215,30 @@ char *_format_float_exponent(char *buf, size_t sz, double value, int precision, 
 
 	do {
 		const int digit = (int)fmod(int_part, 10);
-		*p++ = (digit + '0');
+		*p++            = (digit + '0');
 
 		int_part /= 10;
-	} while(int_part >= 1.0);
+	} while (int_part >= 1.0);
 
 	/* reverse buffer */
 	p2 = p - 1;
 	REVERSE_STRING(p1, p2);
 
-	if(precision > 0) {
+	if (precision > 0) {
 		int i;
 		*p++ = '.';
-		if(frac_part == 0.0) {
-			for(i = 1; i <= precision; ++i) {
+		if (frac_part == 0.0) {
+			for (i = 1; i <= precision; ++i) {
 				*p++ = '0';
 			}
 		} else {
-			for(i = 1; i <= precision; ++i) {
+			for (i = 1; i <= precision; ++i) {
 				x *= 10;
 				do {
 					const double digit_d = fmod(x, 10);
-					const int digit = (int)digit_d;
-					*p++ = (digit + '0');
-				} while(0);
+					const int digit      = (int)digit_d;
+					*p++                 = (digit + '0');
+				} while (0);
 			}
 		}
 	}
@@ -247,43 +259,43 @@ char *_format_float_exponent(char *buf, size_t sz, double value, int precision, 
 char *_format_float(char *buf, size_t sz, double value, int precision, char format, uint8_t flags) {
 
 	/* negative means no precision given, default to 6 */
-	if(precision < 0) {
+	if (precision < 0) {
 		precision = 6;
 	}
 
-	if(isnan(value)) {
-		if(format == 'e' || format == 'f' || format == 'g') {
+	if (isnan(value)) {
+		if (format == 'e' || format == 'f' || format == 'g') {
 			strlcpy(buf, "nan", sz);
 		}
 
-		if(format == 'E' || format == 'F' || format == 'G') {
+		if (format == 'E' || format == 'F' || format == 'G') {
 			strlcpy(buf, "NAN", sz);
 		}
 		return buf;
 	}
 
-	if(isinf(value)) {
-		if(signbit(value)) {
-			if(format == 'e' || format == 'f' || format == 'g') {
+	if (isinf(value)) {
+		if (signbit(value)) {
+			if (format == 'e' || format == 'f' || format == 'g') {
 				strlcpy(buf, "-inf", sz);
 			}
 
-			if(format == 'E' || format == 'F' || format == 'G') {
+			if (format == 'E' || format == 'F' || format == 'G') {
 				strlcpy(buf, "-INF", sz);
 			}
 		} else {
-			if(format == 'e' || format == 'f' || format == 'g') {
+			if (format == 'e' || format == 'f' || format == 'g') {
 				strlcpy(buf, "inf", sz);
 			}
 
-			if(format == 'E' || format == 'F' || format == 'G') {
+			if (format == 'E' || format == 'F' || format == 'G') {
 				strlcpy(buf, "INF", sz);
 			}
 		}
 		return buf;
 	}
 
-	switch(format) {
+	switch (format) {
 	case 'e':
 	case 'E':
 		return _format_float_exponent(buf, sz, value, precision, format, flags);
@@ -320,26 +332,25 @@ static const char *_signed_itoa(char *buf, size_t size, char base, int precision
 	static const char alphabet_u[] = "0123456789ABCDEF";
 	const char *alphabet           = alphabet_l;
 
-
-	if(d == 0 && precision == 0 && size > 0) {
+	if (d == 0 && precision == 0 && size > 0) {
 		*p = 0;
 		return buf;
 	}
 
-	if(size > 0) {
+	if (size > 0) {
 
 		unsigned int divisor = 10;
 
 		/* If %d is specified and D is negative, put `-' in the head. */
-		switch(base) {
+		switch (base) {
 		case 'd':
 		case 'i':
-			if(d < 0) {
+			if (d < 0) {
 				WRITE_CHAR_ITOA(p, '-', size);
 				ud = -d;
-			} else if(GET_FLAG(flags, PRINTF_SPACE)) {
+			} else if (GET_FLAG(flags, PRINTF_SPACE)) {
 				WRITE_CHAR_ITOA(p, ' ', size);
-			} else if(GET_FLAG(flags, PRINTF_SIGN)) {
+			} else if (GET_FLAG(flags, PRINTF_SIGN)) {
 				WRITE_CHAR_ITOA(p, '+', size);
 			}
 			/* FALL THROUGH */
@@ -356,7 +367,7 @@ static const char *_signed_itoa(char *buf, size_t size, char base, int precision
 			/* FALL THROUGH */
 		case 'x':
 			divisor = 16;
-			if(prefix) {
+			if (prefix) {
 				WRITE_CHAR_ITOA(p, '0', size);
 				WRITE_CHAR_ITOA(p, base, size);
 			}
@@ -364,7 +375,7 @@ static const char *_signed_itoa(char *buf, size_t size, char base, int precision
 
 		case 'o':
 			divisor = 8;
-			if(prefix) {
+			if (prefix) {
 				WRITE_CHAR_ITOA(p, '0', size);
 			}
 			break;
@@ -385,24 +396,24 @@ static const char *_signed_itoa(char *buf, size_t size, char base, int precision
 		do {
 			const int remainder = (ud % divisor);
 			WRITE_CHAR_ITOA(p, alphabet[remainder], size);
-			if(width > 0) --width;
+			if (width > 0) --width;
 		} while (ud /= divisor);
 
-		while(pad_zero && width > 0) {
+		while (pad_zero && width > 0) {
 			WRITE_CHAR_ITOA(p, '0', size);
 			--width;
 		}
 
-		if(precision > (p - buf)) {
+		if (precision > (p - buf)) {
 			precision -= (p - buf);
-			while(precision--) {
+			while (precision--) {
 				WRITE_CHAR_ITOA(p, '0', size);
 			}
 		}
 	}
 
 	/* terminate buffer */
-	if(size != 0) {
+	if (size != 0) {
 		*p = '\0';
 	}
 
@@ -433,20 +444,20 @@ static const char *_unsigned_itoa(char *buf, size_t size, char base, int precisi
 	static const char alphabet_u[] = "0123456789ABCDEF";
 	const char *alphabet           = alphabet_l;
 
-	if(ud == 0 && precision == 0 && size > 0) {
+	if (ud == 0 && precision == 0 && size > 0) {
 		*p = 0;
 		return buf;
 	}
 
-	if(size > 0) {
+	if (size > 0) {
 		unsigned int divisor = 10;
 
 		/* If %d is specified and D is negative, put `-' in the head. */
-		switch(base) {
+		switch (base) {
 		case 'd':
-			if(GET_FLAG(flags, PRINTF_SPACE)) {
+			if (GET_FLAG(flags, PRINTF_SPACE)) {
 				WRITE_CHAR_ITOA(p, ' ', size);
-			} else if(GET_FLAG(flags, PRINTF_SIGN)) {
+			} else if (GET_FLAG(flags, PRINTF_SIGN)) {
 				WRITE_CHAR_ITOA(p, '+', size);
 			}
 			/* FALL THROUGH */
@@ -463,7 +474,7 @@ static const char *_unsigned_itoa(char *buf, size_t size, char base, int precisi
 			/* FALL THROUGH */
 		case 'x':
 			divisor = 16;
-			if(prefix) {
+			if (prefix) {
 				WRITE_CHAR_ITOA(p, '0', size);
 				WRITE_CHAR_ITOA(p, base, size);
 			}
@@ -471,7 +482,7 @@ static const char *_unsigned_itoa(char *buf, size_t size, char base, int precisi
 
 		case 'o':
 			divisor = 8;
-			if(prefix) {
+			if (prefix) {
 				WRITE_CHAR_ITOA(p, '0', size);
 			}
 			break;
@@ -492,24 +503,24 @@ static const char *_unsigned_itoa(char *buf, size_t size, char base, int precisi
 		do {
 			const int remainder = (ud % divisor);
 			WRITE_CHAR_ITOA(p, alphabet[remainder], size);
-			if(width > 0) --width;
+			if (width > 0) --width;
 		} while (ud /= divisor);
 
-		while(pad_zero && width > 0) {
+		while (pad_zero && width > 0) {
 			WRITE_CHAR_ITOA(p, '0', size);
 			--width;
 		}
 
-		if(precision > (p - buf)) {
+		if (precision > (p - buf)) {
 			precision -= (p - buf);
-			while(precision--) {
+			while (precision--) {
 				WRITE_CHAR_ITOA(p, '0', size);
 			}
 		}
 	}
 
 	/* terminate buffer */
-	if(size != 0) {
+	if (size != 0) {
 		*p = '\0';
 	}
 
@@ -534,11 +545,11 @@ static const char *_get_flags(const char *format, uint8_t *flags) {
 	/* skip past the % char */
 	++format;
 
-	while(!done) {
+	while (!done) {
 
 		char ch = *format++;
 
-		switch(ch) {
+		switch (ch) {
 		case '-':
 			/* justify, overrides padding */
 			SET_FLAGS(f, PRINTF_JUSTIFY);
@@ -550,7 +561,7 @@ static const char *_get_flags(const char *format, uint8_t *flags) {
 			CLEAR_FLAGS(f, PRINTF_SPACE);
 			break;
 		case ' ':
-			if(!GET_FLAG(f, PRINTF_SIGN)) {
+			if (!GET_FLAG(f, PRINTF_SIGN)) {
 				SET_FLAGS(f, PRINTF_SPACE);
 			}
 			break;
@@ -558,7 +569,7 @@ static const char *_get_flags(const char *format, uint8_t *flags) {
 			SET_FLAGS(f, PRINTF_PREFIX);
 			break;
 		case '0':
-			if(!GET_FLAG(f, PRINTF_JUSTIFY)) {
+			if (!GET_FLAG(f, PRINTF_JUSTIFY)) {
 				SET_FLAGS(f, PRINTF_PADDING);
 			}
 			break;
@@ -582,13 +593,13 @@ static const char *_get_width(const char *format, long int *width, va_list *ap) 
 	PRINTF_ASSERT(width);
 	PRINTF_ASSERT(ap);
 
-	if(*format == '*') {
+	if (*format == '*') {
 		++format;
 		/* pull an int off the stack for processing */
 		*width = va_arg(*ap, long int);
 	} else {
 		*width = strtol(format, 0, 10);
-		while(isdigit(*format)) {
+		while (isdigit(*format)) {
 			++format;
 		}
 	}
@@ -608,11 +619,10 @@ static const char *_get_precision(const char *format, long int *precision, va_li
 	PRINTF_ASSERT(precision);
 	PRINTF_ASSERT(ap);
 
-
-	if(*format == '.') {
+	if (*format == '.') {
 
 		++format;
-		if(*format == '*') {
+		if (*format == '*') {
 			++format;
 
 			/* pull an int off the stack for processing */
@@ -621,7 +631,7 @@ static const char *_get_precision(const char *format, long int *precision, va_li
 		} else {
 			p = strtol(format, 0, 10);
 			PRINTF_ASSERT(p >= 0);
-			while(isdigit(*format)) {
+			while (isdigit(*format)) {
 				++format;
 			}
 		}
@@ -642,11 +652,11 @@ static const char *_get_modifier(const char *format, int *modifier) {
 
 	*modifier = MOD_NONE;
 
-	switch(*format) {
+	switch (*format) {
 	case 'h':
 		*modifier = MOD_SHORT;
 		++format;
-		if(*format == 'h') {
+		if (*format == 'h') {
 			*modifier = MOD_CHAR;
 			++format;
 		}
@@ -654,7 +664,7 @@ static const char *_get_modifier(const char *format, int *modifier) {
 	case 'l':
 		*modifier = MOD_LONG;
 		++format;
-		if(*format == 'l') {
+		if (*format == 'l') {
 			*modifier = MOD_LONG_LONG;
 			++format;
 		}
@@ -682,14 +692,13 @@ static const char *_get_modifier(const char *format, int *modifier) {
 	return format;
 }
 
-
 /* NOTE(eteran): ch is the current format specifier */
 static void _output_string(char ch, const char *s_ptr, int precision, long int *width, uint8_t flags, struct __elibc_write *const ctx) {
 	int len;
 	PRINTF_ASSERT(s_ptr);
 
 	/* on release builds, we are somewhat forgiving ... */
-	if(!s_ptr) {
+	if (!s_ptr) {
 		s_ptr = "(null)";
 	}
 
@@ -698,23 +707,23 @@ static void _output_string(char ch, const char *s_ptr, int precision, long int *
 	len = (ch == 's' && precision >= 0 && precision < len) ? precision : len;
 
 	/* if not left justified padding goes first.. */
-	if(!GET_FLAG(flags, PRINTF_JUSTIFY)) {
+	if (!GET_FLAG(flags, PRINTF_JUSTIFY)) {
 		/* spaces go before the prefix...*/
-		while(*width > len) {
+		while (*width > len) {
 			ctx->write(ctx, ' ');
 			--*width;
 		}
 	}
 
 	/* output the string */
-	while(*s_ptr != '\0' && len--) {
+	while (*s_ptr != '\0' && len--) {
 		ctx->write(ctx, *s_ptr++);
 		--*width;
 	}
 
 	/* if left justified padding goes last.. */
-	if(GET_FLAG(flags, PRINTF_JUSTIFY)) {
-		while(*width > 0) {
+	if (GET_FLAG(flags, PRINTF_JUSTIFY)) {
+		while (*width > 0) {
 			ctx->write(ctx, ' ');
 			--*width;
 		}
@@ -744,8 +753,8 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 
 	PRINTF_ASSERT(format);
 
-	while(*format != '\0') {
-		if(*format == '%') {
+	while (*format != '\0') {
+		if (*format == '%') {
 			/* %[flag][width][.precision][length]char */
 
 			const char *s_ptr  = 0;
@@ -760,7 +769,7 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 			format = _get_precision(format, &precision, &aq);
 			format = _get_modifier(format, &modifier);
 
-			if(width < 0) {
+			if (width < 0) {
 				/* negative width means positive width and left justified */
 				width = -width;
 
@@ -771,7 +780,7 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 
 			ch = *format;
 
-			switch(ch) {
+			switch (ch) {
 			/* double format of sorts */
 			case 'e':
 			case 'E':
@@ -780,30 +789,30 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 			case 'a':
 			case 'A':
 
-				if(precision < 0) {
+				if (precision < 0) {
 					precision = 6;
 				}
 
 				/* limit it to something sane */
-				if(precision > 32) {
+				if (precision > 32) {
 					precision = 32;
 				}
 				goto do_float;
 
 			case 'g':
 			case 'G':
-				if(precision < 0) {
+				if (precision < 0) {
 					precision = 6;
 				}
 
 				/* limit it to something sane */
-				if(precision > 32) {
+				if (precision > 32) {
 					precision = 32;
 				}
 
 			do_float:
 #ifdef _HAS_FPU
-				if(modifier == MOD_LONG_DOUBLE) {
+				if (modifier == MOD_LONG_DOUBLE) {
 					/* unsupported (as of yet), but we still need to pluck an argument off the stack
 					 * so any following arguments work correctly!
 					 */
@@ -821,7 +830,7 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 			/* integer format of sorts */
 			case 'p':
 				precision = 1;
-				ch = 'x';
+				ch        = 'x';
 				SET_FLAGS(flags, PRINTF_PREFIX);
 				s_ptr = _unsigned_itoa(num_buf, sizeof(num_buf), ch, precision, (uintptr_t)va_arg(aq, void *), width, flags);
 				_output_string(ch, s_ptr, precision, &width, flags, ctx);
@@ -831,11 +840,11 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 			case 'u':
 			case 'o':
 			case 'b': /* extension, BINARY mode */
-				if(precision < 0) {
+				if (precision < 0) {
 					precision = 1;
 				}
 
-				switch(modifier) {
+				switch (modifier) {
 				case MOD_CHAR:
 					s_ptr = _unsigned_itoa(num_buf, sizeof(num_buf), ch, precision, (unsigned char)va_arg(aq, unsigned int), width, flags);
 					break;
@@ -867,11 +876,11 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 
 			case 'i':
 			case 'd':
-				if(precision < 0) {
+				if (precision < 0) {
 					precision = 1;
 				}
 
-				switch(modifier) {
+				switch (modifier) {
 				case MOD_CHAR:
 					s_ptr = _signed_itoa(num_buf, sizeof(num_buf), ch, precision, (signed char)va_arg(aq, int), width, flags);
 					break;
@@ -904,7 +913,7 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 				/* char is promoted to an int when pushed on the stack */
 				num_buf[0] = va_arg(aq, long int);
 				num_buf[1] = '\0';
-				s_ptr = num_buf;
+				s_ptr      = num_buf;
 				_output_string(ch, s_ptr, precision, &width, flags, ctx);
 				break;
 
@@ -916,36 +925,36 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 			case 'n':
 				do {
 					union {
-						void          *p;
-						char          *p_char;
-						short int     *p_short;
-						int           *p_int;
-						long int      *p_long;
+						void *p;
+						char *p_char;
+						short int *p_short;
+						int *p_int;
+						long int *p_long;
 						long long int *p_longlong;
 					} p;
 
 					p.p = va_arg(aq, void *);
 
-					if(p.p) {
-						switch(modifier) {
+					if (p.p) {
+						switch (modifier) {
 						case MOD_CHAR:
-							*(p.p_char)     = ctx->written;
+							*(p.p_char) = ctx->written;
 							break;
 						case MOD_SHORT:
-							*(p.p_short)    = ctx->written;
+							*(p.p_short) = ctx->written;
 							break;
 						case MOD_LONG:
-							*(p.p_long)     = ctx->written;
+							*(p.p_long) = ctx->written;
 							break;
 						case MOD_LONG_LONG:
 							*(p.p_longlong) = ctx->written;
 							break;
 						default:
-							*(p.p_int)      = ctx->written;
+							*(p.p_int) = ctx->written;
 							break;
 						}
 					}
-				} while(0);
+				} while (0);
 				break;
 
 			default:
@@ -966,7 +975,7 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 	va_end(aq);
 
 	/* this will usually null terminate the string */
-	if(ctx->done) {
+	if (ctx->done) {
 		ctx->done(ctx);
 	}
 

@@ -5,22 +5,38 @@
 #include <fenv.h>
 #include <stdint.h>
 
-#define FNINIT() __asm__ __volatile__ ("fninit")
+#define FNINIT() __asm__ __volatile__("fninit")
 
-#define FPU_GETCW(cw) __asm__ __volatile__ ("fnstcw %0" : "=m" (cw))
-#define FPU_SETCW(cw) __asm__ __volatile__ ("fldcw %0" : : "m" (cw))
+#define FPU_GETCW(cw) __asm__ __volatile__("fnstcw %0" \
+										   : "=m"(cw))
+#define FPU_SETCW(cw) __asm__ __volatile__("fldcw %0" \
+										   :          \
+										   : "m"(cw))
 
-#define FPU_GETSW(sw) __asm__ __volatile__ ("fnstsw %0" : "=m" (sw))
+#define FPU_GETSW(sw) __asm__ __volatile__("fnstsw %0" \
+										   : "=m"(sw))
 
-#define FPU_GETENV(envp) __asm__ __volatile__ ("fnstenv %0" : "=m" (envp))
-#define FPU_SETENV(envp) __asm__ __volatile__ ("fldenv %0"  : : "m" (envp))
+#define FPU_GETENV(envp) __asm__ __volatile__("fnstenv %0" \
+											  : "=m"(envp))
+#define FPU_SETENV(envp) __asm__ __volatile__("fldenv %0" \
+											  :           \
+											  : "m"(envp))
 
 #ifdef __SSE_MATH__
-#define SSE_GETCW(xcw) __asm__ __volatile__ ("stmxcsr %0" : "=m" (xcw))
-#define SSE_SETCW(xcw) __asm__ __volatile__ ("ldmxcsr %0" : : "m" (xcw))
+#define SSE_GETCW(xcw) __asm__ __volatile__("stmxcsr %0" \
+											: "=m"(xcw))
+#define SSE_SETCW(xcw) __asm__ __volatile__("ldmxcsr %0" \
+											:            \
+											: "m"(xcw))
 #else
-#define SSE_GETCW(xcw) do { (xcw) = 0; } while(0)
-#define SSE_SETCW(xcw) do { (void)xcw; } while(0)
+#define SSE_GETCW(xcw) \
+	do {               \
+		(xcw) = 0;     \
+	} while (0)
+#define SSE_SETCW(xcw) \
+	do {               \
+		(void)xcw;     \
+	} while (0)
 #endif
 
 /*------------------------------------------------------------------------------
@@ -89,7 +105,7 @@ int fegetenv(fenv_t *envp) {
 //----------------------------------------------------------------------------*/
 int fesetenv(const fenv_t *envp) {
 
-	if(envp == FE_DFL_ENV) {
+	if (envp == FE_DFL_ENV) {
 		const uint32_t xcw = 0x1f80;
 		FNINIT();
 		SSE_SETCW(xcw);
@@ -122,10 +138,6 @@ int fetestexcept(int excepts) {
 	excepts &= FE_ALL_EXCEPT;
 	SSE_GETCW(xcw);
 	FPU_GETSW(sw);
-	
+
 	return (xcw | sw) & excepts;
 }
-
-
-
-

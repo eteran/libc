@@ -7,7 +7,7 @@
 //----------------------------------------------------------------------------*/
 FILE *tmpfile(void) {
 	FILE *file = 0;
-	char  tmp_file[L_tmpnam];
+	char tmp_file[L_tmpnam];
 
 	/* TODO(eteran): is this function supposed to be atomic if possible? */
 

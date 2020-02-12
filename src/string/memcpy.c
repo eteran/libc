@@ -1,8 +1,8 @@
 
 #define __ELIBC_SOURCE
-#include <string.h>
-#include <stdint.h>
 #include <assert.h>
+#include <stdint.h>
+#include <string.h>
 
 /* quick and dirty macro that tests if a pointer is properly aligned to it's
  * native boundary, we need this because some arches (x86) don't like multibyte
@@ -28,7 +28,7 @@
 //----------------------------------------------------------------------------*/
 static void __elibc_memcpy64(uint64_t *_RESTRICT dest, const uint64_t *_RESTRICT src, size_t n) {
 	n /= 8;
-	while(n--) {
+	while (n--) {
 		*dest++ = *src++;
 	}
 }
@@ -39,7 +39,7 @@ static void __elibc_memcpy64(uint64_t *_RESTRICT dest, const uint64_t *_RESTRICT
 //----------------------------------------------------------------------------*/
 static void __elibc_memcpy32(uint32_t *_RESTRICT dest, const uint32_t *_RESTRICT src, size_t n) {
 	n /= 4;
-	while(n--) {
+	while (n--) {
 		*dest++ = *src++;
 	}
 }
@@ -49,7 +49,7 @@ static void __elibc_memcpy32(uint32_t *_RESTRICT dest, const uint32_t *_RESTRICT
 //----------------------------------------------------------------------------*/
 static void __elibc_memcpy16(uint16_t *_RESTRICT dest, const uint16_t *_RESTRICT src, size_t n) {
 	n /= 2;
-	while(n--) {
+	while (n--) {
 		*dest++ = *src++;
 	}
 }
@@ -58,7 +58,7 @@ static void __elibc_memcpy16(uint16_t *_RESTRICT dest, const uint16_t *_RESTRICT
 // Name: __elibc_memcpy8
 //----------------------------------------------------------------------------*/
 static void __elibc_memcpy8(uint8_t *_RESTRICT dest, const uint8_t *_RESTRICT src, size_t n) {
-	while(n--) {
+	while (n--) {
 		*dest++ = *src++;
 	}
 }
@@ -77,26 +77,26 @@ void *memcpy(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) {
 	assert(dest);
 	assert(src);
 
-	while(n--) {
+	while (n--) {
 		*d_ptr++ = *s_ptr++;
 	}
 #else
 
 	/* this one is optimized for dword and word aligned copies */
 	union {
-		void     *ptr;
+		void *ptr;
 		uint64_t *ptr64;
 		uint32_t *ptr32;
 		uint16_t *ptr16;
-		uint8_t  *ptr8;
+		uint8_t *ptr8;
 	} d_ptr;
 
 	union {
-		const void     *ptr;
+		const void *ptr;
 		const uint64_t *ptr64;
 		const uint32_t *ptr32;
 		const uint16_t *ptr16;
-		const uint8_t  *ptr8;
+		const uint8_t *ptr8;
 	} s_ptr;
 
 	assert(dest);
@@ -105,12 +105,12 @@ void *memcpy(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) {
 	d_ptr.ptr = dest;
 	s_ptr.ptr = src;
 
-	switch(n & (MAX_MULTIBYTE - 1)) {
+	switch (n & (MAX_MULTIBYTE - 1)) {
 	case 0:
 #if MAX_MULTIBYTE >= 2
 #if MAX_MULTIBYTE >= 4
 #if MAX_MULTIBYTE >= 8
-		if(!IS_ALIGNED(d_ptr.ptr64) || !IS_ALIGNED(s_ptr.ptr64)) {
+		if (!IS_ALIGNED(d_ptr.ptr64) || !IS_ALIGNED(s_ptr.ptr64)) {
 			goto unaligned;
 		}
 
@@ -119,7 +119,7 @@ void *memcpy(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) {
 		break;
 	case 4:
 #endif
-		if(!IS_ALIGNED(d_ptr.ptr32) || !IS_ALIGNED(s_ptr.ptr32)) {
+		if (!IS_ALIGNED(d_ptr.ptr32) || !IS_ALIGNED(s_ptr.ptr32)) {
 			goto unaligned;
 		}
 
@@ -129,7 +129,7 @@ void *memcpy(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) {
 	case 6:
 	case 2:
 #endif
-		if(!IS_ALIGNED(d_ptr.ptr16) || !IS_ALIGNED(s_ptr.ptr16)) {
+		if (!IS_ALIGNED(d_ptr.ptr16) || !IS_ALIGNED(s_ptr.ptr16)) {
 			goto unaligned;
 		}
 

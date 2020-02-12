@@ -38,7 +38,7 @@ int __elibc_fclose(FILE *stream) {
 		if (prev) {
 			prev->next = next;
 		}
-		
+
 		if (next) {
 			next->prev = prev;
 		}

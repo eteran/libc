@@ -1,8 +1,8 @@
 
 #define __ELIBC_SOURCE
 #define __ELIBC_SAFE_STRING
-#include <string.h>
 #include <assert.h>
+#include <string.h>
 
 /*------------------------------------------------------------------------------
 // Name: strlcat
@@ -26,7 +26,7 @@ size_t strlcat(char *_RESTRICT dest, const char *_RESTRICT src, size_t siz) {
 	n    = siz - dlen;
 
 	if (n == 0) {
-		return(dlen + strlen(s));
+		return (dlen + strlen(s));
 	}
 
 	while (*s != '\0') {

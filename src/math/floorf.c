@@ -12,5 +12,4 @@ float floorf(float x) {
 	return __builtin_floorf(x);
 }
 
-
 #endif

@@ -16,7 +16,7 @@ typedef Elf32_auxv_t auxv_t;
 #endif
 
 extern char **__elibc_environment;
-char **       __elibc_environment = 0;
+char **__elibc_environment = 0;
 
 extern int main(int, char *[], char *[]);
 

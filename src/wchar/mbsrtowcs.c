@@ -11,7 +11,7 @@ size_t mbsrtowcs(wchar_t *dest, const char **src, size_t len, mbstate_t *ps) {
 	(void)len;
 	(void)ps;
 
-/*
+	/*
 If  dest  is  not  NULL,  the mbsrtowcs() function converts the multibyte string *src to a wide-character
 string starting at dest.  At most len wide characters are written  to  dest.   The  shift  state  *ps  is
 updated.   The conversion is effectively performed by repeatedly calling mbrtowc(dest, *src, n, ps) where

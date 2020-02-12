@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <string.h>
 #include <assert.h>
+#include <string.h>
 
 /*------------------------------------------------------------------------------
 // Name: strcspn
@@ -12,8 +12,8 @@ size_t strcspn(const char *s, const char *reject) {
 	assert(s);
 	assert(reject);
 
-	while(*s_ptr != '\0') {
-		if(strchr(reject, *s_ptr) != 0) {
+	while (*s_ptr != '\0') {
+		if (strchr(reject, *s_ptr) != 0) {
 			break;
 		}
 

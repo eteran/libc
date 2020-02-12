@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <string.h>
 #include <assert.h>
+#include <string.h>
 
 /*------------------------------------------------------------------------------
 // Name: strlen
@@ -11,7 +11,7 @@ size_t strlen(const char *s) {
 
 	assert(s);
 
-	while(*s != '\0') {
+	while (*s != '\0') {
 		++s;
 	}
 

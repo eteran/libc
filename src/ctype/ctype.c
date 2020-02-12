@@ -5,18 +5,18 @@
 
 /* TODO(eteran): locale awareness of any kind ? */
 
-#define CTYPE_ALNUM  0x0001
-#define CTYPE_ALPHA  0x0002
-#define CTYPE_CNTRL  0x0004
-#define CTYPE_DIGIT  0x0008
-#define CTYPE_GRAPH  0x0010
-#define CTYPE_LOWER  0x0020
-#define CTYPE_PRINT  0x0040
-#define CTYPE_PUNCT  0x0080
-#define CTYPE_SPACE  0x0100
-#define CTYPE_UPPER  0x0200
+#define CTYPE_ALNUM 0x0001
+#define CTYPE_ALPHA 0x0002
+#define CTYPE_CNTRL 0x0004
+#define CTYPE_DIGIT 0x0008
+#define CTYPE_GRAPH 0x0010
+#define CTYPE_LOWER 0x0020
+#define CTYPE_PRINT 0x0040
+#define CTYPE_PUNCT 0x0080
+#define CTYPE_SPACE 0x0100
+#define CTYPE_UPPER 0x0200
 #define CTYPE_XDIGIT 0x0400
-#define CTYPE_BLANK  0x0800
+#define CTYPE_BLANK 0x0800
 
 /* a simple table, valid for "C" local only */
 static const uint16_t __elibc_ctype_tab[] = {
@@ -51,16 +51,15 @@ static const uint16_t __elibc_ctype_tab[] = {
 	0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
 	0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
 	0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
-	0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000
-};
+	0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000};
 
-#define IS_CTYPE(name, type)                         \
-int name(int c) {                                    \
-	if((unsigned int)c < 0x100) {                    \
-		return (__elibc_ctype_tab[c] & (type)) != 0; \
-	}                                                \
-	return 0;                                        \
-}
+#define IS_CTYPE(name, type)                             \
+	int name(int c) {                                    \
+		if ((unsigned int)c < 0x100) {                   \
+			return (__elibc_ctype_tab[c] & (type)) != 0; \
+		}                                                \
+		return 0;                                        \
+	}
 
 /*------------------------------------------------------------------------------
 // Name: isalnum
@@ -126,7 +125,7 @@ IS_CTYPE(isblank, CTYPE_BLANK)
 // Name: tolower
 //----------------------------------------------------------------------------*/
 int tolower(int c) {
-	if(isupper(c)) {
+	if (isupper(c)) {
 		/* NOTE: ASCII specific */
 		c |= 0x20;
 	}
@@ -137,7 +136,7 @@ int tolower(int c) {
 // Name: toupper
 //----------------------------------------------------------------------------*/
 int toupper(int c) {
-	if(islower(c)) {
+	if (islower(c)) {
 		/* NOTE: ASCII specific */
 		c &= ~0x20;
 	}

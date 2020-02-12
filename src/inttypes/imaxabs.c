@@ -1,10 +1,10 @@
 
 #define __ELIBC_SOURCE
 #define __STDC_LIMIT_MACROS
-#include <stddef.h>
-#include <inttypes.h>
-#include <stdint.h>
 #include <assert.h>
+#include <inttypes.h>
+#include <stddef.h>
+#include <stdint.h>
 
 /*------------------------------------------------------------------------------
 // Name: imaxabs

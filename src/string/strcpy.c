@@ -8,7 +8,7 @@
 char *strcpy(char *_RESTRICT dest, const char *_RESTRICT src) {
 	char *dest_ptr = dest;
 
-	while(*src != '\0') {
+	while (*src != '\0') {
 		*dest_ptr++ = *src++;
 	}
 

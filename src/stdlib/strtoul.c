@@ -33,12 +33,12 @@ unsigned long int strtoul(const char *nptr, char **endptr, int base) {
 	 * (octal).
 	 */
 
-	while(isspace(*nptr)) {
+	while (isspace(*nptr)) {
 		++nptr;
 	}
 
 	/* single optional sign */
-	switch(*nptr) {
+	switch (*nptr) {
 	case '-':
 		neg = 1;
 		/* FALL THROUGH */
@@ -46,21 +46,21 @@ unsigned long int strtoul(const char *nptr, char **endptr, int base) {
 		++nptr;
 	}
 
-	if(base == 16 || base == 0) {
-		if(nptr[0] == '0' && (nptr[1] == 'x' || nptr[1] == 'X')) {
+	if (base == 16 || base == 0) {
+		if (nptr[0] == '0' && (nptr[1] == 'x' || nptr[1] == 'X')) {
 			base = 16;
 			nptr += 2;
 		}
 	}
 
-	if(base == 8 || base == 0) {
-		if(nptr[0] == '0') {
+	if (base == 8 || base == 0) {
+		if (nptr[0] == '0') {
 			base = 8;
 			++nptr;
 		}
 	}
 
-	if(base == 0) {
+	if (base == 0) {
 		base = 10;
 	}
 
@@ -72,26 +72,26 @@ unsigned long int strtoul(const char *nptr, char **endptr, int base) {
 	 * 'Z' representing 35.)
 	 */
 
-	while(*nptr != '\0') {
+	while (*nptr != '\0') {
 
 		const T old_ret = ret;
 		const char c    = *nptr;
 		unsigned int digit;
 
-		if(c >= 'A' && c <= 'Z') {
-			if(((c - 'A') + 10) < base) {
+		if (c >= 'A' && c <= 'Z') {
+			if (((c - 'A') + 10) < base) {
 				digit = (c - 'A') + 10;
 			} else {
 				break;
 			}
-		} else if(c >= 'a' && c <= 'z') {
-			if(((c - 'a') + 10) < base) {
+		} else if (c >= 'a' && c <= 'z') {
+			if (((c - 'a') + 10) < base) {
 				digit = (c - 'a') + 10;
 			} else {
 				break;
 			}
-		} else if(c >= '0' && c <= '9') {
-			if((c - '0') < base) {
+		} else if (c >= '0' && c <= '9') {
+			if ((c - '0') < base) {
 				digit = (c - '0');
 			} else {
 				break;
@@ -101,9 +101,9 @@ unsigned long int strtoul(const char *nptr, char **endptr, int base) {
 			break;
 		}
 
-		ret = (ret * base) + digit;	
-		if(ret < old_ret) {
-			
+		ret = (ret * base) + digit;
+		if (ret < old_ret) {
+
 			/* adding a value should NEVER decrease the result 
 			 * unless an overflow occured!
 			 */
@@ -120,7 +120,7 @@ unsigned long int strtoul(const char *nptr, char **endptr, int base) {
 	 * *nptr is not '\0' but **endptr is '\0' on return, the entire string is
 	 * valid.
 	 */
-	if(endptr) {
+	if (endptr) {
 		*endptr = (char *)nptr;
 	}
 
@@ -133,12 +133,12 @@ unsigned long int strtoul(const char *nptr, char **endptr, int base) {
 	 * Precisely the same holds for strtoull() (with ULLONG_MAX instead of
 	 * ULONG_MAX).
 	 */
-	 
+
 	/* NOTE: No need to special case the overflow with negation, it is covered 
 	 * by the primary check above
 	 */
 
-	if(!err) {
+	if (!err) {
 		return neg ? -ret : ret;
 	} else {
 		errno = err;

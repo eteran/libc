@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <wchar.h>
 #include <assert.h>
+#include <wchar.h>
 
 /*------------------------------------------------------------------------------
 // Name: wmemchr
@@ -13,8 +13,8 @@ wchar_t *wmemchr(const wchar_t *s, wchar_t c, size_t n) {
 
 	assert(s);
 
-	while(n--) {
-		if(*s_ptr == cmp) {
+	while (n--) {
+		if (*s_ptr == cmp) {
 			return (wchar_t *)s_ptr;
 		}
 		++s_ptr;

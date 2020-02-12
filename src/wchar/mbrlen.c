@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <wchar.h>
 #include <assert.h>
+#include <wchar.h>
 
 /*------------------------------------------------------------------------------
 // Name: mbrlen

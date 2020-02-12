@@ -16,8 +16,8 @@
 /* TODO(eteran): implement this */
 
 #define DO_WRITE_CHAR(s, n, ch) \
-if(n != 0) {                    \
-}
+	if (n != 0) {               \
+	}
 
 /*------------------------------------------------------------------------------
 // Name: wcsftime
@@ -27,10 +27,10 @@ size_t wcsftime(wchar_t *s, size_t max, const wchar_t *format, const struct tm *
 	(void)max;
 	(void)tm;
 
-	while(*format != L'\0') {
-		if(*format == L'%') {
+	while (*format != L'\0') {
+		if (*format == L'%') {
 			++format;
-			switch(*format) {
+			switch (*format) {
 			case L'a':
 			case L'A':
 			case L'b':
@@ -143,5 +143,4 @@ size_t wcsftime(wchar_t *s, size_t max, const wchar_t *format, const struct tm *
 	}
 
 	return 0;
-
 }

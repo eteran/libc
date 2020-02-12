@@ -1,8 +1,8 @@
 
 #define __ELIBC_SOURCE
+#include <stdarg.h>
 #include <stdio.h>
 #include <wchar.h>
-#include <stdarg.h>
 
 /*------------------------------------------------------------------------------
 // Name: wscanf

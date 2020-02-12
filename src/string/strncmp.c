@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <string.h>
 #include <assert.h>
+#include <string.h>
 
 /*------------------------------------------------------------------------------
 // Name: strncmp
@@ -12,7 +12,7 @@ int strncmp(const char *s1, const char *s2, size_t n) {
 	assert(s1);
 	assert(s2);
 
-	while(!ret && (*s1 || *s2) && n--) {
+	while (!ret && (*s1 || *s2) && n--) {
 		ret = (*s1++ - *s2++);
 	}
 

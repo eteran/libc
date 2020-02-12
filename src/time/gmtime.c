@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <time.h>
 #include <stdint.h>
+#include <time.h>
 
 #define ONE_DAY 86400
 
@@ -21,12 +21,12 @@ static int __elibc_get_year(time_t t, time_t *out) {
 	/* TODO(eteran): handle this better */
 	int64_t x = 0;
 
-	while(x < t) {
+	while (x < t) {
 		x += ONE_DAY * (__elibc_is_leapyear(year) ? 366 : 365);
 		year += 1;
 	}
 
-	while(x > t) {
+	while (x > t) {
 		x -= ONE_DAY * (__elibc_is_leapyear(year - 1) ? 366 : 365);
 		year -= 1;
 	}
@@ -41,7 +41,7 @@ static int __elibc_get_year(time_t t, time_t *out) {
 //----------------------------------------------------------------------------*/
 static int __elibc_get_weekday(int year, int month, int day) {
 
-	static const int tab[12] = { 0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5 };
+	static const int tab[12] = {0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5};
 
 	int r = year;
 	r += (year / 4);
@@ -58,24 +58,23 @@ static int __elibc_get_weekday(int year, int month, int day) {
 // Name: __elibc_get_date
 //----------------------------------------------------------------------------*/
 static int __elibc_get_date(time_t t, int year, int *mon, int *day, int *wday) {
-	static const int day_tab[12]      = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-	static const int leap_day_tab[12] = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-	const int *d = __elibc_is_leapyear(year) ? leap_day_tab : day_tab;
+	static const int day_tab[12]      = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	static const int leap_day_tab[12] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	const int *d                      = __elibc_is_leapyear(year) ? leap_day_tab : day_tab;
 
 	time_t n = 0;
 	int i;
 	int j;
-	for(i = 0; i < 12; ++i) {
-		for(j = 1; j <= d[i]; ++j) {
-			if(n == t) {
-				*day = j;
-				*mon = i;
+	for (i = 0; i < 12; ++i) {
+		for (j = 1; j <= d[i]; ++j) {
+			if (n == t) {
+				*day  = j;
+				*mon  = i;
 				*wday = __elibc_get_weekday(year, i, j);
 				return 0;
 			}
 			n += 1;
 		}
-
 	}
 	return -1;
 }
@@ -84,7 +83,7 @@ static int __elibc_get_date(time_t t, int year, int *mon, int *day, int *wday) {
 // Name: gmtime_r
 //----------------------------------------------------------------------------*/
 struct tm *gmtime_r(const time_t *timep, struct tm *result) {
-	if(!timep) {
+	if (!timep) {
 		/* TODO(eteran): set errno */
 		return 0;
 	} else {

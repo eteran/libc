@@ -9,6 +9,6 @@ long int wcstol(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr, int b
 	(void)nptr;
 	(void)endptr;
 	(void)base;
-	
+
 	return 0;
 }

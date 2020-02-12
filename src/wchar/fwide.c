@@ -1,8 +1,8 @@
 
 #define __ELIBC_SOURCE
+#include <assert.h>
 #include <stdio.h>
 #include <wchar.h>
-#include <assert.h>
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_fwide
@@ -10,19 +10,19 @@
 int __elibc_fwide(FILE *stream, int mode) {
 
 	assert(stream);
-	
+
 	/* When mode is nonzero, we first attempt to set the orientation */
-	if(mode != 0) {
-		if(_FDATA(stream)->orientation == 0) {
-			if(mode > 0) {
+	if (mode != 0) {
+		if (_FDATA(stream)->orientation == 0) {
+			if (mode > 0) {
 				_FDATA(stream)->orientation = 3;
-			} else if(mode < 0) {
+			} else if (mode < 0) {
 				_FDATA(stream)->orientation = 2;
 			}
 		}
 	}
-	
-	switch(_FDATA(stream)->orientation) {
+
+	switch (_FDATA(stream)->orientation) {
 	case 0: /* unset */
 		return 0;
 	case 1: /* invalid */

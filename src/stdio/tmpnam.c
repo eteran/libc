@@ -10,9 +10,9 @@
 // Name: tmpnam
 //----------------------------------------------------------------------------*/
 char *tmpnam(char *s) {
-	char *                    p = 0;
+	char *p = 0;
 	static _Thread_local char buf[L_tmpnam];
-	static _Thread_local int  limit = 0;
+	static _Thread_local int limit = 0;
 
 	if (limit < TMP_MAX) {
 		++limit;

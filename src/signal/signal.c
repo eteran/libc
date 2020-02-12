@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include "c/_support.h"
 #include "signal.h"
+#include "c/_support.h"
 
 /*------------------------------------------------------------------------------
 // Name:

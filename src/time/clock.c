@@ -1,8 +1,8 @@
 
 #define __ELIBC_SOURCE
+#include "c/_support.h"
 #include <stdio.h>
 #include <time.h>
-#include "c/_support.h"
 
 /*------------------------------------------------------------------------------
 // Name: clock
@@ -15,10 +15,9 @@ clock_t clock(void) {
 	 */
 
 	struct timeval tv;
-	if(__elibc_sys_gettimeofday(&tv, 0) == -1) {
+	if (__elibc_sys_gettimeofday(&tv, 0) == -1) {
 		return (clock_t)-1;
 	}
-
 
 	/* this assumes that CLOCKS_PER_SEC == 1000000, 
 	 * which it is according to POSIX

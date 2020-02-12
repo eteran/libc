@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <stdlib.h>
 #include <assert.h>
+#include <stdlib.h>
 
 #define ELEMENT_PTR(base, index, size) (((char *)(base)) + ((index) * (size)))
 
@@ -17,11 +17,11 @@ void *bsearch(const void *key, const void *base, size_t nmemb, size_t size, __co
 	assert(base);
 	assert(compar);
 
-	if(size == 0 || nmemb == 0) {
+	if (size == 0 || nmemb == 0) {
 		return 0;
 	}
 
-	while(high > low) {
+	while (high > low) {
 
 		/* split search in to halves */
 		const size_t i = (high + low) / 2;
@@ -31,10 +31,10 @@ void *bsearch(const void *key, const void *base, size_t nmemb, size_t size, __co
 		const int cmp    = compar(key, item);
 
 		/* check results, go high or low or we found it ... */
-		if(cmp < 0) {
+		if (cmp < 0) {
 			high = i;
-		} else if(cmp > 0) {
-			low  = i + 1;
+		} else if (cmp > 0) {
+			low = i + 1;
 		} else {
 			return item;
 		}

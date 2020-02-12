@@ -9,8 +9,8 @@
 wchar_t *wmemset(wchar_t *s, wchar_t c, size_t n) {
 
 	/* traditional memset */
-	wchar_t *     s_ptr = s;
-	const wchar_t ch    = c;
+	wchar_t *s_ptr   = s;
+	const wchar_t ch = c;
 
 	assert(s);
 

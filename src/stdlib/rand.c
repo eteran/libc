@@ -1,8 +1,8 @@
 
 #define __ELIBC_SOURCE
-#include <stdlib.h>
-#include <limits.h>
 #include <assert.h>
+#include <limits.h>
+#include <stdlib.h>
 
 #define C 12345
 #define A 1103515245
@@ -31,7 +31,7 @@ int rand_r(unsigned int *seedp) {
 		next *= A;
 		next += C;
 		result <<= 10;
-		result ^=  (next / 65536) & 0x3ff;
+		result ^= (next / 65536) & 0x3ff;
 
 		next *= A;
 		next += C;

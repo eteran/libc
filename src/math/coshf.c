@@ -33,5 +33,4 @@ float coshf(float x) {
 	return __elibc_coshf(x);
 }
 
-
 #endif
