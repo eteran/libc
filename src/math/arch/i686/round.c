@@ -3,6 +3,8 @@
 #include <fenv.h>
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_round
 //----------------------------------------------------------------------------*/
@@ -21,3 +23,5 @@ static double __elibc_round(double x) {
 double round(double x) {
 	return __elibc_round(x);
 }
+
+#endif

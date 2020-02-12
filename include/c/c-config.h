@@ -53,7 +53,7 @@
 #endif
 
 /* floating point math supported */
-#if defined(__SSE2_MATH__) || defined(__SSE_MATH__)
+#if defined(__SSE2_MATH__) || defined(__SSE_MATH__) || defined(__i386__)
 #define _HAS_FPU
 #endif
 

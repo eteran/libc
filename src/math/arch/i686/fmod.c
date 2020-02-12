@@ -2,6 +2,8 @@
 #define __ELIBC_SOURCE
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_fmod
 //----------------------------------------------------------------------------*/
@@ -24,3 +26,5 @@ static double __elibc_fmod(double x, double y) {
 double fmod(double x, double y) {
 	return __elibc_fmod(x, y);
 }
+
+#endif

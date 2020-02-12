@@ -2,6 +2,8 @@
 #define __ELIBC_SOURCE
 #include <math.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_atan2
 //----------------------------------------------------------------------------*/
@@ -31,3 +33,5 @@ double atan2(double y, double x) {
 
 	return __elibc_atan2(y, x);
 }
+
+#endif

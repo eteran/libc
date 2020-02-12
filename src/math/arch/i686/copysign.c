@@ -4,6 +4,8 @@
 #include <math.h>
 #include <stdint.h>
 
+#ifdef _HAS_FPU
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_copysign
 // Note: assumes IEEE floats
@@ -38,3 +40,5 @@ static double __elibc_copysign(double x, double y) {
 double copysign(double x, double y) {
 	return __elibc_copysign(x, y);
 }
+
+#endif
