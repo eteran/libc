@@ -1,7 +1,7 @@
 #include <limits.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 
 int compare(const void *a, const void *b) {
 	int arg1 = *(const int *)(a);
@@ -14,7 +14,7 @@ int compare(const void *a, const void *b) {
 
 int main(void) {
 
-	int32_t a[] = {-2, 99, 0, -743, 2, INT_MIN, 4};
+	int a[] = {-2, 99, 0, -743, 2, INT_MIN, 4};
 
 	const size_t size = sizeof(a) / sizeof(*a);
 

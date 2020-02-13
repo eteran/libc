@@ -21,17 +21,17 @@
 #define __ELIBC_SOURCE
 #undef NDEBUG
 #include <assert.h>
+#include <errno.h>
+#include <fenv.h>
+#include <limits.h>
 #include <locale.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <wchar.h>
-#include <fenv.h>
-#include <limits.h>
 #include <tgmath.h>
-#include <math.h>
-#include <errno.h>
 #include <time.h>
+#include <wchar.h>
 
 #if 0
 /* UTF-8 single byte feeding test for mbrtowc(),
@@ -195,15 +195,13 @@ static int check_ascii(const char *locname) {
 #endif
 
 void test_printf(void) {
-	
+
 	char buffer[256];
 	snprintf(buffer, sizeof(buffer), "%s%c%s", "hello", ' ', "world");
 	assert(strcmp(buffer, "hello world") == 0);
 
-
 	snprintf(buffer, sizeof(buffer), "%d", 0x1234);
 	assert(strcmp(buffer, "4660") == 0);
-
 
 	snprintf(buffer, sizeof(buffer), "%x", 0x1234);
 	assert(strcmp(buffer, "1234") == 0);
@@ -216,35 +214,34 @@ void test_printf(void) {
 }
 
 void test_strftime(void) {
-    time_t t = time(0);
+	time_t t = time(0);
 	printf("Time: %ld\n", t);
-    char buf[100];
-    if (strftime(buf, sizeof(buf), "[%d]", localtime(&t))) {
+	char buf[100];
+	if (strftime(buf, sizeof(buf), "[%d]", localtime(&t))) {
 		printf("SNPRINTF: %s\n", buf);
-    }
+	}
 }
 
 int main(void) {
 
 	int result = 0;
 	printf("Starting Tests...\n");
-	
+
 	test_printf();
 	test_strftime();
 
-
+#ifdef _HAVE_FPU
 	printf("ldexp: %f\n", ldexp(2, -4));
-	
-	
+#endif
+
 	{
 		char s[] = "Hello World";
-		for(char *p = strtok(s, " "); p; p = strtok(0, " ")) {
+		for (char *p = strtok(s, " "); p; p = strtok(0, " ")) {
 			printf("Token: %s\n", p);
 		}
 	}
-	
 
-#if 1
+#ifdef _HAVE_FPU
 	double x = sin(45);
 	double y = cos(x);
 	double z = tan(y);
