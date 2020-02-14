@@ -34,5 +34,4 @@ target_link_libraries(c-string LINK_PUBLIC
 	libc-headers
 )
 
-set_property(TARGET c-string PROPERTY C_STANDARD ${LIBC_STANDARD})
 set_property(TARGET c-string PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})

@@ -13,5 +13,4 @@ target_link_libraries(c-crt LINK_PUBLIC
 	libc-headers
 )
 
-set_property(TARGET c-crt PROPERTY C_STANDARD ${LIBC_STANDARD})
 set_property(TARGET c-crt PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})

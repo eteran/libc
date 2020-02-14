@@ -13,5 +13,4 @@ target_link_libraries(c-inttypes LINK_PUBLIC
 	c-stdlib
 	libc-headers
 )
-set_property(TARGET c-inttypes PROPERTY C_STANDARD ${LIBC_STANDARD})
 set_property(TARGET c-inttypes PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})

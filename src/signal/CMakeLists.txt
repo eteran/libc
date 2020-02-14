@@ -11,5 +11,4 @@ target_link_libraries(c-signal LINK_PUBLIC
 	libc-headers
 )
 
-set_property(TARGET c-signal PROPERTY C_STANDARD ${LIBC_STANDARD})
 set_property(TARGET c-signal PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})

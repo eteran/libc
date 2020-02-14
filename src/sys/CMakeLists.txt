@@ -7,7 +7,6 @@ add_library (c-sys STATIC
 	system.cpp
 )
 
-set_property(TARGET c-sys PROPERTY C_STANDARD ${LIBC_STANDARD})
 set_property(TARGET c-sys PROPERTY CXX_STANDARD 11)
 set_property(TARGET c-sys PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 

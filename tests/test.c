@@ -214,9 +214,9 @@ void test_printf(void) {
 }
 
 void test_strftime(void) {
+	char buf[100];
 	time_t t = time(0);
 	printf("Time: %ld\n", t);
-	char buf[100];
 	if (strftime(buf, sizeof(buf), "[%d]", localtime(&t))) {
 		printf("SNPRINTF: %s\n", buf);
 	}
@@ -236,7 +236,8 @@ int main(void) {
 
 	{
 		char s[] = "Hello World";
-		for (char *p = strtok(s, " "); p; p = strtok(0, " ")) {
+		char *p;
+		for (p = strtok(s, " "); p; p = strtok(0, " ")) {
 			printf("Token: %s\n", p);
 		}
 	}

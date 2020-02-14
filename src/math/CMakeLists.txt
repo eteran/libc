@@ -178,6 +178,5 @@ add_library (c-math STATIC
 target_link_libraries(c-math LINK_PUBLIC 
 	libc-headers
 )
-set_property(TARGET c-math PROPERTY C_STANDARD ${LIBC_STANDARD})
 set_property(TARGET c-math PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 
