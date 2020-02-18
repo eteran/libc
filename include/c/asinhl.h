@@ -1,6 +1,6 @@
 
-#ifndef ASINHL_20140701_H_
-#define ASINHL_20140701_H_
+#ifndef _C_ASINHL_H_20140701_
+#define _C_ASINHL_H_20140701_
 
 _LIBC_BEGIN
 

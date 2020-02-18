@@ -1,6 +1,6 @@
 
-#ifndef _NULL_20051228_H_
-#define _NULL_20051228_H_
+#ifndef _C_NULL_H_20051228_
+#define _C_NULL_H_20051228_
 
 #ifdef __cplusplus
 	#ifdef __GNUC__

@@ -1,6 +1,6 @@
 
-#ifndef __C11_WARNING_H_
-#define __C11_WARNING_H_
+#ifndef _C_C11_WARNING_H_20200218_
+#define _C_C11_WARNING_H_20200218_
 
 /* requires c11, but we'll accept c++ for sanity's sake */
 #if !defined(__cplusplus) && !defined(_HAS_C11) && !defined(__ELIBC_SOURCE)

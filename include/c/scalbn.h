@@ -1,6 +1,6 @@
 
-#ifndef SCALBN_20140701_H_
-#define SCALBN_20140701_H_
+#ifndef _C_SCALBN_H_20140701_
+#define _C_SCALBN_H_20140701_
 
 _LIBC_BEGIN
 

@@ -1,6 +1,6 @@
 
-#ifndef SCANF_20051228_H_
-#define SCANF_20051228_H_
+#ifndef _C_SCANF_H_20051228_
+#define _C_SCANF_H_20051228_
 
 _LIBC_BEGIN
 

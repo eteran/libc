@@ -1,6 +1,6 @@
 
-#ifndef SNPRINTF_20051228_H_
-#define SNPRINTF_20051228_H_
+#ifndef _C_SNPRINTF_H_20051228_
+#define _C_SNPRINTF_H_20051228_
 
 #include "arch_size_t.h"
 

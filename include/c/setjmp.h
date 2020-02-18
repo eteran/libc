@@ -1,6 +1,6 @@
 
-#ifndef SETJMP_20051228_H_
-#define SETJMP_20051228_H_
+#ifndef _C_SETJMP_H_20051228_
+#define _C_SETJMP_H_20051228_
 
 _LIBC_BEGIN
 

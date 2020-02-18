@@ -1,6 +1,6 @@
 
-#ifndef CBRTL_20140701_H_
-#define CBRTL_20140701_H_
+#ifndef _C_CBRTL_H_20140701_
+#define _C_CBRTL_H_20140701_
 
 _LIBC_BEGIN
 

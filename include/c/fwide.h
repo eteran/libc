@@ -1,6 +1,6 @@
 
-#ifndef FWIDE_20140316_H_
-#define FWIDE_20140316_H_
+#ifndef _C_FWIDE_H_20140316_
+#define _C_FWIDE_H_20140316_
 
 #include "_file.h"
 

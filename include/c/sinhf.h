@@ -1,6 +1,6 @@
 
-#ifndef SINHF_20140701_H_
-#define SINHF_20140701_H_
+#ifndef _C_SINHF_H_20140701_
+#define _C_SINHF_H_20140701_
 
 _LIBC_BEGIN
 

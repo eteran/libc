@@ -1,6 +1,6 @@
 
-#ifndef ABS_20051228_H_
-#define ABS_20051228_H_
+#ifndef _C_ABS_H_20051228_
+#define _C_ABS_H_20051228_
 
 _LIBC_BEGIN
 

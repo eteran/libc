@@ -1,6 +1,6 @@
 
-#ifndef FSCANF_20051228_H_
-#define FSCANF_20051228_H_
+#ifndef _C_FSCANF_H_20051228_
+#define _C_FSCANF_H_20051228_
 
 #include "_file.h"
 

@@ -1,6 +1,6 @@
 
-#ifndef EXPF_20140701_H_
-#define EXPF_20140701_H_
+#ifndef _C_EXPF_H_20140701_
+#define _C_EXPF_H_20140701_
 
 _LIBC_BEGIN
 

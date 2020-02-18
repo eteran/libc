@@ -1,6 +1,6 @@
 
-#ifndef FABSF_20140701_H_
-#define FABSF_20140701_H_
+#ifndef _C_FABSF_H_20140701_
+#define _C_FABSF_H_20140701_
 
 _LIBC_BEGIN
 

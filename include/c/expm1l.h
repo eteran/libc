@@ -1,6 +1,6 @@
 
-#ifndef EXPM1L_20140701_H_
-#define EXPM1L_20140701_H_
+#ifndef _C_EXPM1L_H_20140701_
+#define _C_EXPM1L_H_20140701_
 
 _LIBC_BEGIN
 

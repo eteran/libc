@@ -1,6 +1,6 @@
 
-#ifndef HYPOTF_20140701_H_
-#define HYPOTF_20140701_H_
+#ifndef _C_HYPOTF_H_20140701_
+#define _C_HYPOTF_H_20140701_
 
 _LIBC_BEGIN
 

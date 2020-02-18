@@ -1,6 +1,6 @@
 
-#ifndef PRINTF_20051228_H_
-#define PRINTF_20051228_H_
+#ifndef _C_PRINTF_H_20051228_
+#define _C_PRINTF_H_20051228_
 
 _LIBC_BEGIN
 

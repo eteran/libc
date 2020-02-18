@@ -1,6 +1,6 @@
 
-#ifndef MEMSET_20051228_H_
-#define MEMSET_20051228_H_
+#ifndef _C_MEMSET_H_20051228_
+#define _C_MEMSET_H_20051228_
 
 #include "arch_size_t.h"
 

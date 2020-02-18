@@ -1,6 +1,6 @@
 
-#ifndef CLOCK_20100428_H_
-#define CLOCK_20100428_H_
+#ifndef _C_CLOCK_H_20100428_
+#define _C_CLOCK_H_20100428_
 
 #include "_time.h"
 

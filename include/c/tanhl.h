@@ -1,6 +1,6 @@
 
-#ifndef TANHL_20140701_H_
-#define TANHL_20140701_H_
+#ifndef _C_TANHL_H_20140701_
+#define _C_TANHL_H_20140701_
 
 _LIBC_BEGIN
 

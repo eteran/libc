@@ -1,6 +1,6 @@
 
-#ifndef LGAMMA_20140701_H_
-#define LGAMMA_20140701_H_
+#ifndef _C_LGAMMA_H_20140701_
+#define _C_LGAMMA_H_20140701_
 
 _LIBC_BEGIN
 

@@ -1,6 +1,6 @@
 
-#ifndef ARCH_STDINT_20051228_H_
-#define ARCH_STDINT_20051228_H_
+#ifndef _ARCH_X86_64_ARCH_STDINT_H_20051228_
+#define _ARCH_X86_64_ARCH_STDINT_H_20051228_
 
 typedef signed char        int8_t;
 typedef signed short int   int16_t;

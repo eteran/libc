@@ -1,6 +1,6 @@
 
-#ifndef SQRT_20081228_H_
-#define SQRT_20081228_H_
+#ifndef _C_SQRT_H_20081228_
+#define _C_SQRT_H_20081228_
 
 _LIBC_BEGIN
 

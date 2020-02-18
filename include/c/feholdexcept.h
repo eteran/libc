@@ -1,6 +1,6 @@
 
-#ifndef FEHOLDEXCEPT_20140402_H_
-#define FEHOLDEXCEPT_20140402_H_
+#ifndef _C_FEHOLDEXCEPT_H_20140402_
+#define _C_FEHOLDEXCEPT_H_20140402_
 
 #include "arch_fenv_t.h"
 

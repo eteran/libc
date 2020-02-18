@@ -1,6 +1,6 @@
 
-#ifndef FWPRINTF_20140316_H_
-#define FWPRINTF_20140316_H_
+#ifndef _C_FWPRINTF_H_20140316_
+#define _C_FWPRINTF_H_20140316_
 
 #include "arch_wchar_t.h"
 #include "_file.h"

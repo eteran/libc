@@ -1,6 +1,6 @@
 
-#ifndef FFS_20051228_H_
-#define FFS_20051228_H_
+#ifndef _C_FFS_H_20051228_
+#define _C_FFS_H_20051228_
 
 _LIBC_BEGIN
 

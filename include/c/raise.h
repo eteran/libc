@@ -1,6 +1,6 @@
 
-#ifndef RAISE_20140322_H_
-#define RAISE_20140322_H_
+#ifndef _C_RAISE_H_20140322_
+#define _C_RAISE_H_20140322_
 
 _LIBC_BEGIN
 

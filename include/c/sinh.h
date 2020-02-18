@@ -1,6 +1,6 @@
 
-#ifndef SINH_20131011_H_
-#define SINH_20131011_H_
+#ifndef _C_SINH_H_20131011_
+#define _C_SINH_H_20131011_
 
 _LIBC_BEGIN
 

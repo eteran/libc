@@ -1,6 +1,6 @@
 
-#ifndef WCSTOUMAX_20081002_H_
-#define WCSTOUMAX_20081002_H_
+#ifndef _C_WCSTOUMAX_H_20081002_
+#define _C_WCSTOUMAX_H_20081002_
 
 #include "arch_wchar_t.h"
 

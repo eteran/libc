@@ -1,7 +1,7 @@
 /* C89, C94, C99 Compliant */
 
-#ifndef STDLIB_20051228_H_
-#define STDLIB_20051228_H_
+#ifndef _STDLIB_H_20051228_
+#define _STDLIB_H_20051228_
 
 #include "c/c-config.h"
 

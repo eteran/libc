@@ -1,6 +1,6 @@
 
-#ifndef MBSINIT_20140319_H_
-#define MBSINIT_20140319_H_
+#ifndef _C_MBSINIT_H_20140319_
+#define _C_MBSINIT_H_20140319_
 
 #include "_mbstate_t.h"
 

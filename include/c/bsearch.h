@@ -1,6 +1,6 @@
 
-#ifndef BSEARCH_20051228_H_
-#define BSEARCH_20051228_H_
+#ifndef _C_BSEARCH_H_20051228_
+#define _C_BSEARCH_H_20051228_
 
 #include "arch_size_t.h"
 #include "_compar_t.h"

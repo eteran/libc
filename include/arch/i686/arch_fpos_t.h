@@ -1,6 +1,6 @@
 
-#ifndef ARCH_FPOS_T_20051228_H_
-#define ARCH_FPOS_T_20051228_H_
+#ifndef _ARCH_I686_ARCH_FPOS_T_H_20051228_
+#define _ARCH_I686_ARCH_FPOS_T_H_20051228_
 
 typedef unsigned long int fpos_t;
 

@@ -1,6 +1,6 @@
 
-#ifndef FOPEN_20051228_H_
-#define FOPEN_20051228_H_
+#ifndef _C_FOPEN_H_20051228_
+#define _C_FOPEN_H_20051228_
 
 #include "_file.h"
 

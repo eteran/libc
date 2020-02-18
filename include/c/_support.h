@@ -1,6 +1,6 @@
 
-#ifndef _SUPPORT_20051228_H_
-#define _SUPPORT_20051228_H_
+#ifndef _C_SUPPORT_H_20051228_
+#define _C_SUPPORT_H_20051228_
 
 #include "arch_size_t.h"
 #include "arch_off_t.h"

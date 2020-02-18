@@ -1,6 +1,6 @@
 
-#ifndef STRTOD_20051228_H_
-#define STRTOD_20051228_H_
+#ifndef _C_STRTOD_H_20051228_
+#define _C_STRTOD_H_20051228_
 
 _LIBC_BEGIN
 

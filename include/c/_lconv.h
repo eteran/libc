@@ -1,6 +1,6 @@
 
-#ifndef _LCONV_20051228_H_
-#define _LCONV_20051228_H_
+#ifndef _C_LCONV_H_20051228_
+#define _C_LCONV_H_20051228_
 
 struct lconv {
 	/* mandatory fields */

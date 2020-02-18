@@ -1,6 +1,6 @@
 
-#ifndef ISWCTYPE_20140316_H_
-#define ISWCTYPE_20140316_H_
+#ifndef _C_ISWCTYPE_H_20140316_
+#define _C_ISWCTYPE_H_20140316_
 
 #include "_wctype_t.h"
 

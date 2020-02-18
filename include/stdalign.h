@@ -1,7 +1,7 @@
 /* C89, C94, C99 Compliant */
 
-#ifndef STDALIGN_20130922_H_
-#define STDALIGN_20130922_H_
+#ifndef _STDALIGN_H_20130922_
+#define _STDALIGN_H_20130922_
 
 #include "c/c-config.h"
 

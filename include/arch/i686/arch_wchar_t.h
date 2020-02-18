@@ -1,6 +1,6 @@
 
-#ifndef ARCH_WCHAR_T_20051228_H_
-#define ARCH_WCHAR_T_20051228_H_
+#ifndef _ARCH_I686_ARCH_WCHAR_T_H_20051228_
+#define _ARCH_I686_ARCH_WCHAR_T_H_20051228_
 
 /* keyword in C++ */
 #ifndef __cplusplus

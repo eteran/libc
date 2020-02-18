@@ -1,6 +1,6 @@
 
-#ifndef _MBSTATE_T_20140319_H_
-#define _MBSTATE_T_20140319_H_
+#ifndef _C_MBSTATE_T_H_20140319_
+#define _C_MBSTATE_T_H_20140319_
 
 #include "arch_wchar_t.h"
 

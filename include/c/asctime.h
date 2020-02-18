@@ -1,6 +1,6 @@
 
-#ifndef ASCTIME_20051228_H_
-#define ASCTIME_20051228_H_
+#ifndef _C_ASCTIME_H_20051228_
+#define _C_ASCTIME_H_20051228_
 
 #include "arch_size_t.h"
 #include "_time.h"

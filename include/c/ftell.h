@@ -1,6 +1,6 @@
 
-#ifndef FTELL_20051228_H_
-#define FTELL_20051228_H_
+#ifndef _C_FTELL_H_20051228_
+#define _C_FTELL_H_20051228_
 
 #include "_file.h"
 

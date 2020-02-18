@@ -1,6 +1,6 @@
 
-#ifndef TANF_20140701_H_
-#define TANF_20140701_H_
+#ifndef _C_TANF_H_20140701_
+#define _C_TANF_H_20140701_
 
 _LIBC_BEGIN
 

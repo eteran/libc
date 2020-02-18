@@ -1,7 +1,7 @@
 /* C89, C94, C99 Compliant */
 
-#ifndef WCTYPE_20051228_H_
-#define WCTYPE_20051228_H_
+#ifndef _WCTYPE_H_20051228_
+#define _WCTYPE_H_20051228_
 
 #include "c/c-config.h"
 #include "c/_c94_warning.h"

@@ -1,7 +1,7 @@
 /* C89, C94, C99 Compliant */
 
-#ifndef TIME_20051228_H_
-#define TIME_20051228_H_
+#ifndef _TIME_H_20051228_
+#define _TIME_H_20051228_
 
 #include "c/c-config.h"
 

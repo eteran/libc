@@ -1,6 +1,6 @@
 
-#ifndef _TIME_20051228_H_
-#define _TIME_20051228_H_
+#ifndef _C_TIME_H_20051228_
+#define _C_TIME_H_20051228_
 
 typedef long int clock_t;
 typedef long int time_t;

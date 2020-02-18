@@ -1,6 +1,6 @@
 
-#ifndef LRINT_20140701_H_
-#define LRINT_20140701_H_
+#ifndef _C_LRINT_H_20140701_
+#define _C_LRINT_H_20140701_
 
 _LIBC_BEGIN
 

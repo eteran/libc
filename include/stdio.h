@@ -1,7 +1,7 @@
 /* C89, C94, C99 Compliant */
 
-#ifndef STDIO_20051228_H_
-#define STDIO_20051228_H_
+#ifndef _STDIO_H_20051228_
+#define _STDIO_H_20051228_
 
 #include "c/c-config.h"
 

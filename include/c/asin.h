@@ -1,6 +1,6 @@
 
-#ifndef ASIN_20051228_H_
-#define ASIN_20051228_H_
+#ifndef _C_ASIN_H_20051228_
+#define _C_ASIN_H_20051228_
 
 _LIBC_BEGIN
 

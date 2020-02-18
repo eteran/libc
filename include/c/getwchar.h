@@ -1,6 +1,6 @@
 
-#ifndef GETWCHAR_20140316_H_
-#define GETWCHAR_20140316_H_
+#ifndef _C_GETWCHAR_H_20140316_
+#define _C_GETWCHAR_H_20140316_
 
 #include "_wint_t.h"
 

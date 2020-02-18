@@ -1,6 +1,6 @@
 
-#ifndef UNGETC_20090210_H_
-#define UNGETC_20090210_H_
+#ifndef _C_UNGETC_H_20090210_
+#define _C_UNGETC_H_20090210_
 
 #include "_file.h"
 

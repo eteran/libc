@@ -1,6 +1,6 @@
 
-#ifndef CEIL_20081228_H_
-#define CEIL_20081228_H_
+#ifndef _C_CEIL_H_20081228_
+#define _C_CEIL_H_20081228_
 
 _LIBC_BEGIN
 

@@ -1,6 +1,6 @@
 
-#ifndef FEGETENV_20140402_H_
-#define FEGETENV_20140402_H_
+#ifndef _C_FEGETENV_H_20140402_
+#define _C_FEGETENV_H_20140402_
 
 #include "arch_fenv_t.h"
 

@@ -1,6 +1,6 @@
 
-#ifndef WCSTOLL_20140701_H_
-#define WCSTOLL_20140701_H_
+#ifndef _C_WCSTOLL_H_20140701_
+#define _C_WCSTOLL_H_20140701_
 
 #include "arch_wchar_t.h"
 

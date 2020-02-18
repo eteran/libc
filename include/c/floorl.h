@@ -1,6 +1,6 @@
 
-#ifndef FLOORL_20140701_H_
-#define FLOORL_20140701_H_
+#ifndef _C_FLOORL_H_20140701_
+#define _C_FLOORL_H_20140701_
 
 _LIBC_BEGIN
 

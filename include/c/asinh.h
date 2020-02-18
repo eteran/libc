@@ -1,6 +1,6 @@
 
-#ifndef ASINH_20140701_H_
-#define ASINH_20140701_H_
+#ifndef _C_ASINH_H_20140701_
+#define _C_ASINH_H_20140701_
 
 _LIBC_BEGIN
 

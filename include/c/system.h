@@ -1,6 +1,6 @@
 
-#ifndef SYSTEM_20051228_H_
-#define SYSTEM_20051228_H_
+#ifndef _C_SYSTEM_H_20051228_
+#define _C_SYSTEM_H_20051228_
 
 _LIBC_BEGIN
 

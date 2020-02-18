@@ -1,6 +1,6 @@
 
-#ifndef RINTL_20140701_H_
-#define RINTL_20140701_H_
+#ifndef _C_RINTL_H_20140701_
+#define _C_RINTL_H_20140701_
 
 _LIBC_BEGIN
 

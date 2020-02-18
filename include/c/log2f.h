@@ -1,6 +1,6 @@
 
-#ifndef LOG2F_20140701_H_
-#define LOG2F_20140701_H_
+#ifndef _C_LOG2F_H_20140701_
+#define _C_LOG2F_H_20140701_
 
 _LIBC_BEGIN
 

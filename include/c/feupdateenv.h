@@ -1,6 +1,6 @@
 
-#ifndef FEUPDATEENV_20140402_H_
-#define FEUPDATEENV_20140402_H_
+#ifndef _C_FEUPDATEENV_H_20140402_
+#define _C_FEUPDATEENV_H_20140402_
 
 #include "arch_fenv_t.h"
 

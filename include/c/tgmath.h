@@ -1,6 +1,6 @@
 
-#ifndef TGMATH_20051228_H_
-#define TGMATH_20051228_H_
+#ifndef _C_TGMATH_H_20051228_
+#define _C_TGMATH_H_20051228_
 
 #include <math.h>
 #include <complex.h>

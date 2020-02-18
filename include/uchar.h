@@ -1,7 +1,7 @@
 /* C89, C94, C99 Compliant */
 
-#ifndef UCHAR_20130922_H_
-#define UCHAR_20130922_H_
+#ifndef _UCHAR_H_20130922_
+#define _UCHAR_H_20130922_
 
 #include "c/c-config.h"
 #include "c/_c11_warning.h"

@@ -1,6 +1,6 @@
 
-#ifndef FFLUSH_20051228_H_
-#define FFLUSH_20051228_H_
+#ifndef _C_FFLUSH_H_20051228_
+#define _C_FFLUSH_H_20051228_
 
 #include "_file.h"
 

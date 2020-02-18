@@ -1,6 +1,6 @@
 
-#ifndef STRLEN_20051228_H_
-#define STRLEN_20051228_H_
+#ifndef _C_STRLEN_H_20051228_
+#define _C_STRLEN_H_20051228_
 
 #include "arch_size_t.h"
 

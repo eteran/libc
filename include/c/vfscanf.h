@@ -1,6 +1,6 @@
 
-#ifndef VFSCANF_20051228_H_
-#define VFSCANF_20051228_H_
+#ifndef _C_VFSCANF_H_20051228_
+#define _C_VFSCANF_H_20051228_
 
 #include "_file.h"
 

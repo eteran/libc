@@ -1,6 +1,6 @@
 
-#ifndef EXP_20081228_H_
-#define EXP_20081228_H_
+#ifndef _C_EXP_H_20081228_
+#define _C_EXP_H_20081228_
 
 _LIBC_BEGIN
 

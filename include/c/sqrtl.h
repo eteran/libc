@@ -1,6 +1,6 @@
 
-#ifndef SQRTL_20140701_H_
-#define SQRTL_20140701_H_
+#ifndef _C_SQRTL_H_20140701_
+#define _C_SQRTL_H_20140701_
 
 _LIBC_BEGIN
 

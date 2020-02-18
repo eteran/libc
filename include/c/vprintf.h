@@ -1,6 +1,6 @@
 
-#ifndef VPRINTF_20051228_H_
-#define VPRINTF_20051228_H_
+#ifndef _C_VPRINTF_H_20051228_
+#define _C_VPRINTF_H_20051228_
 
 #include "arch_va_list.h"
 

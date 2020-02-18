@@ -1,6 +1,6 @@
 
-#ifndef TRUNCF_20140701_H_
-#define TRUNCF_20140701_H_
+#ifndef _C_TRUNCF_H_20140701_
+#define _C_TRUNCF_H_20140701_
 
 _LIBC_BEGIN
 

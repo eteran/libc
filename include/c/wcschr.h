@@ -1,6 +1,6 @@
 
-#ifndef WCSCHR_20051228_H_
-#define WCSCHR_20051228_H_
+#ifndef _C_WCSCHR_H_20051228_
+#define _C_WCSCHR_H_20051228_
 
 #include "arch_wchar_t.h"
 

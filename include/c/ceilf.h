@@ -1,6 +1,6 @@
 
-#ifndef CEILF_20140701_H_
-#define CEILF_20140701_H_
+#ifndef _C_CEILF_H_20140701_
+#define _C_CEILF_H_20140701_
 
 _LIBC_BEGIN
 

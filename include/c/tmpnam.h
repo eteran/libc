@@ -1,6 +1,6 @@
 
-#ifndef TMPNAM_20051228_H_
-#define TMPNAM_20051228_H_
+#ifndef _C_TMPNAM_H_20051228_
+#define _C_TMPNAM_H_20051228_
 
 _LIBC_BEGIN
 

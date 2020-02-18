@@ -1,6 +1,6 @@
 
-#ifndef FMOD_20051228_H_
-#define FMOD_20051228_H_
+#ifndef _C_FMOD_H_20051228_
+#define _C_FMOD_H_20051228_
 
 _LIBC_BEGIN
 

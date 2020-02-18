@@ -1,7 +1,7 @@
 /* C89, C94, C99 Compliant */
 
-#ifndef SIGNAL_20051228_H_
-#define SIGNAL_20051228_H_
+#ifndef _SIGNAL_H_20051228_
+#define _SIGNAL_H_20051228_
 
 #include "c/c-config.h"
 #include "c/_sighandler_t.h" /* __sighandler_t */

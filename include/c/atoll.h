@@ -1,6 +1,6 @@
 
-#ifndef ATOLL_20140701_H_
-#define ATOLL_20140701_H_
+#ifndef _C_ATOLL_H_20140701_
+#define _C_ATOLL_H_20140701_
 
 _LIBC_BEGIN
 

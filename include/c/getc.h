@@ -1,6 +1,6 @@
 
-#ifndef GETC_20051228_H_
-#define GETC_20051228_H_
+#ifndef _C_GETC_H_20051228_
+#define _C_GETC_H_20051228_
 
 #include "fgetc.h"
 

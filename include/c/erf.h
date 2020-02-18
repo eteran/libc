@@ -1,6 +1,6 @@
 
-#ifndef ERF_20140701_H_
-#define ERF_20140701_H_
+#ifndef _C_ERF_H_20140701_
+#define _C_ERF_H_20140701_
 
 _LIBC_BEGIN
 

@@ -1,6 +1,6 @@
 
-#ifndef NAN_20140701_H_
-#define NAN_20140701_H_
+#ifndef _C_NAN_H_20140701_
+#define _C_NAN_H_20140701_
 
 _LIBC_BEGIN
 

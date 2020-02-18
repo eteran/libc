@@ -1,6 +1,6 @@
 
-#ifndef PUTC_20051228_H_
-#define PUTC_20051228_H_
+#ifndef _C_PUTC_H_20051228_
+#define _C_PUTC_H_20051228_
 
 #include "fputc.h"
 

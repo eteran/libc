@@ -1,6 +1,6 @@
 
-#ifndef ILOGBL_20140701_H_
-#define ILOGBL_20140701_H_
+#ifndef _C_ILOGBL_H_20140701_
+#define _C_ILOGBL_H_20140701_
 
 _LIBC_BEGIN
 

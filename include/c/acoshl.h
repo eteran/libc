@@ -1,6 +1,6 @@
 
-#ifndef ACOSHL_20140701_H_
-#define ACOSHL_20140701_H_
+#ifndef _C_ACOSHL_H_20140701_
+#define _C_ACOSHL_H_20140701_
 
 _LIBC_BEGIN
 

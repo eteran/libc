@@ -1,6 +1,6 @@
 
-#ifndef LLDIV_20051228_H_
-#define LLDIV_20051228_H_
+#ifndef _C_LLDIV_H_20051228_
+#define _C_LLDIV_H_20051228_
 
 _LIBC_BEGIN
 

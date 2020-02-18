@@ -1,6 +1,6 @@
 
-#ifndef ATEXIT_20051228_H_
-#define ATEXIT_20051228_H_
+#ifndef _C_ATEXIT_H_20051228_
+#define _C_ATEXIT_H_20051228_
 
 #define ATEXIT_MAX 32
 

@@ -1,6 +1,6 @@
 
-#ifndef FDIM_20140701_H_
-#define FDIM_20140701_H_
+#ifndef _C_FDIM_H_20140701_
+#define _C_FDIM_H_20140701_
 
 _LIBC_BEGIN
 

@@ -1,6 +1,6 @@
 
-#ifndef ARCH_SETJMP_20051228_H_
-#define ARCH_SETJMP_20051228_H_
+#ifndef _ARCH_I686_ARCH_SETJMP_H_20051228_
+#define _ARCH_I686_ARCH_SETJMP_H_20051228_
 
 struct __elibc_jmp_buf_x86_t {
 	unsigned long edi;

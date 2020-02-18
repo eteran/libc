@@ -1,6 +1,6 @@
 
-#ifndef STRPBRK_20051228_H_
-#define STRPBRK_20051228_H_
+#ifndef _C_STRPBRK_H_20051228_
+#define _C_STRPBRK_H_20051228_
 
 #ifdef __cplusplus
 _PURE const char *strpbrk(const char *s, const char *accept) _NOEXCEPT __asm__("strpbrk");

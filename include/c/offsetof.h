@@ -1,6 +1,6 @@
 
-#ifndef OFFSETOF_20110828_H_
-#define OFFSETOF_20110828_H_
+#ifndef _C_OFFSETOF_H_20110828_
+#define _C_OFFSETOF_H_20110828_
 
 #include "arch_size_t.h"
 

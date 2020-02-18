@@ -1,6 +1,6 @@
 
-#ifndef VSNPRINTF_20051228_H_
-#define VSNPRINTF_20051228_H_
+#ifndef _C_VSNPRINTF_H_20051228_
+#define _C_VSNPRINTF_H_20051228_
 
 #include "arch_size_t.h"
 #include "arch_va_list.h"

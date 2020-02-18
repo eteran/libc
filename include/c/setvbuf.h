@@ -1,6 +1,6 @@
 
-#ifndef SETVBUF_20051228_H_
-#define SETVBUF_20051228_H_
+#ifndef _C_SETVBUF_H_20051228_
+#define _C_SETVBUF_H_20051228_
 
 #include "_file.h"
 #include "arch_size_t.h"

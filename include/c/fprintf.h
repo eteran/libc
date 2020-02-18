@@ -1,6 +1,6 @@
 
-#ifndef FPRINTF_20051228_H_
-#define FPRINTF_20051228_H_
+#ifndef _C_FPRINTF_H_20051228_
+#define _C_FPRINTF_H_20051228_
 
 #include "_file.h"
 

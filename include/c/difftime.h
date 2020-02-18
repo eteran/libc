@@ -1,6 +1,6 @@
 
-#ifndef DIFFTIME_20051228_H_
-#define DIFFTIME_20051228_H_
+#ifndef _C_DIFFTIME_H_20051228_
+#define _C_DIFFTIME_H_20051228_
 
 #include "_time.h"
 

@@ -1,6 +1,6 @@
 
-#ifndef _WCTRANS_T_H_
-#define _WCTRANS_T_H_
+#ifndef _C_WCTRANS_T_H_20200218_
+#define _C_WCTRANS_T_H_20200218_
 
 typedef unsigned int wctrans_t;
 

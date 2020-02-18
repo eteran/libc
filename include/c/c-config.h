@@ -1,6 +1,6 @@
 
-#ifndef FEATURES_20051228_H_
-#define FEATURES_20051228_H_
+#ifndef _C_C_CONFIG_H_20051228_
+#define _C_C_CONFIG_H_20051228_
 
 /* C Version detection */
 #ifdef __STDC_VERSION__
@@ -53,7 +53,7 @@
 #endif
 
 /* floating point math supported */
-#if defined(__SSE2_MATH__) || defined(__SSE_MATH__) || defined(__i386__)
+#if (defined(__x86_64__) && (defined(__SSE2_MATH__) || defined(__SSE_MATH__))) || defined(__i386__)
 #define _HAS_FPU
 #endif
 

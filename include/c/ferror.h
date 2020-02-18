@@ -1,6 +1,6 @@
 
-#ifndef FERROR_20051228_H_
-#define FERROR_20051228_H_
+#ifndef _C_FERROR_H_20051228_
+#define _C_FERROR_H_20051228_
 
 #include "_file.h"
 

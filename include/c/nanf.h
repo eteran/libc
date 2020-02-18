@@ -1,6 +1,6 @@
 
-#ifndef NANF_20140701_H_
-#define NANF_20140701_H_
+#ifndef _C_NANF_H_20140701_
+#define _C_NANF_H_20140701_
 
 _LIBC_BEGIN
 

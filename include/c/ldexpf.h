@@ -1,6 +1,6 @@
 
-#ifndef LDEXPF_20140701_H_
-#define LDEXPF_20140701_H_
+#ifndef _C_LDEXPF_H_20140701_
+#define _C_LDEXPF_H_20140701_
 
 _LIBC_BEGIN
 

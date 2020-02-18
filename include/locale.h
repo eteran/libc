@@ -1,7 +1,7 @@
 /* C89, C94, C99 Compliant */
 
-#ifndef LOCALE_20051228_H_
-#define LOCALE_20051228_H_
+#ifndef _LOCALE_H_20051228_
+#define _LOCALE_H_20051228_
 
 #include "c/c-config.h"
 

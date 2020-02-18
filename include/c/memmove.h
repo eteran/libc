@@ -1,6 +1,6 @@
 
-#ifndef MEMMOVE_20051228_H_
-#define MEMMOVE_20051228_H_
+#ifndef _C_MEMMOVE_H_20051228_
+#define _C_MEMMOVE_H_20051228_
 
 #include "arch_size_t.h"
 

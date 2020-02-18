@@ -1,6 +1,6 @@
 
-#ifndef ABORT_20051228_H_
-#define ABORT_20051228_H_
+#ifndef _C_ABORT_H_20051228_
+#define _C_ABORT_H_20051228_
 
 _LIBC_BEGIN
 

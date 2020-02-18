@@ -1,6 +1,6 @@
 
-#ifndef WCTRANS_20140316_H_
-#define WCTRANS_20140316_H_
+#ifndef _C_WCTRANS_H_20140316_
+#define _C_WCTRANS_H_20140316_
 
 #include "_wctrans_t.h"
 

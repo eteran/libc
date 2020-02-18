@@ -1,6 +1,6 @@
 
-#ifndef _PRINTF_ENGINE_20051228_H_
-#define _PRINTF_ENGINE_20051228_H_
+#ifndef _C_PRINTF_ENGINE_H_20051228_
+#define _C_PRINTF_ENGINE_H_20051228_
 
 #include "c/c-config.h"
 

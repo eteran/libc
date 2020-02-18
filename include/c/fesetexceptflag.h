@@ -1,6 +1,6 @@
 
-#ifndef FESETEXCEPTFLAG_20140402_H_
-#define FESETEXCEPTFLAG_20140402_H_
+#ifndef _C_FESETEXCEPTFLAG_H_20140402_
+#define _C_FESETEXCEPTFLAG_H_20140402_
 
 #include "arch_fexcept_t.h"
 

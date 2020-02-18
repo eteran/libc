@@ -1,6 +1,6 @@
 
-#ifndef ATOI_20051228_H_
-#define ATOI_20051228_H_
+#ifndef _C_ATOI_H_20051228_
+#define _C_ATOI_H_20051228_
 
 _LIBC_BEGIN
 

@@ -1,6 +1,6 @@
 
-#ifndef SINL_20051228_H_
-#define SINL_20051228_H_
+#ifndef _C_SINL_H_20051228_
+#define _C_SINL_H_20051228_
 
 _LIBC_BEGIN
 

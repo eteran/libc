@@ -1,6 +1,6 @@
 
-#ifndef FMAL_20140701_H_
-#define FMAL_20140701_H_
+#ifndef _C_FMAL_H_20140701_
+#define _C_FMAL_H_20140701_
 
 _LIBC_BEGIN
 

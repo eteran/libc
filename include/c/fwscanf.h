@@ -1,6 +1,6 @@
 
-#ifndef FWSCANF_20140316_H_
-#define FWSCANF_20140316_H_
+#ifndef _C_FWSCANF_H_20140316_
+#define _C_FWSCANF_H_20140316_
 
 #include "arch_wchar_t.h"
 #include "_file.h"

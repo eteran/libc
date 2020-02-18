@@ -1,6 +1,6 @@
 
-#ifndef STRTOL_20051228_H_
-#define STRTOL_20051228_H_
+#ifndef _C_STRTOL_H_20051228_
+#define _C_STRTOL_H_20051228_
 
 _LIBC_BEGIN
 

@@ -1,6 +1,6 @@
 
-#ifndef STRLCAT_20051228_H_
-#define STRLCAT_20051228_H_
+#ifndef _C_STRLCAT_H_20051228_
+#define _C_STRLCAT_H_20051228_
 
 #include "arch_size_t.h"
 

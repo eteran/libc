@@ -1,6 +1,6 @@
 
-#ifndef BTOWC_20140316_H_
-#define BTOWC_20140316_H_
+#ifndef _C_BTOWC_H_20140316_
+#define _C_BTOWC_H_20140316_
 
 #include "_wint_t.h"
 

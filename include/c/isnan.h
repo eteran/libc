@@ -1,6 +1,6 @@
 
-#ifndef ISNAN_20110831_H_
-#define ISNAN_20110831_H_
+#ifndef _C_ISNAN_H_20110831_
+#define _C_ISNAN_H_20110831_
 
 #ifndef isnan
 #define isnan(x) ((x) != (x))

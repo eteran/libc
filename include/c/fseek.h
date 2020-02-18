@@ -1,6 +1,6 @@
 
-#ifndef FSEEK_20051228_H_
-#define FSEEK_20051228_H_
+#ifndef _C_FSEEK_H_20051228_
+#define _C_FSEEK_H_20051228_
 
 #include "_file.h"
 

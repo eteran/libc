@@ -1,6 +1,6 @@
 
-#ifndef WCSFTIME_20140316_H_
-#define WCSFTIME_20140316_H_
+#ifndef _C_WCSFTIME_H_20140316_
+#define _C_WCSFTIME_H_20140316_
 
 #include "_time.h"
 #include "arch_wchar_t.h"

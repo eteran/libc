@@ -1,6 +1,6 @@
 
-#ifndef STRRCHR_20051228_H_
-#define STRRCHR_20051228_H_
+#ifndef _C_STRRCHR_H_20051228_
+#define _C_STRRCHR_H_20051228_
 
 #ifdef __cplusplus
 _PURE const char *strrchr(const char *s, int c) _NOEXCEPT __asm__("strrchr");

@@ -1,6 +1,6 @@
 
-#ifndef WCTOB_20140316_H_
-#define WCTOB_20140316_H_
+#ifndef _C_WCTOB_H_20140316_
+#define _C_WCTOB_H_20140316_
 
 _LIBC_BEGIN
 

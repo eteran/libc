@@ -1,6 +1,6 @@
 
-#ifndef UNGETWC_20140316_H_
-#define UNGETWC_20140316_H_
+#ifndef _C_UNGETWC_H_20140316_
+#define _C_UNGETWC_H_20140316_
 
 #include "_wint_t.h"
 #include "_file.h"

@@ -1,6 +1,6 @@
 
-#ifndef TMPFILE_20051228_H_
-#define TMPFILE_20051228_H_
+#ifndef _C_TMPFILE_H_20051228_
+#define _C_TMPFILE_H_20051228_
 
 #include "_file.h"
 

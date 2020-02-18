@@ -1,6 +1,6 @@
 
-#ifndef FILENO_20061013_H_
-#define FILENO_20061013_H_
+#ifndef _C_FILENO_H_20061013_
+#define _C_FILENO_H_20061013_
 
 /* NOTE: POSIX, not C */
 

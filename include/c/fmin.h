@@ -1,6 +1,6 @@
 
-#ifndef FMIN_20140701_H_
-#define FMIN_20140701_H_
+#ifndef _C_FMIN_H_20140701_
+#define _C_FMIN_H_20140701_
 
 _LIBC_BEGIN
 

@@ -1,6 +1,6 @@
 
-#ifndef BCMP_20051228_H_
-#define BCMP_20051228_H_
+#ifndef _C_BCMP_H_20051228_
+#define _C_BCMP_H_20051228_
 
 #include "arch_size_t.h"
 

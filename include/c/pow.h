@@ -1,6 +1,6 @@
 
-#ifndef POW_20080307_H_
-#define POW_20080307_H_
+#ifndef _C_POW_H_20080307_
+#define _C_POW_H_20080307_
 
 _LIBC_BEGIN
 

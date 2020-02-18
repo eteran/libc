@@ -1,6 +1,6 @@
 
-#ifndef ARCH_STDARG_20140128_H_
-#define ARCH_STDARG_20140128_H_
+#ifndef _ARCH_X86_64_ARCH_STDARG_H_20140128_
+#define _ARCH_X86_64_ARCH_STDARG_H_20140128_
 
 #if defined(__GNUC__)
 #define va_start(v,l)        __builtin_va_start(v, l)

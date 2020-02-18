@@ -1,6 +1,6 @@
 
-#ifndef _FILE_20051228_H_
-#define _FILE_20051228_H_
+#ifndef _C_FILE_H_20051228_
+#define _C_FILE_H_20051228_
 
 #define __ELIBC_FILE_STATIC_ALLOC 0x01 /* the allocation is tracked seperately for internal and general data */
 #define __ELIBC_FILE_DEL_ON_CLOSE 0x02

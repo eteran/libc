@@ -1,6 +1,6 @@
 
-#ifndef COSH_20131011_H_
-#define COSH_20131011_H_
+#ifndef _C_COSH_H_20131011_
+#define _C_COSH_H_20131011_
 
 _LIBC_BEGIN
 

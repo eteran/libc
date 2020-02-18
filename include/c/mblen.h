@@ -1,6 +1,6 @@
 
-#ifndef MBLEN_20051228_H_
-#define MBLEN_20051228_H_
+#ifndef _C_MBLEN_H_20051228_
+#define _C_MBLEN_H_20051228_
 
 #include "arch_size_t.h"
 

@@ -1,6 +1,6 @@
 _CONST 
-#ifndef TRUNCL_20140701_H_
-#define TRUNCL_20140701_H_
+#ifndef _C_TRUNCL_H_20140701_
+#define _C_TRUNCL_H_20140701_
 
 _LIBC_BEGIN
 

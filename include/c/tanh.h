@@ -1,6 +1,6 @@
 
-#ifndef TANH_20131011_H_
-#define TANH_20131011_H_
+#ifndef _C_TANH_H_20131011_
+#define _C_TANH_H_20131011_
 
 _LIBC_BEGIN
 

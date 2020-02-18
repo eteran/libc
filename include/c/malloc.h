@@ -1,6 +1,6 @@
 
-#ifndef MALLOC_20051228_H_
-#define MALLOC_20051228_H_
+#ifndef _C_MALLOC_H_20051228_
+#define _C_MALLOC_H_20051228_
 
 #include "arch_size_t.h"
 

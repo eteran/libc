@@ -1,6 +1,6 @@
 
-#ifndef VFWPRINTF_20140316_H_
-#define VFWPRINTF_20140316_H_
+#ifndef _C_VFWPRINTF_H_20140316_
+#define _C_VFWPRINTF_H_20140316_
 
 #include <stdarg.h>
 #include "arch_wchar_t.h"

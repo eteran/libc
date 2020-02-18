@@ -1,6 +1,6 @@
 
-#ifndef FABS_20051228_H_
-#define FABS_20051228_H_
+#ifndef _C_FABS_H_20051228_
+#define _C_FABS_H_20051228_
 
 _LIBC_BEGIN
 

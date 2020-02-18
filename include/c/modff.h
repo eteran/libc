@@ -1,6 +1,6 @@
 
-#ifndef MODFF_20140701_H_
-#define MODFF_20140701_H_
+#ifndef _C_MODFF_H_20140701_
+#define _C_MODFF_H_20140701_
 
 _LIBC_BEGIN
 

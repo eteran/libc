@@ -1,6 +1,6 @@
 
-#ifndef STRERROR_20051228_H_
-#define STRERROR_20051228_H_
+#ifndef _C_STRERROR_H_20051228_
+#define _C_STRERROR_H_20051228_
 
 #include "arch_size_t.h"
 

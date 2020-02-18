@@ -1,6 +1,6 @@
 
-#ifndef LDEXP_20051228_H_
-#define LDEXP_20051228_H_
+#ifndef _C_LDEXP_H_20051228_
+#define _C_LDEXP_H_20051228_
 
 _LIBC_BEGIN
 

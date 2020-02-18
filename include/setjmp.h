@@ -1,7 +1,7 @@
 /* C89, C94, C99 Compliant */
 
-#ifndef SETJMP_20051228_H_
-#define SETJMP_20051228_H_
+#ifndef _SETJMP_H_20051228_
+#define _SETJMP_H_20051228_
 
 #include "c/c-config.h"
 #include "arch_setjmp.h"

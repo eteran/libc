@@ -1,7 +1,7 @@
 /* C89, C94, C99 Compliant */
 
-#ifndef STRING_20051228_H_
-#define STRING_20051228_H_
+#ifndef _STRING_H_20051228_
+#define _STRING_H_20051228_
 
 #include "c/c-config.h"
 

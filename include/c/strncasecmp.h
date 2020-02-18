@@ -1,6 +1,6 @@
 
-#ifndef STRNCASECMP_20051228_H_
-#define STRNCASECMP_20051228_H_
+#ifndef _C_STRNCASECMP_H_20051228_
+#define _C_STRNCASECMP_H_20051228_
 
 #include "arch_size_t.h"
 

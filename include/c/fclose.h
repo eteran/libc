@@ -1,6 +1,6 @@
 
-#ifndef FCLOSE_20051228_H_
-#define FCLOSE_20051228_H_
+#ifndef _C_FCLOSE_H_20051228_
+#define _C_FCLOSE_H_20051228_
 
 #include "_file.h"
 

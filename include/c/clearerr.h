@@ -1,6 +1,6 @@
 
-#ifndef CLEARERR_20051228_H_
-#define CLEARERR_20051228_H_
+#ifndef _C_CLEARERR_H_20051228_
+#define _C_CLEARERR_H_20051228_
 
 #include "_file.h"
 

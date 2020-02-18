@@ -1,6 +1,6 @@
 
-#ifndef MEMCPY_20051228_H_
-#define MEMCPY_20051228_H_
+#ifndef _C_MEMCPY_H_20051228_
+#define _C_MEMCPY_H_20051228_
 
 #include "arch_size_t.h"
 

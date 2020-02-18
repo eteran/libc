@@ -1,6 +1,6 @@
 
-#ifndef RAND_20051228_H_
-#define RAND_20051228_H_
+#ifndef _C_RAND_H_20051228_
+#define _C_RAND_H_20051228_
 
 _LIBC_BEGIN
 

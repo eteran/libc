@@ -1,7 +1,7 @@
 /* C89, C94, C99 Compliant */
 
-#ifndef INTTYPES_20051228_H_
-#define INTTYPES_20051228_H_
+#ifndef _INTTYPES_H_20051228_
+#define _INTTYPES_H_20051228_
 
 #include "c/c-config.h"
 #include "c/_c99_warning.h"

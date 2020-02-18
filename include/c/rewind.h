@@ -1,6 +1,6 @@
 
-#ifndef REWIND_20051228_H_
-#define REWIND_20051228_H_
+#ifndef _C_REWIND_H_20051228_
+#define _C_REWIND_H_20051228_
 
 #include "_file.h"
 

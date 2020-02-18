@@ -1,6 +1,6 @@
 
-#ifndef FMODL_20140701_H_
-#define FMODL_20140701_H_
+#ifndef _C_FMODL_H_20140701_
+#define _C_FMODL_H_20140701_
 
 _LIBC_BEGIN
 

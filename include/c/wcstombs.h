@@ -1,6 +1,6 @@
 
-#ifndef WCSTOMBS_20051228_H_
-#define WCSTOMBS_20051228_H_
+#ifndef _C_WCSTOMBS_H_20051228_
+#define _C_WCSTOMBS_H_20051228_
 
 #include "arch_wchar_t.h"
 #include "arch_size_t.h"

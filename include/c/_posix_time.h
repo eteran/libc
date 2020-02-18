@@ -1,6 +1,6 @@
 
-#ifndef _POSIX_TIME_20140704_H_
-#define _POSIX_TIME_20140704_H_
+#ifndef _C_POSIX_TIME_H_20140704_
+#define _C_POSIX_TIME_H_20140704_
 
 #include "_time.h"
 

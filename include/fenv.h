@@ -1,7 +1,7 @@
 /* C89, C94, C99 Compliant */
 
-#ifndef FENV_04012009_H_
-#define FENV_04012009_H_
+#ifndef _FENV_H_04012009_
+#define _FENV_H_04012009_
 
 #include "c/c-config.h"
 #include "c/_c99_warning.h"

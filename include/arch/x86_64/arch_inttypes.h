@@ -1,6 +1,6 @@
 
-#ifndef ARCH_INTTYPES_20140706_H_
-#define ARCH_INTTYPES_20140706_H_
+#ifndef _ARCH_X86_64_ARCH_INTTYPES_H_20140706_
+#define _ARCH_X86_64_ARCH_INTTYPES_H_20140706_
 
 #if !defined(__cplusplus) || defined(_HAS_CXX11) || defined(__STDC_FORMAT_MACROS)
 

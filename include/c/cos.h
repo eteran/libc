@@ -1,6 +1,6 @@
 
-#ifndef COS_20051228_H_
-#define COS_20051228_H_
+#ifndef _C_COS_H_20051228_
+#define _C_COS_H_20051228_
 
 _LIBC_BEGIN
 

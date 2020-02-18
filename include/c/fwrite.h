@@ -1,6 +1,6 @@
 
-#ifndef FWRITE_20060901_H_
-#define FWRITE_20060901_H_
+#ifndef _C_FWRITE_H_20060901_
+#define _C_FWRITE_H_20060901_
 
 #include "arch_size_t.h"
 #include "_file.h"

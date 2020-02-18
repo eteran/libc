@@ -1,6 +1,6 @@
 
-#ifndef WCTYPE_20140316_H_
-#define WCTYPE_20140316_H_
+#ifndef _C_WCTYPE_H_20140316_
+#define _C_WCTYPE_H_20140316_
 
 #include "_wctype_t.h"
 

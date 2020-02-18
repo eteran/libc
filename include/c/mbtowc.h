@@ -1,6 +1,6 @@
 
-#ifndef MBTOWC_20051228_H_
-#define MBTOWC_20051228_H_
+#ifndef _C_MBTOWC_H_20051228_
+#define _C_MBTOWC_H_20051228_
 
 #include "arch_size_t.h"
 #include "arch_wchar_t.h"

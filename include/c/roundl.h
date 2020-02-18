@@ -1,6 +1,6 @@
 
-#ifndef ROUNDL_20140701_H_
-#define ROUNDL_20140701_H_
+#ifndef _C_ROUNDL_H_20140701_
+#define _C_ROUNDL_H_20140701_
 
 _LIBC_BEGIN
 

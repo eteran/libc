@@ -1,6 +1,6 @@
 
-#ifndef WCSWIDTH_20140316_H_
-#define WCSWIDTH_20140316_H_
+#ifndef _C_WCSWIDTH_H_20140316_
+#define _C_WCSWIDTH_H_20140316_
 
 #include "arch_wchar_t.h"
 #include "arch_size_t.h"

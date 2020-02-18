@@ -1,6 +1,6 @@
 
-#ifndef MKTIME_20110401_H_
-#define MKTIME_20110401_H_
+#ifndef _C_MKTIME_H_20110401_
+#define _C_MKTIME_H_20110401_
 
 #include "_time.h"
 

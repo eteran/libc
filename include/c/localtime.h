@@ -1,6 +1,6 @@
 
-#ifndef LOCALTIME_20051228_H_
-#define LOCALTIME_20051228_H_
+#ifndef _C_LOCALTIME_H_20051228_
+#define _C_LOCALTIME_H_20051228_
 
 #include "arch_size_t.h"
 #include "_time.h"

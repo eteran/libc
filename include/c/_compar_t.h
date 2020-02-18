@@ -1,6 +1,6 @@
 
-#ifndef _COMPAR_T_20051228_H_
-#define _COMPAR_T_20051228_H_
+#ifndef _C_COMPAR_T_H_20051228_
+#define _C_COMPAR_T_H_20051228_
 
 typedef int (*__compar_fn_t)(const void *, const void *);
 

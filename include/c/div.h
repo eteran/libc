@@ -1,6 +1,6 @@
 
-#ifndef DIV_20051228_H_
-#define DIV_20051228_H_
+#ifndef _C_DIV_H_20051228_
+#define _C_DIV_H_20051228_
 
 _LIBC_BEGIN
 

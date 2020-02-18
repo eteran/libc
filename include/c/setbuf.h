@@ -1,6 +1,6 @@
 
-#ifndef SETBUF_20051228_H_
-#define SETBUF_20051228_H_
+#ifndef _C_SETBUF_H_20051228_
+#define _C_SETBUF_H_20051228_
 
 #include "_file.h"
 

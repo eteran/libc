@@ -1,6 +1,6 @@
 
-#ifndef PUTS_20051228_H_
-#define PUTS_20051228_H_
+#ifndef _C_PUTS_H_20051228_
+#define _C_PUTS_H_20051228_
 
 _LIBC_BEGIN
 

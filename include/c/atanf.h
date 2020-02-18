@@ -1,6 +1,6 @@
 
-#ifndef ATANF_20140701_H_
-#define ATANF_20140701_H_
+#ifndef _C_ATANF_H_20140701_
+#define _C_ATANF_H_20140701_
 
 _LIBC_BEGIN
 

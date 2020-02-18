@@ -1,6 +1,6 @@
 
-#ifndef PUTWCHAR_20140316_H_
-#define PUTWCHAR_20140316_H_
+#ifndef _C_PUTWCHAR_H_20140316_
+#define _C_PUTWCHAR_H_20140316_
 
 #include "_wint_t.h"
 #include "arch_wchar_t.h"

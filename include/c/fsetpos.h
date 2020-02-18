@@ -1,6 +1,6 @@
 
-#ifndef FSETPOS_20061013_H_
-#define FSETPOS_20061013_H_
+#ifndef _C_FSETPOS_H_20061013_
+#define _C_FSETPOS_H_20061013_
 
 #include "_file.h"
 #include "arch_fpos_t.h"

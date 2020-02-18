@@ -1,6 +1,6 @@
 
-#ifndef ARCH_SIZE_T_20051228_H_
-#define ARCH_SIZE_T_20051228_H_
+#ifndef _ARCH_X86_64_ARCH_SIZE_T_H_20051228_
+#define _ARCH_X86_64_ARCH_SIZE_T_H_20051228_
 
 #ifdef __SIZE_TYPE__
 	typedef __SIZE_TYPE__ size_t;

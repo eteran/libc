@@ -1,6 +1,6 @@
 
-#ifndef POWL_20140701_H_
-#define POWL_20140701_H_
+#ifndef _C_POWL_H_20140701_
+#define _C_POWL_H_20140701_
 
 _LIBC_BEGIN
 

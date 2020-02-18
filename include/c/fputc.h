@@ -1,6 +1,6 @@
 
-#ifndef FPUTC_20051228_H_
-#define FPUTC_20051228_H_
+#ifndef _C_FPUTC_H_20051228_
+#define _C_FPUTC_H_20051228_
 
 #include "_file.h"
 

@@ -1,6 +1,6 @@
 
-#ifndef VSCANF_20051228_H_
-#define VSCANF_20051228_H_
+#ifndef _C_VSCANF_H_20051228_
+#define _C_VSCANF_H_20051228_
 
 #include "arch_va_list.h"
 

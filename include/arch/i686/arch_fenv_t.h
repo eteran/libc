@@ -1,6 +1,6 @@
 
-#ifndef ARCH_FENV_T_20140319_H_
-#define ARCH_FENV_T_20140319_H_
+#ifndef _ARCH_I686_ARCH_FENV_T_H_20140319_
+#define _ARCH_I686_ARCH_FENV_T_H_20140319_
 
 typedef struct {
 	unsigned short __control_word;

@@ -1,7 +1,7 @@
 /* C89, C94, C99 Compliant */
 
-#ifndef TGMATH_20090402_H_
-#define TGMATH_20090402_H_
+#ifndef _TGMATH_H_20090402_
+#define _TGMATH_H_20090402_
 
 #include "c/c-config.h"
 #include "c/_c99_warning.h"

@@ -1,6 +1,6 @@
 
-#ifndef STRSPN_20051228_H_
-#define STRSPN_20051228_H_
+#ifndef _C_STRSPN_H_20051228_
+#define _C_STRSPN_H_20051228_
 
 #include "arch_size_t.h"
 

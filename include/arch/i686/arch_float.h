@@ -1,6 +1,6 @@
 
-#ifndef ARCH_FLOAT_20051228_H_
-#define ARCH_FLOAT_20051228_H_
+#ifndef _ARCH_I686_ARCH_FLOAT_H_20051228_
+#define _ARCH_I686_ARCH_FLOAT_H_20051228_
 
 /* #define FLT_ROUNDS <integer rvalue> */
 

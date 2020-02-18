@@ -1,6 +1,6 @@
 
-#ifndef ATAN2_20081228_H_
-#define ATAN2_20081228_H_
+#ifndef _C_ATAN2_H_20081228_
+#define _C_ATAN2_H_20081228_
 
 _LIBC_BEGIN
 

@@ -1,6 +1,6 @@
 
-#ifndef FMAX_20140701_H_
-#define FMAX_20140701_H_
+#ifndef _C_FMAX_H_20140701_
+#define _C_FMAX_H_20140701_
 
 _LIBC_BEGIN
 

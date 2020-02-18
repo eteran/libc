@@ -1,6 +1,6 @@
 
-#ifndef WCSPBRK_20051228_H_
-#define WCSPBRK_20051228_H_
+#ifndef _C_WCSPBRK_H_20051228_
+#define _C_WCSPBRK_H_20051228_
 
 #include "arch_wchar_t.h"
 

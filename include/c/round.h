@@ -1,6 +1,6 @@
 
-#ifndef ROUND_20051228_H_
-#define ROUND_20051228_H_
+#ifndef _C_ROUND_H_20051228_
+#define _C_ROUND_H_20051228_
 
 _LIBC_BEGIN
 

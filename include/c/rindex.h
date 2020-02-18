@@ -1,6 +1,6 @@
 
-#ifndef RINDEX_20051228_H_
-#define RINDEX_20051228_H_
+#ifndef _C_RINDEX_H_20051228_
+#define _C_RINDEX_H_20051228_
 
 _LIBC_BEGIN
 

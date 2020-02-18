@@ -1,6 +1,6 @@
 
-#ifndef COSHL_20140701_H_
-#define COSHL_20140701_H_
+#ifndef _C_COSHL_H_20140701_
+#define _C_COSHL_H_20140701_
 
 _LIBC_BEGIN
 

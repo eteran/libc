@@ -1,6 +1,6 @@
 
-#ifndef STRDUP_20051228_H_
-#define STRDUP_20051228_H_
+#ifndef _C_STRDUP_H_20051228_
+#define _C_STRDUP_H_20051228_
 
 _LIBC_BEGIN
 

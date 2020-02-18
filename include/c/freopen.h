@@ -1,6 +1,6 @@
 
-#ifndef FREOPEN_20070504_H_
-#define FREOPEN_20070504_H_
+#ifndef _C_FREOPEN_H_20070504_
+#define _C_FREOPEN_H_20070504_
 
 #include "_file.h"
 

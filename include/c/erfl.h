@@ -1,6 +1,6 @@
 
-#ifndef ERFL_20140701_H_
-#define ERFL_20140701_H_
+#ifndef _C_ERFL_H_20140701_
+#define _C_ERFL_H_20140701_
 
 _LIBC_BEGIN
 

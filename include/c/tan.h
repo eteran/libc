@@ -1,6 +1,6 @@
 
-#ifndef TAN_20051228_H_
-#define TAN_20051228_H_
+#ifndef _C_TAN_H_20051228_
+#define _C_TAN_H_20051228_
 
 _LIBC_BEGIN
 

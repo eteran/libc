@@ -1,7 +1,7 @@
 /* C89, C94, C99 Compliant */
 
-#ifndef WCHAR_20051228_H_
-#define WCHAR_20051228_H_
+#ifndef _WCHAR_H_20051228_
+#define _WCHAR_H_20051228_
 
 #include "c/c-config.h"
 #include "c/_c94_warning.h"

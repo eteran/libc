@@ -1,6 +1,6 @@
 
-#ifndef TIME_20061014_H_
-#define TIME_20061014_H_
+#ifndef _C_TIME_H_20061014_
+#define _C_TIME_H_20061014_
 
 _LIBC_BEGIN
 

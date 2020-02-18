@@ -1,6 +1,6 @@
 
-#ifndef FPUTS_20051228_H_
-#define FPUTS_20051228_H_
+#ifndef _C_FPUTS_H_20051228_
+#define _C_FPUTS_H_20051228_
 
 #include "_file.h"
 

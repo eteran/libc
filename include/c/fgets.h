@@ -1,6 +1,6 @@
 
-#ifndef FGETS_20051228_H_
-#define FGETS_20051228_H_
+#ifndef _C_FGETS_H_20051228_
+#define _C_FGETS_H_20051228_
 
 #include "_file.h"
 

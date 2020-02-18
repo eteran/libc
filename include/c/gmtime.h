@@ -1,6 +1,6 @@
 
-#ifndef GMTIME_20081228_H_
-#define GMTIME_20081228_H_
+#ifndef _C_GMTIME_H_20081228_
+#define _C_GMTIME_H_20081228_
 
 #include "_time.h"
 

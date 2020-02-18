@@ -1,6 +1,6 @@
 
-#ifndef SIGNAL_20140322_H_
-#define SIGNAL_20140322_H_
+#ifndef _C_SIGNAL_H_20140322_
+#define _C_SIGNAL_H_20140322_
 
 #include "_sighandler_t.h"
 

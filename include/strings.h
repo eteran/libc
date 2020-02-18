@@ -1,6 +1,7 @@
+
 /* Non standard functions */
-#ifndef STRINGS_20090928_H_
-#define STRINGS_20090928_H_
+#ifndef _STRINGS_H_20090928_
+#define _STRINGS_H_20090928_
 
 #include "c/c-config.h"
 #include "arch_size_t.h" /* size_t */
