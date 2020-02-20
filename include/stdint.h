@@ -4,7 +4,9 @@
 #define _STDINT_H_20051228_
 
 #include "c/c-config.h"
+
 #include "c/_c99_warning.h"
+
 #include "arch_stdint.h"
- 
+
 #endif

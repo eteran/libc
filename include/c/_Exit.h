@@ -1,6 +1,6 @@
 
-#ifndef _C_EXIT_H_20051228_
-#define _C_EXIT_H_20051228_
+#ifndef _C_EXIT_H_20200220_
+#define _C_EXIT_H_20200220_
 
 _LIBC_BEGIN
 

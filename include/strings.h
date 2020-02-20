@@ -4,7 +4,8 @@
 #define _STRINGS_H_20090928_
 
 #include "c/c-config.h"
-#include "arch_size_t.h" /* size_t */
+
+#include "arch_size_t.h"
 
 #include "c/bcmp.h"
 #include "c/bcopy.h"

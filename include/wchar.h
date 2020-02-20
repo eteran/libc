@@ -4,18 +4,16 @@
 #define _WCHAR_H_20051228_
 
 #include "c/c-config.h"
+
 #include "c/_c94_warning.h"
 
-#include "arch_wchar_t.h"    /* wchar_t   */
-#include "arch_size_t.h"     /* size_t    */
-#include "c/_mbstate_t.h" /* mbstate_t */
-#include "c/_wint_t.h"    /* wint_t    */
-#include "c/_null.h"      /* NULL      */
+#include "arch_size_t.h"
+#include "arch_wchar_t.h"
+#include "c/_mbstate_t.h"
+#include "c/_null.h"
+#include "c/_wint_t.h"
 
 struct tm;
-
-/* TODO(eteran): does FILE get defined in this header? seems required ... */
-#include "c/_file.h"      /* FILE      */
 
 #ifndef WEOF
 #define WEOF ((wint_t)-1)
@@ -84,10 +82,10 @@ struct tm;
 #if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(__ELIBC_SOURCE)
 #include "c/vfwscanf.h"
 #include "c/vswscanf.h"
-#include "c/vwscanf.h" 
-#include "c/wcstof.h"  
-#include "c/wcstold.h" 
-#include "c/wcstoll.h" 
+#include "c/vwscanf.h"
+#include "c/wcstof.h"
+#include "c/wcstold.h"
+#include "c/wcstoll.h"
 #include "c/wcstoull.h"
 #endif
 

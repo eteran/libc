@@ -6,11 +6,11 @@
 #include "c/c-config.h"
 
 #if defined(__GNUC__)
-#define __ELIBC_HUGE_VALUE  __builtin_huge_val()
+#define __ELIBC_HUGE_VALUE __builtin_huge_val()
 #define __ELIBC_HUGE_VALUEF __builtin_huge_valf()
 #define __ELIBC_HUGE_VALUEL __builtin_huge_vall()
-#define __ELIBC_INF         __builtin_inf()
-#define __ELIBC_NAN(x)      __builtin_nan(x)
+#define __ELIBC_INF __builtin_inf()
+#define __ELIBC_NAN(x) __builtin_nan(x)
 #else
 #error "no support for nan/inf/huge_value with this compiler"
 #endif
@@ -21,24 +21,24 @@
 #include "c/asin.h"
 #include "c/atan.h"
 #include "c/atan2.h"
+#include "c/ceil.h"
 #include "c/cos.h"
-#include "c/sin.h"
-#include "c/tan.h"
 #include "c/cosh.h"
-#include "c/sinh.h"
-#include "c/tanh.h"
 #include "c/exp.h"
+#include "c/fabs.h"
+#include "c/floor.h"
+#include "c/fmod.h"
 #include "c/frexp.h"
 #include "c/ldexp.h"
 #include "c/log.h"
 #include "c/log10.h"
 #include "c/modf.h"
 #include "c/pow.h"
+#include "c/sin.h"
+#include "c/sinh.h"
 #include "c/sqrt.h"
-#include "c/ceil.h"
-#include "c/fabs.h"
-#include "c/floor.h"
-#include "c/fmod.h"
+#include "c/tan.h"
+#include "c/tanh.h"
 
 #if defined(_HAS_C99) || defined(__ELIBC_SOURCE)
 
@@ -167,30 +167,30 @@
 
 /* TODO(eteran): should we make these depend on FLT_EVAL_METHOD directly ? */
 typedef double double_t;
-typedef float  float_t;
+typedef float float_t;
 
-#define FP_ILOGBNAN (-1-(int)(((unsigned)-1)>>1))
-#define FP_ILOGB0   FP_ILOGBNAN
+#define FP_ILOGBNAN (-1 - (int)(((unsigned)-1) >> 1))
+#define FP_ILOGB0 FP_ILOGBNAN
 
-#define INFINITY  __ELIBC_INF
-#define NAN       __ELIBC_NAN("")
+#define INFINITY __ELIBC_INF
+#define NAN __ELIBC_NAN("")
 
 #define HUGE_VALF __ELIBC_HUGE_VALUEF
 #define HUGE_VALL __ELIBC_HUGE_VALUEL
 
-#define FP_NAN       0
-#define FP_INFINITE  1
-#define FP_ZERO      2
+#define FP_NAN 0
+#define FP_INFINITE 1
+#define FP_ZERO 2
 #define FP_SUBNORMAL 3
-#define FP_NORMAL    4
+#define FP_NORMAL 4
 
 /* NOTE: our FMA[LF} may or may not be "fast", so not defined for now */
 /* FP_FAST_FMA */
 /* FP_FAST_FMAF */
 /* FP_FAST_FMAL */
 
-#define MATH_ERRNO       1
-#define MATH_ERREXCEPT   2
+#define MATH_ERRNO 1
+#define MATH_ERREXCEPT 2
 #define math_errhandling 2 /* TODO(eteran): is this true? */
 
 #include "c/acosh.h"
@@ -243,6 +243,6 @@ typedef float  float_t;
 
 /* POSIX */
 #define M_PI 3.14159265358979323846
-#define M_E  2.7182818284590452354
+#define M_E 2.7182818284590452354
 
 #endif

@@ -4,9 +4,9 @@
 #define _UCHAR_H_20130922_
 
 #include "c/c-config.h"
+
 #include "c/_c11_warning.h"
 #include "c/_mbstate_t.h"
-
 
 #if !defined(__cpp_unicode_characters)
 

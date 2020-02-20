@@ -4,6 +4,7 @@
 #define _INTTYPES_H_20051228_
 
 #include "c/c-config.h"
+
 #include "c/_c99_warning.h"
 
 #include <stdint.h>
@@ -14,7 +15,7 @@
 #include "c/imaxdiv.h"
 #include "c/strtoimax.h"
 #include "c/strtoumax.h"
-#include "c/wcstoimax.h" /* needs wchar_t */
-#include "c/wcstoumax.h" /* needs wchar_t */
+#include "c/wcstoimax.h"
+#include "c/wcstoumax.h"
 
 #endif

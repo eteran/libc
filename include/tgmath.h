@@ -4,9 +4,11 @@
 #define _TGMATH_H_20090402_
 
 #include "c/c-config.h"
+
 #include "c/_c99_warning.h"
-#include <math.h>
+
 #include <complex.h>
+#include <math.h>
 
 /* this macro does all the magic and would need to be updated if we want
  * to support imaginary types as well. Currently, if you pass
