@@ -15,14 +15,13 @@ typedef Elf64_auxv_t auxv_t;
 typedef Elf32_auxv_t auxv_t;
 #endif
 
-extern char **__elibc_environment;
 char **__elibc_environment = 0;
 
 extern int main(int, char *[], char *[]);
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_scan_auxv
-// Desc: 
+// Desc:
 //----------------------------------------------------------------------------*/
 static void __elibc_scan_auxv(char *envp[]) {
 	/* skip the envp and get to the auxv */
@@ -34,7 +33,7 @@ static void __elibc_scan_auxv(char *envp[]) {
 
 		while (auxv->a_type != AT_NULL) {
 			if (auxv->a_type == AT_SYSINFO) {
-				/* now what? */
+				/* TODO(eteran): now what? */
 			}
 			++auxv;
 		}

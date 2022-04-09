@@ -155,8 +155,8 @@ char *setlocale(int category, const char *locname) {
 				char *ret = __elibc_setlocale(current_lconv, LC_ALL, getenv("LC_ALL"), locale_name, sizeof(locale_name));
 				if (!ret) {
 					/* TODO(eteran): fetch each category from the environment here, but first check they are all valid
-						 * before doing anything since POSIX says so
-						 */
+					 * before doing anything since POSIX says so
+					 */
 
 					if (!ret) {
 						ret = __elibc_setlocale(current_lconv, LC_ALL, getenv("LANG"), locale_name, sizeof(locale_name));

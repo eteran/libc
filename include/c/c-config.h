@@ -19,18 +19,9 @@
 #define _HAS_C90
 #endif
 
-#ifdef __cplusplus
-#define _LIBC_BEGIN extern "C" {
-#define _LIBC_END   }
-#else
-#define _LIBC_BEGIN
-#define _LIBC_END
-#endif
-
-
 /* C++ Version detection */
 #ifdef __cplusplus
-#if __cplusplus > 201703L /* TODO(eteran): change this to correct value when it's ready */
+#if __cplusplus >= 202002L
 #define _HAS_CXX20
 #endif
 
@@ -52,28 +43,29 @@
 #endif
 #endif
 
+/* C++ header compatibility */
+#ifdef __cplusplus
+#define _LIBC_BEGIN extern "C" {
+#define _LIBC_END   }
+#else
+#define _LIBC_BEGIN
+#define _LIBC_END
+#endif
+
 /* floating point math supported */
 #if (defined(__x86_64__) && (defined(__SSE2_MATH__) || defined(__SSE_MATH__))) || defined(__i386__)
 #define _HAS_FPU
 #endif
 
 /* restrict keyword support */
-#ifndef _RESTRICT
 #if defined(_HAS_C99)
 #define _RESTRICT restrict
-#elif defined(__GNUC__) || defined(__clang__)
+#elif defined(__GNUC__)
 #define _RESTRICT __restrict
 #else
 #define _RESTRICT
 #endif
-#endif
 
-/* support compilers without the attribute syntax */
-#if !defined(__GNUC__) && defined(__clang__)
-#define __attribute__(__x)
-#endif
-
-#ifndef _NOEXCEPT
 #if defined(_HAS_CXX11)
 #define _NOEXCEPT noexcept
 #elif defined(_HAS_CXX89)
@@ -82,7 +74,6 @@
 #define _NOEXCEPT __attribute__((__nothrow__))
 #else
 #define _NOEXCEPT
-#endif
 #endif
 
 #ifndef _DEPRECATED
@@ -110,26 +101,16 @@
 #define _Thread_local
 #endif
 
-#if defined(_HAS_CXX11)
+/* Some misc keywords */
+#ifndef _HAS_C11
+#ifdef _HAS_CXX11
 #define _Noreturn [[noreturn]]
-#if defined(__GNUC__)
-#define _Alignas(__t) __attribute__((__aligned__(__t)))
-#define _Alignof(__t) __alignof__(__t)
+#define _Alignas(__t) alignas(__t)
+#define _Alignof(__t) alignof(__t)
 #else
-#define _Alignas(t)
-#define _Alignof(t)
-#endif
-#else
-#if !defined(_HAS_C11)
-#if defined(__GNUC__)
 #define _Noreturn __attribute__((__noreturn__))
 #define _Alignas(__t) __attribute__((__aligned__(__t)))
 #define _Alignof(__t) __alignof__(__t)
-#else
-#define _Noreturn
-#define _Alignas(__t)
-#define _Alignof(__t)
-#endif
 #endif
 #endif
 

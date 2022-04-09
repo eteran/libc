@@ -126,7 +126,7 @@ IS_CTYPE(isblank, CTYPE_BLANK)
 //----------------------------------------------------------------------------*/
 int tolower(int c) {
 	if (isupper(c)) {
-		/* NOTE: ASCII specific */
+		/* NOTE(eteran): ASCII specific */
 		c |= 0x20;
 	}
 	return c;
@@ -137,7 +137,7 @@ int tolower(int c) {
 //----------------------------------------------------------------------------*/
 int toupper(int c) {
 	if (islower(c)) {
-		/* NOTE: ASCII specific */
+		/* NOTE(eteran): ASCII specific */
 		c &= ~0x20;
 	}
 	return c;
