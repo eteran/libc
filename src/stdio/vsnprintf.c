@@ -37,11 +37,11 @@ static void __elibc_buffer_writer_done(void *context) {
 int vsnprintf(char *_RESTRICT str, size_t size, const char *_RESTRICT format, va_list ap) {
 
 	struct __elibc_buffer_write ctx;
-	ctx.write   = __elibc_buffer_writer;
-	ctx.done    = __elibc_buffer_writer_done;
+	ctx.write = __elibc_buffer_writer;
+	ctx.done = __elibc_buffer_writer_done;
 	ctx.written = 0;
-	ctx.p       = str;
-	ctx.size    = size;
+	ctx.p = str;
+	ctx.size = size;
 
 	return __elibc_printf_engine(&ctx, format, ap);
 }

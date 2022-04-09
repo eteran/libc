@@ -11,5 +11,3 @@ int fesetexceptflag(const fexcept_t *flagp, int excepts) _NOEXCEPT;
 _LIBC_END
 
 #endif
-
-

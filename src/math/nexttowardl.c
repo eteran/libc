@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: nexttowardl
 //----------------------------------------------------------------------------*/
-long double nexttowardl(long double x, long double y) {
-	return __builtin_nexttowardl(x, y);
-}
+long double nexttowardl(long double x, long double y) { return __builtin_nexttowardl(x, y); }
 
 #endif

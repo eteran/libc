@@ -16,8 +16,6 @@ static long double __elibc_fmal(long double x, long double y, long double z) {
 /*------------------------------------------------------------------------------
 // Name: fmal
 //----------------------------------------------------------------------------*/
-long double fmal(long double x, long double y, long double z) {
-	return __elibc_fmal(x, y, z);
-}
+long double fmal(long double x, long double y, long double z) { return __elibc_fmal(x, y, z); }
 
 #endif

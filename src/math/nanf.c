@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: nanf
 //----------------------------------------------------------------------------*/
-float nanf(const char *tagp) {
-	return __builtin_nanf(tagp);
-}
+float nanf(const char *tagp) { return __builtin_nanf(tagp); }
 
 #endif

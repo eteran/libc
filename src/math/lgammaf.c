@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: lgammaf
 //----------------------------------------------------------------------------*/
-float lgammaf(float x) {
-	return __builtin_lgammaf(x);
-}
+float lgammaf(float x) { return __builtin_lgammaf(x); }
 
 #endif

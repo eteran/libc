@@ -18,8 +18,6 @@ static double __elibc_hypot(double x, double y) {
 /*------------------------------------------------------------------------------
 // Name: hypot
 //----------------------------------------------------------------------------*/
-double hypot(double x, double y) {
-	return __elibc_hypot(x, y);
-}
+double hypot(double x, double y) { return __elibc_hypot(x, y); }
 
 #endif

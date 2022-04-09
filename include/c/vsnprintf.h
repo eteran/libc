@@ -7,7 +7,8 @@
 
 _LIBC_BEGIN
 
-int vsnprintf(char *_RESTRICT str, size_t size, const char *_RESTRICT format, va_list ap) _NOEXCEPT __attribute__((__format__ (printf, 3, 0)));
+int vsnprintf(char *_RESTRICT str, size_t size, const char *_RESTRICT format, va_list ap) _NOEXCEPT
+	__attribute__((__format__(printf, 3, 0)));
 
 _LIBC_END
 

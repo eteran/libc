@@ -2,8 +2,8 @@
 #ifndef _C_QSORT_H_20051228_
 #define _C_QSORT_H_20051228_
 
-#include "arch_size_t.h"
 #include "_compar_t.h"
+#include "arch_size_t.h"
 
 _LIBC_BEGIN
 

@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: acosl
 //----------------------------------------------------------------------------*/
-long double acosl(long double x) {
-	return __builtin_acosl(x);
-}
+long double acosl(long double x) { return __builtin_acosl(x); }
 
 #endif

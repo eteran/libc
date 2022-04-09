@@ -17,10 +17,10 @@ int __elibc_fgetc(FILE *stream) {
 
 	/* if this stream doesn't have a buffer, then create one */
 	if (!_FDATA(stream)->buffer_ptr) {
-		char *const buffer              = malloc(BUFSIZ);
-		_FDATA(stream)->buffer_ptr      = buffer;
-		_FDATA(stream)->buffer_first    = buffer;
-		_FDATA(stream)->buffer_last     = buffer;
+		char *const buffer = malloc(BUFSIZ);
+		_FDATA(stream)->buffer_ptr = buffer;
+		_FDATA(stream)->buffer_first = buffer;
+		_FDATA(stream)->buffer_last = buffer;
 		_FDATA(stream)->buffer_capacity = BUFSIZ;
 
 		/* record this so we can free it */
@@ -36,9 +36,9 @@ int __elibc_fgetc(FILE *stream) {
 			_FDATA(stream)->err = 1;
 			return EOF;
 		case 0:
-			_FDATA(stream)->eof          = 1;
+			_FDATA(stream)->eof = 1;
 			_FDATA(stream)->buffer_first = _FDATA(stream)->buffer_ptr;
-			_FDATA(stream)->buffer_last  = _FDATA(stream)->buffer_ptr;
+			_FDATA(stream)->buffer_last = _FDATA(stream)->buffer_ptr;
 			return EOF;
 		default:
 			return ch;
@@ -46,24 +46,22 @@ int __elibc_fgetc(FILE *stream) {
 	} else {
 		/* the input buffer is empty, fill it up */
 		if (_FDATA(stream)->buffer_first == _FDATA(stream)->buffer_last) {
-			const ssize_t n = __elibc_sys_read(
-				__ELIBC_FILENO(stream),
-				_FDATA(stream)->buffer_ptr,
-				_FDATA(stream)->buffer_capacity);
+			const ssize_t n = __elibc_sys_read(__ELIBC_FILENO(stream), _FDATA(stream)->buffer_ptr,
+			                                   _FDATA(stream)->buffer_capacity);
 
 			switch (n) {
 			case -1:
 				_FDATA(stream)->err = 1;
 				return EOF;
 			case 0:
-				_FDATA(stream)->eof          = 1;
+				_FDATA(stream)->eof = 1;
 				_FDATA(stream)->buffer_first = _FDATA(stream)->buffer_ptr;
-				_FDATA(stream)->buffer_last  = _FDATA(stream)->buffer_ptr;
+				_FDATA(stream)->buffer_last = _FDATA(stream)->buffer_ptr;
 				return EOF;
 			}
 
 			_FDATA(stream)->buffer_first = _FDATA(stream)->buffer_ptr;
-			_FDATA(stream)->buffer_last  = _FDATA(stream)->buffer_ptr + n;
+			_FDATA(stream)->buffer_last = _FDATA(stream)->buffer_ptr + n;
 		}
 
 		return *_FDATA(stream)->buffer_first++;

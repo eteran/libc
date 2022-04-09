@@ -8,9 +8,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_fmaxl
 //----------------------------------------------------------------------------*/
-static long double __elibc_fmaxl(long double x, long double y) {
-	return x > y ? x : y;
-}
+static long double __elibc_fmaxl(long double x, long double y) { return x > y ? x : y; }
 
 /*------------------------------------------------------------------------------
 // Name: fmaxl

@@ -5,4 +5,3 @@
 typedef unsigned int fexcept_t;
 
 #endif
-

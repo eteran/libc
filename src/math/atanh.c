@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: atanh
 //----------------------------------------------------------------------------*/
-double atanh(double x) {
-	return __builtin_atanh(x);
-}
+double atanh(double x) { return __builtin_atanh(x); }
 
 #endif

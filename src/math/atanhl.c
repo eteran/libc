@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: atanhl
 //----------------------------------------------------------------------------*/
-long double atanhl(long double x) {
-	return __builtin_atanhl(x);
-}
+long double atanhl(long double x) { return __builtin_atanhl(x); }
 
 #endif

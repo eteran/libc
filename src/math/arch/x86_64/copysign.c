@@ -28,8 +28,7 @@ static double __elibc_copysign(double x, double y) {
 	y1.f_value = y;
 
 	r.i_value =
-		(y1.i_value & UINT64_C(0x8000000000000000)) |
-		(x1.i_value & UINT64_C(0x7fffffffffffffff));
+		(y1.i_value & UINT64_C(0x8000000000000000)) | (x1.i_value & UINT64_C(0x7fffffffffffffff));
 
 	return r.f_value;
 }
@@ -37,8 +36,6 @@ static double __elibc_copysign(double x, double y) {
 /*------------------------------------------------------------------------------
 // Name: copysign
 //----------------------------------------------------------------------------*/
-double copysign(double x, double y) {
-	return __elibc_copysign(x, y);
-}
+double copysign(double x, double y) { return __elibc_copysign(x, y); }
 
 #endif

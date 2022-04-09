@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: frexpl
 //----------------------------------------------------------------------------*/
-long double frexpl(long double x, int *exp) {
-	return __builtin_frexpl(x, exp);
-}
+long double frexpl(long double x, int *exp) { return __builtin_frexpl(x, exp); }
 
 #endif

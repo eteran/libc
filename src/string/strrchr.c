@@ -7,7 +7,7 @@
 //----------------------------------------------------------------------------*/
 char *strrchr(const char *s, int c) {
 	const char *ret = 0;
-	const char cmp  = (char)(c & 0xff);
+	const char cmp = (char)(c & 0xff);
 
 	while (*s != '\0') {
 		if (*s == cmp) {

@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: llroundl
 //----------------------------------------------------------------------------*/
-long long int llroundl(long double x) {
-	return __builtin_llroundl(x);
-}
+long long int llroundl(long double x) { return __builtin_llroundl(x); }
 
 #endif

@@ -71,7 +71,7 @@ void *memcpy(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) {
 
 #ifdef NAIVE_VERSION
 	/* traditional memory copy */
-	char *d_ptr       = dest;
+	char *d_ptr = dest;
 	const char *s_ptr = src;
 
 	assert(dest);

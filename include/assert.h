@@ -7,7 +7,8 @@
 
 _LIBC_BEGIN
 
-_Noreturn void __assert_fail(const char *expr, const char *file, unsigned int line, const char *func) _NOEXCEPT;
+_Noreturn void __assert_fail(const char *expr, const char *file, unsigned int line,
+                             const char *func) _NOEXCEPT;
 
 #if defined(NDEBUG)
 #define assert(ignore) ((void)0)

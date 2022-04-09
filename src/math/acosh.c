@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: acosh
 //----------------------------------------------------------------------------*/
-double acosh(double x) {
-	return __builtin_acosh(x);
-}
+double acosh(double x) { return __builtin_acosh(x); }
 
 #endif

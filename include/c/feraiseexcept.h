@@ -9,5 +9,3 @@ int feraiseexcept(int excepts) _NOEXCEPT;
 _LIBC_END
 
 #endif
-
-

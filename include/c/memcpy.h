@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-void *memcpy(void * _RESTRICT dest, const void * _RESTRICT src, size_t n) _NOEXCEPT;
+void *memcpy(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) _NOEXCEPT;
 
 _LIBC_END
 

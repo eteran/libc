@@ -14,7 +14,7 @@
 wint_t fputwc(wchar_t wc, FILE *stream) {
 
 	char buf[MB_LEN_MAX];
-	wint_t r    = wc;
+	wint_t r = wc;
 	const int n = wctomb(buf, wc);
 
 	if (n > 0) {

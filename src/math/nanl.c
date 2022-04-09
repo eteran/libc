@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: nanl
 //----------------------------------------------------------------------------*/
-long double nanl(const char *tagp) {
-	return __builtin_nanl(tagp);
-}
+long double nanl(const char *tagp) { return __builtin_nanl(tagp); }
 
 #endif

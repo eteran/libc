@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: fmodf
 //----------------------------------------------------------------------------*/
-float fmodf(float x, float y) {
-	return __builtin_fmodf(x, y);
-}
+float fmodf(float x, float y) { return __builtin_fmodf(x, y); }
 
 #endif

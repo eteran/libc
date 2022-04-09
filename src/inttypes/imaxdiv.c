@@ -14,6 +14,6 @@ imaxdiv_t imaxdiv(intmax_t numerator, intmax_t denominator) {
 	assert(denominator != 0);
 
 	ret.quot = numerator / denominator;
-	ret.rem  = numerator % denominator;
+	ret.rem = numerator % denominator;
 	return ret;
 }

@@ -5,9 +5,9 @@
 #include "arch_size_t.h"
 
 #if defined(__GNUC__)
-#define offsetof(type, mbr)  __builtin_offsetof(type, mbr)
+#define offsetof(type, mbr) __builtin_offsetof(type, mbr)
 #else
-#define offsetof(type, mbr) ((size_t)&(((type*)0)->mbr))
+#define offsetof(type, mbr) ((size_t) & (((type *)0)->mbr))
 #endif
 
 #endif

@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: frexpf
 //----------------------------------------------------------------------------*/
-float frexpf(float x, int *exp) {
-	return __builtin_frexpf(x, exp);
-}
+float frexpf(float x, int *exp) { return __builtin_frexpf(x, exp); }
 
 #endif

@@ -2,8 +2,8 @@
 #ifndef _C_FPUTWS_H_20140316_
 #define _C_FPUTWS_H_20140316_
 
-#include "arch_wchar_t.h"
 #include "_file.h"
+#include "arch_wchar_t.h"
 
 _LIBC_BEGIN
 

@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: tanl
 //----------------------------------------------------------------------------*/
-long double tanl(long double x) {
-	return __builtin_tanl(x);
-}
+long double tanl(long double x) { return __builtin_tanl(x); }
 
 #endif

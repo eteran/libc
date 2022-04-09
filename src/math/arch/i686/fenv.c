@@ -5,42 +5,32 @@
 #include <fenv.h>
 #include <stdint.h>
 
-#define FNINIT() __asm__ __volatile__("fninit")
+#define FNINIT()         __asm__ __volatile__("fninit")
 
-#define FPU_GETCW(cw) __asm__ __volatile__("fnstcw %0" \
-										   : "=m"(cw))
-#define FPU_SETCW(cw) __asm__ __volatile__("fldcw %0" \
-										   :          \
-										   : "m"(cw))
+#define FPU_GETCW(cw)    __asm__ __volatile__("fnstcw %0" : "=m"(cw))
+#define FPU_SETCW(cw)    __asm__ __volatile__("fldcw %0" : : "m"(cw))
 
-#define FPU_GETSW(sw) __asm__ __volatile__("fnstsw %0" \
-										   : "=m"(sw))
+#define FPU_GETSW(sw)    __asm__ __volatile__("fnstsw %0" : "=m"(sw))
 
-#define FPU_GETENV(envp) __asm__ __volatile__("fnstenv %0" \
-											  : "=m"(envp))
-#define FPU_SETENV(envp) __asm__ __volatile__("fldenv %0" \
-											  :           \
-											  : "m"(envp))
+#define FPU_GETENV(envp) __asm__ __volatile__("fnstenv %0" : "=m"(envp))
+#define FPU_SETENV(envp) __asm__ __volatile__("fldenv %0" : : "m"(envp))
 
 #ifdef __SSE_MATH__
-#define SSE_GETCW(xcw) __asm__ __volatile__("stmxcsr %0" \
-											: "=m"(xcw))
-#define SSE_SETCW(xcw) __asm__ __volatile__("ldmxcsr %0" \
-											:            \
-											: "m"(xcw))
+#define SSE_GETCW(xcw) __asm__ __volatile__("stmxcsr %0" : "=m"(xcw))
+#define SSE_SETCW(xcw) __asm__ __volatile__("ldmxcsr %0" : : "m"(xcw))
 #else
-#define SSE_GETCW(xcw) \
-	do {               \
-		(xcw) = 0;     \
+#define SSE_GETCW(xcw)                                                                             \
+	do {                                                                                           \
+		(xcw) = 0;                                                                                 \
 	} while (0)
-#define SSE_SETCW(xcw) \
-	do {               \
-		(void)xcw;     \
+#define SSE_SETCW(xcw)                                                                             \
+	do {                                                                                           \
+		(void)xcw;                                                                                 \
 	} while (0)
 #endif
 
 /*------------------------------------------------------------------------------
-// Name: feclearexcept 
+// Name: feclearexcept
 // Desc:
 // Note: what about SSE exceptions?
 //----------------------------------------------------------------------------*/
@@ -54,7 +44,7 @@ int feclearexcept(int excepts) {
 }
 
 /*------------------------------------------------------------------------------
-// Name: fesetround 
+// Name: fesetround
 //----------------------------------------------------------------------------*/
 int fesetround(int round) {
 
@@ -91,7 +81,7 @@ int fegetround(void) {
 }
 
 /*------------------------------------------------------------------------------
-// Name: fegetenv 
+// Name: fegetenv
 //----------------------------------------------------------------------------*/
 int fegetenv(fenv_t *envp) {
 
@@ -101,7 +91,7 @@ int fegetenv(fenv_t *envp) {
 }
 
 /*------------------------------------------------------------------------------
-// Name: fesetenv 
+// Name: fesetenv
 //----------------------------------------------------------------------------*/
 int fesetenv(const fenv_t *envp) {
 
@@ -117,7 +107,7 @@ int fesetenv(const fenv_t *envp) {
 }
 
 /*------------------------------------------------------------------------------
-// Name: feraiseexcept 
+// Name: feraiseexcept
 //----------------------------------------------------------------------------*/
 int feraiseexcept(int excepts) {
 	uint32_t xcw;
@@ -128,7 +118,7 @@ int feraiseexcept(int excepts) {
 }
 
 /*------------------------------------------------------------------------------
-// Name: fetestexcept 
+// Name: fetestexcept
 //----------------------------------------------------------------------------*/
 int fetestexcept(int excepts) {
 

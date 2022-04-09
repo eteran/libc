@@ -11,5 +11,3 @@ int ferror(FILE *stream) _NOEXCEPT;
 _LIBC_END
 
 #endif
-
-

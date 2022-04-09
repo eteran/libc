@@ -5,20 +5,21 @@
 
 /* TODO(eteran): locale awareness of any kind ? */
 
-#define CTYPE_SPACE 0x0001
-#define CTYPE_PRINT 0x0002
-#define CTYPE_CNTRL 0x0004
-#define CTYPE_UPPER 0x0008
-#define CTYPE_LOWER 0x0010
-#define CTYPE_ALPHA 0x0020
-#define CTYPE_DIGIT 0x0040
-#define CTYPE_PUNCT 0x0080
+#define CTYPE_SPACE  0x0001
+#define CTYPE_PRINT  0x0002
+#define CTYPE_CNTRL  0x0004
+#define CTYPE_UPPER  0x0008
+#define CTYPE_LOWER  0x0010
+#define CTYPE_ALPHA  0x0020
+#define CTYPE_DIGIT  0x0040
+#define CTYPE_PUNCT  0x0080
 #define CTYPE_XDIGIT 0x0100
-#define CTYPE_BLANK 0x0200
-#define CTYPE_ALNUM (CTYPE_ALPHA | CTYPE_DIGIT)
-#define CTYPE_GRAPH (CTYPE_ALNUM | CTYPE_PUNCT)
+#define CTYPE_BLANK  0x0200
+#define CTYPE_ALNUM  (CTYPE_ALPHA | CTYPE_DIGIT)
+#define CTYPE_GRAPH  (CTYPE_ALNUM | CTYPE_PUNCT)
 
 /* a simple table, valid for "C" local only */
+/* clang-format off */
 static const uint16_t __elibc_ctype_tab[] = {
 	0x0004, 0x0004, 0x0004, 0x0004, 0x0004, 0x0004, 0x0004, 0x0004,
 	0x0004, 0x0205, 0x0005, 0x0005, 0x0005, 0x0005, 0x0004, 0x0004,
@@ -51,14 +52,16 @@ static const uint16_t __elibc_ctype_tab[] = {
 	0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
 	0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
 	0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
-	0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000};
+	0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000
+};
+/* clang-format on */
 
-#define IS_CTYPE(name, type)                             \
-	int name(int c) {                                    \
-		if ((unsigned int)c < 0x100) {                   \
-			return (__elibc_ctype_tab[c] & (type)) != 0; \
-		}                                                \
-		return 0;                                        \
+#define IS_CTYPE(name, type)                                                                       \
+	int name(int c) {                                                                              \
+		if ((unsigned int)c < 0x100) {                                                             \
+			return (__elibc_ctype_tab[c] & (type)) != 0;                                           \
+		}                                                                                          \
+		return 0;                                                                                  \
 	}
 
 /*------------------------------------------------------------------------------

@@ -6,9 +6,9 @@
 #ifndef __cplusplus
 
 #if defined(__WCHAR_TYPE__)
-	typedef __WCHAR_TYPE__ wchar_t;
+typedef __WCHAR_TYPE__ wchar_t;
 #else
-	typedef unsigned long int wchar_t;
+typedef unsigned long int wchar_t;
 #endif
 
 #endif

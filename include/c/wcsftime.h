@@ -3,8 +3,8 @@
 #define _C_WCSFTIME_H_20140316_
 
 #include "_time.h"
-#include "arch_wchar_t.h"
 #include "arch_size_t.h"
+#include "arch_wchar_t.h"
 
 _LIBC_BEGIN
 

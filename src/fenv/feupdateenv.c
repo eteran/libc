@@ -1,7 +1,7 @@
 
 #define __ELIBC_SOURCE
-#include <fenv.h>
 #include <assert.h>
+#include <fenv.h>
 
 /*------------------------------------------------------------------------------
 // Name: feupdateenv

@@ -5,4 +5,3 @@
 typedef unsigned short fexcept_t;
 
 #endif
-

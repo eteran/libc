@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: remainder
 //----------------------------------------------------------------------------*/
-double remainder(double x, double y) {
-	return __builtin_remainder(x, y);
-}
+double remainder(double x, double y) { return __builtin_remainder(x, y); }
 
 #endif

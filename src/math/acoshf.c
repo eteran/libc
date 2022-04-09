@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: acoshf
 //----------------------------------------------------------------------------*/
-float acoshf(float x) {
-	return __builtin_acoshf(x);
-}
+float acoshf(float x) { return __builtin_acoshf(x); }
 
 #endif

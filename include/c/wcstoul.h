@@ -6,7 +6,8 @@
 
 _LIBC_BEGIN
 
-unsigned long int wcstoul(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr, int base) _NOEXCEPT;
+unsigned long int wcstoul(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr,
+                          int base) _NOEXCEPT;
 
 _LIBC_END
 

@@ -11,5 +11,3 @@ int feof(FILE *stream) _NOEXCEPT;
 _LIBC_END
 
 #endif
-
-

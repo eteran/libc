@@ -2,8 +2,8 @@
 #ifndef _C_MBRLEN_H_20140316_
 #define _C_MBRLEN_H_20140316_
 
-#include "arch_size_t.h"
 #include "_mbstate_t.h"
+#include "arch_size_t.h"
 
 _LIBC_BEGIN
 

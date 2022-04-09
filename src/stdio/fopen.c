@@ -8,9 +8,9 @@
 
 #define O_RDONLY 00
 #define O_WRONLY 01
-#define O_RDWR 02
-#define O_CREAT 0100  /* not fcntl */
-#define O_TRUNC 01000 /* not fcntl */
+#define O_RDWR   02
+#define O_CREAT  0100  /* not fcntl */
+#define O_TRUNC  01000 /* not fcntl */
 #define O_APPEND 02000
 
 /*------------------------------------------------------------------------------
@@ -18,7 +18,7 @@
 //----------------------------------------------------------------------------*/
 FILE *fopen(const char *path, const char *mode) {
 
-	int fd         = -1;
+	int fd = -1;
 	int mode_flags = 0;
 
 	FILE *f = __elibc_allocate_file();
@@ -94,25 +94,25 @@ FILE *fopen(const char *path, const char *mode) {
 		return 0;
 	}
 
-	_FDATA(f)->fd                  = fd;
-	_FDATA(f)->buf_mod             = _IOFBF;
-	_FDATA(f)->err                 = 0;
-	_FDATA(f)->eof                 = 0;
-	_FDATA(f)->orientation         = 0;
-	_FDATA(f)->flags               = 0;
-	_FDATA(f)->buffer_ptr          = 0;
-	_FDATA(f)->buffer_capacity     = 0;
-	_FDATA(f)->buffer_first        = 0;
-	_FDATA(f)->buffer_last         = 0;
+	_FDATA(f)->fd = fd;
+	_FDATA(f)->buf_mod = _IOFBF;
+	_FDATA(f)->err = 0;
+	_FDATA(f)->eof = 0;
+	_FDATA(f)->orientation = 0;
+	_FDATA(f)->flags = 0;
+	_FDATA(f)->buffer_ptr = 0;
+	_FDATA(f)->buffer_capacity = 0;
+	_FDATA(f)->buffer_first = 0;
+	_FDATA(f)->buffer_last = 0;
 	_FDATA(f)->internal_buffer_ptr = 0;
-	_FDATA(f)->filename[0]         = '\0';
+	_FDATA(f)->filename[0] = '\0';
 
 	/* insert at the begining of the list */
 	f->next = __elibc_root_file_struct;
 	f->prev = 0;
 
 	__elibc_root_file_struct->prev = f;
-	__elibc_root_file_struct       = f;
+	__elibc_root_file_struct = f;
 
 #if defined(USE_THREADS)
 	pthread_mutex_init(&f->mutex, NULL);

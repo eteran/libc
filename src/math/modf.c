@@ -16,7 +16,7 @@ static double __elibc_modf(double x, double *iptr) {
 	assert(iptr);
 
 	if (x < 0) {
-		x    = -x;
+		x = -x;
 		sign = -1;
 	}
 
@@ -30,8 +30,6 @@ static double __elibc_modf(double x, double *iptr) {
 /*------------------------------------------------------------------------------
 // Name: modf
 //----------------------------------------------------------------------------*/
-double modf(double x, double *iptr) {
-	return __elibc_modf(x, iptr);
-}
+double modf(double x, double *iptr) { return __elibc_modf(x, iptr); }
 
 #endif

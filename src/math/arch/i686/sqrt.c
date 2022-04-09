@@ -10,9 +10,7 @@
 //----------------------------------------------------------------------------*/
 static double __elibc_sqrt(double x) {
 	double value;
-	__asm__ __volatile__("fsqrt"
-						 : "=t"(value)
-						 : "0"(x));
+	__asm__ __volatile__("fsqrt" : "=t"(value) : "0"(x));
 	return value;
 }
 

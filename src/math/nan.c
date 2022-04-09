@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: nan
 //----------------------------------------------------------------------------*/
-double nan(const char *tagp) {
-	return __builtin_nan(tagp);
-}
+double nan(const char *tagp) { return __builtin_nan(tagp); }
 
 #endif

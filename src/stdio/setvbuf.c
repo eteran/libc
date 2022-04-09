@@ -39,9 +39,9 @@ static int __elibc_setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode
 	 * will cause an allocation of one of the default size
 	 */
 	if (buf) {
-		_FDATA(stream)->buffer_ptr      = buf;
-		_FDATA(stream)->buffer_first    = buf;
-		_FDATA(stream)->buffer_last     = buf;
+		_FDATA(stream)->buffer_ptr = buf;
+		_FDATA(stream)->buffer_first = buf;
+		_FDATA(stream)->buffer_last = buf;
 		_FDATA(stream)->buffer_capacity = size;
 	}
 

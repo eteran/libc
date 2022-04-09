@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: floorf
 //----------------------------------------------------------------------------*/
-float floorf(float x) {
-	return __builtin_floorf(x);
-}
+float floorf(float x) { return __builtin_floorf(x); }
 
 #endif

@@ -10,21 +10,21 @@
 #include "c/_file.h"
 #include "c/_null.h"
 
-#define _IOFBF 0
-#define _IOLBF 1
-#define _IONBF 2
+#define _IOFBF       0
+#define _IOLBF       1
+#define _IONBF       2
 
-#define BUFSIZ 256
-#define EOF (-1)
-#define FOPEN_MAX 16
+#define BUFSIZ       256
+#define EOF          (-1)
+#define FOPEN_MAX    16
 #define FILENAME_MAX 256
-#define L_tmpnam 20
+#define L_tmpnam     20
 
-#define SEEK_SET 0
-#define SEEK_CUR 1
-#define SEEK_END 2
+#define SEEK_SET     0
+#define SEEK_CUR     1
+#define SEEK_END     2
 
-#define TMP_MAX 0x7fff
+#define TMP_MAX      0x7fff
 
 extern FILE *__elibc_root_file_struct;
 extern FILE *__elibc_free_file_struct;
@@ -33,7 +33,7 @@ extern FILE __elibc_stdout[1];
 extern FILE __elibc_stderr[1];
 
 /* standard C I/O file objects */
-#define stdin (__elibc_stdin)
+#define stdin  (__elibc_stdin)
 #define stdout (__elibc_stdout)
 #define stderr (__elibc_stderr)
 
@@ -80,9 +80,9 @@ extern FILE __elibc_stderr[1];
 #include "c/vsprintf.h"
 
 #if defined(_HAS_C99) || defined(_HAS_CXX89) || defined(__ELIBC_SOURCE)
+#include "c/vfprintf.h"
 #include "c/vprintf.h"
 #include "c/vsprintf.h"
-#include "c/vfprintf.h"
 #endif
 
 #if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(__ELIBC_SOURCE)

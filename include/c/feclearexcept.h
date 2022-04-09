@@ -9,5 +9,3 @@ int feclearexcept(int excepts) _NOEXCEPT;
 _LIBC_END
 
 #endif
-
-

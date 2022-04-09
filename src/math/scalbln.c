@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: scalbln
 //----------------------------------------------------------------------------*/
-double scalbln(double x, long int exp) {
-	return __builtin_scalbln(x, exp);
-}
+double scalbln(double x, long int exp) { return __builtin_scalbln(x, exp); }
 
 #endif

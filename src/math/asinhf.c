@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: asinhf
 //----------------------------------------------------------------------------*/
-float asinhf(float x) {
-	return __builtin_asinhf(x);
-}
+float asinhf(float x) { return __builtin_asinhf(x); }
 
 #endif

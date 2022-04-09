@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: modff
 //----------------------------------------------------------------------------*/
-float modff(float x, float *iptr) {
-	return __builtin_modff(x, iptr);
-}
+float modff(float x, float *iptr) { return __builtin_modff(x, iptr); }
 
 #endif

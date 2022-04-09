@@ -9,5 +9,3 @@ int fesetround(int round) _NOEXCEPT;
 _LIBC_END
 
 #endif
-
-

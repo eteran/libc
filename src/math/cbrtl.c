@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: cbrtl
 //----------------------------------------------------------------------------*/
-long double cbrtl(long double x) {
-	return __builtin_cbrtl(x);
-}
+long double cbrtl(long double x) { return __builtin_cbrtl(x); }
 
 #endif

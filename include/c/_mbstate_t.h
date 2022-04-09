@@ -5,9 +5,9 @@
 #include "arch_wchar_t.h"
 
 typedef struct {
-	wchar_t      wc;
-	unsigned int expected : 4,
-                 seen     : 4;
+	wchar_t wc;
+	unsigned int expected : 4;
+	unsigned int seen     : 4;
 } mbstate_t;
 
 #endif

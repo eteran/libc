@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: nearbyintf
 //----------------------------------------------------------------------------*/
-float nearbyintf(float x) {
-	return __builtin_nearbyintf(x);
-}
+float nearbyintf(float x) { return __builtin_nearbyintf(x); }
 
 #endif

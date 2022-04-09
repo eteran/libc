@@ -19,7 +19,7 @@ clock_t clock(void) {
 		return (clock_t)-1;
 	}
 
-	/* this assumes that CLOCKS_PER_SEC == 1000000, 
+	/* this assumes that CLOCKS_PER_SEC == 1000000,
 	 * which it is according to POSIX
 	 */
 	return (clock_t)((tv.tv_sec * CLOCKS_PER_SEC) + tv.tv_usec);

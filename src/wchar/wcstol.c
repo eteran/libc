@@ -3,7 +3,7 @@
 #include <wchar.h>
 
 /*------------------------------------------------------------------------------
-// Name: 
+// Name:
 //----------------------------------------------------------------------------*/
 long int wcstol(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr, int base) {
 	(void)nptr;

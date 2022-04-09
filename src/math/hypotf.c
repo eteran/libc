@@ -18,8 +18,6 @@ static float __elibc_hypotf(float x, float y) {
 /*------------------------------------------------------------------------------
 // Name: hypotf
 //----------------------------------------------------------------------------*/
-float hypotf(float x, float y) {
-	return __elibc_hypotf(x, y);
-}
+float hypotf(float x, float y) { return __elibc_hypotf(x, y); }
 
 #endif

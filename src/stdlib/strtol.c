@@ -12,8 +12,8 @@
 long int strtol(const char *nptr, char **endptr, int base) {
 	typedef long int T;
 
-	T neg   = 0;
-	T ret   = 0;
+	T neg = 0;
+	T ret = 0;
 	int err = 0;
 
 	/*
@@ -75,7 +75,7 @@ long int strtol(const char *nptr, char **endptr, int base) {
 	while (*nptr != '\0') {
 
 		const T old_ret = ret;
-		const char c    = *nptr;
+		const char c = *nptr;
 		unsigned int digit;
 
 		if (c >= 'A' && c <= 'Z') {
@@ -107,7 +107,7 @@ long int strtol(const char *nptr, char **endptr, int base) {
 		ret = (ret * base) - digit;
 		if (ret > old_ret) {
 
-			/* subtracting a value should NEVER increase the result 
+			/* subtracting a value should NEVER increase the result
 			 * unless an overflow occured!
 			 */
 			err = ERANGE;
@@ -128,10 +128,10 @@ long int strtol(const char *nptr, char **endptr, int base) {
 	}
 
 	/*
-	 * The strtol() function returns the result of the conversion, unless 
-	 * the value would underflow or overflow. If an underflow occurs, strtol() 
-	 * returns LONG_MIN. If an overflow occurs, strtol() returns LONG_MAX. In 
-	 * both cases, errno is set to ERANGE. Precisely the same holds for 
+	 * The strtol() function returns the result of the conversion, unless
+	 * the value would underflow or overflow. If an underflow occurs, strtol()
+	 * returns LONG_MIN. If an overflow occurs, strtol() returns LONG_MAX. In
+	 * both cases, errno is set to ERANGE. Precisely the same holds for
 	 * strtoll() (with LLONG_MIN and LLONG_MAX instead of LONG_MIN and LONG_MAX).
 	 */
 

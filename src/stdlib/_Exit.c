@@ -1,9 +1,9 @@
 
 #define __ELIBC_SOURCE
 #include "c/_support.h"
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
 
 /*------------------------------------------------------------------------------
 // Name: _Exit
@@ -18,7 +18,7 @@ void _Exit(int status) {
 	}
 
 	/* actually free the FILE structures we saved for reuse */
-	while(__elibc_free_file_struct) {
+	while (__elibc_free_file_struct) {
 		FILE *ptr = __elibc_free_file_struct;
 		__elibc_free_file_struct = ptr->next;
 #if defined(USE_THREADS)

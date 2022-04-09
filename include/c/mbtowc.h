@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-int mbtowc(wchar_t * _RESTRICT pwc, const char *_RESTRICT s, size_t n) _NOEXCEPT;
+int mbtowc(wchar_t *_RESTRICT pwc, const char *_RESTRICT s, size_t n) _NOEXCEPT;
 
 _LIBC_END
 

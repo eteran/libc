@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: floorl
 //----------------------------------------------------------------------------*/
-long double floorl(long double x) {
-	return __builtin_floorl(x);
-}
+long double floorl(long double x) { return __builtin_floorl(x); }
 
 #endif

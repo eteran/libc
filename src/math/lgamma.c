@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: lgamma
 //----------------------------------------------------------------------------*/
-double lgamma(double x) {
-	return __builtin_lgamma(x);
-}
+double lgamma(double x) { return __builtin_lgamma(x); }
 
 #endif

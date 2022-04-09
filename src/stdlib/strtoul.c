@@ -12,8 +12,8 @@
 unsigned long int strtoul(const char *nptr, char **endptr, int base) {
 	typedef unsigned long int T;
 
-	T neg   = 0;
-	T ret   = 0;
+	T neg = 0;
+	T ret = 0;
 	int err = 0;
 
 	/*
@@ -75,7 +75,7 @@ unsigned long int strtoul(const char *nptr, char **endptr, int base) {
 	while (*nptr != '\0') {
 
 		const T old_ret = ret;
-		const char c    = *nptr;
+		const char c = *nptr;
 		unsigned int digit;
 
 		if (c >= 'A' && c <= 'Z') {
@@ -104,7 +104,7 @@ unsigned long int strtoul(const char *nptr, char **endptr, int base) {
 		ret = (ret * base) + digit;
 		if (ret < old_ret) {
 
-			/* adding a value should NEVER decrease the result 
+			/* adding a value should NEVER decrease the result
 			 * unless an overflow occured!
 			 */
 			err = ERANGE;
@@ -134,7 +134,7 @@ unsigned long int strtoul(const char *nptr, char **endptr, int base) {
 	 * ULONG_MAX).
 	 */
 
-	/* NOTE: No need to special case the overflow with negation, it is covered 
+	/* NOTE: No need to special case the overflow with negation, it is covered
 	 * by the primary check above
 	 */
 

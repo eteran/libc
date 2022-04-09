@@ -13,14 +13,14 @@
 #define SIG_IGN ((__sighandler_t)-1)
 
 /* made to match Linux */
-#define SIGABRT 6
-#define SIGFPE 8
-#define SIGILL 4
-#define SIGINT 2
-#define SIGQUIT 3
-#define SIGSEGV 11
-#define SIGTERM 15
-#define SIGTSTP 20
+#define SIGABRT  6
+#define SIGFPE   8
+#define SIGILL   4
+#define SIGINT   2
+#define SIGQUIT  3
+#define SIGSEGV  11
+#define SIGTERM  15
+#define SIGTSTP  20
 #define SIGWINCH 28
 
 #include "c/raise.h"

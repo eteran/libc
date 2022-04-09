@@ -4,105 +4,105 @@
 #include <stdio.h>
 #include <time.h>
 
-#define DO_H()                                               \
-	do {                                                     \
-		int chunk = snprintf(s, space, "%.2i", tm->tm_hour); \
-		if (chunk >= space) {                                \
-			return 0;                                        \
-		}                                                    \
-		s += chunk;                                          \
+#define DO_H()                                                                                     \
+	do {                                                                                           \
+		int chunk = snprintf(s, space, "%.2i", tm->tm_hour);                                       \
+		if (chunk >= space) {                                                                      \
+			return 0;                                                                              \
+		}                                                                                          \
+		s += chunk;                                                                                \
 	} while (0)
 
-#define DO_M()                                              \
-	do {                                                    \
-		int chunk = snprintf(s, space, "%.2i", tm->tm_min); \
-		if (chunk >= space) {                               \
-			return 0;                                       \
-		}                                                   \
-		s += chunk;                                         \
+#define DO_M()                                                                                     \
+	do {                                                                                           \
+		int chunk = snprintf(s, space, "%.2i", tm->tm_min);                                        \
+		if (chunk >= space) {                                                                      \
+			return 0;                                                                              \
+		}                                                                                          \
+		s += chunk;                                                                                \
 	} while (0)
 
-#define DO_S()                                              \
-	do {                                                    \
-		int chunk = snprintf(s, space, "%.2d", tm->tm_sec); \
-		if (chunk >= space) {                               \
-			return 0;                                       \
-		}                                                   \
-		s += chunk;                                         \
+#define DO_S()                                                                                     \
+	do {                                                                                           \
+		int chunk = snprintf(s, space, "%.2d", tm->tm_sec);                                        \
+		if (chunk >= space) {                                                                      \
+			return 0;                                                                              \
+		}                                                                                          \
+		s += chunk;                                                                                \
 	} while (0)
 
-#define DO_Y()                                                    \
-	do {                                                          \
-		int chunk = snprintf(s, space, "%d", 1900 + tm->tm_year); \
-		if (chunk >= space) {                                     \
-			return 0;                                             \
-		}                                                         \
-		s += chunk;                                               \
+#define DO_Y()                                                                                     \
+	do {                                                                                           \
+		int chunk = snprintf(s, space, "%d", 1900 + tm->tm_year);                                  \
+		if (chunk >= space) {                                                                      \
+			return 0;                                                                              \
+		}                                                                                          \
+		s += chunk;                                                                                \
 	} while (0)
 
-#define DO_m()                                                  \
-	do {                                                        \
-		int chunk = snprintf(s, space, "%.2d", tm->tm_mon + 1); \
-		if (chunk >= space) {                                   \
-			return 0;                                           \
-		}                                                       \
-		s += chunk;                                             \
+#define DO_m()                                                                                     \
+	do {                                                                                           \
+		int chunk = snprintf(s, space, "%.2d", tm->tm_mon + 1);                                    \
+		if (chunk >= space) {                                                                      \
+			return 0;                                                                              \
+		}                                                                                          \
+		s += chunk;                                                                                \
 	} while (0)
 
-#define DO_d()                                               \
-	do {                                                     \
-		int chunk = snprintf(s, space, "%.2d", tm->tm_mday); \
-		if (chunk >= space) {                                \
-			return 0;                                        \
-		}                                                    \
-		s += chunk;                                          \
+#define DO_d()                                                                                     \
+	do {                                                                                           \
+		int chunk = snprintf(s, space, "%.2d", tm->tm_mday);                                       \
+		if (chunk >= space) {                                                                      \
+			return 0;                                                                              \
+		}                                                                                          \
+		s += chunk;                                                                                \
 	} while (0)
 
-#define DO_e()                                              \
-	do {                                                    \
-		int chunk = snprintf(s, space, "%2d", tm->tm_mday); \
-		if (chunk >= space) {                               \
-			return 0;                                       \
-		}                                                   \
-		s += chunk;                                         \
+#define DO_e()                                                                                     \
+	do {                                                                                           \
+		int chunk = snprintf(s, space, "%2d", tm->tm_mday);                                        \
+		if (chunk >= space) {                                                                      \
+			return 0;                                                                              \
+		}                                                                                          \
+		s += chunk;                                                                                \
 	} while (0)
 
-#define DO_y()                                                     \
-	do {                                                           \
-		int chunk = snprintf(s, space, "%.2i", tm->tm_year % 100); \
-		if (chunk >= space) {                                      \
-			return 0;                                              \
-		}                                                          \
-		s += chunk;                                                \
+#define DO_y()                                                                                     \
+	do {                                                                                           \
+		int chunk = snprintf(s, space, "%.2i", tm->tm_year % 100);                                 \
+		if (chunk >= space) {                                                                      \
+			return 0;                                                                              \
+		}                                                                                          \
+		s += chunk;                                                                                \
 	} while (0)
 
-#define DO_I()                                    \
-	do {                                          \
-		int chunk;                                \
-		int hour = tm->tm_hour;                   \
-		if (hour > 12)                            \
-			hour -= 12;                           \
-		chunk = snprintf(s, space, "%.2i", hour); \
-		if (chunk >= space) {                     \
-			return 0;                             \
-		}                                         \
-		s += chunk;                               \
+#define DO_I()                                                                                     \
+	do {                                                                                           \
+		int chunk;                                                                                 \
+		int hour = tm->tm_hour;                                                                    \
+		if (hour > 12)                                                                             \
+			hour -= 12;                                                                            \
+		chunk = snprintf(s, space, "%.2i", hour);                                                  \
+		if (chunk >= space) {                                                                      \
+			return 0;                                                                              \
+		}                                                                                          \
+		s += chunk;                                                                                \
 	} while (0)
 
-#define DO_p()                                                                  \
-	do {                                                                        \
-		int chunk = snprintf(s, space, "%s", (tm->tm_hour < 12) ? "AM" : "PM"); \
-		if (chunk >= space)                                                     \
-			return 0;                                                           \
-		s += chunk;                                                             \
+#define DO_p()                                                                                     \
+	do {                                                                                           \
+		int chunk = snprintf(s, space, "%s", (tm->tm_hour < 12) ? "AM" : "PM");                    \
+		if (chunk >= space)                                                                        \
+			return 0;                                                                              \
+		s += chunk;                                                                                \
 	} while (0)
 
-#define DO_char(ch)                               \
-	do {                                          \
-		int chunk = snprintf(s, space, "%c", ch); \
-		if (chunk >= space)                       \
-			return 0;                             \
-		s += chunk;                               \
+#define DO_char(ch)                                                                                \
+	do {                                                                                           \
+		int chunk = snprintf(s, space, "%c", ch);                                                  \
+		if (chunk >= space)                                                                        \
+			return 0;                                                                              \
+		s += chunk;                                                                                \
 	} while (0)
 
 /* TODO(eteran): implement this */

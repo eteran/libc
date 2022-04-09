@@ -19,27 +19,23 @@ char *tmpnam(char *s) {
 		p = (!s) ? buf : s;
 
 		do {
-			static const char alphabet[] = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-%";
+			static const char alphabet[] =
+				"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-%";
 
-			snprintf(
-				p,
-				L_tmpnam,
-				"%s%s%c%c%c%c%c%c%c%c",
-				P_tmpnam,
-				"file",
-				alphabet[rand() % (sizeof(alphabet) - 1)],
-				alphabet[rand() % (sizeof(alphabet) - 1)],
-				alphabet[rand() % (sizeof(alphabet) - 1)],
-				alphabet[rand() % (sizeof(alphabet) - 1)],
-				alphabet[rand() % (sizeof(alphabet) - 1)],
-				alphabet[rand() % (sizeof(alphabet) - 1)],
-				alphabet[rand() % (sizeof(alphabet) - 1)],
-				alphabet[rand() % (sizeof(alphabet) - 1)]);
+			snprintf(p, L_tmpnam, "%s%s%c%c%c%c%c%c%c%c", P_tmpnam, "file",
+			         alphabet[rand() % (sizeof(alphabet) - 1)],
+			         alphabet[rand() % (sizeof(alphabet) - 1)],
+			         alphabet[rand() % (sizeof(alphabet) - 1)],
+			         alphabet[rand() % (sizeof(alphabet) - 1)],
+			         alphabet[rand() % (sizeof(alphabet) - 1)],
+			         alphabet[rand() % (sizeof(alphabet) - 1)],
+			         alphabet[rand() % (sizeof(alphabet) - 1)],
+			         alphabet[rand() % (sizeof(alphabet) - 1)]);
 
-			/* TODO(eteran): change this while to a condition to test if the file exists,
-			 * it is actually more probable then it looks because an unseeded rand()
-			 * is the same for all processes, perhaps we should integrate the PID
-			 * as well?
+			/* TODO(eteran): change this while to a condition to test if the file
+			 * exists, it is actually more probable then it looks because an unseeded
+			 * rand() is the same for all processes, perhaps we should integrate the
+			 * PID as well?
 			 */
 		} while (0);
 	}

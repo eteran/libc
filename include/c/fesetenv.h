@@ -11,5 +11,3 @@ int fesetenv(const fenv_t *envp) _NOEXCEPT;
 _LIBC_END
 
 #endif
-
-

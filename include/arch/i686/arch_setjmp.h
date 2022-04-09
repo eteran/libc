@@ -18,5 +18,4 @@ typedef struct {
 	struct __elibc_jmp_buf_x86_t state;
 } jmp_buf[1];
 
-
 #endif

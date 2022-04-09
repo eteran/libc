@@ -5,6 +5,4 @@
 /*------------------------------------------------------------------------------
 // Name: srand
 //----------------------------------------------------------------------------*/
-void srand(unsigned int seed) {
-	*__elibc_rand_next() = seed;
-}
+void srand(unsigned int seed) { *__elibc_rand_next() = seed; }

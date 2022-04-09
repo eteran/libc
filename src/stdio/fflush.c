@@ -15,10 +15,8 @@ int __elibc_fflush(FILE *stream) {
 				if (_FDATA(stream)->buffer_last == _FDATA(stream)->buffer_ptr) {
 					const size_t n = _FDATA(stream)->buffer_first - _FDATA(stream)->buffer_ptr;
 
-					const ssize_t r = __elibc_sys_write(
-						__ELIBC_FILENO(stream),
-						_FDATA(stream)->buffer_ptr,
-						n);
+					const ssize_t r =
+						__elibc_sys_write(__ELIBC_FILENO(stream), _FDATA(stream)->buffer_ptr, n);
 
 					if (r < 0) {
 						/* TODO(eteran): set errno */
@@ -29,7 +27,7 @@ int __elibc_fflush(FILE *stream) {
 		}
 
 		_FDATA(stream)->buffer_first = _FDATA(stream)->buffer_ptr;
-		_FDATA(stream)->buffer_last  = _FDATA(stream)->buffer_ptr;
+		_FDATA(stream)->buffer_last = _FDATA(stream)->buffer_ptr;
 		return 0;
 	} else {
 		/* flush all open output streams */

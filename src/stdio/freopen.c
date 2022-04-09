@@ -16,8 +16,8 @@ static FILE *__elibc_freopen(const char *path, const char *mode, FILE *stream) {
 
 		/* swap internal structures */
 		struct __elibc_internal_file_data *const temp_data = _FDATA(stream);
-		_FDATA(stream)                                     = _FDATA(new_file);
-		_FDATA(new_file)                                   = temp_data;
+		_FDATA(stream) = _FDATA(new_file);
+		_FDATA(new_file) = temp_data;
 
 		/* close the old file, it is now located here */
 		(void)__elibc_fclose(new_file);

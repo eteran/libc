@@ -24,16 +24,16 @@
 #define SHRT_MAX  32767
 #define SHRT_MIN  (-32768)
 
-#define UINT_MAX 0xffffffffU
-#define INT_MAX  0x7fffffff
-#define INT_MIN  (-INT_MAX - 1)
+#define UINT_MAX  0xffffffffU
+#define INT_MAX   0x7fffffff
+#define INT_MIN   (-INT_MAX - 1)
 
 #define ULONG_MAX 18446744073709551615UL
 #define LONG_MAX  9223372036854775807L
 #define LONG_MIN  (-LONG_MAX - 1L)
 
-/* based on the assumption that mb == utf-8. 
- * this really should be 4 since unicode is artificially restrited 
+/* based on the assumption that mb == utf-8.
+ * this really should be 4 since unicode is artificially restrited
  * but it hypothetically can support 6, so ... doesn't hurt to plan
  * ahead
  */

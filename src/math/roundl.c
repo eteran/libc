@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: roundl
 //----------------------------------------------------------------------------*/
-long double roundl(long double x) {
-	return __builtin_roundl(x);
-}
+long double roundl(long double x) { return __builtin_roundl(x); }
 
 #endif

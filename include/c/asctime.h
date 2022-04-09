@@ -2,8 +2,8 @@
 #ifndef _C_ASCTIME_H_20051228_
 #define _C_ASCTIME_H_20051228_
 
-#include "arch_size_t.h"
 #include "_time.h"
+#include "arch_size_t.h"
 
 _LIBC_BEGIN
 

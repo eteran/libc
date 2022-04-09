@@ -16,8 +16,6 @@ static float __elibc_fmaf(float x, float y, float z) {
 /*------------------------------------------------------------------------------
 // Name: fmaf
 //----------------------------------------------------------------------------*/
-float fmaf(float x, float y, float z) {
-	return __elibc_fmaf(x, y, z);
-}
+float fmaf(float x, float y, float z) { return __elibc_fmaf(x, y, z); }
 
 #endif

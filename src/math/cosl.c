@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: cosl
 //----------------------------------------------------------------------------*/
-long double cosl(long double x) {
-	return __builtin_cosl(x);
-}
+long double cosl(long double x) { return __builtin_cosl(x); }
 
 #endif

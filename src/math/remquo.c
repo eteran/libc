@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: remquo
 //----------------------------------------------------------------------------*/
-double remquo(double x, double y, int *quo) {
-	return __builtin_remquo(x, y, quo);
-}
+double remquo(double x, double y, int *quo) { return __builtin_remquo(x, y, quo); }
 
 #endif

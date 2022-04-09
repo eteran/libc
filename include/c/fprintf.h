@@ -6,7 +6,8 @@
 
 _LIBC_BEGIN
 
-int fprintf(FILE *_RESTRICT stream, const char *_RESTRICT format, ...) _NOEXCEPT __attribute__((__format__ (printf, 2, 3)));
+int fprintf(FILE *_RESTRICT stream, const char *_RESTRICT format, ...) _NOEXCEPT
+	__attribute__((__format__(printf, 2, 3)));
 
 _LIBC_END
 

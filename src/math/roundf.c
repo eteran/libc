@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: roundf
 //----------------------------------------------------------------------------*/
-float roundf(float x) {
-	return __builtin_roundf(x);
-}
+float roundf(float x) { return __builtin_roundf(x); }
 
 #endif

@@ -5,9 +5,7 @@
 /*------------------------------------------------------------------------------
 // Name: ctime_r
 //----------------------------------------------------------------------------*/
-char *ctime_r(const time_t *timer, char *buf) {
-	return asctime_r(localtime(timer), buf);
-}
+char *ctime_r(const time_t *timer, char *buf) { return asctime_r(localtime(timer), buf); }
 
 /*------------------------------------------------------------------------------
 // Name: ctime

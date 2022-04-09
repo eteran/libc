@@ -9,9 +9,9 @@
 //----------------------------------------------------------------------------*/
 size_t strlcat(char *_RESTRICT dest, const char *_RESTRICT src, size_t siz) {
 
-	char *d       = dest;
+	char *d = dest;
 	const char *s = src;
-	size_t n      = siz;
+	size_t n = siz;
 	size_t dlen;
 
 	assert(dest);
@@ -23,7 +23,7 @@ size_t strlcat(char *_RESTRICT dest, const char *_RESTRICT src, size_t siz) {
 	}
 
 	dlen = d - dest;
-	n    = siz - dlen;
+	n = siz - dlen;
 
 	if (n == 0) {
 		return (dlen + strlen(s));

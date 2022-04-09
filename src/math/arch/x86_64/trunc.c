@@ -11,9 +11,7 @@
 static double __elibc_trunc(double x) {
 	double value;
 	fesetround(FE_TOWARDZERO);
-	__asm__ __volatile__("frndint"
-						 : "=t"(value)
-						 : "0"(x));
+	__asm__ __volatile__("frndint" : "=t"(value) : "0"(x));
 	return value;
 }
 

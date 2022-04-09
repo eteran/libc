@@ -2,7 +2,7 @@
 #ifndef _ARCH_X86_64_ARCH_FLOAT_H_20051228_
 #define _ARCH_X86_64_ARCH_FLOAT_H_20051228_
 
-#define FLT_ROUNDS 1
+#define FLT_ROUNDS      1
 
 #define FLT_DIG         6
 #define FLT_MANT_DIG    24

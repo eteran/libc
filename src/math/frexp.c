@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: frexp
 //----------------------------------------------------------------------------*/
-double frexp(double x, int *exp) {
-	return __builtin_frexp(x, exp);
-}
+double frexp(double x, int *exp) { return __builtin_frexp(x, exp); }
 
 #endif

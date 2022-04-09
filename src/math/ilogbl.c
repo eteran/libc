@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: ilogbl
 //----------------------------------------------------------------------------*/
-int ilogbl(long double x) {
-	return __builtin_ilogbl(x);
-}
+int ilogbl(long double x) { return __builtin_ilogbl(x); }
 
 #endif

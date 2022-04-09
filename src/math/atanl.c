@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: atanl
 //----------------------------------------------------------------------------*/
-long double atanl(long double x) {
-	return __builtin_atanl(x);
-}
+long double atanl(long double x) { return __builtin_atanl(x); }
 
 #endif

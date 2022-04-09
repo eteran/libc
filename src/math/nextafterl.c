@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: nextafterl
 //----------------------------------------------------------------------------*/
-long double nextafterl(long double x, long double y) {
-	return __builtin_nextafterl(x, y);
-}
+long double nextafterl(long double x, long double y) { return __builtin_nextafterl(x, y); }
 
 #endif

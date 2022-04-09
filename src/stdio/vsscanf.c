@@ -7,35 +7,35 @@
 
 /* TODO(eteran): finish this! */
 
-#define CONVERT_NUMBER(temp_name, type, base)                            \
-	do {                                                                 \
-		conversion_pointers.temp_name    = va_arg(ap, type *);           \
-		*(conversion_pointers.temp_name) = strtol(str, &endptr, (base)); \
-		++assign_count;                                                  \
-		str = endptr;                                                    \
+#define CONVERT_NUMBER(temp_name, type, base)                                                      \
+	do {                                                                                           \
+		conversion_pointers.temp_name = va_arg(ap, type *);                                        \
+		*(conversion_pointers.temp_name) = strtol(str, &endptr, (base));                           \
+		++assign_count;                                                                            \
+		str = endptr;                                                                              \
 	} while (0)
 
 #define BITSET(name, N) unsigned char name[N / CHAR_BIT]
-#define SET_BIT(name, I)                             \
-	do {                                             \
-		name[I / CHAR_BIT] |= (1 << (I % CHAR_BIT)); \
+#define SET_BIT(name, I)                                                                           \
+	do {                                                                                           \
+		name[I / CHAR_BIT] |= (1 << (I % CHAR_BIT));                                               \
 	} while (0)
 #define TEST_BIT(name, I) (int)(name[I / CHAR_BIT] & (1 << (I % CHAR_BIT)))
-#define FLIP_BITS(name, N)                     \
-	do {                                       \
-		int i;                                 \
-		for (i = 0; i < (N / CHAR_BIT); ++i) { \
-			name[i] = ~name[i];                \
-		}                                      \
+#define FLIP_BITS(name, N)                                                                         \
+	do {                                                                                           \
+		int i;                                                                                     \
+		for (i = 0; i < (N / CHAR_BIT); ++i) {                                                     \
+			name[i] = ~name[i];                                                                    \
+		}                                                                                          \
 	} while (0)
 
 /*------------------------------------------------------------------------------
 // Name: vsscanf
 //----------------------------------------------------------------------------*/
 int vsscanf(const char *_RESTRICT str, const char *_RESTRICT format, va_list ap) {
-	int assign_count    = 0;
-	int done            = 0;
-	char *endptr        = 0;
+	int assign_count = 0;
+	int done = 0;
+	char *endptr = 0;
 	const char *str_ptr = str;
 
 	union {
@@ -77,7 +77,7 @@ int vsscanf(const char *_RESTRICT str, const char *_RESTRICT format, va_list ap)
 			case 'g':
 			case 'E':
 #ifdef _HAS_FPU
-				conversion_pointers.float_ptr    = va_arg(ap, float *);
+				conversion_pointers.float_ptr = va_arg(ap, float *);
 				*(conversion_pointers.float_ptr) = strtof(str, &endptr);
 				++assign_count;
 				str = endptr;
@@ -98,7 +98,7 @@ int vsscanf(const char *_RESTRICT str, const char *_RESTRICT format, va_list ap)
 				break;
 
 			case 'c':
-				conversion_pointers.char_ptr    = va_arg(ap, char *);
+				conversion_pointers.char_ptr = va_arg(ap, char *);
 				*(conversion_pointers.char_ptr) = *str++;
 				++assign_count;
 				break;
@@ -109,9 +109,9 @@ int vsscanf(const char *_RESTRICT str, const char *_RESTRICT format, va_list ap)
 					 * is it possible that this is not the case?
 					 */
 					BITSET(charset, 256) = {0};
-					const char *p        = &format[2];
-					const int invert     = (*p == '^');
-					char ch              = '\0';
+					const char *p = &format[2];
+					const int invert = (*p == '^');
+					char ch = '\0';
 
 					if (invert) {
 						++p;
@@ -124,7 +124,7 @@ int vsscanf(const char *_RESTRICT str, const char *_RESTRICT format, va_list ap)
 
 					while (*p != '\0' && *p != ']') {
 						char range_start = ch;
-						ch               = *p++;
+						ch = *p++;
 						if (ch == '-') {
 							if (*p == '\0' || *p == ']') {
 								SET_BIT(charset, (int)'-');
@@ -157,14 +157,14 @@ int vsscanf(const char *_RESTRICT str, const char *_RESTRICT format, va_list ap)
 				break;
 
 			case 'p':
-				conversion_pointers.void_ptr    = va_arg(ap, void *);
+				conversion_pointers.void_ptr = va_arg(ap, void *);
 				*(conversion_pointers.uint_ptr) = strtoul(str, &endptr, 16);
 				++assign_count;
 				str = endptr;
 				break;
 
 			case 'n':
-				conversion_pointers.uint_ptr    = va_arg(ap, unsigned int *);
+				conversion_pointers.uint_ptr = va_arg(ap, unsigned int *);
 				*(conversion_pointers.uint_ptr) = (str - str_ptr);
 				++assign_count;
 				break;

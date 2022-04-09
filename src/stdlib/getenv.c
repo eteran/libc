@@ -10,7 +10,7 @@
 char *getenv(const char *name) {
 
 	if (__elibc_environment) {
-		char **ep        = __elibc_environment;
+		char **ep = __elibc_environment;
 		const size_t len = strlen(name);
 		while (*ep) {
 			char *const s = *ep;

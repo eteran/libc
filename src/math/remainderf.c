@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------------
 // Name: remainderf
 //----------------------------------------------------------------------------*/
-float remainderf(float x, float y) {
-	return __builtin_remainderf(x, y);
-}
+float remainderf(float x, float y) { return __builtin_remainderf(x, y); }
 
 #endif
