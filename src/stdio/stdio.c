@@ -94,15 +94,17 @@ FILE *__elibc_free_file_struct = NULL;
 
 void __elibc_lock_stream(FILE *stream) {
 	assert(stream);
-
-	/* TODO(eteran): locking */
+#if defined(USE_THREADS)
+	pthread_mutex_lock(&stream->mutex);
+#endif
 	(void)stream;
 }
 
 void __elibc_unlock_stream(FILE *stream) {
 	assert(stream);
-
-	/* TODO(eteran): unlocking */
+#if defined(USE_THREADS)
+	pthread_mutex_unlock(&stream->mutex);
+#endif
 	(void)stream;
 }
 
