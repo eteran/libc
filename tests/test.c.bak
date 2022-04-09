@@ -1,5 +1,5 @@
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #define __STDC_NO_COMPLEX__
 #include <assert.h>
 #include <complex.h>
@@ -37,9 +37,9 @@ int main() {
 
 	printf("Hello World\n");
 	printf("%lf\n", sin(123.0));
-	
+
 	setlocale(LC_ALL, "en_US.UTF-8");
-	
+
 	{
 		char buf[MB_LEN_MAX];
 		int n = wctomb(buf, 0x65e5);
@@ -49,12 +49,12 @@ int main() {
 		}
 		printf("\n");
 	}
-	
+
 	{
 		wchar_t wc;
 		int r = mbtowc(&wc, "\xfe\xfe\xff\xff", 4);
 		printf("%d: %08x\n", r, wc);
 	}
-	
+
 	return 0;
 }

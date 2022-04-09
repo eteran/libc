@@ -1,7 +1,7 @@
 
 /* TODO(eteran): confirm correctness of these functions */
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #include <fenv.h>
 #include <stdint.h>
 
@@ -51,13 +51,13 @@ int fesetround(int round) {
 	uint16_t cw;
 
 	/* make sure that only rounding bits have been set */
-	if ((round & ~__ELIBC_FE_ROUND_MASK) != 0) {
+	if ((round & ~_ELIBC_FE_ROUND_MASK) != 0) {
 		return 1;
 	}
 
 	/* set it for the FPU */
 	FPU_GETCW(cw);
-	cw = (cw & ~__ELIBC_FE_ROUND_MASK) | round;
+	cw = (cw & ~_ELIBC_FE_ROUND_MASK) | round;
 	FPU_SETCW(cw);
 
 	/* set it for SSE */
@@ -77,7 +77,7 @@ int fesetround(int round) {
 int fegetround(void) {
 	uint16_t cw;
 	FPU_GETCW(cw);
-	return cw & __ELIBC_FE_ROUND_MASK;
+	return cw & _ELIBC_FE_ROUND_MASK;
 }
 
 /*------------------------------------------------------------------------------

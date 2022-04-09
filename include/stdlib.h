@@ -43,7 +43,7 @@
 #include "c/system.h"
 #include "c/wcstombs.h"
 
-#if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(__ELIBC_SOURCE)
+#if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(_ELIBC_SOURCE)
 #include "c/_Exit.h"
 #include "c/atoll.h"
 #include "c/llabs.h"
@@ -54,7 +54,7 @@
 #include "c/strtoull.h"
 #endif
 
-#if defined(_HAS_C99) || defined(_HAS_CXX89) || defined(__ELIBC_SOURCE)
+#if defined(_HAS_C99) || defined(_HAS_CXX89) || defined(_ELIBC_SOURCE)
 #include "c/wctomb.h"
 #endif
 

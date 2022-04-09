@@ -1,5 +1,5 @@
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,7 +15,7 @@ static FILE *__elibc_freopen(const char *path, const char *mode, FILE *stream) {
 	if (new_file) {
 
 		/* swap internal structures */
-		struct __elibc_internal_file_data *const temp_data = _FDATA(stream);
+		struct __elibc_file *const temp_data = _FDATA(stream);
 		_FDATA(stream) = _FDATA(new_file);
 		_FDATA(new_file) = temp_data;
 

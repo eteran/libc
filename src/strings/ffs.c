@@ -1,5 +1,5 @@
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #include <limits.h>
 #include <strings.h>
 

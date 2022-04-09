@@ -1,5 +1,5 @@
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #include <inttypes.h>
 #include <stdlib.h>
 #include <wchar.h> /* supposed to be necessary */

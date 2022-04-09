@@ -1,5 +1,5 @@
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #include "c/_support.h"
 #include <assert.h>
 #include <stdio.h>
@@ -21,7 +21,7 @@ void _Exit(int status) {
 	while (__elibc_free_file_struct) {
 		FILE *ptr = __elibc_free_file_struct;
 		__elibc_free_file_struct = ptr->next;
-#if defined(USE_THREADS)
+#if defined(_ELIBC_USE_THREADS)
 		pthread_mutex_destroy(&ptr->mutex);
 #endif
 		free(ptr);

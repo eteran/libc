@@ -1,5 +1,5 @@
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #include "c/_support.h"
 #include <errno.h>
 #include <stdio.h>
@@ -26,7 +26,7 @@ FILE *fopen(const char *path, const char *mode) {
 		return 0;
 	}
 
-	_FDATA(f) = malloc(sizeof(struct __elibc_internal_file_data) + strlen(path));
+	_FDATA(f) = malloc(sizeof(struct __elibc_file) + strlen(path));
 	if (!_FDATA(f)) {
 		__elibc_free_file(f);
 		return 0;
@@ -114,7 +114,7 @@ FILE *fopen(const char *path, const char *mode) {
 	__elibc_root_file_struct->prev = f;
 	__elibc_root_file_struct = f;
 
-#if defined(USE_THREADS)
+#if defined(_ELIBC_USE_THREADS)
 	pthread_mutex_init(&f->mutex, NULL);
 #endif
 	return f;

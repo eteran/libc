@@ -1,5 +1,5 @@
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #include <stdio.h>
 
 /*------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ FILE *tmpfile(void) {
 
 		if (file) {
 			/* set the file to autodelete on close */
-			_FDATA(file)->flags |= __ELIBC_FILE_DEL_ON_CLOSE;
+			_FDATA(file)->flags |= _ELIBC_FILE_AUTO_CLOSE;
 		}
 	}
 

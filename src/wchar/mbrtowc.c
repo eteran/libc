@@ -1,5 +1,5 @@
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #include <assert.h>
 #include <errno.h>
 #include <locale.h>
@@ -44,7 +44,7 @@ size_t mbrtowc(wchar_t *_RESTRICT pwc, const char *_RESTRICT s, size_t n, mbstat
 
 	const int locale_type = __elibc_get_locale_type(LC_CTYPE);
 
-	if (locale_type == __ELIBC_ASCII) {
+	if (locale_type == _ELIBC_ASCII) {
 
 		/* C locale version */
 		if (s) {
@@ -63,7 +63,7 @@ size_t mbrtowc(wchar_t *_RESTRICT pwc, const char *_RESTRICT s, size_t n, mbstat
 		} else {
 			return 0;
 		}
-	} else if (locale_type == __ELIBC_UTF8) {
+	} else if (locale_type == _ELIBC_UTF8) {
 		/* xx_YY.UTF-8 version */
 
 		static mbstate_t internal_ps = {0, 0, 0};

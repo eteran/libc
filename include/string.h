@@ -33,7 +33,7 @@
 #include "c/strxfrm.h"
 
 /* some extensions to the string library */
-#ifdef __ELIBC_SAFE_STRING
+#ifdef _ELIBC_SAFE_STRING
 #include "c/strdup.h"
 #include "c/strlcat.h"
 #include "c/strlcpy.h"

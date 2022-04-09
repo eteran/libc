@@ -1,5 +1,5 @@
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #include "c/_support.h"
 #include <stdio.h>
 #include <time.h>

@@ -1,6 +1,6 @@
 
-#define __ELIBC_SOURCE
-#define __ELIBC_SAFE_STRING
+#define _ELIBC_SOURCE
+#define _ELIBC_SAFE_STRING
 #include <assert.h>
 #include <errno.h>
 #include <stdio.h>

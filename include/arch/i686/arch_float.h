@@ -29,7 +29,7 @@
 #define DBL_MIN_EXP     (-1021)
 
 /* C99 only */
-#if defined(__cplusplus) || defined(_HAS_C99) || defined(__ELIBC_SOURCE)
+#if defined(__cplusplus) || defined(_HAS_C99) || defined(_ELIBC_SOURCE)
 #define LDBL_DIG        18
 #define LDBL_EPSILON    1.08420217248550443401e-19L
 #define LDBL_MANT_DIG   64

@@ -79,7 +79,7 @@ struct tm;
 #include "c/wprintf.h"
 #include "c/wscanf.h"
 
-#if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(__ELIBC_SOURCE)
+#if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(_ELIBC_SOURCE)
 #include "c/vfwscanf.h"
 #include "c/vswscanf.h"
 #include "c/vwscanf.h"
@@ -89,7 +89,7 @@ struct tm;
 #include "c/wcstoull.h"
 #endif
 
-#ifdef __ELIBC_SOURCE
+#ifdef _ELIBC_SOURCE
 #include "c/wcswidth.h" /* POSIX.1-2001 */
 #include "c/wcwidth.h"  /* POSIX.1-2001 */
 

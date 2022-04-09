@@ -1,5 +1,5 @@
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>

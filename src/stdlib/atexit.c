@@ -1,5 +1,5 @@
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #include <stdlib.h>
 
 static _atexit_t __elibc_f_list[ATEXIT_MAX];

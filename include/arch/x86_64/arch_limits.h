@@ -39,7 +39,7 @@
  */
 #define MB_LEN_MAX 6
 
-#if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(__ELIBC_SOURCE)
+#if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(_ELIBC_SOURCE)
 #define LLONG_MAX  9223372036854775807LL
 #define LLONG_MIN  (-LLONG_MAX - 1LL)
 #define ULLONG_MAX 18446744073709551615ULL

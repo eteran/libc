@@ -18,7 +18,7 @@
 
 /* We always want assert to be fully defined.  */
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #undef NDEBUG
 #include <assert.h>
 #include <errno.h>

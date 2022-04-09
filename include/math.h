@@ -6,16 +6,16 @@
 #include "c/c-config.h"
 
 #if defined(__GNUC__)
-#define __ELIBC_HUGE_VALUE  __builtin_huge_val()
-#define __ELIBC_HUGE_VALUEF __builtin_huge_valf()
-#define __ELIBC_HUGE_VALUEL __builtin_huge_vall()
-#define __ELIBC_INF         __builtin_inf()
-#define __ELIBC_NAN(x)      __builtin_nan(x)
+#define _ELIBC_HUGE_VALUE  __builtin_huge_val()
+#define _ELIBC_HUGE_VALUEF __builtin_huge_valf()
+#define _ELIBC_HUGE_VALUEL __builtin_huge_vall()
+#define _ELIBC_INF         __builtin_inf()
+#define _ELIBC_NAN(x)      __builtin_nan(x)
 #else
 #error "no support for nan/inf/huge_value with this compiler"
 #endif
 
-#define HUGE_VAL __ELIBC_HUGE_VALUE
+#define HUGE_VAL _ELIBC_HUGE_VALUE
 
 #include "c/acos.h"
 #include "c/asin.h"
@@ -40,7 +40,7 @@
 #include "c/tan.h"
 #include "c/tanh.h"
 
-#if defined(_HAS_C99) || defined(__ELIBC_SOURCE)
+#if defined(_HAS_C99) || defined(_ELIBC_SOURCE)
 
 /*
 #pragma STDC FP_CONTRACT on-off-switch
@@ -163,7 +163,7 @@
 #include "c/truncl.h"
 #endif
 
-#if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(__ELIBC_SOURCE)
+#if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(_ELIBC_SOURCE)
 
 /* TODO(eteran): should we make these depend on FLT_EVAL_METHOD directly ? */
 typedef double double_t;
@@ -172,11 +172,11 @@ typedef float float_t;
 #define FP_ILOGBNAN  (-1 - (int)(((unsigned)-1) >> 1))
 #define FP_ILOGB0    FP_ILOGBNAN
 
-#define INFINITY     __ELIBC_INF
-#define NAN          __ELIBC_NAN("")
+#define INFINITY     _ELIBC_INF
+#define NAN          _ELIBC_NAN("")
 
-#define HUGE_VALF    __ELIBC_HUGE_VALUEF
-#define HUGE_VALL    __ELIBC_HUGE_VALUEL
+#define HUGE_VALF    _ELIBC_HUGE_VALUEF
+#define HUGE_VALL    _ELIBC_HUGE_VALUEL
 
 #define FP_NAN       0
 #define FP_INFINITE  1

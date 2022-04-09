@@ -1,6 +1,6 @@
 
-#define __ELIBC_SAFE_STRING
-#define __ELIBC_SOURCE
+#define _ELIBC_SAFE_STRING
+#define _ELIBC_SOURCE
 #include <ctype.h>
 #include <math.h>
 #include <stdarg.h>
@@ -53,10 +53,12 @@ enum __modifiers {
 	do {                                                                                           \
 		(x) |= (flag);                                                                             \
 	} while (0)
+
 #define CLEAR_FLAGS(x, flag)                                                                       \
 	do {                                                                                           \
 		(x) &= ~(flag);                                                                            \
 	} while (0)
+
 #define GET_FLAG(x, flag) (((x) & (flag)) != 0)
 
 #define REVERSE_STRING(p1, p2)                                                                     \

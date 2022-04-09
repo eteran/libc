@@ -1,5 +1,5 @@
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #define __STDC_LIMIT_MACROS
 #include <assert.h>
 #include <inttypes.h>

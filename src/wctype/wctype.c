@@ -5,7 +5,7 @@
  * I'm not sure that's correct.
  */
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #include <ctype.h>
 #include <string.h>
 #include <wchar.h>

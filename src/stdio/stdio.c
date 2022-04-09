@@ -1,5 +1,5 @@
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,31 +16,31 @@
 #define STDERR_FILENO 2 /* Standard error output.  */
 #endif
 
-static struct __elibc_internal_file_data __elibc_stdin_internal = {
-	STDIN_FILENO, _IOLBF, 0, 0, 0, __ELIBC_FILE_STATIC_ALLOC, 0, 0, 0, 0, 0, {""}};
+static struct __elibc_file __elibc_stdin_internal = {
+	STDIN_FILENO, _IOLBF, 0, 0, 0, _ELIBC_FILE_STATIC_ALLOC, 0, 0, 0, 0, 0, {""}};
 
-static struct __elibc_internal_file_data __elibc_stdout_internal = {
-	STDOUT_FILENO, _IOLBF, 0, 0, 0, __ELIBC_FILE_STATIC_ALLOC, 0, 0, 0, 0, 0, {""}};
+static struct __elibc_file __elibc_stdout_internal = {
+	STDOUT_FILENO, _IOLBF, 0, 0, 0, _ELIBC_FILE_STATIC_ALLOC, 0, 0, 0, 0, 0, {""}};
 
-static struct __elibc_internal_file_data __elibc_stderr_internal = {
-	STDERR_FILENO, _IONBF, 0, 0, 0, __ELIBC_FILE_STATIC_ALLOC, 0, 0, 0, 0, 0, {""}};
+static struct __elibc_file __elibc_stderr_internal = {
+	STDERR_FILENO, _IONBF, 0, 0, 0, _ELIBC_FILE_STATIC_ALLOC, 0, 0, 0, 0, 0, {""}};
 
 FILE __elibc_stdin[1] = {{__elibc_stdout, 0, &__elibc_stdin_internal
-#if defined(USE_THREADS)
+#if defined(_ELIBC_USE_THREADS)
                           ,
                           PTHREAD_MUTEX_INITIALIZER
 #endif
 }};
 
 FILE __elibc_stdout[1] = {{__elibc_stderr, __elibc_stdin, &__elibc_stdout_internal
-#if defined(USE_THREADS)
+#if defined(_ELIBC_USE_THREADS)
                            ,
                            PTHREAD_MUTEX_INITIALIZER
 #endif
 }};
 
 FILE __elibc_stderr[1] = {{0, __elibc_stdout, &__elibc_stderr_internal
-#if defined(USE_THREADS)
+#if defined(_ELIBC_USE_THREADS)
                            ,
                            PTHREAD_MUTEX_INITIALIZER
 #endif
@@ -52,7 +52,7 @@ FILE *__elibc_free_file_struct = NULL;
 
 void __elibc_lock_stream(FILE *stream) {
 	assert(stream);
-#if defined(USE_THREADS)
+#if defined(_ELIBC_USE_THREADS)
 	pthread_mutex_lock(&stream->mutex);
 #endif
 	(void)stream;
@@ -60,7 +60,7 @@ void __elibc_lock_stream(FILE *stream) {
 
 void __elibc_unlock_stream(FILE *stream) {
 	assert(stream);
-#if defined(USE_THREADS)
+#if defined(_ELIBC_USE_THREADS)
 	pthread_mutex_unlock(&stream->mutex);
 #endif
 	(void)stream;

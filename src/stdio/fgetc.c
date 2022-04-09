@@ -1,5 +1,5 @@
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #include "c/_support.h"
 #include <assert.h>
 #include <stdio.h>
@@ -29,7 +29,7 @@ int __elibc_fgetc(FILE *stream) {
 
 	if (_FDATA(stream)->buf_mod == _IONBF) {
 		char ch;
-		const ssize_t n = __elibc_sys_read(__ELIBC_FILENO(stream), &ch, sizeof(ch));
+		const ssize_t n = __elibc_sys_read(_ELIBC_FILENO(stream), &ch, sizeof(ch));
 
 		switch (n) {
 		case -1:
@@ -46,7 +46,7 @@ int __elibc_fgetc(FILE *stream) {
 	} else {
 		/* the input buffer is empty, fill it up */
 		if (_FDATA(stream)->buffer_first == _FDATA(stream)->buffer_last) {
-			const ssize_t n = __elibc_sys_read(__ELIBC_FILENO(stream), _FDATA(stream)->buffer_ptr,
+			const ssize_t n = __elibc_sys_read(_ELIBC_FILENO(stream), _FDATA(stream)->buffer_ptr,
 			                                   _FDATA(stream)->buffer_capacity);
 
 			switch (n) {

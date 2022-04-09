@@ -1,5 +1,5 @@
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #include "c/_support.h"
 #include <assert.h>
 #include <stdio.h>
@@ -57,7 +57,7 @@ int __elibc_fputc(int c, FILE *stream, int orientation) {
 		break;
 
 	case _IONBF:
-		r = (__elibc_sys_write(__ELIBC_FILENO(stream), &ch, 1) == 1) ? 0 : -1;
+		r = (__elibc_sys_write(_ELIBC_FILENO(stream), &ch, 1) == 1) ? 0 : -1;
 		break;
 
 	default:

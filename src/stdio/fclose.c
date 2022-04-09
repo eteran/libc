@@ -1,5 +1,5 @@
 
-#define __ELIBC_SOURCE
+#define _ELIBC_SOURCE
 #include "c/_support.h"
 #include <assert.h>
 #include <stdio.h>
@@ -17,10 +17,10 @@ int __elibc_fclose(FILE *stream) {
 	}
 
 	/* TODO(eteran): deal with any errors __elibc_sys_close might return */
-	__elibc_sys_close(__ELIBC_FILENO(stream));
+	__elibc_sys_close(_ELIBC_FILENO(stream));
 
 	/* if the file is marked to remove on close, do it */
-	if (_FDATA(stream)->flags & __ELIBC_FILE_DEL_ON_CLOSE) {
+	if (_FDATA(stream)->flags & _ELIBC_FILE_AUTO_CLOSE) {
 
 		/* TODO(eteran): deleting it by the original open name
 		 * is flawed. I believe the UNIX way is to
@@ -50,7 +50,7 @@ int __elibc_fclose(FILE *stream) {
 
 	free(_FDATA(stream)->internal_buffer_ptr);
 
-	if (!(_FDATA(stream)->flags & __ELIBC_FILE_STATIC_ALLOC)) {
+	if (!(_FDATA(stream)->flags & _ELIBC_FILE_STATIC_ALLOC)) {
 		free(_FDATA(stream));
 	}
 
