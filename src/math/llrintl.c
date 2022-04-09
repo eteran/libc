@@ -8,6 +8,8 @@
 /*------------------------------------------------------------------------------
 // Name: llrintl
 //----------------------------------------------------------------------------*/
-long long int llrintl(long double x) { return __builtin_llrintl(x); }
+long long int llrintl(long double x) {
+	return __builtin_llrintl(x);
+}
 
 #endif

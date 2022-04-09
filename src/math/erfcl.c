@@ -8,6 +8,8 @@
 /*------------------------------------------------------------------------------
 // Name: erfcl
 //----------------------------------------------------------------------------*/
-long double erfcl(long double x) { return __builtin_erfcl(x); }
+long double erfcl(long double x) {
+	return __builtin_erfcl(x);
+}
 
 #endif

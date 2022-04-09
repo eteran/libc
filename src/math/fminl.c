@@ -8,7 +8,9 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_fminl
 //----------------------------------------------------------------------------*/
-static long double __elibc_fminl(long double x, long double y) { return x < y ? x : y; }
+static long double __elibc_fminl(long double x, long double y) {
+	return x < y ? x : y;
+}
 
 /*------------------------------------------------------------------------------
 // Name: fminl

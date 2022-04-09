@@ -8,6 +8,8 @@
 /*------------------------------------------------------------------------------
 // Name: logbl
 //----------------------------------------------------------------------------*/
-long double logbl(long double x) { return __builtin_logbl(x); }
+long double logbl(long double x) {
+	return __builtin_logbl(x);
+}
 
 #endif

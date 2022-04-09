@@ -18,6 +18,8 @@ static double __elibc_round(double x) {
 /*------------------------------------------------------------------------------
 // Name: round
 //----------------------------------------------------------------------------*/
-double round(double x) { return __elibc_round(x); }
+double round(double x) {
+	return __elibc_round(x);
+}
 
 #endif

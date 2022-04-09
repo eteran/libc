@@ -8,6 +8,8 @@
 /*------------------------------------------------------------------------------
 // Name: nexttowardf
 //----------------------------------------------------------------------------*/
-float nexttowardf(float x, long double y) { return __builtin_nexttowardf(x, y); }
+float nexttowardf(float x, long double y) {
+	return __builtin_nexttowardf(x, y);
+}
 
 #endif

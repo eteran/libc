@@ -62,7 +62,9 @@ static int __elibc_categories_equal() {
 /*------------------------------------------------------------------------------
 // Name: __elibc_get_locale_type
 //----------------------------------------------------------------------------*/
-int __elibc_get_locale_type(int category) { return __elibc_locale_meta[category].type; }
+int __elibc_get_locale_type(int category) {
+	return __elibc_locale_meta[category].type;
+}
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_setlocale

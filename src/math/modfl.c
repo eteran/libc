@@ -8,6 +8,8 @@
 /*------------------------------------------------------------------------------
 // Name: modfl
 //----------------------------------------------------------------------------*/
-long double modfl(long double x, long double *iptr) { return __builtin_modfl(x, iptr); }
+long double modfl(long double x, long double *iptr) {
+	return __builtin_modfl(x, iptr);
+}
 
 #endif

@@ -16,6 +16,8 @@ static double __elibc_log(double x) {
 /*------------------------------------------------------------------------------
 // Name: log
 //----------------------------------------------------------------------------*/
-double log(double x) { return __elibc_log(x); }
+double log(double x) {
+	return __elibc_log(x);
+}
 
 #endif

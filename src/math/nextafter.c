@@ -8,6 +8,8 @@
 /*------------------------------------------------------------------------------
 // Name: nextafter
 //----------------------------------------------------------------------------*/
-double nextafter(double x, double y) { return __builtin_nextafter(x, y); }
+double nextafter(double x, double y) {
+	return __builtin_nextafter(x, y);
+}
 
 #endif

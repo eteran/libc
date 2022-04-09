@@ -18,6 +18,8 @@ static long double __elibc_hypotl(long double x, long double y) {
 /*------------------------------------------------------------------------------
 // Name: hypotl
 //----------------------------------------------------------------------------*/
-long double hypotl(long double x, long double y) { return __elibc_hypotl(x, y); }
+long double hypotl(long double x, long double y) {
+	return __elibc_hypotl(x, y);
+}
 
 #endif

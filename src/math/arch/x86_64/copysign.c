@@ -36,6 +36,8 @@ static double __elibc_copysign(double x, double y) {
 /*------------------------------------------------------------------------------
 // Name: copysign
 //----------------------------------------------------------------------------*/
-double copysign(double x, double y) { return __elibc_copysign(x, y); }
+double copysign(double x, double y) {
+	return __elibc_copysign(x, y);
+}
 
 #endif

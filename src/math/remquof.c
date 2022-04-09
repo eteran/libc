@@ -8,6 +8,8 @@
 /*------------------------------------------------------------------------------
 // Name: remquof
 //----------------------------------------------------------------------------*/
-float remquof(float x, float y, int *quo) { return __builtin_remquof(x, y, quo); }
+float remquof(float x, float y, int *quo) {
+	return __builtin_remquof(x, y, quo);
+}
 
 #endif

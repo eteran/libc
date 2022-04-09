@@ -30,7 +30,9 @@
 #define WCTRANS_LOWER 0xfffe
 
 #define IS_WCTYPE(class)                                                                           \
-	int isw##class(wint_t wc) { return is##class(wctob(wc)); }
+	int isw##class(wint_t wc) {                                                                    \
+		return is##class(wctob(wc));                                                               \
+	}
 
 /*------------------------------------------------------------------------------
 // Name: iswalnum

@@ -16,6 +16,8 @@ static double __elibc_fabs(double x) {
 /*------------------------------------------------------------------------------
 // Name: fabs
 //----------------------------------------------------------------------------*/
-double fabs(double x) { return __elibc_fabs(x); }
+double fabs(double x) {
+	return __elibc_fabs(x);
+}
 
 #endif

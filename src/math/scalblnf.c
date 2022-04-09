@@ -8,6 +8,8 @@
 /*------------------------------------------------------------------------------
 // Name: scalblnf
 //----------------------------------------------------------------------------*/
-float scalblnf(float x, long int exp) { return __builtin_scalblnf(x, exp); }
+float scalblnf(float x, long int exp) {
+	return __builtin_scalblnf(x, exp);
+}
 
 #endif

@@ -16,6 +16,8 @@ static double __elibc_fma(double x, double y, double z) {
 /*------------------------------------------------------------------------------
 // Name: fma
 //----------------------------------------------------------------------------*/
-double fma(double x, double y, double z) { return __elibc_fma(x, y, z); }
+double fma(double x, double y, double z) {
+	return __elibc_fma(x, y, z);
+}
 
 #endif

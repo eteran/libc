@@ -8,6 +8,8 @@
 /*------------------------------------------------------------------------------
 // Name: asinl
 //----------------------------------------------------------------------------*/
-long double asinl(long double x) { return __builtin_asinl(x); }
+long double asinl(long double x) {
+	return __builtin_asinl(x);
+}
 
 #endif

@@ -16,6 +16,8 @@ static double __elibc_atan(double x) {
 /*------------------------------------------------------------------------------
 // Name: atan
 //----------------------------------------------------------------------------*/
-double atan(double x) { return __elibc_atan(x); }
+double atan(double x) {
+	return __elibc_atan(x);
+}
 
 #endif

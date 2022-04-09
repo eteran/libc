@@ -8,6 +8,8 @@
 /*------------------------------------------------------------------------------
 // Name: llrintf
 //----------------------------------------------------------------------------*/
-long long int llrintf(float x) { return __builtin_llrintf(x); }
+long long int llrintf(float x) {
+	return __builtin_llrintf(x);
+}
 
 #endif

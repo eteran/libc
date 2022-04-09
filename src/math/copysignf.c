@@ -8,6 +8,8 @@
 /*------------------------------------------------------------------------------
 // Name: copysignf
 //----------------------------------------------------------------------------*/
-float copysignf(float x, float y) { return __builtin_copysignf(x, y); }
+float copysignf(float x, float y) {
+	return __builtin_copysignf(x, y);
+}
 
 #endif

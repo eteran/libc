@@ -22,6 +22,8 @@ static double __elibc_fmod(double x, double y) {
 /*------------------------------------------------------------------------------
 // Name: fmod
 //----------------------------------------------------------------------------*/
-double fmod(double x, double y) { return __elibc_fmod(x, y); }
+double fmod(double x, double y) {
+	return __elibc_fmod(x, y);
+}
 
 #endif

@@ -8,6 +8,8 @@
 /*------------------------------------------------------------------------------
 // Name: tgammaf
 //----------------------------------------------------------------------------*/
-float tgammaf(float x) { return __builtin_tgammaf(x); }
+float tgammaf(float x) {
+	return __builtin_tgammaf(x);
+}
 
 #endif

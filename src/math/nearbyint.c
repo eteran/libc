@@ -8,6 +8,8 @@
 /*------------------------------------------------------------------------------
 // Name: nearbyint
 //----------------------------------------------------------------------------*/
-double nearbyint(double x) { return __builtin_nearbyint(x); }
+double nearbyint(double x) {
+	return __builtin_nearbyint(x);
+}
 
 #endif

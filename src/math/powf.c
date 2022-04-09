@@ -8,6 +8,8 @@
 /*------------------------------------------------------------------------------
 // Name: powf
 //----------------------------------------------------------------------------*/
-float powf(float x, float y) { return __builtin_powf(x, y); }
+float powf(float x, float y) {
+	return __builtin_powf(x, y);
+}
 
 #endif

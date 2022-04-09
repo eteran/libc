@@ -8,6 +8,8 @@
 /*------------------------------------------------------------------------------
 // Name: lround
 //----------------------------------------------------------------------------*/
-long int lround(double x) { return __builtin_lround(x); }
+long int lround(double x) {
+	return __builtin_lround(x);
+}
 
 #endif

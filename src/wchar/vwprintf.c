@@ -7,4 +7,6 @@
 /*------------------------------------------------------------------------------
 // Name: vwprintf
 //----------------------------------------------------------------------------*/
-int vwprintf(const wchar_t *format, va_list ap) { return vfwprintf(stdout, format, ap); }
+int vwprintf(const wchar_t *format, va_list ap) {
+	return vfwprintf(stdout, format, ap);
+}

@@ -8,11 +8,15 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_expm1l
 //----------------------------------------------------------------------------*/
-static long double __elibc_expm1l(long double x) { return expl(x) - 1; }
+static long double __elibc_expm1l(long double x) {
+	return expl(x) - 1;
+}
 
 /*------------------------------------------------------------------------------
 // Name: expm1l
 //----------------------------------------------------------------------------*/
-long double expm1l(long double x) { return __elibc_expm1l(x); }
+long double expm1l(long double x) {
+	return __elibc_expm1l(x);
+}
 
 #endif

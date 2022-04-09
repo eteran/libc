@@ -18,6 +18,8 @@ static double __elibc_floor(double x) {
 /*------------------------------------------------------------------------------
 // Name: floor
 //----------------------------------------------------------------------------*/
-double floor(double x) { return __elibc_floor(x); }
+double floor(double x) {
+	return __elibc_floor(x);
+}
 
 #endif

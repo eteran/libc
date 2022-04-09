@@ -18,6 +18,8 @@ static double __elibc_ceil(double x) {
 /*------------------------------------------------------------------------------
 // Name: ceil
 //----------------------------------------------------------------------------*/
-double ceil(double x) { return __elibc_ceil(x); }
+double ceil(double x) {
+	return __elibc_ceil(x);
+}
 
 #endif

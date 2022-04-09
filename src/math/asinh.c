@@ -8,6 +8,8 @@
 /*------------------------------------------------------------------------------
 // Name: asinh
 //----------------------------------------------------------------------------*/
-double asinh(double x) { return __builtin_asinh(x); }
+double asinh(double x) {
+	return __builtin_asinh(x);
+}
 
 #endif

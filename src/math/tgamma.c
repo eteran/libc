@@ -8,6 +8,8 @@
 /*------------------------------------------------------------------------------
 // Name: tgamma
 //----------------------------------------------------------------------------*/
-double tgamma(double x) { return __builtin_tgamma(x); }
+double tgamma(double x) {
+	return __builtin_tgamma(x);
+}
 
 #endif
