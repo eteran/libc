@@ -2,6 +2,7 @@
 #define __ELIBC_SOURCE
 #include <assert.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #ifndef STDIN_FILENO
 #define STDIN_FILENO 0 /* Standard input.  */
@@ -60,20 +61,36 @@ static struct __elibc_internal_file_data __elibc_stderr_internal = {
 FILE __elibc_stdin[1] = {
 	{__elibc_stdout,
 	 0,
-	 &__elibc_stdin_internal}};
+	 &__elibc_stdin_internal
+#if defined(USE_THREADS)
+	 , PTHREAD_MUTEX_INITIALIZER
+#endif
+	}
+};
 
 FILE __elibc_stdout[1] = {
 	{__elibc_stderr,
 	 __elibc_stdin,
-	 &__elibc_stdout_internal}};
+	 &__elibc_stdout_internal
+#if defined(USE_THREADS)
+	 , PTHREAD_MUTEX_INITIALIZER
+#endif
+	}
+};
 
 FILE __elibc_stderr[1] = {
 	{0,
 	 __elibc_stdout,
-	 &__elibc_stderr_internal}};
+	 &__elibc_stderr_internal
+#if defined(USE_THREADS)
+	 , PTHREAD_MUTEX_INITIALIZER
+#endif
+	}
+};
 
 /* this is the root of our linked list of open file objects */
 FILE *__elibc_root_file_struct = __elibc_stdin;
+FILE *__elibc_free_file_struct = NULL;
 
 void __elibc_lock_stream(FILE *stream) {
 	assert(stream);
@@ -87,4 +104,34 @@ void __elibc_unlock_stream(FILE *stream) {
 
 	/* TODO(eteran): unlocking */
 	(void)stream;
+}
+
+/* NOTE(eteran): we use this caching strategy of FILE objects for two reasons
+ * 1. because it's faster than reaching out to malloc
+ * 2. more importantly, by delaying actually freeing the objects, it makes
+ * it MUCH easier to deal with future locking strategies. Since we want to
+ * store the mutex IN the FILE object, but we also want to wrap the fclose
+ * operation in that same mutex
+ */
+FILE *__elibc_allocate_file(void) {
+
+	if(__elibc_free_file_struct) {
+		FILE *stream = __elibc_free_file_struct;
+		__elibc_free_file_struct = stream->next;
+		if(__elibc_free_file_struct) {
+			__elibc_free_file_struct->prev = NULL;
+		}
+		return stream;
+	}
+
+	return malloc(sizeof(FILE));
+}
+
+void __elibc_free_file(FILE *stream) {
+	stream->next = __elibc_free_file_struct;
+	stream->prev = NULL;
+	if(__elibc_free_file_struct) {
+		__elibc_free_file_struct->prev = stream;
+	}
+	__elibc_free_file_struct = stream;
 }

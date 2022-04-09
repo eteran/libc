@@ -21,14 +21,14 @@ FILE *fopen(const char *path, const char *mode) {
 	int fd         = -1;
 	int mode_flags = 0;
 
-	FILE *f = malloc(sizeof(FILE));
+	FILE *f = __elibc_allocate_file();
 	if (!f) {
 		return 0;
 	}
 
 	_FDATA(f) = malloc(sizeof(struct __elibc_internal_file_data) + strlen(path));
 	if (!_FDATA(f)) {
-		free(f);
+		__elibc_free_file(f);
 		return 0;
 	}
 
@@ -48,7 +48,7 @@ FILE *fopen(const char *path, const char *mode) {
 		break;
 	default:
 		free(_FDATA(f));
-		free(f);
+		__elibc_free_file(f);
 		/* TODO; what's the correct error code */
 		return 0;
 	}
@@ -81,7 +81,7 @@ FILE *fopen(const char *path, const char *mode) {
 
 	if (*mode != '\0') {
 		free(_FDATA(f));
-		free(f);
+		__elibc_free_file(f);
 		/* TODO(eteran): invalid mode string? */
 		errno = EINVAL;
 		return 0;
@@ -89,7 +89,7 @@ FILE *fopen(const char *path, const char *mode) {
 
 	if ((fd = __elibc_sys_open(path, mode_flags)) == -1) {
 		free(_FDATA(f));
-		free(f);
+		__elibc_free_file(f);
 		/* TODO; what's the correct error code */
 		return 0;
 	}
@@ -114,5 +114,8 @@ FILE *fopen(const char *path, const char *mode) {
 	__elibc_root_file_struct->prev = f;
 	__elibc_root_file_struct       = f;
 
+#if defined(USE_THREADS)
+	pthread_mutex_init(&f->mutex, NULL);
+#endif
 	return f;
 }

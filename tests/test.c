@@ -222,13 +222,31 @@ void test_strftime(void) {
 	}
 }
 
+void test_stdio(void) {
+	{
+		FILE *f = fopen("/etc/passwd", "rb");
+		printf("FILE HANDLE: %p\n", (void *)f);
+		fclose(f);
+	}
+	{
+		FILE *f1 = fopen("/etc/passwd", "rb");
+		FILE *f2 = fopen("/etc/passwd", "rb");
+		printf("FILE HANDLE: %p\n", (void *)f1);
+		printf("FILE HANDLE: %p\n", (void *)f2);
+		fclose(f1);
+		fclose(f2);
+	}
+}
+
 int main(void) {
 
 	int result = 0;
 	printf("Starting Tests...\n");
 
+	test_stdio();
 	test_printf();
 	test_strftime();
+
 
 #ifdef _HAVE_FPU
 	printf("ldexp: %f\n", ldexp(2, -4));

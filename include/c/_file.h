@@ -2,6 +2,10 @@
 #ifndef _C_FILE_H_20051228_
 #define _C_FILE_H_20051228_
 
+#if defined(USE_THREADS)
+#include <pthread.h>
+#endif
+
 #define __ELIBC_FILE_STATIC_ALLOC 0x01 /* the allocation is tracked seperately for internal and general data */
 #define __ELIBC_FILE_DEL_ON_CLOSE 0x02
 
@@ -34,6 +38,10 @@ typedef struct _IO_FILE {
 
 	/* actual FILE struct data, we do it this way for simple swapping of file handles */
 	struct __elibc_internal_file_data *internal_data;
+
+#if defined(USE_THREADS)
+	pthread_mutex_t mutex;
+#endif
 } FILE;
 
 #define _FDATA(f) ((f)->internal_data)

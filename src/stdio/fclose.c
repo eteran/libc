@@ -55,7 +55,7 @@ int __elibc_fclose(FILE *stream) {
 	}
 
 	if (stream != __elibc_stdin && stream != __elibc_stdout && stream != __elibc_stderr) {
-		free(stream);
+		__elibc_free_file(stream);
 	}
 
 	return 0;

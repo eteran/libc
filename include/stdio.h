@@ -27,6 +27,7 @@
 #define TMP_MAX 0x7fff
 
 extern FILE *__elibc_root_file_struct;
+extern FILE *__elibc_free_file_struct;
 extern FILE __elibc_stdin[1];
 extern FILE __elibc_stdout[1];
 extern FILE __elibc_stderr[1];
@@ -97,5 +98,7 @@ extern FILE __elibc_stderr[1];
 
 void __elibc_lock_stream(FILE *stream);
 void __elibc_unlock_stream(FILE *stream);
+FILE *__elibc_allocate_file(void);
+void __elibc_free_file(FILE *stream);
 
 #endif
