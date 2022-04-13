@@ -1,97 +1,38 @@
+/* 100% Converage */
+
 #undef NDEBUG
 #include <assert.h>
 #include <ctype.h>
 #include <string.h>
 
-static void test_isalnum(void) {
-	int ch;
-	for (ch = 0; ch < 256; ++ch) {
-		if (strchr("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", ch)) {
-			assert(isalnum(ch));
-		} else {
-			assert(!isalnum(ch));
-		}
+#define TEST_CTYPE(name, charset)                                                                  \
+	static void test_##name(void) {                                                                \
+		int ch;                                                                                    \
+		for (ch = 1; ch < 256; ++ch) {                                                             \
+			if (strchr(charset, ch)) {                                                             \
+				assert(name(ch));                                                                  \
+			} else {                                                                               \
+				assert(!name(ch));                                                                 \
+			}                                                                                      \
+		}                                                                                          \
+		assert(!name('\0'));                                                                       \
 	}
-}
 
-static void test_isalpha(void) {
-	int ch;
-	for (ch = 0; ch < 256; ++ch) {
-		if (strchr("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", ch)) {
-			assert(isalpha(ch));
-		} else {
-			assert(!isalpha(ch));
-		}
-	}
-}
-
-static void test_islower(void) {
-	int ch;
-	for (ch = 0; ch < 256; ++ch) {
-		if (strchr("abcdefghijklmnopqrstuvwxyz", ch)) {
-			assert(islower(ch));
-		} else {
-			assert(!islower(ch));
-		}
-	}
-}
-
-static void test_isupper(void) {
-	int ch;
-	for (ch = 0; ch < 256; ++ch) {
-		if (strchr("ABCDEFGHIJKLMNOPQRSTUVWXYZ", ch)) {
-			assert(isupper(ch));
-		} else {
-			assert(!isupper(ch));
-		}
-	}
-}
-
-static void test_isdigit(void) {
-	int ch;
-	for (ch = 0; ch < 256; ++ch) {
-		if (strchr("0123456789", ch)) {
-			assert(isdigit(ch));
-		} else {
-			assert(!isdigit(ch));
-		}
-	}
-}
-
-static void test_isxdigit(void) {
-	int ch;
-	for (ch = 0; ch < 256; ++ch) {
-		if (strchr("0123456789ABCDEFabcdef", ch)) {
-			assert(isxdigit(ch));
-		} else {
-			assert(!isxdigit(ch));
-		}
-	}
-}
-
-static void test_isspace(void) {
-	int ch;
-	for (ch = 0; ch < 256; ++ch) {
-		if (strchr(" \t\f\n\r\v", ch)) {
-			assert(isspace(ch));
-		} else {
-			assert(!isspace(ch));
-		}
-	}
-}
-
-static void test_isblank(void) {
+TEST_CTYPE(isalnum, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")
+TEST_CTYPE(isalpha, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
+TEST_CTYPE(islower, "abcdefghijklmnopqrstuvwxyz")
+TEST_CTYPE(isupper, "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+TEST_CTYPE(isdigit, "0123456789")
+TEST_CTYPE(isxdigit, "0123456789ABCDEFabcdef")
+TEST_CTYPE(isspace, " \t\f\n\r\v")
+TEST_CTYPE(ispunct, "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")
+TEST_CTYPE(isprint, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!\"#$%&'()*+,-./"
+                    ":;<=>?@[\\]^_`{|}~ ")
+TEST_CTYPE(isgraph, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!\"#$%&'()*+,-./"
+                    ":;<=>?@[\\]^_`{|}~")
 #ifdef _HAS_C99
-	int ch;
-	for (ch = 0; ch < 256; ++ch) {
-		if (strchr(" \t", ch)) {
-			assert(isblank(ch));
-		} else {
-			assert(!isblank(ch));
-		}
-	}
+TEST_CTYPE(isblank, " \t")
 #endif
-}
 
 static void test_iscntrl(void) {
 	int ch;
@@ -122,43 +63,6 @@ static void test_toupper(void) {
 	}
 }
 
-static void test_ispunct(void) {
-	int ch;
-	for (ch = 0; ch < 256; ++ch) {
-		if (strchr("!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~", ch)) {
-			assert(ispunct(ch));
-		} else {
-			assert(!ispunct(ch));
-		}
-	}
-}
-
-static void test_isprint(void) {
-	int ch;
-	for (ch = 0; ch < 256; ++ch) {
-		if (strchr("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!\"#$%&'()*+,-./"
-		           ":;<=>?@[\\]^_`{|}~ ",
-		           ch)) {
-			assert(isprint(ch));
-		} else {
-			assert(!isprint(ch));
-		}
-	}
-}
-
-static void test_isgraph(void) {
-	int ch;
-	for (ch = 0; ch < 256; ++ch) {
-		if (strchr("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!\"#$%&'()*+,-./"
-		           ":;<=>?@[\\]^_`{|}~",
-		           ch)) {
-			assert(isgraph(ch));
-		} else {
-			assert(!isgraph(ch));
-		}
-	}
-}
-
 int main(void) {
 	test_isalnum();
 	test_isalpha();
@@ -167,7 +71,9 @@ int main(void) {
 	test_isdigit();
 	test_isxdigit();
 	test_isspace();
+#ifdef _HAS_C99
 	test_isblank();
+#endif
 	test_iscntrl();
 	test_tolower();
 	test_toupper();

@@ -1,5 +1,6 @@
 
 #define _ELIBC_SOURCE
+#include <assert.h>
 #include <string.h>
 
 /*------------------------------------------------------------------------------
@@ -8,11 +9,14 @@
 char *strchr(const char *s, int c) {
 	const char cmp = c;
 
-	while (*s != '\0') {
-		if (*s == cmp) {
-			return (char *)s;
+	assert(s);
+
+	while (*s != cmp) {
+		if (*s == '\0') {
+			return 0;
 		}
 		++s;
 	}
-	return 0;
+
+	return (char *)s;
 }

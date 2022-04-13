@@ -18,7 +18,7 @@ static void test_strcpy(void) {
 }
 
 static void test_strchr(void) {
-	const char *str = "Try not. Do, or do not. There is no try.";
+	const char str[] = "Try not. Do, or do not. There is no try.";
 	char target = 'T';
 	const char *result = str;
 
@@ -32,6 +32,9 @@ static void test_strchr(void) {
 
 	result = strchr(result, target);
 	assert(result == NULL);
+
+	result = strchr(str, '\0');
+	assert(result == &str[sizeof(str) - 1]);
 }
 
 static void test_memchr(void) {
@@ -56,7 +59,7 @@ static void test_strrchr(void) {
 
 static void test_strpbrk(void) {
 	const char *str = "hello world, friend of mine!";
-	const char *sep = " ,!";
+	const char sep[] = " ,!";
 
 	unsigned int cnt = 0;
 	do {
