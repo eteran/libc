@@ -15,7 +15,7 @@ int memcmp(const void *s1, const void *s2, size_t n) {
 	assert(s2);
 
 	while (!ret && n--) {
-		ret = (*p2++ - *p1++);
+		ret = (*p1++ - *p2++);
 	}
 
 	return ret;

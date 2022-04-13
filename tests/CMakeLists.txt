@@ -3,8 +3,14 @@ cmake_minimum_required(VERSION 3.2)
 macro(CREATE_TEST NAME)
     add_executable(${NAME}-test ${NAME}-test.c)
     target_link_libraries(${NAME}-test LINK_PUBLIC
-		c-all
+      c-all
     )
+
+    target_compile_options(${NAME}-test
+    PUBLIC
+      -Wno-deprecated-declarations
+    )
+
     set_target_properties(${NAME}-test
     PROPERTIES
         C_STANDARD 90

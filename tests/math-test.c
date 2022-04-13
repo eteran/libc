@@ -1,6 +1,6 @@
 #undef NDEBUG
 #include <assert.h>
 
-int main() {
+int main(void) {
 	return 0;
 }

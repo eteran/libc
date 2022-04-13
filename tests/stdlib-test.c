@@ -31,7 +31,7 @@ void test_qsort(void) {
 	}
 }
 
-int main() {
+int main(void) {
 	test_qsort();
 	return 0;
 }

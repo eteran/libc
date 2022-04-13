@@ -3,7 +3,7 @@
 #include <math.h>
 #include <stdio.h>
 
-int main() {
+int main(void) {
 #if _HAVE_FPU
 	double x = sin(2.0);
 	printf("%f\n", x);

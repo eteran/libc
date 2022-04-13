@@ -159,7 +159,7 @@ static void test_isgraph(void) {
 	}
 }
 
-int main() {
+int main(void) {
 	test_isalnum();
 	test_isalpha();
 	test_islower();
