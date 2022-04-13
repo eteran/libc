@@ -41,6 +41,7 @@ static void test_cos(void) {
 #ifdef _HAS_C99
 	/* error handling */
 	feclearexcept(FE_ALL_EXCEPT);
+	assert(!fetestexcept(FE_INVALID));
 	assert(isnan(cos(INFINITY)));
 	assert(fetestexcept(FE_INVALID));
 #endif
@@ -57,7 +58,26 @@ static void test_sin(void) {
 #ifdef _HAS_C99
 	/* error handling */
 	feclearexcept(FE_ALL_EXCEPT);
+	assert(!fetestexcept(FE_INVALID));
 	assert(isnan(sin(INFINITY)));
+	assert(fetestexcept(FE_INVALID));
+#endif
+}
+
+static void test_tan(void) {
+	/* typical usage */
+	assert(float_compare(tan(1.0 * M_PI / 4.0), +1.000000));
+	assert(float_compare(tan(3.0 * M_PI / 4.0), -1.000000));
+	assert(float_compare(tan(5.0 * M_PI / 4.0), +1.000000));
+	assert(float_compare(tan(7.0 * M_PI / 4.0), -1.000000));
+	/* special values */
+	assert(float_compare(tan(-0.0), 0.0));
+	assert(float_compare(tan(+0.0), 0.0));
+#ifdef _HAS_C99
+	/* error handling */
+	feclearexcept(FE_ALL_EXCEPT);
+	assert(!fetestexcept(FE_INVALID));
+	assert(isnan(tan(INFINITY)));
 	assert(fetestexcept(FE_INVALID));
 #endif
 }
@@ -80,7 +100,6 @@ static void test_sin(void) {
 #include "c/pow.h"
 #include "c/sinh.h"
 #include "c/sqrt.h"
-#include "c/tan.h"
 #include "c/tanh.h"
 #endif
 
@@ -88,5 +107,6 @@ int main(void) {
 	test_fabs();
 	test_cos();
 	test_sin();
+	test_tan();
 	return 0;
 }

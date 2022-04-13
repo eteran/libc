@@ -32,7 +32,6 @@
 /*------------------------------------------------------------------------------
 // Name: feclearexcept
 // Desc:
-// Note: what about SSE exceptions?
 //----------------------------------------------------------------------------*/
 int feclearexcept(int excepts) {
 
@@ -40,6 +39,15 @@ int feclearexcept(int excepts) {
 	FPU_GETENV(envp);
 	envp.__status_word &= ~(excepts & FE_ALL_EXCEPT);
 	FPU_SETENV(envp);
+
+	/* clear it for SSE */
+	{
+		uint32_t xcw;
+		SSE_GETCW(xcw);
+		xcw &= ~(excepts & FE_ALL_EXCEPT);
+		SSE_SETCW(xcw);
+	}
+
 	return 0;
 }
 
@@ -110,10 +118,18 @@ int fesetenv(const fenv_t *envp) {
 // Name: feraiseexcept
 //----------------------------------------------------------------------------*/
 int feraiseexcept(int excepts) {
-	uint32_t xcw;
-	SSE_GETCW(xcw);
-	xcw |= (excepts & FE_ALL_EXCEPT);
-	SSE_SETCW(xcw);
+
+	fenv_t envp;
+	FPU_GETENV(envp);
+	envp.__status_word |= (excepts & FE_ALL_EXCEPT);
+	FPU_SETENV(envp);
+
+	{
+		uint32_t xcw;
+		SSE_GETCW(xcw);
+		xcw |= (excepts & FE_ALL_EXCEPT);
+		SSE_SETCW(xcw);
+	}
 	return 0;
 }
 
