@@ -1,10 +1,13 @@
 
+#include <assert.h>
+#include <stdio.h>
 #include <errno.h>
 #include <stddef.h>
 #include <limits.h>
 #include <stdlib.h>
 #include <signal.h>
 #include <stdint.h>
+#include <string.h>
 
 #include "c/_support.h"
 #include "heap.hpp"
@@ -16,6 +19,7 @@
 #include <asm/unistd.h>
 #include <unistd.h>
 #include <sys/syscall.h>
+#include <linux/signal.h>
 
 #if 0
 	environ
@@ -56,16 +60,21 @@ int __elibc_sys_kill(int pid, int sig) {
 //------------------------------------------------------------------------------
 long __elibc_sys_signal(int sig, __sighandler_t handler) {
 	long ret = -1;
-	(void)sig;
-	(void)handler;
-#ifdef __NR_signal
-	ret = elibc::syscall(__NR_signal, sig, handler);
+
+	sigaction old_action;
+	sigaction new_action;
+
+	memset(&old_action, 0, sizeof(sigaction));
+	memset(&new_action, 0, sizeof(sigaction));
+	new_action.sa_handler = handler;
+
+	/* TODO(eteran): I don't know how this is supposed to work yet */
+	ret = elibc::syscall(__NR_rt_sigaction, sig, &new_action, &old_action, 0);
 
 	if(ret < 0) {
 		errno = -ret;
 		ret = (long)SIG_ERR;
 	}
-#endif
 	return ret;
 }
 

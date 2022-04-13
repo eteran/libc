@@ -14,4 +14,7 @@ __sighandler_t signal(int signum, __sighandler_t handler) {
 #else
 	return (__sighandler_t)__elibc_sys_signal(signum, handler);
 #endif
+
+
+/* signal()  returns  the  previous value of the signal handler, or SIG_ERR on error.  In the event of an error, errno is set to indicate the cause. */
 }
