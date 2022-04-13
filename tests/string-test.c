@@ -7,7 +7,7 @@ static void test_strcmp(void) {
 	assert(strcmp(string, "Hello!") < 0);
 	assert(strcmp(string, "Hello") > 0);
 	assert(strcmp(string, "Hello there") < 0);
-	assert(strcmp("Hello, everybody!" + 12, "Hello, somebody!" + 11) == 0);
+	assert(strcmp(&"Hello, everybody!"[12], &"Hello, somebody!"[11]) == 0);
 }
 
 static void test_strcpy(void) {
