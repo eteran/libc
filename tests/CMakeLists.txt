@@ -1,18 +1,43 @@
 cmake_minimum_required(VERSION 3.2)
 
-add_executable(libc-test test.c)
-target_link_libraries(libc-test LINK_PUBLIC	c-all)
-add_test(NAME libc-test COMMAND $<TARGET_FILE:libc-test>)
+macro(CREATE_TEST NAME)
+    add_executable(${NAME}-test ${NAME}-test.c)
+    target_link_libraries(${NAME}-test LINK_PUBLIC
+		c-all
+    )
+    set_target_properties(${NAME}-test
+    PROPERTIES
+        C_STANDARD 90
+        C_EXTENSIONS OFF
+		RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}
+    )
 
-add_executable(qsort-test qsort-test.c)
-target_link_libraries(qsort-test LINK_PUBLIC c-all)
-add_test(NAME qsort-test COMMAND $<TARGET_FILE:qsort-test>)
+    add_test(
+        NAME ${NAME}-test
+        COMMAND $<TARGET_FILE:${NAME}-test>
+    )
+endmacro()
 
-add_executable(trig-test trig-test.c)
-target_link_libraries(trig-test LINK_PUBLIC c-all)
-add_test(NAME trig-test COMMAND $<TARGET_FILE:trig-test>)
+CREATE_TEST(all)
+CREATE_TEST(assert)
+# CREATE_TEST(assert-fail)
+# set_tests_properties(assert-fail-test PROPERTIES WILL_FAIL TRUE)
+CREATE_TEST(ctype)
+CREATE_TEST(errno)
+CREATE_TEST(fenv)
+CREATE_TEST(inttypes)
+CREATE_TEST(locale)
+CREATE_TEST(math)
+CREATE_TEST(setjmp)
+CREATE_TEST(signal)
+CREATE_TEST(stdio)
+CREATE_TEST(stdlib)
+CREATE_TEST(string)
+CREATE_TEST(strings)
+CREATE_TEST(sys)
+CREATE_TEST(time)
+CREATE_TEST(trig)
+CREATE_TEST(wchar)
+CREATE_TEST(wctype)
 
-set_target_properties(trig-test qsort-test libc-test
-PROPERTIES
-	RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}
-)
+

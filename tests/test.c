@@ -247,7 +247,6 @@ int main(void) {
 	test_printf();
 	test_strftime();
 
-
 #ifdef _HAVE_FPU
 	printf("ldexp: %f\n", ldexp(2, -4));
 #endif
