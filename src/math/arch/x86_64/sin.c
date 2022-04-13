@@ -2,6 +2,7 @@
 #define _ELIBC_SOURCE
 #include <errno.h>
 #include <math.h>
+#include <fenv.h>
 
 #ifdef _HAS_FPU
 
@@ -29,6 +30,7 @@ double sin(double x) {
 
 	if (isinf(x)) {
 		errno = EDOM;
+		feraiseexcept(FE_INVALID);
 		return NAN;
 	}
 #endif

@@ -13,9 +13,8 @@ macro(CREATE_TEST NAME)
 
     set_target_properties(${NAME}-test
     PROPERTIES
-        C_STANDARD 90
+        C_STANDARD 99
         C_EXTENSIONS OFF
-		RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}
     )
 
     add_test(

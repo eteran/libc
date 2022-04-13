@@ -4,6 +4,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+static void test_abs(void) {
+	assert(abs(100) == 100);
+	assert(abs(-100) == 100);
+	assert(labs(100L) == 100L);
+	assert(labs(-100L) == 100L);
+#ifdef _HAS_C99
+	assert(llabs(100LL) == 100LL);
+	assert(llabs(-100LL) == 100LL);
+#endif
+}
+
 int compare(const void *a, const void *b) {
 	int arg1 = *(const int *)(a);
 	int arg2 = *(const int *)(b);
@@ -32,6 +43,7 @@ void test_qsort(void) {
 }
 
 int main(void) {
+	test_abs();
 	test_qsort();
 	return 0;
 }
