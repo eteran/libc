@@ -184,13 +184,6 @@ static const char *_unsigned_itoa(char *buffer, size_t size, char base, int prec
 
 		/* If %d is specified and D is negative, put `-' in the head. */
 		switch (base) {
-		case 'd':
-			if (flags->space) {
-				_write_char(&ctx, ' ');
-			} else if (flags->sign) {
-				_write_char(&ctx, '+');
-			}
-			/* FALL THROUGH */
 		case 'u':
 			divisor = 10;
 			break;
@@ -214,6 +207,7 @@ static const char *_unsigned_itoa(char *buffer, size_t size, char base, int prec
 			}
 			break;
 		default:
+			PRINTF_ASSERT("Invalid Base" && 0);
 			divisor = 10;
 		}
 
@@ -226,16 +220,13 @@ static const char *_unsigned_itoa(char *buffer, size_t size, char base, int prec
 /*------------------------------------------------------------------------------
 // Name: _signed_itoa
 //----------------------------------------------------------------------------*/
-static const char *_signed_itoa(char *buffer, size_t size, char base, int precision, intmax_t d,
-                                int width, const flags_t *flags) {
+static const char *_signed_itoa(char *buffer, size_t size, int precision, intmax_t d, int width,
+                                const flags_t *flags) {
 
-	const int prefix = flags->prefix;
 	uintmax_t ud = (uintmax_t)d;
 	write_context_t ctx = _create_context(buffer, size, width, precision);
 
-	static const char *alphabet_l = "0123456789abcdef";
-	static const char *alphabet_u = "0123456789ABCDEF";
-	const char *alphabet = alphabet_l;
+	const char *alphabet = "0123456789";
 
 	if (d == 0 && precision == 0 && size > 0) {
 		buffer[0] = '\0';
@@ -245,43 +236,13 @@ static const char *_signed_itoa(char *buffer, size_t size, char base, int precis
 	if (size > 0) {
 		unsigned int divisor = 10;
 
-		/* If %d is specified and D is negative, put `-' in the head. */
-		switch (base) {
-		case 'd':
-		case 'i':
-			if (d < 0) {
-				_write_char(&ctx, '-');
-				ud = (~ud + 1);
-			} else if (flags->space) {
-				_write_char(&ctx, ' ');
-			} else if (flags->sign) {
-				_write_char(&ctx, '+');
-			}
-			/* FALL THROUGH */
-		case 'u':
-			divisor = 10;
-			break;
-		case 'b':
-			divisor = 2;
-			break;
-		case 'X':
-			alphabet = alphabet_u;
-			/* FALL THROUGH */
-		case 'x':
-			divisor = 16;
-			if (prefix) {
-				_write_char(&ctx, '0');
-				_write_char(&ctx, base);
-			}
-			break;
-		case 'o':
-			divisor = 8;
-			if (prefix) {
-				_write_char(&ctx, '0');
-			}
-			break;
-		default:
-			divisor = 10;
+		if (d < 0) {
+			_write_char(&ctx, '-');
+			ud = (~ud + 1);
+		} else if (flags->space) {
+			_write_char(&ctx, ' ');
+		} else if (flags->sign) {
+			_write_char(&ctx, '+');
 		}
 
 		_itoa_common(&ctx, ud, divisor, alphabet, flags);
@@ -461,7 +422,7 @@ static char *_format_float_exponent(char *buf, size_t size, double value, int pr
 		flags_t f = {0, 0, 0, 0, 0};
 		f.sign = 1;
 		f.padding = 1;
-		_signed_itoa(ctx.ptr, ctx.size, 'd', 2, exponent, 3, &f);
+		_signed_itoa(ctx.ptr, ctx.size, 2, exponent, 3, &f);
 	}
 
 	/* NOTE(eteran): no need to manually terminate, _signed_itoa, null terminates */
@@ -892,35 +853,35 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 
 				switch (modifier) {
 				case MOD_CHAR:
-					s_ptr = _signed_itoa(num_buf, sizeof(num_buf), ch, precision,
+					s_ptr = _signed_itoa(num_buf, sizeof(num_buf), precision,
 					                     (signed char)va_arg(aq, int), width, &flags);
 					break;
 				case MOD_SHORT:
-					s_ptr = _signed_itoa(num_buf, sizeof(num_buf), ch, precision,
+					s_ptr = _signed_itoa(num_buf, sizeof(num_buf), precision,
 					                     (short int)va_arg(aq, int), width, &flags);
 					break;
 				case MOD_LONG:
-					s_ptr = _signed_itoa(num_buf, sizeof(num_buf), ch, precision,
-					                     va_arg(aq, long int), width, &flags);
+					s_ptr = _signed_itoa(num_buf, sizeof(num_buf), precision, va_arg(aq, long int),
+					                     width, &flags);
 					break;
 				case MOD_LONG_LONG:
-					s_ptr = _signed_itoa(num_buf, sizeof(num_buf), ch, precision,
+					s_ptr = _signed_itoa(num_buf, sizeof(num_buf), precision,
 					                     va_arg(aq, long long int), width, &flags);
 					break;
 				case MOD_INTMAX_T:
-					s_ptr = _signed_itoa(num_buf, sizeof(num_buf), ch, precision,
-					                     va_arg(aq, intmax_t), width, &flags);
+					s_ptr = _signed_itoa(num_buf, sizeof(num_buf), precision, va_arg(aq, intmax_t),
+					                     width, &flags);
 					break;
 				case MOD_SIZE_T:
-					s_ptr = _signed_itoa(num_buf, sizeof(num_buf), ch, precision,
-					                     va_arg(aq, ssize_t), width, &flags);
+					s_ptr = _signed_itoa(num_buf, sizeof(num_buf), precision, va_arg(aq, ssize_t),
+					                     width, &flags);
 					break;
 				case MOD_PTRDIFF_T:
-					s_ptr = _signed_itoa(num_buf, sizeof(num_buf), ch, precision,
-					                     va_arg(aq, ptrdiff_t), width, &flags);
+					s_ptr = _signed_itoa(num_buf, sizeof(num_buf), precision, va_arg(aq, ptrdiff_t),
+					                     width, &flags);
 					break;
 				default:
-					s_ptr = _signed_itoa(num_buf, sizeof(num_buf), ch, precision, va_arg(aq, int),
+					s_ptr = _signed_itoa(num_buf, sizeof(num_buf), precision, va_arg(aq, int),
 					                     width, &flags);
 					break;
 				}
