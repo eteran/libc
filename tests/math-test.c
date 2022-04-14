@@ -84,24 +84,25 @@ static void test_tan(void) {
 }
 
 static void test_floor(void) {
+#ifdef _HAS_C99
     double d;
+	d = floor(-INFINITY);
+	assert(isinf(d) && d < 0.0);
+#endif
 	assert(float_compare(floor(2.7), +2.0));
     assert(float_compare(floor(-2.7), -3.0));
     assert(float_compare(floor(-0.0), -0.0));
-
-	d = floor(-INFINITY);
-	assert(isinf(d) && d < 0.0);
-
 }
 
 static void test_ceil(void) {
+#ifdef _HAS_C99
 	double d;
+	d = ceil(-INFINITY);
+	assert(isinf(d) && d < 0.0);
+#endif
 	assert(float_compare(ceil(2.4), +3.0));
     assert(float_compare(ceil(-2.4), -2.0));
     assert(float_compare(ceil(-0.0), -0.0));
-
-	d = ceil(-INFINITY);
-	assert(isinf(d) && d < 0.0);
 }
 
 #if 0

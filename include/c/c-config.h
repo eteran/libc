@@ -109,10 +109,12 @@
 #define _Noreturn [[noreturn]]
 #define _Alignas(__t) alignas(__t)
 #define _Alignof(__t) alignof(__t)
-#else
+#elif defined(__GNUC__)
 #define _Noreturn __attribute__((__noreturn__))
 #define _Alignas(__t) __attribute__((__aligned__(__t)))
 #define _Alignof(__t) __alignof__(__t)
+#else
+#error "Missing keyword support"
 #endif
 #endif
 

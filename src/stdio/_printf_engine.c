@@ -49,6 +49,63 @@ enum __modifiers {
 	MOD_PTRDIFF_T
 };
 
+struct __write_context {
+	char *ptr;
+	size_t size;
+};
+
+_ALWAYS_INLINE struct __write_context _create_context(char *ptr, size_t size) {
+	struct __write_context ctx;
+	ctx.ptr = ptr;
+	ctx.size = size;
+	return ctx;
+}
+
+_ALWAYS_INLINE static void _write_char(struct __write_context *ctx, char ch) {
+	if (ctx->size != 1) {
+		*ctx->ptr++ = ch;
+		--ctx->size;
+	}
+}
+
+_ALWAYS_INLINE static void _reverse_buffer(char *p1, char *p2) {
+	while (p1 < p2) {
+		const char t_ = *p2;
+		*p2 = *p1;
+		*p1 = t_;
+		p1++;
+		p2--;
+	}
+}
+
+static int _digit_count(intmax_t n) {
+	/* clang-format off */
+	if (n < 0) n = (n == INTMAX_MIN) ? INTMAX_MAX : -n;
+	if (n < 10) return 1;
+	if (n < 100) return 2;
+	if (n < 1000) return 3;
+	if (n < 10000) return 4;
+	if (n < 100000) return 5;
+	if (n < 1000000) return 6;
+	if (n < 10000000) return 7;
+	if (n < 100000000) return 8;
+	if (n < 1000000000) return 9;
+	if (n < 10000000000) return 10;
+	if (n < 100000000000) return 11;
+	if (n < 1000000000000) return 12;
+	if (n < 10000000000000) return 13;
+	if (n < 100000000000000) return 14;
+	if (n < 1000000000000000) return 15;
+	if (n < 10000000000000000) return 16;
+	if (n < 100000000000000000) return 17;
+	if (n < 1000000000000000000) return 18;
+	/* clang-format on */
+
+	/* 9223372036854775807 is 2^63-1 - add more ifs as needed
+	   and adjust this final return as well. */
+	return 19;
+}
+
 #define SET_FLAGS(x, flag)                                                                         \
 	do {                                                                                           \
 		(x) |= (flag);                                                                             \
@@ -61,27 +118,6 @@ enum __modifiers {
 
 #define GET_FLAG(x, flag) (((x) & (flag)) != 0)
 
-#define REVERSE_STRING(p1, p2)                                                                     \
-	do {                                                                                           \
-		while (p1 < p2) {                                                                          \
-			const char t_ = *p2;                                                                   \
-			*p2 = *p1;                                                                             \
-			*p1 = t_;                                                                              \
-			p1++;                                                                                  \
-			p2--;                                                                                  \
-		}                                                                                          \
-	} while (0)
-
-#define WRITE_CHAR_ITOA(str, ch, size)                                                             \
-	do {                                                                                           \
-		if ((size) != 1) {                                                                         \
-			*(str)++ = (ch);                                                                       \
-			--(size);                                                                              \
-		}                                                                                          \
-	} while (0)
-
-typedef va_list *va_list_ptr;
-
 static const char *_get_flags(const char *format, uint8_t *flags);
 static const char *_get_width(const char *format, long int *width, va_list *ap);
 static const char *_get_precision(const char *format, long int *precision, va_list *ap);
@@ -93,12 +129,13 @@ static const char *_unsigned_itoa(char *buf, size_t size, char base, int precisi
                                   int width, uint8_t flags);
 #ifdef _HAS_FPU
 static double _round_double(double value, int precision);
-static char *_format_float_decimal(char *buf, size_t sz, double value, int precision, char format,
+static char *_format_float_decimal(char *buf, size_t size, double value, int precision, int width,
                                    uint8_t flags);
-static char *_format_float_exponent(char *buf, size_t sz, double value, int precision, char format,
-                                    uint8_t flags);
-static char *_format_float(char *buf, size_t sz, double value, int precision, char format,
-                           uint8_t flags);
+static char *_format_float_exponent(char *buf, size_t size, double value, int precision,
+                                    char format, int width, uint8_t flags);
+static char *_format_float(char *buf, size_t size, double value, int precision, char format,
+                           int width, uint8_t flags);
+static int _float_length(double value, int precision, uint8_t flags);
 #endif
 
 #ifdef _HAS_FPU
@@ -118,82 +155,116 @@ double _round_double(double value, int precision) {
 /*------------------------------------------------------------------------------
 // Name:
 //----------------------------------------------------------------------------*/
-char *_format_float_decimal(char *buf, size_t sz, double value, int precision, char format,
+int _float_length(double value, int precision, uint8_t flags) {
+	int n = 0;
+
+	if (signbit(value)) {
+		++n;
+		value = -value;
+	} else if (GET_FLAG(flags, PRINTF_SPACE)) {
+		++n;
+	} else if (GET_FLAG(flags, PRINTF_SIGN)) {
+		++n;
+	}
+
+	n += _digit_count(trunc(_round_double(value, precision)));
+
+	if (precision > 0) {
+		n += (precision + 1);
+	}
+
+	return n;
+}
+
+/*------------------------------------------------------------------------------
+// Name:
+//----------------------------------------------------------------------------*/
+char *_format_float_decimal(char *buf, size_t size, double value, int precision, int width,
                             uint8_t flags) {
 
 	double x = value;
-	char *p = buf;
 	double int_part;
 	double frac_part;
 	char *p1;
 	char *p2;
 
-	(void)format;
-	(void)sz;
+	const int flen = _float_length(value, precision, flags);
+	struct __write_context ctx = _create_context(buf, size);
 
 	if (signbit(x)) {
-		*p++ = '-';
+		_write_char(&ctx, '-');
 		x = -x;
 	} else if (GET_FLAG(flags, PRINTF_SPACE)) {
-		*p++ = ' ';
+		_write_char(&ctx, ' ');
 	} else if (GET_FLAG(flags, PRINTF_SIGN)) {
-		*p++ = '+';
+		_write_char(&ctx, '+');
+	}
+
+	if (GET_FLAG(flags, PRINTF_PADDING)) {
+		while (width > flen) {
+			_write_char(&ctx, '0');
+			--width;
+		}
 	}
 
 	x = _round_double(x, precision);
 	int_part = trunc(x);
 	frac_part = x - int_part;
-	p1 = p;
+	p1 = ctx.ptr;
 
 	do {
 		const int digit = (int)fmod(int_part, 10);
-		*p++ = (digit + '0');
-
+		_write_char(&ctx, (digit + '0'));
 		int_part /= 10;
 	} while (int_part >= 1.0);
 
 	/* reverse buffer */
-	p2 = p - 1;
-	REVERSE_STRING(p1, p2);
+	p2 = ctx.ptr - 1;
+	_reverse_buffer(p1, p2);
 
 	if (precision > 0) {
 		int i;
-		*p++ = '.';
+
+		_write_char(&ctx, '.');
 		if (frac_part == 0.0) {
 			for (i = 1; i <= precision; ++i) {
-				*p++ = '0';
+				_write_char(&ctx, '0');
 			}
 		} else {
 			for (i = 1; i <= precision; ++i) {
 				x *= 10;
 				do {
 					const double digit_d = fmod(x, 10);
-					const int digit = (int)digit_d;
-					*p++ = (digit + '0');
+					const int digit = trunc(digit_d);
+					_write_char(&ctx, (digit + '0'));
 				} while (0);
 			}
 		}
 	}
 
-	*p = '\0';
+	/* terminate buffer */
+	if (ctx.size != 0) {
+		*ctx.ptr = '\0';
+	}
 	return buf;
 }
 
 /*------------------------------------------------------------------------------
 // Name:
 //----------------------------------------------------------------------------*/
-char *_format_float_exponent(char *buf, size_t sz, double value, int precision, char format,
-                             uint8_t flags) {
+char *_format_float_exponent(char *buf, size_t size, double value, int precision, char format,
+                             int width, uint8_t flags) {
 
 	double x = value;
 	int exponent = 0;
-	char *p;
 	double int_part;
 	double frac_part;
 	char *p1;
 	char *p2;
 
-	(void)sz;
+	struct __write_context ctx = _create_context(buf, size);
+
+	(void)width;
 
 	if (x != 0.0) {
 		while (x < 1.0) {
@@ -207,65 +278,62 @@ char *_format_float_exponent(char *buf, size_t sz, double value, int precision, 
 		}
 	}
 
-	p = buf;
 	if (signbit(x)) {
-		*p++ = '-';
+		_write_char(&ctx, '-');
 		x = -x;
 	} else if (GET_FLAG(flags, PRINTF_SPACE)) {
-		*p++ = ' ';
+		_write_char(&ctx, ' ');
 	} else if (GET_FLAG(flags, PRINTF_SIGN)) {
-		*p++ = '+';
+		_write_char(&ctx, '+');
 	}
 
 	x = _round_double(x, precision);
 	int_part = trunc(x);
 	frac_part = x - int_part;
-	p1 = p;
+	p1 = ctx.ptr;
 
 	do {
 		const int digit = (int)fmod(int_part, 10);
-		*p++ = (digit + '0');
+		_write_char(&ctx, (digit + '0'));
 
 		int_part /= 10;
 	} while (int_part >= 1.0);
 
 	/* reverse buffer */
-	p2 = p - 1;
-	REVERSE_STRING(p1, p2);
+	p2 = ctx.ptr - 1;
+	_reverse_buffer(p1, p2);
 
 	if (precision > 0) {
 		int i;
-		*p++ = '.';
+		_write_char(&ctx, '.');
 		if (frac_part == 0.0) {
 			for (i = 1; i <= precision; ++i) {
-				*p++ = '0';
+				_write_char(&ctx, '0');
 			}
 		} else {
 			for (i = 1; i <= precision; ++i) {
 				x *= 10;
 				do {
 					const double digit_d = fmod(x, 10);
-					const int digit = (int)digit_d;
-					*p++ = (digit + '0');
+					const int digit = trunc(digit_d);
+					_write_char(&ctx, digit + '0');
 				} while (0);
 			}
 		}
 	}
 
-	*p++ = format;
-	_signed_itoa(p, -1, 'd', 2, exponent, 3, PRINTF_SIGN | PRINTF_PADDING);
+	_write_char(&ctx, format);
+	_signed_itoa(ctx.ptr, ctx.size, 'd', 2, exponent, 3, PRINTF_SIGN | PRINTF_PADDING);
 
-#if 0
-	/* not needed, _signed_itoa, null terminates */
-	*p = '\0';
-#endif
+	/* NOTE(eteran): no need to manually terminate, _signed_itoa, null terminates */
 	return buf;
 }
 
 /*------------------------------------------------------------------------------
 // Name:
 //----------------------------------------------------------------------------*/
-char *_format_float(char *buf, size_t sz, double value, int precision, char format, uint8_t flags) {
+char *_format_float(char *buf, size_t size, double value, int precision, char format, int width,
+                    uint8_t flags) {
 
 	/* negative means no precision given, default to 6 */
 	if (precision < 0) {
@@ -274,11 +342,11 @@ char *_format_float(char *buf, size_t sz, double value, int precision, char form
 
 	if (isnan(value)) {
 		if (format == 'e' || format == 'f' || format == 'g') {
-			strlcpy(buf, "nan", sz);
+			strlcpy(buf, "nan", size);
 		}
 
 		if (format == 'E' || format == 'F' || format == 'G') {
-			strlcpy(buf, "NAN", sz);
+			strlcpy(buf, "NAN", size);
 		}
 		return buf;
 	}
@@ -286,19 +354,19 @@ char *_format_float(char *buf, size_t sz, double value, int precision, char form
 	if (isinf(value)) {
 		if (signbit(value)) {
 			if (format == 'e' || format == 'f' || format == 'g') {
-				strlcpy(buf, "-inf", sz);
+				strlcpy(buf, "-inf", size);
 			}
 
 			if (format == 'E' || format == 'F' || format == 'G') {
-				strlcpy(buf, "-INF", sz);
+				strlcpy(buf, "-INF", size);
 			}
 		} else {
 			if (format == 'e' || format == 'f' || format == 'g') {
-				strlcpy(buf, "inf", sz);
+				strlcpy(buf, "inf", size);
 			}
 
 			if (format == 'E' || format == 'F' || format == 'G') {
-				strlcpy(buf, "INF", sz);
+				strlcpy(buf, "INF", size);
 			}
 		}
 		return buf;
@@ -307,10 +375,10 @@ char *_format_float(char *buf, size_t sz, double value, int precision, char form
 	switch (format) {
 	case 'e':
 	case 'E':
-		return _format_float_exponent(buf, sz, value, precision, format, flags);
+		return _format_float_exponent(buf, size, value, precision, format, width, flags);
 	case 'f':
 	case 'F':
-		return _format_float_decimal(buf, sz, value, precision, format, flags);
+		return _format_float_decimal(buf, size, value, precision, width, flags);
 	case 'g':
 	case 'G':
 	case 'A':
@@ -330,10 +398,8 @@ static const char *_signed_itoa(char *buf, size_t size, char base, int precision
 	const char *const buf_ptr = buf;
 	const int pad_zero = GET_FLAG(flags, PRINTF_PADDING);
 	const int prefix = GET_FLAG(flags, PRINTF_PREFIX);
-	char *p = buf;
-	char *p1 = 0;
-	char *p2 = 0;
 	uintmax_t ud = d;
+	struct __write_context ctx = _create_context(buf, size);
 
 	/* NOTE: do not change this to const char *'s, it breaks an assert
 	 * which makes sure the sizeof(alphabet_u) > divisor!
@@ -343,7 +409,7 @@ static const char *_signed_itoa(char *buf, size_t size, char base, int precision
 	const char *alphabet = alphabet_l;
 
 	if (d == 0 && precision == 0 && size > 0) {
-		*p = 0;
+		buf[0] = '\0';
 		return buf;
 	}
 
@@ -356,12 +422,12 @@ static const char *_signed_itoa(char *buf, size_t size, char base, int precision
 		case 'd':
 		case 'i':
 			if (d < 0) {
-				WRITE_CHAR_ITOA(p, '-', size);
+				_write_char(&ctx, '-');
 				ud = -d;
 			} else if (GET_FLAG(flags, PRINTF_SPACE)) {
-				WRITE_CHAR_ITOA(p, ' ', size);
+				_write_char(&ctx, ' ');
 			} else if (GET_FLAG(flags, PRINTF_SIGN)) {
-				WRITE_CHAR_ITOA(p, '+', size);
+				_write_char(&ctx, '+');
 			}
 			/* FALL THROUGH */
 		case 'u':
@@ -378,15 +444,15 @@ static const char *_signed_itoa(char *buf, size_t size, char base, int precision
 		case 'x':
 			divisor = 16;
 			if (prefix) {
-				WRITE_CHAR_ITOA(p, '0', size);
-				WRITE_CHAR_ITOA(p, base, size);
+				_write_char(&ctx, '0');
+				_write_char(&ctx, base);
 			}
 			break;
 
 		case 'o':
 			divisor = 8;
 			if (prefix) {
-				WRITE_CHAR_ITOA(p, '0', size);
+				_write_char(&ctx, '0');
 			}
 			break;
 
@@ -395,44 +461,42 @@ static const char *_signed_itoa(char *buf, size_t size, char base, int precision
 		}
 
 		/* adjust the width to account for the chars we may have just written */
-		width -= (p - buf);
+		width -= (ctx.ptr - buf);
 
 		/* this is the point we will start reversing the string at after
 		 * conversion*/
-		buf = p;
+		buf = ctx.ptr;
 
 		PRINTF_ASSERT(divisor < sizeof(alphabet_u));
 
 		/* Divide UD by DIVISOR until UD == 0. */
 		do {
 			const int remainder = (ud % divisor);
-			WRITE_CHAR_ITOA(p, alphabet[remainder], size);
+			_write_char(&ctx, alphabet[remainder]);
 			if (width > 0)
 				--width;
 		} while (ud /= divisor);
 
 		while (pad_zero && width > 0) {
-			WRITE_CHAR_ITOA(p, '0', size);
+			_write_char(&ctx, '0');
 			--width;
 		}
 
-		if (precision > (p - buf)) {
-			precision -= (p - buf);
+		if (precision > (ctx.ptr - buf)) {
+			precision -= (ctx.ptr - buf);
 			while (precision--) {
-				WRITE_CHAR_ITOA(p, '0', size);
+				_write_char(&ctx, '0');
 			}
 		}
 	}
 
 	/* terminate buffer */
-	if (size != 0) {
-		*p = '\0';
+	if (ctx.size != 0) {
+		*ctx.ptr = '\0';
 	}
 
 	/* reverse buffer */
-	p1 = buf;
-	p2 = p - 1;
-	REVERSE_STRING(p1, p2);
+	_reverse_buffer(buf, ctx.ptr - 1);
 
 	return buf_ptr;
 }
@@ -446,9 +510,7 @@ static const char *_unsigned_itoa(char *buf, size_t size, char base, int precisi
 	const char *const buf_ptr = buf;
 	const int pad_zero = GET_FLAG(flags, PRINTF_PADDING);
 	const int prefix = GET_FLAG(flags, PRINTF_PREFIX);
-	char *p = buf;
-	char *p1 = 0;
-	char *p2 = 0;
+	struct __write_context ctx = _create_context(buf, size);
 
 	/* NOTE: do not change this to const char *'s, it breaks an assert
 	 * which makes sure the sizeof(alphabet_u) > divisor!
@@ -458,7 +520,7 @@ static const char *_unsigned_itoa(char *buf, size_t size, char base, int precisi
 	const char *alphabet = alphabet_l;
 
 	if (ud == 0 && precision == 0 && size > 0) {
-		*p = 0;
+		buf[0] = '\0';
 		return buf;
 	}
 
@@ -469,9 +531,9 @@ static const char *_unsigned_itoa(char *buf, size_t size, char base, int precisi
 		switch (base) {
 		case 'd':
 			if (GET_FLAG(flags, PRINTF_SPACE)) {
-				WRITE_CHAR_ITOA(p, ' ', size);
+				_write_char(&ctx, ' ');
 			} else if (GET_FLAG(flags, PRINTF_SIGN)) {
-				WRITE_CHAR_ITOA(p, '+', size);
+				_write_char(&ctx, '+');
 			}
 			/* FALL THROUGH */
 		case 'u':
@@ -488,15 +550,15 @@ static const char *_unsigned_itoa(char *buf, size_t size, char base, int precisi
 		case 'x':
 			divisor = 16;
 			if (prefix) {
-				WRITE_CHAR_ITOA(p, '0', size);
-				WRITE_CHAR_ITOA(p, base, size);
+				_write_char(&ctx, '0');
+				_write_char(&ctx, base);
 			}
 			break;
 
 		case 'o':
 			divisor = 8;
 			if (prefix) {
-				WRITE_CHAR_ITOA(p, '0', size);
+				_write_char(&ctx, '0');
 			}
 			break;
 
@@ -505,44 +567,42 @@ static const char *_unsigned_itoa(char *buf, size_t size, char base, int precisi
 		}
 
 		/* adjust the width to account for the chars we may have just written */
-		width -= (p - buf);
+		width -= (ctx.ptr - buf);
 
 		/* this is the point we will start reversing the string at after
 		 * conversion*/
-		buf = p;
+		buf = ctx.ptr;
 
 		PRINTF_ASSERT(divisor < sizeof(alphabet_u));
 
 		/* Divide UD by DIVISOR until UD == 0. */
 		do {
 			const int remainder = (ud % divisor);
-			WRITE_CHAR_ITOA(p, alphabet[remainder], size);
+			_write_char(&ctx, alphabet[remainder]);
 			if (width > 0)
 				--width;
 		} while (ud /= divisor);
 
 		while (pad_zero && width > 0) {
-			WRITE_CHAR_ITOA(p, '0', size);
+			_write_char(&ctx, '0');
 			--width;
 		}
 
-		if (precision > (p - buf)) {
-			precision -= (p - buf);
+		if (precision > (ctx.ptr - buf)) {
+			precision -= (ctx.ptr - buf);
 			while (precision--) {
-				WRITE_CHAR_ITOA(p, '0', size);
+				_write_char(&ctx, '0');
 			}
 		}
 	}
 
 	/* terminate buffer */
-	if (size != 0) {
-		*p = '\0';
+	if (ctx.size != 0) {
+		*ctx.ptr = '\0';
 	}
 
 	/* reverse buffer */
-	p1 = buf;
-	p2 = p - 1;
-	REVERSE_STRING(p1, p2);
+	_reverse_buffer(buf, ctx.ptr - 1);
 
 	return buf_ptr;
 }
@@ -746,7 +806,7 @@ static void _output_string(char ch, const char *s_ptr, int precision, long int *
 	}
 }
 
-#define FLT_BUF_SIZE 1024
+#define FLT_BUF_SIZE 64
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_printf_engine
@@ -837,7 +897,7 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 					s_ptr = 0;
 				} else {
 					s_ptr = _format_float(flt_buf, sizeof(flt_buf), va_arg(aq, double), precision,
-					                      ch, flags);
+					                      ch, width, flags);
 				}
 #else
 				s_ptr = "0.0";
@@ -1020,7 +1080,3 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 	 * sufficient space*/
 	return ctx->written;
 }
-
-#undef PRINTF_ASSERT
-#undef REVERSE_STRING
-#undef WRITE_CHAR_ITOA
