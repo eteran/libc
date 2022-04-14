@@ -13,7 +13,7 @@ macro(CREATE_TEST NAME)
 
     set_target_properties(${NAME}-test
     PROPERTIES
-        C_STANDARD 99
+        C_STANDARD 90
         C_EXTENSIONS OFF
     )
 

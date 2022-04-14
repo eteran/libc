@@ -6,7 +6,7 @@ enable_testing()
 set(CMAKE_C_STANDARD   90)
 set(CMAKE_C_EXTENSIONS OFF)
 
-add_compile_options(-pedantic -W -Wall -ffreestanding -Wno-long-long -Werror)
+add_compile_options(-pedantic -W -Wall -ffreestanding -Wno-long-long )
 add_link_options(-nostdlib)
 
 if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
