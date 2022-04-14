@@ -5,19 +5,17 @@
 #ifdef _HAS_FPU
 
 /*------------------------------------------------------------------------------
-// Name: __elibc_fabs
+// Name: __elibc_floor
 //----------------------------------------------------------------------------*/
-static double __elibc_fabs(double x) {
-	double value;
-	__asm__ __volatile__("fabs" : "=t"(value) : "0"(x));
-	return value;
+_ALWAYS_INLINE static double __elibc_floor(double x) {
+	return __builtin_floor(x);
 }
 
 /*------------------------------------------------------------------------------
-// Name: fabs
+// Name: floor
 //----------------------------------------------------------------------------*/
-double fabs(double x) {
-	return __elibc_fabs(x);
+double floor(double x) {
+	return __elibc_floor(x);
 }
 
 #endif

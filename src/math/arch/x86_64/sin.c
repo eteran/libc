@@ -9,7 +9,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_sin
 //----------------------------------------------------------------------------*/
-static double __elibc_sin(double x) {
+_ALWAYS_INLINE static double __elibc_sin(double x) {
 	double value;
 	__asm__ __volatile__("fsin" : "=t"(value) : "0"(x));
 	return value;

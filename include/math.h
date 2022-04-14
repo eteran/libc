@@ -9,7 +9,7 @@
 #define _ELIBC_HUGE_VALUE  __builtin_huge_val()
 #define _ELIBC_HUGE_VALUEF __builtin_huge_valf()
 #define _ELIBC_HUGE_VALUEL __builtin_huge_vall()
-#define _ELIBC_INF         __builtin_inf()
+#define _ELIBC_INF         __builtin_inff()
 #define _ELIBC_NAN(x)      __builtin_nan(x)
 #else
 #error "no support for nan/inf/huge_value with this compiler"
@@ -191,7 +191,7 @@ typedef float float_t;
 
 #define MATH_ERRNO       1
 #define MATH_ERREXCEPT   2
-#define math_errhandling 2 /* TODO(eteran): is this true? */
+#define math_errhandling (MATH_ERREXCEPT | MATH_ERRNO)
 
 #include "c/acosh.h"
 #include "c/asinh.h"

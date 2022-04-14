@@ -1,4 +1,5 @@
 #undef NDEBUG
+#include <stdio.h>
 #include <assert.h>
 #include <float.h>
 #include <math.h>
@@ -82,15 +83,34 @@ static void test_tan(void) {
 #endif
 }
 
+static void test_floor(void) {
+    double d;
+	assert(float_compare(floor(2.7), +2.0));
+    assert(float_compare(floor(-2.7), -3.0));
+    assert(float_compare(floor(-0.0), -0.0));
+
+	d = floor(-INFINITY);
+	assert(isinf(d) && d < 0.0);
+
+}
+
+static void test_ceil(void) {
+	double d;
+	assert(float_compare(ceil(2.4), +3.0));
+    assert(float_compare(ceil(-2.4), -2.0));
+    assert(float_compare(ceil(-0.0), -0.0));
+
+	d = ceil(-INFINITY);
+	assert(isinf(d) && d < 0.0);
+}
+
 #if 0
 #include "c/acos.h"
 #include "c/asin.h"
 #include "c/atan.h"
 #include "c/atan2.h"
-#include "c/ceil.h"
 #include "c/cosh.h"
 #include "c/exp.h"
-#include "c/floor.h"
 #include "c/fmod.h"
 #include "c/frexp.h"
 #include "c/ldexp.h"
@@ -108,5 +128,7 @@ int main(void) {
 	test_cos();
 	test_sin();
 	test_tan();
+	test_floor();
+	test_ceil();
 	return 0;
 }

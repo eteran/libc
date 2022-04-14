@@ -1,25 +1,21 @@
 
 #define _ELIBC_SOURCE
-#include <fenv.h>
 #include <math.h>
 
 #ifdef _HAS_FPU
 
 /*------------------------------------------------------------------------------
-// Name: __elibc_ceil
+// Name: __elibc_fabs
 //----------------------------------------------------------------------------*/
-static double __elibc_ceil(double x) {
-	double value;
-	fesetround(FE_UPWARD);
-	__asm__ __volatile__("frndint" : "=t"(value) : "0"(x));
-	return value;
+_ALWAYS_INLINE static double __elibc_fabs(double x) {
+	return __builtin_fabs(x);
 }
 
 /*------------------------------------------------------------------------------
-// Name: ceil
+// Name: fabs
 //----------------------------------------------------------------------------*/
-double ceil(double x) {
-	return __elibc_ceil(x);
+double fabs(double x) {
+	return __elibc_fabs(x);
 }
 
 #endif

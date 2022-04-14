@@ -23,6 +23,7 @@ add_library (c-math STATIC
 	cbrt.c
 	cbrtf.c
 	cbrtl.c
+	ceil.c
 	ceilf.c
 	ceill.c
 	copysignf.c
@@ -48,11 +49,13 @@ add_library (c-math STATIC
 	expm1.c
 	expm1f.c
 	expm1l.c
+	fabs.c
 	fabsf.c
 	fabsl.c
 	fdim.c
 	fdimf.c
 	fdiml.c
+	floor.c
 	floorf.c
 	floorl.c
 	fma.c
@@ -159,23 +162,20 @@ add_library (c-math STATIC
 	tgammal.c
 	truncf.c
 	truncl.c
-	arch/${LIBC_ARCH}/sin.c
-	arch/${LIBC_ARCH}/atan2.c
 	arch/${LIBC_ARCH}/atan.c
-	arch/${LIBC_ARCH}/ceil.c
+	arch/${LIBC_ARCH}/atan2.c
 	arch/${LIBC_ARCH}/copysign.c
-	arch/${LIBC_ARCH}/fabs.c
 	arch/${LIBC_ARCH}/fenv.c
-	arch/${LIBC_ARCH}/floor.c
 	arch/${LIBC_ARCH}/fmod.c
-	arch/${LIBC_ARCH}/log10.c
 	arch/${LIBC_ARCH}/log.c
+	arch/${LIBC_ARCH}/log10.c
 	arch/${LIBC_ARCH}/round.c
+	arch/${LIBC_ARCH}/sin.c
 	arch/${LIBC_ARCH}/sqrt.c
 	arch/${LIBC_ARCH}/trunc.c
 )
 
-target_link_libraries(c-math LINK_PUBLIC 
+target_link_libraries(c-math LINK_PUBLIC
 	libc-headers
 )
 set_property(TARGET c-math PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})

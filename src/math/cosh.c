@@ -8,7 +8,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_cosh
 //----------------------------------------------------------------------------*/
-static double __elibc_cosh(double x) {
+_ALWAYS_INLINE static double __elibc_cosh(double x) {
 	return (exp(x) + exp(-x)) / 2;
 }
 

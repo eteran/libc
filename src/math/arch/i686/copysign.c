@@ -10,7 +10,7 @@
 // Name: __elibc_copysign
 // Note: assumes IEEE floats
 //----------------------------------------------------------------------------*/
-static double __elibc_copysign(double x, double y) {
+_ALWAYS_INLINE static double __elibc_copysign(double x, double y) {
 
 	union double_bits {
 		double f_value;
