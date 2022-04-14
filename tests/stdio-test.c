@@ -49,6 +49,9 @@ static void test_snprintf(void) {
 
     sprintf(buffer, "%+15.3f\n", 1234.5678);
 	assert(strcmp(buffer, "      +1234.568\n") == 0);
+
+	sprintf(buffer, "Scientific:\t%.8e\n", 54321.6789);
+	assert(strcmp(buffer, "Scientific:\t5.43216789e+04\n") == 0);
 }
 
 int main(void) {

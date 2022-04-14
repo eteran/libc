@@ -181,7 +181,6 @@ int _float_length(double value, int precision, uint8_t flags) {
 //----------------------------------------------------------------------------*/
 char *_format_float_decimal(char *buf, size_t size, double value, int precision, int width,
                             uint8_t flags) {
-
 	double x = value;
 	double int_part;
 	double frac_part;
@@ -254,18 +253,15 @@ char *_format_float_decimal(char *buf, size_t size, double value, int precision,
 //----------------------------------------------------------------------------*/
 char *_format_float_exponent(char *buf, size_t size, double value, int precision, char format,
                              int width, uint8_t flags) {
-
 	double x = value;
 	int exponent = 0;
 	double int_part;
 	double frac_part;
-	char *p1;
-	char *p2;
-
 	struct __write_context ctx = _create_context(buf, size);
 
 	(void)width;
 
+	/* normalize to a single digit integer */
 	if (x != 0.0) {
 		while (x < 1.0) {
 			x *= 10;
@@ -290,18 +286,9 @@ char *_format_float_exponent(char *buf, size_t size, double value, int precision
 	x = _round_double(x, precision);
 	int_part = trunc(x);
 	frac_part = x - int_part;
-	p1 = ctx.ptr;
 
-	do {
-		const int digit = (int)fmod(int_part, 10);
-		_write_char(&ctx, (digit + '0'));
-
-		int_part /= 10;
-	} while (int_part >= 1.0);
-
-	/* reverse buffer */
-	p2 = ctx.ptr - 1;
-	_reverse_buffer(p1, p2);
+	/* write the integer portion */
+	_write_char(&ctx, (int_part + '0'));
 
 	if (precision > 0) {
 		int i;
@@ -322,7 +309,7 @@ char *_format_float_exponent(char *buf, size_t size, double value, int precision
 		}
 	}
 
-	_write_char(&ctx, format);
+	_write_char(&ctx, format); /* 'e' or 'E' */
 	_signed_itoa(ctx.ptr, ctx.size, 'd', 2, exponent, 3, PRINTF_SIGN | PRINTF_PADDING);
 
 	/* NOTE(eteran): no need to manually terminate, _signed_itoa, null terminates */
