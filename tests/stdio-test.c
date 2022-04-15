@@ -82,6 +82,18 @@ static void test_snprintf(void) {
 	sprintf(buffer, "%05d\n", -3);  /* use of 0 flag to prepend with 0 */
 	printf("%s", buffer);
 	assert(strcmp(buffer, "-0003\n") == 0);
+	
+	sprintf(buffer, "%7d\n", -12);
+	printf("%s", buffer);
+	assert(strcmp(buffer, "    -12\n") == 0);
+	
+	sprintf(buffer, "%07d\n", -12);
+	printf("%s", buffer);
+	assert(strcmp(buffer, "-000012\n") == 0);
+	
+	sprintf(buffer, "%.7d\n", -12);
+	printf("%s", buffer);
+	assert(strcmp(buffer, "-0000012\n") == 0);
 }
 
 int main(void) {
