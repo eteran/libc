@@ -7,7 +7,6 @@
 static void test_snprintf(void) {
 	char buffer[256];
     const char* s = "Hello";
-
     sprintf(buffer, "\t.%10s.\n\t.%-10s.\n\t.%*s.\n", s, s, 10, s);
 	printf("%s", buffer);
 	assert(strcmp(buffer,

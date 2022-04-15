@@ -87,7 +87,7 @@ _ALWAYS_INLINE static void _reverse_buffer(char *p1, char *p2) {
 	}
 }
 
-static size_t _udigit_count(uintmax_t n) {
+static int base10_len(uintmax_t n) {
 	/* clang-format off */
 	if (n < 10) return 1;
 	if (n < 100) return 2;
@@ -113,14 +113,26 @@ static size_t _udigit_count(uintmax_t n) {
 	return 20;
 }
 
-static size_t _digit_count(intmax_t n) {
+static int _digit10_count(intmax_t n) {
 
 	uintmax_t ud = n;
 	if (n < 0) {
 		ud = (~ud + 1);
 	}
 
-	return _udigit_count(ud);
+	return base10_len(ud);
+}
+
+static int _pad_width(write_context_t *ctx, const flags_t *flags) {
+	const int pad_zero = flags->padding;
+	const int width = ctx->width;
+	const int precision = ctx->precision;
+
+	if (pad_zero) {
+		return width > precision ? width : precision;
+	} else {
+		return precision;
+	}
 }
 
 /*------------------------------------------------------------------------------
@@ -129,7 +141,7 @@ static size_t _digit_count(intmax_t n) {
 void _itoa_common(write_context_t *ctx, uintmax_t ud, unsigned int divisor, const char *alphabet,
                   const flags_t *flags) {
 
-	const int pad_zero = flags->padding;
+	int min_length = _pad_width(ctx, flags);
 
 	/* this is the point we will start reversing the string at after
 	 * conversion*/
@@ -137,19 +149,12 @@ void _itoa_common(write_context_t *ctx, uintmax_t ud, unsigned int divisor, cons
 
 	/* Divide UD by DIVISOR until UD == 0. */
 	do {
-		const int remainder = (ud % divisor);
-		_write_char(ctx, alphabet[remainder]);
+		_write_char(ctx, alphabet[ud % divisor]);
+		--min_length;
 	} while (ud /= divisor);
 
-	while (pad_zero && ctx->width > 0) {
+	while (min_length-- > 0) {
 		_write_char(ctx, '0');
-	}
-
-	if (ctx->precision > (ctx->ptr - buf)) {
-		ctx->precision -= (ctx->ptr - buf);
-		while (ctx->precision--) {
-			_write_char(ctx, '0');
-		}
 	}
 
 	/* reverse buffer */
@@ -207,8 +212,7 @@ static const char *_unsigned_itoa(char *buffer, size_t size, char base, int prec
 			}
 			break;
 		default:
-			PRINTF_ASSERT("Invalid Base" && 0);
-			divisor = 10;
+			PRINTF_ASSERT(0 && "Invalid Base");
 		}
 
 		_itoa_common(&ctx, ud, divisor, alphabet, flags);
@@ -275,7 +279,7 @@ static int _float_length(double value, int precision, const flags_t *flags) {
 		++n;
 	}
 
-	n += _digit_count(trunc(_round_double(value, precision)));
+	n += _digit10_count(_round_double(value, precision));
 
 	if (precision > 0) {
 		n += (precision + 1);
@@ -308,19 +312,18 @@ static char *_format_float_decimal(char *buf, size_t size, double value, int pre
 	}
 
 	if (flags->padding) {
-		while (width > flen) {
+		while (ctx.width > flen) {
 			_write_char(&ctx, '0');
-			--width;
 		}
 	}
 
-	x = _round_double(x, precision);
+	x = _round_double(x, ctx.precision);
 	int_part = trunc(x);
 	frac_part = x - int_part;
 	p1 = ctx.ptr;
 
 	do {
-		const int digit = (int)fmod(int_part, 10);
+		const int digit = fmod(int_part, 10);
 		_write_char(&ctx, (digit + '0'));
 		int_part /= 10;
 	} while (int_part >= 1.0);
@@ -329,20 +332,19 @@ static char *_format_float_decimal(char *buf, size_t size, double value, int pre
 	p2 = ctx.ptr - 1;
 	_reverse_buffer(p1, p2);
 
-	if (precision > 0) {
+	if (ctx.precision > 0) {
 		int i;
 
 		_write_char(&ctx, '.');
 		if (frac_part == 0.0) {
-			for (i = 1; i <= precision; ++i) {
+			for (i = 0; i < ctx.precision; ++i) {
 				_write_char(&ctx, '0');
 			}
 		} else {
-			for (i = 1; i <= precision; ++i) {
+			for (i = 0; i < ctx.precision; ++i) {
 				x *= 10;
 				do {
-					const double digit_d = fmod(x, 10);
-					const int digit = trunc(digit_d);
+					const int digit = fmod(x, 10);
 					_write_char(&ctx, (digit + '0'));
 				} while (0);
 			}
@@ -367,18 +369,16 @@ static char *_format_float_exponent(char *buf, size_t size, double value, int pr
 	double frac_part;
 	write_context_t ctx = _create_context(buf, size, width, precision);
 
-	(void)width;
-
 	/* normalize to a single digit integer */
 	if (x != 0.0) {
 		while (x < 1.0) {
 			x *= 10;
-			exponent -= 1;
+			--exponent;
 		}
 
 		while (x > 10.0) {
 			x /= 10;
-			exponent += 1;
+			++exponent;
 		}
 	}
 
@@ -395,8 +395,8 @@ static char *_format_float_exponent(char *buf, size_t size, double value, int pr
 	int_part = trunc(x);
 	frac_part = x - int_part;
 
-	/* write the integer portion */
-	_write_char(&ctx, (int_part + '0'));
+	/* write the integer portion, it'll be exactly one digit */
+	_write_char(&ctx, ((int)int_part + '0'));
 
 	if (precision > 0) {
 		int i;
@@ -409,8 +409,7 @@ static char *_format_float_exponent(char *buf, size_t size, double value, int pr
 			for (i = 1; i <= precision; ++i) {
 				x *= 10;
 				do {
-					const double digit_d = fmod(x, 10);
-					const int digit = trunc(digit_d);
+					const int digit = fmod(x, 10);
 					_write_char(&ctx, digit + '0');
 				} while (0);
 			}
@@ -441,32 +440,47 @@ static char *_format_float(char *buf, size_t size, double value, int precision, 
 	}
 
 	if (isnan(value)) {
-		if (format == 'e' || format == 'f' || format == 'g') {
+		switch (format) {
+		case 'e':
+		case 'f':
+		case 'g':
 			strlcpy(buf, "nan", size);
-		}
-
-		if (format == 'E' || format == 'F' || format == 'G') {
+			break;
+		case 'E':
+		case 'F':
+		case 'G':
 			strlcpy(buf, "NAN", size);
+			break;
 		}
 		return buf;
 	}
 
 	if (isinf(value)) {
 		if (signbit(value)) {
-			if (format == 'e' || format == 'f' || format == 'g') {
+			switch (format) {
+			case 'e':
+			case 'f':
+			case 'g':
 				strlcpy(buf, "-inf", size);
-			}
-
-			if (format == 'E' || format == 'F' || format == 'G') {
+				break;
+			case 'E':
+			case 'F':
+			case 'G':
 				strlcpy(buf, "-INF", size);
+				break;
 			}
 		} else {
-			if (format == 'e' || format == 'f' || format == 'g') {
+			switch (format) {
+			case 'e':
+			case 'f':
+			case 'g':
 				strlcpy(buf, "inf", size);
-			}
-
-			if (format == 'E' || format == 'F' || format == 'G') {
+				break;
+			case 'E':
+			case 'F':
+			case 'G':
 				strlcpy(buf, "INF", size);
+				break;
 			}
 		}
 		return buf;
@@ -481,8 +495,10 @@ static char *_format_float(char *buf, size_t size, double value, int precision, 
 		return _format_float_decimal(buf, size, value, precision, width, flags);
 	case 'g':
 	case 'G':
+		/* auto-detect */
 	case 'A':
 	case 'a':
+		/* hex-floats */
 	default:
 		return buf;
 	}
@@ -577,7 +593,6 @@ static const char *_get_precision(const char *format, long int *precision, va_li
 	PRINTF_ASSERT(ap);
 
 	if (*format == '.') {
-
 		++format;
 		if (*format == '*') {
 			++format;
