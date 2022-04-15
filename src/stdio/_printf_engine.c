@@ -87,42 +87,6 @@ _ENSURE_INLINE static void _reverse_buffer(char *p1, char *p2) {
 	}
 }
 
-static int base10_len(uintmax_t n) {
-	/* clang-format off */
-	if (n < 10) return 1;
-	if (n < 100) return 2;
-	if (n < 1000) return 3;
-	if (n < 10000) return 4;
-	if (n < 100000) return 5;
-	if (n < 1000000) return 6;
-	if (n < 10000000) return 7;
-	if (n < 100000000) return 8;
-	if (n < 1000000000) return 9;
-	if (n < 10000000000) return 10;
-	if (n < 100000000000) return 11;
-	if (n < 1000000000000) return 12;
-	if (n < 10000000000000) return 13;
-	if (n < 100000000000000) return 14;
-	if (n < 1000000000000000) return 15;
-	if (n < 10000000000000000) return 16;
-	if (n < 100000000000000000) return 17;
-	if (n < 1000000000000000000) return 18;
-	if (n < 10000000000000000000u) return 19;
-	/* clang-format on */
-
-	return 20;
-}
-
-static int _digit10_count(intmax_t n) {
-
-	uintmax_t ud = n;
-	if (n < 0) {
-		ud = (~ud + 1);
-	}
-
-	return base10_len(ud);
-}
-
 static int _pad_width(write_context_t *ctx, const flags_t *flags) {
 	const int pad_zero = flags->padding;
 	const int width = ctx->width;
@@ -256,6 +220,42 @@ static const char *_signed_itoa(char *buffer, size_t size, int precision, intmax
 }
 
 #ifdef _HAS_FPU
+static int base10_len(uintmax_t n) {
+	/* clang-format off */
+	if (n < 10) return 1;
+	if (n < 100) return 2;
+	if (n < 1000) return 3;
+	if (n < 10000) return 4;
+	if (n < 100000) return 5;
+	if (n < 1000000) return 6;
+	if (n < 10000000) return 7;
+	if (n < 100000000) return 8;
+	if (n < 1000000000) return 9;
+	if (n < 10000000000) return 10;
+	if (n < 100000000000) return 11;
+	if (n < 1000000000000) return 12;
+	if (n < 10000000000000) return 13;
+	if (n < 100000000000000) return 14;
+	if (n < 1000000000000000) return 15;
+	if (n < 10000000000000000) return 16;
+	if (n < 100000000000000000) return 17;
+	if (n < 1000000000000000000) return 18;
+	if (n < 10000000000000000000u) return 19;
+	/* clang-format on */
+
+	return 20;
+}
+
+static int _digit10_count(intmax_t n) {
+
+	uintmax_t ud = n;
+	if (n < 0) {
+		ud = (~ud + 1);
+	}
+
+	return base10_len(ud);
+}
+
 /*------------------------------------------------------------------------------
 // Name:
 //----------------------------------------------------------------------------*/
