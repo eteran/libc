@@ -8,7 +8,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_fma
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static double __elibc_fma(double x, double y, double z) {
+_ENSURE_INLINE static double __elibc_fma(double x, double y, double z) {
 	/* TODO(eteran): account for errors, and rounding mode */
 	return x * y * z;
 }

@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_ceil
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static double __elibc_ceil(double x) {
+_ENSURE_INLINE static double __elibc_ceil(double x) {
 	return __builtin_ceil(x);
 }
 

@@ -8,7 +8,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_sqrt
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static double __elibc_sqrt(double x) {
+_ENSURE_INLINE static double __elibc_sqrt(double x) {
 	double value;
 	__asm__ __volatile__("fsqrt" : "=t"(value) : "0"(x));
 	return value;

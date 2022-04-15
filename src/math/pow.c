@@ -10,7 +10,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_pow
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static double __elibc_pow(double x, double y) {
+_ENSURE_INLINE static double __elibc_pow(double x, double y) {
 	double ret = 1;
 	long int i;
 	const long int y_int = (long int)y;

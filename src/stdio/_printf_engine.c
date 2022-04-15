@@ -56,7 +56,7 @@ typedef struct {
 	int precision;
 } write_context_t;
 
-_ALWAYS_INLINE write_context_t _create_context(char *buffer, size_t size, int width,
+_ENSURE_INLINE write_context_t _create_context(char *buffer, size_t size, int width,
                                                int precision) {
 	write_context_t ctx;
 	ctx.base = buffer;
@@ -67,7 +67,7 @@ _ALWAYS_INLINE write_context_t _create_context(char *buffer, size_t size, int wi
 	return ctx;
 }
 
-_ALWAYS_INLINE static void _write_char(write_context_t *ctx, char ch) {
+_ENSURE_INLINE static void _write_char(write_context_t *ctx, char ch) {
 	if (ctx->size != 1) {
 		*ctx->ptr++ = ch;
 		--ctx->size;
@@ -77,7 +77,7 @@ _ALWAYS_INLINE static void _write_char(write_context_t *ctx, char ch) {
 	}
 }
 
-_ALWAYS_INLINE static void _reverse_buffer(char *p1, char *p2) {
+_ENSURE_INLINE static void _reverse_buffer(char *p1, char *p2) {
 	while (p1 < p2) {
 		const char t_ = *p2;
 		*p2 = *p1;

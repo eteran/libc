@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_exp
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static double __elibc_exp(double x) {
+_ENSURE_INLINE static double __elibc_exp(double x) {
 	return pow(M_E, x);
 }
 

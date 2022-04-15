@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_atan
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static double __elibc_atan(double x) {
+_ENSURE_INLINE static double __elibc_atan(double x) {
 	double value;
 	__asm__ __volatile__("fld1; fpatan" : "=t"(value) : "0"(x) : "st(1)");
 	return value;

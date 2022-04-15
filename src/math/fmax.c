@@ -8,7 +8,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_fmax
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static double __elibc_fmax(double x, double y) {
+_ENSURE_INLINE static double __elibc_fmax(double x, double y) {
 	return x > y ? x : y;
 }
 
