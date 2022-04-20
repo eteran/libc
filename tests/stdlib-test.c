@@ -1,4 +1,5 @@
 #undef NDEBUG
+#define _ELIBC_SOURCE
 #include <assert.h>
 #include <limits.h>
 #include <stdio.h>
@@ -9,13 +10,11 @@ static void test_abs(void) {
 	assert(abs(-100) == 100);
 	assert(labs(100L) == 100L);
 	assert(labs(-100L) == 100L);
-#ifdef _HAS_C99
 	assert(llabs(100LL) == 100LL);
 	assert(llabs(-100LL) == 100LL);
-#endif
 }
 
-int compare(const void *a, const void *b) {
+static int compare(const void *a, const void *b) {
 	int arg1 = *(const int *)(a);
 	int arg2 = *(const int *)(b);
 
@@ -26,7 +25,7 @@ int compare(const void *a, const void *b) {
 	return 0;
 }
 
-void test_qsort(void) {
+static void test_qsort(void) {
 
 	size_t i;
 	int last = INT_MIN;

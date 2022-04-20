@@ -1,6 +1,7 @@
-/* 100% Converage */
+/* 100% Coverage */
 
 #undef NDEBUG
+#define _ELIBC_SOURCE
 #include <assert.h>
 #include <ctype.h>
 #include <string.h>
@@ -30,9 +31,8 @@ TEST_CTYPE(isprint, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvw
                     ":;<=>?@[\\]^_`{|}~ ")
 TEST_CTYPE(isgraph, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!\"#$%&'()*+,-./"
                     ":;<=>?@[\\]^_`{|}~")
-#ifdef _HAS_C99
 TEST_CTYPE(isblank, " \t")
-#endif
+
 
 static void test_iscntrl(void) {
 	int ch;
@@ -71,9 +71,7 @@ int main(void) {
 	test_isdigit();
 	test_isxdigit();
 	test_isspace();
-#ifdef _HAS_C99
 	test_isblank();
-#endif
 	test_iscntrl();
 	test_tolower();
 	test_toupper();

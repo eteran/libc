@@ -1,3 +1,5 @@
+/* 100% Coverage */
+
 #undef NDEBUG
 #include <c/c-config.h>
 

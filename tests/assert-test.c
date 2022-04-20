@@ -1,3 +1,5 @@
+/* 100% Coverage */
+
 #undef NDEBUG
 #include <assert.h>
 

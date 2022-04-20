@@ -1,11 +1,10 @@
 #undef NDEBUG
+#define _ELIBC_SOURCE
 #include <stdio.h>
 #include <assert.h>
 #include <float.h>
 #include <math.h>
-#ifdef _HAS_C99
 #include <fenv.h>
-#endif
 
 #define EPSILON 0.000001f
 
@@ -18,7 +17,6 @@ static void test_fabs(void) {
 	assert(fabs(-3.0) == 3.0);
 	assert(fabs(-0) == 0);
 
-#ifdef _HAS_C99
 	assert(fabs(-INFINITY) == INFINITY);
 
 	assert(fabsf(+3.0f) == 3.0f);
@@ -28,7 +26,6 @@ static void test_fabs(void) {
 	assert(fabsl(+3.0L) == 3.0L);
 	assert(fabsl(-3.0L) == 3.0L);
 	assert(fabsl(-0) == 0);
-#endif
 }
 
 static void test_cos(void) {
@@ -39,13 +36,12 @@ static void test_cos(void) {
 	/* special values */
 	assert(float_compare(cos(-0.0), 1.0));
 	assert(float_compare(cos(+0.0), 1.0));
-#ifdef _HAS_C99
+
 	/* error handling */
 	feclearexcept(FE_ALL_EXCEPT);
 	assert(!fetestexcept(FE_INVALID));
 	assert(isnan(cos(INFINITY)));
 	assert(fetestexcept(FE_INVALID));
-#endif
 }
 
 static void test_sin(void) {
@@ -56,13 +52,12 @@ static void test_sin(void) {
 	/* special values */
 	assert(float_compare(sin(-0.0), 0.0));
 	assert(float_compare(sin(+0.0), 0.0));
-#ifdef _HAS_C99
+
 	/* error handling */
 	feclearexcept(FE_ALL_EXCEPT);
 	assert(!fetestexcept(FE_INVALID));
 	assert(isnan(sin(INFINITY)));
 	assert(fetestexcept(FE_INVALID));
-#endif
 }
 
 static void test_tan(void) {
@@ -74,32 +69,29 @@ static void test_tan(void) {
 	/* special values */
 	assert(float_compare(tan(-0.0), 0.0));
 	assert(float_compare(tan(+0.0), 0.0));
-#ifdef _HAS_C99
+
 	/* error handling */
 	feclearexcept(FE_ALL_EXCEPT);
 	assert(!fetestexcept(FE_INVALID));
 	assert(isnan(tan(INFINITY)));
 	assert(fetestexcept(FE_INVALID));
-#endif
 }
 
 static void test_floor(void) {
-#ifdef _HAS_C99
     double d;
 	d = floor(-INFINITY);
 	assert(isinf(d) && d < 0.0);
-#endif
+
 	assert(float_compare(floor(2.7), +2.0));
     assert(float_compare(floor(-2.7), -3.0));
     assert(float_compare(floor(-0.0), -0.0));
 }
 
 static void test_ceil(void) {
-#ifdef _HAS_C99
 	double d;
 	d = ceil(-INFINITY);
 	assert(isinf(d) && d < 0.0);
-#endif
+
 	assert(float_compare(ceil(2.4), +3.0));
     assert(float_compare(ceil(-2.4), -2.0));
     assert(float_compare(ceil(-0.0), -0.0));
