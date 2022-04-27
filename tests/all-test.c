@@ -1,6 +1,7 @@
 /* 100% Coverage */
 
 #undef NDEBUG
+#define _ELIBC_SOURCE
 #include <c/c-config.h>
 
 #include <assert.h>

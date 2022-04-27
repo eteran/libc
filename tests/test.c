@@ -18,8 +18,8 @@
 
 /* We always want assert to be fully defined.  */
 
-#define _ELIBC_SOURCE
 #undef NDEBUG
+#define _ELIBC_SOURCE
 #include <assert.h>
 #include <errno.h>
 #include <fenv.h>

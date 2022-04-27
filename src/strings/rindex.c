@@ -7,9 +7,5 @@
 // Name: rindex
 //----------------------------------------------------------------------------*/
 char *rindex(const char *s, int c) {
-	if (c == '\0') {
-		return (char *)s + strlen(s);
-	}
-
 	return strrchr(s, c);
 }

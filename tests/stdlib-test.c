@@ -1,5 +1,6 @@
 #undef NDEBUG
 #define _ELIBC_SOURCE
+#include "test_util.h"
 #include <assert.h>
 #include <limits.h>
 #include <stdio.h>
@@ -42,6 +43,20 @@ static void test_qsort(void) {
 }
 
 int main(void) {
+
+	_Static_assert(IS_CONSTANT(EXIT_FAILURE), "");
+	_Static_assert(IS_CONSTANT(EXIT_SUCCESS), "");
+	_Static_assert(IS_CONSTANT(RAND_MAX), "");
+
+	TYPE_DEFNIED(div_t)
+	TYPE_DEFNIED(ldiv_t)
+	TYPE_DEFNIED(lldiv_t)
+	TYPE_DEFNIED(size_t)
+	TYPE_DEFNIED(wchar_t)
+
+	_Static_assert(IS_SAME_TYPE(NULL, void *), "");
+	_Static_assert(IS_SAME_TYPE(MB_CUR_MAX, size_t), "");
+
 	test_abs();
 	test_qsort();
 	return 0;

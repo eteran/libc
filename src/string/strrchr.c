@@ -6,15 +6,13 @@
 // Name: strrchr
 //----------------------------------------------------------------------------*/
 char *strrchr(const char *s, int c) {
-	const char *ret = 0;
-	const char cmp = (char)(c & 0xff);
+	char *retval = 0;
 
-	while (*s != '\0') {
-		if (*s == cmp) {
-			ret = s;
+	do {
+		if (*s == c) {
+			retval = (char *)s;
 		}
-		++s;
-	}
+	} while (*s++ != '\0');
 
-	return (char *)ret;
+	return retval;
 }

@@ -1,4 +1,5 @@
 #undef NDEBUG
+#define _ELIBC_SOURCE
 #include <assert.h>
 #include <string.h>
 
@@ -37,6 +38,21 @@ static void test_strchr(void) {
 	assert(result == &str[sizeof(str) - 1]);
 }
 
+static void test_strrchr(void) {
+	const char str[] = "Try not. Do, or do not. There is no try.";
+	char target = 'T';
+	const char *result = str;
+
+	result = strrchr(str, target);
+	assert(strcmp(result, "There is no try.") == 0);
+
+	result = strrchr(str, 'W');
+	assert(result == NULL);
+
+	result = strrchr(str, '\0');
+	assert(result == &str[sizeof(str) - 1]);
+}
+
 static void test_memchr(void) {
 	char str[] = "ABCDEFG";
 	char *ps = memchr(str, 'D', sizeof(str) - 1);
@@ -48,13 +64,6 @@ static void test_strlen(void) {
 	assert(strlen("Hello") == 5);
 	assert(strlen("H") == 1);
 	assert(strlen("") == 0);
-}
-
-static void test_strrchr(void) {
-	char filename[] = "foo/bar/foobar.txt";
-	char *last_slash = strrchr(filename, '/');
-	char *base_name = last_slash ? last_slash + 1 : filename;
-	assert(strcmp(base_name, "foobar.txt") == 0);
 }
 
 static void test_strpbrk(void) {

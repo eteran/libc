@@ -1,6 +1,7 @@
 /* 100% Coverage */
 
 #undef NDEBUG
+#define _ELIBC_SOURCE
 #include <assert.h>
 #include <setjmp.h>
 #include <stdio.h>
