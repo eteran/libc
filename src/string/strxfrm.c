@@ -8,20 +8,22 @@
 //----------------------------------------------------------------------------*/
 size_t strxfrm(char *_RESTRICT dest, const char *_RESTRICT src, size_t n) {
 
-	assert(dest);
+	/* TODO(eteran): be locale aware */
+	size_t count = 0;
 	assert(src);
 
-	/* in the "POSIX" or "C" locales strxfrm() is equivalent
-	 * to copying the string  with strncpy().
-	 */
+	if (n != 0) {
+		size_t i;
+		assert(dest);
+		for (i = 0; i < n - 1; ++i) {
+			*dest++ = *src++;
+			++count;
+			if(!*src) {
+				break;
+			}
+		}
 
-	/* NOTE: I've seen at least one source that says strncpy isn't correct here
-	 * because the zero filling nature of strncpy isn't in the strxfrm spec
-	 */
-
-	/* TODO(eteran): be locale aware */
-
-	strncpy(dest, src, n);
-	dest[n - 1] = '\0';
-	return strlen(dest);
+		*dest = '\0';
+	}
+	return count;
 }

@@ -3,9 +3,9 @@
 #define _ELIBC_SAFE_STRING
 #include "test_util.h"
 #include <assert.h>
+#include <errno.h>
 #include <stdlib.h>
 #include <string.h>
-#include <errno.h>
 
 static void test_strcmp(void) {
 	const char *string = "Hello World!";
@@ -269,52 +269,66 @@ static void test_strerror(void) {
 		const char *str;
 	} strerror_table_t;
 
-	const strerror_table_t table[] = {
-		{ 0, "Success" },
-	    {EPERM, "Operation not permitted"},
-	    {ERANGE, "Numerical result out of range"},
-	    {ENOENT, "No such file or directory"},
-	    {ESRCH, "No such process"},
-	    {EINTR, "Interrupted system call"},
-	    {EIO, "Input/output error"},
-	    {ENXIO, "No such device or address"},
-	    {E2BIG, "Argument list too long"},
-	    {ENOEXEC, "Exec format error"},
-	    {EBADF, "Bad file descriptor"},
-	    {ECHILD, "No child processes"},
-	    {EAGAIN, "Resource temporarily unavailable"},
-	    {ENOMEM, "Cannot allocate memory"},
-	    {EACCES, "Permission denied"},
-	    {EFAULT, "Bad address"},
-	    {ENOTBLK, "Block device required"},
-	    {EBUSY, "Device or resource busy"},
-	    {EEXIST, "File exists"},
-	    {EXDEV, "Invalid cross-device link"},
-	    {ENODEV, "No such device"},
-	    {ENOTDIR, "Not a directory"},
-	    {EISDIR, "Is a directory"},
-	    {EINVAL, "Invalid argument"},
-	    {ENFILE, "Too many open files in system"},
-	    {EMFILE, "Too many open files"},
-	    {ENOTTY, "Inappropriate ioctl for device"},
-	    {ETXTBSY, "Text file busy"},
-	    {EFBIG, "File too large"},
-	    {ENOSPC, "No space left on device"},
-	    {ESPIPE, "Illegal seek"},
-	    {EROFS, "Read-only file system"},
-	    {EMLINK, "Too many links"},
-	    {EPIPE, "Broken pipe"},
-	    {EDOM, "Numerical argument out of domain"},
-	    {EILSEQ, "Invalid or incomplete multibyte or wide character"},
-		{-1, NULL}
-	};
+	const strerror_table_t table[] = {{0, "Success"},
+	                                  {EPERM, "Operation not permitted"},
+	                                  {ERANGE, "Numerical result out of range"},
+	                                  {ENOENT, "No such file or directory"},
+	                                  {ESRCH, "No such process"},
+	                                  {EINTR, "Interrupted system call"},
+	                                  {EIO, "Input/output error"},
+	                                  {ENXIO, "No such device or address"},
+	                                  {E2BIG, "Argument list too long"},
+	                                  {ENOEXEC, "Exec format error"},
+	                                  {EBADF, "Bad file descriptor"},
+	                                  {ECHILD, "No child processes"},
+	                                  {EAGAIN, "Resource temporarily unavailable"},
+	                                  {ENOMEM, "Cannot allocate memory"},
+	                                  {EACCES, "Permission denied"},
+	                                  {EFAULT, "Bad address"},
+	                                  {ENOTBLK, "Block device required"},
+	                                  {EBUSY, "Device or resource busy"},
+	                                  {EEXIST, "File exists"},
+	                                  {EXDEV, "Invalid cross-device link"},
+	                                  {ENODEV, "No such device"},
+	                                  {ENOTDIR, "Not a directory"},
+	                                  {EISDIR, "Is a directory"},
+	                                  {EINVAL, "Invalid argument"},
+	                                  {ENFILE, "Too many open files in system"},
+	                                  {EMFILE, "Too many open files"},
+	                                  {ENOTTY, "Inappropriate ioctl for device"},
+	                                  {ETXTBSY, "Text file busy"},
+	                                  {EFBIG, "File too large"},
+	                                  {ENOSPC, "No space left on device"},
+	                                  {ESPIPE, "Illegal seek"},
+	                                  {EROFS, "Read-only file system"},
+	                                  {EMLINK, "Too many links"},
+	                                  {EPIPE, "Broken pipe"},
+	                                  {EDOM, "Numerical argument out of domain"},
+	                                  {EILSEQ, "Invalid or incomplete multibyte or wide character"},
+	                                  {-1, NULL}};
 
 	const strerror_table_t *ptr = table;
-	while(ptr->errnum != -1) {
+	while (ptr->errnum != -1) {
 		char *error = strerror(ptr->errnum);
 		assert(strcmp(error, ptr->str) == 0);
 		++ptr;
 	}
+}
+
+static void test_strxfrm(void) {
+	char src[] = "hi";
+	char dest[6] = "abcdef";
+	char dest2[2];
+	size_t n;
+
+	n = strxfrm(dest, src, 5);
+	/* NOTE(eteran): writes at most 3 characters to the buffer */
+	assert(memcmp(dest, "hi\0def", 3) == 0);
+	assert(n == 2);
+
+	n = strxfrm(dest2, src, 2);
+	assert(memcmp(dest2, "h", 1) == 0);
+	assert(n == 1);
 }
 
 int main(void) {
@@ -347,10 +361,6 @@ int main(void) {
 	test_strncpy();
 	test_strncmp();
 	test_strerror();
-
-#if 0
-#include "c/strxfrm.h"
-#endif
-
+	test_strxfrm();
 	return 0;
 }
