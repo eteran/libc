@@ -21,7 +21,7 @@
 #include <strings.h>
 #include <time.h>
 
-#ifdef _HAS_C99
+/* C99 */
 #include <complex.h>
 #include <fenv.h>
 #include <inttypes.h>
@@ -29,9 +29,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <tgmath.h>
-#endif
 
-#ifdef _HAS_C11
+/* C11 */
 #include <stdalign.h>
 #include <stdatomic.h>
 #include <stdnoreturn.h>
@@ -39,7 +38,6 @@
 #include <uchar.h>
 #include <wchar.h>
 #include <wctype.h>
-#endif
 
 int main(void) {
 	return 0;
