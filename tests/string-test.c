@@ -1,3 +1,4 @@
+/* 100% coverage, but locale sensitive functions not testing locale support */
 #undef NDEBUG
 #define _ELIBC_SOURCE
 #define _ELIBC_SAFE_STRING
@@ -269,43 +270,47 @@ static void test_strerror(void) {
 		const char *str;
 	} strerror_table_t;
 
-	const strerror_table_t table[] = {{0, "Success"},
-	                                  {EPERM, "Operation not permitted"},
-	                                  {ERANGE, "Numerical result out of range"},
-	                                  {ENOENT, "No such file or directory"},
-	                                  {ESRCH, "No such process"},
-	                                  {EINTR, "Interrupted system call"},
-	                                  {EIO, "Input/output error"},
-	                                  {ENXIO, "No such device or address"},
-	                                  {E2BIG, "Argument list too long"},
-	                                  {ENOEXEC, "Exec format error"},
-	                                  {EBADF, "Bad file descriptor"},
-	                                  {ECHILD, "No child processes"},
-	                                  {EAGAIN, "Resource temporarily unavailable"},
-	                                  {ENOMEM, "Cannot allocate memory"},
-	                                  {EACCES, "Permission denied"},
-	                                  {EFAULT, "Bad address"},
-	                                  {ENOTBLK, "Block device required"},
-	                                  {EBUSY, "Device or resource busy"},
-	                                  {EEXIST, "File exists"},
-	                                  {EXDEV, "Invalid cross-device link"},
-	                                  {ENODEV, "No such device"},
-	                                  {ENOTDIR, "Not a directory"},
-	                                  {EISDIR, "Is a directory"},
-	                                  {EINVAL, "Invalid argument"},
-	                                  {ENFILE, "Too many open files in system"},
-	                                  {EMFILE, "Too many open files"},
-	                                  {ENOTTY, "Inappropriate ioctl for device"},
-	                                  {ETXTBSY, "Text file busy"},
-	                                  {EFBIG, "File too large"},
-	                                  {ENOSPC, "No space left on device"},
-	                                  {ESPIPE, "Illegal seek"},
-	                                  {EROFS, "Read-only file system"},
-	                                  {EMLINK, "Too many links"},
-	                                  {EPIPE, "Broken pipe"},
-	                                  {EDOM, "Numerical argument out of domain"},
-	                                  {EILSEQ, "Invalid or incomplete multibyte or wide character"},
-	                                  {-1, NULL}};
+	const strerror_table_t table[] = {
+		/* clang-format off */
+		{0, "Success"},
+		{EPERM, "Operation not permitted"},
+		{ERANGE, "Numerical result out of range"},
+		{ENOENT, "No such file or directory"},
+		{ESRCH, "No such process"},
+		{EINTR, "Interrupted system call"},
+		{EIO, "Input/output error"},
+		{ENXIO, "No such device or address"},
+		{E2BIG, "Argument list too long"},
+		{ENOEXEC, "Exec format error"},
+		{EBADF, "Bad file descriptor"},
+		{ECHILD, "No child processes"},
+		{EAGAIN, "Resource temporarily unavailable"},
+		{ENOMEM, "Cannot allocate memory"},
+		{EACCES, "Permission denied"},
+		{EFAULT, "Bad address"},
+		{ENOTBLK, "Block device required"},
+		{EBUSY, "Device or resource busy"},
+		{EEXIST, "File exists"},
+		{EXDEV, "Invalid cross-device link"},
+		{ENODEV, "No such device"},
+		{ENOTDIR, "Not a directory"},
+		{EISDIR, "Is a directory"},
+		{EINVAL, "Invalid argument"},
+		{ENFILE, "Too many open files in system"},
+		{EMFILE, "Too many open files"},
+		{ENOTTY, "Inappropriate ioctl for device"},
+		{ETXTBSY, "Text file busy"},
+		{EFBIG, "File too large"},
+		{ENOSPC, "No space left on device"},
+		{ESPIPE, "Illegal seek"},
+		{EROFS, "Read-only file system"},
+		{EMLINK, "Too many links"},
+		{EPIPE, "Broken pipe"},
+		{EDOM, "Numerical argument out of domain"},
+		{EILSEQ, "Invalid or incomplete multibyte or wide character"},
+		{-1, NULL}
+		/* clang-format on */
+	};
 
 	const strerror_table_t *ptr = table;
 	while (ptr->errnum != -1) {

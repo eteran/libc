@@ -33,7 +33,6 @@ TEST_CTYPE(isgraph, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvw
                     ":;<=>?@[\\]^_`{|}~")
 TEST_CTYPE(isblank, " \t")
 
-
 static void test_iscntrl(void) {
 	int ch;
 	for (ch = 0; ch < 256; ++ch) {

@@ -1,10 +1,10 @@
 #undef NDEBUG
 #define _ELIBC_SOURCE
-#include <stdio.h>
 #include <assert.h>
+#include <fenv.h>
 #include <float.h>
 #include <math.h>
-#include <fenv.h>
+#include <stdio.h>
 
 #define EPSILON 0.000001f
 
@@ -78,13 +78,13 @@ static void test_tan(void) {
 }
 
 static void test_floor(void) {
-    double d;
+	double d;
 	d = floor(-INFINITY);
 	assert(isinf(d) && d < 0.0);
 
 	assert(float_compare(floor(2.7), +2.0));
-    assert(float_compare(floor(-2.7), -3.0));
-    assert(float_compare(floor(-0.0), -0.0));
+	assert(float_compare(floor(-2.7), -3.0));
+	assert(float_compare(floor(-0.0), -0.0));
 }
 
 static void test_ceil(void) {
@@ -93,8 +93,8 @@ static void test_ceil(void) {
 	assert(isinf(d) && d < 0.0);
 
 	assert(float_compare(ceil(2.4), +3.0));
-    assert(float_compare(ceil(-2.4), -2.0));
-    assert(float_compare(ceil(-0.0), -0.0));
+	assert(float_compare(ceil(-2.4), -2.0));
+	assert(float_compare(ceil(-0.0), -0.0));
 }
 
 #if 0

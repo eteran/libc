@@ -18,7 +18,7 @@ size_t strxfrm(char *_RESTRICT dest, const char *_RESTRICT src, size_t n) {
 		for (i = 0; i < n - 1; ++i) {
 			*dest++ = *src++;
 			++count;
-			if(!*src) {
+			if (!*src) {
 				break;
 			}
 		}

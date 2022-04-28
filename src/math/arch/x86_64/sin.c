@@ -1,8 +1,8 @@
 
 #define _ELIBC_SOURCE
 #include <errno.h>
-#include <math.h>
 #include <fenv.h>
+#include <math.h>
 
 #ifdef _HAS_FPU
 

@@ -19,4 +19,3 @@ double ceil(double x) {
 }
 
 #endif
-
