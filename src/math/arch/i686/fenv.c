@@ -31,7 +31,7 @@
 // Name:
 // Desc:
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static void __elibc_feclearexcept_fpu(int excepts) {
+_ALWAYS_INLINE _INLINE static void __elibc_feclearexcept_fpu(int excepts) {
 	fenv_t envp;
 	FPU_GETENV(envp);
 	envp.__status_word &= ~(excepts & FE_ALL_EXCEPT);
@@ -42,7 +42,7 @@ _ALWAYS_INLINE static void __elibc_feclearexcept_fpu(int excepts) {
 // Name:
 // Desc:
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static void __elibc_feclearexcept_sse(int excepts) {
+_ALWAYS_INLINE _INLINE static void __elibc_feclearexcept_sse(int excepts) {
 	uint32_t xcw;
 	SSE_GETCW(xcw);
 	xcw &= ~(excepts & FE_ALL_EXCEPT);
@@ -63,7 +63,7 @@ int feclearexcept(int excepts) {
 // Name:
 // Desc:
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static void __elibc_fesetround_fpu(int round) {
+_ALWAYS_INLINE _INLINE static void __elibc_fesetround_fpu(int round) {
 
 	uint16_t cw;
 	FPU_GETCW(cw);
@@ -75,7 +75,7 @@ _ALWAYS_INLINE static void __elibc_fesetround_fpu(int round) {
 // Name:
 // Desc:
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static void __elibc_fesetround_sse(int round) {
+_ALWAYS_INLINE _INLINE static void __elibc_fesetround_sse(int round) {
 	uint32_t xcw;
 	SSE_GETCW(xcw);
 	xcw = (xcw & ~0x6000) | (round << 3);
@@ -101,7 +101,7 @@ int fesetround(int round) {
 // Name:
 // Desc:
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static int __elibc_fegetround_fpu(void) {
+_ALWAYS_INLINE _INLINE static int __elibc_fegetround_fpu(void) {
 	uint16_t cw;
 	FPU_GETCW(cw);
 	return cw & _ELIBC_FE_ROUND_MASK;
@@ -144,7 +144,7 @@ int fesetenv(const fenv_t *envp) {
 // Name:
 // Desc:
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static void __elibc_feraiseexcept_fpu(int excepts) {
+_ALWAYS_INLINE _INLINE static void __elibc_feraiseexcept_fpu(int excepts) {
 	fenv_t envp;
 	FPU_GETENV(envp);
 	envp.__status_word |= (excepts & FE_ALL_EXCEPT);
@@ -155,7 +155,7 @@ _ALWAYS_INLINE static void __elibc_feraiseexcept_fpu(int excepts) {
 // Name:
 // Desc:
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static void __elibc_feraiseexcept_sse(int excepts) {
+_ALWAYS_INLINE _INLINE static void __elibc_feraiseexcept_sse(int excepts) {
 	uint32_t xcw;
 	SSE_GETCW(xcw);
 	xcw |= (excepts & FE_ALL_EXCEPT);

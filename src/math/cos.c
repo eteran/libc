@@ -9,7 +9,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_cos
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static double __elibc_cos(double x) {
+_ALWAYS_INLINE _INLINE static double __elibc_cos(double x) {
 	return sin(x + (M_PI / 2.0));
 }
 

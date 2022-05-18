@@ -27,7 +27,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_memset64
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static void __elibc_memset64(uint64_t *p, char ch, size_t n) {
+_ALWAYS_INLINE _INLINE static void __elibc_memset64(uint64_t *p, char ch, size_t n) {
 	const uint64_t source = (uint8_t)ch * UINT64_C(0x0101010101010101);
 	n /= 8;
 	while (n--) {
@@ -39,7 +39,7 @@ _ALWAYS_INLINE static void __elibc_memset64(uint64_t *p, char ch, size_t n) {
 /*------------------------------------------------------------------------------
 // Name: __elibc_memset32
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static void __elibc_memset32(uint32_t *p, char ch, size_t n) {
+_ALWAYS_INLINE _INLINE static void __elibc_memset32(uint32_t *p, char ch, size_t n) {
 	const uint32_t source = (uint8_t)ch * UINT32_C(0x01010101);
 	n /= 4;
 	while (n--) {
@@ -50,7 +50,7 @@ _ALWAYS_INLINE static void __elibc_memset32(uint32_t *p, char ch, size_t n) {
 /*------------------------------------------------------------------------------
 // Name: __elibc_memset16
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static void __elibc_memset16(uint16_t *p, char ch, size_t n) {
+_ALWAYS_INLINE _INLINE static void __elibc_memset16(uint16_t *p, char ch, size_t n) {
 	const uint16_t source = (uint8_t)ch * UINT16_C(0x0101);
 	n /= 2;
 	while (n--) {
@@ -61,7 +61,7 @@ _ALWAYS_INLINE static void __elibc_memset16(uint16_t *p, char ch, size_t n) {
 /*------------------------------------------------------------------------------
 // Name: __elibc_memset8
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static void __elibc_memset8(uint8_t *p, char ch, size_t n) {
+_ALWAYS_INLINE _INLINE static void __elibc_memset8(uint8_t *p, char ch, size_t n) {
 	while (n--) {
 		*p++ = (uint8_t)ch;
 	}

@@ -26,7 +26,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_memcpy64
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static void __elibc_memcpy64(uint64_t *_RESTRICT dest, const uint64_t *_RESTRICT src,
+_ALWAYS_INLINE _INLINE static void __elibc_memcpy64(uint64_t *_RESTRICT dest, const uint64_t *_RESTRICT src,
                                             size_t n) {
 	n /= 8;
 	while (n--) {
@@ -38,7 +38,7 @@ _ALWAYS_INLINE static void __elibc_memcpy64(uint64_t *_RESTRICT dest, const uint
 /*------------------------------------------------------------------------------
 // Name: __elibc_memcpy32
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static void __elibc_memcpy32(uint32_t *_RESTRICT dest, const uint32_t *_RESTRICT src,
+_ALWAYS_INLINE _INLINE static void __elibc_memcpy32(uint32_t *_RESTRICT dest, const uint32_t *_RESTRICT src,
                                             size_t n) {
 	n /= 4;
 	while (n--) {
@@ -49,7 +49,7 @@ _ALWAYS_INLINE static void __elibc_memcpy32(uint32_t *_RESTRICT dest, const uint
 /*------------------------------------------------------------------------------
 // Name: __elibc_memcpy16
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static void __elibc_memcpy16(uint16_t *_RESTRICT dest, const uint16_t *_RESTRICT src,
+_ALWAYS_INLINE _INLINE static void __elibc_memcpy16(uint16_t *_RESTRICT dest, const uint16_t *_RESTRICT src,
                                             size_t n) {
 	n /= 2;
 	while (n--) {
@@ -60,7 +60,7 @@ _ALWAYS_INLINE static void __elibc_memcpy16(uint16_t *_RESTRICT dest, const uint
 /*------------------------------------------------------------------------------
 // Name: __elibc_memcpy8
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE static void __elibc_memcpy8(uint8_t *_RESTRICT dest, const uint8_t *_RESTRICT src,
+_ALWAYS_INLINE _INLINE static void __elibc_memcpy8(uint8_t *_RESTRICT dest, const uint8_t *_RESTRICT src,
                                            size_t n) {
 	while (n--) {
 		*dest++ = *src++;
