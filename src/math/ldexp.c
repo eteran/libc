@@ -26,7 +26,7 @@
 // Name: ldexp
 // Desc: On success, these functions return x * (2^exp).
 //----------------------------------------------------------------------------*/
-_ENSURE_INLINE static double __elibc_ldexp(double x, int exp) {
+_ALWAYS_INLINE static double __elibc_ldexp(double x, int exp) {
 	/* TODO(eteran): detect overflow/underflow */
 	if (exp > 0) {
 		const double y = pow(2, exp);

@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_fabs
 //----------------------------------------------------------------------------*/
-_ENSURE_INLINE static double __elibc_fabs(double x) {
+_ALWAYS_INLINE static double __elibc_fabs(double x) {
 	return __builtin_fabs(x);
 }
 

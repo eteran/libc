@@ -8,7 +8,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_acos
 //----------------------------------------------------------------------------*/
-_ENSURE_INLINE static double __elibc_acos(double x) {
+_ALWAYS_INLINE static double __elibc_acos(double x) {
 	return (M_PI / 2) - asin(x);
 }
 
