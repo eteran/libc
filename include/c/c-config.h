@@ -57,13 +57,16 @@
 #define _HAS_FPU
 #endif
 
-/* restrict keyword support */
+/* restrict/inline keyword support */
 #if defined(_HAS_C99)
 #define _RESTRICT restrict
+#define _INLINE inline
 #elif defined(__GNUC__)
 #define _RESTRICT __restrict
+#define _INLINE __inline__
 #else
 #define _RESTRICT
+#define _INLINE
 #endif
 
 #if defined(_HAS_CXX11)
@@ -85,12 +88,10 @@
 #endif
 
 #if defined(__GNUC__)
-#define _INLINE        __inline__
 #define _CONST         __attribute__((__const__))
 #define _PURE          __attribute__((__pure__))
 #define _ALWAYS_INLINE __attribute__((always_inline))
 #else
-#define _INLINE
 #define _CONST
 #define _PURE
 #define _ALWAYS_INLINE
