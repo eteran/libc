@@ -1,7 +1,22 @@
+/* 100% Coverage */
+
 #undef NDEBUG
 #define _ELIBC_SOURCE
 #include <assert.h>
 #include <iso646.h>
+
+static void test_assignments(void) {
+	unsigned char x = 0x55;
+
+	x and_eq 0x05;
+	assert(x == 0x05);
+
+	x or_eq 0xa0;
+	assert(x == 0xa5);
+
+	x xor_eq 0xf0;
+	assert(x == 0x55);
+}
 
 int main(void) {
 
@@ -32,11 +47,9 @@ int main(void) {
 	_Static_assert((1 bitor 1) == 1, "");
 	_Static_assert((0 bitor 0) == 0, "");
 
-	/*
-	#define and_eq &=
-	#define not_eq !=
-	#define or_eq |=
-	#define xor_eq ^=
-	*/
+	_Static_assert((0 not_eq 1), "");
+	_Static_assert(not (1 not_eq 1), "");
+
+	test_assignments();
 	return 0;
 }
