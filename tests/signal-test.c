@@ -2,7 +2,6 @@
 #define _ELIBC_SOURCE
 #include <assert.h>
 #include <signal.h>
-#include <stdio.h>
 
 static volatile sig_atomic_t signal_status;
 

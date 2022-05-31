@@ -38,8 +38,8 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_memswp64
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE _INLINE static void __elibc_memswp64(uint64_t *_RESTRICT dest, uint64_t *_RESTRICT src,
-                                            size_t n) {
+_ALWAYS_INLINE _INLINE static void __elibc_memswp64(uint64_t *_RESTRICT dest,
+                                                    uint64_t *_RESTRICT src, size_t n) {
 	n /= 8;
 	while (n--) {
 		const uint64_t temp = *dest;
@@ -55,8 +55,8 @@ _ALWAYS_INLINE _INLINE static void __elibc_memswp64(uint64_t *_RESTRICT dest, ui
 /*------------------------------------------------------------------------------
 // Name: __elibc_memswp32
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE _INLINE static void __elibc_memswp32(uint32_t *_RESTRICT dest, uint32_t *_RESTRICT src,
-                                            size_t n) {
+_ALWAYS_INLINE _INLINE static void __elibc_memswp32(uint32_t *_RESTRICT dest,
+                                                    uint32_t *_RESTRICT src, size_t n) {
 	n /= 4;
 	while (n--) {
 		const uint32_t temp = *dest;
@@ -71,8 +71,8 @@ _ALWAYS_INLINE _INLINE static void __elibc_memswp32(uint32_t *_RESTRICT dest, ui
 /*------------------------------------------------------------------------------
 // Name: __elibc_memswp16
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE _INLINE static void __elibc_memswp16(uint16_t *_RESTRICT dest, uint16_t *_RESTRICT src,
-                                            size_t n) {
+_ALWAYS_INLINE _INLINE static void __elibc_memswp16(uint16_t *_RESTRICT dest,
+                                                    uint16_t *_RESTRICT src, size_t n) {
 	n /= 2;
 	while (n--) {
 		const uint16_t temp = *dest;
@@ -88,7 +88,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_memswp16(uint16_t *_RESTRICT dest, ui
 // Name: __elibc_memswp8
 //----------------------------------------------------------------------------*/
 _ALWAYS_INLINE _INLINE static void __elibc_memswp8(uint8_t *_RESTRICT dest, uint8_t *_RESTRICT src,
-                                           size_t n) {
+                                                   size_t n) {
 	while (n--) {
 		const uint8_t temp = *dest;
 		*dest = *src;

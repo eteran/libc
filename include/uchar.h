@@ -6,6 +6,8 @@
 #include "c/c-config.h"
 
 #include "c/_c11_warning.h"
+
+#include "arch_size_t.h"
 #include "c/_mbstate_t.h"
 
 #if !defined(__cpp_unicode_characters)

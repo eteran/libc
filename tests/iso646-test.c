@@ -48,7 +48,7 @@ int main(void) {
 	_Static_assert((0 bitor 0) == 0, "");
 
 	_Static_assert((0 not_eq 1), "");
-	_Static_assert(not (1 not_eq 1), "");
+	_Static_assert(not(1 not_eq 1), "");
 
 	test_assignments();
 	return 0;

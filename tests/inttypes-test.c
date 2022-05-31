@@ -1,7 +1,7 @@
 #undef NDEBUG
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include "test_util.h"
+#include <assert.h>
 #include <inttypes.h>
 
 void test_maxabs(void) {

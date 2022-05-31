@@ -42,15 +42,15 @@ int main(void) {
 	_Static_assert(IS_CONSTANT(FLT_EVAL_METHOD), "");
 
 #ifdef _HAS_C11
-	_Static_assert(IS_CONSTANT(FLT_HAS_SUBNORM), "")
-	_Static_assert(IS_CONSTANT(DBL_HAS_SUBNORM), "")
-	_Static_assert(IS_CONSTANT(LDBL_HAS_SUBNORM), "")
-	_Static_assert(IS_CONSTANT(FLT_DECIMAL_DIG), "")
-	_Static_assert(IS_CONSTANT(DBL_DECIMAL_DIG), "")
-	_Static_assert(IS_CONSTANT(LDBL_DECIMAL_DIG), "")
-	_Static_assert(IS_CONSTANT(FLT_TRUE_MIN), "")
-	_Static_assert(IS_CONSTANT(DBL_TRUE_MIN), "")
-	_Static_assert(IS_CONSTANT(LDBL_TRUE_MIN), "")
+	_Static_assert(IS_CONSTANT(FLT_HAS_SUBNORM), "");
+	_Static_assert(IS_CONSTANT(DBL_HAS_SUBNORM), "");
+	_Static_assert(IS_CONSTANT(LDBL_HAS_SUBNORM), "");
+	_Static_assert(IS_CONSTANT(FLT_DECIMAL_DIG), "");
+	_Static_assert(IS_CONSTANT(DBL_DECIMAL_DIG), "");
+	_Static_assert(IS_CONSTANT(LDBL_DECIMAL_DIG), "");
+	_Static_assert(IS_CONSTANT(FLT_TRUE_MIN), "");
+	_Static_assert(IS_CONSTANT(DBL_TRUE_MIN), "");
+	_Static_assert(IS_CONSTANT(LDBL_TRUE_MIN), "");
 #endif
 	return 0;
 }

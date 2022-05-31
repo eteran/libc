@@ -60,10 +60,10 @@
 /* restrict/inline keyword support */
 #if defined(_HAS_C99)
 #define _RESTRICT restrict
-#define _INLINE inline
+#define _INLINE   inline
 #elif defined(__GNUC__)
 #define _RESTRICT __restrict
-#define _INLINE __inline__
+#define _INLINE   __inline__
 #else
 #define _RESTRICT
 #define _INLINE
