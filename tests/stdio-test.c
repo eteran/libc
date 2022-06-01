@@ -5,6 +5,25 @@
 #include <stdio.h>
 #include <string.h>
 
+static void test_printf_numeric(void) {
+
+	char buffer[256];
+	snprintf(buffer, sizeof(buffer), "%s%c%s", "hello", ' ', "world");
+	assert(strcmp(buffer, "hello world") == 0);
+
+	snprintf(buffer, sizeof(buffer), "%d", 0x1234);
+	assert(strcmp(buffer, "4660") == 0);
+
+	snprintf(buffer, sizeof(buffer), "%x", 0x1234);
+	assert(strcmp(buffer, "1234") == 0);
+
+	snprintf(buffer, sizeof(buffer), "%08x", 0x1234);
+	assert(strcmp(buffer, "00001234") == 0);
+
+	snprintf(buffer, sizeof(buffer), "%08x", -1);
+	assert(strcmp(buffer, "ffffffff") == 0);
+}
+
 static void test_sprintf(void) {
 	char buffer[256];
 	const char *s = "Hello";
@@ -96,5 +115,6 @@ static void test_sprintf(void) {
 
 int main(void) {
 	test_sprintf();
+	test_printf_numeric();
 	return 0;
 }

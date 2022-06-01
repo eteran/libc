@@ -2,7 +2,100 @@
 #define _ELIBC_SOURCE
 #include <assert.h>
 #include <locale.h>
+#include <string.h>
 #include <wchar.h>
+
+/* Test for NUL byte processing via empty string.  */
+static void test_utf8_empty(void) {
+	wchar_t wc;
+	mbstate_t s;
+
+	wc = 42;                               /* arbitrary number */
+	memset(&s, 0, sizeof(s));              /* get s into initial state */
+	assert(mbrtowc(NULL, "", 1, &s) == 0); /* valid terminator */
+	assert(mbsinit(&s));
+
+	wc = 42;                                           /* arbitrary number */
+	memset(&s, 0, sizeof(s));                          /* get s into initial state */
+	assert(mbrtowc(&wc, "\xE2", 1, &s) == (size_t)-2); /* 1st byte processed */
+	assert(mbrtowc(NULL, "", 1, &s) == (size_t)-1);    /* invalid terminator */
+
+	wc = 42;                                           /* arbitrary number */
+	memset(&s, 0, sizeof(s));                          /* get s into initial state */
+	assert(mbrtowc(&wc, "\xE2", 1, &s) == (size_t)-2); /* 1st byte processed */
+	assert(mbrtowc(&wc, "\x89", 1, &s) == (size_t)-2); /* 2nd byte processed */
+	assert(mbrtowc(NULL, "", 1, &s) == (size_t)-1);    /* invalid terminator */
+
+	wc = 42;                                           /* arbitrary number */
+	memset(&s, 0, sizeof(s));                          /* get s into initial state */
+	assert(mbrtowc(&wc, "\xE2", 1, &s) == (size_t)-2); /* 1st byte processed */
+	assert(mbrtowc(&wc, "\x89", 1, &s) == (size_t)-2); /* 2nd byte processed */
+	assert(mbrtowc(&wc, "\xA0", 1, &s) == 1);          /* 3nd byte processed */
+	assert(mbrtowc(NULL, "", 1, &s) == 0);             /* valid terminator */
+	assert(mbsinit(&s));
+}
+
+/* Test for NUL byte processing via NULL string.  */
+static void test_utf8_null(void) {
+	wchar_t wc;
+	mbstate_t s;
+
+	wc = 42;                                 /* arbitrary number */
+	memset(&s, 0, sizeof(s));                /* get s into initial state */
+	assert(mbrtowc(NULL, NULL, 0, &s) == 0); /* valid terminator */
+	assert(mbsinit(&s));
+
+	wc = 42;                                           /* arbitrary number */
+	memset(&s, 0, sizeof(s));                          /* get s into initial state */
+	assert(mbrtowc(&wc, "\xE2", 1, &s) == (size_t)-2); /* 1st byte processed */
+	assert(mbrtowc(NULL, NULL, 0, &s) == (size_t)-1);  /* invalid terminator */
+
+	wc = 42;                                           /* arbitrary number */
+	memset(&s, 0, sizeof(s));                          /* get s into initial state */
+	assert(mbrtowc(&wc, "\xE2", 1, &s) == (size_t)-2); /* 1st byte processed */
+	assert(mbrtowc(&wc, "\x89", 1, &s) == (size_t)-2); /* 2nd byte processed */
+	assert(mbrtowc(NULL, NULL, 0, &s) == (size_t)-1);  /* invalid terminator */
+
+	wc = 42;                                           /* arbitrary number */
+	memset(&s, 0, sizeof(s));                          /* get s into initial state */
+	assert(mbrtowc(&wc, "\xE2", 1, &s) == (size_t)-2); /* 1st byte processed */
+	assert(mbrtowc(&wc, "\x89", 1, &s) == (size_t)-2); /* 2nd byte processed */
+	assert(mbrtowc(&wc, "\xA0", 1, &s) == 1);          /* 3nd byte processed */
+	assert(mbrtowc(NULL, NULL, 0, &s) == 0);           /* valid terminator */
+	assert(mbsinit(&s));
+}
+
+static void test_utf8_codepoints(void) {
+	wchar_t wc;
+	mbstate_t s;
+	const char str[] = "\xe0\xa0\x80";
+
+	wc = 42;                  /* arbitrary number */
+	memset(&s, 0, sizeof(s)); /* get s into initial state */
+	assert(mbrtowc(&wc, str, 1, &s) == (size_t)-2);
+	assert(mbrtowc(&wc, str + 1, 2, &s) == 2);
+	assert(wc == 0x800);
+
+	wc = 42;                  /* arbitrary number */
+	memset(&s, 0, sizeof(s)); /* get s into initial state */
+	assert(mbrtowc(&wc, str, 3, &s) == 3);
+	assert(wc == 0x800);
+}
+
+static void test_utf8_bytewise(void) {
+	wchar_t wc;
+	mbstate_t s;
+
+	wc = 42;                                           /* arbitrary number */
+	memset(&s, 0, sizeof(s));                          /* get s into initial state */
+	assert(mbrtowc(&wc, "\xE2", 1, &s) == (size_t)-2); /* 1st byte processed */
+	assert(mbrtowc(&wc, "\x89", 1, &s) == (size_t)-2); /* 2nd byte processed */
+	assert(wc == 42);                         /* no value has not been stored into &wc yet */
+	assert(mbrtowc(&wc, "\xA0", 1, &s) == 1); /* 3nd byte processed */
+	assert(wc == 0x2260);                     /* E2 89 A0 = U+2260 (not equal) decoded correctly */
+	assert(mbrtowc(&wc, "", 1, &s) == 0);     /* test final byte processing */
+	assert(wc == 0);                          /* test final byte decoding */
+}
 
 static void test_mbrtowc(void) {
 
@@ -37,6 +130,10 @@ int main(void) {
 	setlocale(LC_ALL, "en_US.UTF-8");
 
 	test_mbrtowc();
+	test_utf8_bytewise();
+	test_utf8_codepoints();
+	test_utf8_empty();
+	test_utf8_null();
 
 	return 0;
 }
