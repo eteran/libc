@@ -4,6 +4,10 @@
 #include <errno.h>
 #include <math.h>
 
+#ifndef errno
+#error "errno is not defined"
+#endif
+
 void test_assignment(void) {
 	errno = ENOMEM;
 	assert(errno == ENOMEM);
@@ -17,6 +21,11 @@ void test_domain_error(void) {
 }
 
 int main(void) {
+
+#ifdef _HAS_C11
+	TYPE_DEFINED(errno_t);
+#endif
+
 	test_assignment();
 	test_domain_error();
 	return 0;
