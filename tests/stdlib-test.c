@@ -48,11 +48,11 @@ int main(void) {
 	_Static_assert(IS_CONSTANT(EXIT_SUCCESS), "");
 	_Static_assert(IS_CONSTANT(RAND_MAX), "");
 
-	TYPE_DEFNIED(div_t)
-	TYPE_DEFNIED(ldiv_t)
-	TYPE_DEFNIED(lldiv_t)
-	TYPE_DEFNIED(size_t)
-	TYPE_DEFNIED(wchar_t)
+	TYPE_DEFINED(div_t)
+	TYPE_DEFINED(ldiv_t)
+	TYPE_DEFINED(lldiv_t)
+	TYPE_DEFINED(size_t)
+	TYPE_DEFINED(wchar_t)
 
 	_Static_assert(IS_SAME_TYPE(NULL, void *), "");
 	_Static_assert(IS_SAME_TYPE(MB_CUR_MAX, size_t), "");

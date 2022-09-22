@@ -68,7 +68,7 @@ static void test_sprintf(void) {
 
 #ifdef _HAS_C99
 	sprintf(buffer, "Hexadecimal:\t%a %A\n", 1.5, 1.5);
-	/* NOTE(eteran): not asserted since we don't implment hex floats yet */
+	/* NOTE(eteran): not asserted since we don't implement hex floats yet */
 	printf("%s", buffer);
 #endif
 

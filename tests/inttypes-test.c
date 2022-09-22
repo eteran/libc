@@ -14,7 +14,7 @@ void test_maxabs(void) {
 
 int main(void) {
 
-	TYPE_DEFNIED(uintmax_t)
+	TYPE_DEFINED(uintmax_t)
 	test_maxabs();
 	return 0;
 }

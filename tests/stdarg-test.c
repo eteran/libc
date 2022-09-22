@@ -39,7 +39,7 @@ int main(void) {
 #endif
 #endif
 
-	TYPE_DEFNIED(va_list)
+	TYPE_DEFINED(va_list)
 	test_stdarg(5, 1, "hello", 'w', 4, 5);
 	return 0;
 }
