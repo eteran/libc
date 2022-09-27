@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.5)
 
 add_library(libc-headers INTERFACE)
 
-target_sources(libc-headers INTERFACE 
+target_sources(libc-headers INTERFACE
 	${CMAKE_CURRENT_SOURCE_DIR}/assert.h
 	${CMAKE_CURRENT_SOURCE_DIR}/complex.h
 	${CMAKE_CURRENT_SOURCE_DIR}/ctype.h

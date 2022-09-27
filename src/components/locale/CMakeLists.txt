@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 set(SOURCE_FILES
 	localeconv.c
@@ -7,7 +7,7 @@ set(SOURCE_FILES
 
 add_library (c-locale STATIC ${SOURCE_FILES})
 
-target_link_libraries(c-locale LINK_PUBLIC 
+target_link_libraries(c-locale LINK_PUBLIC
 	libc-headers
 )
 set_property(TARGET c-locale PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})

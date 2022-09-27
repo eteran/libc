@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
-add_library (c-string STATIC 
+add_library (c-string STATIC
 	memchr.c
 	memcmp.c
 	memcpy.c
@@ -29,7 +29,7 @@ add_library (c-string STATIC
 	strxfrm.c
 )
 
-target_link_libraries(c-string LINK_PUBLIC 
+target_link_libraries(c-string LINK_PUBLIC
 	c-assert
 	libc-headers
 )

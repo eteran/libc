@@ -1,10 +1,10 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
-add_library (c-errno STATIC 
+add_library (c-errno STATIC
 	errno.c
 )
 
-target_link_libraries(c-errno LINK_PUBLIC 
+target_link_libraries(c-errno LINK_PUBLIC
 	libc-headers
 )
 

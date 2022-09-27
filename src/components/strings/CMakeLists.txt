@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 add_library (c-strings STATIC
 	bcmp.c
@@ -11,7 +11,7 @@ add_library (c-strings STATIC
 	strncasecmp.c
 )
 
-target_link_libraries(c-strings LINK_PUBLIC 
+target_link_libraries(c-strings LINK_PUBLIC
 	libc-headers
 )
 

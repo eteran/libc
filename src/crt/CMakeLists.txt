@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 enable_language(ASM)
 
@@ -7,7 +7,7 @@ add_library (c-crt STATIC
 	arch/${LIBC_ARCH}/_start.S
 )
 
-target_link_libraries(c-crt LINK_PUBLIC 
+target_link_libraries(c-crt LINK_PUBLIC
 	c-stdlib
 	c-locale
 	libc-headers

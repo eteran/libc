@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 add_library (c-stdio STATIC
 	stdio.c
@@ -49,7 +49,7 @@ add_library (c-stdio STATIC
 	_printf_engine.c
 )
 
-target_link_libraries(c-stdio LINK_PUBLIC 
+target_link_libraries(c-stdio LINK_PUBLIC
 	c-stdlib
 	c-math
 	c-errno

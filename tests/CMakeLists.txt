@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.5)
 
 macro(CREATE_TEST NAME)
     add_executable(${NAME}-test ${NAME}-test.c)

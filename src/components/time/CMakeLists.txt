@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
-add_library (c-time STATIC 
+add_library (c-time STATIC
 	asctime.c
 	clock.c
 	ctime.c
@@ -12,7 +12,7 @@ add_library (c-time STATIC
 	time.c
 )
 
-target_link_libraries(c-time LINK_PUBLIC 
+target_link_libraries(c-time LINK_PUBLIC
 	c-stdio
 	libc-headers
 )

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 add_library (c-wchar STATIC
 	btowc.c
@@ -62,7 +62,7 @@ add_library (c-wchar STATIC
 	wscanf.c
 )
 
-target_link_libraries(c-wchar LINK_PUBLIC 
+target_link_libraries(c-wchar LINK_PUBLIC
 	c-stdio
 	c-stdlib
 	libc-headers

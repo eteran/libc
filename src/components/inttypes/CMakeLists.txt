@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
-add_library (c-inttypes STATIC 
+add_library (c-inttypes STATIC
 	imaxabs.c
 	imaxdiv.c
 	strtoimax.c
@@ -9,7 +9,7 @@ add_library (c-inttypes STATIC
 	wcstoumax.c
 )
 
-target_link_libraries(c-inttypes LINK_PUBLIC 
+target_link_libraries(c-inttypes LINK_PUBLIC
 	c-stdlib
 	libc-headers
 )

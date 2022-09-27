@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 set(SOURCE_FILES
 	signal.c
@@ -7,7 +7,7 @@ set(SOURCE_FILES
 
 add_library (c-signal STATIC ${SOURCE_FILES})
 
-target_link_libraries(c-signal LINK_PUBLIC 
+target_link_libraries(c-signal LINK_PUBLIC
 	libc-headers
 )
 

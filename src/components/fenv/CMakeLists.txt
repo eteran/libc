@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 add_library (c-fenv STATIC
 	fegetexceptflag.c
@@ -7,7 +7,7 @@ add_library (c-fenv STATIC
 	feupdateenv.c
 )
 
-target_link_libraries(c-fenv LINK_PUBLIC 
+target_link_libraries(c-fenv LINK_PUBLIC
 	libc-headers
 )
 

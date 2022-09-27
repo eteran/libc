@@ -1,13 +1,13 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 enable_language(ASM)
 
 add_library (c-setjmp STATIC
 	arch/${LIBC_ARCH}/longjmp.S
-	arch/${LIBC_ARCH}/setjmp.S	
+	arch/${LIBC_ARCH}/setjmp.S
 )
 
-target_link_libraries(c-setjmp LINK_PUBLIC 
+target_link_libraries(c-setjmp LINK_PUBLIC
 	c-stdlib
 	c-math
 	c-string

@@ -1,10 +1,10 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 add_library (c-wctype STATIC
 	wctype.c
 )
 
-target_link_libraries(c-wctype LINK_PUBLIC 
+target_link_libraries(c-wctype LINK_PUBLIC
 	c-ctype
 	libc-headers
 )
