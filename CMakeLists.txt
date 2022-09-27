@@ -5,6 +5,7 @@ enable_testing()
 
 set(CMAKE_C_STANDARD   99)
 set(CMAKE_C_EXTENSIONS OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_compile_options(-pedantic -W -Wall -ffreestanding -Wno-long-long )
 add_link_options(-nostdlib)
