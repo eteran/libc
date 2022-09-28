@@ -8,12 +8,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define EPSILON 0.000001f
+
+static int float_compare(float lhs, float rhs) {
+	return fabs(lhs - rhs) < EPSILON;
+}
 struct data {
 	int nr;
 	char const *value;
 };
 
-int data_cmp(void const *lhs, void const *rhs) {
+static int data_cmp(void const *lhs, void const *rhs) {
 	struct data const *const l = lhs;
 	struct data const *const r = rhs;
 
@@ -82,11 +87,13 @@ static void test_bsearch(void) {
 
 static void test_atof(void) {
 	/* TODO(eteran): some sort of epsilon comparison */
-	printf("%g\n", atof("  -0.0000000123junk")); /* -1.23e-08 */
-	printf("%g\n", atof("0.012"));               /* 0.012 */
-	printf("%g\n", atof("15e16"));               /* 1.5e+17 */
-	printf("%g\n", atof("-0x1afp-2"));           /* -107.75 */
 
+	assert(float_compare(atof("  -0.0000000123junk"), -1.23e-08));
+	assert(float_compare(atof("0.012"), 0.012));
+	assert(float_compare(atof("15e16"), 1.5e+17));
+#if 0 /* hex floats not supported yet */
+	assert(float_compare(atof("-0x1afp-2"), -107.75));
+#endif
 	assert(isinf(atof("inF")));
 	assert(isnan(atof("Nan")));
 	assert(atof("0.0") == 0.0);
