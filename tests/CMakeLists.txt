@@ -13,7 +13,7 @@ macro(CREATE_TEST NAME)
 
     set_target_properties(${NAME}-test
     PROPERTIES
-        C_STANDARD 99
+        C_STANDARD 90
         C_EXTENSIONS OFF
     )
 
@@ -25,8 +25,6 @@ endmacro()
 
 CREATE_TEST(all)
 CREATE_TEST(assert)
-# CREATE_TEST(assert-fail)
-# set_tests_properties(assert-fail-test PROPERTIES WILL_FAIL TRUE)
 CREATE_TEST(ctype)
 CREATE_TEST(errno)
 CREATE_TEST(fenv)

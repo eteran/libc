@@ -5,7 +5,10 @@
 #ifdef _HAS_FPU
 
 /* TODO(eteran): actually handling this correctly, including non-integers and proper error handling
- * is COMPLEX, see: https://en.cppreference.com/w/c/numeric/math/pow */
+ * is COMPLEX, see: https://en.cppreference.com/w/c/numeric/math/pow
+ * A possible solution is taking advantage of the fact that: b^x == e^(ln b * x)
+ */
+
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_pow

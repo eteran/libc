@@ -338,7 +338,7 @@ static void test_strxfrm(void) {
 
 int main(void) {
 
-	TYPE_DEFINED(size_t)
+	TYPE_DEFINED(size_t);
 	_Static_assert(IS_SAME_TYPE(NULL, void *), "");
 
 	test_strcmp();

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-add_library (c-stdlib STATIC
+add_library(c-stdlib STATIC
 	stdlib.c
 	abort.c
 	abs.c
@@ -45,8 +45,8 @@ target_link_libraries(c-stdlib LINK_PUBLIC
 	c-stdio
 	c-ctype
 	c-signal
+	c-strings
 	libc-headers
 )
 
 set_property(TARGET c-stdlib PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
-

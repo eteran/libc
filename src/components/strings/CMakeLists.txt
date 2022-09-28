@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-add_library (c-strings STATIC
+add_library(c-strings STATIC
 	bcmp.c
 	bcopy.c
 	bzero.c
@@ -12,6 +12,7 @@ add_library (c-strings STATIC
 )
 
 target_link_libraries(c-strings LINK_PUBLIC
+	c-string
 	libc-headers
 )
 

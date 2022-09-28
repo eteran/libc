@@ -21,10 +21,10 @@ static void test_offsetof(void) {
 }
 
 int main(void) {
-	TYPE_DEFINED(ptrdiff_t)
-	TYPE_DEFINED(size_t)
-	TYPE_DEFINED(wchar_t)
-	TYPE_DEFINED(max_align_t)
+	TYPE_DEFINED(ptrdiff_t);
+	TYPE_DEFINED(size_t);
+	TYPE_DEFINED(wchar_t);
+	TYPE_DEFINED(max_align_t);
 	_Static_assert(IS_SAME_TYPE(NULL, void *), "");
 
 	test_offsetof();
