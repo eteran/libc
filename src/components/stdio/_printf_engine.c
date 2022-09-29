@@ -102,8 +102,8 @@ static int _pad_width(write_context_t *ctx, const flags_t *flags) {
 /*------------------------------------------------------------------------------
 // Name: _unsigned_itoa
 //----------------------------------------------------------------------------*/
-void _itoa_common(write_context_t *ctx, uintmax_t ud, unsigned int divisor, const char *alphabet,
-                  const flags_t *flags) {
+static void _itoa_common(write_context_t *ctx, uintmax_t ud, unsigned int divisor,
+                         const char *alphabet, const flags_t *flags) {
 
 	int min_length = _pad_width(ctx, flags);
 
