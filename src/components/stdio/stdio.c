@@ -74,7 +74,7 @@ void __elibc_unlock_stream(FILE *stream) {
  * operation in that same mutex
  */
 FILE *__elibc_allocate_file(void) {
-
+	/* TODO(eteran): lock the list */
 	if (__elibc_free_file_struct) {
 		FILE *stream = __elibc_free_file_struct;
 		__elibc_free_file_struct = stream->next;
@@ -88,6 +88,7 @@ FILE *__elibc_allocate_file(void) {
 }
 
 void __elibc_free_file(FILE *stream) {
+	/* TODO(eteran): lock the list */
 	stream->next = __elibc_free_file_struct;
 	stream->prev = NULL;
 	if (__elibc_free_file_struct) {

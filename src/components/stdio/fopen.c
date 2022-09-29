@@ -107,7 +107,9 @@ FILE *fopen(const char *path, const char *mode) {
 	_FDATA(f)->internal_buffer_ptr = 0;
 	_FDATA(f)->filename[0] = '\0';
 
-	/* insert at the begining of the list */
+	/* TODO(eteran): lock the list */
+
+	/* insert at the beginning of the list */
 	f->next = __elibc_root_file_struct;
 	f->prev = 0;
 

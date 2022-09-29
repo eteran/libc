@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 enable_language(ASM)
 
-add_library (c-crt STATIC
+add_library(c-crt STATIC
 	_crt.c
 	arch/${LIBC_ARCH}/_start.S
 )

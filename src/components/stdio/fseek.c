@@ -11,7 +11,7 @@ int __elibc_fseek(FILE *stream, long offset, int whence) {
 
 	assert(stream);
 
-	/* a seek is a syncronizing operation */
+	/* a seek is a synchronizing operation */
 	if (__elibc_fflush(stream) != 0) {
 		return -1;
 	}

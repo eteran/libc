@@ -28,4 +28,3 @@ target_link_libraries(c-all LINK_PUBLIC
 add_subdirectory(components)
 add_subdirectory(crt)
 add_subdirectory(sys)
-

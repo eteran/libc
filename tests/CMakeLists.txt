@@ -1,26 +1,26 @@
 cmake_minimum_required(VERSION 3.5)
 
 macro(CREATE_TEST NAME)
-    add_executable(${NAME}-test ${NAME}-test.c)
-    target_link_libraries(${NAME}-test LINK_PUBLIC
-      c-all
-    )
+  add_executable(${NAME}-test ${NAME}-test.c)
+  target_link_libraries(${NAME}-test LINK_PUBLIC
+    c-all
+  )
 
-    target_compile_options(${NAME}-test
+  target_compile_options(${NAME}-test
     PUBLIC
-      -Wno-deprecated-declarations
-    )
+    -Wno-deprecated-declarations
+  )
 
-    set_target_properties(${NAME}-test
+  set_target_properties(${NAME}-test
     PROPERTIES
-        C_STANDARD 90
-        C_EXTENSIONS OFF
-    )
+    C_STANDARD 99
+    C_EXTENSIONS OFF
+  )
 
-    add_test(
-        NAME ${NAME}-test
-        COMMAND $<TARGET_FILE:${NAME}-test>
-    )
+  add_test(
+    NAME ${NAME}-test
+    COMMAND $<TARGET_FILE:${NAME}-test>
+  )
 endmacro()
 
 CREATE_TEST(all)

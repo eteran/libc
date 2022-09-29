@@ -11,6 +11,6 @@ int wcwidth(wchar_t wc) {
 		return 0;
 	}
 
-	/* TODO(eteran): implement! */
+	/* TODO(eteran): implement this */
 	return 1;
 }

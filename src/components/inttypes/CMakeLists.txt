@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-add_library (c-inttypes STATIC
+add_library(c-inttypes STATIC
 	imaxabs.c
 	imaxdiv.c
 	strtoimax.c

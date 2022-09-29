@@ -13,11 +13,14 @@ void _Exit(int status) {
 	 * this will flush all of the streams,
 	 * and delete any temp files created with tmpfile
 	 */
+
+	/* TODO(eteran): lock the list */
 	while (__elibc_root_file_struct) {
 		fclose(__elibc_root_file_struct);
 	}
 
 	/* actually free the FILE structures we saved for reuse */
+	/* TODO(eteran): lock the list */
 	while (__elibc_free_file_struct) {
 		FILE *ptr = __elibc_free_file_struct;
 		__elibc_free_file_struct = ptr->next;

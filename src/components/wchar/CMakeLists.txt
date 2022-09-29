@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-add_library (c-wchar STATIC
+add_library(c-wchar STATIC
 	btowc.c
 	fgetwc.c
 	fgetws.c

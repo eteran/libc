@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-add_library (c-math STATIC
+add_library(c-math STATIC
 	acos.c
 	acosf.c
 	acosh.c
@@ -179,4 +179,3 @@ target_link_libraries(c-math LINK_PUBLIC
 	libc-headers
 )
 set_property(TARGET c-math PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
-

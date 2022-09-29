@@ -1,22 +1,8 @@
 
 #define _ELIBC_SOURCE
 #include "c/_support.h"
+#include <assert.h>
 #include <stdio.h>
-
-/*------------------------------------------------------------------------------
-// Name: __elibc_fflush_all
-//----------------------------------------------------------------------------*/
-int __elibc_fflush_all() {
-	/* flush all open output streams */
-	FILE *p = __elibc_root_file_struct;
-	while (p) {
-		if (__elibc_fflush(p) != 0) {
-			return EOF;
-		}
-		p = p->next;
-	}
-	return 0;
-}
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_fflush_stream
@@ -52,20 +38,31 @@ int __elibc_fflush_stream(FILE *stream) {
 // Name: __elibc_fflush
 //----------------------------------------------------------------------------*/
 int __elibc_fflush(FILE *stream) {
-	if (stream) {
-		return __elibc_fflush_stream(stream);
-	} else {
-		return __elibc_fflush_all();
-	}
+	assert(stream);
+	return __elibc_fflush_stream(stream);
 }
 
 /*------------------------------------------------------------------------------
 // Name: fflush
 //----------------------------------------------------------------------------*/
 int fflush(FILE *stream) {
-	int r;
-	__elibc_lock_stream(stream);
-	r = __elibc_fflush(stream);
-	__elibc_unlock_stream(stream);
+	int r = 0;
+	if (stream) {
+		__elibc_lock_stream(stream);
+		r = __elibc_fflush(stream);
+		__elibc_unlock_stream(stream);
+	} else {
+		/* flush all open output streams */
+		FILE *p;
+		/* TODO(eteran): lock the list */
+		for (p = __elibc_root_file_struct; p; p = p->next) {
+			__elibc_lock_stream(p);
+			r = __elibc_fflush(p);
+			__elibc_unlock_stream(p);
+			if (r != 0) {
+				return r;
+			}
+		}
+	}
 	return r;
 }

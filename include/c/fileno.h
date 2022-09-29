@@ -4,6 +4,7 @@
 
 /* NOTE: POSIX, not C */
 
+/* TODO(eteran): add locking to this */
 #define _ELIBC_FILENO(stream) (_FDATA(stream)->fd)
 
 #ifdef _POSIX_C_SOURCE

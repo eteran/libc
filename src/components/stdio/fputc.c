@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* TODO(eteran): define constants for orientation */
+
 /*------------------------------------------------------------------------------
 // Name: __elibc_fputc
 // Desc: writes a single byte into a character stream

@@ -3,11 +3,11 @@ project(libstdc)
 
 enable_testing()
 
-set(CMAKE_C_STANDARD   99)
+set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_compile_options(-pedantic -W -Wall -ffreestanding -Wno-long-long )
+add_compile_options(-pedantic -W -Wall -ffreestanding -Wno-long-long)
 add_link_options(-nostdlib)
 
 if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
@@ -26,6 +26,7 @@ add_subdirectory(include)
 add_subdirectory(src)
 
 option(LIBC_BUILD_TESTS "Enable Tests")
+
 if(LIBC_BUILD_TESTS)
 	add_subdirectory(tests)
 endif()
