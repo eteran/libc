@@ -8,7 +8,7 @@
 /*------------------------------------------------------------------------------
 // Name:
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE _INLINE static double __elibc_pow_e(int n, double x) {
+_CONST _ALWAYS_INLINE _INLINE static double __elibc_pow_e(int n, double x) {
 	double sum = 1.0f;
 	int i = n - 1;
 
@@ -22,7 +22,7 @@ _ALWAYS_INLINE _INLINE static double __elibc_pow_e(int n, double x) {
 /*------------------------------------------------------------------------------
 // Name: __elibc_pow
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE _INLINE static double __elibc_pow(double base, double exponent) {
+_CONST _ALWAYS_INLINE _INLINE static double __elibc_pow(double base, double exponent) {
 
 	// for integer powers, lets just keep it simple
 	if (exponent > 0.0 && exponent == (long int)exponent) {
@@ -66,7 +66,6 @@ double pow(double base, double exponent) {
 		errno = EDOM;
 		return 0.0;
 	}
-
 
 #if 0
 If the implementation supports IEEE floating-point arithmetic (IEC 60559),

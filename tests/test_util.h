@@ -7,7 +7,7 @@
 
 #define TYPE_DEFINED(T)                                                                            \
 	do {                                                                                           \
-		(void)(T *)0;                                                                              \
+		(void)(T *) 0;                                                                             \
 	} while (0)
 
 #endif

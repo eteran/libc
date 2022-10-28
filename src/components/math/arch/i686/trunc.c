@@ -8,10 +8,11 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_trunc
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE _INLINE static double __elibc_trunc(double x) {
+_CONST _ALWAYS_INLINE _INLINE static double __elibc_trunc(double x) {
 	double value;
-	fesetround(FE_TOWARDZERO);
+	const int save_round = fesetround(FE_TOWARDZERO);
 	__asm__ __volatile__("frndint" : "=t"(value) : "0"(x));
+	fesetround(save_round);
 	return value;
 }
 

@@ -8,10 +8,11 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_round
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE _INLINE static double __elibc_round(double x) {
+_CONST _ALWAYS_INLINE _INLINE static double __elibc_round(double x) {
 	double value;
-	fesetround(FE_TONEAREST);
+	const int save_round = fesetround(FE_TONEAREST);
 	__asm__ __volatile__("frndint" : "=t"(value) : "0"(x));
+	fesetround(save_round);
 	return value;
 }
 

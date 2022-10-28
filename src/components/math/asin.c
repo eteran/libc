@@ -8,7 +8,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_asin
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE _INLINE static double __elibc_asin(double x) {
+_CONST _ALWAYS_INLINE _INLINE static double __elibc_asin(double x) {
 	return atan(x / sqrt(1 - (x * x)));
 }
 

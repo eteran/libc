@@ -7,28 +7,27 @@
 #ifdef _HAS_FPU
 
 /*------------------------------------------------------------------------------
-// Name: __elibc_copysign
+// Name: __elibc_copysignf
 // Note: assumes IEEE floats
 //----------------------------------------------------------------------------*/
-_CONST _ALWAYS_INLINE _INLINE static double __elibc_copysign(double x, double y) {
+_CONST _ALWAYS_INLINE _INLINE static float __elibc_copysignf(float x, float y) {
 
 	union double_bits {
-		double f_value;
-		uint64_t i_value;
+		float f_value;
+		uint32_t i_value;
 	};
 
 	union double_bits x1;
 	union double_bits y1;
 	union double_bits r;
 
-	/* we currently assume 64-bit doubles */
-	_Static_assert(sizeof(double) == sizeof(uint64_t), "Size of double must be 64-bits");
+	/* we currently assume 32-bit floats */
+	_Static_assert(sizeof(float) == sizeof(uint32_t), "Size of float must be 32-bits");
 
 	x1.f_value = x;
 	y1.f_value = y;
 
-	r.i_value =
-		(y1.i_value & UINT64_C(0x8000000000000000)) | (x1.i_value & UINT64_C(0x7fffffffffffffff));
+	r.i_value = (y1.i_value & UINT32_C(0x80000000)) | (x1.i_value & UINT32_C(0x7fffffff));
 
 	return r.f_value;
 }
@@ -36,8 +35,8 @@ _CONST _ALWAYS_INLINE _INLINE static double __elibc_copysign(double x, double y)
 /*------------------------------------------------------------------------------
 // Name: copysign
 //----------------------------------------------------------------------------*/
-double copysign(double x, double y) {
-	return __elibc_copysign(x, y);
+float copysignf(float x, float y) {
+	return __elibc_copysignf(x, y);
 }
 
 #endif

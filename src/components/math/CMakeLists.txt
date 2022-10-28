@@ -26,7 +26,6 @@ add_library(c-math STATIC
 	ceil.c
 	ceilf.c
 	ceill.c
-	copysignf.c
 	copysignl.c
 	cos.c
 	cosf.c
@@ -165,6 +164,7 @@ add_library(c-math STATIC
 	arch/${LIBC_ARCH}/atan.c
 	arch/${LIBC_ARCH}/atan2.c
 	arch/${LIBC_ARCH}/copysign.c
+	arch/${LIBC_ARCH}/copysignf.c
 	arch/${LIBC_ARCH}/fenv.c
 	arch/${LIBC_ARCH}/fmod.c
 	arch/${LIBC_ARCH}/log.c

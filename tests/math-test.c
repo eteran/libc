@@ -127,5 +127,9 @@ int main(void) {
 	double x = pow(2, -1);
 	printf("%f\n", x);
 
+	printf("long double size: %d\n", sizeof(long double));
+	printf("double size: %d\n", sizeof(double));
+	printf("float size: %d\n", sizeof(float));
+
 	return 0;
 }

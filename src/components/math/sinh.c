@@ -8,7 +8,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_sinh
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE _INLINE static double __elibc_sinh(double x) {
+_CONST _ALWAYS_INLINE _INLINE static double __elibc_sinh(double x) {
 	return (exp(x) - exp(-x)) / 2;
 }
 

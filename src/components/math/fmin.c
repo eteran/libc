@@ -8,7 +8,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_fmin
 //----------------------------------------------------------------------------*/
-_ALWAYS_INLINE _INLINE static double __elibc_fmin(double x, double y) {
+_CONST _ALWAYS_INLINE _INLINE static double __elibc_fmin(double x, double y) {
 	return x < y ? x : y;
 }
 
