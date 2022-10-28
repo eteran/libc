@@ -5,6 +5,7 @@
 _LIBC_BEGIN
 
 _CONST double log(double x) _NOEXCEPT;
+_CONST double __elibc_log(double x) _NOEXCEPT;
 
 _LIBC_END
 

@@ -123,5 +123,9 @@ int main(void) {
 	test_tan();
 	test_floor();
 	test_ceil();
+
+	double x = pow(2, -1);
+	printf("%f\n", x);
+
 	return 0;
 }
