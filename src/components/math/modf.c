@@ -11,7 +11,6 @@
 _ALWAYS_INLINE _INLINE static double __elibc_modf(double arg, double *iptr) {
 	int sign = 1;
 	double i_portion;
-	double f_portion;
 
 	assert(iptr);
 
@@ -21,10 +20,8 @@ _ALWAYS_INLINE _INLINE static double __elibc_modf(double arg, double *iptr) {
 	}
 
 	i_portion = floor(arg);
-	f_portion = arg - i_portion;
-
 	*iptr = (i_portion * sign);
-	return f_portion * sign;
+	return copysign(isinf(arg) ? 0.0 : arg - (*iptr), arg);
 }
 
 /*------------------------------------------------------------------------------
