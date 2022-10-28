@@ -23,14 +23,14 @@ char *tmpnam(char *s) {
 				"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-%";
 
 			snprintf(p, L_tmpnam, "%s%s%c%c%c%c%c%c%c%c", P_tmpnam, "file",
-			         alphabet[rand() % (sizeof(alphabet) - 1)],
-			         alphabet[rand() % (sizeof(alphabet) - 1)],
-			         alphabet[rand() % (sizeof(alphabet) - 1)],
-			         alphabet[rand() % (sizeof(alphabet) - 1)],
-			         alphabet[rand() % (sizeof(alphabet) - 1)],
-			         alphabet[rand() % (sizeof(alphabet) - 1)],
-			         alphabet[rand() % (sizeof(alphabet) - 1)],
-			         alphabet[rand() % (sizeof(alphabet) - 1)]);
+			         alphabet[(size_t)rand() % (sizeof(alphabet) - 1)],
+			         alphabet[(size_t)rand() % (sizeof(alphabet) - 1)],
+			         alphabet[(size_t)rand() % (sizeof(alphabet) - 1)],
+			         alphabet[(size_t)rand() % (sizeof(alphabet) - 1)],
+			         alphabet[(size_t)rand() % (sizeof(alphabet) - 1)],
+			         alphabet[(size_t)rand() % (sizeof(alphabet) - 1)],
+			         alphabet[(size_t)rand() % (sizeof(alphabet) - 1)],
+			         alphabet[(size_t)rand() % (sizeof(alphabet) - 1)]);
 
 			/* TODO(eteran): change this while to a condition to test if the file
 			 * exists, it is actually more probable then it looks because an unseeded

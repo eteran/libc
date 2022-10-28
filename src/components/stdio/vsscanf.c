@@ -5,22 +5,25 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-/* TODO(eteran): finish this! */
+/* TODO(eteran): finish this!, it's a bit of a mess... */
 
-#define CONVERT_NUMBER(temp_name, type, base)                                                      \
+#define CONVERT_NUMBER(temp_name, type, base, func)                                                \
 	do {                                                                                           \
 		conversion_pointers.temp_name = va_arg(ap, type *);                                        \
-		*(conversion_pointers.temp_name) = strtol(str, &endptr, (base));                           \
+		*(conversion_pointers.temp_name) = (type)func(str, &endptr, (base));                       \
 		++assign_count;                                                                            \
 		str = endptr;                                                                              \
 	} while (0)
 
 #define BITSET(name, N) unsigned char name[N / CHAR_BIT]
+
 #define SET_BIT(name, I)                                                                           \
 	do {                                                                                           \
 		name[I / CHAR_BIT] |= (1 << (I % CHAR_BIT));                                               \
 	} while (0)
+
 #define TEST_BIT(name, I) (int)(name[I / CHAR_BIT] & (1 << (I % CHAR_BIT)))
+
 #define FLIP_BITS(name, N)                                                                         \
 	do {                                                                                           \
 		int i;                                                                                     \
@@ -40,10 +43,21 @@ int vsscanf(const char *_RESTRICT str, const char *_RESTRICT format, va_list ap)
 
 	union {
 		char *char_ptr;
-		unsigned int *uint_ptr;
 		int *int_ptr;
+		short *short_ptr;
+		long *long_ptr;
+		long long *long_long_ptr;
+
+		unsigned char *uchar_ptr;
+		unsigned int *uint_ptr;
+		unsigned short *ushort_ptr;
+		unsigned long *ulong_ptr;
+		unsigned long long *ulong_long_ptr;
+
 		float *float_ptr;
-		void *void_ptr;
+		double *double_ptr;
+
+		void **void_ptr;
 	} conversion_pointers = {0};
 
 	while (*format != '\0' && !done) {
@@ -52,24 +66,24 @@ int vsscanf(const char *_RESTRICT str, const char *_RESTRICT format, va_list ap)
 			switch (format[1]) {
 			case 'D':
 			case 'd':
-				CONVERT_NUMBER(int_ptr, int, 10);
+				CONVERT_NUMBER(int_ptr, int, 10, strtol);
 				break;
 
 			case 'i':
-				CONVERT_NUMBER(int_ptr, int, 0);
+				CONVERT_NUMBER(int_ptr, int, 0, strtol);
 				break;
 
 			case 'o':
-				CONVERT_NUMBER(uint_ptr, unsigned int, 8);
+				CONVERT_NUMBER(uint_ptr, unsigned int, 8, strtoul);
 				break;
 
 			case 'u':
-				CONVERT_NUMBER(uint_ptr, unsigned int, 10);
+				CONVERT_NUMBER(uint_ptr, unsigned int, 10, strtoul);
 				break;
 
 			case 'x':
 			case 'X':
-				CONVERT_NUMBER(uint_ptr, unsigned int, 16);
+				CONVERT_NUMBER(uint_ptr, unsigned int, 16, strtoul);
 				break;
 
 			case 'f':
@@ -157,15 +171,15 @@ int vsscanf(const char *_RESTRICT str, const char *_RESTRICT format, va_list ap)
 				break;
 
 			case 'p':
-				conversion_pointers.void_ptr = va_arg(ap, void *);
-				*(conversion_pointers.uint_ptr) = strtoul(str, &endptr, 16);
+				conversion_pointers.void_ptr = va_arg(ap, void **);
+				*(conversion_pointers.void_ptr) = (void *)strtoul(str, &endptr, 16);
 				++assign_count;
 				str = endptr;
 				break;
 
 			case 'n':
 				conversion_pointers.uint_ptr = va_arg(ap, unsigned int *);
-				*(conversion_pointers.uint_ptr) = (str - str_ptr);
+				*(conversion_pointers.uint_ptr) = (unsigned int)(str - str_ptr);
 				++assign_count;
 				break;
 

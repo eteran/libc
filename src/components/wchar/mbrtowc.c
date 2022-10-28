@@ -12,7 +12,7 @@
 //----------------------------------------------------------------------------*/
 static int __elibc_properly_encoded_length(wchar_t wc) {
 
-	const unsigned long ch = wc;
+	const unsigned long ch = (unsigned long)wc;
 
 	if (ch >= 0xd800 && ch < 0xe000) {
 		/* reserved for use by UTF-16 surrogates */
@@ -43,7 +43,7 @@ static int __elibc_properly_encoded_length(wchar_t wc) {
 static size_t __elibc_mbrtowc_ascii(wchar_t *_RESTRICT pwc, const char *_RESTRICT s) {
 	/* C locale version */
 	if (s) {
-		const unsigned char ch = *s;
+		const unsigned char ch = (unsigned char)*s;
 
 		if (ch & 0x80) {
 			errno = EILSEQ;
@@ -72,13 +72,13 @@ static size_t __elibc_mbrtowc_utf8(wchar_t *_RESTRICT pwc, const char *_RESTRICT
 	mbstate_t *const state = ps ? ps : &internal_ps;
 
 	if (s) {
-		int count = 0; /* how many bytes has this run processed */
+		size_t count = 0; /* how many bytes has this run processed */
 
 		/* NOTE(eteran): we don't need to special case the NUL character,
 		 * because it will qualify as a 1 byte encoding
 		 */
 		while (n-- != 0) {
-			const unsigned char ch = *s++;
+			const unsigned char ch = (unsigned char)*s++;
 
 			/* are we looking at the first character of the sequence ? */
 			if (state->seen == 0) {

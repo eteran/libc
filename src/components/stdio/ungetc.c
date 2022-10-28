@@ -17,7 +17,12 @@ static int __elibc_ungetc(int c, FILE *stream) {
 		return EOF;
 	}
 
-	return *--_FDATA(stream)->buffer_first = (unsigned char)c;
+	if (c == EOF) {
+		return EOF;
+	}
+
+	*--_FDATA(stream)->buffer_first = (char)c;
+	return c;
 }
 
 /*------------------------------------------------------------------------------

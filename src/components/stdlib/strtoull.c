@@ -76,7 +76,7 @@ unsigned long long int strtoull(const char *nptr, char **endptr, int base) {
 
 		const T old_ret = ret;
 		const char c = *nptr;
-		unsigned int digit;
+		char digit;
 
 		if (c >= 'A' && c <= 'Z') {
 			if (((c - 'A') + 10) < base) {
@@ -101,11 +101,11 @@ unsigned long long int strtoull(const char *nptr, char **endptr, int base) {
 			break;
 		}
 
-		ret = (ret * base) + digit;
+		ret = (ret * (T)base) + (T)digit;
 		if (ret < old_ret) {
 
 			/* adding a value should NEVER decrease the result
-			 * unless an overflow occured!
+			 * unless an overflow occurred!
 			 */
 			err = ERANGE;
 			ret = ULLONG_MAX;

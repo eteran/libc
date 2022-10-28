@@ -17,8 +17,7 @@ int __elibc_fflush_stream(FILE *stream) {
 
 			/* if p2 == ptr then the last operation was a write */
 			if (impl->buffer_last == impl->buffer_ptr) {
-				const size_t n = impl->buffer_first - impl->buffer_ptr;
-
+				const size_t n = (size_t)(impl->buffer_first - impl->buffer_ptr);
 				const ssize_t r = __elibc_sys_write(fd, impl->buffer_ptr, n);
 
 				if (r < 0) {

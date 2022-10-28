@@ -94,17 +94,17 @@ struct tm *gmtime_r(const time_t *timep, struct tm *result) {
 		/* this helps deal with negative dates */
 		t -= year_offset;
 
-		result->tm_sec = t % 60;
+		result->tm_sec = (int)t % 60;
 		t /= 60;
 
-		result->tm_min = t % 60;
+		result->tm_min = (int)t % 60;
 		t /= 60;
 
-		result->tm_hour = t % 24;
+		result->tm_hour = (int)t % 24;
 		t /= 24;
 
 		/* at this point, t is a number from 0 to 365 inclusive */
-		result->tm_yday = t;
+		result->tm_yday = (int)t;
 
 		result->tm_year = year - 1900;
 

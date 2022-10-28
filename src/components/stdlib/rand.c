@@ -22,7 +22,7 @@ int rand_r(unsigned int *seedp) {
 	assert(seedp);
 	{
 		unsigned int next = *seedp;
-		int result;
+		unsigned int result;
 
 		next *= A;
 		next += C;

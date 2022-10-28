@@ -19,7 +19,7 @@ static size_t __elibc_fread(void *ptr, size_t size, size_t nmemb, FILE *stream) 
 		for (size_it = 0; size_it < size; ++size_it) {
 			const int ch = __elibc_fgetc(stream);
 			if (ch != EOF) {
-				*p++ = ch;
+				*p++ = (char)ch;
 			} else {
 				return elem_it;
 			}

@@ -11,7 +11,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_expected_length
 //----------------------------------------------------------------------------*/
-static int __elibc_expected_length(wint_t ch) {
+static wint_t __elibc_expected_length(wint_t ch) {
 	if ((ch & 0x80) == 0) {
 		return 1;
 	} else if ((ch & 0xe0) == 0xc0) {
@@ -21,17 +21,17 @@ static int __elibc_expected_length(wint_t ch) {
 	} else if ((ch & 0xf8) == 0xf0) {
 		return 4;
 	} else if ((ch & 0xfc) == 0xf8) {
-		return -1; /* Restricted by RFC 3629 */
+		return (wint_t)-1; /* Restricted by RFC 3629 */
 #if 0
 		return 5;
 #endif
 	} else if ((ch & 0xfe) == 0xfc) {
-		return -1; /* Restricted by RFC 3629 */
+		return (wint_t)-1; /* Restricted by RFC 3629 */
 #if 0
 		return 6;
 #endif
 	} else {
-		return -1;
+		return (wint_t)-1;
 	}
 }
 
@@ -61,7 +61,7 @@ static wint_t __elibc_fgetwc(FILE *stream) {
 	}
 
 	if (_FDATA(stream)->buf_mod == _IONBF) {
-		char ch;
+		unsigned char ch;
 		const ssize_t n = __elibc_sys_read(_ELIBC_FILENO(stream), &ch, sizeof(ch));
 
 		switch (n) {
@@ -97,7 +97,7 @@ static wint_t __elibc_fgetwc(FILE *stream) {
 			_FDATA(stream)->buffer_last = _FDATA(stream)->buffer_ptr + n;
 		}
 
-		return *_FDATA(stream)->buffer_first++;
+		return (unsigned char)*_FDATA(stream)->buffer_first++;
 	}
 }
 
@@ -107,8 +107,8 @@ static wint_t __elibc_fgetwc(FILE *stream) {
 //----------------------------------------------------------------------------*/
 static wint_t __elibc_fgetwc_unlocked(FILE *stream, char *buf) {
 	wint_t r;
-	int i;
-	int n = 0;
+	wint_t i;
+	wint_t n = 0;
 
 	/* read a character */
 	r = __elibc_fgetwc(stream);

@@ -22,7 +22,7 @@ int __elibc_fputc(int c, FILE *stream, int orientation) {
 	assert(stream);
 	assert(_FDATA(stream)->orientation != (orientation ^ 0x01));
 
-	_FDATA(stream)->orientation = orientation;
+	_FDATA(stream)->orientation = (unsigned char)orientation;
 
 	if (!_FDATA(stream)->buffer_ptr) {
 		char *const buffer = malloc(BUFSIZ);
@@ -39,7 +39,7 @@ int __elibc_fputc(int c, FILE *stream, int orientation) {
 
 	switch (_FDATA(stream)->buf_mod) {
 	case _IOFBF:
-		*_FDATA(stream)->buffer_first++ = ch;
+		*_FDATA(stream)->buffer_first++ = (char)ch;
 		if (_FDATA(stream)->buffer_first ==
 		    _FDATA(stream)->buffer_ptr + _FDATA(stream)->buffer_capacity) {
 			r = __elibc_fflush(stream) == 0 ? 0 : -1;
@@ -49,7 +49,7 @@ int __elibc_fputc(int c, FILE *stream, int orientation) {
 		break;
 
 	case _IOLBF:
-		*_FDATA(stream)->buffer_first++ = ch;
+		*_FDATA(stream)->buffer_first++ = (char)ch;
 		if (ch == '\n' || (_FDATA(stream)->buffer_first ==
 		                   _FDATA(stream)->buffer_ptr + _FDATA(stream)->buffer_capacity)) {
 			r = __elibc_fflush(stream) == 0 ? 0 : -1;

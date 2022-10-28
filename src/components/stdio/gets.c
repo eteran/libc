@@ -7,10 +7,13 @@
 //----------------------------------------------------------------------------*/
 char *gets(char *s) {
 	char *s_ptr = s;
-	int ch;
 
-	while ((ch = getchar()) != '\n') {
-		*s_ptr++ = ch;
+	while (1) {
+		const int ch = getchar();
+		if (ch == '\n' || ch == EOF) {
+			break;
+		}
+		*s_ptr++ = (char)ch;
 	}
 
 	*s_ptr = '\0';

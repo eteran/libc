@@ -40,5 +40,5 @@ size_t strlcat(char *_RESTRICT dest, const char *_RESTRICT src, size_t siz) {
 	*d = '\0';
 
 	/* count does not include '\0' */
-	return dlen + (s - src);
+	return dlen + (size_t)(s - src);
 }

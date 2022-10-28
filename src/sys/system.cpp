@@ -48,11 +48,11 @@ x	sbrk
 int __elibc_sys_kill(int pid, int sig) {
 	long ret = elibc::syscall(__NR_kill, pid, sig);
 	if(ret < 0) {
-		errno = -ret;
+		errno = (__elibc_errno_t)-ret;
 		ret = -1;
 	}
 
-	return ret;
+	return 0;
 }
 
 //------------------------------------------------------------------------------
@@ -72,7 +72,7 @@ long __elibc_sys_signal(int sig, __sighandler_t handler) {
 	ret = elibc::syscall(__NR_rt_sigaction, sig, &new_action, &old_action, 0);
 
 	if(ret < 0) {
-		errno = -ret;
+		errno = (__elibc_errno_t)-ret;
 		ret = (long)SIG_ERR;
 	}
 	return ret;
@@ -84,7 +84,7 @@ long __elibc_sys_signal(int sig, __sighandler_t handler) {
 off_t __elibc_sys_lseek(int fildes, off_t offset, int whence) {
 	long ret = elibc::syscall(__NR_lseek, fildes, offset, whence);
 	if(ret < 0) {
-		errno = -ret;
+		errno = (__elibc_errno_t)-ret;
 		ret = -1;
 	}
 
@@ -97,7 +97,7 @@ off_t __elibc_sys_lseek(int fildes, off_t offset, int whence) {
 ssize_t __elibc_sys_write(int fd, const void *buf, size_t count) {
 	long ret = elibc::syscall(__NR_write, fd, buf, count);
 	if(ret < 0) {
-		errno = -ret;
+		errno = (__elibc_errno_t)-ret;
 		ret = -1;
 	}
 
@@ -110,7 +110,7 @@ ssize_t __elibc_sys_write(int fd, const void *buf, size_t count) {
 ssize_t __elibc_sys_read(int fd, void *buf, size_t count) {
 	long ret = elibc::syscall(__NR_read, fd, buf, count);
 	if(ret < 0) {
-		errno = -ret;
+		errno = (__elibc_errno_t)-ret;
 		ret = -1;
 	}
 
@@ -124,11 +124,11 @@ int __elibc_sys_close(int fd) {
 	long ret = elibc::syscall(__NR_close, fd);
 
 	if(ret < 0) {
-		errno = -ret;
+		errno = (__elibc_errno_t)-ret;
 		ret = -1;
 	}
 
-	return ret;
+	return 0;
 }
 
 //------------------------------------------------------------------------------
@@ -137,11 +137,11 @@ int __elibc_sys_close(int fd) {
 int __elibc_sys_open(const char *pathname, int flags) {
 	long ret = elibc::syscall(__NR_open, pathname, flags);
 	if(ret < 0) {
-		errno = -ret;
+		errno = (__elibc_errno_t)-ret;
 		ret = -1;
 	}
 
-	return ret;
+	return (int)ret;
 }
 
 //------------------------------------------------------------------------------
@@ -150,11 +150,11 @@ int __elibc_sys_open(const char *pathname, int flags) {
 int __elibc_sys_gettimeofday(struct timeval *tv, struct timezone *tz) {
 	long ret = elibc::syscall(__NR_gettimeofday, tv, tz);
 	if(ret < 0) {
-		errno = -ret;
+		errno = (__elibc_errno_t)-ret;
 		ret = -1;
 	}
 
-	return ret;
+	return (int)ret;
 }
 
 //------------------------------------------------------------------------------

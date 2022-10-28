@@ -214,7 +214,7 @@ static size_t __elibc_partition(void *base, size_t left, size_t right, size_t si
 /*------------------------------------------------------------------------------
 // Name: __elibc_quick_sort
 //----------------------------------------------------------------------------*/
-static void __elibc_quick_sort(void *base, int l, int r, size_t size, __compar_fn_t compar) {
+static void __elibc_quick_sort(void *base, size_t l, size_t r, size_t size, __compar_fn_t compar) {
 	assert(base);
 	assert(compar);
 

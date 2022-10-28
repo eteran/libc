@@ -15,5 +15,5 @@ size_t strlen(const char *s) {
 		++s;
 	}
 
-	return s - s_ptr;
+	return (size_t)(s - s_ptr);
 }

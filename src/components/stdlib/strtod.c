@@ -87,7 +87,7 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 
 	/* did we see a radix, if so, account for it */
 	if (radix_index) {
-		ret /= pow(10, nptr - radix_index - 1);
+		ret /= pow(10.0, (double)(nptr - radix_index - 1));
 	}
 
 	/* ok, time for exponent processing */

@@ -4,10 +4,13 @@
 #include <stdio.h>
 #include <time.h>
 
+/* TODO(eteran): update space after each step */
+/* TODO(eteran): use a context struct like printf does */
+
 #define DO_H()                                                                                     \
 	do {                                                                                           \
 		int chunk = snprintf(s, space, "%.2i", tm->tm_hour);                                       \
-		if (chunk >= space) {                                                                      \
+		if ((size_t)chunk >= space) {                                                              \
 			return 0;                                                                              \
 		}                                                                                          \
 		s += chunk;                                                                                \
@@ -16,7 +19,7 @@
 #define DO_M()                                                                                     \
 	do {                                                                                           \
 		int chunk = snprintf(s, space, "%.2i", tm->tm_min);                                        \
-		if (chunk >= space) {                                                                      \
+		if ((size_t)chunk >= space) {                                                              \
 			return 0;                                                                              \
 		}                                                                                          \
 		s += chunk;                                                                                \
@@ -25,7 +28,7 @@
 #define DO_S()                                                                                     \
 	do {                                                                                           \
 		int chunk = snprintf(s, space, "%.2d", tm->tm_sec);                                        \
-		if (chunk >= space) {                                                                      \
+		if ((size_t)chunk >= space) {                                                              \
 			return 0;                                                                              \
 		}                                                                                          \
 		s += chunk;                                                                                \
@@ -34,7 +37,7 @@
 #define DO_Y()                                                                                     \
 	do {                                                                                           \
 		int chunk = snprintf(s, space, "%d", 1900 + tm->tm_year);                                  \
-		if (chunk >= space) {                                                                      \
+		if ((size_t)chunk >= space) {                                                              \
 			return 0;                                                                              \
 		}                                                                                          \
 		s += chunk;                                                                                \
@@ -43,7 +46,7 @@
 #define DO_m()                                                                                     \
 	do {                                                                                           \
 		int chunk = snprintf(s, space, "%.2d", tm->tm_mon + 1);                                    \
-		if (chunk >= space) {                                                                      \
+		if ((size_t)chunk >= space) {                                                              \
 			return 0;                                                                              \
 		}                                                                                          \
 		s += chunk;                                                                                \
@@ -52,7 +55,7 @@
 #define DO_d()                                                                                     \
 	do {                                                                                           \
 		int chunk = snprintf(s, space, "%.2d", tm->tm_mday);                                       \
-		if (chunk >= space) {                                                                      \
+		if ((size_t)chunk >= space) {                                                              \
 			return 0;                                                                              \
 		}                                                                                          \
 		s += chunk;                                                                                \
@@ -61,7 +64,7 @@
 #define DO_e()                                                                                     \
 	do {                                                                                           \
 		int chunk = snprintf(s, space, "%2d", tm->tm_mday);                                        \
-		if (chunk >= space) {                                                                      \
+		if ((size_t)chunk >= space) {                                                              \
 			return 0;                                                                              \
 		}                                                                                          \
 		s += chunk;                                                                                \
@@ -70,7 +73,7 @@
 #define DO_y()                                                                                     \
 	do {                                                                                           \
 		int chunk = snprintf(s, space, "%.2i", tm->tm_year % 100);                                 \
-		if (chunk >= space) {                                                                      \
+		if ((size_t)chunk >= space) {                                                              \
 			return 0;                                                                              \
 		}                                                                                          \
 		s += chunk;                                                                                \
@@ -80,10 +83,11 @@
 	do {                                                                                           \
 		int chunk;                                                                                 \
 		int hour = tm->tm_hour;                                                                    \
-		if (hour > 12)                                                                             \
+		if (hour > 12) {                                                                           \
 			hour -= 12;                                                                            \
+		}                                                                                          \
 		chunk = snprintf(s, space, "%.2i", hour);                                                  \
-		if (chunk >= space) {                                                                      \
+		if ((size_t)chunk >= space) {                                                              \
 			return 0;                                                                              \
 		}                                                                                          \
 		s += chunk;                                                                                \
@@ -92,7 +96,7 @@
 #define DO_p()                                                                                     \
 	do {                                                                                           \
 		int chunk = snprintf(s, space, "%s", (tm->tm_hour < 12) ? "AM" : "PM");                    \
-		if (chunk >= space)                                                                        \
+		if ((size_t)chunk >= space)                                                                \
 			return 0;                                                                              \
 		s += chunk;                                                                                \
 	} while (0)
@@ -100,7 +104,7 @@
 #define DO_char(ch)                                                                                \
 	do {                                                                                           \
 		int chunk = snprintf(s, space, "%c", ch);                                                  \
-		if (chunk >= space)                                                                        \
+		if ((size_t)chunk >= space)                                                                \
 			return 0;                                                                              \
 		s += chunk;                                                                                \
 	} while (0)
@@ -114,7 +118,7 @@ size_t strftime(char *s, size_t max, const char *format, const struct tm *tm) {
 
 	char *const dest = s;
 
-	int space = (s + max) - s;
+	size_t space = max;
 
 	assert(tm);
 	assert(format);
@@ -254,5 +258,5 @@ size_t strftime(char *s, size_t max, const char *format, const struct tm *tm) {
 		++format;
 	}
 
-	return s - dest;
+	return (size_t)(s - dest);
 }

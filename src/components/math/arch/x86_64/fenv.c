@@ -66,7 +66,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_fesetround_fpu(int round) {
 
 	uint16_t cw;
 	FPU_GETCW(cw);
-	cw = (cw & ~_ELIBC_FE_ROUND_MASK) | round;
+	cw = (cw & (uint16_t)(~_ELIBC_FE_ROUND_MASK)) | (round & _ELIBC_FE_ROUND_MASK);
 	FPU_SETCW(cw);
 }
 
@@ -77,7 +77,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_fesetround_fpu(int round) {
 _ALWAYS_INLINE _INLINE static void __elibc_fesetround_sse(int round) {
 	uint32_t xcw;
 	SSE_GETCW(xcw);
-	xcw = (xcw & ~0x6000) | (round << 3);
+	xcw = (xcw & 0x9fff) | (uint16_t)(round << 3);
 	SSE_SETCW(xcw);
 }
 
@@ -183,5 +183,5 @@ int fetestexcept(int excepts) {
 	SSE_GETCW(xcw);
 	FPU_GETSW(sw);
 
-	return (xcw | sw) & excepts;
+	return (int)(xcw | sw) & excepts;
 }

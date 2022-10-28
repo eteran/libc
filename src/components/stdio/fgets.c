@@ -13,7 +13,7 @@ static char *__elibc_fgets(char *_RESTRICT s, int size, FILE *_RESTRICT stream) 
 			const int ch = __elibc_fgetc(stream);
 
 			if (ch != EOF) {
-				*s_ptr++ = ch;
+				*s_ptr++ = (char)ch;
 			}
 
 			if (ch == EOF && s_ptr == s) {

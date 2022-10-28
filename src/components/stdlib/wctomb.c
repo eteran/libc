@@ -16,5 +16,5 @@ int wctomb(char *s, wchar_t wc) {
 		return 1;
 	}
 
-	return wcrtomb(s, wc, 0);
+	return (int)wcrtomb(s, wc, 0);
 }

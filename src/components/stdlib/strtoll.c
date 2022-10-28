@@ -76,7 +76,7 @@ long long int strtoll(const char *nptr, char **endptr, int base) {
 
 		const T old_ret = ret;
 		const char c = *nptr;
-		unsigned int digit;
+		int digit;
 
 		if (c >= 'A' && c <= 'Z') {
 			if (((c - 'A') + 10) < base) {
@@ -104,7 +104,7 @@ long long int strtoll(const char *nptr, char **endptr, int base) {
 		/* calculate as negative so we can properly calculate LLONG_MIN
 		 * but catch the overflow of LLONG_MAX + 1
 		 */
-		ret = (ret * base) - digit;
+		ret = (ret * (T)base) - (T)digit;
 		if (ret > old_ret) {
 
 			/* subtracting a value should NEVER increase the result

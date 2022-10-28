@@ -34,5 +34,5 @@ size_t strlcpy(char *_RESTRICT dest, const char *_RESTRICT src, size_t n) {
 		*dest = '\0';
 	}
 
-	return src - src_ptr;
+	return (size_t)(src - src_ptr);
 }

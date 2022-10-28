@@ -14,12 +14,12 @@ struct _IO_FILE;
 struct __elibc_file {
 	int fd;
 	int buf_mod;
-	unsigned err         : 1;
-	unsigned eof         : 1;
-	unsigned orientation : 2; /* 0 = unset, 1 = invalid, 2 = char, 3 = wchar */
+	unsigned err : 1;
+	unsigned eof : 1;
+	unsigned char orientation; /* 0 = unset, 1 = invalid, 2 = char, 3 = wchar */
 	unsigned int flags;
 
-	/* buffer managment */
+	/* buffer management */
 	char *buffer_ptr;
 	unsigned long buffer_capacity;
 	char *buffer_first;

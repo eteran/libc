@@ -76,7 +76,7 @@ unsigned long int strtoul(const char *nptr, char **endptr, int base) {
 
 		const T old_ret = ret;
 		const char c = *nptr;
-		unsigned int digit;
+		int digit;
 
 		if (c >= 'A' && c <= 'Z') {
 			if (((c - 'A') + 10) < base) {
@@ -101,7 +101,7 @@ unsigned long int strtoul(const char *nptr, char **endptr, int base) {
 			break;
 		}
 
-		ret = (ret * base) + digit;
+		ret = (ret * (T)base) + (T)digit;
 		if (ret < old_ret) {
 
 			/* adding a value should NEVER decrease the result
