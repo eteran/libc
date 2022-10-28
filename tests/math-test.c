@@ -1,14 +1,15 @@
 #undef NDEBUG
 #define _ELIBC_SOURCE
 #include <assert.h>
+#include <errno.h>
 #include <fenv.h>
 #include <float.h>
 #include <math.h>
 #include <stdio.h>
 
-#define EPSILON 0.000001f
+#define EPSILON 0.000001
 
-static int float_compare(float lhs, float rhs) {
+static int float_compare(double lhs, double rhs) {
 	return fabs(lhs - rhs) < EPSILON;
 }
 
@@ -32,7 +33,7 @@ static void test_cos(void) {
 	/* typical usage */
 	assert(float_compare(cos(M_PI / 3.0), 0.500000));
 	assert(float_compare(cos(M_PI / 2.0), 0.000000));
-	assert(float_compare(cos(-3.0 * M_PI / 4), -0.707107));
+	assert(float_compare(cos(-3.0 * M_PI / 4.0), -0.707107));
 	/* special values */
 	assert(float_compare(cos(-0.0), 1.0));
 	assert(float_compare(cos(+0.0), 1.0));
@@ -48,7 +49,7 @@ static void test_sin(void) {
 	/* typical usage */
 	assert(float_compare(sin(M_PI / 6.0), 0.500000));
 	assert(float_compare(sin(M_PI / 2.0), 1.000000));
-	assert(float_compare(sin(-3.0 * M_PI / 4), -0.707107));
+	assert(float_compare(sin(-3.0 * M_PI / 4.0), -0.707107));
 	/* special values */
 	assert(float_compare(sin(-0.0), 0.0));
 	assert(float_compare(sin(+0.0), 0.0));
@@ -97,6 +98,85 @@ static void test_ceil(void) {
 	assert(float_compare(ceil(-0.0), -0.0));
 }
 
+static void test_isnormal(void) {
+	assert(!isnormal(NAN));
+	assert(!isnormal(INFINITY));
+	assert(!isnormal(0.0));
+	assert(!isnormal(DBL_MIN / 2.0));
+	assert(isnormal(1.0));
+}
+
+static void test_isfinite(void) {
+	assert(!isfinite(NAN));
+	assert(!isfinite(INFINITY));
+	assert(isfinite(0.0));
+	assert(isfinite(DBL_MIN / 2.0));
+	assert(isfinite(1.0));
+	assert(!isfinite(exp(800)));
+}
+
+static void test_isnan(void) {
+	assert(isnan(NAN));
+	assert(!isnan(INFINITY));
+	assert(!isnan(0.0));
+	assert(!isnan(DBL_MIN / 2.0));
+	assert(isnan(0.0 / 0.0));
+	assert(isnan(INFINITY - INFINITY));
+}
+
+static void test_isinf(void) {
+	assert(!isinf(NAN));
+	assert(isinf(INFINITY));
+	assert(!isinf(0.0));
+	assert(!isinf(DBL_MIN / 2.0));
+	assert(!isinf(1.0));
+	assert(isinf(exp(800)));
+}
+
+static void test_fpclassify(void) {
+	assert(fpclassify(1.0 / 0.0) == FP_INFINITE);
+	assert(fpclassify(0.0 / 0.0) == FP_NAN);
+	assert(fpclassify(DBL_MIN / 2) == FP_SUBNORMAL);
+	assert(fpclassify(-0.0) == FP_ZERO);
+	assert(fpclassify(1.0) == FP_NORMAL);
+}
+
+static void test_copysign(void) {
+	double d;
+	assert(copysign(1.0, +2.0) == +1.0);
+	assert(copysign(1.0, -2.0) == -1.0);
+
+	d = copysign(INFINITY, -2.0);
+	assert(signbit(d));
+	assert(isinf(d));
+	assert(d == -INFINITY);
+
+	d = copysign(NAN, -2.0);
+	assert(signbit(d));
+	assert(isnan(d));
+}
+
+static void test_exp2(void) {
+	assert(float_compare(exp2(5), 32.000000));
+	assert(float_compare(exp2(0.5), 1.414214));
+	assert(float_compare(exp2(-4), 0.062500));
+
+	// special values
+	assert(float_compare(exp2(-0.9), 0.535887));
+	assert(float_compare(exp2(-INFINITY), 0.0));
+
+#if 0
+	// error handling
+	errno = 0;
+	feclearexcept(FE_ALL_EXCEPT);
+	printf("exp2(1024) = %f\n", exp2(1024));
+	if (errno == ERANGE)
+		perror("    errno == ERANGE");
+	if (fetestexcept(FE_OVERFLOW))
+		puts("    FE_OVERFLOW raised");
+#endif
+}
+
 #if 0
 #include "c/acos.h"
 #include "c/asin.h"
@@ -117,19 +197,26 @@ static void test_ceil(void) {
 #endif
 
 int main(void) {
-	test_fabs();
+	test_ceil();
+	test_copysign();
 	test_cos();
+	test_fabs();
+	test_floor();
+	test_fpclassify();
+	test_isfinite();
+	test_isinf();
+	test_isnan();
+	test_isnormal();
 	test_sin();
 	test_tan();
-	test_floor();
-	test_ceil();
+	test_exp2();
 
 	double x = pow(2, -1);
 	printf("%f\n", x);
 
-	printf("long double size: %d\n", sizeof(long double));
-	printf("double size: %d\n", sizeof(double));
-	printf("float size: %d\n", sizeof(float));
+	printf("long double size: %lu\n", sizeof(long double));
+	printf("double size: %lu\n", sizeof(double));
+	printf("float size: %lu\n", sizeof(float));
 
 	return 0;
 }

@@ -7,7 +7,7 @@
 // Name: strchr
 //----------------------------------------------------------------------------*/
 char *strchr(const char *s, int c) {
-	const char cmp = c;
+	const char cmp = (char)c;
 
 	assert(s);
 

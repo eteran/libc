@@ -220,40 +220,39 @@ static const char *_signed_itoa(char *buffer, size_t size, int precision, intmax
 }
 
 #ifdef _HAS_FPU
-static int base10_len(uintmax_t n) {
+static int base10_len(double n) {
 	/* clang-format off */
-	if (n < 10) return 1;
-	if (n < 100) return 2;
-	if (n < 1000) return 3;
-	if (n < 10000) return 4;
-	if (n < 100000) return 5;
-	if (n < 1000000) return 6;
-	if (n < 10000000) return 7;
-	if (n < 100000000) return 8;
-	if (n < 1000000000) return 9;
-	if (n < 10000000000) return 10;
-	if (n < 100000000000) return 11;
-	if (n < 1000000000000) return 12;
-	if (n < 10000000000000) return 13;
-	if (n < 100000000000000) return 14;
-	if (n < 1000000000000000) return 15;
-	if (n < 10000000000000000) return 16;
-	if (n < 100000000000000000) return 17;
-	if (n < 1000000000000000000) return 18;
-	if (n < 10000000000000000000u) return 19;
+	if (n < 10.0) return 1;
+	if (n < 100.0) return 2;
+	if (n < 1000.0) return 3;
+	if (n < 10000.0) return 4;
+	if (n < 100000.0) return 5;
+	if (n < 1000000.0) return 6;
+	if (n < 10000000.0) return 7;
+	if (n < 100000000.0) return 8;
+	if (n < 1000000000.0) return 9;
+	if (n < 10000000000.0) return 10;
+	if (n < 100000000000.0) return 11;
+	if (n < 1000000000000.0) return 12;
+	if (n < 10000000000000.0) return 13;
+	if (n < 100000000000000.0) return 14;
+	if (n < 1000000000000000.0) return 15;
+	if (n < 10000000000000000.0) return 16;
+	if (n < 100000000000000000.0) return 17;
+	if (n < 1000000000000000000.0) return 18;
+	if (n < 10000000000000000000.0) return 19;
 	/* clang-format on */
 
 	return 20;
 }
 
-static int _digit10_count(intmax_t n) {
+static int _digit10_count(double n) {
 
-	uintmax_t ud = n;
 	if (n < 0) {
-		ud = (~ud + 1);
+		return base10_len(-n);
 	}
 
-	return base10_len(ud);
+	return base10_len(n);
 }
 
 /*------------------------------------------------------------------------------
@@ -323,8 +322,8 @@ static char *_format_float_decimal(char *buf, size_t size, double value, int pre
 	p1 = ctx.ptr;
 
 	do {
-		const int digit = fmod(int_part, 10);
-		_write_char(&ctx, (digit + '0'));
+		const int digit = (int)fmod(int_part, 10);
+		_write_char(&ctx, (char)(digit + '0'));
 		int_part /= 10;
 	} while (int_part >= 1.0);
 
@@ -344,8 +343,8 @@ static char *_format_float_decimal(char *buf, size_t size, double value, int pre
 			for (i = 0; i < ctx.precision; ++i) {
 				x *= 10;
 				do {
-					const int digit = fmod(x, 10);
-					_write_char(&ctx, (digit + '0'));
+					const int digit = (int)fmod(x, 10);
+					_write_char(&ctx, (char)(digit + '0'));
 				} while (0);
 			}
 		}
@@ -396,7 +395,7 @@ static char *_format_float_exponent(char *buf, size_t size, double value, int pr
 	frac_part = x - int_part;
 
 	/* write the integer portion, it'll be exactly one digit */
-	_write_char(&ctx, ((int)int_part + '0'));
+	_write_char(&ctx, (char)((int)int_part + '0'));
 
 	if (precision > 0) {
 		int i;
@@ -409,8 +408,8 @@ static char *_format_float_exponent(char *buf, size_t size, double value, int pr
 			for (i = 1; i <= precision; ++i) {
 				x *= 10;
 				do {
-					const int digit = fmod(x, 10);
-					_write_char(&ctx, digit + '0');
+					const int digit = (int)fmod(x, 10);
+					_write_char(&ctx, (char)(digit + '0'));
 				} while (0);
 			}
 		}
@@ -560,7 +559,7 @@ static const char *_get_flags(const char *format, flags_t *flags) {
 /*------------------------------------------------------------------------------
 // Name: _get_width
 //----------------------------------------------------------------------------*/
-static const char *_get_width(const char *format, long int *width, va_list *ap) {
+static const char *_get_width(const char *format, int *width, va_list *ap) {
 
 	PRINTF_ASSERT(format);
 	PRINTF_ASSERT(width);
@@ -569,9 +568,9 @@ static const char *_get_width(const char *format, long int *width, va_list *ap) 
 	if (*format == '*') {
 		++format;
 		/* pull an int off the stack for processing */
-		*width = va_arg(*ap, long int);
+		*width = (int)va_arg(*ap, long int);
 	} else {
-		*width = strtol(format, 0, 10);
+		*width = (int)strtol(format, 0, 10);
 		while (isdigit(*format)) {
 			++format;
 		}
@@ -583,7 +582,7 @@ static const char *_get_width(const char *format, long int *width, va_list *ap) 
 /*------------------------------------------------------------------------------
 // Name: _get_precision
 //----------------------------------------------------------------------------*/
-static const char *_get_precision(const char *format, long int *precision, va_list *ap) {
+static const char *_get_precision(const char *format, int *precision, va_list *ap) {
 
 	/* default to non-existant */
 	long int p = -1;
@@ -609,8 +608,7 @@ static const char *_get_precision(const char *format, long int *precision, va_li
 		}
 	}
 
-	*precision = p;
-
+	*precision = (int)p;
 	return format;
 }
 
@@ -665,7 +663,7 @@ static const char *_get_modifier(const char *format, int *modifier) {
 }
 
 /* NOTE(eteran): ch is the current format specifier */
-static void _output_string(char ch, const char *s_ptr, int precision, long int *width,
+static void _output_string(char ch, const char *s_ptr, int precision, int *width,
                            const flags_t *flags, struct __elibc_write *const ctx) {
 	int len;
 	PRINTF_ASSERT(s_ptr);
@@ -676,7 +674,7 @@ static void _output_string(char ch, const char *s_ptr, int precision, long int *
 	}
 
 	/* TODO(eteran): is this correct? */
-	len = strlen(s_ptr);
+	len = (int)strlen(s_ptr);
 	len = (ch == 's' && precision >= 0 && precision < len) ? precision : len;
 
 	/* if not left justified padding goes first.. */
@@ -732,8 +730,8 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 			/* %[flag][width][.precision][length]char */
 
 			const char *s_ptr = 0;
-			long int width = 0;
-			long int precision = 0;
+			int width = 0;
+			int precision = 0;
 			int modifier = 0;
 			char ch;
 			flags_t flags;
@@ -905,7 +903,7 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 
 			case 'c':
 				/* char is promoted to an int when pushed on the stack */
-				num_buf[0] = va_arg(aq, long int);
+				num_buf[0] = (char)va_arg(aq, long int);
 				num_buf[1] = '\0';
 				s_ptr = num_buf;
 				_output_string(ch, s_ptr, precision, &width, &flags, ctx);
@@ -932,19 +930,19 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 					if (p.p) {
 						switch (modifier) {
 						case MOD_CHAR:
-							*(p.p_char) = ctx->written;
+							*(p.p_char) = (char)ctx->written;
 							break;
 						case MOD_SHORT:
-							*(p.p_short) = ctx->written;
+							*(p.p_short) = (short)ctx->written;
 							break;
 						case MOD_LONG:
-							*(p.p_long) = ctx->written;
+							*(p.p_long) = (long)ctx->written;
 							break;
 						case MOD_LONG_LONG:
-							*(p.p_longlong) = ctx->written;
+							*(p.p_longlong) = (long long)ctx->written;
 							break;
 						default:
-							*(p.p_int) = ctx->written;
+							*(p.p_int) = (int)ctx->written;
 							break;
 						}
 					}
@@ -975,5 +973,5 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 
 	/* return the amount of bytes that should have been written if there was
 	 * sufficient space*/
-	return ctx->written;
+	return (int)ctx->written;
 }

@@ -20,5 +20,5 @@ size_t strcspn(const char *s, const char *reject) {
 		++s_ptr;
 	}
 
-	return s_ptr - s;
+	return (size_t)(s_ptr - s);
 }

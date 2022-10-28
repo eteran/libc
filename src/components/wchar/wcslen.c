@@ -15,5 +15,5 @@ size_t wcslen(const wchar_t *s) {
 		++s;
 	}
 
-	return s - s_ptr;
+	return (size_t)(s - s_ptr);
 }

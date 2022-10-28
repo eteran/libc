@@ -8,9 +8,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define EPSILON 0.000001f
+#define EPSILON 0.000001
 
-static int float_compare(float lhs, float rhs) {
+static int float_compare(double lhs, double rhs) {
 	return fabs(lhs - rhs) < EPSILON;
 }
 struct data {

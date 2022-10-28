@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_exp
 //----------------------------------------------------------------------------*/
-_CONST _ALWAYS_INLINE _INLINE static double __elibc_exp(double x) {
+_ALWAYS_INLINE _INLINE static double __elibc_exp(double x) {
 	return pow(M_E, x);
 }
 
@@ -27,6 +27,10 @@ double exp(double x) {
 		} else {
 			return 0.0;
 		}
+	}
+
+	if (x == 0.0 || x == -0.0) {
+		return 1.0;
 	}
 
 	/* TODO(eteran): handle underflow/overflow */

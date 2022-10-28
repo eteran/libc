@@ -111,7 +111,7 @@ wint_t towlower(wint_t c) {
 wint_t towupper(wint_t c) {
 	if (iswlower(c)) {
 		/* NOTE: ASCII specific */
-		c &= ~0x20;
+		c &= (wint_t)~0x20;
 	}
 	return c;
 }

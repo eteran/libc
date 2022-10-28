@@ -20,5 +20,5 @@ size_t wcscspn(const wchar_t *s, const wchar_t *reject) {
 		++s_ptr;
 	}
 
-	return s_ptr - s;
+	return (size_t)(s_ptr - s);
 }

@@ -109,9 +109,9 @@ static void test_mbrtowc(void) {
 	const char *first = input;
 	const char *last = input + in_sz;
 	wchar_t *out_ptr = output;
-	int rc;
+	size_t rc;
 
-	while ((rc = mbrtowc(out_ptr, first, last - first, &state)) > 0) {
+	while ((rc = mbrtowc(out_ptr, first, (size_t)(last - first), &state)) > 0) {
 		first += rc;
 		++out_ptr;
 	}

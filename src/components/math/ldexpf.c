@@ -29,10 +29,10 @@
 static float __elibc_ldexpf(float x, int exp) {
 	/* TODO(eteran): detect overflow/underflow */
 	if (exp > 0) {
-		const float y = powf(2, exp);
+		const float y = powf(2, (float)exp);
 		return x * y;
 	} else {
-		const float y = powf(2, -exp);
+		const float y = powf(2, (float)-exp);
 		return x * (1 / y);
 	}
 }

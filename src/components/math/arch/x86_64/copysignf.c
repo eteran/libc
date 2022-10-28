@@ -12,16 +12,16 @@
 //----------------------------------------------------------------------------*/
 _CONST _ALWAYS_INLINE _INLINE static float __elibc_copysignf(float x, float y) {
 
-	union double_bits {
+	union float_bits {
 		float f_value;
 		uint32_t i_value;
 	};
 
-	union double_bits x1;
-	union double_bits y1;
-	union double_bits r;
+	union float_bits x1;
+	union float_bits y1;
+	union float_bits r;
 
-	/* we currently assume 32-bit floats */
+	/* we assume 32-bit floats */
 	_Static_assert(sizeof(float) == sizeof(uint32_t), "Size of float must be 32-bits");
 
 	x1.f_value = x;

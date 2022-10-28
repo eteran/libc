@@ -22,7 +22,7 @@ size_t strlcat(char *_RESTRICT dest, const char *_RESTRICT src, size_t siz) {
 		d++;
 	}
 
-	dlen = d - dest;
+	dlen = (size_t)(d - dest);
 	n = siz - dlen;
 
 	if (n == 0) {

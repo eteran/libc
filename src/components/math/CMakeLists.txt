@@ -167,6 +167,7 @@ add_library(c-math STATIC
 	arch/${LIBC_ARCH}/copysignf.c
 	arch/${LIBC_ARCH}/fenv.c
 	arch/${LIBC_ARCH}/fmod.c
+	arch/${LIBC_ARCH}/fpclassify.c
 	arch/${LIBC_ARCH}/log.c
 	arch/${LIBC_ARCH}/log10.c
 	arch/${LIBC_ARCH}/round.c

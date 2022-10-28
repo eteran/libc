@@ -165,9 +165,16 @@
 
 #if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(_ELIBC_SOURCE)
 
-/* TODO(eteran): should we make these depend on FLT_EVAL_METHOD directly ? */
+#if FLT_EVAL_METHOD == 0
 typedef double double_t;
 typedef float float_t;
+#elif FLT_EVAL_METHOD == 1
+typedef double double_t;
+typedef double float_t;
+#elif FLT_EVAL_METHOD == 2
+typedef float double_t;
+typedef float float_t;
+#endif
 
 #define FP_ILOGBNAN  (-1 - (int)(((unsigned)-1) >> 1))
 #define FP_ILOGB0    FP_ILOGBNAN
@@ -242,7 +249,12 @@ typedef float float_t;
 #endif
 
 /* POSIX */
-#define M_PI 3.14159265358979323846
+#define M_PI 3.14159265358979323846264338327
 #define M_E  2.7182818284590452354
+
+#ifdef _ELIBC_SOURCE
+#define M_PIf 3.14159265358979323846264338327f
+#define M_Ef  2.7182818284590452354f
+#endif
 
 #endif

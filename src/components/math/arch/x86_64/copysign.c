@@ -21,7 +21,7 @@ _CONST _ALWAYS_INLINE _INLINE static double __elibc_copysign(double x, double y)
 	union double_bits y1;
 	union double_bits r;
 
-	/* we currently assume 64-bit doubles */
+	/* we assume 64-bit doubles */
 	_Static_assert(sizeof(double) == sizeof(uint64_t), "Size of double must be 64-bits");
 
 	x1.f_value = x;

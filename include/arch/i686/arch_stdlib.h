@@ -1,7 +1,0 @@
-
-#ifndef _ARCH_I686_ARCH_STDLIB_H_20051228_
-#define _ARCH_I686_ARCH_STDLIB_H_20051228_
-
-#define RAND_MAX 0x7fffffff
-
-#endif

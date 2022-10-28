@@ -23,8 +23,9 @@ size_t strlcpy(char *_RESTRICT dest, const char *_RESTRICT src, size_t n) {
 			--n;
 		} else {
 			/* no more copying, just looking for end of src.. */
-			while (*++src != '\0')
+			while (*++src != '\0') {
 				;
+			}
 		}
 	}
 
