@@ -1,7 +1,9 @@
 
 #define _ELIBC_SAFE_STRING
 #define _ELIBC_SOURCE
+#include <assert.h>
 #include <ctype.h>
+#include <errno.h>
 #include <math.h>
 #include <stdarg.h>
 #include <stddef.h>
@@ -9,25 +11,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <errno.h>
 
 #include "c/_printf_engine.h"
-
-/* we use this because the our assert uses fprintf to print its message,
- * resulting in an infinite recursion if some assertions fail
- */
-#if defined NDEBUG
-#define PRINTF_ASSERT(ignore) ((void)0)
-#else
-#include <stdio.h>
-#define PRINTF_ASSERT(test)                                                                        \
-	do {                                                                                           \
-		if (!(test)) {                                                                             \
-			puts(#test);                                                                           \
-			abort();                                                                               \
-		}                                                                                          \
-	} while (0)
-#endif
 
 typedef struct {
 	unsigned int justify : 1;
@@ -177,7 +162,7 @@ static const char *_unsigned_itoa(char *buffer, size_t size, char base, int prec
 			}
 			break;
 		default:
-			PRINTF_ASSERT(0 && "Invalid Base");
+			assert(0 && "Invalid Base");
 		}
 
 		_itoa_common(&ctx, ud, divisor, alphabet, flags);
@@ -512,8 +497,8 @@ static const char *_get_flags(const char *format, flags_t *flags) {
 	flags_t f = {0, 0, 0, 0, 0};
 	uint8_t done = 0;
 
-	PRINTF_ASSERT(format);
-	PRINTF_ASSERT(flags);
+	assert(format);
+	assert(flags);
 
 	/* skip past the % char */
 	++format;
@@ -562,9 +547,9 @@ static const char *_get_flags(const char *format, flags_t *flags) {
 //----------------------------------------------------------------------------*/
 static const char *_get_width(const char *format, int *width, va_list *ap) {
 
-	PRINTF_ASSERT(format);
-	PRINTF_ASSERT(width);
-	PRINTF_ASSERT(ap);
+	assert(format);
+	assert(width);
+	assert(ap);
 
 	if (*format == '*') {
 		++format;
@@ -574,7 +559,7 @@ static const char *_get_width(const char *format, int *width, va_list *ap) {
 		char *endptr = 0;
 		errno = 0;
 		*width = (int)strtol(format, &endptr, 10);
-		PRINTF_ASSERT(errno == 0);
+		assert(errno == 0);
 		format = endptr;
 	}
 
@@ -589,9 +574,9 @@ static const char *_get_precision(const char *format, int *precision, va_list *a
 	/* default to non-existant */
 	long int p = -1;
 
-	PRINTF_ASSERT(format);
-	PRINTF_ASSERT(precision);
-	PRINTF_ASSERT(ap);
+	assert(format);
+	assert(precision);
+	assert(ap);
 
 	if (*format == '.') {
 		++format;
@@ -605,8 +590,8 @@ static const char *_get_precision(const char *format, int *precision, va_list *a
 			char *endptr = 0;
 			errno = 0;
 			p = strtol(format, &endptr, 10);
-			PRINTF_ASSERT(errno == 0);
-			PRINTF_ASSERT(p >= 0);
+			assert(errno == 0);
+			assert(p >= 0);
 			format = endptr;
 		}
 	}
@@ -620,8 +605,8 @@ static const char *_get_precision(const char *format, int *precision, va_list *a
 //----------------------------------------------------------------------------*/
 static const char *_get_modifier(const char *format, int *modifier) {
 
-	PRINTF_ASSERT(format);
-	PRINTF_ASSERT(modifier);
+	assert(format);
+	assert(modifier);
 
 	*modifier = MOD_NONE;
 
@@ -669,7 +654,7 @@ static const char *_get_modifier(const char *format, int *modifier) {
 static void _output_string(char ch, const char *s_ptr, int precision, int *width,
                            const flags_t *flags, struct __elibc_write *const ctx) {
 	int len;
-	PRINTF_ASSERT(s_ptr);
+	assert(s_ptr);
 
 	/* on release builds, we are somewhat forgiving ... */
 	if (!s_ptr) {
@@ -726,7 +711,7 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 
 	__elibc_va_copy(aq, ap);
 
-	PRINTF_ASSERT(format);
+	assert(format);
 
 	while (*format != '\0') {
 		if (*format == '%') {
