@@ -220,7 +220,9 @@ static void __elibc_quick_sort(void *base, size_t l, size_t r, size_t size, __co
 
 	if (l < r) {
 		const size_t q = __elibc_partition(base, l, r, size, compar);
-		__elibc_quick_sort(base, l, q - 1, size, compar);
+		if (q > 0) {
+			__elibc_quick_sort(base, l, q - 1, size, compar);
+		}
 		__elibc_quick_sort(base, q + 1, r, size, compar);
 	}
 }
