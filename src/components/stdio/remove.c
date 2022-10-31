@@ -9,7 +9,7 @@ int remove(const char *pathname) {
 
 	/* TODO(eteran): can pathname be NULL? */
 
-	(void)pathname;
+	_UNUSED(pathname);
 
 	/*
 	remove deletes a name from the filesystem.  It calls unlink for files, and

@@ -8,7 +8,7 @@
 //----------------------------------------------------------------------------*/
 int raise(int sig) {
 #ifdef __KERNEL__
-	(void)sig;
+	_UNUSED(sig);
 	return -1;
 #else
 	/* TODO(eteran): replace 0 with getpid? */

@@ -8,8 +8,8 @@
 // Name:
 //----------------------------------------------------------------------------*/
 long double wcstold(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr) {
-	(void)nptr;
-	(void)endptr;
+	_UNUSED(nptr);
+	_UNUSED(endptr);
 
 	/* TODO(eteran): implement this */
 	return 0;

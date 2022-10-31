@@ -6,7 +6,7 @@
 // Name:
 //----------------------------------------------------------------------------*/
 int swscanf(const wchar_t *_RESTRICT ws, const wchar_t *_RESTRICT format, ...) {
-	(void)ws;
-	(void)format;
+	_UNUSED(ws);
+	_UNUSED(format);
 	return -1;
 }

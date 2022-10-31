@@ -11,7 +11,7 @@ size_t wcrtomb(char *s, wchar_t wc, mbstate_t *ps) {
 	const unsigned long ch = (unsigned long)wc;
 	unsigned char *s_ptr = (unsigned char *)s;
 
-	(void)ps;
+	_UNUSED(ps);
 
 	_Static_assert(sizeof(unsigned long) >= sizeof(wchar_t), "");
 

@@ -24,8 +24,8 @@
 //----------------------------------------------------------------------------*/
 size_t wcsftime(wchar_t *s, size_t max, const wchar_t *format, const struct tm *tm) {
 
-	(void)max;
-	(void)tm;
+	_UNUSED(max);
+	_UNUSED(tm);
 
 	while (*format != L'\0') {
 		if (*format == L'%') {

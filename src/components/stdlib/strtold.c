@@ -7,8 +7,8 @@
 // Name:
 //----------------------------------------------------------------------------*/
 long double strtold(const char *nptr, char **endptr) {
-	(void)nptr;
-	(void)endptr;
+	_UNUSED(nptr);
+	_UNUSED(endptr);
 
 	/* TODO(eteran): implement this */
 	return 0;

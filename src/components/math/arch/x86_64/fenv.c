@@ -22,7 +22,7 @@
 	} while (0)
 #define SSE_SETCW(xcw)                                                                             \
 	do {                                                                                           \
-		(void)xcw;                                                                                 \
+		_UNUSED(xcw);                                                                              \
 	} while (0)
 #endif
 

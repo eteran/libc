@@ -6,7 +6,7 @@
 // Name: vwscanf
 //----------------------------------------------------------------------------*/
 int vwscanf(const wchar_t *_RESTRICT format, va_list ap) {
-	(void)format;
-	(void)ap;
+	_UNUSED(format);
+	_UNUSED(ap);
 	return -1;
 }

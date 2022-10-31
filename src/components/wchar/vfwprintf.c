@@ -10,8 +10,8 @@
 // Name:
 //----------------------------------------------------------------------------*/
 int vfwprintf(FILE *stream, const wchar_t *format, va_list args) {
-	(void)stream;
-	(void)format;
-	(void)args;
+	_UNUSED(stream);
+	_UNUSED(format);
+	_UNUSED(args);
 	return -1;
 }

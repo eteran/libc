@@ -6,9 +6,9 @@
 // Name: wcsrtombs
 //----------------------------------------------------------------------------*/
 size_t wcsrtombs(char *dest, const wchar_t **src, size_t len, mbstate_t *ps) {
-	(void)dest;
-	(void)src;
-	(void)len;
-	(void)ps;
+	_UNUSED(dest);
+	_UNUSED(src);
+	_UNUSED(len);
+	_UNUSED(ps);
 	return 0;
 }

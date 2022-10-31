@@ -27,7 +27,7 @@ _Noreturn void __assert_fail(const char *expr, const char *file, const char *lin
 
 #endif
 
-#ifdef _HAS_C11
+#if defined(_HAS_C11) && !defined(_HAS_CXX11)
 #define static_assert(expr, error) _Static_assert((expr), error)
 #endif
 

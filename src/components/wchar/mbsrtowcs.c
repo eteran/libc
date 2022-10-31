@@ -6,10 +6,10 @@
 // Name: mbsrtowcs
 //----------------------------------------------------------------------------*/
 size_t mbsrtowcs(wchar_t *dest, const char **src, size_t len, mbstate_t *ps) {
-	(void)dest;
-	(void)src;
-	(void)len;
-	(void)ps;
+	_UNUSED(dest);
+	_UNUSED(src);
+	_UNUSED(len);
+	_UNUSED(ps);
 
 	/*
   If  dest  is  not  NULL,  the mbsrtowcs() function converts the multibyte string

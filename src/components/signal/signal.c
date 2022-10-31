@@ -8,8 +8,8 @@
 //----------------------------------------------------------------------------*/
 __sighandler_t signal(int signum, __sighandler_t handler) {
 #ifdef __KERNEL__
-	(void)signum;
-	(void)handler;
+	_UNUSED(signum);
+	_UNUSED(handler);
 	return SIG_ERR;
 #else
 	return (__sighandler_t)__elibc_sys_signal(signum, handler);

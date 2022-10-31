@@ -6,9 +6,9 @@
 // Name:
 //----------------------------------------------------------------------------*/
 size_t wcsxfrm(wchar_t *_RESTRICT ws1, const wchar_t *_RESTRICT ws2, size_t n) {
-	(void)ws1;
-	(void)ws2;
-	(void)n;
+	_UNUSED(ws1);
+	_UNUSED(ws2);
+	_UNUSED(n);
 
 	return 0;
 }

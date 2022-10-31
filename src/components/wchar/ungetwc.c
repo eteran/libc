@@ -7,7 +7,7 @@
 // Name: ungetwc
 //----------------------------------------------------------------------------*/
 wint_t ungetwc(wint_t wc, FILE *stream) {
-	(void)wc;
-	(void)stream;
+	_UNUSED(wc);
+	_UNUSED(stream);
 	return WEOF;
 }

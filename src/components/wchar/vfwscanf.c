@@ -6,9 +6,9 @@
 // Name:
 //----------------------------------------------------------------------------*/
 int vfwscanf(FILE *_RESTRICT stream, const wchar_t *_RESTRICT format, va_list arg) {
-	(void)stream;
-	(void)format;
-	(void)arg;
+	_UNUSED(stream);
+	_UNUSED(format);
+	_UNUSED(arg);
 
 	/* TODO(eteran): implement this */
 	return -1;

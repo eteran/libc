@@ -57,6 +57,9 @@
 #define _HAS_FPU
 #endif
 
+/* unused */
+#define _UNUSED(x) (void)x
+
 /* restrict/inline keyword support */
 #if defined(_HAS_C99)
 #define _RESTRICT restrict
@@ -127,7 +130,7 @@
 #define _Static_assert(x, error)                                                                   \
 	do {                                                                                           \
 		static const char static_assertion_failed[(x) ? 1 : -1];                                   \
-		(void)static_assertion_failed;                                                             \
+		_UNUSED(static_assertion_failed);                                                          \
 	} while (0)
 #endif
 #endif

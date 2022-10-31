@@ -55,7 +55,7 @@ void __elibc_lock_stream(FILE *stream) {
 #if defined(_ELIBC_USE_THREADS)
 	pthread_mutex_lock(&stream->mutex);
 #endif
-	(void)stream;
+	_UNUSED(stream);
 }
 
 void __elibc_unlock_stream(FILE *stream) {
@@ -63,7 +63,7 @@ void __elibc_unlock_stream(FILE *stream) {
 #if defined(_ELIBC_USE_THREADS)
 	pthread_mutex_unlock(&stream->mutex);
 #endif
-	(void)stream;
+	_UNUSED(stream);
 }
 
 /* NOTE(eteran): we use this caching strategy of FILE objects for two reasons

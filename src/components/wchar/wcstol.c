@@ -6,9 +6,9 @@
 // Name:
 //----------------------------------------------------------------------------*/
 long int wcstol(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr, int base) {
-	(void)nptr;
-	(void)endptr;
-	(void)base;
+	_UNUSED(nptr);
+	_UNUSED(endptr);
+	_UNUSED(base);
 
 	return 0;
 }
