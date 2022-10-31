@@ -4,122 +4,49 @@
 #include <stdio.h>
 #include <time.h>
 
-/* TODO(eteran): update space after each step */
-/* TODO(eteran): use a context struct like printf does */
-
-#define DO_H()                                                                                     \
+#define WRITE_FORMATTED(fmt, value)                                                                \
 	do {                                                                                           \
-		int chunk = snprintf(s, space, "%.2i", tm->tm_hour);                                       \
-		if ((size_t)chunk >= space) {                                                              \
+		const int chunk = snprintf(ctx->ptr, ctx->size, (fmt), (value));                           \
+		if (chunk < 0) {                                                                           \
 			return 0;                                                                              \
 		}                                                                                          \
-		s += chunk;                                                                                \
+		ctx->ptr += chunk;                                                                         \
+		ctx->size -= (size_t)chunk;                                                                \
+		ctx->written += (size_t)chunk;                                                             \
 	} while (0)
 
-#define DO_M()                                                                                     \
-	do {                                                                                           \
-		int chunk = snprintf(s, space, "%.2i", tm->tm_min);                                        \
-		if ((size_t)chunk >= space) {                                                              \
-			return 0;                                                                              \
-		}                                                                                          \
-		s += chunk;                                                                                \
-	} while (0)
-
-#define DO_S()                                                                                     \
-	do {                                                                                           \
-		int chunk = snprintf(s, space, "%.2d", tm->tm_sec);                                        \
-		if ((size_t)chunk >= space) {                                                              \
-			return 0;                                                                              \
-		}                                                                                          \
-		s += chunk;                                                                                \
-	} while (0)
-
-#define DO_Y()                                                                                     \
-	do {                                                                                           \
-		int chunk = snprintf(s, space, "%d", 1900 + tm->tm_year);                                  \
-		if ((size_t)chunk >= space) {                                                              \
-			return 0;                                                                              \
-		}                                                                                          \
-		s += chunk;                                                                                \
-	} while (0)
-
-#define DO_m()                                                                                     \
-	do {                                                                                           \
-		int chunk = snprintf(s, space, "%.2d", tm->tm_mon + 1);                                    \
-		if ((size_t)chunk >= space) {                                                              \
-			return 0;                                                                              \
-		}                                                                                          \
-		s += chunk;                                                                                \
-	} while (0)
-
-#define DO_d()                                                                                     \
-	do {                                                                                           \
-		int chunk = snprintf(s, space, "%.2d", tm->tm_mday);                                       \
-		if ((size_t)chunk >= space) {                                                              \
-			return 0;                                                                              \
-		}                                                                                          \
-		s += chunk;                                                                                \
-	} while (0)
-
-#define DO_e()                                                                                     \
-	do {                                                                                           \
-		int chunk = snprintf(s, space, "%2d", tm->tm_mday);                                        \
-		if ((size_t)chunk >= space) {                                                              \
-			return 0;                                                                              \
-		}                                                                                          \
-		s += chunk;                                                                                \
-	} while (0)
-
-#define DO_y()                                                                                     \
-	do {                                                                                           \
-		int chunk = snprintf(s, space, "%.2i", tm->tm_year % 100);                                 \
-		if ((size_t)chunk >= space) {                                                              \
-			return 0;                                                                              \
-		}                                                                                          \
-		s += chunk;                                                                                \
-	} while (0)
-
-#define DO_I()                                                                                     \
-	do {                                                                                           \
-		int chunk;                                                                                 \
-		int hour = tm->tm_hour;                                                                    \
-		if (hour > 12) {                                                                           \
-			hour -= 12;                                                                            \
-		}                                                                                          \
-		chunk = snprintf(s, space, "%.2i", hour);                                                  \
-		if ((size_t)chunk >= space) {                                                              \
-			return 0;                                                                              \
-		}                                                                                          \
-		s += chunk;                                                                                \
-	} while (0)
-
-#define DO_p()                                                                                     \
-	do {                                                                                           \
-		int chunk = snprintf(s, space, "%s", (tm->tm_hour < 12) ? "AM" : "PM");                    \
-		if ((size_t)chunk >= space)                                                                \
-			return 0;                                                                              \
-		s += chunk;                                                                                \
-	} while (0)
-
-#define DO_char(ch)                                                                                \
-	do {                                                                                           \
-		int chunk = snprintf(s, space, "%c", ch);                                                  \
-		if ((size_t)chunk >= space)                                                                \
-			return 0;                                                                              \
-		s += chunk;                                                                                \
-	} while (0)
+#define DO_H()      WRITE_FORMATTED("%.2i", tm->tm_hour)
+#define DO_M()      WRITE_FORMATTED("%.2i", tm->tm_min);
+#define DO_S()      WRITE_FORMATTED("%.2d", tm->tm_sec);
+#define DO_Y()      WRITE_FORMATTED("%d", 1900 + tm->tm_year);
+#define DO_m()      WRITE_FORMATTED("%.2d", tm->tm_mon + 1);
+#define DO_d()      WRITE_FORMATTED("%.2d", tm->tm_mday);
+#define DO_e()      WRITE_FORMATTED("%2d", tm->tm_mday);
+#define DO_y()      WRITE_FORMATTED("%.2i", tm->tm_year % 100);
+#define DO_p()      WRITE_FORMATTED("%s", (tm->tm_hour < 12) ? "AM" : "PM");
+#define DO_char(ch) WRITE_FORMATTED("%c", ch);
+#define DO_I()      WRITE_FORMATTED("%.2i", (tm->tm_hour > 12) ? tm->tm_hour - 12 : tm->tm_hour)
+#define DO_a()      WRITE_FORMATTED("%s", wday_name[tm->tm_wday])
+#define DO_b()      WRITE_FORMATTED("%s", mon_name[tm->tm_mon])
 
 /* TODO(eteran): implement this */
 
-/*------------------------------------------------------------------------------
-// Name: strftime
-//----------------------------------------------------------------------------*/
-size_t strftime(char *s, size_t max, const char *format, const struct tm *tm) {
+struct __elibc_strftime_context {
+	char *buffer;
+	char *ptr;
+	size_t size;
+	size_t capacity;
+	size_t written;
+};
 
-	char *const dest = s;
+size_t __elibc_strftime(const char *format, struct __elibc_strftime_context *ctx,
+                        const struct tm *tm) {
 
-	size_t space = max;
+	static const char wday_name[][4] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
 
+	static const char mon_name[][4] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+	                                   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+	assert(ctx);
 	assert(tm);
 	assert(format);
 
@@ -128,9 +55,17 @@ size_t strftime(char *s, size_t max, const char *format, const struct tm *tm) {
 			++format;
 			switch (*format) {
 			case 'a':
-			case 'A':
+				assert(tm->tm_wday < 7);
+				DO_a();
+				break;
+
 			case 'h': /* NOTE(eteran): Equivalent to %b. */
 			case 'b':
+				assert(tm->tm_mon < 12);
+				DO_b();
+				break;
+
+			case 'A':
 			case 'B':
 			case 'c':
 			case 'C':
@@ -258,5 +193,20 @@ size_t strftime(char *s, size_t max, const char *format, const struct tm *tm) {
 		++format;
 	}
 
-	return (size_t)(s - dest);
+	return ctx->written < ctx->capacity ? ctx->written - 1 : 0;
+}
+
+/*------------------------------------------------------------------------------
+// Name: strftime
+//----------------------------------------------------------------------------*/
+size_t strftime(char *s, size_t max, const char *format, const struct tm *tm) {
+
+	struct __elibc_strftime_context ctx;
+	ctx.buffer = s;
+	ctx.ptr = s;
+	ctx.size = max;
+	ctx.capacity = max;
+	ctx.written = 0;
+
+	return __elibc_strftime(format, &ctx, tm);
 }
