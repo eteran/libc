@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 
 #include "c/_printf_engine.h"
 
@@ -570,10 +571,11 @@ static const char *_get_width(const char *format, int *width, va_list *ap) {
 		/* pull an int off the stack for processing */
 		*width = (int)va_arg(*ap, long int);
 	} else {
-		*width = (int)strtol(format, 0, 10);
-		while (isdigit(*format)) {
-			++format;
-		}
+		char *endptr = 0;
+		errno = 0;
+		*width = (int)strtol(format, &endptr, 10);
+		PRINTF_ASSERT(errno == 0);
+		format = endptr;
 	}
 
 	return format;
@@ -600,11 +602,12 @@ static const char *_get_precision(const char *format, int *precision, va_list *a
 			p = va_arg(*ap, long int);
 
 		} else {
-			p = strtol(format, 0, 10);
+			char *endptr = 0;
+			errno = 0;
+			p = strtol(format, &endptr, 10);
+			PRINTF_ASSERT(errno == 0);
 			PRINTF_ASSERT(p >= 0);
-			while (isdigit(*format)) {
-				++format;
-			}
+			format = endptr;
 		}
 	}
 

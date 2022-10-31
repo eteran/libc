@@ -161,7 +161,7 @@ static void test_exp2(void) {
 	assert(float_compare(exp2(0.5), 1.414214));
 	assert(float_compare(exp2(-4), 0.062500));
 
-	// special values
+	/* special values */
 	assert(float_compare(exp2(-0.9), 0.535887));
 	assert(float_compare(exp2(-INFINITY), 0.0));
 
@@ -210,9 +210,6 @@ int main(void) {
 	test_sin();
 	test_tan();
 	test_exp2();
-
-	double x = pow(2, -1);
-	printf("%f\n", x);
 
 	printf("long double size: %lu\n", sizeof(long double));
 	printf("double size: %lu\n", sizeof(double));

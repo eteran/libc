@@ -114,8 +114,8 @@ typedef uint64_t uintmax_t;
 #endif
 #define WCHAR_MIN (-WCHAR_MAX - 1)
 
-#define WINT_MIN  /* TODO */
-#define WINT_MAX  /* TODO */
+#define WINT_MIN  UINT_MIN
+#define WINT_MAX  UINT_MAX
 
 #endif
 

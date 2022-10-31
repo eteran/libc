@@ -116,7 +116,7 @@ static wint_t __elibc_fgetwc_unlocked(FILE *stream, char *buf) {
 		return WEOF;
 	}
 
-	/* ok so the first one was read ok. given out locale,
+	/* ok so the first one was read ok. given our locale,
 	 * how many bytes do we expect to come?
 	 */
 
