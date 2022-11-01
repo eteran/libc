@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-add_library (c-string STATIC
+add_library(c-string STATIC
 	memchr.c
 	memcmp.c
 	memcpy.c

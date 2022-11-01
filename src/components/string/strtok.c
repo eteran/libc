@@ -13,20 +13,20 @@ char *strtok(char *_RESTRICT s, const char *_RESTRICT delim) {
 /*------------------------------------------------------------------------------
 // Name: strtok_r
 //----------------------------------------------------------------------------*/
-char *strtok_r(char *_RESTRICT s, const char *_RESTRICT delim, char **ptrptr) {
+char *strtok_r(char *_RESTRICT s, const char *_RESTRICT delim, char **saveptr) {
 
 	char *start;
 
 	if (s) {
 		/* if s != 0 then we consider this the "first call" */
-		*ptrptr = s;
+		*saveptr = s;
 	}
 
-	start = *ptrptr;
+	start = *saveptr;
 
 	if (start) {
 		/* skip first delimiters */
-		start += strspn(*ptrptr, delim);
+		start += strspn(*saveptr, delim);
 
 		/* did we find a non-delimiter */
 		if (start) {
@@ -38,7 +38,7 @@ char *strtok_r(char *_RESTRICT s, const char *_RESTRICT delim, char **ptrptr) {
 			if (end) {
 				*end++ = '\0';
 			}
-			*ptrptr = end;
+			*saveptr = end;
 		}
 	}
 	return start;

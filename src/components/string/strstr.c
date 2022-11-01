@@ -7,15 +7,15 @@
 //----------------------------------------------------------------------------*/
 char *strnstr(const char *haystack, const char *needle, size_t n) {
 
-	if (needle[0] == '\0') {
+	if (*needle == '\0') {
 		return (char *)haystack;
-	} else {
-		while (*haystack != '\0') {
-			if (strncmp(haystack, needle, n) == 0) {
-				return (char *)haystack;
-			}
-			++haystack;
+	}
+
+	while (*haystack != '\0') {
+		if (strncmp(haystack, needle, n) == 0) {
+			return (char *)haystack;
 		}
+		++haystack;
 	}
 
 	return 0;

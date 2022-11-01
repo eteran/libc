@@ -35,6 +35,7 @@ void abort(void) {
 	raise(SIGABRT);
 	exit(-127);
 #endif
-	while (1)
+	while (1) {
 		;
+	}
 }

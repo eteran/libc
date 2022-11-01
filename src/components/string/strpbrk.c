@@ -6,15 +6,15 @@
 // Name: strpbrk
 //----------------------------------------------------------------------------*/
 char *strpbrk(const char *s, const char *accept) {
-	const char *ret = 0;
+	char *ret = 0;
 
 	while (*s != '\0') {
 		if (strchr(accept, *s) != 0) {
-			ret = s;
+			ret = (char *)s;
 			break;
 		}
 		++s;
 	}
 
-	return (char *)ret;
+	return ret;
 }

@@ -3,6 +3,7 @@
 #include "test_util.h"
 #include <assert.h>
 #include <limits.h>
+#include <locale.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -101,7 +102,25 @@ static void test_atof(void) {
 	assert(isinf(atof("1.0e+309"))); /* UB: out of range of double */
 }
 
+static void test_mbstowcs(void) {
+	/*    u8"z\u00df\u6c34\U0001F34C" */
+	/* or u8"zß水🍌" */
+	const char input[] = "\x7a\xc3\x9f\xe6\xb0\xb4\xf0\x9f\x8d\x8c";
+	wchar_t output[sizeof(input)] = L"";
+	size_t rc = mbstowcs(output, input, sizeof(output));
+
+	assert(rc == 4);
+	assert(output[0] == 0x7a);
+	assert(output[1] == 0xdf);
+	assert(output[2] == 0x6c34);
+	assert(output[3] == 0x1f34c);
+	assert(output[4] == L'\0');
+}
+
 int main(void) {
+
+	/* TODO support close enough locales, such as "en_US.utf8" */
+	setlocale(LC_ALL, "en_US.UTF-8");
 
 	_Static_assert(IS_CONSTANT(EXIT_FAILURE), "");
 	_Static_assert(IS_CONSTANT(EXIT_SUCCESS), "");
@@ -120,6 +139,7 @@ int main(void) {
 	test_qsort();
 	test_bsearch();
 	test_atof();
+	test_mbstowcs();
 	return 0;
 }
 

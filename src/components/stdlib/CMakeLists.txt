@@ -41,11 +41,12 @@ add_library(c-stdlib STATIC
 )
 
 target_link_libraries(c-stdlib LINK_PUBLIC
-	c-string
-	c-stdio
 	c-ctype
 	c-signal
+	c-stdio
+	c-string
 	c-strings
+	c-wchar
 	libc-headers
 )
 
