@@ -6,17 +6,18 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_clearerr
 //----------------------------------------------------------------------------*/
-void __elibc_clearerr(FILE *stream) {
+int __elibc_clearerr(FILE *stream) {
 	assert(stream);
 	_FDATA(stream)->eof = 0;
 	_FDATA(stream)->err = 0;
+	return 0;
 }
 
 /*------------------------------------------------------------------------------
 // Name: clearerr
 //----------------------------------------------------------------------------*/
 void clearerr(FILE *stream) {
-	__elibc_lock_stream(stream);
-	__elibc_clearerr(stream);
-	__elibc_unlock_stream(stream);
+	int r;
+	__ELIBC_WITH_LOCK(__elibc_clearerr(stream));
+	(void)r;
 }

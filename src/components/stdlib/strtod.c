@@ -48,8 +48,8 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 
 	/*
 	A NAN is "NAN"  (disregarding  case)  optionally  followed  by  '(',  a
-	sequence  of  characters, followed by ')'.  The character string speci-
-	fies in an implementation-dependent way the type of NAN.
+	sequence  of  characters, followed by ')'.  The character string specifies
+	in an implementation-dependent way the type of NAN.
 	*/
 	if (strncasecmp(nptr, "nan", 3) == 0) {
 		nptr += 3;
@@ -62,8 +62,8 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 	}
 
 	/*
-	A decimal number consists of a nonempty sequence of decimal digits pos-
-	sibly containing a radix character  (decimal  point,  locale-dependent,
+	A decimal number consists of a nonempty sequence of decimal digits possibly
+	containing a radix character  (decimal  point,  locale-dependent,
 	usually  '.'),  optionally  followed  by a decimal exponent.  A decimal
 	exponent consists of an 'E' or 'e', followed by  an  optional  plus  or
 	minus  sign,  followed  by  a  nonempty sequence of decimal digits, and

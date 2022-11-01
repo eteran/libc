@@ -30,8 +30,6 @@ static int __elibc_ungetc(int c, FILE *stream) {
 //----------------------------------------------------------------------------*/
 int ungetc(int c, FILE *stream) {
 	int r;
-	__elibc_lock_stream(stream);
-	r = __elibc_ungetc(c, stream);
-	__elibc_unlock_stream(stream);
+	__ELIBC_WITH_LOCK(__elibc_ungetc(c, stream));
 	return r;
 }

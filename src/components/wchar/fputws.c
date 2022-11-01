@@ -13,7 +13,7 @@ static int __elibc_fputws(const wchar_t *ws, FILE *stream) {
 	assert(stream);
 
 	while (*ws != '\0') {
-		if (__elibc_fputc(*ws++, stream, 0x03) == -1) {
+		if (__elibc_fputc(*ws++, stream, 0x03) == EOF) {
 			return EOF;
 		}
 	}
@@ -26,8 +26,6 @@ static int __elibc_fputws(const wchar_t *ws, FILE *stream) {
 //----------------------------------------------------------------------------*/
 int fputws(const wchar_t *ws, FILE *stream) {
 	int r;
-	__elibc_lock_stream(stream);
-	r = __elibc_fputws(ws, stream);
-	__elibc_unlock_stream(stream);
+	__ELIBC_WITH_LOCK(__elibc_fputws(ws, stream));
 	return r;
 }

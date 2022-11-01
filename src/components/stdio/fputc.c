@@ -10,7 +10,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_fputc
 // Desc: writes a single byte into a character stream
-//       returns 0 on success and -1 on error
+//       returns c on success and EOF on error
 //----------------------------------------------------------------------------*/
 int __elibc_fputc(int c, FILE *stream, int orientation) {
 
@@ -42,9 +42,9 @@ int __elibc_fputc(int c, FILE *stream, int orientation) {
 		*_FDATA(stream)->buffer_first++ = (char)ch;
 		if (_FDATA(stream)->buffer_first ==
 		    _FDATA(stream)->buffer_ptr + _FDATA(stream)->buffer_capacity) {
-			r = __elibc_fflush(stream) == 0 ? 0 : -1;
+			r = __elibc_fflush(stream) == 0 ? c : EOF;
 		} else {
-			r = 0;
+			r = c;
 		}
 		break;
 
@@ -52,18 +52,18 @@ int __elibc_fputc(int c, FILE *stream, int orientation) {
 		*_FDATA(stream)->buffer_first++ = (char)ch;
 		if (ch == '\n' || (_FDATA(stream)->buffer_first ==
 		                   _FDATA(stream)->buffer_ptr + _FDATA(stream)->buffer_capacity)) {
-			r = __elibc_fflush(stream) == 0 ? 0 : -1;
+			r = __elibc_fflush(stream) == 0 ? c : EOF;
 		} else {
-			r = 0;
+			r = c;
 		}
 		break;
 
 	case _IONBF:
-		r = (__elibc_sys_write(_ELIBC_FILENO(stream), &ch, 1) == 1) ? 0 : -1;
+		r = (__elibc_sys_write(_ELIBC_FILENO(stream), &ch, 1) == 1) ? c : EOF;
 		break;
 
 	default:
-		r = 0;
+		r = c;
 		break;
 	}
 
@@ -74,10 +74,7 @@ int __elibc_fputc(int c, FILE *stream, int orientation) {
 // Name: fputc
 //----------------------------------------------------------------------------*/
 int fputc(int c, FILE *stream) {
-
 	int r;
-	__elibc_lock_stream(stream);
-	r = (__elibc_fputc(c, stream, 0x02) == 0) ? c : EOF;
-	__elibc_unlock_stream(stream);
+	__ELIBC_WITH_LOCK(__elibc_fputc(c, stream, 0x02));
 	return r;
 }

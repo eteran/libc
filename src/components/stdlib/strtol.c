@@ -108,7 +108,7 @@ long int strtol(const char *nptr, char **endptr, int base) {
 		if (ret > old_ret) {
 
 			/* subtracting a value should NEVER increase the result
-			 * unless an overflow occured!
+			 * unless an overflow occurred!
 			 */
 			err = ERANGE;
 			ret = neg ? LONG_MIN : LONG_MAX;

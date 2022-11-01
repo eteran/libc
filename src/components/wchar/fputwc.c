@@ -9,25 +9,31 @@
 #include <wctype.h>
 
 /*------------------------------------------------------------------------------
-// Name: fputwc
+// Name: __elibc_fputwc_unlocked
 //----------------------------------------------------------------------------*/
-wint_t fputwc(wchar_t wc, FILE *stream) {
-
+wint_t __elibc_fputwc_unlocked(wchar_t wc, FILE *stream) {
 	char buf[MB_LEN_MAX];
 	wint_t r = (wint_t)wc;
 	const int n = wctomb(buf, wc);
 
 	if (n > 0) {
 		int i;
-		__elibc_lock_stream(stream);
 		for (i = 0; i < n; ++i) {
-			if (__elibc_fputc(wc, stream, 0x03) == -1) {
+			if (__elibc_fputc(wc, stream, 0x03) == EOF) {
 				r = WEOF;
 				break;
 			}
 		}
-		__elibc_unlock_stream(stream);
 	}
 
+	return r;
+}
+
+/*------------------------------------------------------------------------------
+// Name: fputwc
+//----------------------------------------------------------------------------*/
+wint_t fputwc(wchar_t wc, FILE *stream) {
+	wint_t r;
+	__ELIBC_WITH_LOCK(__elibc_fputwc_unlocked(wc, stream));
 	return r;
 }

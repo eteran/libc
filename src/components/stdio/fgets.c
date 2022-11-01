@@ -40,8 +40,6 @@ static char *__elibc_fgets(char *_RESTRICT s, int size, FILE *_RESTRICT stream) 
 //----------------------------------------------------------------------------*/
 char *fgets(char *_RESTRICT s, int size, FILE *_RESTRICT stream) {
 	char *r;
-	__elibc_lock_stream(stream);
-	r = __elibc_fgets(s, size, stream);
-	__elibc_unlock_stream(stream);
+	__ELIBC_WITH_LOCK(__elibc_fgets(s, size, stream));
 	return r;
 }

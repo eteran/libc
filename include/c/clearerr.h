@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-void __elibc_clearerr(FILE *stream) _NOEXCEPT;
+int __elibc_clearerr(FILE *stream) _NOEXCEPT;
 void clearerr(FILE *stream) _NOEXCEPT;
 
 _LIBC_END

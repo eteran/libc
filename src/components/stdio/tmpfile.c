@@ -17,7 +17,7 @@ FILE *tmpfile(void) {
 		file = fopen(name, "w+b");
 
 		if (file) {
-			/* set the file to autodelete on close */
+			/* set the file to auto-delete on close */
 			_FDATA(file)->flags |= _ELIBC_FILE_AUTO_CLOSE;
 		}
 	}

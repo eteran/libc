@@ -32,10 +32,7 @@ int __elibc_fseek(FILE *stream, long offset, int whence) {
 // Name: fseek
 //----------------------------------------------------------------------------*/
 int fseek(FILE *stream, long offset, int whence) {
-
 	int r;
-	__elibc_lock_stream(stream);
-	r = __elibc_fseek(stream, offset, whence);
-	__elibc_unlock_stream(stream);
+	__ELIBC_WITH_LOCK(__elibc_fseek(stream, offset, whence));
 	return r;
 }

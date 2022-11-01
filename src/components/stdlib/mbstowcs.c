@@ -1,11 +1,12 @@
 
 #define _ELIBC_SOURCE
 #include <assert.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <wchar.h>
 
 /*------------------------------------------------------------------------------
-// Name:
+// Name: mbstowcs
 //----------------------------------------------------------------------------*/
 size_t mbstowcs(wchar_t *dest, const char *src, size_t n) {
 
@@ -13,19 +14,38 @@ size_t mbstowcs(wchar_t *dest, const char *src, size_t n) {
 
 	const char *first = src;
 	const char *last = src + n;
-	wchar_t *out_ptr = dest;
-	size_t rc;
+	size_t count = 0;
 
-	assert(src);
+	if (dest) {
+		while (1) {
+			const size_t rc = mbrtowc(dest, first, (size_t)(last - first), &state);
+			if (rc == (size_t)-1 || rc == (size_t)-2) {
+				return (size_t)-1;
+			}
 
-	while ((rc = mbrtowc(out_ptr, first, (size_t)(last - first), &state)) > 0) {
-		first += rc;
-		++out_ptr;
+			if (rc == 0) {
+				break;
+			}
+
+			first += rc;
+			++dest;
+			++count;
+		}
+	} else {
+		while (1) {
+			const size_t rc = mbrtowc(0, first, (size_t)(last - first), &state);
+			if (rc == (size_t)-1 || rc == (size_t)-2) {
+				return (size_t)-1;
+			}
+
+			if (rc == 0) {
+				break;
+			}
+
+			first += rc;
+			++count;
+		}
 	}
 
-	if (rc == (size_t)-1) {
-		return rc;
-	}
-
-	return (size_t)(out_ptr - dest);
+	return count;
 }

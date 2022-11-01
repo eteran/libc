@@ -34,9 +34,7 @@ static FILE *__elibc_freopen(const char *path, const char *mode, FILE *stream) {
 // Name: freopen
 //----------------------------------------------------------------------------*/
 FILE *freopen(const char *path, const char *mode, FILE *stream) {
-	FILE *f;
-	__elibc_lock_stream(stream);
-	f = __elibc_freopen(path, mode, stream);
-	__elibc_unlock_stream(stream);
-	return f;
+	FILE *r;
+	__ELIBC_WITH_LOCK(__elibc_freopen(path, mode, stream));
+	return r;
 }

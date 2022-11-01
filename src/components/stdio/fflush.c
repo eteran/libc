@@ -45,23 +45,23 @@ int __elibc_fflush(FILE *stream) {
 // Name: fflush
 //----------------------------------------------------------------------------*/
 int fflush(FILE *stream) {
-	int r = 0;
+
 	if (stream) {
-		__elibc_lock_stream(stream);
-		r = __elibc_fflush(stream);
-		__elibc_unlock_stream(stream);
+		int r;
+		__ELIBC_WITH_LOCK(__elibc_fflush(stream));
+		return r;
 	} else {
 		/* flush all open output streams */
 		FILE *p;
+
 		/* TODO(eteran): lock the list */
 		for (p = __elibc_root_file_struct; p; p = p->next) {
-			__elibc_lock_stream(p);
-			r = __elibc_fflush(p);
-			__elibc_unlock_stream(p);
+			int r;
+			__ELIBC_WITH_LOCK(__elibc_fflush(p));
 			if (r != 0) {
 				return r;
 			}
 		}
+		return 0;
 	}
-	return r;
 }

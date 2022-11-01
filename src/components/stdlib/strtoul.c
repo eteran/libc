@@ -105,7 +105,7 @@ unsigned long int strtoul(const char *nptr, char **endptr, int base) {
 		if (ret < old_ret) {
 
 			/* adding a value should NEVER decrease the result
-			 * unless an overflow occured!
+			 * unless an overflow occurred!
 			 */
 			err = ERANGE;
 			ret = ULONG_MAX;

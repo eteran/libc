@@ -101,4 +101,11 @@ void __elibc_unlock_stream(FILE *stream);
 FILE *__elibc_allocate_file(void);
 void __elibc_free_file(FILE *stream);
 
+#define __ELIBC_WITH_LOCK(call)                                                                    \
+	do {                                                                                           \
+		__elibc_lock_stream(stream);                                                               \
+		r = call;                                                                                  \
+		__elibc_unlock_stream(stream);                                                             \
+	} while (0)
+
 #endif

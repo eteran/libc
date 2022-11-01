@@ -12,10 +12,14 @@ void *realloc(void *ptr, size_t size) {
 		/* a call with size == 0 and ptr != NULL is same as free */
 		free(ptr);
 		return 0;
-	} else if (!ptr) {
+	}
+
+	if (!ptr) {
 		/* if ptr is NULL, the call is equivalent to malloc(size) */
 		return malloc(size);
-	} else {
+	}
+
+	{
 		void *ret = ptr;
 		const size_t orig_size = __elibc_size(ptr);
 

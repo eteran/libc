@@ -147,16 +147,14 @@ static wint_t __elibc_fgetwc_unlocked(FILE *stream, char *buf) {
 //----------------------------------------------------------------------------*/
 wint_t fgetwc(FILE *stream) {
 
-	wint_t n;
+	wint_t r;
 	char buf[MB_LEN_MAX];
 	wchar_t wc;
 
-	__elibc_lock_stream(stream);
-	n = __elibc_fgetwc_unlocked(stream, buf);
-	__elibc_unlock_stream(stream);
+	__ELIBC_WITH_LOCK(__elibc_fgetwc_unlocked(stream, buf));
 
-	if (n > 0) {
-		if ((wint_t)mbtowc(&wc, buf, n) == n) {
+	if (r > 0) {
+		if ((wint_t)mbtowc(&wc, buf, r) == r) {
 			return (wint_t)wc;
 		}
 	}

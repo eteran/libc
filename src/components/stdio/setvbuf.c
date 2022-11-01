@@ -53,8 +53,6 @@ static int __elibc_setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode
 //----------------------------------------------------------------------------*/
 int setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode, size_t size) {
 	int r;
-	__elibc_lock_stream(stream);
-	r = __elibc_setvbuf(stream, buf, mode, size);
-	__elibc_unlock_stream(stream);
+	__ELIBC_WITH_LOCK(__elibc_setvbuf(stream, buf, mode, size));
 	return r;
 }

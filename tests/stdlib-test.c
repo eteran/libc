@@ -115,6 +115,8 @@ static void test_mbstowcs(void) {
 	assert(output[2] == 0x6c34);
 	assert(output[3] == 0x1f34c);
 	assert(output[4] == L'\0');
+
+	assert(mbstowcs(NULL, input, 1024) == 4);
 }
 
 int main(void) {
@@ -135,11 +137,12 @@ int main(void) {
 	_Static_assert(IS_SAME_TYPE(NULL, void *), "");
 	_Static_assert(IS_SAME_TYPE(MB_CUR_MAX, size_t), "");
 
+	test_mbstowcs();
 	test_abs();
 	test_qsort();
 	test_bsearch();
 	test_atof();
-	test_mbstowcs();
+
 	return 0;
 }
 
