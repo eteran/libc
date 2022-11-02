@@ -119,6 +119,62 @@ static void test_mbstowcs(void) {
 	assert(mbstowcs(NULL, input, 1024) == 4);
 }
 
+static void reverse(char *first, char *last) {
+	for (--last; first < last; ++first, --last) {
+		char c = *last;
+		*last = *first;
+		*first = c;
+	}
+}
+
+/* demo only: does not check for buffer overflow */
+static char *itoa(int n, int base, char *buf) {
+
+	div_t dv;
+	char *p = buf;
+
+	assert(2 <= base && base <= 16);
+	dv.quot = n;
+
+	do {
+		dv = div(dv.quot, base);
+		*p++ = "0123456789abcdef"[abs(dv.rem)];
+	} while (dv.quot);
+
+	if (n < 0) {
+		*p++ = '-';
+	}
+
+	*p = '\0';
+	reverse(buf, p);
+	return buf;
+}
+
+static void test_div(void) {
+	char buf[100];
+
+	itoa(0, 2, buf);
+	assert(strcmp(buf, "0") == 0);
+
+	itoa(007, 3, buf);
+	assert(strcmp(buf, "21") == 0);
+
+	itoa(12346, 10, buf);
+	assert(strcmp(buf, "12346") == 0);
+
+	itoa(-12346, 10, buf);
+	assert(strcmp(buf, "-12346") == 0);
+
+	itoa(-42, 2, buf);
+	assert(strcmp(buf, "-101010") == 0);
+
+	itoa(INT_MAX, 16, buf);
+	assert(strcmp(buf, "7fffffff") == 0);
+
+	itoa(INT_MIN, 16, buf);
+	assert(strcmp(buf, "-80000000") == 0);
+}
+
 int main(void) {
 
 	/* TODO support close enough locales, such as "en_US.utf8" */
@@ -142,6 +198,7 @@ int main(void) {
 	test_qsort();
 	test_bsearch();
 	test_atof();
+	test_div();
 
 	return 0;
 }
@@ -152,7 +209,6 @@ int main(void) {
 #include "c/atoi.h"
 #include "c/atol.h"
 #include "c/calloc.h"
-#include "c/div.h"
 #include "c/exit.h"
 #include "c/free.h"
 #include "c/getenv.h"

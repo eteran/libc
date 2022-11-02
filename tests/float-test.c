@@ -37,7 +37,6 @@ int main(void) {
 	_Static_assert(IS_CONSTANT(LDBL_MIN_10_EXP), "");
 	_Static_assert(IS_CONSTANT(LDBL_MIN_EXP), "");
 
-	/* C99 */
 #ifdef _HAS_C99
 	_Static_assert(IS_CONSTANT(DECIMAL_DIG), "");
 	_Static_assert(IS_CONSTANT(FLT_EVAL_METHOD), "");

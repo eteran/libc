@@ -1,5 +1,5 @@
 #undef NDEBUG
-#define _ELIBC_SOURCE /* isnan only exists in C99+ or with _ELIBC_SOURCE defined) */
+#define _ELIBC_SOURCE
 #include <assert.h>
 #include <errno.h>
 #include <math.h>

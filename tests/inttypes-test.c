@@ -3,6 +3,7 @@
 #include "test_util.h"
 #include <assert.h>
 #include <inttypes.h>
+#include <limits.h>
 
 void test_maxabs(void) {
 	uintmax_t i = UINTMAX_MAX;
@@ -10,6 +11,7 @@ void test_maxabs(void) {
 
 	assert(imaxabs(-100) == 100);
 	assert(imaxabs(100) == 100);
+	assert(imaxabs(LLONG_MIN + 2) == 9223372036854775806);
 }
 
 int main(void) {

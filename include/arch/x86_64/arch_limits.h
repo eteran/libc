@@ -33,7 +33,7 @@
 #define LONG_MIN  (-LONG_MAX - 1L)
 
 /* based on the assumption that mb == utf-8.
- * this really should be 4 since unicode is artificially restrited
+ * this really should be 4 since unicode is artificially restricted
  * but it hypothetically can support 6, so ... doesn't hurt to plan
  * ahead
  */
