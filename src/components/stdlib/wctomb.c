@@ -10,10 +10,10 @@ int wctomb(char *s, wchar_t wc) {
 
 	if (!s) {
 		/* does the encoding have a non-trivial shift state?
-		 * we use only UTF-8, so the answer is yes, it is in fact stateful
-		 * TODO(eteran): is this dependant on the locale?
+		 * in UTF-8, conversion from wchar_t to mb can be done all at once since
+		 * s is guaranteed to have enough space by the standard
 		 */
-		return 1;
+		return 0;
 	}
 
 	return (int)wcrtomb(s, wc, 0);

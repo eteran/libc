@@ -87,8 +87,6 @@ static void test_bsearch(void) {
 }
 
 static void test_atof(void) {
-	/* TODO(eteran): some sort of epsilon comparison */
-
 	assert(float_compare(atof("  -0.0000000123junk"), -1.23e-08));
 	assert(float_compare(atof("0.012"), 0.012));
 	assert(float_compare(atof("15e16"), 1.5e+17));
@@ -175,6 +173,39 @@ static void test_div(void) {
 	assert(strcmp(buf, "-80000000") == 0);
 }
 
+void test_atol(void) {
+	assert(atol("1234") == 1234);
+	assert(atol("1234junk") == 1234);
+	assert(atol("1234") != 123);
+}
+
+void test_atoi(void) {
+	assert(atoi("1234") == 1234);
+	assert(atoi("1234junk") == 1234);
+	assert(atoi("1234") != 123);
+}
+
+void test_wctomb(void) {
+	char mb[MB_LEN_MAX];
+	int n;
+
+	n = wctomb(mb, L'A');
+	assert(n == 1);
+	assert(memcmp(mb, "\x41", (size_t)n) == 0);
+
+	n = wctomb(mb, 0xdf);
+	assert(n == 2);
+	assert(memcmp(mb, "\xc3\x9f", (size_t)n) == 0);
+
+	n = wctomb(mb, 0x1d10b);
+	assert(n == 4);
+	assert(memcmp(mb, "\xf0\x9d\x84\x8b", (size_t)n) == 0);
+
+	n = wctomb(mb, L'\0');
+	assert(n == 1);
+	assert(memcmp(mb, "\x00", (size_t)n) == 0);
+}
+
 int main(void) {
 
 	/* TODO support close enough locales, such as "en_US.utf8" */
@@ -192,6 +223,7 @@ int main(void) {
 
 	_Static_assert(IS_SAME_TYPE(NULL, void *), "");
 	_Static_assert(IS_SAME_TYPE(MB_CUR_MAX, size_t), "");
+	assert(MB_CUR_MAX == 4);
 
 	test_mbstowcs();
 	test_abs();
@@ -199,6 +231,8 @@ int main(void) {
 	test_bsearch();
 	test_atof();
 	test_div();
+	test_atol();
+	test_atoi();
 
 	return 0;
 }
@@ -206,8 +240,6 @@ int main(void) {
 /*
 #include "c/abort.h"
 #include "c/atexit.h"
-#include "c/atoi.h"
-#include "c/atol.h"
 #include "c/calloc.h"
 #include "c/exit.h"
 #include "c/free.h"
@@ -236,9 +268,5 @@ int main(void) {
 #include "c/strtold.h"
 #include "c/strtoll.h"
 #include "c/strtoull.h"
-#endif
-
-#if defined(_HAS_C99) || defined(_HAS_CXX89) || defined(_ELIBC_SOURCE)
-#include "c/wctomb.h"
 #endif
 */

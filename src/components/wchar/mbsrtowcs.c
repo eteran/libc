@@ -39,11 +39,13 @@ size_t mbsrtowcs(wchar_t *dest, const char **src, size_t len, mbstate_t *ps) {
   that no length limit exists.
 
   In both of the above cases, if ps is NULL, a static anonymous state known only
-  to the  mbsrtowcs()  func- tion is used instead.
+  to the  mbsrtowcs()  function is used instead.
 
   The programmer must ensure that there is room for at least len wide characters
   at dest.
 
   */
+
+ /* TODO(eteran): implement this */
 	return (size_t)-1;
 }

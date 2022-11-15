@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 add_library(c-stdlib STATIC
-	stdlib.c
+	_Exit.c
 	abort.c
 	abs.c
 	atexit.c
@@ -13,7 +13,6 @@ add_library(c-stdlib STATIC
 	calloc.c
 	div.c
 	exit.c
-	_Exit.c
 	free.c
 	getenv.c
 	labs.c
@@ -28,6 +27,7 @@ add_library(c-stdlib STATIC
 	rand.c
 	realloc.c
 	srand.c
+	stdlib.c
 	strtod.c
 	strtof.c
 	strtol.c

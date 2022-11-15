@@ -9,5 +9,7 @@ unsigned long int wcstoul(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT end
 	_UNUSED(nptr);
 	_UNUSED(endptr);
 	_UNUSED(base);
+
+	/* TODO(eteran): implement this */
 	return 0;
 }

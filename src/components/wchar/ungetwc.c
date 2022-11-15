@@ -9,5 +9,7 @@
 wint_t ungetwc(wint_t wc, FILE *stream) {
 	_UNUSED(wc);
 	_UNUSED(stream);
+
+	/* TODO(eteran): implement this */
 	return WEOF;
 }

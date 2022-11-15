@@ -197,6 +197,10 @@ static void test_exp2(void) {
 #endif
 
 int main(void) {
+	printf("long double size: %lu\n", sizeof(long double));
+	printf("double size: %lu\n", sizeof(double));
+	printf("float size: %lu\n", sizeof(float));
+
 	test_ceil();
 	test_copysign();
 	test_cos();
@@ -210,10 +214,6 @@ int main(void) {
 	test_sin();
 	test_tan();
 	test_exp2();
-
-	printf("long double size: %lu\n", sizeof(long double));
-	printf("double size: %lu\n", sizeof(double));
-	printf("float size: %lu\n", sizeof(float));
 
 	return 0;
 }

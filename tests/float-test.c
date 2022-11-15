@@ -43,7 +43,6 @@ int main(void) {
 #endif
 
 #ifdef _HAS_C11
-#if 0 /* TODO(eteran): implement these */
 	_Static_assert(IS_CONSTANT(FLT_HAS_SUBNORM), "");
 	_Static_assert(IS_CONSTANT(DBL_HAS_SUBNORM), "");
 	_Static_assert(IS_CONSTANT(LDBL_HAS_SUBNORM), "");
@@ -53,7 +52,6 @@ int main(void) {
 	_Static_assert(IS_CONSTANT(FLT_TRUE_MIN), "");
 	_Static_assert(IS_CONSTANT(DBL_TRUE_MIN), "");
 	_Static_assert(IS_CONSTANT(LDBL_TRUE_MIN), "");
-#endif
 #endif
 	return 0;
 }
