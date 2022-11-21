@@ -12,7 +12,7 @@ size_t wcscspn(const wchar_t *s, const wchar_t *reject) {
 	assert(s);
 	assert(reject);
 
-	while (*s_ptr != '\0') {
+	while (*s_ptr != L'\0') {
 		if (wcschr(reject, *s_ptr) != 0) {
 			break;
 		}

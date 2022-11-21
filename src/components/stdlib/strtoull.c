@@ -76,7 +76,7 @@ unsigned long long int strtoull(const char *nptr, char **endptr, int base) {
 
 		const T old_ret = ret;
 		const char c = *nptr;
-		char digit;
+		int digit;
 
 		if (c >= 'A' && c <= 'Z') {
 			if (((c - 'A') + 10) < base) {

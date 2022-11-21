@@ -13,5 +13,7 @@ int vfwprintf(FILE *stream, const wchar_t *format, va_list args) {
 	_UNUSED(stream);
 	_UNUSED(format);
 	_UNUSED(args);
+
+	/* TODO(eteran): implement this */
 	return -1;
 }

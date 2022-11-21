@@ -65,19 +65,19 @@ size_t wcsftime(wchar_t *s, size_t max, const wchar_t *format, const struct tm *
 
 			case L'r':
 				DO_I(s);
-				*s++ = '/';
+				*s++ = L'/';
 				DO_M(s);
-				*s++ = '/';
+				*s++ = L'/';
 				DO_S(s);
-				*s++ = ' ';
+				*s++ = L' ';
 				DO_p(s);
 				break;
 
 			case L'D':
 				DO_m(s);
-				*s++ = '/';
+				*s++ = L'/';
 				DO_d(s);
-				*s++ = '/';
+				*s++ = L'/';
 				DO_y(s);
 				break;
 
@@ -87,9 +87,9 @@ size_t wcsftime(wchar_t *s, size_t max, const wchar_t *format, const struct tm *
 
 			case L'F':
 				DO_Y(s);
-				*s++ = '-';
+				*s++ = L'-';
 				DO_M(s);
-				*s++ = '-';
+				*s++ = L'-';
 				DO_d(s);
 				break;
 
@@ -110,7 +110,7 @@ size_t wcsftime(wchar_t *s, size_t max, const wchar_t *format, const struct tm *
 				break;
 			case L'R':
 				DO_H(s);
-				*s++ = ':';
+				*s++ = L':';
 				DO_M(s);
 				break;
 
@@ -124,9 +124,9 @@ size_t wcsftime(wchar_t *s, size_t max, const wchar_t *format, const struct tm *
 
 			case L'T':
 				DO_H(s);
-				*s++ = ':';
+				*s++ = L':';
 				DO_M(s);
-				*s++ = ':';
+				*s++ = L':';
 				DO_S(s);
 				break;
 
@@ -135,7 +135,7 @@ size_t wcsftime(wchar_t *s, size_t max, const wchar_t *format, const struct tm *
 				break;
 
 			case L'%':
-				*s++ = '%';
+				*s++ = L'%';
 				break;
 			}
 		}

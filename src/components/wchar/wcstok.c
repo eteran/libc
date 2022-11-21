@@ -36,7 +36,7 @@ wchar_t *wcstok_r(wchar_t *_RESTRICT s, const wchar_t *_RESTRICT delim, wchar_t 
 			/* if it did not end at the end of the string, replace
 			   that delimiter with a NULL terminator */
 			if (end) {
-				*end++ = '\0';
+				*end++ = L'\0';
 			}
 			*ptrptr = end;
 		}
