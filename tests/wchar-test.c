@@ -126,7 +126,7 @@ static void test_mbrtowc(void) {
 
 int main(void) {
 
-	/* TODO support close enough locales, such as "en_US.utf8" */
+	/* TODO(eteran): support close enough locales, such as "en_US.utf8" */
 	setlocale(LC_ALL, "en_US.UTF-8");
 
 	test_mbrtowc();
