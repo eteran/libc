@@ -395,7 +395,6 @@ int main(void) {
 #include "c/exit.h"
 #include "c/free.h"
 #include "c/getenv.h"
-#include "c/labs.h"
 #include "c/ldiv.h"
 #include "c/malloc.h"
 #include "c/mbstowcs.h"
@@ -410,7 +409,6 @@ int main(void) {
 #if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(_ELIBC_SOURCE)
 #include "c/_Exit.h"
 #include "c/atoll.h"
-#include "c/llabs.h"
 #include "c/lldiv.h"
 #include "c/strtof.h"
 #include "c/strtold.h"
