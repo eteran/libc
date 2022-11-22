@@ -186,6 +186,12 @@ void test_atoi(void) {
 	assert(atoi("1234") != 123);
 }
 
+void test_atoll(void) {
+	assert(atoll("1234") == 1234);
+	assert(atoll("1234junk") == 1234);
+	assert(atoll("1234") != 123);
+}
+
 void test_wctomb(void) {
 	char mb[MB_LEN_MAX];
 	int n;
@@ -340,7 +346,7 @@ void test_mblen(void) {
 	mblen(NULL, 0);
 
 	while (ptr < end) {
-		int next = mblen(ptr, (size_t)(end - ptr));
+		const int next = mblen(ptr, (size_t)(end - ptr));
 		if (next == -1) {
 			assert(0 && "unexpected failure in mblen");
 			break;
@@ -351,6 +357,18 @@ void test_mblen(void) {
 
 	assert(result == 4);
 	assert(strlen(str) == 10);
+}
+
+void test_wcstombs(void) {
+	/* 4 wide characters */
+	const wchar_t src[] = {0x7a, 0xdf, 0x6c34, 0x1f34c, L'\0'};
+
+	/* they occupy 10 bytes in UTF-8 */
+	char dst[11];
+
+	const size_t result = wcstombs(dst, src, sizeof dst);
+	assert(result == 10);
+	assert(memcmp(dst, "\x7A\xC3\x9F\xE6\xB0\xB4\xF0\x9F\x8D\x8C", result) == 0);
 }
 
 int main(void) {
@@ -376,15 +394,18 @@ int main(void) {
 	test_atof();
 	test_atoi();
 	test_atol();
+	test_atoll();
 	test_bsearch();
 	test_div();
+	test_mblen();
 	test_mbstowcs();
 	test_qsort();
 	test_strtol();
 	test_strtoll();
 	test_strtoul();
 	test_strtoull();
-	test_mblen();
+	test_wcstombs();
+
 	return 0;
 }
 
@@ -404,14 +425,11 @@ int main(void) {
 #include "c/srand.h"
 #include "c/strtod.h"
 #include "c/system.h"
-#include "c/wcstombs.h"
 
 #if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(_ELIBC_SOURCE)
 #include "c/_Exit.h"
-#include "c/atoll.h"
 #include "c/lldiv.h"
 #include "c/strtof.h"
 #include "c/strtold.h"
-
 #endif
 */

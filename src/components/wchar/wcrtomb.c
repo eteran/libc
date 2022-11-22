@@ -13,7 +13,7 @@ size_t wcrtomb(char *s, wchar_t wc, mbstate_t *ps) {
 
 	_UNUSED(ps);
 
-	_Static_assert(sizeof(unsigned long) >= sizeof(wchar_t), "");
+	_Static_assert(sizeof(unsigned long) >= sizeof(wchar_t), "unsupported wchar_t size");
 
 	assert(s);
 

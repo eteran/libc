@@ -18,33 +18,37 @@ size_t wcstombs(char *dest, const wchar_t *src, size_t n) {
 			if ((size_t)(last - first) < MB_CUR_MAX) {
 				break;
 			} else {
-				const size_t rc = wcrtomb(dest, *first, &state);
+
+				const wchar_t ch = *first;
+				const size_t rc = wcrtomb(dest, ch, &state);
+
 				if (rc == (size_t)-1) {
 					return (size_t)-1;
 				}
 
-				if (rc == 0) {
+				if (ch == L'\0') {
 					break;
 				}
 
 				dest += rc;
+				count += rc;
 				++first;
-				++count;
 			}
 		}
 	} else {
 		while (1) {
-			const size_t rc = wcrtomb(0, *first, &state);
+			const wchar_t ch = *first;
+			const size_t rc = wcrtomb(0, ch, &state);
 			if (rc == (size_t)-1) {
 				return (size_t)-1;
 			}
 
-			if (rc == 0) {
+			if (ch == L'\0') {
 				break;
 			}
 
+			count += rc;
 			++first;
-			++count;
 		}
 	}
 
