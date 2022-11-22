@@ -143,6 +143,7 @@ long int wcstol(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr, int b
 		return neg ? ret : -ret;
 	} else {
 		errno = err;
-		return neg ? LONG_MIN : LONG_MAX;;
+		return neg ? LONG_MIN : LONG_MAX;
+		;
 	}
 }

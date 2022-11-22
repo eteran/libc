@@ -1,5 +1,6 @@
 #undef NDEBUG
 #define _ELIBC_SOURCE
+#include "test_util.h"
 #include <assert.h>
 #include <errno.h>
 #include <math.h>
