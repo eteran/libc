@@ -67,7 +67,7 @@ static size_t __elibc_mbrtowc_utf8(wchar_t *_RESTRICT pwc, const char *_RESTRICT
                                    mbstate_t *ps) {
 	/* xx_YY.UTF-8 version */
 
-	static mbstate_t internal_ps = {0, 0, 0};
+	static mbstate_t internal_ps;
 
 	mbstate_t *const state = ps ? ps : &internal_ps;
 

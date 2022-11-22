@@ -108,7 +108,6 @@ unsigned long long int strtoull(const char *nptr, char **endptr, int base) {
 			 * unless an overflow occurred!
 			 */
 			err = ERANGE;
-			ret = ULLONG_MAX;
 		}
 		++nptr;
 	}
@@ -142,6 +141,6 @@ unsigned long long int strtoull(const char *nptr, char **endptr, int base) {
 		return neg ? -ret : ret;
 	} else {
 		errno = err;
-		return ret;
+		return ULLONG_MAX;
 	}
 }

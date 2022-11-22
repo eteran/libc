@@ -65,6 +65,7 @@ add_library(c-wchar STATIC
 target_link_libraries(c-wchar LINK_PUBLIC
 	c-stdio
 	c-stdlib
+	c-wctype
 	libc-headers
 )
 

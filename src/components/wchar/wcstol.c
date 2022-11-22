@@ -112,7 +112,6 @@ long int wcstol(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr, int b
 			 * unless an overflow occurred!
 			 */
 			err = ERANGE;
-			ret = neg ? LONG_MIN : LONG_MAX;
 		}
 		++nptr;
 	}
@@ -138,13 +137,12 @@ long int wcstol(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr, int b
 
 	if (!err && ret == LONG_MIN && !neg) {
 		err = ERANGE;
-		ret = neg ? LONG_MIN : LONG_MAX;
 	}
 
 	if (!err) {
 		return neg ? ret : -ret;
 	} else {
 		errno = err;
-		return ret;
+		return neg ? LONG_MIN : LONG_MAX;;
 	}
 }

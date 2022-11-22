@@ -1,7 +1,10 @@
 #undef NDEBUG
 #define _ELIBC_SOURCE
 #include <assert.h>
+#include <errno.h>
+#include <limits.h>
 #include <locale.h>
+#include <stdio.h>
 #include <string.h>
 #include <wchar.h>
 
@@ -124,6 +127,128 @@ static void test_mbrtowc(void) {
 	assert(output[4] == L'\0');
 }
 
+void test_wcstol(void) {
+
+	const wchar_t *p = L"10 200000000000000000000000000000 30 -40";
+	wchar_t *end;
+	long i;
+
+	errno = 0;
+	i = wcstol(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 10);
+	p = end;
+
+	errno = 0;
+	i = wcstol(p, &end, 10);
+	assert(errno == ERANGE);
+	assert(i == LONG_MAX);
+	p = end;
+
+	errno = 0;
+	i = wcstol(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 30);
+	p = end;
+
+	errno = 0;
+	i = wcstol(p, &end, 10);
+	assert(errno == 0);
+	assert(i == -40);
+	p = end;
+}
+
+void test_wcstoll(void) {
+
+	const wchar_t *p = L"10 200000000000000000000000000000 30 -40";
+	wchar_t *end;
+	long long i;
+
+	errno = 0;
+	i = wcstoll(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 10);
+	p = end;
+
+	errno = 0;
+	i = wcstoll(p, &end, 10);
+	assert(errno == ERANGE);
+	assert(i == LLONG_MAX);
+	p = end;
+
+	errno = 0;
+	i = wcstoll(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 30);
+	p = end;
+
+	errno = 0;
+	i = wcstoll(p, &end, 10);
+	assert(errno == 0);
+	assert(i == -40);
+	p = end;
+}
+
+void test_wcstoul(void) {
+	const wchar_t *p = L"10 200000000000000000000000000000 30 40";
+	wchar_t *end;
+	unsigned long i;
+
+	errno = 0;
+	i = wcstoul(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 10);
+	p = end;
+
+	errno = 0;
+	i = wcstoul(p, &end, 10);
+	assert(errno == ERANGE);
+	assert(i == ULONG_MAX);
+	p = end;
+
+	errno = 0;
+	i = wcstoul(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 30);
+	p = end;
+
+	errno = 0;
+	i = wcstoul(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 40);
+	p = end;
+}
+
+void test_wcstoull(void) {
+	const wchar_t *p = L"10 200000000000000000000000000000 30 40";
+	wchar_t *end;
+	unsigned long i;
+
+	errno = 0;
+	i = wcstoull(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 10);
+	p = end;
+
+	errno = 0;
+	i = wcstoull(p, &end, 10);
+	assert(errno == ERANGE);
+	assert(i == ULLONG_MAX);
+	p = end;
+
+	errno = 0;
+	i = wcstoull(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 30);
+	p = end;
+
+	errno = 0;
+	i = wcstoull(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 40);
+	p = end;
+}
+
 int main(void) {
 
 	/* TODO(eteran): support close enough locales, such as "en_US.utf8" */
@@ -134,6 +259,10 @@ int main(void) {
 	test_utf8_codepoints();
 	test_utf8_empty();
 	test_utf8_null();
+	test_wcstol();
+	test_wcstoll();
+	test_wcstoul();
+	test_wcstoull();
 
 	return 0;
 }

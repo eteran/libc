@@ -109,7 +109,6 @@ unsigned long long wcstoull(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT e
 			 * unless an overflow occurred!
 			 */
 			err = ERANGE;
-			ret = ULLONG_MAX;
 		}
 		++nptr;
 	}
@@ -143,6 +142,6 @@ unsigned long long wcstoull(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT e
 		return neg ? -ret : ret;
 	} else {
 		errno = err;
-		return ret;
+		return ULLONG_MAX;
 	}
 }

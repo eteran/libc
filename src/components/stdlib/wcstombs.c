@@ -7,7 +7,7 @@
 // Name:
 //----------------------------------------------------------------------------*/
 size_t wcstombs(char *dest, const wchar_t *src, size_t n) {
-	static _Thread_local mbstate_t state = {0, 0, 0};
+	static _Thread_local mbstate_t state;
 
 	const wchar_t *first = src;
 	const wchar_t *last = src + n;

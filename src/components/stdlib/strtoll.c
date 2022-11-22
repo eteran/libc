@@ -111,7 +111,6 @@ long long int strtoll(const char *nptr, char **endptr, int base) {
 			 * unless an overflow occurred!
 			 */
 			err = ERANGE;
-			ret = neg ? LLONG_MIN : LLONG_MAX;
 		}
 		++nptr;
 	}
@@ -137,13 +136,12 @@ long long int strtoll(const char *nptr, char **endptr, int base) {
 
 	if (!err && ret == LLONG_MIN && !neg) {
 		err = ERANGE;
-		ret = neg ? LLONG_MIN : LLONG_MAX;
 	}
 
 	if (!err) {
 		return neg ? ret : -ret;
 	} else {
 		errno = err;
-		return ret;
+		return neg ? LLONG_MIN : LLONG_MAX;
 	}
 }

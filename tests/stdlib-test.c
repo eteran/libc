@@ -2,6 +2,7 @@
 #define _ELIBC_SOURCE
 #include "test_util.h"
 #include <assert.h>
+#include <errno.h>
 #include <limits.h>
 #include <locale.h>
 #include <math.h>
@@ -206,6 +207,152 @@ void test_wctomb(void) {
 	assert(memcmp(mb, "\x00", (size_t)n) == 0);
 }
 
+void test_strtol(void) {
+
+	const char *p = "10 200000000000000000000000000000 30 -40";
+	char *end;
+	long i;
+
+	errno = 0;
+	i = strtol(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 10);
+	p = end;
+
+	errno = 0;
+	i = strtol(p, &end, 10);
+	assert(errno == ERANGE);
+	assert(i == LONG_MAX);
+	p = end;
+
+	errno = 0;
+	i = strtol(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 30);
+	p = end;
+
+	errno = 0;
+	i = strtol(p, &end, 10);
+	assert(errno == 0);
+	assert(i == -40);
+	p = end;
+}
+
+void test_strtoll(void) {
+
+	const char *p = "10 200000000000000000000000000000 30 -40";
+	char *end;
+	long long i;
+
+	errno = 0;
+	i = strtoll(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 10);
+	p = end;
+
+	errno = 0;
+	i = strtoll(p, &end, 10);
+	assert(errno == ERANGE);
+	assert(i == LLONG_MAX);
+	p = end;
+
+	errno = 0;
+	i = strtoll(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 30);
+	p = end;
+
+	errno = 0;
+	i = strtoll(p, &end, 10);
+	assert(errno == 0);
+	assert(i == -40);
+	p = end;
+}
+
+void test_strtoul(void) {
+	const char *p = "10 200000000000000000000000000000 30 40";
+	char *end;
+	unsigned long i;
+
+	errno = 0;
+	i = strtoul(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 10);
+	p = end;
+
+	errno = 0;
+	i = strtoul(p, &end, 10);
+	assert(errno == ERANGE);
+	assert(i == ULONG_MAX);
+	p = end;
+
+	errno = 0;
+	i = strtoul(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 30);
+	p = end;
+
+	errno = 0;
+	i = strtoul(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 40);
+	p = end;
+}
+
+void test_strtoull(void) {
+	const char *p = "10 200000000000000000000000000000 30 40";
+	char *end;
+	unsigned long i;
+
+	errno = 0;
+	i = strtoull(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 10);
+	p = end;
+
+	errno = 0;
+	i = strtoull(p, &end, 10);
+	assert(errno == ERANGE);
+	assert(i == ULLONG_MAX);
+	p = end;
+
+	errno = 0;
+	i = strtoull(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 30);
+	p = end;
+
+	errno = 0;
+	i = strtoull(p, &end, 10);
+	assert(errno == 0);
+	assert(i == 40);
+	p = end;
+}
+
+void test_mblen(void) {
+	/* "zß水🍌" */
+	const char *str = "\x7A\xC3\x9F\xE6\xB0\xB4\xF0\x9F\x8D\x8C";
+	const char *ptr = str;
+	size_t result = 0;
+	const char *end = ptr + strlen(ptr);
+
+	/* reset the conversion state */
+	mblen(NULL, 0);
+
+	while (ptr < end) {
+		int next = mblen(ptr, (size_t)(end - ptr));
+		if (next == -1) {
+			assert(0 && "unexpected failure in mblen");
+			break;
+		}
+		ptr += next;
+		++result;
+	}
+
+	assert(result == 4);
+	assert(strlen(str) == 10);
+}
+
 int main(void) {
 
 	/* TODO support close enough locales, such as "en_US.utf8" */
@@ -225,15 +372,19 @@ int main(void) {
 	_Static_assert(IS_SAME_TYPE(MB_CUR_MAX, size_t), "");
 	assert(MB_CUR_MAX == 4);
 
-	test_mbstowcs();
 	test_abs();
-	test_qsort();
-	test_bsearch();
 	test_atof();
-	test_div();
-	test_atol();
 	test_atoi();
-
+	test_atol();
+	test_bsearch();
+	test_div();
+	test_mbstowcs();
+	test_qsort();
+	test_strtol();
+	test_strtoll();
+	test_strtoul();
+	test_strtoull();
+	test_mblen();
 	return 0;
 }
 
@@ -247,15 +398,12 @@ int main(void) {
 #include "c/labs.h"
 #include "c/ldiv.h"
 #include "c/malloc.h"
-#include "c/mblen.h"
 #include "c/mbstowcs.h"
 #include "c/mbtowc.h"
 #include "c/rand.h"
 #include "c/realloc.h"
 #include "c/srand.h"
 #include "c/strtod.h"
-#include "c/strtol.h"
-#include "c/strtoul.h"
 #include "c/system.h"
 #include "c/wcstombs.h"
 
@@ -266,7 +414,6 @@ int main(void) {
 #include "c/lldiv.h"
 #include "c/strtof.h"
 #include "c/strtold.h"
-#include "c/strtoll.h"
-#include "c/strtoull.h"
+
 #endif
 */

@@ -10,7 +10,7 @@
 //----------------------------------------------------------------------------*/
 size_t mbstowcs(wchar_t *dest, const char *src, size_t n) {
 
-	static _Thread_local mbstate_t state = {0, 0, 0};
+	static _Thread_local mbstate_t state;
 
 	const char *first = src;
 	const char *last = src + n;
