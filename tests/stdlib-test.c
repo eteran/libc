@@ -12,6 +12,12 @@
 
 #define EPSILON 0.000001
 
+/*    u8"z\u00df\u6c34\U0001F34C" */
+/* or u8"zß水🍌" */
+static const char mb_test_string[] = "\x7A\xC3\x9F\xE6\xB0\xB4\xF0\x9F\x8D\x8C";
+
+static const wchar_t wchar_test_string[] = {0x7a, 0xdf, 0x6c34, 0x1f34c, L'\0'};
+
 static int float_compare(double lhs, double rhs) {
 	return fabs(lhs - rhs) < EPSILON;
 }
@@ -102,20 +108,13 @@ static void test_atof(void) {
 }
 
 static void test_mbstowcs(void) {
-	/*    u8"z\u00df\u6c34\U0001F34C" */
-	/* or u8"zß水🍌" */
-	const char input[] = "\x7a\xc3\x9f\xe6\xb0\xb4\xf0\x9f\x8d\x8c";
-	wchar_t output[sizeof(input)] = L"";
-	size_t rc = mbstowcs(output, input, sizeof(output));
+
+	wchar_t output[sizeof(mb_test_string)] = L"";
+	size_t rc = mbstowcs(output, mb_test_string, sizeof(output));
 
 	assert(rc == 4);
-	assert(output[0] == 0x7a);
-	assert(output[1] == 0xdf);
-	assert(output[2] == 0x6c34);
-	assert(output[3] == 0x1f34c);
-	assert(output[4] == L'\0');
-
-	assert(mbstowcs(NULL, input, 1024) == 4);
+	assert(memcmp(output, wchar_test_string, rc + 1) == 0);
+	assert(mbstowcs(NULL, mb_test_string, 1024) == 4);
 }
 
 static void reverse(char *first, char *last) {
@@ -336,9 +335,7 @@ void test_strtoull(void) {
 }
 
 void test_mblen(void) {
-	/* "zß水🍌" */
-	const char *str = "\x7A\xC3\x9F\xE6\xB0\xB4\xF0\x9F\x8D\x8C";
-	const char *ptr = str;
+	const char *ptr = mb_test_string;
 	size_t result = 0;
 	const char *end = ptr + strlen(ptr);
 
@@ -356,19 +353,33 @@ void test_mblen(void) {
 	}
 
 	assert(result == 4);
-	assert(strlen(str) == 10);
+	assert(strlen(mb_test_string) == 10);
 }
 
 void test_wcstombs(void) {
-	/* 4 wide characters */
-	const wchar_t src[] = {0x7a, 0xdf, 0x6c34, 0x1f34c, L'\0'};
-
-	/* they occupy 10 bytes in UTF-8 */
+	/* result is expected to be 10 bytes in UTF-8 */
 	char dst[11];
 
-	const size_t result = wcstombs(dst, src, sizeof dst);
+	const size_t result = wcstombs(dst, wchar_test_string, sizeof dst);
 	assert(result == 10);
-	assert(memcmp(dst, "\x7A\xC3\x9F\xE6\xB0\xB4\xF0\x9F\x8D\x8C", result) == 0);
+	assert(memcmp(dst, mb_test_string, result) == 0);
+}
+
+void test_mbtowc(void) {
+
+	const char *ptr = mb_test_string;
+	const char *end = ptr + strlen(ptr);
+
+	int ret;
+	wchar_t wc;
+	int i;
+
+	/*  reset the conversion state */
+	mbtowc(NULL, 0, 0);
+
+	for (i = 0; (ret = mbtowc(&wc, ptr, (size_t)(end - ptr))) > 0; ptr += ret, i++) {
+		assert(wc == wchar_test_string[i]);
+	}
 }
 
 int main(void) {
@@ -399,6 +410,7 @@ int main(void) {
 	test_div();
 	test_mblen();
 	test_mbstowcs();
+	test_mbtowc();
 	test_qsort();
 	test_strtol();
 	test_strtoll();
@@ -418,8 +430,6 @@ int main(void) {
 #include "c/getenv.h"
 #include "c/ldiv.h"
 #include "c/malloc.h"
-#include "c/mbstowcs.h"
-#include "c/mbtowc.h"
 #include "c/rand.h"
 #include "c/realloc.h"
 #include "c/srand.h"
