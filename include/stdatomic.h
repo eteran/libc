@@ -30,7 +30,7 @@
 #define ATOMIC_CHAR8_T_LOCK_FREE 2
 #endif
 
-#define ATOMIC_FLAG_INIT                                                                           \
+#define ATOMIC_FLAG_INIT \
 	{ 0 }
 
 #ifndef _HAS_C23

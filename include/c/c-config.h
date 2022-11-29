@@ -127,10 +127,10 @@
 #if defined(_HAS_CXX11)
 #define _Static_assert(expr, error) static_assert((expr), error)
 #else
-#define _Static_assert(x, error)                                                                   \
-	do {                                                                                           \
-		static const char static_assertion_failed[(x) ? 1 : -1];                                   \
-		_UNUSED(static_assertion_failed);                                                          \
+#define _Static_assert(x, error)                                 \
+	do {                                                         \
+		static const char static_assertion_failed[(x) ? 1 : -1]; \
+		_UNUSED(static_assertion_failed);                        \
 	} while (0)
 #endif
 #endif

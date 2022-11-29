@@ -20,7 +20,7 @@ void *realloc(void *ptr, size_t size) {
 	}
 
 	{
-		void *ret = ptr;
+		void *ret              = ptr;
 		const size_t orig_size = __elibc_size(ptr);
 
 		/* if we are making the block bigger, time to grow */

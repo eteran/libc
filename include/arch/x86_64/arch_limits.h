@@ -24,9 +24,9 @@
 #define SHRT_MAX  32767
 #define SHRT_MIN  (-32768)
 
-#define UINT_MAX  0xffffffffU
-#define INT_MAX   0x7fffffff
-#define INT_MIN   (-INT_MAX - 1)
+#define UINT_MAX 0xffffffffU
+#define INT_MAX  0x7fffffff
+#define INT_MIN  (-INT_MAX - 1)
 
 #define ULONG_MAX 18446744073709551615UL
 #define LONG_MAX  9223372036854775807L

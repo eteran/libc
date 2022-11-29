@@ -8,7 +8,7 @@
 #define EXIT_FAILURE (-1)
 #define EXIT_SUCCESS 0
 
-#define MB_CUR_MAX   __ctype_get_mb_cur_max()
+#define MB_CUR_MAX __ctype_get_mb_cur_max()
 
 #include "arch_size_t.h"
 #include "arch_stdlib.h"

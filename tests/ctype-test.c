@@ -6,17 +6,17 @@
 #include <ctype.h>
 #include <string.h>
 
-#define TEST_CTYPE(name, charset)                                                                  \
-	static void test_##name(void) {                                                                \
-		int ch;                                                                                    \
-		for (ch = 1; ch < 256; ++ch) {                                                             \
-			if (strchr(charset, ch)) {                                                             \
-				assert(name(ch));                                                                  \
-			} else {                                                                               \
-				assert(!name(ch));                                                                 \
-			}                                                                                      \
-		}                                                                                          \
-		assert(!name('\0'));                                                                       \
+#define TEST_CTYPE(name, charset)      \
+	static void test_##name(void) {    \
+		int ch;                        \
+		for (ch = 1; ch < 256; ++ch) { \
+			if (strchr(charset, ch)) { \
+				assert(name(ch));      \
+			} else {                   \
+				assert(!name(ch));     \
+			}                          \
+		}                              \
+		assert(!name('\0'));           \
 	}
 
 TEST_CTYPE(isalnum, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")
@@ -28,9 +28,9 @@ TEST_CTYPE(isxdigit, "0123456789ABCDEFabcdef")
 TEST_CTYPE(isspace, " \t\f\n\r\v")
 TEST_CTYPE(ispunct, "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")
 TEST_CTYPE(isprint, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!\"#$%&'()*+,-./"
-                    ":;<=>?@[\\]^_`{|}~ ")
+					":;<=>?@[\\]^_`{|}~ ")
 TEST_CTYPE(isgraph, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!\"#$%&'()*+,-./"
-                    ":;<=>?@[\\]^_`{|}~")
+					":;<=>?@[\\]^_`{|}~")
 TEST_CTYPE(isblank, " \t")
 
 static void test_iscntrl(void) {

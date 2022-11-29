@@ -10,14 +10,14 @@
 int __elibc_fflush_stream(FILE *stream) {
 
 	struct __elibc_file *const impl = _FDATA(stream);
-	const int fd = _ELIBC_FILENO(stream);
+	const int fd                    = _ELIBC_FILENO(stream);
 
 	if (fd != -1) {
 		if (impl->buffer_first != impl->buffer_ptr) {
 
 			/* if p2 == ptr then the last operation was a write */
 			if (impl->buffer_last == impl->buffer_ptr) {
-				const size_t n = (size_t)(impl->buffer_first - impl->buffer_ptr);
+				const size_t n  = (size_t)(impl->buffer_first - impl->buffer_ptr);
 				const ssize_t r = __elibc_sys_write(fd, impl->buffer_ptr, n);
 
 				if (r < 0) {
@@ -29,7 +29,7 @@ int __elibc_fflush_stream(FILE *stream) {
 	}
 
 	impl->buffer_first = impl->buffer_ptr;
-	impl->buffer_last = impl->buffer_ptr;
+	impl->buffer_last  = impl->buffer_ptr;
 	return 0;
 }
 

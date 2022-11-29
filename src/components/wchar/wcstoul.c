@@ -13,8 +13,8 @@
 unsigned long int wcstoul(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr, int base) {
 	typedef unsigned long int T;
 
-	T neg = 0;
-	T ret = 0;
+	T neg   = 0;
+	T ret   = 0;
 	int err = 0;
 
 	/*

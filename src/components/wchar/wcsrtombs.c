@@ -9,8 +9,8 @@
 size_t wcsrtombs(char *dest, const wchar_t **src, size_t n, mbstate_t *ps) {
 
 	const wchar_t *first = *src;
-	const wchar_t *last = *src + n;
-	size_t count = 0;
+	const wchar_t *last  = *src + n;
+	size_t count         = 0;
 
 	if (dest) {
 		while (1) {

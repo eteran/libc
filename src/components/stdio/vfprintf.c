@@ -24,10 +24,10 @@ static void __elibc_stream_writer(void *context, char ch) {
 int vfprintf(FILE *_RESTRICT stream, const char *_RESTRICT format, va_list ap) {
 
 	struct __elibc_stream_write ctx;
-	ctx.write = __elibc_stream_writer;
-	ctx.done = 0;
+	ctx.write   = __elibc_stream_writer;
+	ctx.done    = 0;
 	ctx.written = 0;
-	ctx.stream = stream;
+	ctx.stream  = stream;
 
 	return __elibc_printf_engine(&ctx, format, ap);
 }

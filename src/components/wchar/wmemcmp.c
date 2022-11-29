@@ -7,7 +7,7 @@
 // Name: wmemcmp
 //----------------------------------------------------------------------------*/
 int wmemcmp(const wchar_t *s1, const wchar_t *s2, size_t n) {
-	int ret = 0;
+	int ret               = 0;
 	const wchar_t *s1_ptr = s1;
 	const wchar_t *s2_ptr = s2;
 

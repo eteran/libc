@@ -64,7 +64,7 @@ static size_t __elibc_mbrtowc_ascii(wchar_t *_RESTRICT pwc, const char *_RESTRIC
 // Name: __elibc_mbrtowc_utf8
 //----------------------------------------------------------------------------*/
 static size_t __elibc_mbrtowc_utf8(wchar_t *_RESTRICT pwc, const char *_RESTRICT s, size_t n,
-                                   mbstate_t *ps) {
+								   mbstate_t *ps) {
 	/* xx_YY.UTF-8 version */
 
 	static mbstate_t internal_ps;
@@ -85,19 +85,19 @@ static size_t __elibc_mbrtowc_utf8(wchar_t *_RESTRICT pwc, const char *_RESTRICT
 
 				if ((ch & 0x80) == 0) {
 					/* 1 byte */
-					state->wc = ch;
+					state->wc       = ch;
 					state->expected = 1;
 				} else if ((ch & 0xe0) == 0xc0) {
 					/* 2 byte */
-					state->wc = ch & 0x1f;
+					state->wc       = ch & 0x1f;
 					state->expected = 2;
 				} else if ((ch & 0xf0) == 0xe0) {
 					/* 3 byte */
-					state->wc = ch & 0x0f;
+					state->wc       = ch & 0x0f;
 					state->expected = 3;
 				} else if ((ch & 0xf8) == 0xf0) {
 					/* 4 byte */
-					state->wc = ch & 0x07;
+					state->wc       = ch & 0x07;
 					state->expected = 4;
 				} else if ((ch & 0xfc) == 0xf8) {
 					/* 5 byte */
@@ -113,7 +113,7 @@ static size_t __elibc_mbrtowc_utf8(wchar_t *_RESTRICT pwc, const char *_RESTRICT
 				}
 
 				state->seen = 1;
-				count = 1;
+				count       = 1;
 
 			} else if (state->seen < state->expected) {
 				if ((ch & 0xc0) == 0x80) {
@@ -159,8 +159,8 @@ static size_t __elibc_mbrtowc_utf8(wchar_t *_RESTRICT pwc, const char *_RESTRICT
 
 		/* reset the shift state */
 		state->expected = 0;
-		state->seen = 0;
-		state->wc = 0;
+		state->seen     = 0;
+		state->wc       = 0;
 
 		return count;
 
@@ -169,8 +169,8 @@ static size_t __elibc_mbrtowc_utf8(wchar_t *_RESTRICT pwc, const char *_RESTRICT
 
 		/* reset the shift state */
 		state->expected = 0;
-		state->seen = 0;
-		state->wc = 0;
+		state->seen     = 0;
+		state->wc       = 0;
 
 		/* we had to stop early */
 		if (prev_state.seen != prev_state.expected) {

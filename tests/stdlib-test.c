@@ -63,7 +63,7 @@ static void test_qsort(void) {
 
 	size_t i;
 	int last = INT_MIN;
-	int a[] = {-2, 99, 0, -743, 2, INT_MIN, 4};
+	int a[]  = {-2, 99, 0, -743, 2, INT_MIN, 4};
 
 	const size_t size = sizeof(a) / sizeof(*a);
 
@@ -81,13 +81,13 @@ static void test_bsearch(void) {
 	const size_t size = sizeof(dat) / sizeof(*dat);
 
 	{
-		struct data key = {3, NULL};
+		struct data key        = {3, NULL};
 		struct data const *res = bsearch(&key, dat, size, sizeof(struct data), data_cmp);
 		assert(res->nr == 3 && strcmp(res->value, "Hello") == 0);
 	}
 
 	{
-		struct data key = {30, NULL};
+		struct data key        = {30, NULL};
 		struct data const *res = bsearch(&key, dat, size, sizeof(struct data), data_cmp);
 		assert(res == NULL);
 	}
@@ -110,7 +110,7 @@ static void test_atof(void) {
 static void test_mbstowcs(void) {
 
 	wchar_t output[sizeof(mb_test_string)] = L"";
-	size_t rc = mbstowcs(output, mb_test_string, sizeof(output));
+	size_t rc                              = mbstowcs(output, mb_test_string, sizeof(output));
 
 	assert(rc == 4);
 	assert(memcmp(output, wchar_test_string, rc + 1) == 0);
@@ -120,7 +120,7 @@ static void test_mbstowcs(void) {
 static void reverse(char *first, char *last) {
 	for (--last; first < last; ++first, --last) {
 		char c = *last;
-		*last = *first;
+		*last  = *first;
 		*first = c;
 	}
 }
@@ -135,7 +135,7 @@ static char *itoa(int n, int base, char *buf) {
 	dv.quot = n;
 
 	do {
-		dv = div(dv.quot, base);
+		dv   = div(dv.quot, base);
 		*p++ = "0123456789abcdef"[abs(dv.rem)];
 	} while (dv.quot);
 
@@ -219,25 +219,25 @@ void test_strtol(void) {
 	long i;
 
 	errno = 0;
-	i = strtol(p, &end, 10);
+	i     = strtol(p, &end, 10);
 	assert(errno == 0);
 	assert(i == 10);
 	p = end;
 
 	errno = 0;
-	i = strtol(p, &end, 10);
+	i     = strtol(p, &end, 10);
 	assert(errno == ERANGE);
 	assert(i == LONG_MAX);
 	p = end;
 
 	errno = 0;
-	i = strtol(p, &end, 10);
+	i     = strtol(p, &end, 10);
 	assert(errno == 0);
 	assert(i == 30);
 	p = end;
 
 	errno = 0;
-	i = strtol(p, &end, 10);
+	i     = strtol(p, &end, 10);
 	assert(errno == 0);
 	assert(i == -40);
 	p = end;
@@ -250,25 +250,25 @@ void test_strtoll(void) {
 	long long i;
 
 	errno = 0;
-	i = strtoll(p, &end, 10);
+	i     = strtoll(p, &end, 10);
 	assert(errno == 0);
 	assert(i == 10);
 	p = end;
 
 	errno = 0;
-	i = strtoll(p, &end, 10);
+	i     = strtoll(p, &end, 10);
 	assert(errno == ERANGE);
 	assert(i == LLONG_MAX);
 	p = end;
 
 	errno = 0;
-	i = strtoll(p, &end, 10);
+	i     = strtoll(p, &end, 10);
 	assert(errno == 0);
 	assert(i == 30);
 	p = end;
 
 	errno = 0;
-	i = strtoll(p, &end, 10);
+	i     = strtoll(p, &end, 10);
 	assert(errno == 0);
 	assert(i == -40);
 	p = end;
@@ -280,25 +280,25 @@ void test_strtoul(void) {
 	unsigned long i;
 
 	errno = 0;
-	i = strtoul(p, &end, 10);
+	i     = strtoul(p, &end, 10);
 	assert(errno == 0);
 	assert(i == 10);
 	p = end;
 
 	errno = 0;
-	i = strtoul(p, &end, 10);
+	i     = strtoul(p, &end, 10);
 	assert(errno == ERANGE);
 	assert(i == ULONG_MAX);
 	p = end;
 
 	errno = 0;
-	i = strtoul(p, &end, 10);
+	i     = strtoul(p, &end, 10);
 	assert(errno == 0);
 	assert(i == 30);
 	p = end;
 
 	errno = 0;
-	i = strtoul(p, &end, 10);
+	i     = strtoul(p, &end, 10);
 	assert(errno == 0);
 	assert(i == 40);
 	p = end;
@@ -310,25 +310,25 @@ void test_strtoull(void) {
 	unsigned long i;
 
 	errno = 0;
-	i = strtoull(p, &end, 10);
+	i     = strtoull(p, &end, 10);
 	assert(errno == 0);
 	assert(i == 10);
 	p = end;
 
 	errno = 0;
-	i = strtoull(p, &end, 10);
+	i     = strtoull(p, &end, 10);
 	assert(errno == ERANGE);
 	assert(i == ULLONG_MAX);
 	p = end;
 
 	errno = 0;
-	i = strtoull(p, &end, 10);
+	i     = strtoull(p, &end, 10);
 	assert(errno == 0);
 	assert(i == 30);
 	p = end;
 
 	errno = 0;
-	i = strtoull(p, &end, 10);
+	i     = strtoull(p, &end, 10);
 	assert(errno == 0);
 	assert(i == 40);
 	p = end;
@@ -336,7 +336,7 @@ void test_strtoull(void) {
 
 void test_mblen(void) {
 	const char *ptr = mb_test_string;
-	size_t result = 0;
+	size_t result   = 0;
 	const char *end = ptr + strlen(ptr);
 
 	/* reset the conversion state */

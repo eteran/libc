@@ -30,13 +30,13 @@ static void test_sprintf(void) {
 	sprintf(buffer, "\t.%10s.\n\t.%-10s.\n\t.%*s.\n", s, s, 10, s);
 	printf("%s", buffer);
 	assert(strcmp(buffer, "\t.     Hello.\n"
-	                      "\t.Hello     .\n"
-	                      "\t.     Hello.\n") == 0);
+						  "\t.Hello     .\n"
+						  "\t.     Hello.\n") == 0);
 
 	sprintf(buffer, "\t%.4s\n\t%.*s\n", s, 3, s);
 	printf("%s", buffer);
 	assert(strcmp(buffer, "\tHell\n"
-	                      "\tHel\n") == 0);
+						  "\tHel\n") == 0);
 
 	sprintf(buffer, "Characters:\t%c %%\n", 65);
 	printf("%s", buffer);

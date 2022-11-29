@@ -4,15 +4,15 @@
 #include <stdio.h>
 #include <time.h>
 
-#define WRITE_FORMATTED(fmt, value)                                                                \
-	do {                                                                                           \
-		const int chunk = snprintf(ctx->ptr, ctx->size, (fmt), (value));                           \
-		if (chunk < 0) {                                                                           \
-			return 0;                                                                              \
-		}                                                                                          \
-		ctx->ptr += chunk;                                                                         \
-		ctx->size -= (size_t)chunk;                                                                \
-		ctx->written += (size_t)chunk;                                                             \
+#define WRITE_FORMATTED(fmt, value)                                      \
+	do {                                                                 \
+		const int chunk = snprintf(ctx->ptr, ctx->size, (fmt), (value)); \
+		if (chunk < 0) {                                                 \
+			return 0;                                                    \
+		}                                                                \
+		ctx->ptr += chunk;                                               \
+		ctx->size -= (size_t)chunk;                                      \
+		ctx->written += (size_t)chunk;                                   \
 	} while (0)
 
 #define DO_H()      WRITE_FORMATTED("%.2i", tm->tm_hour)
@@ -43,19 +43,19 @@ struct __elibc_strftime_context {
 };
 
 size_t __elibc_strftime(const char *format, struct __elibc_strftime_context *ctx,
-                        const struct tm *tm) {
+						const struct tm *tm) {
 
 	static const char wday_name[][4] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
 
 	static const char mon_name[][4] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
-	                                   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+									   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
-	static const char wday_name_full[][10] = {"Sunday",   "Monday", "Tuesday", "Wednesday",
-	                                          "Thursday", "Friday", "Saturday"};
+	static const char wday_name_full[][10] = {"Sunday", "Monday", "Tuesday", "Wednesday",
+											  "Thursday", "Friday", "Saturday"};
 
-	static const char mon_name_full[][10] = {"January",   "February", "March",    "April",
-	                                         "May",       "June",     "July",     "August",
-	                                         "September", "October",  "November", "December"};
+	static const char mon_name_full[][10] = {"January", "February", "March", "April",
+											 "May", "June", "July", "August",
+											 "September", "October", "November", "December"};
 	assert(ctx);
 	assert(tm);
 	assert(format);
@@ -240,10 +240,10 @@ size_t __elibc_strftime(const char *format, struct __elibc_strftime_context *ctx
 size_t strftime(char *s, size_t max, const char *format, const struct tm *tm) {
 
 	struct __elibc_strftime_context ctx;
-	ctx.ptr = s;
-	ctx.size = max;
+	ctx.ptr      = s;
+	ctx.size     = max;
 	ctx.capacity = max;
-	ctx.written = 0;
+	ctx.written  = 0;
 
 	return __elibc_strftime(format, &ctx, tm);
 }

@@ -24,8 +24,8 @@ static void test_strcpy(void) {
 }
 
 static void test_strchr(void) {
-	const char str[] = "Try not. Do, or do not. There is no try.";
-	char target = 'T';
+	const char str[]   = "Try not. Do, or do not. There is no try.";
+	char target        = 'T';
 	const char *result = str;
 
 	result = strchr(result, target);
@@ -44,8 +44,8 @@ static void test_strchr(void) {
 }
 
 static void test_strrchr(void) {
-	const char str[] = "Try not. Do, or do not. There is no try.";
-	char target = 'T';
+	const char str[]   = "Try not. Do, or do not. There is no try.";
+	char target        = 'T';
 	const char *result = str;
 
 	result = strrchr(str, target);
@@ -60,7 +60,7 @@ static void test_strrchr(void) {
 
 static void test_memchr(void) {
 	char str[] = "ABCDEFG";
-	char *ps = memchr(str, 'D', sizeof(str) - 1);
+	char *ps   = memchr(str, 'D', sizeof(str) - 1);
 	assert(*ps == 'D');
 }
 
@@ -72,7 +72,7 @@ static void test_strlen(void) {
 }
 
 static void test_strpbrk(void) {
-	const char *str = "hello world, friend of mine!";
+	const char *str  = "hello world, friend of mine!";
 	const char sep[] = " ,!";
 
 	unsigned int cnt = 0;
@@ -95,9 +95,9 @@ static void test_strstr(void) {
 }
 
 static void test_strspn(void) {
-	const char string[] = "abcde312$#@";
+	const char string[]   = "abcde312$#@";
 	const char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
-	const size_t spnsz = strspn(string, alphabet);
+	const size_t spnsz    = strspn(string, alphabet);
 	assert(spnsz == 5);
 }
 
@@ -160,7 +160,7 @@ static void test_strndup(void) {
 
 static void test_strlcat(void) {
 	char buffer[10] = "";
-	size_t n = 0;
+	size_t n        = 0;
 	assert(strcmp(buffer, "") == 0);
 	n = strlcat(buffer, "Hello", sizeof(buffer));
 	assert(strcmp(buffer, "Hello") == 0);
@@ -178,7 +178,7 @@ static void test_strlcat(void) {
 
 static void test_strlcpy(void) {
 	char buffer[10] = "";
-	size_t n = 0;
+	size_t n        = 0;
 	assert(strcmp(buffer, "") == 0);
 	n = strlcpy(buffer, "Hello", sizeof(buffer));
 	assert(n == 5);
@@ -208,7 +208,7 @@ static void test_strcoll(void) {
 }
 
 static void test_strcspn(void) {
-	const char *string = "abcde312$#@";
+	const char *string  = "abcde312$#@";
 	const char *invalid = "*$#";
 
 	size_t valid_len = strcspn(string, invalid);
@@ -217,7 +217,7 @@ static void test_strcspn(void) {
 }
 
 static void test_strncat(void) {
-	char str[50] = "Hello ";
+	char str[50]  = "Hello ";
 	char str2[50] = "World!";
 	strcat(str, str2);
 	strncat(str, " Goodbye World!", 3);
@@ -228,10 +228,10 @@ static void test_strtok(void) {
 	char *tokens[32];
 	size_t count = 0;
 	char input[] = "A bird came down the walk";
-	char *token = strtok(input, " ");
+	char *token  = strtok(input, " ");
 	while (token) {
 		tokens[count++] = token;
-		token = strtok(NULL, " ");
+		token           = strtok(NULL, " ");
 	}
 
 	assert(count == 6);
@@ -244,7 +244,7 @@ static void test_strtok(void) {
 }
 
 static void test_strncpy(void) {
-	char src[] = "hi";
+	char src[]   = "hi";
 	char dest[6] = "abcdef";
 	char dest2[2];
 
@@ -321,7 +321,7 @@ static void test_strerror(void) {
 }
 
 static void test_strxfrm(void) {
-	char src[] = "hi";
+	char src[]   = "hi";
 	char dest[6] = "abcdef";
 	char dest2[2];
 	size_t n;

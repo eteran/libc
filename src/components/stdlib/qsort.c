@@ -7,13 +7,13 @@
 
 #define ELEMENT_PTR(base, index, size) (void *)(((char *)(base)) + ((index) * (size)))
 
-#define ELEMENT_SWP(base, i, j, size)                                                              \
-	do {                                                                                           \
-		if (i != j) {                                                                              \
-			unsigned char *const base_ptr1 = ELEMENT_PTR(base, i, size);                           \
-			unsigned char *const base_ptr2 = ELEMENT_PTR(base, j, size);                           \
-			memswp(base_ptr1, base_ptr2, size);                                                    \
-		}                                                                                          \
+#define ELEMENT_SWP(base, i, j, size)                                    \
+	do {                                                                 \
+		if (i != j) {                                                    \
+			unsigned char *const base_ptr1 = ELEMENT_PTR(base, i, size); \
+			unsigned char *const base_ptr2 = ELEMENT_PTR(base, j, size); \
+			memswp(base_ptr1, base_ptr2, size);                          \
+		}                                                                \
 	} while (0)
 
 /* quick and dirty macro that tests if a pointer is properly aligned to it's
@@ -39,12 +39,12 @@
 // Name: __elibc_memswp64
 //----------------------------------------------------------------------------*/
 _ALWAYS_INLINE _INLINE static void __elibc_memswp64(uint64_t *_RESTRICT dest,
-                                                    uint64_t *_RESTRICT src, size_t n) {
+													uint64_t *_RESTRICT src, size_t n) {
 	n /= 8;
 	while (n--) {
 		const uint64_t temp = *dest;
-		*dest = *src;
-		*src = temp;
+		*dest               = *src;
+		*src                = temp;
 
 		++dest;
 		++src;
@@ -56,12 +56,12 @@ _ALWAYS_INLINE _INLINE static void __elibc_memswp64(uint64_t *_RESTRICT dest,
 // Name: __elibc_memswp32
 //----------------------------------------------------------------------------*/
 _ALWAYS_INLINE _INLINE static void __elibc_memswp32(uint32_t *_RESTRICT dest,
-                                                    uint32_t *_RESTRICT src, size_t n) {
+													uint32_t *_RESTRICT src, size_t n) {
 	n /= 4;
 	while (n--) {
 		const uint32_t temp = *dest;
-		*dest = *src;
-		*src = temp;
+		*dest               = *src;
+		*src                = temp;
 
 		++dest;
 		++src;
@@ -72,12 +72,12 @@ _ALWAYS_INLINE _INLINE static void __elibc_memswp32(uint32_t *_RESTRICT dest,
 // Name: __elibc_memswp16
 //----------------------------------------------------------------------------*/
 _ALWAYS_INLINE _INLINE static void __elibc_memswp16(uint16_t *_RESTRICT dest,
-                                                    uint16_t *_RESTRICT src, size_t n) {
+													uint16_t *_RESTRICT src, size_t n) {
 	n /= 2;
 	while (n--) {
 		const uint16_t temp = *dest;
-		*dest = *src;
-		*src = temp;
+		*dest               = *src;
+		*src                = temp;
 
 		++dest;
 		++src;
@@ -88,11 +88,11 @@ _ALWAYS_INLINE _INLINE static void __elibc_memswp16(uint16_t *_RESTRICT dest,
 // Name: __elibc_memswp8
 //----------------------------------------------------------------------------*/
 _ALWAYS_INLINE _INLINE static void __elibc_memswp8(uint8_t *_RESTRICT dest, uint8_t *_RESTRICT src,
-                                                   size_t n) {
+												   size_t n) {
 	while (n--) {
 		const uint8_t temp = *dest;
-		*dest = *src;
-		*src = temp;
+		*dest              = *src;
+		*src               = temp;
 
 		++dest;
 		++src;
@@ -115,8 +115,8 @@ static void *memswp(void *_RESTRICT dest, void *_RESTRICT src, size_t n) {
 
 	while (n--) {
 		const char temp = *d_ptr;
-		*d_ptr = *s_ptr;
-		*s_ptr = temp;
+		*d_ptr          = *s_ptr;
+		*s_ptr          = temp;
 
 		++d_ptr;
 		++s_ptr;
@@ -191,10 +191,10 @@ static void *memswp(void *_RESTRICT dest, void *_RESTRICT src, size_t n) {
 // Name: __elibc_partition
 //----------------------------------------------------------------------------*/
 static size_t __elibc_partition(void *base, size_t left, size_t right, size_t size,
-                                __compar_fn_t compar) {
+								__compar_fn_t compar) {
 
 	const void *const x = ELEMENT_PTR(base, right, size);
-	size_t index = left - 1;
+	size_t index        = left - 1;
 	size_t i;
 
 	assert(base);

@@ -17,30 +17,34 @@ static const struct locale_support_t {
 	const struct lconv locale;
 } __elibc_supported_locales[] = {
 	{"C",
-     _ELIBC_ASCII,
-     {"", ".", "", "", "", "", "", "", "", "", CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX,
-      CHAR_MAX, CHAR_MAX, CHAR_MAX}},
+	 _ELIBC_ASCII,
+	 {"", ".", "", "", "", "", "", "", "", "", CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX,
+	  CHAR_MAX, CHAR_MAX, CHAR_MAX}},
 	{"POSIX",
-     _ELIBC_ASCII,
-     {"", ".", "", "", "", "", "", "", "", "", CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX,
-      CHAR_MAX, CHAR_MAX, CHAR_MAX}},
+	 _ELIBC_ASCII,
+	 {"", ".", "", "", "", "", "", "", "", "", CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX,
+	  CHAR_MAX, CHAR_MAX, CHAR_MAX}},
 	{"en_US",
-     _ELIBC_ASCII,
-     {"$", ".", "", "USD", ".", "", ",", "-", "", ",", 2, 2, 1, 0, 1, 1, 1, 1}},
+	 _ELIBC_ASCII,
+	 {"$", ".", "", "USD", ".", "", ",", "-", "", ",", 2, 2, 1, 0, 1, 1, 1, 1}},
 	{"en_US.UTF-8",
-     _ELIBC_UTF8,
-     {"$", ".", "", "USD", ".", "", ",", "-", "", ",", 2, 2, 1, 0, 1, 1, 1, 1}},
+	 _ELIBC_UTF8,
+	 {"$", ".", "", "USD", ".", "", ",", "-", "", ",", 2, 2, 1, 0, 1, 1, 1, 1}},
 	{0,
-     _ELIBC_ASCII,
-     {"", "", "", "", "", "", "", "", "", "", CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX,
-      CHAR_MAX, CHAR_MAX, CHAR_MAX}}};
+	 _ELIBC_ASCII,
+	 {"", "", "", "", "", "", "", "", "", "", CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX,
+	  CHAR_MAX, CHAR_MAX, CHAR_MAX}}};
 
 static struct locale_meta_t {
 	const char *name;
 	int type;
 } __elibc_locale_meta[_ELIBC_LC_ALL + 1] = {
-	{"", _ELIBC_ASCII}, {"", _ELIBC_ASCII}, {"", _ELIBC_ASCII},
-	{"", _ELIBC_ASCII}, {"", _ELIBC_ASCII}, {"", _ELIBC_ASCII},
+	{"", _ELIBC_ASCII},
+	{"", _ELIBC_ASCII},
+	{"", _ELIBC_ASCII},
+	{"", _ELIBC_ASCII},
+	{"", _ELIBC_ASCII},
+	{"", _ELIBC_ASCII},
 };
 
 /*------------------------------------------------------------------------------
@@ -70,7 +74,7 @@ int __elibc_get_locale_type(int category) {
 // Name: __elibc_setlocale
 //----------------------------------------------------------------------------*/
 static char *__elibc_setlocale(struct lconv *current_lconv, int category, const char *locname,
-                               char *locale_name, size_t locale_name_size) {
+							   char *locale_name, size_t locale_name_size) {
 
 	if (locname) {
 		const struct locale_support_t *p = __elibc_supported_locales;
@@ -90,29 +94,29 @@ static char *__elibc_setlocale(struct lconv *current_lconv, int category, const 
 				}
 
 				if (category & LC_MONETARY) {
-					current_lconv->currency_symbol = p->locale.currency_symbol;
-					current_lconv->int_curr_symbol = p->locale.int_curr_symbol;
-					current_lconv->mon_decimal_point = p->locale.mon_decimal_point;
-					current_lconv->mon_grouping = p->locale.mon_grouping;
-					current_lconv->mon_thousands_sep = p->locale.mon_thousands_sep;
-					current_lconv->negative_sign = p->locale.negative_sign;
-					current_lconv->positive_sign = p->locale.positive_sign;
-					current_lconv->frac_digits = p->locale.frac_digits;
-					current_lconv->int_frac_digits = p->locale.int_frac_digits;
-					current_lconv->n_cs_precedes = p->locale.n_cs_precedes;
-					current_lconv->n_sep_by_space = p->locale.n_sep_by_space;
-					current_lconv->n_sign_posn = p->locale.n_sign_posn;
-					current_lconv->p_cs_precedes = p->locale.p_cs_precedes;
-					current_lconv->p_sep_by_space = p->locale.p_sep_by_space;
-					current_lconv->p_sign_posn = p->locale.p_sign_posn;
+					current_lconv->currency_symbol               = p->locale.currency_symbol;
+					current_lconv->int_curr_symbol               = p->locale.int_curr_symbol;
+					current_lconv->mon_decimal_point             = p->locale.mon_decimal_point;
+					current_lconv->mon_grouping                  = p->locale.mon_grouping;
+					current_lconv->mon_thousands_sep             = p->locale.mon_thousands_sep;
+					current_lconv->negative_sign                 = p->locale.negative_sign;
+					current_lconv->positive_sign                 = p->locale.positive_sign;
+					current_lconv->frac_digits                   = p->locale.frac_digits;
+					current_lconv->int_frac_digits               = p->locale.int_frac_digits;
+					current_lconv->n_cs_precedes                 = p->locale.n_cs_precedes;
+					current_lconv->n_sep_by_space                = p->locale.n_sep_by_space;
+					current_lconv->n_sign_posn                   = p->locale.n_sign_posn;
+					current_lconv->p_cs_precedes                 = p->locale.p_cs_precedes;
+					current_lconv->p_sep_by_space                = p->locale.p_sep_by_space;
+					current_lconv->p_sign_posn                   = p->locale.p_sign_posn;
 					__elibc_locale_meta[_ELIBC_LC_MONETARY].name = p->name;
 					__elibc_locale_meta[_ELIBC_LC_MONETARY].type = p->type;
 				}
 
 				if (category & LC_NUMERIC) {
-					current_lconv->decimal_point = p->locale.decimal_point;
-					current_lconv->grouping = p->locale.grouping;
-					current_lconv->thousands_sep = p->locale.thousands_sep;
+					current_lconv->decimal_point                = p->locale.decimal_point;
+					current_lconv->grouping                     = p->locale.grouping;
+					current_lconv->thousands_sep                = p->locale.thousands_sep;
 					__elibc_locale_meta[_ELIBC_LC_NUMERIC].name = p->name;
 					__elibc_locale_meta[_ELIBC_LC_NUMERIC].type = p->type;
 				}
@@ -156,22 +160,22 @@ char *setlocale(int category, const char *locname) {
 			switch (category) {
 			case LC_COLLATE:
 				return __elibc_setlocale(current_lconv, LC_COLLATE, getenv("LC_COLLATE"),
-				                         locale_name, sizeof(locale_name));
+										 locale_name, sizeof(locale_name));
 			case LC_CTYPE:
 				return __elibc_setlocale(current_lconv, LC_CTYPE, getenv("LC_CTYPE"), locale_name,
-				                         sizeof(locale_name));
+										 sizeof(locale_name));
 			case LC_MONETARY:
 				return __elibc_setlocale(current_lconv, LC_MONETARY, getenv("LC_MONETARY"),
-				                         locale_name, sizeof(locale_name));
+										 locale_name, sizeof(locale_name));
 			case LC_NUMERIC:
 				return __elibc_setlocale(current_lconv, LC_NUMERIC, getenv("LC_NUMERIC"),
-				                         locale_name, sizeof(locale_name));
+										 locale_name, sizeof(locale_name));
 			case LC_TIME:
 				return __elibc_setlocale(current_lconv, LC_TIME, getenv("LC_TIME"), locale_name,
-				                         sizeof(locale_name));
+										 sizeof(locale_name));
 			case LC_ALL: {
 				char *ret = __elibc_setlocale(current_lconv, LC_ALL, getenv("LC_ALL"), locale_name,
-				                              sizeof(locale_name));
+											  sizeof(locale_name));
 				if (!ret) {
 					/* TODO(eteran): fetch each category from the environment here, but
 					 * first check they are all valid before doing anything since POSIX
@@ -180,10 +184,10 @@ char *setlocale(int category, const char *locname) {
 
 					if (!ret) {
 						ret = __elibc_setlocale(current_lconv, LC_ALL, getenv("LANG"), locale_name,
-						                        sizeof(locale_name));
+												sizeof(locale_name));
 						if (!ret) {
 							ret = __elibc_setlocale(current_lconv, LC_ALL, getenv("_LOCALE"),
-							                        locale_name, sizeof(locale_name));
+													locale_name, sizeof(locale_name));
 						}
 					}
 				}
@@ -195,42 +199,42 @@ char *setlocale(int category, const char *locname) {
 			}
 		} else {
 			return __elibc_setlocale(current_lconv, category, locname, locale_name,
-			                         sizeof(locale_name));
+									 sizeof(locale_name));
 		}
 	} else {
 		if (category == LC_ALL) {
 
 			if (__elibc_categories_equal()) {
 				snprintf(locale_name, sizeof(locale_name), "%s",
-				         __elibc_locale_meta[_ELIBC_LC_ALL].name);
+						 __elibc_locale_meta[_ELIBC_LC_ALL].name);
 			} else {
 				snprintf(locale_name, sizeof(locale_name),
-				         "%s;LC_COLLATE=%s;LC_CTYPE=%s;LC_MONETARY=%s;LC_NUMERIC=%s;LC_"
-				         "TIME=%s",
-				         __elibc_locale_meta[_ELIBC_LC_ALL].name,
-				         __elibc_locale_meta[_ELIBC_LC_COLLATE].name,
-				         __elibc_locale_meta[_ELIBC_LC_CTYPE].name,
-				         __elibc_locale_meta[_ELIBC_LC_MONETARY].name,
-				         __elibc_locale_meta[_ELIBC_LC_NUMERIC].name,
-				         __elibc_locale_meta[_ELIBC_LC_TIME].name);
+						 "%s;LC_COLLATE=%s;LC_CTYPE=%s;LC_MONETARY=%s;LC_NUMERIC=%s;LC_"
+						 "TIME=%s",
+						 __elibc_locale_meta[_ELIBC_LC_ALL].name,
+						 __elibc_locale_meta[_ELIBC_LC_COLLATE].name,
+						 __elibc_locale_meta[_ELIBC_LC_CTYPE].name,
+						 __elibc_locale_meta[_ELIBC_LC_MONETARY].name,
+						 __elibc_locale_meta[_ELIBC_LC_NUMERIC].name,
+						 __elibc_locale_meta[_ELIBC_LC_TIME].name);
 			}
 		} else {
 			switch (category) {
 			case LC_COLLATE:
 				strlcpy(locale_name, __elibc_locale_meta[_ELIBC_LC_COLLATE].name,
-				        sizeof(locale_name));
+						sizeof(locale_name));
 				break;
 			case LC_CTYPE:
 				strlcpy(locale_name, __elibc_locale_meta[_ELIBC_LC_CTYPE].name,
-				        sizeof(locale_name));
+						sizeof(locale_name));
 				break;
 			case LC_MONETARY:
 				strlcpy(locale_name, __elibc_locale_meta[_ELIBC_LC_MONETARY].name,
-				        sizeof(locale_name));
+						sizeof(locale_name));
 				break;
 			case LC_NUMERIC:
 				strlcpy(locale_name, __elibc_locale_meta[_ELIBC_LC_NUMERIC].name,
-				        sizeof(locale_name));
+						sizeof(locale_name));
 				break;
 			case LC_TIME:
 				strlcpy(locale_name, __elibc_locale_meta[_ELIBC_LC_TIME].name, sizeof(locale_name));

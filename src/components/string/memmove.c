@@ -14,7 +14,7 @@ void *memmove(void *dest, const void *src, size_t n) {
 
 	if ((uintptr_t)dest > (uintptr_t)src) {
 		/* copy backwards */
-		char *dest_ptr = dest;
+		char *dest_ptr      = dest;
 		const char *src_ptr = src;
 
 		while (n--) {

@@ -22,7 +22,7 @@ void _Exit(int status) {
 	/* actually free the FILE structures we saved for reuse */
 	/* TODO(eteran): lock the list */
 	while (__elibc_free_file_struct) {
-		FILE *ptr = __elibc_free_file_struct;
+		FILE *ptr                = __elibc_free_file_struct;
 		__elibc_free_file_struct = ptr->next;
 #if defined(_ELIBC_USE_THREADS)
 		pthread_mutex_destroy(&ptr->mutex);

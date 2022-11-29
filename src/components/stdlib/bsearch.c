@@ -10,7 +10,7 @@
 //----------------------------------------------------------------------------*/
 void *bsearch(const void *key, const void *base, size_t nmemb, size_t size, __compar_fn_t compar) {
 
-	size_t low = 0;
+	size_t low  = 0;
 	size_t high = nmemb;
 
 	assert(key);
@@ -28,7 +28,7 @@ void *bsearch(const void *key, const void *base, size_t nmemb, size_t size, __co
 
 		/* get item at center of this half */
 		void *const item = ELEMENT_PTR(base, i, size);
-		const int cmp = compar(key, item);
+		const int cmp    = compar(key, item);
 
 		/* check results, go high or low or we found it ... */
 		if (cmp < 0) {

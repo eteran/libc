@@ -75,7 +75,7 @@ void *memset(void *s, int c, size_t n) {
 
 #ifdef NAIVE_VERSION
 	/* traditional memset */
-	char *s_ptr = s;
+	char *s_ptr   = s;
 	const char ch = (char)(c & 0xff);
 
 	assert(s);

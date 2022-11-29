@@ -17,7 +17,7 @@
 #define FE_UNDERFLOW 0x0010
 #define FE_INEXACT   0x0020
 
-#define FE_ALL_EXCEPT                                                                              \
+#define FE_ALL_EXCEPT \
 	(FE_INVALID | FE_DENORMAL | FE_DIVBYZERO | FE_OVERFLOW | FE_UNDERFLOW | FE_INEXACT)
 
 /*
@@ -28,14 +28,14 @@
  * 11 = Round toward zero (truncate).
  */
 
-#define FE_TONEAREST         0x0000
-#define FE_DOWNWARD          0x0400
-#define FE_UPWARD            0x0800
-#define FE_TOWARDZERO        0x0c00
+#define FE_TONEAREST  0x0000
+#define FE_DOWNWARD   0x0400
+#define FE_UPWARD     0x0800
+#define FE_TOWARDZERO 0x0c00
 
 #define _ELIBC_FE_ROUND_MASK (FE_TONEAREST | FE_DOWNWARD | FE_UPWARD | FE_TOWARDZERO)
 
-#define FE_DFL_ENV           ((const fenv_t *)-1)
+#define FE_DFL_ENV ((const fenv_t *)-1)
 
 #include "c/feclearexcept.h"
 #include "c/fegetenv.h"

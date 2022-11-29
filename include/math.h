@@ -176,14 +176,14 @@ typedef float double_t;
 typedef float float_t;
 #endif
 
-#define FP_ILOGBNAN  (-1 - (int)(((unsigned)-1) >> 1))
-#define FP_ILOGB0    FP_ILOGBNAN
+#define FP_ILOGBNAN (-1 - (int)(((unsigned)-1) >> 1))
+#define FP_ILOGB0   FP_ILOGBNAN
 
-#define INFINITY     _ELIBC_INF
-#define NAN          _ELIBC_NAN("")
+#define INFINITY _ELIBC_INF
+#define NAN      _ELIBC_NAN("")
 
-#define HUGE_VALF    _ELIBC_HUGE_VALUEF
-#define HUGE_VALL    _ELIBC_HUGE_VALUEL
+#define HUGE_VALF _ELIBC_HUGE_VALUEF
+#define HUGE_VALL _ELIBC_HUGE_VALUEL
 
 #define FP_NAN       0
 #define FP_INFINITE  1

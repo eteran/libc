@@ -42,8 +42,8 @@ static void test_strcasecmp(void) {
 }
 
 static void test_index(void) {
-	const char str[] = "Try not. Do, or do not. There is no try.";
-	char target = 'T';
+	const char str[]   = "Try not. Do, or do not. There is no try.";
+	char target        = 'T';
 	const char *result = str;
 
 	result = index(result, target);
@@ -62,8 +62,8 @@ static void test_index(void) {
 }
 
 static void test_rindex(void) {
-	const char str[] = "Try not. Do, or do not. There is no try.";
-	char target = 'T';
+	const char str[]   = "Try not. Do, or do not. There is no try.";
+	char target        = 'T';
 	const char *result = str;
 
 	result = rindex(str, target);

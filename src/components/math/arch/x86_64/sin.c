@@ -11,7 +11,9 @@
 //----------------------------------------------------------------------------*/
 _CONST _ALWAYS_INLINE _INLINE static double __elibc_sin(double x) {
 	double value;
-	__asm__ __volatile__("fsin" : "=t"(value) : "0"(x));
+	__asm__ __volatile__("fsin"
+						 : "=t"(value)
+						 : "0"(x));
 	return value;
 }
 

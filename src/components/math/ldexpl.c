@@ -6,19 +6,19 @@
 #ifdef _HAS_FPU
 
 /*
-        If the result underflows, a range error occurs, and zero is returned.
+		If the result underflows, a range error occurs, and zero is returned.
 
-        If  the  result overflows, a range error occurs, and the functions
+		If  the  result overflows, a range error occurs, and the functions
    return HUGE_VAL, HUGE_VALF, or HUGE_VALL, respectively, with a sign the same
    as x.
 
 
-        Range error, overflow
-        errno is set to ERANGE.  An overflow floating-point exception
+		Range error, overflow
+		errno is set to ERANGE.  An overflow floating-point exception
    (FE_OVERFLOW) is raised.
 
-        Range error, underflow
-        errno is set to ERANGE.  An underflow floating-point exception
+		Range error, underflow
+		errno is set to ERANGE.  An underflow floating-point exception
    (FE_UNDERFLOW) is raised.
 */
 
