@@ -13,12 +13,12 @@ int __elibc_fflush_stream(FILE *stream) {
 	const int fd                    = _ELIBC_FILENO(stream);
 
 	if (fd != -1) {
-		if (impl->buffer_first != impl->buffer_ptr) {
+		if (impl->buffer_first != impl->buffer_start) {
 
 			/* if p2 == ptr then the last operation was a write */
-			if (impl->buffer_last == impl->buffer_ptr) {
-				const size_t n  = (size_t)(impl->buffer_first - impl->buffer_ptr);
-				const ssize_t r = __elibc_sys_write(fd, impl->buffer_ptr, n);
+			if (impl->buffer_last == impl->buffer_start) {
+				const size_t n  = (size_t)(impl->buffer_first - impl->buffer_start);
+				const ssize_t r = __elibc_sys_write(fd, impl->buffer_start, n);
 
 				if (r < 0) {
 					/* TODO(eteran): set errno */
@@ -28,8 +28,8 @@ int __elibc_fflush_stream(FILE *stream) {
 		}
 	}
 
-	impl->buffer_first = impl->buffer_ptr;
-	impl->buffer_last  = impl->buffer_ptr;
+	impl->buffer_first = impl->buffer_start;
+	impl->buffer_last  = impl->buffer_start;
 	return 0;
 }
 

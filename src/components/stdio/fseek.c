@@ -17,8 +17,8 @@ int __elibc_fseek(FILE *stream, long offset, int whence) {
 	}
 
 	/* just in case, reset the buffer pointers */
-	_FDATA(stream)->buffer_first = _FDATA(stream)->buffer_ptr;
-	_FDATA(stream)->buffer_last  = _FDATA(stream)->buffer_ptr;
+	_FDATA(stream)->buffer_first = _FDATA(stream)->buffer_start;
+	_FDATA(stream)->buffer_last  = _FDATA(stream)->buffer_start;
 
 	/* TODO(eteran): catch any errors at all */
 	__elibc_sys_lseek(_ELIBC_FILENO(stream), offset, whence);

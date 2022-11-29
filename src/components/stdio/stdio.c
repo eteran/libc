@@ -17,34 +17,67 @@
 #endif
 
 static struct __elibc_file __elibc_stdin_internal = {
-	STDIN_FILENO, _IOLBF, 0, 0, 0, _ELIBC_FILE_STATIC_ALLOC, 0, 0, 0, 0, 0, {""}};
+	STDIN_FILENO,
+	_IOLBF,
+	0,
+	0,
+	0,
+	_ELIBC_FILE_STATIC_ALLOC,
+	0,
+	0,
+	0,
+	0,
+	0};
 
 static struct __elibc_file __elibc_stdout_internal = {
-	STDOUT_FILENO, _IOLBF, 0, 0, 0, _ELIBC_FILE_STATIC_ALLOC, 0, 0, 0, 0, 0, {""}};
+	STDOUT_FILENO,
+	_IOLBF,
+	0,
+	0,
+	0,
+	_ELIBC_FILE_STATIC_ALLOC,
+	0,
+	0,
+	0,
+	0,
+	0};
 
 static struct __elibc_file __elibc_stderr_internal = {
-	STDERR_FILENO, _IONBF, 0, 0, 0, _ELIBC_FILE_STATIC_ALLOC, 0, 0, 0, 0, 0, {""}};
+	STDERR_FILENO,
+	_IONBF,
+	0,
+	0,
+	0,
+	_ELIBC_FILE_STATIC_ALLOC,
+	0,
+	0,
+	0,
+	0,
+	0};
 
-FILE __elibc_stdin[1] = {{__elibc_stdout, 0, &__elibc_stdin_internal
+FILE __elibc_stdin[1] = {
+	{__elibc_stdout, 0, &__elibc_stdin_internal
 #if defined(_ELIBC_USE_THREADS)
-						  ,
-						  PTHREAD_MUTEX_INITIALIZER
+	 ,
+	 PTHREAD_MUTEX_INITIALIZER
 #endif
-}};
+	}};
 
-FILE __elibc_stdout[1] = {{__elibc_stderr, __elibc_stdin, &__elibc_stdout_internal
+FILE __elibc_stdout[1] = {
+	{__elibc_stderr, __elibc_stdin, &__elibc_stdout_internal
 #if defined(_ELIBC_USE_THREADS)
-						   ,
-						   PTHREAD_MUTEX_INITIALIZER
+	 ,
+	 PTHREAD_MUTEX_INITIALIZER
 #endif
-}};
+	}};
 
-FILE __elibc_stderr[1] = {{0, __elibc_stdout, &__elibc_stderr_internal
+FILE __elibc_stderr[1] = {
+	{0, __elibc_stdout, &__elibc_stderr_internal
 #if defined(_ELIBC_USE_THREADS)
-						   ,
-						   PTHREAD_MUTEX_INITIALIZER
+	 ,
+	 PTHREAD_MUTEX_INITIALIZER
 #endif
-}};
+	}};
 
 /* this is the root of our linked list of open file objects */
 FILE *__elibc_root_file_struct = __elibc_stdin;
@@ -78,9 +111,6 @@ FILE *__elibc_allocate_file(void) {
 	if (__elibc_free_file_struct) {
 		FILE *stream             = __elibc_free_file_struct;
 		__elibc_free_file_struct = stream->next;
-		if (__elibc_free_file_struct) {
-			__elibc_free_file_struct->prev = NULL;
-		}
 		return stream;
 	}
 
@@ -89,10 +119,6 @@ FILE *__elibc_allocate_file(void) {
 
 void __elibc_free_file(FILE *stream) {
 	/* TODO(eteran): lock the list */
-	stream->next = __elibc_free_file_struct;
-	stream->prev = NULL;
-	if (__elibc_free_file_struct) {
-		__elibc_free_file_struct->prev = stream;
-	}
+	stream->next             = __elibc_free_file_struct;
 	__elibc_free_file_struct = stream;
 }

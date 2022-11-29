@@ -1,12 +1,12 @@
 
 #include <assert.h>
-#include <stdio.h>
 #include <errno.h>
-#include <stddef.h>
 #include <limits.h>
-#include <stdlib.h>
 #include <signal.h>
+#include <stddef.h>
 #include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "c/_support.h"
@@ -17,9 +17,9 @@
 #define __off_t_defined
 
 #include <asm/unistd.h>
-#include <unistd.h>
-#include <sys/syscall.h>
 #include <linux/signal.h>
+#include <sys/syscall.h>
+#include <unistd.h>
 
 #if 0
 	environ
@@ -29,9 +29,9 @@
 	isatty
 	link
 	stat
-	unlink
+x	unlink
 	wait
-#	write
+x	write
 ?	times
 x	_exit
 x	close
@@ -45,11 +45,24 @@ x	sbrk
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
+int __elibc_sys_unlink(const char *filename) {
+	long ret = elibc::syscall(__NR_unlink, filename);
+	if (ret < 0) {
+		errno = (__elibc_errno_t)-ret;
+		ret   = -1;
+	}
+
+	return 0;
+}
+
+//------------------------------------------------------------------------------
+// Name:
+//------------------------------------------------------------------------------
 int __elibc_sys_kill(int pid, int sig) {
 	long ret = elibc::syscall(__NR_kill, pid, sig);
-	if(ret < 0) {
+	if (ret < 0) {
 		errno = (__elibc_errno_t)-ret;
-		ret = -1;
+		ret   = -1;
 	}
 
 	return 0;
@@ -71,9 +84,9 @@ long __elibc_sys_signal(int sig, __sighandler_t handler) {
 	/* TODO(eteran): I don't know how this is supposed to work yet */
 	ret = elibc::syscall(__NR_rt_sigaction, sig, &new_action, &old_action, 0);
 
-	if(ret < 0) {
+	if (ret < 0) {
 		errno = (__elibc_errno_t)-ret;
-		ret = (long)SIG_ERR;
+		ret   = (long)SIG_ERR;
 	}
 	return ret;
 }
@@ -83,9 +96,9 @@ long __elibc_sys_signal(int sig, __sighandler_t handler) {
 //------------------------------------------------------------------------------
 off_t __elibc_sys_lseek(int fildes, off_t offset, int whence) {
 	long ret = elibc::syscall(__NR_lseek, fildes, offset, whence);
-	if(ret < 0) {
+	if (ret < 0) {
 		errno = (__elibc_errno_t)-ret;
-		ret = -1;
+		ret   = -1;
 	}
 
 	return ret;
@@ -96,9 +109,9 @@ off_t __elibc_sys_lseek(int fildes, off_t offset, int whence) {
 //------------------------------------------------------------------------------
 ssize_t __elibc_sys_write(int fd, const void *buf, size_t count) {
 	long ret = elibc::syscall(__NR_write, fd, buf, count);
-	if(ret < 0) {
+	if (ret < 0) {
 		errno = (__elibc_errno_t)-ret;
-		ret = -1;
+		ret   = -1;
 	}
 
 	return ret;
@@ -109,9 +122,9 @@ ssize_t __elibc_sys_write(int fd, const void *buf, size_t count) {
 //------------------------------------------------------------------------------
 ssize_t __elibc_sys_read(int fd, void *buf, size_t count) {
 	long ret = elibc::syscall(__NR_read, fd, buf, count);
-	if(ret < 0) {
+	if (ret < 0) {
 		errno = (__elibc_errno_t)-ret;
-		ret = -1;
+		ret   = -1;
 	}
 
 	return ret;
@@ -123,9 +136,9 @@ ssize_t __elibc_sys_read(int fd, void *buf, size_t count) {
 int __elibc_sys_close(int fd) {
 	long ret = elibc::syscall(__NR_close, fd);
 
-	if(ret < 0) {
+	if (ret < 0) {
 		errno = (__elibc_errno_t)-ret;
-		ret = -1;
+		ret   = -1;
 	}
 
 	return 0;
@@ -136,9 +149,9 @@ int __elibc_sys_close(int fd) {
 //------------------------------------------------------------------------------
 int __elibc_sys_open(const char *pathname, int flags) {
 	long ret = elibc::syscall(__NR_open, pathname, flags);
-	if(ret < 0) {
+	if (ret < 0) {
 		errno = (__elibc_errno_t)-ret;
-		ret = -1;
+		ret   = -1;
 	}
 
 	return (int)ret;
@@ -149,9 +162,9 @@ int __elibc_sys_open(const char *pathname, int flags) {
 //------------------------------------------------------------------------------
 int __elibc_sys_gettimeofday(struct timeval *tv, struct timezone *tz) {
 	long ret = elibc::syscall(__NR_gettimeofday, tv, tz);
-	if(ret < 0) {
+	if (ret < 0) {
 		errno = (__elibc_errno_t)-ret;
-		ret = -1;
+		ret   = -1;
 	}
 
 	return (int)ret;
@@ -198,12 +211,12 @@ void __elibc_init_heap(void) {
 unsigned long __elibc_brk(unsigned long increment) {
 	static unsigned long curbrk = 0;
 
-	if(curbrk == 0) {
+	if (curbrk == 0) {
 		curbrk = elibc::syscall(__NR_brk, 0);
 	}
 
 	unsigned long ret = elibc::syscall(__NR_brk, curbrk + increment);
-	if(ret != static_cast<unsigned long>(-1)) {
+	if (ret != static_cast<unsigned long>(-1)) {
 		curbrk = ret;
 	}
 
@@ -219,7 +232,7 @@ void do_div64(const T &numerator, const T &denominator, T &quotient, T &remainde
 
 	static const int bits = sizeof(T) * CHAR_BIT;
 
-	if(denominator == 0) {
+	if (denominator == 0) {
 		abort();
 	} else {
 		T n      = numerator;
@@ -227,13 +240,13 @@ void do_div64(const T &numerator, const T &denominator, T &quotient, T &remainde
 		T x      = 1;
 		T answer = 0;
 
-		while((n >= d) && (((d >> (bits - 1)) & 1) == 0)) {
+		while ((n >= d) && (((d >> (bits - 1)) & 1) == 0)) {
 			x <<= 1;
 			d <<= 1;
 		}
 
-		while(x != 0) {
-			if(n >= d) {
+		while (x != 0) {
+			if (n >= d) {
 				n -= d;
 				answer |= x;
 			}
@@ -242,12 +255,11 @@ void do_div64(const T &numerator, const T &denominator, T &quotient, T &remainde
 			d >>= 1;
 		}
 
-		quotient = answer;
+		quotient  = answer;
 		remainder = n;
 	}
 }
 }
-
 
 //------------------------------------------------------------------------------
 // Name:
@@ -292,4 +304,3 @@ extern "C" uint64_t __moddi3(int64_t numerator, int64_t denominator) {
 	do_div64(numerator, denominator, quotient, remainder);
 	return remainder;
 }
-

@@ -6,8 +6,12 @@
 #include <pthread.h>
 #endif
 
-#define _ELIBC_FILE_STATIC_ALLOC 0x01 /* don't delete on close */
-#define _ELIBC_FILE_AUTO_CLOSE   0x02
+#define _ELIBC_FILE_STATIC_ALLOC 0x01 /* don't delete object  on close */
+
+#define _ELIBC_FILE_ORIENTATION_NONE    0
+#define _ELIBC_FILE_ORIENTATION_INVALID 1
+#define _ELIBC_FILE_ORIENTATION_NARROW  2
+#define _ELIBC_FILE_ORIENTATION_WIDE    3
 
 struct _IO_FILE;
 
@@ -16,19 +20,18 @@ struct __elibc_file {
 	int buf_mod;
 	unsigned err : 1;
 	unsigned eof : 1;
-	unsigned char orientation; /* 0 = unset, 1 = invalid, 2 = char, 3 = wchar */
-	unsigned int flags;
+	unsigned char orientation;
+	unsigned char flags;
 
 	/* buffer management */
-	char *buffer_ptr;
-	unsigned long buffer_capacity;
-	char *buffer_first;
-	char *buffer_last;
+	char *buffer_start;
+	char *buffer_end;
+	char *buffer_first;        /* start of used buffer portion */
+	char *buffer_last;         /* end of used buffer portion*/
 	char *internal_buffer_ptr; /* only set if the stdio library
 								* allocated the buffer, so we can free
 								* it later on fclose
 								*/
-	char filename[1];
 };
 
 typedef struct _IO_FILE {
@@ -46,5 +49,17 @@ typedef struct _IO_FILE {
 } FILE;
 
 #define _FDATA(f) ((f)->internal)
+
+#define _ELIBC_STREAM_BUFFER_SIZE(stream) ((size_t)(_FDATA(stream)->buffer_end - _FDATA(stream)->buffer_start))
+
+#define _ELIBC_ALLOCATE_FILE_BUFFER(stream)                    \
+	do {                                                       \
+		char *const buffer                  = malloc(BUFSIZ);  \
+		_FDATA(stream)->buffer_start        = buffer;          \
+		_FDATA(stream)->buffer_first        = buffer;          \
+		_FDATA(stream)->buffer_last         = buffer;          \
+		_FDATA(stream)->buffer_end          = buffer + BUFSIZ; \
+		_FDATA(stream)->internal_buffer_ptr = buffer;          \
+	} while (0)
 
 #endif

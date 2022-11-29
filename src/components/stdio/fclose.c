@@ -19,17 +19,6 @@ int __elibc_fclose(FILE *stream) {
 	/* TODO(eteran): deal with any errors __elibc_sys_close might return */
 	__elibc_sys_close(_ELIBC_FILENO(stream));
 
-	/* if the file is marked to remove on close, do it */
-	if (_FDATA(stream)->flags & _ELIBC_FILE_AUTO_CLOSE) {
-
-		/* TODO(eteran): deleting it by the original open name
-		 * is flawed. I believe the UNIX way is to
-		 * actually delete the file immediately after
-		 * the open, and the OS will automatically
-		 * clean it up when we close it */
-		remove(_FDATA(stream)->filename);
-	}
-
 	/* TODO(eteran): lock the list */
 	do {
 		/* unlink this FILE from the linked list */

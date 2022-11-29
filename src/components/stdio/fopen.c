@@ -26,14 +26,11 @@ FILE *fopen(const char *path, const char *mode) {
 		return 0;
 	}
 
-	_FDATA(f) = malloc(sizeof(struct __elibc_file) + strlen(path));
+	_FDATA(f) = malloc(sizeof(struct __elibc_file));
 	if (!_FDATA(f)) {
 		__elibc_free_file(f);
 		return 0;
 	}
-
-	/* store the filename, makes it easier if we need to delete this guy later */
-	strcpy(_FDATA(f)->filename, path);
 
 	/* get the basic mode */
 	switch (*mode) {
@@ -98,20 +95,19 @@ FILE *fopen(const char *path, const char *mode) {
 	_FDATA(f)->buf_mod             = _IOFBF;
 	_FDATA(f)->err                 = 0;
 	_FDATA(f)->eof                 = 0;
-	_FDATA(f)->orientation         = 0;
+	_FDATA(f)->orientation         = _ELIBC_FILE_ORIENTATION_NONE;
 	_FDATA(f)->flags               = 0;
-	_FDATA(f)->buffer_ptr          = 0;
-	_FDATA(f)->buffer_capacity     = 0;
+	_FDATA(f)->buffer_start        = 0;
+	_FDATA(f)->buffer_end          = 0;
 	_FDATA(f)->buffer_first        = 0;
 	_FDATA(f)->buffer_last         = 0;
 	_FDATA(f)->internal_buffer_ptr = 0;
-	_FDATA(f)->filename[0]         = '\0';
 
 	/* TODO(eteran): lock the list */
 
 	/* insert at the beginning of the list */
 	f->next = __elibc_root_file_struct;
-	f->prev = 0;
+	f->prev = NULL;
 
 	__elibc_root_file_struct->prev = f;
 	__elibc_root_file_struct       = f;

@@ -1,5 +1,6 @@
 
 #define _ELIBC_SOURCE
+#include "c/_support.h"
 #include <stdio.h>
 
 /*------------------------------------------------------------------------------
@@ -17,8 +18,10 @@ FILE *tmpfile(void) {
 		file = fopen(name, "w+b");
 
 		if (file) {
-			/* set the file to auto-delete on close */
-			_FDATA(file)->flags |= _ELIBC_FILE_AUTO_CLOSE;
+			int result = __elibc_sys_unlink(name);
+			if(result != 0) {
+				/* TODO(eteran): what is the best way to handle this? */
+			}
 		}
 	}
 

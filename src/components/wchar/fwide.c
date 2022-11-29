@@ -13,27 +13,28 @@ int __elibc_fwide(FILE *stream, int mode) {
 
 	/* When mode is nonzero, we first attempt to set the orientation */
 	if (mode != 0) {
-		if (_FDATA(stream)->orientation == 0) {
+		if (_FDATA(stream)->orientation == _ELIBC_FILE_ORIENTATION_NONE) {
 			if (mode > 0) {
-				_FDATA(stream)->orientation = 3;
+				_FDATA(stream)->orientation = _ELIBC_FILE_ORIENTATION_WIDE;
 			} else if (mode < 0) {
-				_FDATA(stream)->orientation = 2;
+				_FDATA(stream)->orientation = _ELIBC_FILE_ORIENTATION_NARROW;
 			}
 		}
 	}
 
 	switch (_FDATA(stream)->orientation) {
-	case 0: /* unset */
+	case _ELIBC_FILE_ORIENTATION_NONE:
 		return 0;
-	case 1: /* invalid */
-	default:
-		assert(0);
-	case 2: /* char */
+	case _ELIBC_FILE_ORIENTATION_NARROW:
 		/* It returns a negative value if stream is byte oriented. */
 		return -1;
-	case 3: /* wchar */
+	case _ELIBC_FILE_ORIENTATION_WIDE:
 		/* It returns a positive value if stream is wide-character oriented */
 		return 1;
+	case _ELIBC_FILE_ORIENTATION_INVALID: /* invalid */
+	default:
+		assert(0);
+		return 0;
 	}
 }
 

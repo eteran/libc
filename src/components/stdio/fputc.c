@@ -24,15 +24,8 @@ int __elibc_fputc(int c, FILE *stream, int orientation) {
 
 	_FDATA(stream)->orientation = (unsigned char)orientation;
 
-	if (!_FDATA(stream)->buffer_ptr) {
-		char *const buffer              = malloc(BUFSIZ);
-		_FDATA(stream)->buffer_ptr      = buffer;
-		_FDATA(stream)->buffer_first    = buffer;
-		_FDATA(stream)->buffer_last     = buffer;
-		_FDATA(stream)->buffer_capacity = BUFSIZ;
-
-		/* record this so we can free it */
-		_FDATA(stream)->internal_buffer_ptr = buffer;
+	if (!_FDATA(stream)->buffer_start) {
+		_ELIBC_ALLOCATE_FILE_BUFFER(stream);
 	}
 
 	/* this is only true after a read into the buffer */
@@ -40,8 +33,7 @@ int __elibc_fputc(int c, FILE *stream, int orientation) {
 	switch (_FDATA(stream)->buf_mod) {
 	case _IOFBF:
 		*_FDATA(stream)->buffer_first++ = (char)ch;
-		if (_FDATA(stream)->buffer_first ==
-			_FDATA(stream)->buffer_ptr + _FDATA(stream)->buffer_capacity) {
+		if (_FDATA(stream)->buffer_first == _FDATA(stream)->buffer_end) {
 			r = __elibc_fflush(stream) == 0 ? c : EOF;
 		} else {
 			r = c;
@@ -50,8 +42,7 @@ int __elibc_fputc(int c, FILE *stream, int orientation) {
 
 	case _IOLBF:
 		*_FDATA(stream)->buffer_first++ = (char)ch;
-		if (ch == '\n' || (_FDATA(stream)->buffer_first ==
-						   _FDATA(stream)->buffer_ptr + _FDATA(stream)->buffer_capacity)) {
+		if (ch == '\n' || (_FDATA(stream)->buffer_first == _FDATA(stream)->buffer_end)) {
 			r = __elibc_fflush(stream) == 0 ? c : EOF;
 		} else {
 			r = c;

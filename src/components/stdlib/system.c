@@ -7,13 +7,14 @@
 #if defined(__linux__) && !defined(__KERNEL__) && 0
 #include <asm/unistd.h>
 #include <sys/types.h>
-_syscall0(pid_t, fork) _syscall3(pid_t, waitpid, pid_t, pid, int *, status, int, options)
+_syscall0(pid_t, fork)
+_syscall3(pid_t, waitpid, pid_t, pid, int *, status, int, options)
 #endif
 
-	/*------------------------------------------------------------------------------
+/*------------------------------------------------------------------------------
 // Name: system
 //----------------------------------------------------------------------------*/
-	int system(const char *command) {
+int system(const char *command) {
 
 	int ret = 0;
 	if (command) {
@@ -23,6 +24,7 @@ _syscall0(pid_t, fork) _syscall3(pid_t, waitpid, pid_t, pid, int *, status, int,
 		 * it is clearly a logic error
 		 */
 		assert(!command); /* die with an assert for now */
+		return -1;
 #elif defined(__linux__) && 0
 		const int pid = fork();
 

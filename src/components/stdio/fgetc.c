@@ -11,20 +11,13 @@
 int __elibc_fgetc(FILE *stream) {
 
 	assert(stream);
-	assert(_FDATA(stream)->orientation != 0x03);
+	assert(_FDATA(stream)->orientation != _ELIBC_FILE_ORIENTATION_WIDE);
 
-	_FDATA(stream)->orientation = 0x02;
+	_FDATA(stream)->orientation = _ELIBC_FILE_ORIENTATION_NARROW;
 
 	/* if this stream doesn't have a buffer, then create one */
-	if (!_FDATA(stream)->buffer_ptr) {
-		char *const buffer              = malloc(BUFSIZ);
-		_FDATA(stream)->buffer_ptr      = buffer;
-		_FDATA(stream)->buffer_first    = buffer;
-		_FDATA(stream)->buffer_last     = buffer;
-		_FDATA(stream)->buffer_capacity = BUFSIZ;
-
-		/* record this so we can free it */
-		_FDATA(stream)->internal_buffer_ptr = buffer;
+	if (!_FDATA(stream)->buffer_start) {
+		_ELIBC_ALLOCATE_FILE_BUFFER(stream);
 	}
 
 	if (_FDATA(stream)->buf_mod == _IONBF) {
@@ -37,8 +30,8 @@ int __elibc_fgetc(FILE *stream) {
 			return EOF;
 		case 0:
 			_FDATA(stream)->eof          = 1;
-			_FDATA(stream)->buffer_first = _FDATA(stream)->buffer_ptr;
-			_FDATA(stream)->buffer_last  = _FDATA(stream)->buffer_ptr;
+			_FDATA(stream)->buffer_first = _FDATA(stream)->buffer_start;
+			_FDATA(stream)->buffer_last  = _FDATA(stream)->buffer_start;
 			return EOF;
 		default:
 			return ch;
@@ -46,8 +39,10 @@ int __elibc_fgetc(FILE *stream) {
 	} else {
 		/* the input buffer is empty, fill it up */
 		if (_FDATA(stream)->buffer_first == _FDATA(stream)->buffer_last) {
-			const ssize_t n = __elibc_sys_read(_ELIBC_FILENO(stream), _FDATA(stream)->buffer_ptr,
-											   _FDATA(stream)->buffer_capacity);
+
+			const ssize_t n = __elibc_sys_read(_ELIBC_FILENO(stream),
+											   _FDATA(stream)->buffer_start,
+											   _ELIBC_STREAM_BUFFER_SIZE(stream));
 
 			switch (n) {
 			case -1:
@@ -55,13 +50,13 @@ int __elibc_fgetc(FILE *stream) {
 				return EOF;
 			case 0:
 				_FDATA(stream)->eof          = 1;
-				_FDATA(stream)->buffer_first = _FDATA(stream)->buffer_ptr;
-				_FDATA(stream)->buffer_last  = _FDATA(stream)->buffer_ptr;
+				_FDATA(stream)->buffer_first = _FDATA(stream)->buffer_start;
+				_FDATA(stream)->buffer_last  = _FDATA(stream)->buffer_start;
 				return EOF;
 			}
 
-			_FDATA(stream)->buffer_first = _FDATA(stream)->buffer_ptr;
-			_FDATA(stream)->buffer_last  = _FDATA(stream)->buffer_ptr + n;
+			_FDATA(stream)->buffer_first = _FDATA(stream)->buffer_start;
+			_FDATA(stream)->buffer_last  = _FDATA(stream)->buffer_start + n;
 		}
 
 		return *_FDATA(stream)->buffer_first++;
