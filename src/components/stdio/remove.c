@@ -34,14 +34,14 @@ int remove(const char *pathname) {
 #else
 	/* TODO(eteran): something along these lines
 
-	        if (unlink(filename)) {
-	                if (errno == EISDIR) {
-	                        return rmdir(filename);
-	                }
-	                return -1;
-	        }
-	        return 0;
-	        */
+			if (unlink(filename)) {
+					if (errno == EISDIR) {
+							return rmdir(filename);
+					}
+					return -1;
+			}
+			return 0;
+			*/
 
 #endif
 

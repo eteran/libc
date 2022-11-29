@@ -4,17 +4,17 @@
 #include <wchar.h>
 #include <wctype.h>
 
-#define TEST_CTYPE(name, charset)                                                                  \
-	static void test_##name(void) {                                                                \
-		wint_t ch;                                                                                 \
-		for (ch = 1; ch < 256; ++ch) {                                                             \
-			if (wcschr(charset, (wchar_t)ch)) {                                                    \
-				assert(name(ch));                                                                  \
-			} else {                                                                               \
-				assert(!name(ch));                                                                 \
-			}                                                                                      \
-		}                                                                                          \
-		assert(!name(L'\0'));                                                                      \
+#define TEST_CTYPE(name, charset)               \
+	static void test_##name(void) {             \
+		wint_t ch;                              \
+		for (ch = 1; ch < 256; ++ch) {          \
+			if (wcschr(charset, (wchar_t)ch)) { \
+				assert(name(ch));               \
+			} else {                            \
+				assert(!name(ch));              \
+			}                                   \
+		}                                       \
+		assert(!name(L'\0'));                   \
 	}
 
 TEST_CTYPE(iswalnum, L"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")
@@ -26,11 +26,11 @@ TEST_CTYPE(iswxdigit, L"0123456789ABCDEFabcdef")
 TEST_CTYPE(iswspace, L" \t\f\n\r\v")
 TEST_CTYPE(iswpunct, L"!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")
 TEST_CTYPE(iswprint,
-           L"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!\"#$%&'()*+,-./"
-           L":;<=>?@[\\]^_`{|}~ ")
+		   L"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!\"#$%&'()*+,-./"
+		   L":;<=>?@[\\]^_`{|}~ ")
 TEST_CTYPE(iswgraph,
-           L"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!\"#$%&'()*+,-./"
-           L":;<=>?@[\\]^_`{|}~")
+		   L"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!\"#$%&'()*+,-./"
+		   L":;<=>?@[\\]^_`{|}~")
 TEST_CTYPE(iswblank, L" \t")
 
 static void test_iswcntrl(void) {

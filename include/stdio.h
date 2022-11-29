@@ -10,9 +10,9 @@
 #include "c/_file.h"
 #include "c/_null.h"
 
-#define _IOFBF       0
-#define _IOLBF       1
-#define _IONBF       2
+#define _IOFBF 0
+#define _IOLBF 1
+#define _IONBF 2
 
 #define BUFSIZ       256
 #define EOF          (-1)
@@ -20,11 +20,11 @@
 #define FILENAME_MAX 256
 #define L_tmpnam     20
 
-#define SEEK_SET     0
-#define SEEK_CUR     1
-#define SEEK_END     2
+#define SEEK_SET 0
+#define SEEK_CUR 1
+#define SEEK_END 2
 
-#define TMP_MAX      0x7fff
+#define TMP_MAX 0x7fff
 
 extern FILE *__elibc_root_file_struct;
 extern FILE *__elibc_free_file_struct;
@@ -101,11 +101,11 @@ void __elibc_unlock_stream(FILE *stream);
 FILE *__elibc_allocate_file(void);
 void __elibc_free_file(FILE *stream);
 
-#define __ELIBC_WITH_LOCK(call)                                                                    \
-	do {                                                                                           \
-		__elibc_lock_stream(stream);                                                               \
-		r = call;                                                                                  \
-		__elibc_unlock_stream(stream);                                                             \
+#define __ELIBC_WITH_LOCK(call)        \
+	do {                               \
+		__elibc_lock_stream(stream);   \
+		r = call;                      \
+		__elibc_unlock_stream(stream); \
 	} while (0)
 
 #endif

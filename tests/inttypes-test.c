@@ -15,7 +15,7 @@ void test_maxabs(void) {
 }
 
 void test_imaxdiv(void) {
-	intmax_t i = 57;
+	intmax_t i  = 57;
 	imaxdiv_t r = imaxdiv(i, 10);
 	assert(r.quot == 5);
 	assert(r.rem == 7);

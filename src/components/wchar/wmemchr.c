@@ -9,7 +9,7 @@
 wchar_t *wmemchr(const wchar_t *s, wchar_t c, size_t n) {
 
 	const wchar_t *s_ptr = s;
-	const wchar_t cmp = c;
+	const wchar_t cmp    = c;
 
 	assert(s);
 

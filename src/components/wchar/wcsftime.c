@@ -15,8 +15,8 @@
 
 /* TODO(eteran): implement this */
 
-#define DO_WRITE_CHAR(s, n, ch)                                                                    \
-	if (n != 0) {                                                                                  \
+#define DO_WRITE_CHAR(s, n, ch) \
+	if (n != 0) {               \
 	}
 
 /*------------------------------------------------------------------------------

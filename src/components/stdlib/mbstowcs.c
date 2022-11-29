@@ -13,8 +13,8 @@ size_t mbstowcs(wchar_t *dest, const char *src, size_t n) {
 	static _Thread_local mbstate_t state;
 
 	const char *first = src;
-	const char *last = src + n;
-	size_t count = 0;
+	const char *last  = src + n;
+	size_t count      = 0;
 
 	if (dest) {
 		while (1) {

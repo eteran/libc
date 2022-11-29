@@ -58,9 +58,9 @@ static int __elibc_get_weekday(int year, int month, int day) {
 // Name: __elibc_get_date
 //----------------------------------------------------------------------------*/
 static int __elibc_get_date(time_t t, int year, int *mon, int *day, int *wday) {
-	static const int day_tab[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	static const int day_tab[12]      = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	static const int leap_day_tab[12] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	const int *d = __elibc_is_leapyear(year) ? leap_day_tab : day_tab;
+	const int *d                      = __elibc_is_leapyear(year) ? leap_day_tab : day_tab;
 
 	time_t n = 0;
 	int i;
@@ -68,8 +68,8 @@ static int __elibc_get_date(time_t t, int year, int *mon, int *day, int *wday) {
 	for (i = 0; i < 12; ++i) {
 		for (j = 1; j <= d[i]; ++j) {
 			if (n == t) {
-				*day = j;
-				*mon = i;
+				*day  = j;
+				*mon  = i;
 				*wday = __elibc_get_weekday(year, i, j);
 				return 0;
 			}

@@ -56,12 +56,12 @@ static const uint16_t __elibc_ctype_tab[] = {
 };
 /* clang-format on */
 
-#define IS_CTYPE(name, type)                                                                       \
-	int name(int c) {                                                                              \
-		if ((unsigned int)c < 0x100) {                                                             \
-			return (__elibc_ctype_tab[c] & (type)) != 0;                                           \
-		}                                                                                          \
-		return 0;                                                                                  \
+#define IS_CTYPE(name, type)                             \
+	int name(int c) {                                    \
+		if ((unsigned int)c < 0x100) {                   \
+			return (__elibc_ctype_tab[c] & (type)) != 0; \
+		}                                                \
+		return 0;                                        \
 	}
 
 /*------------------------------------------------------------------------------

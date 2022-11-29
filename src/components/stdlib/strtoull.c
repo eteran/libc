@@ -12,8 +12,8 @@
 unsigned long long int strtoull(const char *nptr, char **endptr, int base) {
 	typedef unsigned long long int T;
 
-	T neg = 0;
-	T ret = 0;
+	T neg   = 0;
+	T ret   = 0;
 	int err = 0;
 
 	/*
@@ -75,7 +75,7 @@ unsigned long long int strtoull(const char *nptr, char **endptr, int base) {
 	while (*nptr != '\0') {
 
 		const T old_ret = ret;
-		const char c = *nptr;
+		const char c    = *nptr;
 		int digit;
 
 		if (c >= 'A' && c <= 'Z') {

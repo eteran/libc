@@ -9,7 +9,7 @@
 //----------------------------------------------------------------------------*/
 static void *__elibc_calloc(size_t nmemb, size_t size) {
 
-	void *ret = 0;
+	void *ret        = 0;
 	const size_t len = nmemb * size;
 
 	/* do some overflow checking.. */

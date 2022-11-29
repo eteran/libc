@@ -2,27 +2,37 @@
 #include <fenv.h>
 #include <stdint.h>
 
-#define FNINIT()         __asm__ __volatile__("fninit")
+#define FNINIT() __asm__ __volatile__("fninit")
 
-#define FPU_GETCW(cw)    __asm__ __volatile__("fnstcw %0" : "=m"(cw))
-#define FPU_SETCW(cw)    __asm__ __volatile__("fldcw %0" : : "m"(cw))
+#define FPU_GETCW(cw) __asm__ __volatile__("fnstcw %0" \
+										   : "=m"(cw))
+#define FPU_SETCW(cw) __asm__ __volatile__("fldcw %0" \
+										   :          \
+										   : "m"(cw))
 
-#define FPU_GETSW(sw)    __asm__ __volatile__("fnstsw %0" : "=m"(sw))
+#define FPU_GETSW(sw) __asm__ __volatile__("fnstsw %0" \
+										   : "=m"(sw))
 
-#define FPU_GETENV(envp) __asm__ __volatile__("fnstenv %0" : "=m"(envp))
-#define FPU_SETENV(envp) __asm__ __volatile__("fldenv %0" : : "m"(envp))
+#define FPU_GETENV(envp) __asm__ __volatile__("fnstenv %0" \
+											  : "=m"(envp))
+#define FPU_SETENV(envp) __asm__ __volatile__("fldenv %0" \
+											  :           \
+											  : "m"(envp))
 
 #ifdef __SSE_MATH__
-#define SSE_GETCW(xcw) __asm__ __volatile__("stmxcsr %0" : "=m"(xcw))
-#define SSE_SETCW(xcw) __asm__ __volatile__("ldmxcsr %0" : : "m"(xcw))
+#define SSE_GETCW(xcw) __asm__ __volatile__("stmxcsr %0" \
+											: "=m"(xcw))
+#define SSE_SETCW(xcw) __asm__ __volatile__("ldmxcsr %0" \
+											:            \
+											: "m"(xcw))
 #else
-#define SSE_GETCW(xcw)                                                                             \
-	do {                                                                                           \
-		(xcw) = 0;                                                                                 \
+#define SSE_GETCW(xcw) \
+	do {               \
+		(xcw) = 0;     \
 	} while (0)
-#define SSE_SETCW(xcw)                                                                             \
-	do {                                                                                           \
-		_UNUSED(xcw);                                                                              \
+#define SSE_SETCW(xcw) \
+	do {               \
+		_UNUSED(xcw);  \
 	} while (0)
 #endif
 

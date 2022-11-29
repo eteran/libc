@@ -15,9 +15,9 @@
 //----------------------------------------------------------------------------*/
 double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 
-	double sign = 1.0;
+	double sign             = 1.0;
 	const char *radix_index = 0;
-	double ret = 0.0;
+	double ret              = 0.0;
 
 	assert(nptr);
 
@@ -93,7 +93,7 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 	/* ok, time for exponent processing */
 	if (*nptr != '\0') {
 		if (*nptr == 'E' || *nptr == 'e') {
-			double exponent = 0.0;
+			double exponent      = 0.0;
 			double exponent_sign = 1.0;
 
 			++nptr;

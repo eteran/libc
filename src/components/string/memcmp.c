@@ -7,7 +7,7 @@
 // Name: memcmp
 //----------------------------------------------------------------------------*/
 int memcmp(const void *s1, const void *s2, size_t n) {
-	int ret = 0;
+	int ret        = 0;
 	const char *p1 = s1;
 	const char *p2 = s2;
 

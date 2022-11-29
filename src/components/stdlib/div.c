@@ -12,6 +12,6 @@ div_t div(int numerator, int denominator) {
 	assert(denominator);
 
 	ret.quot = numerator / denominator;
-	ret.rem = numerator % denominator;
+	ret.rem  = numerator % denominator;
 	return ret;
 }

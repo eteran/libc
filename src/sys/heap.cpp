@@ -1,58 +1,19 @@
 
 #include "heap.hpp"
 #include <assert.h>
+#include <stdint.h>
 #include <string.h>
 
 #ifdef __KERNEL__
-#include "MMU.h"
+#include "Mmu.h"
 #include "ScopedLock.h"
-#include "SystemLock.h"
+#include "Spinlock.h"
 #endif
 
 #include "c/_support.h"
 
-#if __cplusplus > 199711L
-#define CONSTEXPR11 constexpr
-#else
-#define CONSTEXPR11
-#endif
-
 namespace heap {
 namespace {
-
-struct heap_data;
-
-// when expanding the heap, the amount needed will be rounded up
-// to the nearest multiple of this number do help reduce expansions
-// in the near future particularly for small allocations
-// MUST be a power of 2
-// however, the bigger this value is, the more of your maximum brk
-// value that can get wasted
-#ifdef __KERNEL__
-CONSTEXPR11 const unsigned int ExpandSlack = MMU::page_size;
-#else
-CONSTEXPR11 const unsigned int ExpandSlack = 0x1000;
-#endif
-
-// this is the minimum block granularity, it also MUST be a power of 2
-// recommended values are 8 and 16
-CONSTEXPR11 const unsigned int Granularity = (sizeof(void *) * 2); // 8 on 32-bit, 16 on 64-bit
-
-// MUST be a multiple of granularity, we should avoid making this too
-// big as when enough is in the cache that brk fails, the cache is
-// searched for blocks to free to main store.
-CONSTEXPR11 const unsigned int BiggestToCache = (Granularity * 32); // 256/512 on 32/64 bit
-
-// how many blocks of a given size should we cache
-// when possible?
-CONSTEXPR11 const unsigned int MaxCacheDepth = 16;
-
-#ifndef NDEBUG
-bool initialized = false;
-#endif
-void *     start      = 0;
-void *     end        = 0;
-heap_data *last_block = 0;
 
 template <class T>
 T *add_pointer(T *p, size_t n) {
@@ -67,45 +28,85 @@ T *sub_pointer(T *p, size_t n) {
 // NOTE(eteran): N must be a power of 2
 template <int N, class T>
 T round_up(T value) {
-#if defined(__GXX_EXPERIMENTAL_CXX0X__) || (__cplusplus > 199711L)
 	static_assert((N & (N - 1)) == 0, "invalid target rounding value");
-#else
-	assert((N & (N - 1)) == 0);
-#endif
 	return ((value + N - 1) & ~(N - 1));
 }
 
 // TODO(eteran): come up with a more clever way to store this data..
-// TODO(eteran): perhaps do like dlmalloc and have the used flag
-//       be the LSB of curr_size (since curr_size is never odd)
-//       there is no gain in this though unless we can cleverly
-//       deal withe cache_next too
+//               perhaps do like dlmalloc and have the used flag
+//               be the LSb of curr_size (since curr_size is never odd)
+//               there is no gain in this though unless we can cleverly
+//               deal withe cache_next too
 struct heap_data {
 public:
-	size_t     prev_size;
-	size_t     curr_size;
-	size_t     used;
+	size_t prev_size;
+	size_t curr_size;
+	size_t used;
 	heap_data *cache_next;
 
 public:
 	heap_data *next() const { return add_pointer(const_cast<heap_data *>(this), curr_size); }
 	heap_data *prev() const { return sub_pointer(const_cast<heap_data *>(this), prev_size); }
-	size_t     block_size() const { return curr_size - sizeof(heap_data); }
+	size_t block_size() const { return curr_size - sizeof(heap_data); }
 
 	static heap_data *from_pointer(void *p) { return &static_cast<heap_data *>(p)[-1]; }
-	static void *     to_pointer(heap_data *p) { return &p[1]; }
+	static void *to_pointer(heap_data *p) { return &p[1]; }
 };
 
+static_assert(sizeof(heap_data) == 32, "Broken heap data struct");
+
+// when expanding the heap, the amount needed will be rounded up
+// to the nearest multiple of this number do help reduce expansions
+// in the near future particularly for small allocations
+// MUST be a power of 2
+// however, the bigger this value is, the more of your maximum brk
+// value that can get wasted
+#ifdef __KERNEL__
+constexpr unsigned int ExpandSlack = Mmu::page_size;
+#else
+constexpr unsigned int ExpandSlack = 0x1000;
+#endif
+
+// this is the minimum block granularity, it also MUST be a power of 2
+// recommended values are 8 and 16
+constexpr unsigned int Granularity = (sizeof(void *) * 2); // 8 on 32-bit, 16 on 64-bit
+
+// MUST be a multiple of granularity, we should avoid making this too
+// big as when enough is in the cache that brk fails, the cache is
+// searched for blocks to free to main store.
+constexpr unsigned int BiggestToCache = (Granularity * 32); // 256/512 on 32/64 bit
+
+// how many blocks of a given size should we cache
+// when possible?
+constexpr unsigned int MaxCacheDepth = 16;
+
+#ifdef __KERNEL__
+Spinlock heapLock;
+#endif
+
+#ifndef NDEBUG
+bool initialized = false;
+#endif
+void *start           = nullptr;
+void *end             = nullptr;
+heap_data *last_block = nullptr;
+
 struct cache {
-	heap_data *  entry;
-	size_t depth;
-} block_cache[BiggestToCache / Granularity] = {};
+	heap_data *entry;
+	unsigned int depth;
+	uint8_t padding[4];
+};
+
+cache blockCache[BiggestToCache / Granularity] = {};
 
 void *brk(size_t incsize) {
 	return reinterpret_cast<void *>(__elibc_brk(incsize));
 }
 
 void split_block(heap_data *p, size_t size) {
+
+	assert(p);
+
 	if (p->curr_size - size >= sizeof(heap_data) + Granularity) {
 		// split the block up!
 		const size_t size1 = size;
@@ -131,19 +132,26 @@ void split_block(heap_data *p, size_t size) {
 
 struct first_fit {
 	void *operator()(size_t size) const {
-		heap_data *p = static_cast<heap_data *>(start);
+		auto p = static_cast<heap_data *>(start);
+
+		assert(p >= start && p <= end);
+
 		while (p != end) {
+
+			assert(p >= start && p <= end);
+			assert(p->used <= 1);
+
 			if (!p->used && p->curr_size >= size) {
 				split_block(p, size);
 				p->used       = 1;
-				p->cache_next = 0;
+				p->cache_next = nullptr;
 				return heap_data::to_pointer(p);
 			}
 
 			p = p->next();
 		}
 
-		return 0;
+		return nullptr;
 	}
 };
 
@@ -151,7 +159,7 @@ bool cached_deallocate(void *p) {
 	const size_t usable_size = block_size(p) / Granularity;
 	if (usable_size < BiggestToCache / Granularity) {
 
-		cache &cacheptr = block_cache[usable_size];
+		cache &cacheptr = blockCache[usable_size];
 
 		if (cacheptr.depth < MaxCacheDepth) {
 			heap_data *const ptr = heap_data::from_pointer(p);
@@ -164,29 +172,25 @@ bool cached_deallocate(void *p) {
 	return false;
 }
 
-template <bool UseCache>
+template <bool use_cache>
 void internal_deallocate(void *p) {
-#ifdef __KERNEL__
-	SystemLock system_lock;
-	auto       lock = make_scoped_lock(&system_lock);
-#endif
 
 	if (p) {
 		heap_data *curr = heap_data::from_pointer(p);
-		assert(curr->used);
+		assert(curr->used == 1);
 
-		if (!UseCache || !cached_deallocate(p)) {
+		if (!use_cache || !cached_deallocate(p)) {
 			if (curr->used) {
 
-				heap_data *next = curr->next();
-				heap_data *prev = curr->prev();
+				heap_data *next       = curr->next();
+				heap_data *const prev = curr->prev();
 
 				// ok, so if our block is invalid or corrupted
 				// then this check should either crash or assert
 				// but NEVER continue and potentially corrupt an
 				// address of attackers choice
-				assert(next == end || next->prev()->prev() == prev);
-				assert(prev == curr || prev->next()->next() == next);
+				// assert(next == end || next->prev()->prev() == prev);
+				// assert(prev == curr || prev->next()->next() == next);
 
 				// mark our block as available
 				curr->used = 0;
@@ -238,7 +242,7 @@ bool extend_heap(size_t size) {
 		size -= last_block->curr_size;
 	}
 
-	// round needed size up by <ExpandSlack> so we don't have to do this THAT often
+	// round needed size up by <expand_slack> so we don't have to do this THAT often
 	const size_t size_inc = round_up<ExpandSlack>(size);
 
 	// request the extra space
@@ -248,9 +252,9 @@ bool extend_heap(size_t size) {
 	if (new_end && new_end != end) {
 
 		// ok, make the new space look like an allocated block
-		heap_data *const new_block = static_cast<heap_data *>(end);
-		new_block->curr_size       = size_inc;
-		new_block->used            = 1;
+		const auto new_block = static_cast<heap_data *>(end);
+		new_block->curr_size = size_inc;
+		new_block->used      = 1;
 
 		// set previous size to based on the lastblock since we expect to be after it
 		new_block->prev_size = last_block ? last_block->curr_size : 0;
@@ -269,11 +273,11 @@ bool extend_heap(size_t size) {
 		// the cache that when coalleced with the main free list will be big enough?
 		for (size_t i = (BiggestToCache / Granularity) - 1; i > 0; --i) {
 
-			cache &cacheptr = block_cache[i];
+			cache &cacheptr = blockCache[i];
 
 			if (cacheptr.entry) {
 				void *const ptr            = heap_data::to_pointer(cacheptr.entry);
-				cacheptr.entry->cache_next = 0;
+				cacheptr.entry->cache_next = nullptr;
 				cacheptr.entry             = cacheptr.entry->cache_next;
 				cacheptr.depth--;
 				internal_deallocate<false>(ptr);
@@ -287,15 +291,15 @@ bool extend_heap(size_t size) {
 }
 
 void *cached_allocate(size_t size) {
-	void *ret = 0;
+	void *ret = nullptr;
 	size /= Granularity;
 	if (size < BiggestToCache / Granularity) {
 
-		cache &cacheptr = block_cache[size];
+		cache &cacheptr = blockCache[size];
 
 		if (cacheptr.entry) {
 			ret                        = heap_data::to_pointer(cacheptr.entry);
-			cacheptr.entry->cache_next = 0;
+			cacheptr.entry->cache_next = nullptr;
 			cacheptr.entry             = cacheptr.entry->cache_next;
 			cacheptr.depth--;
 		}
@@ -312,20 +316,15 @@ void init() {
 	start = end = brk(0);
 
 	// the cache depends on this fact..
-#if defined(__GXX_EXPERIMENTAL_CXX0X__) || (__cplusplus > 199711L)
 	static_assert((sizeof(heap_data) % Granularity) == 0, "invalid heap granularity");
-#else
-	assert((sizeof(heap_data) % granularity) == 0);
-#endif
 
 #ifdef __KERNEL__
 	// setup the first level of paging for our heap
 	// we do this to avoid needing to tweak each
 	// processes page structures whenever we grow
 	// the heap
-
-	for (uintptr_t i = MMU::virt_kernel_heap_start; i < MMU::virt_kernel_heap_end; i += MMU::page_size) {
-		MMU::map_page_1st_level(i);
+	for (uintptr_t i = Mmu::virt_kernel_heap_start; i < Mmu::virt_kernel_heap_end; i += Mmu::first_level_entry_range) {
+		Mmu::map_page_1st_level(i);
 	}
 #endif
 
@@ -340,11 +339,6 @@ void init() {
 //       must have been allocted with allocate
 //-----------------------------------------------------------------------------
 size_t block_size(void *p) {
-#ifdef __KERNEL__
-	SystemLock system_lock;
-	auto       lock = make_scoped_lock(&system_lock);
-#endif
-
 	if (p) {
 		return heap_data::from_pointer(p)->block_size();
 	}
@@ -354,15 +348,9 @@ size_t block_size(void *p) {
 //-----------------------------------------------------------------------------
 // Name: internal_allocate
 // Desc: allocates a block of requests size and returns it or NULL on error
-// Note: this will also return NULL for blocks of size 0
 //-----------------------------------------------------------------------------
 template <class F>
-void *internal_allocate(size_t size, F find_block) {
-#ifdef __KERNEL__
-	SystemLock system_lock;
-	auto       lock = make_scoped_lock(&system_lock);
-#endif
-
+void *internal_allocate(size_t size, F func) {
 	const size_t orig_size = size;
 
 	assert(initialized);
@@ -376,7 +364,7 @@ void *internal_allocate(size_t size, F find_block) {
 
 	// check for overflow
 	if (size < orig_size) {
-		return 0;
+		return nullptr;
 	}
 
 	// look for it in the cache first
@@ -388,12 +376,12 @@ void *internal_allocate(size_t size, F find_block) {
 
 		// check for overflow
 		if (size < orig_size) {
-			return 0;
+			return nullptr;
 		}
 
 		do {
 			// find a block of sufficient size that is free and return it
-			ret = find_block(size);
+			ret = func(size);
 
 			// do we need to extend the heap?
 			if (!ret && !extend_heap(size)) {
@@ -409,7 +397,7 @@ void *internal_allocate(size_t size, F find_block) {
 	}
 
 #ifndef NDEBUG
-	// for debugging purposes, freshly freed blocks can be filled
+	// for debugging purposes, freshly allocated blocks can be filled
 	memset(ret, 0x7e, orig_size);
 #endif
 	return ret;
@@ -418,10 +406,13 @@ void *internal_allocate(size_t size, F find_block) {
 //-----------------------------------------------------------------------------
 // Name: allocate
 // Desc: allocates a block of requests size and returns it or NULL on error
-// Note: this will also return NULL for blocks of size 0
 //-----------------------------------------------------------------------------
 void *allocate(size_t size) {
-	return internal_allocate(size, first_fit());
+#ifdef __KERNEL__
+	auto lock = make_scoped_lock(&heapLock);
+#endif
+	void *p = internal_allocate(size, first_fit());
+	return p;
 }
 
 //-----------------------------------------------------------------------------
@@ -429,6 +420,9 @@ void *allocate(size_t size) {
 // Desc: frees a block back to general storage which was allocated with allocate
 //-----------------------------------------------------------------------------
 void deallocate(void *p) {
-	internal_deallocate<true>(p);
+#ifdef __KERNEL__
+	auto lock = make_scoped_lock(&heapLock);
+#endif
+	internal_deallocate<false>(p);
 }
 }

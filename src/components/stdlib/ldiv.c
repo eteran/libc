@@ -12,6 +12,6 @@ ldiv_t ldiv(long numerator, long denominator) {
 	assert(denominator);
 
 	ret.quot = numerator / denominator;
-	ret.rem = numerator % denominator;
+	ret.rem  = numerator % denominator;
 	return ret;
 }

@@ -27,22 +27,22 @@ static struct __elibc_file __elibc_stderr_internal = {
 
 FILE __elibc_stdin[1] = {{__elibc_stdout, 0, &__elibc_stdin_internal
 #if defined(_ELIBC_USE_THREADS)
-                          ,
-                          PTHREAD_MUTEX_INITIALIZER
+						  ,
+						  PTHREAD_MUTEX_INITIALIZER
 #endif
 }};
 
 FILE __elibc_stdout[1] = {{__elibc_stderr, __elibc_stdin, &__elibc_stdout_internal
 #if defined(_ELIBC_USE_THREADS)
-                           ,
-                           PTHREAD_MUTEX_INITIALIZER
+						   ,
+						   PTHREAD_MUTEX_INITIALIZER
 #endif
 }};
 
 FILE __elibc_stderr[1] = {{0, __elibc_stdout, &__elibc_stderr_internal
 #if defined(_ELIBC_USE_THREADS)
-                           ,
-                           PTHREAD_MUTEX_INITIALIZER
+						   ,
+						   PTHREAD_MUTEX_INITIALIZER
 #endif
 }};
 
@@ -76,7 +76,7 @@ void __elibc_unlock_stream(FILE *stream) {
 FILE *__elibc_allocate_file(void) {
 	/* TODO(eteran): lock the list */
 	if (__elibc_free_file_struct) {
-		FILE *stream = __elibc_free_file_struct;
+		FILE *stream             = __elibc_free_file_struct;
 		__elibc_free_file_struct = stream->next;
 		if (__elibc_free_file_struct) {
 			__elibc_free_file_struct->prev = NULL;

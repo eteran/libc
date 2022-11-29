@@ -29,9 +29,9 @@
 #define WCTRANS_UPPER 0xffff
 #define WCTRANS_LOWER 0xfffe
 
-#define IS_WCTYPE(class)                                                                           \
-	int isw##class(wint_t wc) {                                                                    \
-		return is##class(wctob(wc));                                                               \
+#define IS_WCTYPE(class)             \
+	int isw##class(wint_t wc) {      \
+		return is##class(wctob(wc)); \
 	}
 
 /*------------------------------------------------------------------------------

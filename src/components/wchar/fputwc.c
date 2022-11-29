@@ -13,7 +13,7 @@
 //----------------------------------------------------------------------------*/
 wint_t __elibc_fputwc_unlocked(wchar_t wc, FILE *stream) {
 	char buf[MB_LEN_MAX];
-	wint_t r = (wint_t)wc;
+	wint_t r    = (wint_t)wc;
 	const int n = wctomb(buf, wc);
 
 	if (n > 0) {

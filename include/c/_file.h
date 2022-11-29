@@ -25,9 +25,9 @@ struct __elibc_file {
 	char *buffer_first;
 	char *buffer_last;
 	char *internal_buffer_ptr; /* only set if the stdio library
-	                            * allocated the buffer, so we can free
-	                            * it later on fclose
-	                            */
+								* allocated the buffer, so we can free
+								* it later on fclose
+								*/
 	char filename[1];
 };
 

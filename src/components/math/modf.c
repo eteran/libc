@@ -15,12 +15,12 @@ _CONST _ALWAYS_INLINE _INLINE static double __elibc_modf(double arg, double *ipt
 	assert(iptr);
 
 	if (arg < 0) {
-		arg = -arg;
+		arg  = -arg;
 		sign = -1;
 	}
 
 	i_portion = floor(arg);
-	*iptr = (i_portion * sign);
+	*iptr     = (i_portion * sign);
 	return copysign(isinf(arg) ? 0.0 : arg - (*iptr), arg);
 }
 
