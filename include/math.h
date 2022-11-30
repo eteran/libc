@@ -40,7 +40,7 @@
 #include "c/tan.h"
 #include "c/tanh.h"
 
-#if defined(_HAS_C99) || defined(_ELIBC_SOURCE)
+#if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(_ELIBC_SOURCE)
 
 /*
 #pragma STDC FP_CONTRACT on-off-switch
@@ -161,9 +161,6 @@
 #include "c/tgammal.h"
 #include "c/truncf.h"
 #include "c/truncl.h"
-#endif
-
-#if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(_ELIBC_SOURCE)
 
 #if FLT_EVAL_METHOD == 0
 typedef double double_t;

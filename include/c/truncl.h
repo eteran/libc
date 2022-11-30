@@ -1,4 +1,4 @@
-_CONST
+
 #ifndef _C_TRUNCL_H_20140701_
 #define _C_TRUNCL_H_20140701_
 
