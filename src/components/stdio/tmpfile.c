@@ -19,7 +19,7 @@ FILE *tmpfile(void) {
 
 		if (file) {
 			int result = __elibc_sys_unlink(name);
-			if(result != 0) {
+			if (result != 0) {
 				/* TODO(eteran): what is the best way to handle this? */
 			}
 		}

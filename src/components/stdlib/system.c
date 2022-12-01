@@ -4,13 +4,6 @@
 #include <errno.h>
 #include <stdlib.h>
 
-#if defined(__linux__) && !defined(__KERNEL__) && 0
-#include <asm/unistd.h>
-#include <sys/types.h>
-_syscall0(pid_t, fork)
-_syscall3(pid_t, waitpid, pid_t, pid, int *, status, int, options)
-#endif
-
 /*------------------------------------------------------------------------------
 // Name: system
 //----------------------------------------------------------------------------*/
@@ -26,7 +19,7 @@ int system(const char *command) {
 		assert(!command); /* die with an assert for now */
 		return -1;
 #elif defined(__linux__) && 0
-		const int pid = fork();
+		const pid_t pid = __elibc_sys_fork();
 
 		switch (pid) {
 		case 0:
@@ -39,7 +32,7 @@ int system(const char *command) {
 			break;
 		default:
 			/* we are in the parent */
-			waitpid(pid, &ret, 0);
+			__elibc_sys_waitpid(pid, &ret, 0);
 		}
 #endif
 	}

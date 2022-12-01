@@ -15,6 +15,7 @@
 
 #define __intptr_t_defined
 #define __off_t_defined
+#define __pid_t_defined
 
 #include <asm/unistd.h>
 #include <linux/signal.h>
@@ -23,14 +24,14 @@
 
 #if 0
 	environ
-	fork
+x	fork
 	fstat
 	getpid
 	isatty
 	link
 	stat
 x	unlink
-	wait
+x	wait
 x	write
 ?	times
 x	_exit
@@ -41,6 +42,33 @@ x	open
 x	read
 x	sbrk
 #endif
+
+//------------------------------------------------------------------------------
+// Name:
+//------------------------------------------------------------------------------
+pid_t __elibc_sys_waitpid(pid_t pid, int *status, int options) {
+	long ret = elibc::syscall(__NR_wait4, pid, status, options, 0);
+	if (ret < 0) {
+		errno = (__elibc_errno_t)-ret;
+		ret   = -1;
+	}
+
+	return (pid_t)ret;
+}
+
+//------------------------------------------------------------------------------
+// Name:
+//------------------------------------------------------------------------------
+pid_t __elibc_sys_fork() {
+	long ret = elibc::syscall(__NR_fork);
+	if (ret < 0) {
+		errno = (__elibc_errno_t)-ret;
+		ret   = -1;
+	}
+
+	return (pid_t)ret;
+	;
+}
 
 //------------------------------------------------------------------------------
 // Name:
