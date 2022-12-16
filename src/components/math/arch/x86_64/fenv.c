@@ -43,7 +43,7 @@
 _ALWAYS_INLINE _INLINE static void __elibc_feclearexcept_fpu(int excepts) {
 	fenv_t envp;
 	FPU_GETENV(envp);
-	envp.__status_word &= ~(excepts & FE_ALL_EXCEPT);
+	envp.__status_word &= (unsigned short)(~(excepts & FE_ALL_EXCEPT));
 	FPU_SETENV(envp);
 }
 
@@ -54,7 +54,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_feclearexcept_fpu(int excepts) {
 _ALWAYS_INLINE _INLINE static void __elibc_feclearexcept_sse(int excepts) {
 	uint32_t xcw;
 	SSE_GETCW(xcw);
-	xcw &= ~(excepts & FE_ALL_EXCEPT);
+	xcw &= (uint32_t)(~(excepts & FE_ALL_EXCEPT));
 	SSE_SETCW(xcw);
 }
 
@@ -76,7 +76,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_fesetround_fpu(int round) {
 
 	uint16_t cw;
 	FPU_GETCW(cw);
-	cw = (cw & (uint16_t)(~_ELIBC_FE_ROUND_MASK)) | (round & _ELIBC_FE_ROUND_MASK);
+	cw = (uint16_t)((cw & (uint16_t)(~_ELIBC_FE_ROUND_MASK)) | (round & _ELIBC_FE_ROUND_MASK));
 	FPU_SETCW(cw);
 }
 
@@ -155,8 +155,13 @@ int fesetenv(const fenv_t *envp) {
 //----------------------------------------------------------------------------*/
 _ALWAYS_INLINE _INLINE static void __elibc_feraiseexcept_fpu(int excepts) {
 	fenv_t envp;
+	/* NOTE(eteran): this temp is to avoid a spurious warning on GCC-9.4.0
+	 * where it things there's a conversion error even after casting :-/
+	 */
+	unsigned short temp;
 	FPU_GETENV(envp);
-	envp.__status_word |= (excepts & FE_ALL_EXCEPT);
+	temp = (excepts & FE_ALL_EXCEPT);
+	envp.__status_word |= temp;
 	FPU_SETENV(envp);
 }
 

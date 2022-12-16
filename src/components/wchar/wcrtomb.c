@@ -2,6 +2,7 @@
 #define _ELIBC_SOURCE
 #include <assert.h>
 #include <wchar.h>
+#include <stdint.h>
 
 /*------------------------------------------------------------------------------
 // Name: wcrtomb
@@ -27,38 +28,38 @@ size_t wcrtomb(char *s, wchar_t wc, mbstate_t *ps) {
 		return 1;
 
 	} else if (ch < 0x00000800) {
-		s_ptr[0] = 0xc0 | ((ch >> 6) & 0x1f);
-		s_ptr[1] = 0x80 | ((ch >> 0) & 0x3f);
+		s_ptr[0] = (uint8_t)(0xc0 | ((ch >> 6) & 0x1f));
+		s_ptr[1] = (uint8_t)(0x80 | ((ch >> 0) & 0x3f));
 		return 2;
 
 	} else if (ch < 0x00010000) {
-		s_ptr[0] = 0xe0 | ((ch >> 12) & 0x0f);
-		s_ptr[1] = 0x80 | ((ch >> 6) & 0x3f);
-		s_ptr[2] = 0x80 | ((ch >> 0) & 0x3f);
+		s_ptr[0] = (uint8_t)(0xe0 | ((ch >> 12) & 0x0f));
+		s_ptr[1] = (uint8_t)(0x80 | ((ch >> 6) & 0x3f));
+		s_ptr[2] = (uint8_t)(0x80 | ((ch >> 0) & 0x3f));
 		return 3;
 
 	} else if (ch < 0x00200000) {
-		s_ptr[0] = 0xf0 | ((ch >> 18) & 0x07);
-		s_ptr[1] = 0x80 | ((ch >> 12) & 0x3f);
-		s_ptr[2] = 0x80 | ((ch >> 6) & 0x3f);
-		s_ptr[3] = 0x80 | ((ch >> 0) & 0x3f);
+		s_ptr[0] = (uint8_t)(0xf0 | ((ch >> 18) & 0x07));
+		s_ptr[1] = (uint8_t)(0x80 | ((ch >> 12) & 0x3f));
+		s_ptr[2] =(uint8_t)( 0x80 | ((ch >> 6) & 0x3f));
+		s_ptr[3] = (uint8_t)(0x80 | ((ch >> 0) & 0x3f));
 		return 4;
 
 	} else if (ch < 0x04000000) {
-		s_ptr[0] = 0xf8 | ((ch >> 24) & 0x03);
-		s_ptr[1] = 0x80 | ((ch >> 18) & 0x3f);
-		s_ptr[2] = 0x80 | ((ch >> 12) & 0x3f);
-		s_ptr[3] = 0x80 | ((ch >> 6) & 0x3f);
-		s_ptr[4] = 0x80 | ((ch >> 0) & 0x3f);
+		s_ptr[0] = (uint8_t)(0xf8 | ((ch >> 24) & 0x03));
+		s_ptr[1] = (uint8_t)(0x80 | ((ch >> 18) & 0x3f));
+		s_ptr[2] = (uint8_t)(0x80 | ((ch >> 12) & 0x3f));
+		s_ptr[3] = (uint8_t)(0x80 | ((ch >> 6) & 0x3f));
+		s_ptr[4] = (uint8_t)(0x80 | ((ch >> 0) & 0x3f));
 		return 5;
 
 	} else if (ch < 0x80000000) {
-		s_ptr[0] = 0xfc | ((ch >> 30) & 0x01);
-		s_ptr[1] = 0x80 | ((ch >> 24) & 0x3f);
-		s_ptr[2] = 0x80 | ((ch >> 18) & 0x3f);
-		s_ptr[3] = 0x80 | ((ch >> 12) & 0x3f);
-		s_ptr[4] = 0x80 | ((ch >> 6) & 0x3f);
-		s_ptr[5] = 0x80 | ((ch >> 0) & 0x3f);
+		s_ptr[0] = (uint8_t)(0xfc | ((ch >> 30) & 0x01));
+		s_ptr[1] = (uint8_t)(0x80 | ((ch >> 24) & 0x3f));
+		s_ptr[2] = (uint8_t)(0x80 | ((ch >> 18) & 0x3f));
+		s_ptr[3] = (uint8_t)(0x80 | ((ch >> 12) & 0x3f));
+		s_ptr[4] = (uint8_t)(0x80 | ((ch >> 6) & 0x3f));
+		s_ptr[5] = (uint8_t)(0x80 | ((ch >> 0) & 0x3f));
 		return 6;
 	}
 

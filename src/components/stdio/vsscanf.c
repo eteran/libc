@@ -4,6 +4,7 @@
 #include <limits.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 /* TODO(eteran): finish this!, it's a bit of a mess... */
 
@@ -19,7 +20,7 @@
 
 #define SET_BIT(name, I)                             \
 	do {                                             \
-		name[I / CHAR_BIT] |= (1 << (I % CHAR_BIT)); \
+		name[I / CHAR_BIT] |= (uint8_t)(1 << (I % CHAR_BIT)); \
 	} while (0)
 
 #define TEST_BIT(name, I) (int)(name[I / CHAR_BIT] & (1 << (I % CHAR_BIT)))
@@ -28,7 +29,7 @@
 	do {                                       \
 		int i;                                 \
 		for (i = 0; i < (N / CHAR_BIT); ++i) { \
-			name[i] = ~name[i];                \
+			name[i] = (uint8_t)(~name[i]);                \
 		}                                      \
 	} while (0)
 

@@ -40,7 +40,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_memset64(uint64_t *p, char ch, size_t
 // Name: __elibc_memset32
 //----------------------------------------------------------------------------*/
 _ALWAYS_INLINE _INLINE static void __elibc_memset32(uint32_t *p, char ch, size_t n) {
-	const uint32_t source = (uint8_t)ch * UINT32_C(0x01010101);
+	const uint32_t source = (uint32_t)((uint8_t)ch * UINT32_C(0x01010101));
 	n /= 4;
 	while (n--) {
 		*p++ = source;
@@ -51,7 +51,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_memset32(uint32_t *p, char ch, size_t
 // Name: __elibc_memset16
 //----------------------------------------------------------------------------*/
 _ALWAYS_INLINE _INLINE static void __elibc_memset16(uint16_t *p, char ch, size_t n) {
-	const uint16_t source = (uint8_t)ch * UINT16_C(0x0101);
+	const uint16_t source = (uint16_t)((uint8_t)ch * UINT16_C(0x0101));
 	n /= 2;
 	while (n--) {
 		*p++ = source;
