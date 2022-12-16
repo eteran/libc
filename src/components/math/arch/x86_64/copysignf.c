@@ -27,7 +27,7 @@ _CONST _ALWAYS_INLINE _INLINE static float __elibc_copysignf(float x, float y) {
 	x1.f_value = x;
 	y1.f_value = y;
 
-	r.i_value = (uint32_t)((y1.i_value & UINT32_C(0x80000000)) | (x1.i_value & UINT32_C(0x7fffffff)));
+	r.i_value = ((y1.i_value & UINT32_C(0x80000000)) | (x1.i_value & UINT32_C(0x7fffffff)));
 
 	return r.f_value;
 }

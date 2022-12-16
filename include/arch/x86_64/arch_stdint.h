@@ -123,16 +123,16 @@ typedef uint64_t uintmax_t;
 
 #define INT8_C(value)  value
 #define INT16_C(value) value
-#define INT32_C(value) value##L
-#define INT64_C(value) value##LL
+#define INT32_C(value) value
+#define INT64_C(value) value##L
 
-#define UINT8_C(value)  value##U
-#define UINT16_C(value) value##U
-#define UINT32_C(value) value##UL
-#define UINT64_C(value) value##ULL
+#define UINT8_C(value)  value
+#define UINT16_C(value) value
+#define UINT32_C(value) value##U
+#define UINT64_C(value) value##UL
 
-#define INTMAX_C(value)  value##LL
-#define UINTMAX_C(value) value##ULL
+#define INTMAX_C(value)  value##L
+#define UINTMAX_C(value) value##UL
 
 #endif
 
