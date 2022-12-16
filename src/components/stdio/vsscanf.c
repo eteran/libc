@@ -3,8 +3,8 @@
 #include <ctype.h>
 #include <limits.h>
 #include <stdarg.h>
-#include <stdlib.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 /* TODO(eteran): finish this!, it's a bit of a mess... */
 
@@ -18,8 +18,8 @@
 
 #define BITSET(name, N) unsigned char name[N / CHAR_BIT]
 
-#define SET_BIT(name, I)                             \
-	do {                                             \
+#define SET_BIT(name, I)                                      \
+	do {                                                      \
 		name[I / CHAR_BIT] |= (uint8_t)(1 << (I % CHAR_BIT)); \
 	} while (0)
 
@@ -29,7 +29,7 @@
 	do {                                       \
 		int i;                                 \
 		for (i = 0; i < (N / CHAR_BIT); ++i) { \
-			name[i] = (uint8_t)(~name[i]);                \
+			name[i] = (uint8_t)(~name[i]);     \
 		}                                      \
 	} while (0)
 

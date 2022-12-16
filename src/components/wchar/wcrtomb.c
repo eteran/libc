@@ -1,8 +1,8 @@
 
 #define _ELIBC_SOURCE
 #include <assert.h>
-#include <wchar.h>
 #include <stdint.h>
+#include <wchar.h>
 
 /*------------------------------------------------------------------------------
 // Name: wcrtomb
@@ -41,7 +41,7 @@ size_t wcrtomb(char *s, wchar_t wc, mbstate_t *ps) {
 	} else if (ch < 0x00200000) {
 		s_ptr[0] = (uint8_t)(0xf0 | ((ch >> 18) & 0x07));
 		s_ptr[1] = (uint8_t)(0x80 | ((ch >> 12) & 0x3f));
-		s_ptr[2] =(uint8_t)( 0x80 | ((ch >> 6) & 0x3f));
+		s_ptr[2] = (uint8_t)(0x80 | ((ch >> 6) & 0x3f));
 		s_ptr[3] = (uint8_t)(0x80 | ((ch >> 0) & 0x3f));
 		return 4;
 
