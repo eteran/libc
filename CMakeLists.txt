@@ -3,22 +3,23 @@ project(libstdc)
 
 enable_testing()
 
-set(CMAKE_C_STANDARD 90)
-set(CMAKE_C_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_compile_options(-pedantic -W -Wall -ffreestanding -Wno-long-long -Wconversion -Werror)
 add_link_options(-nostdlib)
 
+add_compile_options(
+	"$<$<COMPILE_LANGUAGE:C>:-std=c90;${C_FLAGS}>"
+	"$<$<COMPILE_LANGUAGE:CXX>:-std=c++11${CXX_FLAGS}>"
+)
+
 if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
 	add_compile_options(-m64)
 	add_link_options(-m64)
-	set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -m64")
 	set(LIBC_ARCH "x86_64")
 elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
 	add_compile_options(-m32)
 	add_link_options(-m32)
-	set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -m32")
 	set(LIBC_ARCH "i686")
 endif()
 
