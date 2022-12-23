@@ -6,6 +6,12 @@ macro(CREATE_TEST NAME)
     c-all
   )
 
+  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    target_link_libraries(${NAME}-test LINK_PUBLIC
+      -lgcc
+    )
+  endif()
+
   target_compile_options(${NAME}-test
     PUBLIC
     -Wno-deprecated-declarations
