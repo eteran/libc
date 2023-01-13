@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-add_library (c-assert STATIC
+add_library(c-assert STATIC
 	assert.c
 )
 
