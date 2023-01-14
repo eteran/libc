@@ -9,7 +9,7 @@ add_compile_options(-pedantic -W -Wall -ffreestanding -Wno-long-long -Wconversio
 add_link_options(-nostdlib)
 
 add_compile_options(
-	"$<$<COMPILE_LANGUAGE:C>:-std=c11>"
+	"$<$<COMPILE_LANGUAGE:C>:-std=c99>"
 	"$<$<COMPILE_LANGUAGE:CXX>:-std=c++11>"
 )
 

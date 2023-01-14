@@ -159,13 +159,13 @@ bool cached_deallocate(void *p) {
 	const size_t usable_size = block_size(p) / Granularity;
 	if (usable_size < BiggestToCache / Granularity) {
 
-		cache &cacheptr = blockCache[usable_size];
+		cache &cache_ptr = blockCache[usable_size];
 
-		if (cacheptr.depth < MaxCacheDepth) {
+		if (cache_ptr.depth < MaxCacheDepth) {
 			heap_data *const ptr = heap_data::from_pointer(p);
-			ptr->cache_next      = cacheptr.entry;
-			cacheptr.entry       = ptr;
-			cacheptr.depth++;
+			ptr->cache_next      = cache_ptr.entry;
+			cache_ptr.entry      = ptr;
+			cache_ptr.depth++;
 			return true;
 		}
 	}
@@ -222,7 +222,7 @@ void internal_deallocate(void *p) {
 					last_block = curr;
 				}
 
-				// update next guys info if neccessary
+				// update next guys info if necessary
 				if (next != end && next->used) {
 					next->prev_size = curr->curr_size;
 				}
@@ -256,7 +256,7 @@ bool extend_heap(size_t size) {
 		new_block->curr_size = size_inc;
 		new_block->used      = 1;
 
-		// set previous size to based on the lastblock since we expect to be after it
+		// set previous size to based on the last block since we expect to be after it
 		new_block->prev_size = last_block ? last_block->curr_size : 0;
 
 		// adjust the end pointer
@@ -270,16 +270,16 @@ bool extend_heap(size_t size) {
 	} else {
 
 		// ok, brk failed, perhaps as a last ditch effort, we can find something in
-		// the cache that when coalleced with the main free list will be big enough?
+		// the cache that when coalesced with the main free list will be big enough?
 		for (size_t i = (BiggestToCache / Granularity) - 1; i > 0; --i) {
 
-			cache &cacheptr = blockCache[i];
+			cache &cache_ptr = blockCache[i];
 
-			if (cacheptr.entry) {
-				void *const ptr            = heap_data::to_pointer(cacheptr.entry);
-				cacheptr.entry->cache_next = nullptr;
-				cacheptr.entry             = cacheptr.entry->cache_next;
-				cacheptr.depth--;
+			if (cache_ptr.entry) {
+				void *const ptr             = heap_data::to_pointer(cache_ptr.entry);
+				cache_ptr.entry->cache_next = nullptr;
+				cache_ptr.entry             = cache_ptr.entry->cache_next;
+				cache_ptr.depth--;
 				internal_deallocate<false>(ptr);
 
 				return true;
@@ -295,17 +295,18 @@ void *cached_allocate(size_t size) {
 	size /= Granularity;
 	if (size < BiggestToCache / Granularity) {
 
-		cache &cacheptr = blockCache[size];
+		cache &cache_ptr = blockCache[size];
 
-		if (cacheptr.entry) {
-			ret                        = heap_data::to_pointer(cacheptr.entry);
-			cacheptr.entry->cache_next = nullptr;
-			cacheptr.entry             = cacheptr.entry->cache_next;
-			cacheptr.depth--;
+		if (cache_ptr.entry) {
+			ret                         = heap_data::to_pointer(cache_ptr.entry);
+			cache_ptr.entry->cache_next = nullptr;
+			cache_ptr.entry             = cache_ptr.entry->cache_next;
+			cache_ptr.depth--;
 		}
 	}
 	return ret;
 }
+
 }
 
 //-----------------------------------------------------------------------------
@@ -336,7 +337,7 @@ void init() {
 //-----------------------------------------------------------------------------
 // Name: block_size
 // Desc: returns the USABLE size of the block pointed to by p, this pointer
-//       must have been allocted with allocate
+//       must have been allocated with allocate
 //-----------------------------------------------------------------------------
 size_t block_size(void *p) {
 	if (p) {
@@ -385,7 +386,7 @@ void *internal_allocate(size_t size, F func) {
 
 			// do we need to extend the heap?
 			if (!ret && !extend_heap(size)) {
-				// ok, we couldn't satify the request, just give up and return NULL
+				// ok, we couldn't satisfy the request, just give up and return NULL
 				break;
 			}
 
