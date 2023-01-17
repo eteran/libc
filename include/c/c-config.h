@@ -93,11 +93,15 @@
 #if defined(__GNUC__)
 #define _CONST         __attribute__((__const__))
 #define _PURE          __attribute__((__pure__))
+#ifndef _ALWAYS_INLINE
 #define _ALWAYS_INLINE __attribute__((always_inline))
+#endif
 #else
 #define _CONST
 #define _PURE
+#ifndef _ALWAYS_INLINE
 #define _ALWAYS_INLINE
+#endif
 #endif
 
 /* TODO(eteran): enable TLS */
