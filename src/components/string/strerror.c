@@ -122,6 +122,12 @@ int strerror_r(int errnum, char *buf, size_t n) {
 	case EILSEQ:
 		strlcpy(buf, "Invalid or incomplete multibyte or wide character", n);
 		break;
+	case EOWNERDEAD:
+		strlcpy(buf, "Owner died", n);
+		break;
+	case ENOTRECOVERABLE:
+		strlcpy(buf, "State not recoverable", n);
+		break;
 	default:
 		snprintf(buf, n, "Unknown error %d", errnum);
 		break;

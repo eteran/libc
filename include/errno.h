@@ -39,6 +39,8 @@ _LIBC_BEGIN
 #define EMEDIUMTYPE     124
 #define ECANCELED       125
 #define EACCES          13
+#define EOWNERDEAD      130
+#define ENOTRECOVERABLE 131
 #define EFAULT          14
 #define ENOTBLK         15
 #define EBUSY           16
