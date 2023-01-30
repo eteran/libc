@@ -240,10 +240,10 @@ unsigned long __elibc_brk(unsigned long increment) {
 	static unsigned long curbrk = 0;
 
 	if (curbrk == 0) {
-		curbrk = elibc::syscall(__NR_brk, 0);
+		curbrk = static_cast<unsigned long>(elibc::syscall(__NR_brk, 0));
 	}
 
-	unsigned long ret = elibc::syscall(__NR_brk, curbrk + increment);
+	auto ret = static_cast<unsigned long>(elibc::syscall(__NR_brk, curbrk + increment));
 	if (ret != static_cast<unsigned long>(-1)) {
 		curbrk = ret;
 	}

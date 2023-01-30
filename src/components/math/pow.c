@@ -6,6 +6,7 @@
 #ifdef _HAS_FPU
 
 #define TAYLOR_ITERATIONS 20
+#define IS_INTEGER(value) (value == (double)(long int)value)
 
 /*------------------------------------------------------------------------------
 // Name:
@@ -27,7 +28,7 @@ _CONST _ALWAYS_INLINE _INLINE static double __elibc_pow_e(int n, double x) {
 _CONST _ALWAYS_INLINE _INLINE static double __elibc_pow(double base, double exponent) {
 
 	/* for integer powers, lets just keep it simple */
-	if (exponent > 0.0 && exponent == (long int)exponent) {
+	if (exponent > 0.0 && IS_INTEGER(exponent)) {
 		double ret = 1;
 		long int i;
 		const long int y_int = (long int)exponent;
@@ -52,7 +53,7 @@ double pow(double base, double exponent) {
 
 	/* If base is finite and negative and exponent is finite and non-integer, a domain error occurs
 	 * and a range error may occur.*/
-	if (isfinite(base) && base < 0.0 && isfinite(exponent) && (long int)exponent != exponent) {
+	if (isfinite(base) && base < 0.0 && isfinite(exponent) && IS_INTEGER(exponent)) {
 		errno = EDOM;
 		return 0.0;
 	}

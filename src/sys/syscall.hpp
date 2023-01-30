@@ -69,7 +69,7 @@ namespace elibc {
 
 	template <class T1, class T2, class T3, class T4, class T5>
 	long syscall(unsigned long num, T1 a1, T2 a2, T3 a3, T4 a4, T5 a5) {
-		unsigned long ret;
+		long ret;
 		register long r10 __asm__("r10") = a4;
 		register long r8 __asm__("r8") = a5;
 		__asm__ __volatile__ ("syscall" : "=a"(ret) : "a"(num), "D"(a1), "S"(a2), "d"(a3), "r"(r10), "r"(r8) : "memory", "rcx", "r11");
@@ -78,7 +78,7 @@ namespace elibc {
 
 	template <class T1, class T2, class T3, class T4, class T5, class T6>
 	long syscall(unsigned long num, T1 a1, T2 a2, T3 a3, T4 a4, T5 a5, T6 a6) {
-		unsigned long ret;
+		long ret;
 		register long r10 __asm__("r10") = a4;
 		register long r8 __asm__("r8") = a5;
 		register long r9 __asm__("r9") = a6;

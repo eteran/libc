@@ -26,7 +26,7 @@ T *sub_pointer(T *p, size_t n) {
 }
 
 // NOTE(eteran): N must be a power of 2
-template <int N, class T>
+template <unsigned int N, class T>
 T round_up(T value) {
 	static_assert((N & (N - 1)) == 0, "invalid target rounding value");
 	return ((value + N - 1) & ~(N - 1));

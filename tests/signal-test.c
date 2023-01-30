@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <signal.h>
 
-static volatile sig_atomic_t signal_status;
+static sig_atomic_t signal_status;
 
 static void signal_handler(int signal) {
 	signal_status = signal;

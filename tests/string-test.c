@@ -260,7 +260,7 @@ static void test_strncmp(void) {
 	assert(strncmp(string, "Hello!", 5) == 0);
 	assert(strncmp(string, "Hello", 10) > 0);
 	assert(strncmp(string, "Hello there", 10) < 0);
-	assert(strncmp("Hello, everybody!" + 12, "Hello, somebody!" + 11, 5) == 0);
+	assert(strncmp(("Hello, everybody!") + 12, ("Hello, somebody!") + 11, 5) == 0);
 }
 
 static void test_strerror(void) {
