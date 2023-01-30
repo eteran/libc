@@ -6,7 +6,7 @@
 #include <pthread.h>
 #endif
 
-#define _ELIBC_FILE_STATIC_ALLOC 0x01 /* don't delete object  on close */
+#define _ELIBC_FILE_STATIC_ALLOC 0x01 /* don't delete object on close */
 
 #define _ELIBC_FILE_ORIENTATION_NONE    0
 #define _ELIBC_FILE_ORIENTATION_INVALID 1

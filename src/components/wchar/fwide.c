@@ -31,8 +31,9 @@ int __elibc_fwide(FILE *stream, int mode) {
 	case _ELIBC_FILE_ORIENTATION_WIDE:
 		/* It returns a positive value if stream is wide-character oriented */
 		return 1;
-	case _ELIBC_FILE_ORIENTATION_INVALID: /* invalid */
+	case _ELIBC_FILE_ORIENTATION_INVALID:
 	default:
+		/* invalid */
 		assert(0);
 		return 0;
 	}
