@@ -5,7 +5,7 @@
 #include <tgmath.h>
 
 void test_float() {
-	float n = sin(123.4f);
+	float n = sin(2.0f);
 	printf("%f\n", n);
 }
 

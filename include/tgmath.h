@@ -11,25 +11,20 @@
 #include <math.h>
 
 /* this macro does all the magic and would need to be updated if we want
- * to support imaginary types as well. Currently, if you pass
- * an unknown type, we simply result in a void expression
- * causing a compiler error
+ * to support imaginary types as well.
  */
 
 #if defined(__STDC_NO_COMPLEX__)
+
 /* clang-format off */
 #define _ELIBC_TGCALL(x, func) \
 	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), long double), (func ## l)(x), \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), float), (func ## f)(x),       \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), double), (func)(x),           \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), int), (func)(x),              \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), long), (func)(x),             \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), short), (func)(x),            \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), unsigned int), (func)(x),     \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), unsigned long), (func)(x),    \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), unsigned short), (func)(x),   \
-	(void)0)))))))))
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), double),      (func)(x),      \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), float),       (func ## f)(x), \
+	(func)(x)                                                                                       \
+	)))
 /* clang-format on */
+
 #else
 #error "Complex Is Not Implemented"
 #endif
@@ -82,16 +77,11 @@
 #if defined(__STDC_NO_COMPLEX__)
 /* clang-format off */
 #define _ELIBC_TGCALL2(x, y, func) \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), long double),    (func ## l)((x), (y)), \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), float),          (func ## f)((x), (y)), \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), double),         (func)((x), (y)),	  \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), int),            (func)((x), (y)),	  \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), long),           (func)((x), (y)),	  \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), short),          (func)((x), (y)),	  \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), unsigned int),   (func)((x), (y)),      \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), unsigned long),  (func)((x), (y)),      \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), unsigned short), (func)((x), (y)),      \
-	(void)0)))))))))
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), long double), (func ## l)((x), (y)), \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), double),      (func)((x), (y)),      \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), float),       (func ## f)((x), (y)), \
+	(func)((x), (y))                                                                                       \
+	)))
 /* clang-format on */
 #else
 #error "Complex Is Not Implemented"
@@ -116,16 +106,11 @@
 #if defined(__STDC_NO_COMPLEX__)
 /* clang-format off */
 #define _ELIBC_TGCALL3(x, y, z, func) \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), long double),    (func ## l)((x), (y), (z)), \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), float),          (func ## f)((x), (y), (z)), \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), double),         (func)((x), (y), (z)),      \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), int),            (func)((x), (y), (z)),      \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), long),           (func)((x), (y), (z)),      \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), short),          (func)((x), (y), (z)),      \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), unsigned int),   (func)((x), (y), (z)),      \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), unsigned long),  (func)((x), (y), (z)),      \
-	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), unsigned short), (func)((x), (y), (z)),      \
-	(void)0)))
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), long double), (func ## l)((x), (y), (z)), \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), double),      (func)((x), (y), (z)),      \
+	__builtin_choose_expr(__builtin_types_compatible_p(__typeof__(x), float),       (func ## f)((x), (y), (z)), \
+	(func)((x), (y), (z))                                                                                       \
+	)))
 /* clang-format on */
 #else
 #error "Complex Is Not Implemented"
