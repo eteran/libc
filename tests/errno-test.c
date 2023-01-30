@@ -9,12 +9,12 @@
 #error "errno is not defined"
 #endif
 
-void test_assignment(void) {
+static void test_assignment(void) {
 	errno = ENOMEM;
 	assert(errno == ENOMEM);
 }
 
-void test_domain_error(void) {
+static void test_domain_error(void) {
 	/* just do something that should set errno */
 	double r = sqrt(-10.0);
 	assert(isnan(r));

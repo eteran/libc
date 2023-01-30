@@ -4,7 +4,7 @@
 
 namespace elibc {
 #ifdef __i386__
-	long syscall(unsigned long num) {
+	inline long syscall(unsigned long num) {
 		long ret;
 		__asm__ __volatile__("int $0x80" : "=a"(ret) : "a"(num) : "ecx");
 		return ret;
@@ -31,7 +31,7 @@ namespace elibc {
 		return ret;
 	}
 #elif defined(__x86_64__)
-	long syscall(unsigned long num) {
+	inline long syscall(unsigned long num) {
 		long ret;
 		__asm__ __volatile__("syscall" : "=a"(ret) : "a"(num) : "memory", "rcx", "r11");
 		return ret;

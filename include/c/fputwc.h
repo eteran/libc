@@ -8,7 +8,7 @@
 
 _LIBC_BEGIN
 
-wint_t __elibc_fputwc(wchar_t wc, FILE *stream, int orientation) _NOEXCEPT;
+wint_t __elibc_fputwc_unlocked(wchar_t wc, FILE *stream) _NOEXCEPT;
 wint_t fputwc(wchar_t wc, FILE *stream) _NOEXCEPT;
 
 _LIBC_END

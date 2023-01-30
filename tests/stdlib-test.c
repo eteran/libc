@@ -173,25 +173,25 @@ static void test_div(void) {
 	assert(strcmp(buf, "-80000000") == 0);
 }
 
-void test_atol(void) {
+static void test_atol(void) {
 	assert(atol("1234") == 1234);
 	assert(atol("1234junk") == 1234);
 	assert(atol("1234") != 123);
 }
 
-void test_atoi(void) {
+static void test_atoi(void) {
 	assert(atoi("1234") == 1234);
 	assert(atoi("1234junk") == 1234);
 	assert(atoi("1234") != 123);
 }
 
-void test_atoll(void) {
+static void test_atoll(void) {
 	assert(atoll("1234") == 1234);
 	assert(atoll("1234junk") == 1234);
 	assert(atoll("1234") != 123);
 }
 
-void test_wctomb(void) {
+static void test_wctomb(void) {
 	char mb[MB_LEN_MAX];
 	int n;
 
@@ -212,7 +212,7 @@ void test_wctomb(void) {
 	assert(memcmp(mb, "\x00", (size_t)n) == 0);
 }
 
-void test_strtol(void) {
+static void test_strtol(void) {
 
 	const char *p = "10 200000000000000000000000000000 30 -40";
 	char *end;
@@ -243,7 +243,7 @@ void test_strtol(void) {
 	p = end;
 }
 
-void test_strtoll(void) {
+static void test_strtoll(void) {
 
 	const char *p = "10 200000000000000000000000000000 30 -40";
 	char *end;
@@ -274,7 +274,7 @@ void test_strtoll(void) {
 	p = end;
 }
 
-void test_strtoul(void) {
+static void test_strtoul(void) {
 	const char *p = "10 200000000000000000000000000000 30 40";
 	char *end;
 	unsigned long i;
@@ -304,7 +304,7 @@ void test_strtoul(void) {
 	p = end;
 }
 
-void test_strtoull(void) {
+static void test_strtoull(void) {
 	const char *p = "10 200000000000000000000000000000 30 40";
 	char *end;
 	unsigned long i;
@@ -334,7 +334,7 @@ void test_strtoull(void) {
 	p = end;
 }
 
-void test_mblen(void) {
+static void test_mblen(void) {
 	const char *ptr = mb_test_string;
 	size_t result   = 0;
 	const char *end = ptr + strlen(ptr);
@@ -356,7 +356,7 @@ void test_mblen(void) {
 	assert(strlen(mb_test_string) == 10);
 }
 
-void test_wcstombs(void) {
+static void test_wcstombs(void) {
 	/* result is expected to be 10 bytes in UTF-8 */
 	char dst[11];
 
@@ -365,7 +365,7 @@ void test_wcstombs(void) {
 	assert(memcmp(dst, mb_test_string, result) == 0);
 }
 
-void test_mbtowc(void) {
+static void test_mbtowc(void) {
 
 	const char *ptr = mb_test_string;
 	const char *end = ptr + strlen(ptr);
@@ -417,6 +417,7 @@ int main(void) {
 	test_strtoul();
 	test_strtoull();
 	test_wcstombs();
+	test_wctomb();
 
 	return 0;
 }

@@ -62,7 +62,7 @@ static void test_towupper(void) {
 	}
 }
 
-void test_wctype(void) {
+static void test_wctype(void) {
 	assert(wctype("alnum") != 0);
 	assert(wctype("alpha") != 0);
 	assert(wctype("blank") != 0);
@@ -92,5 +92,6 @@ int main(void) {
 	test_iswpunct();
 	test_iswprint();
 	test_iswgraph();
+	test_wctype();
 	return 0;
 }

@@ -18,6 +18,7 @@ typedef Elf32_auxv_t auxv_t;
 char **__elibc_environment = 0;
 
 extern int main(int, char *[], char *[]);
+_Noreturn void __elibc_init(int argc, char *argv[], char *envp[]);
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_scan_auxv
@@ -46,7 +47,7 @@ static void __elibc_scan_auxv(char *envp[]) {
 //       sane environment, it will then call main and pass its return value
 //       to exit.
 //----------------------------------------------------------------------------*/
-_Noreturn void __elibc_init(int argc, char *argv[], char *envp[]) {
+void __elibc_init(int argc, char *argv[], char *envp[]) {
 
 	/* store the environment */
 	__elibc_environment = envp;

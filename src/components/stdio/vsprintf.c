@@ -2,6 +2,7 @@
 #define _ELIBC_SOURCE
 #include "c/_printf_engine.h"
 #include <stdarg.h>
+#include <stdio.h>
 
 struct __elibc_buffer_write {
 	__elibc_write_func_t write;

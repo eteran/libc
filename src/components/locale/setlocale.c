@@ -12,16 +12,19 @@
  * setlocale(LC_ALL, "LC_COLLATE=C;LC_CTYPE=C;LC_MONETARY=C;LC_NUMERIC=C;LC_TIME=C")
  */
 
+/* NOTE(eteran): we use this macro to cut down the noise of assigning a const char * to a non-const char * */
+#define _C(str) ((char *)(str))
+
 static const struct locale_support_t {
 	const char *const name;
 	const int type;
 	const struct lconv locale;
 } __elibc_supported_locales[] = {
-	{"C", _ELIBC_ASCII, {"", ".", "", "", "", "", "", "", "", "", CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX}},
-	{"POSIX", _ELIBC_ASCII, {"", ".", "", "", "", "", "", "", "", "", CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX}},
-	{"en_US", _ELIBC_ASCII, {"$", ".", "", "USD", ".", "", ",", "-", "", ",", 2, 2, 1, 0, 1, 1, 1, 1}},
-	{"en_US.UTF-8", _ELIBC_UTF8, {"$", ".", "", "USD", ".", "", ",", "-", "", ",", 2, 2, 1, 0, 1, 1, 1, 1}},
-	{0, _ELIBC_ASCII, {"", "", "", "", "", "", "", "", "", "", CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX}}};
+	{"C", _ELIBC_ASCII, {_C(""), _C("."), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX}},
+	{"POSIX", _ELIBC_ASCII, {_C(""), _C("."), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX}},
+	{"en_US", _ELIBC_ASCII, {_C("$"), _C("."), _C(""), _C("USD"), _C("."), _C(""), _C(","), _C("-"), _C(""), _C(","), 2, 2, 1, 0, 1, 1, 1, 1}},
+	{"en_US.UTF-8", _ELIBC_UTF8, {_C("$"), _C("."), _C(""), _C("USD"), _C("."), _C(""), _C(","), _C("-"), _C(""), _C(","), 2, 2, 1, 0, 1, 1, 1, 1}},
+	{0, _ELIBC_ASCII, {_C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX}}};
 
 static struct locale_meta_t {
 	const char *name;

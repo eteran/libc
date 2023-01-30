@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------------
 // Name:
 //----------------------------------------------------------------------------*/
-long double strtold(const char *nptr, char **endptr) {
+long double strtold(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 	_UNUSED(nptr);
 	_UNUSED(endptr);
 

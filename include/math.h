@@ -162,7 +162,7 @@
 #include "c/truncf.h"
 #include "c/truncl.h"
 
-#if FLT_EVAL_METHOD == 0
+#if !defined(FLT_EVAL_METHOD) || (FLT_EVAL_METHOD == 0)
 typedef double double_t;
 typedef float float_t;
 #elif FLT_EVAL_METHOD == 1

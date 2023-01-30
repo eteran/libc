@@ -41,6 +41,7 @@
 #include "c/fegetenv.h"
 #include "c/fegetexceptflag.h"
 #include "c/fegetround.h"
+#include "c/feholdexcept.h"
 #include "c/feraiseexcept.h"
 #include "c/fesetenv.h"
 #include "c/fesetexceptflag.h"

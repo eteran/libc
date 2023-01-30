@@ -5,7 +5,7 @@
 #include <inttypes.h>
 #include <limits.h>
 
-void test_maxabs(void) {
+static void test_maxabs(void) {
 	uintmax_t i = UINTMAX_MAX;
 	assert(i == UINTMAX_MAX);
 
@@ -14,23 +14,23 @@ void test_maxabs(void) {
 	assert(imaxabs(LLONG_MIN + 2) == 9223372036854775806);
 }
 
-void test_imaxdiv(void) {
+static void test_imaxdiv(void) {
 	intmax_t i  = 57;
 	imaxdiv_t r = imaxdiv(i, 10);
 	assert(r.quot == 5);
 	assert(r.rem == 7);
 }
 
-void test_strtoimax(void) {
+static void test_strtoimax(void) {
 }
 
-void test_strtoumax(void) {
+static void test_strtoumax(void) {
 }
 
-void test_wcstoimax(void) {
+static void test_wcstoimax(void) {
 }
 
-void test_wcstoumax(void) {
+static void test_wcstoumax(void) {
 }
 
 int main(void) {

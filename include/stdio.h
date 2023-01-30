@@ -77,13 +77,8 @@ extern FILE __elibc_stderr[1];
 #include "c/tmpnam.h"
 #include "c/ungetc.h"
 #include "c/vfprintf.h"
-#include "c/vsprintf.h"
-
-#if defined(_HAS_C99) || defined(_HAS_CXX89) || defined(_ELIBC_SOURCE)
-#include "c/vfprintf.h"
 #include "c/vprintf.h"
 #include "c/vsprintf.h"
-#endif
 
 #if defined(_HAS_C99) || defined(_HAS_CXX11) || defined(_ELIBC_SOURCE)
 #include "c/snprintf.h"

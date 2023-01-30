@@ -127,7 +127,7 @@ static void test_mbrtowc(void) {
 	assert(output[4] == L'\0');
 }
 
-void test_wcstol(void) {
+static void test_wcstol(void) {
 
 	const wchar_t *p = L"10 200000000000000000000000000000 30 -40";
 	wchar_t *end;
@@ -158,7 +158,7 @@ void test_wcstol(void) {
 	p = end;
 }
 
-void test_wcstoll(void) {
+static void test_wcstoll(void) {
 
 	const wchar_t *p = L"10 200000000000000000000000000000 30 -40";
 	wchar_t *end;
@@ -189,7 +189,7 @@ void test_wcstoll(void) {
 	p = end;
 }
 
-void test_wcstoul(void) {
+static void test_wcstoul(void) {
 	const wchar_t *p = L"10 200000000000000000000000000000 30 40";
 	wchar_t *end;
 	unsigned long i;
@@ -219,7 +219,7 @@ void test_wcstoul(void) {
 	p = end;
 }
 
-void test_wcstoull(void) {
+static void test_wcstoull(void) {
 	const wchar_t *p = L"10 200000000000000000000000000000 30 40";
 	wchar_t *end;
 	unsigned long i;

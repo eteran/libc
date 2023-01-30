@@ -7,7 +7,7 @@
 #include <stdarg.h>
 #include <string.h>
 
-void test_stdarg(int n, ...) {
+static void test_stdarg(int n, ...) {
 	va_list ap;
 	va_start(ap, n);
 	assert(n == 5);

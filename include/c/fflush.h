@@ -7,6 +7,7 @@
 _LIBC_BEGIN
 
 int __elibc_fflush(FILE *stream) _NOEXCEPT;
+int __elibc_fflush_stream(FILE *stream) _NOEXCEPT;
 int fflush(FILE *stream) _NOEXCEPT;
 
 _LIBC_END
