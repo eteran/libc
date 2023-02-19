@@ -91,8 +91,8 @@
 #endif
 
 #if defined(__GNUC__)
-#define _CONST         __attribute__((__const__))
-#define _PURE          __attribute__((__pure__))
+#define _CONST __attribute__((__const__))
+#define _PURE  __attribute__((__pure__))
 #ifndef _ALWAYS_INLINE
 #define _ALWAYS_INLINE __attribute__((always_inline))
 #endif

@@ -43,7 +43,7 @@ struct __elibc_strftime_context {
 };
 
 static size_t __elibc_strftime(const char *format, struct __elibc_strftime_context *ctx,
-						const struct tm *tm) {
+							   const struct tm *tm) {
 
 	static const char wday_name[][4] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
 
