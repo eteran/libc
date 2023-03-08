@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-_CONST double difftime(time_t time1, time_t time0) _NOEXCEPT;
+_FAST_MATH_CONST double difftime(time_t time1, time_t time0) _NOEXCEPT;
 
 _LIBC_END
 

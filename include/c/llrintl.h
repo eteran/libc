@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_CONST long long int llrintl(long double x) _NOEXCEPT;
+_FAST_MATH_CONST long long int llrintl(long double x) _NOEXCEPT;
 
 _LIBC_END
 

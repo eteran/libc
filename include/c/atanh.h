@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_CONST double atanh(double x) _NOEXCEPT;
+_FAST_MATH_CONST double atanh(double x) _NOEXCEPT;
 
 _LIBC_END
 

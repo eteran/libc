@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_CONST long double fmal(long double x, long double y, long double z) _NOEXCEPT;
+_FAST_MATH_CONST long double fmal(long double x, long double y, long double z) _NOEXCEPT;
 
 _LIBC_END
 

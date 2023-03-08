@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_CONST double sinh(double x) _NOEXCEPT;
+_FAST_MATH_CONST double sinh(double x) _NOEXCEPT;
 
 _LIBC_END
 

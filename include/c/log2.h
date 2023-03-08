@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_CONST double log2(double x) _NOEXCEPT;
+_FAST_MATH_CONST double log2(double x) _NOEXCEPT;
 
 _LIBC_END
 

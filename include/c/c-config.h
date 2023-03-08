@@ -95,6 +95,11 @@
 #define _PURE  __attribute__((__pure__))
 #ifndef _ALWAYS_INLINE
 #define _ALWAYS_INLINE __attribute__((always_inline))
+#ifdef __FAST_MATH__
+#define _FAST_MATH_CONST _CONST
+#else
+#define _FAST_MATH_CONST
+#endif
 #endif
 #else
 #define _CONST
@@ -102,6 +107,7 @@
 #ifndef _ALWAYS_INLINE
 #define _ALWAYS_INLINE
 #endif
+#define _FAST_MATH_CONST
 #endif
 
 /* TODO(eteran): enable TLS */
@@ -114,11 +120,11 @@
 /* Some misc keywords */
 #ifndef _HAS_C11
 #ifdef _HAS_CXX11
-#define _Noreturn [[noreturn]]
+#define _Noreturn     [[noreturn]]
 #define _Alignas(__t) alignas(__t)
 #define _Alignof(__t) alignof(__t)
 #elif defined(__GNUC__)
-#define _Noreturn __attribute__((__noreturn__))
+#define _Noreturn     __attribute__((__noreturn__))
 #define _Alignas(__t) __attribute__((__aligned__(__t)))
 #define _Alignof(__t) __alignof__(__t)
 #else

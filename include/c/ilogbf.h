@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_CONST int ilogbf(float x) _NOEXCEPT;
+_FAST_MATH_CONST int ilogbf(float x) _NOEXCEPT;
 
 _LIBC_END
 

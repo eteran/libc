@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_CONST float ldexpf(float x, int exp) _NOEXCEPT;
+_FAST_MATH_CONST float ldexpf(float x, int exp) _NOEXCEPT;
 
 _LIBC_END
 

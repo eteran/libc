@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_CONST long double cosl(long double x) _NOEXCEPT;
+_FAST_MATH_CONST long double cosl(long double x) _NOEXCEPT;
 
 _LIBC_END
 

@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_CONST long double powl(long double x, long double y) _NOEXCEPT;
+_FAST_MATH_CONST long double powl(long double x, long double y) _NOEXCEPT;
 
 _LIBC_END
 

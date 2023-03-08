@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_CONST long double scalblnl(long double x, long int exp) _NOEXCEPT;
+_FAST_MATH_CONST long double scalblnl(long double x, long int exp) _NOEXCEPT;
 
 _LIBC_END
 

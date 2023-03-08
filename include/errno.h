@@ -137,7 +137,7 @@ typedef int __elibc_errno_t;
 typedef __elibc_errno_t errno_t;
 #endif
 
-extern __elibc_errno_t *__errno_location(void) _CONST;
+_CONST extern __elibc_errno_t *__errno_location(void);
 
 /* errno is a macro resolving to a function call so that
  * we can use TLS to have a proper thread local

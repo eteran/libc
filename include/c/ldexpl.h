@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_CONST long double ldexpl(long double x, int exp) _NOEXCEPT;
+_FAST_MATH_CONST long double ldexpl(long double x, int exp) _NOEXCEPT;
 
 _LIBC_END
 

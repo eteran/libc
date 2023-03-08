@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_CONST float nexttowardf(float x, long double y) _NOEXCEPT;
+_FAST_MATH_CONST float nexttowardf(float x, long double y) _NOEXCEPT;
 
 _LIBC_END
 

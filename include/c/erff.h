@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_CONST float erff(float x) _NOEXCEPT;
+_FAST_MATH_CONST float erff(float x) _NOEXCEPT;
 
 _LIBC_END
 

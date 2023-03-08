@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_CONST long int lroundf(float x) _NOEXCEPT;
+_FAST_MATH_CONST long int lroundf(float x) _NOEXCEPT;
 
 _LIBC_END
 

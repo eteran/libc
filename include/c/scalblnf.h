@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_CONST float scalblnf(float x, long int exp) _NOEXCEPT;
+_FAST_MATH_CONST float scalblnf(float x, long int exp) _NOEXCEPT;
 
 _LIBC_END
 

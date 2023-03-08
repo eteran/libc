@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_CONST float fminf(float x, float y) _NOEXCEPT;
+_FAST_MATH_CONST float fminf(float x, float y) _NOEXCEPT;
 
 _LIBC_END
 
