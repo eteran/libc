@@ -5,7 +5,14 @@ enable_testing()
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_compile_options(-pedantic -W -Wall -ffreestanding -Wno-long-long -Werror)
+add_compile_options(
+	-pedantic
+	-W
+	-Wall
+	-ffreestanding
+	-Wno-long-long
+	-Werror
+)
 add_link_options(-nostdlib)
 
 add_compile_options(

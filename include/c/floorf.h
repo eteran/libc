@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-float floorf(float x) _NOEXCEPT;
+_CONST float floorf(float x) _NOEXCEPT;
 
 _LIBC_END
 

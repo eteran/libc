@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-long double copysignl(long double x, long double y) _NOEXCEPT;
+_CONST long double copysignl(long double x, long double y) _NOEXCEPT;
 
 _LIBC_END
 

@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-double floor(double x) _NOEXCEPT;
+_CONST double floor(double x) _NOEXCEPT;
 
 _LIBC_END
 

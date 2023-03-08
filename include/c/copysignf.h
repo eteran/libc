@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-float copysignf(float x, float y) _NOEXCEPT;
+_CONST float copysignf(float x, float y) _NOEXCEPT;
 
 _LIBC_END
 
