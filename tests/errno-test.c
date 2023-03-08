@@ -27,7 +27,9 @@ int main(void) {
 	TYPE_DEFINED(errno_t);
 #endif
 
+	errno = 0;
 	test_assignment();
+	errno = 0;
 	test_domain_error();
 	return 0;
 }
