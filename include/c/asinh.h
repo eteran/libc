@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_FAST_MATH_CONST double asinh(double x) _NOEXCEPT;
+double asinh(double x) _NOEXCEPT;
 
 _LIBC_END
 

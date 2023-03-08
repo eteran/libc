@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_FAST_MATH_CONST double exp2(double x) _NOEXCEPT;
+double exp2(double x) _NOEXCEPT;
 
 _LIBC_END
 

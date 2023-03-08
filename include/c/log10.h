@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_FAST_MATH_CONST double log10(double x) _NOEXCEPT;
+double log10(double x) _NOEXCEPT;
 
 _LIBC_END
 

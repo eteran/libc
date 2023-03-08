@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_fmod
 //----------------------------------------------------------------------------*/
-_CONST _ALWAYS_INLINE _INLINE static double __elibc_fmod(double x, double y) {
+_ALWAYS_INLINE _INLINE static double __elibc_fmod(double x, double y) {
 	double value;
 	__asm __volatile__("1: fprem    \n"
 					   "fnstsw %%ax \n"

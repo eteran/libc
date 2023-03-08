@@ -9,7 +9,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_tan
 //----------------------------------------------------------------------------*/
-_CONST _ALWAYS_INLINE _INLINE static double __elibc_tan(double x) {
+_ALWAYS_INLINE _INLINE static double __elibc_tan(double x) {
 
 	/* TODO(eteran): account for possible overflow */
 	const double cos_val = cos(x);

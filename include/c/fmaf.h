@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_FAST_MATH_CONST float fmaf(float x, float y, float z) _NOEXCEPT;
+float fmaf(float x, float y, float z) _NOEXCEPT;
 
 _LIBC_END
 

@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_FAST_MATH_CONST int ilogb(double x) _NOEXCEPT;
+int ilogb(double x) _NOEXCEPT;
 
 _LIBC_END
 

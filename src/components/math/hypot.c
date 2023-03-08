@@ -8,7 +8,7 @@
 /*------------------------------------------------------------------------------
 // Name: hypot
 //----------------------------------------------------------------------------*/
-_CONST _ALWAYS_INLINE _INLINE static double __elibc_hypot(double x, double y) {
+_ALWAYS_INLINE _INLINE static double __elibc_hypot(double x, double y) {
 	/* TODO(eteran): check for overflow */
 	const double x2 = x * x;
 	const double y2 = y * y;

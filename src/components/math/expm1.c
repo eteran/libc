@@ -8,7 +8,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_expm1
 //----------------------------------------------------------------------------*/
-_CONST _ALWAYS_INLINE _INLINE static double __elibc_expm1(double x) {
+_ALWAYS_INLINE _INLINE static double __elibc_expm1(double x) {
 	return exp(x) - 1;
 }
 

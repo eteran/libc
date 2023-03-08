@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_FAST_MATH_CONST float tanhf(float x) _NOEXCEPT;
+float tanhf(float x) _NOEXCEPT;
 
 _LIBC_END
 

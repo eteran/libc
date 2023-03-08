@@ -4,8 +4,8 @@
 
 _LIBC_BEGIN
 
-_FAST_MATH_CONST double log(double x) _NOEXCEPT;
-_FAST_MATH_CONST double __elibc_log(double x) _NOEXCEPT;
+double log(double x) _NOEXCEPT;
+_CONST double __elibc_log(double x) _NOEXCEPT;
 
 _LIBC_END
 

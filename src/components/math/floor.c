@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_floor
 //----------------------------------------------------------------------------*/
-_CONST _ALWAYS_INLINE _INLINE static double __elibc_floor(double x) {
+_ALWAYS_INLINE _INLINE static double __elibc_floor(double x) {
 	return __builtin_floor(x);
 }
 

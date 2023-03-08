@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_FAST_MATH_CONST double hypot(double x, double y) _NOEXCEPT;
+double hypot(double x, double y) _NOEXCEPT;
 
 _LIBC_END
 

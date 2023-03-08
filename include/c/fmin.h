@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_FAST_MATH_CONST double fmin(double x, double y) _NOEXCEPT;
+double fmin(double x, double y) _NOEXCEPT;
 
 _LIBC_END
 

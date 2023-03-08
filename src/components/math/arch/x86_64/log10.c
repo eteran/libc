@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_log10
 //----------------------------------------------------------------------------*/
-_CONST _ALWAYS_INLINE _INLINE static double __elibc_log10(double x) {
+_ALWAYS_INLINE _INLINE static double __elibc_log10(double x) {
 	double value;
 	__asm__ __volatile__("fldlg2; fxch; fyl2x"
 						 : "=t"(value)

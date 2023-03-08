@@ -8,7 +8,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_modf
 //----------------------------------------------------------------------------*/
-_CONST _ALWAYS_INLINE _INLINE static double __elibc_modf(double arg, double *iptr) {
+_ALWAYS_INLINE _INLINE static double __elibc_modf(double arg, double *iptr) {
 	int sign = 1;
 	double i_portion;
 

@@ -10,7 +10,7 @@
 // Name: __elibc_copysignf
 // Note: assumes IEEE floats
 //----------------------------------------------------------------------------*/
-_CONST _ALWAYS_INLINE _INLINE static float __elibc_copysignf(float x, float y) {
+_ALWAYS_INLINE _INLINE static float __elibc_copysignf(float x, float y) {
 
 	union float_bits {
 		float f_value;

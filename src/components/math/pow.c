@@ -11,7 +11,7 @@
 /*------------------------------------------------------------------------------
 // Name:
 //----------------------------------------------------------------------------*/
-_CONST _ALWAYS_INLINE _INLINE static double __elibc_pow_e(int n, double x) {
+_ALWAYS_INLINE _INLINE static double __elibc_pow_e(int n, double x) {
 	double sum = 1.0f;
 	int i      = n - 1;
 
@@ -25,7 +25,7 @@ _CONST _ALWAYS_INLINE _INLINE static double __elibc_pow_e(int n, double x) {
 /*------------------------------------------------------------------------------
 // Name: __elibc_pow
 //----------------------------------------------------------------------------*/
-_CONST _ALWAYS_INLINE _INLINE static double __elibc_pow(double base, double exponent) {
+_ALWAYS_INLINE _INLINE static double __elibc_pow(double base, double exponent) {
 
 	/* for integer powers, lets just keep it simple */
 	if (exponent > 0.0 && IS_INTEGER(exponent)) {

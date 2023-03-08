@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_FAST_MATH_CONST float hypotf(float x, float y) _NOEXCEPT;
+float hypotf(float x, float y) _NOEXCEPT;
 
 _LIBC_END
 

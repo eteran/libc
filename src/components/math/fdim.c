@@ -8,7 +8,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_fdim
 //----------------------------------------------------------------------------*/
-_CONST _ALWAYS_INLINE _INLINE static double __elibc_fdim(double x, double y) {
+_ALWAYS_INLINE _INLINE static double __elibc_fdim(double x, double y) {
 	return fmax(x - y, 0);
 }
 

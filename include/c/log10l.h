@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_FAST_MATH_CONST long double log10l(long double x) _NOEXCEPT;
+long double log10l(long double x) _NOEXCEPT;
 
 _LIBC_END
 

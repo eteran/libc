@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_FAST_MATH_CONST double ceil(double x) _NOEXCEPT;
+double ceil(double x) _NOEXCEPT;
 
 _LIBC_END
 

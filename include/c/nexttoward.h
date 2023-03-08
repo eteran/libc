@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_FAST_MATH_CONST double nexttoward(double x, long double y) _NOEXCEPT;
+double nexttoward(double x, long double y) _NOEXCEPT;
 
 _LIBC_END
 

@@ -8,7 +8,7 @@
 /*------------------------------------------------------------------------------
 // Name: __elibc_round
 //----------------------------------------------------------------------------*/
-_CONST _ALWAYS_INLINE _INLINE static double __elibc_round(double x) {
+_ALWAYS_INLINE _INLINE static double __elibc_round(double x) {
 	double value;
 	const int save_round = fesetround(FE_TONEAREST);
 	__asm__ __volatile__("frndint"

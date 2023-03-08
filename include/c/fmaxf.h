@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_FAST_MATH_CONST float fmaxf(float x, float y) _NOEXCEPT;
+float fmaxf(float x, float y) _NOEXCEPT;
 
 _LIBC_END
 

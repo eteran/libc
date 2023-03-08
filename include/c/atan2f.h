@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_FAST_MATH_CONST float atan2f(float x, float y) _NOEXCEPT;
+float atan2f(float x, float y) _NOEXCEPT;
 
 _LIBC_END
 

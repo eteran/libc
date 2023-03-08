@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_FAST_MATH_CONST double atan2(double y, double x) _NOEXCEPT;
+double atan2(double y, double x) _NOEXCEPT;
 
 _LIBC_END
 

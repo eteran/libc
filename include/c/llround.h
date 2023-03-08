@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_FAST_MATH_CONST long long int llround(double x) _NOEXCEPT;
+long long int llround(double x) _NOEXCEPT;
 
 _LIBC_END
 
