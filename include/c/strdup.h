@@ -4,7 +4,8 @@
 
 _LIBC_BEGIN
 
-char *strdup(const char *s) _NOEXCEPT __attribute__((__malloc__));
+char *strdup(const char *s) _NOEXCEPT
+	__attribute__((__malloc__));
 
 _LIBC_END
 
