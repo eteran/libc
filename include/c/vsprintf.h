@@ -6,8 +6,7 @@
 
 _LIBC_BEGIN
 
-int vsprintf(char *_RESTRICT str, const char *_RESTRICT format, va_list ap) _NOEXCEPT
-	__attribute__((__format__(printf, 2, 0)));
+int vsprintf(char *_RESTRICT str, const char *_RESTRICT format, va_list ap) _NOEXCEPT;
 
 _LIBC_END
 

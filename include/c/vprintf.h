@@ -6,8 +6,7 @@
 
 _LIBC_BEGIN
 
-int vprintf(const char *_RESTRICT format, va_list ap) _NOEXCEPT
-	__attribute__((__format__(printf, 1, 0)));
+int vprintf(const char *_RESTRICT format, va_list ap) _NOEXCEPT;
 
 _LIBC_END
 
