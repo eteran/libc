@@ -48,6 +48,6 @@ int rand_r(unsigned int *seedp) {
 // Name: __elibc_rand_next
 //----------------------------------------------------------------------------*/
 unsigned int *__elibc_rand_next(void) {
-	static _Thread_local unsigned int _next = 1;
-	return &_next;
+	static _Thread_local unsigned int next = 1;
+	return &next;
 }
