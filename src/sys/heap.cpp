@@ -84,9 +84,7 @@ constexpr unsigned int MaxCacheDepth = 16;
 Spinlock heapLock;
 #endif
 
-#ifndef NDEBUG
-bool initialized = false;
-#endif
+bool initialized      = false;
 void *start           = nullptr;
 void *end             = nullptr;
 heap_data *last_block = nullptr;
@@ -329,9 +327,7 @@ void init() {
 	}
 #endif
 
-#ifndef NDEBUG
 	initialized = true;
-#endif
 }
 
 //-----------------------------------------------------------------------------

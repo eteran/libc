@@ -1,11 +1,15 @@
 
 #define _ELIBC_SOURCE
+#include <assert.h>
 #include <string.h>
 
 /*------------------------------------------------------------------------------
 // Name: strnstr
 //----------------------------------------------------------------------------*/
 char *strnstr(const char *haystack, const char *needle, size_t n) {
+
+	assert(needle);
+	assert(haystack);
 
 	if (*needle == '\0') {
 		return (char *)haystack;

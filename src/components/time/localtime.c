@@ -7,7 +7,7 @@
 //----------------------------------------------------------------------------*/
 struct tm *localtime_r(const time_t *timer, struct tm *result) {
 
-	/* TODO(eteran): I beleive that this function is pretty much the same as
+	/* TODO(eteran): I believe that this function is pretty much the same as
 	 * gmtime_r just adjusted for local timezone
 	 */
 

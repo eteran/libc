@@ -59,7 +59,7 @@ pid_t __elibc_sys_waitpid(pid_t pid, int *status, int options) {
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-pid_t __elibc_sys_fork() {
+pid_t __elibc_sys_fork(void) {
 	long ret = elibc::syscall(__NR_fork);
 	if (ret < 0) {
 		errno = (__elibc_errno_t)-ret;

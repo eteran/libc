@@ -97,6 +97,8 @@ static void _itoa_common(write_context_t *ctx, uintmax_t ud, unsigned int diviso
 	 * conversion*/
 	char *buf = ctx->ptr;
 
+	assert(divisor != 0);
+
 	/* Divide UD by DIVISOR until UD == 0. */
 	do {
 		_write_char(ctx, alphabet[ud % divisor]);

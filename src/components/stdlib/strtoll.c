@@ -16,6 +16,8 @@ long long int strtoll(const char *nptr, char **endptr, int base) {
 	T ret   = 0;
 	int err = 0;
 
+	assert(nptr);
+
 	/*
 	 * The strtol() function converts the initial part of the string in nptr to
 	 * an unsigned long integer value according to the given base, which must be

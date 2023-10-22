@@ -41,7 +41,7 @@ static struct locale_meta_t {
 /*------------------------------------------------------------------------------
 // Name: __elibc_categories_equal
 //----------------------------------------------------------------------------*/
-static int __elibc_categories_equal() {
+static int __elibc_categories_equal(void) {
 
 	const char *const name = __elibc_locale_meta[_ELIBC_LC_ALL].name;
 	int i;
