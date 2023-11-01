@@ -12,7 +12,7 @@
 		if (i != j) {                                                    \
 			unsigned char *const base_ptr1 = ELEMENT_PTR(base, i, size); \
 			unsigned char *const base_ptr2 = ELEMENT_PTR(base, j, size); \
-			memswp(base_ptr1, base_ptr2, size);                          \
+			__elibc_memswp(base_ptr1, base_ptr2, size);                          \
 		}                                                                \
 	} while (0)
 
@@ -101,9 +101,9 @@ _ALWAYS_INLINE _INLINE static void __elibc_memswp8(uint8_t *_RESTRICT dest, uint
 #endif
 
 /*------------------------------------------------------------------------------
-// Name: memswp
+// Name: __elibc_memswp
 //----------------------------------------------------------------------------*/
-static void *memswp(void *_RESTRICT dest, void *_RESTRICT src, size_t n) {
+static void *__elibc_memswp(void *_RESTRICT dest, void *_RESTRICT src, size_t n) {
 
 #ifdef NAIVE_VERSION
 	/* traditional version */

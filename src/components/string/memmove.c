@@ -1,5 +1,6 @@
 
 #define _ELIBC_SOURCE
+#include <assert.h>
 #include <stdint.h>
 #include <string.h>
 
@@ -7,6 +8,9 @@
 // Name: memmove
 //----------------------------------------------------------------------------*/
 void *memmove(void *dest, const void *src, size_t n) {
+
+	assert(dest);
+	assert(src);
 
 	if (dest == src) {
 		return dest;

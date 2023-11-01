@@ -118,6 +118,7 @@ FILE *__elibc_allocate_file(void) {
 }
 
 void __elibc_free_file(FILE *stream) {
+	assert(stream);
 	/* TODO(eteran): lock the list */
 	stream->next             = __elibc_free_file_struct;
 	__elibc_free_file_struct = stream;

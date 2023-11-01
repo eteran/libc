@@ -11,6 +11,7 @@ int fgetpos(FILE *stream, fpos_t *pos) {
 	long ret;
 
 	assert(stream);
+	assert(pos);
 
 	ret = ftell(stream);
 

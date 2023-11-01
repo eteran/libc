@@ -1,6 +1,7 @@
 
 #define _ELIBC_SOURCE
 #include "c/_printf_engine.h"
+#include <assert.h>
 #include <stdarg.h>
 #include <stdio.h>
 
@@ -15,6 +16,8 @@ struct __elibc_buffer_write {
 static void __elibc_buffer_writer(void *context, char ch) {
 	struct __elibc_buffer_write *const c = context;
 
+	assert(context);
+
 	if (c->p) {
 		*(c->p)++ = ch;
 	}
@@ -23,6 +26,9 @@ static void __elibc_buffer_writer(void *context, char ch) {
 
 static void __elibc_buffer_writer_done(void *context) {
 	struct __elibc_buffer_write *const c = context;
+
+	assert(context);
+
 	if (c->p) {
 		*(c->p)++ = '\0';
 	}

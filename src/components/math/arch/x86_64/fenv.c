@@ -156,7 +156,7 @@ int fesetenv(const fenv_t *envp) {
 _ALWAYS_INLINE _INLINE static void __elibc_feraiseexcept_fpu(int excepts) {
 	fenv_t envp;
 	/* NOTE(eteran): this temp is to avoid a spurious warning on GCC-9.4.0
-	 * where it things there's a conversion error even after casting :-/
+	 * where it thinks there's a conversion error even after casting :-/
 	 */
 	unsigned short temp;
 	FPU_GETENV(envp);
