@@ -118,10 +118,13 @@
 #elif __has_builtin(__builtin_assume)
 #define _ASSUME(cond) __builtin_assume(cond)
 #elif __has_attribute(assume)
-#define _ASSUME(cond) __attribute__((assume(cond)))
+#define _ASSUME(cond) __attribute__((__assume__(cond)))
 #else
-#define _ASSUME(cond) \
-	do {              \
+#define _ASSUME(cond)                \
+	do {                             \
+		if (!(cond)) {               \
+			__builtin_unreachable(); \
+		}                            \
 	} while (0)
 #endif
 
