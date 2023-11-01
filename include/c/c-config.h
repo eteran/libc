@@ -52,15 +52,6 @@
 #define _LIBC_END
 #endif
 
-/* make these exist even on older compilers*/
-#ifndef __has_attribute
-#define __has_attribute(attr) 0
-#endif
-
-#ifndef __has_builtin
-#define __has_builtin(attr) 0
-#endif
-
 /* floating point math supported */
 #if (defined(__x86_64__) && (defined(__SSE2_MATH__) || defined(__SSE_MATH__))) || defined(__i386__)
 #define _HAS_FPU
@@ -115,17 +106,12 @@
 
 #ifdef _HAS_CXX23
 #define _ASSUME(cond) [[assume(cond)]]
-#elif __has_builtin(__builtin_assume)
+#elif defined(__clang__)
 #define _ASSUME(cond) __builtin_assume(cond)
-#elif __has_attribute(assume)
-#define _ASSUME(cond) __attribute__((__assume__(cond)))
+#elif defined(__GNUC__)
+#define _ASSUME(cond) ((cond) ? (void)(0) : __builtin_unreachable())
 #else
-#define _ASSUME(cond)                \
-	do {                             \
-		if (!(cond)) {               \
-			__builtin_unreachable(); \
-		}                            \
-	} while (0)
+#define _ASSUME(cond) do {} while(0)
 #endif
 
 /* TODO(eteran): enable TLS */
