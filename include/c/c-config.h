@@ -94,13 +94,17 @@
 #define _CONST __attribute__((__const__))
 #define _PURE  __attribute__((__pure__))
 #ifndef _ALWAYS_INLINE
-#define _ALWAYS_INLINE __attribute__((always_inline))
+#define _ALWAYS_INLINE  __attribute__((always_inline))
+#define _LIKELY(expr)   __builtin_expect(!!(expr), 1)
+#define _UNLIKELY(expr) __builtin_expect(!!(expr), 0)
 #endif
 #else
 #define _CONST
 #define _PURE
 #ifndef _ALWAYS_INLINE
 #define _ALWAYS_INLINE
+#define _LIKELY(expr)   (expr)
+#define _UNLIKELY(expr) (expr)
 #endif
 #endif
 
@@ -111,12 +115,14 @@
 #elif defined(__GNUC__)
 #define _ASSUME(cond) ((cond) ? (void)(0) : __builtin_unreachable())
 #else
-#define _ASSUME(cond) do {} while(0)
+#define _ASSUME(cond) \
+	do {              \
+	} while (0)
 #endif
 
 /* TODO(eteran): enable TLS */
 #if !defined(_HAS_C11) && defined(__GNUC__) && !defined(__KERNEL__)
-#define _Thread_local /*__thread*/
+#define _Thread_local __thread
 #else
 #define _Thread_local
 #endif

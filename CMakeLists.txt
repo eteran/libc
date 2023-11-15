@@ -16,7 +16,7 @@ add_compile_options(
 add_link_options(-nostdlib)
 
 add_compile_options(
-	"$<$<COMPILE_LANGUAGE:C>:-std=c99>"
+	"$<$<COMPILE_LANGUAGE:C>:-std=c89>"
 	"$<$<COMPILE_LANGUAGE:CXX>:-std=c++11>"
 )
 

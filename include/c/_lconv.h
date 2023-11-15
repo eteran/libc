@@ -22,6 +22,13 @@ struct lconv {
 	char p_cs_precedes;
 	char p_sep_by_space;
 	char p_sign_posn;
+
+	char int_p_cs_precedes;  /* CHAR_MAX */
+	char int_n_cs_precedes;  /* CHAR_MAX */
+	char int_p_sep_by_space; /* CHAR_MAX */
+	char int_n_sep_by_space; /* CHAR_MAX */
+	char int_p_sign_posn;    /* CHAR_MAX */
+	char int_n_sign_posn;    /* CHAR_MAX */
 };
 
 #endif

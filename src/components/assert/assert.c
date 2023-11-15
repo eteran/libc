@@ -8,6 +8,9 @@
 // Name: __assert_fail
 //----------------------------------------------------------------------------*/
 void __assert_fail(const char *expr, const char *file, const char *line, const char *func) {
+	/* NOTE(eteran): we use a series of fputs instead of the easier printf because we
+	 * want to be able to call this from printf itself
+	 */
 	fputs(file, stderr);
 	fputs(":", stderr);
 	fputs(line, stderr);

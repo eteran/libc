@@ -20,11 +20,12 @@ static const struct locale_support_t {
 	const int type;
 	const struct lconv locale;
 } __elibc_supported_locales[] = {
-	{"C", _ELIBC_ASCII, {_C(""), _C("."), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX}},
-	{"POSIX", _ELIBC_ASCII, {_C(""), _C("."), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX}},
-	{"en_US", _ELIBC_ASCII, {_C("$"), _C("."), _C(""), _C("USD"), _C("."), _C(""), _C(","), _C("-"), _C(""), _C(","), 2, 2, 1, 0, 1, 1, 1, 1}},
-	{"en_US.UTF-8", _ELIBC_UTF8, {_C("$"), _C("."), _C(""), _C("USD"), _C("."), _C(""), _C(","), _C("-"), _C(""), _C(","), 2, 2, 1, 0, 1, 1, 1, 1}},
-	{0, _ELIBC_ASCII, {_C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX}}};
+	{"C", _ELIBC_ASCII, {_C(""), _C("."), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX}},
+	{"POSIX", _ELIBC_ASCII, {_C(""), _C("."), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX}},
+	{"en_US", _ELIBC_ASCII, {_C("$"), _C("."), _C(""), _C("USD"), _C("."), _C(""), _C(","), _C("-"), _C(""), _C(","), 2, 2, 1, 0, 1, 1, 1, 1, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX}},
+	{"en_US.UTF-8", _ELIBC_UTF8, {_C("$"), _C("."), _C(""), _C("USD"), _C("."), _C(""), _C(","), _C("-"), _C(""), _C(","), 2, 2, 1, 0, 1, 1, 1, 1, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX}},
+	{0, _ELIBC_ASCII, {_C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), _C(""), CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX, CHAR_MAX}},
+};
 
 static struct locale_meta_t {
 	const char *name;
