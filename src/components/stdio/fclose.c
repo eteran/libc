@@ -38,9 +38,11 @@ int __elibc_fclose(FILE *stream) {
 		}
 	} while (0);
 
-	free(_FDATA(stream)->internal_buffer_ptr);
+	if (_FDATA(stream)->free_buffer) {
+		free(_FDATA(stream)->buffer_start);
+	}
 
-	if (!(_FDATA(stream)->flags & _ELIBC_FILE_STATIC_ALLOC)) {
+	if (!(_FDATA(stream)->static_alloc)) {
 		free(_FDATA(stream));
 	}
 

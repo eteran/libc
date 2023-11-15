@@ -19,7 +19,7 @@ wint_t __elibc_fputwc_unlocked(wchar_t wc, FILE *stream) {
 	if (n > 0) {
 		int i;
 		for (i = 0; i < n; ++i) {
-			if (__elibc_fputc(wc, stream, 0x03) == EOF) {
+			if (__elibc_fputc(wc, stream, _ELIBC_FILE_WIDE) == EOF) {
 				r = WEOF;
 				break;
 			}

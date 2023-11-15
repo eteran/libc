@@ -11,16 +11,17 @@
 int __elibc_fgetc(FILE *stream) {
 
 	assert(stream);
-	assert(_FDATA(stream)->orientation != _ELIBC_FILE_ORIENTATION_WIDE);
+	assert(_FDATA(stream)->orientation_set == 0 || _FDATA(stream)->orientation_wide == 0);
 
-	_FDATA(stream)->orientation = _ELIBC_FILE_ORIENTATION_NARROW;
+	_FDATA(stream)->orientation_set  = 1;
+	_FDATA(stream)->orientation_wide = _ELIBC_FILE_NARROW;
 
 	/* if this stream doesn't have a buffer, then create one */
 	if (!_FDATA(stream)->buffer_start) {
 		_ELIBC_ALLOCATE_FILE_BUFFER(stream);
 	}
 
-	if (_FDATA(stream)->buf_mod == _IONBF) {
+	if (_FDATA(stream)->buf_mode == _IONBF) {
 		char ch;
 		const ssize_t n = __elibc_sys_read(_ELIBC_FILENO(stream), &ch, sizeof(ch));
 

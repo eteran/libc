@@ -13,7 +13,7 @@ static int __elibc_fputws(const wchar_t *ws, FILE *stream) {
 	assert(stream);
 
 	while (*ws != '\0') {
-		if (__elibc_fputc(*ws++, stream, 0x03) == EOF) {
+		if (__elibc_fputc(*ws++, stream, _ELIBC_FILE_WIDE) == EOF) {
 			return EOF;
 		}
 	}

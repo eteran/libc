@@ -38,22 +38,22 @@ static wint_t __elibc_expected_length(wint_t ch) {
 /*------------------------------------------------------------------------------
 // Name: __elibc_fgetwc
 // Desc: reads a single byte from the stream for use in a MB character
-// TODO(eteran): figure out the best way to reuse the code from __elibc_fgetc
-here
+// TODO(eteran): figure out the best way to reuse the code from __elibc_fgetc here
 //----------------------------------------------------------------------------*/
 static wint_t __elibc_fgetwc(FILE *stream) {
 
 	assert(stream);
-	assert(_FDATA(stream)->orientation != _ELIBC_FILE_ORIENTATION_NARROW);
+	assert(_FDATA(stream)->orientation_set == 0 || _FDATA(stream)->orientation_wide == 1);
 
-	_FDATA(stream)->orientation = _ELIBC_FILE_ORIENTATION_WIDE;
+	_FDATA(stream)->orientation_set  = 1;
+	_FDATA(stream)->orientation_wide = _ELIBC_FILE_WIDE;
 
 	/* if this stream doesn't have a buffer, then create one */
 	if (!_FDATA(stream)->buffer_start) {
 		_ELIBC_ALLOCATE_FILE_BUFFER(stream);
 	}
 
-	if (_FDATA(stream)->buf_mod == _IONBF) {
+	if (_FDATA(stream)->buf_mode == _IONBF) {
 		unsigned char ch;
 		const ssize_t n = __elibc_sys_read(_ELIBC_FILENO(stream), &ch, sizeof(ch));
 

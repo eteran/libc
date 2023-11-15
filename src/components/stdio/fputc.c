@@ -12,7 +12,7 @@
 // Desc: writes a single byte into a character stream
 //       returns c on success and EOF on error
 //----------------------------------------------------------------------------*/
-int __elibc_fputc(int c, FILE *stream, int orientation) {
+int __elibc_fputc(int c, FILE *stream, int wide) {
 
 	/* TODO(eteran): set stream.err on error */
 
@@ -20,9 +20,11 @@ int __elibc_fputc(int c, FILE *stream, int orientation) {
 	int r;
 
 	assert(stream);
-	assert(_FDATA(stream)->orientation != (orientation ^ 0x01));
 
-	_FDATA(stream)->orientation = (unsigned char)orientation;
+	assert(_FDATA(stream)->orientation_set == 0 || _FDATA(stream)->orientation_wide == wide);
+
+	_FDATA(stream)->orientation_set  = 1;
+	_FDATA(stream)->orientation_wide = wide;
 
 	if (!_FDATA(stream)->buffer_start) {
 		_ELIBC_ALLOCATE_FILE_BUFFER(stream);
@@ -30,7 +32,7 @@ int __elibc_fputc(int c, FILE *stream, int orientation) {
 
 	/* this is only true after a read into the buffer */
 
-	switch (_FDATA(stream)->buf_mod) {
+	switch (_FDATA(stream)->buf_mode) {
 	case _IOFBF:
 		*_FDATA(stream)->buffer_first++ = (char)ch;
 		if (_FDATA(stream)->buffer_first == _FDATA(stream)->buffer_end) {
@@ -66,6 +68,6 @@ int __elibc_fputc(int c, FILE *stream, int orientation) {
 //----------------------------------------------------------------------------*/
 int fputc(int c, FILE *stream) {
 	int r;
-	__ELIBC_WITH_LOCK(__elibc_fputc(c, stream, 0x02));
+	__ELIBC_WITH_LOCK(__elibc_fputc(c, stream, _ELIBC_FILE_NARROW));
 	return r;
 }

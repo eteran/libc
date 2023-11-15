@@ -27,13 +27,13 @@ static int __elibc_setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode
 	}
 
 	/* if either buf or size are 0, the other should be too */
-	if ((!buf && size != 0) || (buf && size == 0)) {
+	if ((!buf && (size != 0)) || (buf && (size == 0))) {
 		errno = EINVAL;
 		return -1;
 	}
 
 	/* store the mode */
-	_FDATA(stream)->buf_mod = mode;
+	_FDATA(stream)->buf_mode = mode;
 
 	/* if they specified a buffer, use it, if they didn't the next read/write
 	 * will cause an allocation of one of the default size

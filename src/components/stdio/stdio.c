@@ -22,12 +22,14 @@ static struct __elibc_file __elibc_stdin_internal = {
 	0,
 	0,
 	0,
+	_ELIBC_FILE_NARROW,
 	_ELIBC_FILE_STATIC_ALLOC,
 	0,
 	0,
 	0,
 	0,
-	0};
+	0,
+};
 
 static struct __elibc_file __elibc_stdout_internal = {
 	STDOUT_FILENO,
@@ -35,12 +37,14 @@ static struct __elibc_file __elibc_stdout_internal = {
 	0,
 	0,
 	0,
+	_ELIBC_FILE_NARROW,
 	_ELIBC_FILE_STATIC_ALLOC,
 	0,
 	0,
 	0,
 	0,
-	0};
+	0,
+};
 
 static struct __elibc_file __elibc_stderr_internal = {
 	STDERR_FILENO,
@@ -48,12 +52,14 @@ static struct __elibc_file __elibc_stderr_internal = {
 	0,
 	0,
 	0,
+	_ELIBC_FILE_NARROW,
 	_ELIBC_FILE_STATIC_ALLOC,
 	0,
 	0,
 	0,
 	0,
-	0};
+	0,
+};
 
 FILE __elibc_stdin[1] = {
 	{__elibc_stdout, 0, &__elibc_stdin_internal

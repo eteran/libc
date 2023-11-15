@@ -96,17 +96,18 @@ FILE *fopen(const char *path, const char *mode) {
 			return 0;
 		}
 
-		_FDATA(f)->fd                  = fd;
-		_FDATA(f)->buf_mod             = _IOFBF;
-		_FDATA(f)->err                 = 0;
-		_FDATA(f)->eof                 = 0;
-		_FDATA(f)->orientation         = _ELIBC_FILE_ORIENTATION_NONE;
-		_FDATA(f)->flags               = 0;
-		_FDATA(f)->buffer_start        = 0;
-		_FDATA(f)->buffer_end          = 0;
-		_FDATA(f)->buffer_first        = 0;
-		_FDATA(f)->buffer_last         = 0;
-		_FDATA(f)->internal_buffer_ptr = 0;
+		_FDATA(f)->fd               = fd;
+		_FDATA(f)->buf_mode         = _IOFBF;
+		_FDATA(f)->err              = 0;
+		_FDATA(f)->eof              = 0;
+		_FDATA(f)->orientation_set  = 0;
+		_FDATA(f)->orientation_wide = _ELIBC_FILE_NARROW;
+		_FDATA(f)->static_alloc     = 0;
+		_FDATA(f)->free_buffer      = 0;
+		_FDATA(f)->buffer_start     = 0;
+		_FDATA(f)->buffer_end       = 0;
+		_FDATA(f)->buffer_first     = 0;
+		_FDATA(f)->buffer_last      = 0;
 
 		/* TODO(eteran): lock the list */
 

@@ -17,7 +17,7 @@ static size_t __elibc_fwrite(const void *ptr, size_t size, size_t nelem, FILE *s
 
 	for (elem_it = 0; elem_it < nelem; ++elem_it) {
 		for (size_it = 0; size_it < size; ++size_it) {
-			if (__elibc_fputc(*p++, stream, 0x02) == EOF) {
+			if (__elibc_fputc(*p++, stream, _ELIBC_FILE_NARROW) == EOF) {
 				return elem_it;
 			}
 		}

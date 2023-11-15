@@ -12,7 +12,7 @@ static int __elibc_fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) {
 	assert(stream);
 
 	while (*s != '\0') {
-		if (__elibc_fputc(*s++, stream, 0x02) == EOF) {
+		if (__elibc_fputc(*s++, stream, _ELIBC_FILE_NARROW) == EOF) {
 			return EOF;
 		}
 	}

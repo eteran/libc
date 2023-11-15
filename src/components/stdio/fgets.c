@@ -1,6 +1,7 @@
 
 #define _ELIBC_SOURCE
 #include <stdio.h>
+#include <assert.h>
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_fgets
@@ -29,9 +30,6 @@ static char *__elibc_fgets(char *_RESTRICT s, int size, FILE *_RESTRICT stream) 
 		*s_ptr = '\0';
 	}
 
-	/* TODO(eteran): I've seen at least one implementation that NUL terminates
-	 * even with a size of 0, check with the standard
-	 */
 	return s;
 }
 

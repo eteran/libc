@@ -12,7 +12,7 @@
 		if (i != j) {                                                    \
 			unsigned char *const base_ptr1 = ELEMENT_PTR(base, i, size); \
 			unsigned char *const base_ptr2 = ELEMENT_PTR(base, j, size); \
-			__elibc_memswp(base_ptr1, base_ptr2, size);                          \
+			__elibc_memswp(base_ptr1, base_ptr2, size);                  \
 		}                                                                \
 	} while (0)
 

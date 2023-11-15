@@ -9,9 +9,11 @@
 static int __elibc_ungetc(int c, FILE *stream) {
 
 	assert(stream);
-	assert(_FDATA(stream)->orientation != _ELIBC_FILE_ORIENTATION_WIDE);
 
-	_FDATA(stream)->orientation = _ELIBC_FILE_ORIENTATION_NARROW;
+	assert(_FDATA(stream)->orientation_set == 0 || _FDATA(stream)->orientation_wide == 0);
+
+	_FDATA(stream)->orientation_set  = 1;
+	_FDATA(stream)->orientation_wide = _ELIBC_FILE_NARROW;
 
 	if (_FDATA(stream)->buffer_first == _FDATA(stream)->buffer_start) {
 		return EOF;
