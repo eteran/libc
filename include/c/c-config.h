@@ -108,18 +108,12 @@
 #endif
 #endif
 
-#ifdef _HAS_CXX23
-#define _ASSUME(cond) [[assume(cond)]]
-/*
- * NOTE(eteran): The clang implementation of this doesn't work the way we want, because
- * it doesn't actually call any functions, so we can't do things like __builtin_assume(!empty())
- *
-#elif defined(__clang__)
-#define _ASSUME(cond) __builtin_assume(cond)
+
+/* NOTE(eteran): this is different from the [[assume]] attribute
+ * available in C++23, and the associated compiler specific intrinsics
+ * because unlike those, this DOES evaluate the condition
 */
-#elif defined(__GNUC__) && __GNUC__ >= 13
-#define _ASSUME(cond) __attribute__((assume(cond)));
-#elif defined(__GNUC__)
+#if defined(__GNUC__)
 #define _ASSUME(cond) ((cond) ? (void)(0) : __builtin_unreachable())
 #else
 #define _ASSUME(cond) \
