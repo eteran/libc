@@ -14,7 +14,7 @@ _Noreturn void __assert_fail(const char *expr, const char *file, const char *lin
 							 const char *func) _NOEXCEPT;
 
 #if defined(NDEBUG)
-#define assert(test) _ASSUME(test)
+#define assert(test) _ASSUME(!!(test))
 #else
 
 #if defined(_HAS_C99) || defined(_HAS_CXX11)
