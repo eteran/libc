@@ -112,6 +112,8 @@
 #define _ASSUME(cond) [[assume(cond)]]
 #elif defined(__clang__)
 #define _ASSUME(cond) __builtin_assume(cond)
+#elif defined(__GNUC__) && __GNUC__ >= 13
+#define _ASSUME(cond) __attribute__((assume(cond)));
 #elif defined(__GNUC__)
 #define _ASSUME(cond) ((cond) ? (void)(0) : __builtin_unreachable())
 #else
