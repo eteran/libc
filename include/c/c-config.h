@@ -110,8 +110,13 @@
 
 #ifdef _HAS_CXX23
 #define _ASSUME(cond) [[assume(cond)]]
+/*
+ * NOTE(eteran): The clang implementation of this doesn't work the way we want, because
+ * it doesn't actually call any functions, so we can't do things like __builtin_assume(!empty())
+ *
 #elif defined(__clang__)
 #define _ASSUME(cond) __builtin_assume(cond)
+*/
 #elif defined(__GNUC__) && __GNUC__ >= 13
 #define _ASSUME(cond) __attribute__((assume(cond)));
 #elif defined(__GNUC__)
