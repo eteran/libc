@@ -42,6 +42,6 @@ int __elibc_fwide(FILE *stream, int mode) {
 //----------------------------------------------------------------------------*/
 int fwide(FILE *stream, int mode) {
 	int r;
-	__ELIBC_WITH_LOCK(__elibc_fwide(stream, mode));
+	__ELIBC_WITH_LOCK(__elibc_fwide(stream, mode), &r);
 	return r;
 }

@@ -26,6 +26,6 @@ static int __elibc_fputws(const wchar_t *ws, FILE *stream) {
 //----------------------------------------------------------------------------*/
 int fputws(const wchar_t *ws, FILE *stream) {
 	int r;
-	__ELIBC_WITH_LOCK(__elibc_fputws(ws, stream));
+	__ELIBC_WITH_LOCK(__elibc_fputws(ws, stream), &r);
 	return r;
 }

@@ -34,6 +34,6 @@ static size_t __elibc_fread(void *ptr, size_t size, size_t nmemb, FILE *stream) 
 //----------------------------------------------------------------------------*/
 size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 	size_t r;
-	__ELIBC_WITH_LOCK(__elibc_fread(ptr, size, nmemb, stream));
+	__ELIBC_WITH_LOCK(__elibc_fread(ptr, size, nmemb, stream), &r);
 	return r;
 }

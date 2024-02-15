@@ -68,6 +68,6 @@ int __elibc_fputc(int c, FILE *stream, int wide) {
 //----------------------------------------------------------------------------*/
 int fputc(int c, FILE *stream) {
 	int r;
-	__ELIBC_WITH_LOCK(__elibc_fputc(c, stream, _ELIBC_FILE_NARROW));
+	__ELIBC_WITH_LOCK(__elibc_fputc(c, stream, _ELIBC_FILE_NARROW), &r);
 	return r;
 }

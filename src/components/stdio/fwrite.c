@@ -31,6 +31,6 @@ static size_t __elibc_fwrite(const void *ptr, size_t size, size_t nelem, FILE *s
 //----------------------------------------------------------------------------*/
 size_t fwrite(const void *ptr, size_t size, size_t nelem, FILE *stream) {
 	size_t r;
-	__ELIBC_WITH_LOCK(__elibc_fwrite(ptr, size, nelem, stream));
+	__ELIBC_WITH_LOCK(__elibc_fwrite(ptr, size, nelem, stream), &r);
 	return r;
 }

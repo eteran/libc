@@ -16,6 +16,6 @@ static int __elibc_ferror(FILE *stream) {
 //----------------------------------------------------------------------------*/
 int ferror(FILE *stream) {
 	int r;
-	__ELIBC_WITH_LOCK(__elibc_ferror(stream));
+	__ELIBC_WITH_LOCK(__elibc_ferror(stream), &r);
 	return r;
 }

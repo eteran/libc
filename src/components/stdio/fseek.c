@@ -33,6 +33,6 @@ int __elibc_fseek(FILE *stream, long offset, int whence) {
 //----------------------------------------------------------------------------*/
 int fseek(FILE *stream, long offset, int whence) {
 	int r;
-	__ELIBC_WITH_LOCK(__elibc_fseek(stream, offset, whence));
+	__ELIBC_WITH_LOCK(__elibc_fseek(stream, offset, whence), &r);
 	return r;
 }

@@ -48,7 +48,7 @@ int fflush(FILE *stream) {
 
 	if (stream) {
 		int r;
-		__ELIBC_WITH_LOCK(__elibc_fflush(stream));
+		__ELIBC_WITH_LOCK(__elibc_fflush(stream), &r);
 		return r;
 	} else {
 		/* flush all open output streams */
@@ -57,7 +57,7 @@ int fflush(FILE *stream) {
 		/* TODO(eteran): lock the list */
 		for (p = __elibc_root_file_struct; p; p = p->next) {
 			int r;
-			__ELIBC_WITH_LOCK(__elibc_fflush(p));
+			__ELIBC_WITH_LOCK(__elibc_fflush(p), &r);
 			if (r != 0) {
 				return r;
 			}

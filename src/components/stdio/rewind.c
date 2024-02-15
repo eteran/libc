@@ -18,6 +18,6 @@ static int __elibc_rewind(FILE *stream) {
 //----------------------------------------------------------------------------*/
 void rewind(FILE *stream) {
 	int r;
-	__ELIBC_WITH_LOCK(__elibc_rewind(stream));
+	__ELIBC_WITH_LOCK(__elibc_rewind(stream), &r);
 	(void)r;
 }

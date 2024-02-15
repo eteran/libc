@@ -145,7 +145,7 @@ wint_t fgetwc(FILE *stream) {
 	char buf[MB_LEN_MAX];
 	wchar_t wc;
 
-	__ELIBC_WITH_LOCK(__elibc_fgetwc_unlocked(stream, buf));
+	__ELIBC_WITH_LOCK(__elibc_fgetwc_unlocked(stream, buf), &r);
 
 	if (r > 0) {
 		if ((wint_t)mbtowc(&wc, buf, r) == r) {

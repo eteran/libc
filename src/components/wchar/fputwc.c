@@ -34,6 +34,6 @@ wint_t __elibc_fputwc_unlocked(wchar_t wc, FILE *stream) {
 //----------------------------------------------------------------------------*/
 wint_t fputwc(wchar_t wc, FILE *stream) {
 	wint_t r;
-	__ELIBC_WITH_LOCK(__elibc_fputwc_unlocked(wc, stream));
+	__ELIBC_WITH_LOCK(__elibc_fputwc_unlocked(wc, stream), &r);
 	return r;
 }

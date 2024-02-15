@@ -321,14 +321,14 @@ static void test_strerror(void) {
 }
 
 static void test_strxfrm(void) {
-	char src[]   = "hi";
+	char src[10] = "hi";
 	char dest[6] = "abcdef";
 	char dest2[2];
 	size_t n;
 
 	n = strxfrm(dest, src, 5);
 	/* NOTE(eteran): writes at most 3 characters to the buffer */
-	assert(memcmp(dest, "hi\0def", 3) == 0);
+	assert(memcmp(dest, "hi\0def", 5) == 0);
 	assert(n == 2);
 
 	n = strxfrm(dest2, src, 2);

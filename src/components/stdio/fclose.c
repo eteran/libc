@@ -58,6 +58,6 @@ int __elibc_fclose(FILE *stream) {
 //----------------------------------------------------------------------------*/
 int fclose(FILE *stream) {
 	int r;
-	__ELIBC_WITH_LOCK(__elibc_fclose(stream));
+	__ELIBC_WITH_LOCK(__elibc_fclose(stream), &r);
 	return r;
 }

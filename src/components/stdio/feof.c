@@ -16,6 +16,6 @@ static int __elibc_feof(FILE *stream) {
 //----------------------------------------------------------------------------*/
 int feof(FILE *stream) {
 	int r;
-	__ELIBC_WITH_LOCK(__elibc_feof(stream));
+	__ELIBC_WITH_LOCK(__elibc_feof(stream), &r);
 	return r;
 }

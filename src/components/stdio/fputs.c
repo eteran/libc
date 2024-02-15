@@ -25,6 +25,6 @@ static int __elibc_fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) {
 //----------------------------------------------------------------------------*/
 int fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) {
 	int r;
-	__ELIBC_WITH_LOCK(__elibc_fputs(s, stream));
+	__ELIBC_WITH_LOCK(__elibc_fputs(s, stream), &r);
 	return r;
 }

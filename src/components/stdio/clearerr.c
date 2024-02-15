@@ -18,6 +18,5 @@ int __elibc_clearerr(FILE *stream) {
 //----------------------------------------------------------------------------*/
 void clearerr(FILE *stream) {
 	int r;
-	__ELIBC_WITH_LOCK(__elibc_clearerr(stream));
-	(void)r;
+	__ELIBC_WITH_LOCK(__elibc_clearerr(stream), &r);
 }

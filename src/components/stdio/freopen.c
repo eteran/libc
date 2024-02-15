@@ -35,6 +35,6 @@ static FILE *__elibc_freopen(const char *path, const char *mode, FILE *stream) {
 //----------------------------------------------------------------------------*/
 FILE *freopen(const char *path, const char *mode, FILE *stream) {
 	FILE *r;
-	__ELIBC_WITH_LOCK(__elibc_freopen(path, mode, stream));
+	__ELIBC_WITH_LOCK(__elibc_freopen(path, mode, stream), &r);
 	return r;
 }
