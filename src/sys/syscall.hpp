@@ -1,6 +1,6 @@
 
-#ifndef SYSCALL_20110313_H_
-#define SYSCALL_20110313_H_
+#ifndef SYSCALL_20110313_HPP_
+#define SYSCALL_20110313_HPP_
 
 namespace elibc {
 #if defined(__x86_64__)
