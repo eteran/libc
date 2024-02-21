@@ -12,7 +12,7 @@ add_library(c-time STATIC
 	time.c
 )
 
-target_link_libraries(c-time LINK_PUBLIC
+target_link_libraries(c-time PUBLIC
 	c-stdio
 	libc-headers
 )

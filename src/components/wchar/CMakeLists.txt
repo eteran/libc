@@ -62,7 +62,7 @@ add_library(c-wchar STATIC
 	wscanf.c
 )
 
-target_link_libraries(c-wchar LINK_PUBLIC
+target_link_libraries(c-wchar PUBLIC
 	c-stdio
 	c-stdlib
 	c-wctype

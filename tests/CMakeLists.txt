@@ -2,12 +2,12 @@ cmake_minimum_required(VERSION 3.5)
 
 macro(CREATE_TEST NAME)
   add_executable(${NAME}-test ${NAME}-test.c)
-  target_link_libraries(${NAME}-test LINK_PUBLIC
+  target_link_libraries(${NAME}-test PUBLIC
     c-all
   )
 
   if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    target_link_libraries(${NAME}-test LINK_PUBLIC
+    target_link_libraries(${NAME}-test PUBLIC
       -lgcc
     )
   endif()

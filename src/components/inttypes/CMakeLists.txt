@@ -9,7 +9,7 @@ add_library(c-inttypes STATIC
 	wcstoumax.c
 )
 
-target_link_libraries(c-inttypes LINK_PUBLIC
+target_link_libraries(c-inttypes PUBLIC
 	c-stdlib
 	libc-headers
 )

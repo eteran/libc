@@ -4,7 +4,7 @@ add_library(c-wctype STATIC
 	wctype.c
 )
 
-target_link_libraries(c-wctype LINK_PUBLIC
+target_link_libraries(c-wctype PUBLIC
 	c-ctype
 	c-wchar
 	libc-headers

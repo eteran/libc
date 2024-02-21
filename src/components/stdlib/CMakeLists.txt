@@ -40,7 +40,7 @@ add_library(c-stdlib STATIC
 	wctomb.c
 )
 
-target_link_libraries(c-stdlib LINK_PUBLIC
+target_link_libraries(c-stdlib PUBLIC
 	c-ctype
 	c-signal
 	c-stdio

@@ -7,7 +7,7 @@ add_library(c-crt STATIC
 	arch/${LIBC_ARCH}/_start.S
 )
 
-target_link_libraries(c-crt LINK_PUBLIC
+target_link_libraries(c-crt PUBLIC
 	c-stdlib
 	c-locale
 	libc-headers

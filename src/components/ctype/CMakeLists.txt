@@ -4,7 +4,7 @@ add_library (c-ctype STATIC
 	ctype.c
 )
 
-target_link_libraries(c-ctype LINK_PUBLIC
+target_link_libraries(c-ctype PUBLIC
 	libc-headers
 )
 

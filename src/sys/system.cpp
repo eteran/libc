@@ -270,7 +270,7 @@ int __elibc_system(const char *command) {
 		case 0:
 			/* we are in the child */
 			execlp("sh", "sh", "-c", command, 0);
-			exit(127);
+			__elibc_sys_exit(127);
 			break;
 		case -1:
 			ret = -1;

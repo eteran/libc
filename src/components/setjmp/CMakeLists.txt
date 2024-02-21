@@ -7,7 +7,7 @@ add_library (c-setjmp STATIC
 	arch/${LIBC_ARCH}/setjmp.S
 )
 
-target_link_libraries(c-setjmp LINK_PUBLIC
+target_link_libraries(c-setjmp PUBLIC
 	c-stdlib
 	c-math
 	c-string

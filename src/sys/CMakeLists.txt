@@ -12,7 +12,7 @@ set_target_properties(c-sys
 	ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}
 )
 
-target_link_libraries(c-sys LINK_PUBLIC
+target_link_libraries(c-sys PUBLIC
 	c-errno
 	c-stdlib
 	libc-headers

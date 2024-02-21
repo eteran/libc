@@ -49,7 +49,7 @@ add_library (c-stdio STATIC
 	_printf_engine.c
 )
 
-target_link_libraries(c-stdio LINK_PUBLIC
+target_link_libraries(c-stdio PUBLIC
 	c-stdlib
 	c-math
 	c-errno

@@ -6,7 +6,7 @@ add_library(c-assert STATIC
 
 set_property(TARGET c-assert PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 
-target_link_libraries(c-assert LINK_PUBLIC
+target_link_libraries(c-assert PUBLIC
 	c-stdlib
 	c-stdio
 	libc-headers

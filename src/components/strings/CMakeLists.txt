@@ -11,7 +11,7 @@ add_library(c-strings STATIC
 	strncasecmp.c
 )
 
-target_link_libraries(c-strings LINK_PUBLIC
+target_link_libraries(c-strings PUBLIC
 	c-string
 	libc-headers
 )

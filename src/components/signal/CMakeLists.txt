@@ -7,7 +7,7 @@ set(SOURCE_FILES
 
 add_library (c-signal STATIC ${SOURCE_FILES})
 
-target_link_libraries(c-signal LINK_PUBLIC
+target_link_libraries(c-signal PUBLIC
 	libc-headers
 )
 

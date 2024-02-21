@@ -176,7 +176,7 @@ add_library(c-math STATIC
 	arch/${LIBC_ARCH}/trunc.c
 )
 
-target_link_libraries(c-math LINK_PUBLIC
+target_link_libraries(c-math PUBLIC
 	libc-headers
 )
 set_property(TARGET c-math PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})

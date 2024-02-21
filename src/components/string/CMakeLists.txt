@@ -29,7 +29,7 @@ add_library(c-string STATIC
 	strxfrm.c
 )
 
-target_link_libraries(c-string LINK_PUBLIC
+target_link_libraries(c-string PUBLIC
 	c-assert
 	libc-headers
 )

@@ -4,7 +4,7 @@ add_library (c-errno STATIC
 	errno.c
 )
 
-target_link_libraries(c-errno LINK_PUBLIC
+target_link_libraries(c-errno PUBLIC
 	libc-headers
 )
 
