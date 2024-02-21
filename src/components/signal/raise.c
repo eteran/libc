@@ -7,11 +7,6 @@
 // Name: raise
 //----------------------------------------------------------------------------*/
 int raise(int sig) {
-#ifdef __KERNEL__
-	_UNUSED(sig);
-	return -1;
-#else
 	/* TODO(eteran): replace 0 with getpid? */
 	return __elibc_sys_kill(0, sig);
-#endif
 }

@@ -3,10 +3,6 @@
 #include <signal.h>
 #include <stdlib.h>
 
-#ifdef __KERNEL__
-#include <sys/panic.h>
-#endif
-
 /*
  * TODO(eteran):
  *
@@ -28,13 +24,9 @@
 // Name: abort
 //----------------------------------------------------------------------------*/
 void abort(void) {
-#ifdef __KERNEL__
-	/* in kernel mode version, this is same as a panic...bad */
-	panic("abort");
-#else
 	raise(SIGABRT);
 	exit(-127);
-#endif
+
 	while (1) {
 		;
 	}

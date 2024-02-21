@@ -29,9 +29,6 @@ int remove(const char *pathname) {
 	removed but processes which have the object open may continue to use it.
 	*/
 
-#ifdef __KERNEL__
-	/* TODO(eteran): panic here, it is clearly a kernel bug... */
-#else
 	/* TODO(eteran): something along these lines
 
 			if (unlink(filename)) {
@@ -41,9 +38,7 @@ int remove(const char *pathname) {
 					return -1;
 			}
 			return 0;
-			*/
-
-#endif
+	*/
 
 	return 0;
 }
