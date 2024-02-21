@@ -122,7 +122,7 @@
 #endif
 
 /* TODO(eteran): enable TLS */
-#if !defined(_HAS_C11) && defined(__GNUC__) && !defined(__KERNEL__)
+#if !defined(_HAS_C11) && defined(__GNUC__) && 0
 #define _Thread_local __thread
 #else
 #define _Thread_local
