@@ -21,12 +21,11 @@ int __elibc_sys_open(const char *pathname, int flags);
 int __elibc_sys_unlink(const char *filename);
 long __elibc_sys_signal(int sig, __sighandler_t handler);
 off_t __elibc_sys_lseek(int fildes, off_t offset, int whence);
-pid_t __elibc_sys_fork(void);
-pid_t __elibc_sys_waitpid(pid_t pid, int *status, int options);
 ssize_t __elibc_sys_read(int fd, void *buf, size_t count);
 ssize_t __elibc_sys_write(int fd, const void *buf, size_t count);
 unsigned long __elibc_brk(unsigned long increment);
 void __elibc_sys_exit(int status);
+int __elibc_system(const char *command);
 
 /* allocation interface */
 void __elibc_init_heap(void);

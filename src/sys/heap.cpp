@@ -1,16 +1,9 @@
 
 #include "heap.hpp"
+#include "c/_support.h"
 #include <assert.h>
 #include <stdint.h>
 #include <string.h>
-
-#ifdef __KERNEL__
-#include "Mmu.h"
-#include "ScopedLock.h"
-#include "Spinlock.h"
-#endif
-
-#include "c/_support.h"
 
 namespace heap {
 namespace {
@@ -61,11 +54,7 @@ static_assert(sizeof(heap_data) == 32, "Broken heap data struct");
 // MUST be a power of 2
 // however, the bigger this value is, the more of your maximum brk
 // value that can get wasted
-#ifdef __KERNEL__
-constexpr unsigned int ExpandSlack = Mmu::page_size;
-#else
 constexpr unsigned int ExpandSlack = 0x1000;
-#endif
 
 // this is the minimum block granularity, it also MUST be a power of 2
 // recommended values are 8 and 16
@@ -79,10 +68,6 @@ constexpr unsigned int BiggestToCache = (Granularity * 32); // 256/512 on 32/64 
 // how many blocks of a given size should we cache
 // when possible?
 constexpr unsigned int MaxCacheDepth = 16;
-
-#ifdef __KERNEL__
-Spinlock heapLock;
-#endif
 
 bool initialized      = false;
 void *start           = nullptr;
@@ -317,16 +302,6 @@ void init() {
 	// the cache depends on this fact..
 	static_assert((sizeof(heap_data) % Granularity) == 0, "invalid heap granularity");
 
-#ifdef __KERNEL__
-	// setup the first level of paging for our heap
-	// we do this to avoid needing to tweak each
-	// processes page structures whenever we grow
-	// the heap
-	for (uintptr_t i = Mmu::virt_kernel_heap_start; i < Mmu::virt_kernel_heap_end; i += Mmu::first_level_entry_range) {
-		Mmu::map_page_1st_level(i);
-	}
-#endif
-
 	initialized = true;
 }
 
@@ -405,9 +380,6 @@ void *internal_allocate(size_t size, F func) {
 // Desc: allocates a block of requests size and returns it or NULL on error
 //-----------------------------------------------------------------------------
 void *allocate(size_t size) {
-#ifdef __KERNEL__
-	auto lock = make_scoped_lock(&heapLock);
-#endif
 	void *p = internal_allocate(size, first_fit());
 	return p;
 }
@@ -417,9 +389,6 @@ void *allocate(size_t size) {
 // Desc: frees a block back to general storage which was allocated with allocate
 //-----------------------------------------------------------------------------
 void deallocate(void *p) {
-#ifdef __KERNEL__
-	auto lock = make_scoped_lock(&heapLock);
-#endif
 	internal_deallocate<false>(p);
 }
 }

@@ -42,6 +42,8 @@ x	open
 x	read
 x	sbrk
 #endif
+#if 0
+namespace {
 
 //------------------------------------------------------------------------------
 // Name:
@@ -69,6 +71,9 @@ pid_t __elibc_sys_fork(void) {
 	return (pid_t)ret;
 	;
 }
+
+}
+#endif
 
 //------------------------------------------------------------------------------
 // Name:
@@ -248,5 +253,32 @@ unsigned long __elibc_brk(unsigned long increment) {
 		curbrk = ret;
 	}
 
+	return ret;
+}
+
+//------------------------------------------------------------------------------
+// Name:
+//------------------------------------------------------------------------------
+int __elibc_system(const char *command) {
+	int ret = 0;
+	if (command) {
+#if 0
+		const pid_t pid = __elibc_sys_fork();
+
+		switch (pid) {
+		case 0:
+			/* we are in the child */
+			execlp("sh", "sh", "-c", command, 0);
+			exit(127);
+			break;
+		case -1:
+			ret = -1;
+			break;
+		default:
+			/* we are in the parent */
+			__elibc_sys_waitpid(pid, &ret, 0);
+		}
+#endif
+	}
 	return ret;
 }
