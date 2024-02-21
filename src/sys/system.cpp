@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include "c/_support.h"
 #include "heap.hpp"
@@ -19,6 +20,7 @@
 
 #include <asm/unistd.h>
 #include <linux/signal.h>
+#include <linux/time.h>
 #include <sys/syscall.h>
 #include <unistd.h>
 
@@ -69,7 +71,6 @@ pid_t __elibc_sys_fork(void) {
 	}
 
 	return (pid_t)ret;
-	;
 }
 
 }
@@ -281,4 +282,42 @@ int __elibc_system(const char *command) {
 #endif
 	}
 	return ret;
+}
+
+//------------------------------------------------------------------------------
+// Name:
+//------------------------------------------------------------------------------
+clock_t __elibc_clock(void) {
+
+	/* TODO(eteran): this is incorrect, because it is wall time, not time used
+	 * by the process which is a big difference getrusage(RUSAGE_SELF, &ru)
+	 * would be more appropriate
+	 */
+
+	struct timeval tv;
+	if (__elibc_sys_gettimeofday(&tv, 0) == -1) {
+		return (clock_t)-1;
+	}
+
+	/* this assumes that CLOCKS_PER_SEC == 1000000,
+	 * which it is according to POSIX
+	 */
+	return (clock_t)((tv.tv_sec * CLOCKS_PER_SEC) + tv.tv_usec);
+}
+
+//------------------------------------------------------------------------------
+// Name:
+//------------------------------------------------------------------------------
+time_t __elibc_time(time_t *tod) {
+	struct timeval tv;
+
+	if (__elibc_sys_gettimeofday(&tv, 0) == 0) {
+		if (tod) {
+			*tod = tv.tv_sec;
+		}
+
+		return tv.tv_sec;
+	}
+
+	return (time_t)-1;
 }

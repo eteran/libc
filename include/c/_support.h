@@ -2,12 +2,14 @@
 #ifndef _C_SUPPORT_H_20051228_
 #define _C_SUPPORT_H_20051228_
 
-#include "_posix_time.h"
 #include "_sighandler_t.h"
 #include "_time.h"
 #include "arch_off_t.h"
 #include "arch_pid_t.h"
 #include "arch_size_t.h"
+
+struct timeval;
+struct timezone;
 
 #ifdef __cplusplus
 extern "C" {
@@ -25,7 +27,11 @@ ssize_t __elibc_sys_read(int fd, void *buf, size_t count);
 ssize_t __elibc_sys_write(int fd, const void *buf, size_t count);
 unsigned long __elibc_brk(unsigned long increment);
 void __elibc_sys_exit(int status);
+
+/* some system functions which depend very closely on system calls */
 int __elibc_system(const char *command);
+time_t __elibc_time(time_t *tod);
+clock_t __elibc_clock(void);
 
 /* allocation interface */
 void __elibc_init_heap(void);
