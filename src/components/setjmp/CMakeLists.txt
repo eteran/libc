@@ -16,7 +16,4 @@ target_link_libraries(c-setjmp PUBLIC
 
 set_target_properties(c-setjmp PROPERTIES
 	ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}
-	C_STANDARD 90
-	C_STANDARD_REQUIRED TRUE
-	C_EXTENSIONS OFF
 )

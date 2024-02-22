@@ -25,14 +25,6 @@ macro(CREATE_TEST NAME)
 		-nostdlib
 	)
 
-	set_target_properties(${NAME}-test
-	PROPERTIES
-		C_STANDARD 90
-	C_STANDARD_REQUIRED TRUE
-	C_EXTENSIONS OFF
-		C_EXTENSIONS OFF
-	)
-
 	add_test(
 		NAME ${NAME}-test
 		COMMAND $<TARGET_FILE:${NAME}-test>
