@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.15)
 
 add_library(c-stdlib STATIC
 	_Exit.c
@@ -50,4 +50,9 @@ target_link_libraries(c-stdlib PUBLIC
 	libc-headers
 )
 
-set_property(TARGET c-stdlib PROPERTY ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
+set_target_properties(c-stdlib PROPERTIES
+	ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}
+	C_STANDARD 90
+	C_STANDARD_REQUIRED TRUE
+	C_EXTENSIONS OFF
+)

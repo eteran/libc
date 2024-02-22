@@ -1,32 +1,42 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.15)
 
 macro(CREATE_TEST NAME)
-  add_executable(${NAME}-test ${NAME}-test.c)
-  target_link_libraries(${NAME}-test PUBLIC
-    c-all
-  )
+	add_executable(${NAME}-test ${NAME}-test.c)
 
-  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    target_link_libraries(${NAME}-test PUBLIC
-      -lgcc
-    )
-  endif()
+	target_link_libraries(${NAME}-test
+	PUBLIC
+		c-all
+	)
 
-  target_compile_options(${NAME}-test
-    PUBLIC
-    -Wno-deprecated-declarations
-  )
+	if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+		target_link_libraries(${NAME}-test
+		PUBLIC
+			-lgcc
+		)
+	endif()
 
-  set_target_properties(${NAME}-test
-    PROPERTIES
-    C_STANDARD 90
-    C_EXTENSIONS OFF
-  )
+	target_compile_options(${NAME}-test
+	PUBLIC
+		-Wno-deprecated-declarations
+	)
 
-  add_test(
-    NAME ${NAME}-test
-    COMMAND $<TARGET_FILE:${NAME}-test>
-  )
+	target_link_options(${NAME}-test
+	PUBLIC
+		-nostdlib
+	)
+
+	set_target_properties(${NAME}-test
+	PROPERTIES
+		C_STANDARD 90
+	C_STANDARD_REQUIRED TRUE
+	C_EXTENSIONS OFF
+		C_EXTENSIONS OFF
+	)
+
+	add_test(
+		NAME ${NAME}-test
+		COMMAND $<TARGET_FILE:${NAME}-test>
+	)
 endmacro()
 
 CREATE_TEST(all)

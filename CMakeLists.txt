@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.15)
 project(libstdc)
 
 enable_testing()
@@ -13,20 +13,10 @@ add_compile_options(
 	-Wno-long-long
 	-Werror
 )
-add_link_options(-nostdlib)
-
-add_compile_options(
-	"$<$<COMPILE_LANGUAGE:C>:-std=c89>"
-	"$<$<COMPILE_LANGUAGE:CXX>:-std=c++11>"
-)
 
 if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
-	add_compile_options(-m64)
-	add_link_options(-m64)
 	set(LIBC_ARCH "x86_64")
 elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
-	add_compile_options(-m32)
-	add_link_options(-m32)
 	set(LIBC_ARCH "i686")
 endif()
 
