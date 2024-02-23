@@ -41,10 +41,10 @@ typedef uint64_t uintmax_t;
 #if !defined(__cplusplus) || defined(_HAS_CXX11) || defined(__STDC_LIMIT_MACROS)
 
 /* Signed integers : minimum value */
-#define INT8_MIN  (-127)
-#define INT16_MIN (-32767)
-#define INT32_MIN (-2147483647)
-#define INT64_MIN (-9223372036854775807LL)
+#define INT8_MIN  (-127 - 1)
+#define INT16_MIN (-32767 - 1)
+#define INT32_MIN (-2147483647 - 1)
+#define INT64_MIN (-9223372036854775807LL - 1)
 
 #define INT_FAST8_MIN  INT8_MIN
 #define INT_FAST16_MIN INT16_MIN
