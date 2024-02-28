@@ -1,4 +1,9 @@
 #!/bin/bash
-FLAGS="-x c -march=native -O3"
-gcc -m64 -dM -E $FLAGS - <<<'' | sort | uniq
+
+export CC="${CC:-gcc}"
+export CFLAGS="${CFLAGS:--march=x86-64 -O3}"
+
+echo $CFLAGS
+
+${CC} -m64 -dM -E -x c ${CFLAGS} - <<<'' | sort | uniq
 
