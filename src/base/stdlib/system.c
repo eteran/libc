@@ -1,6 +1,7 @@
 
 #define _ELIBC_SOURCE
 #include "c/_support.h"
+#include <stdlib.h>
 
 /*------------------------------------------------------------------------------
 // Name: system
