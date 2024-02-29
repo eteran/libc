@@ -5,7 +5,7 @@
 _LIBC_BEGIN
 
 int scanf(const char *_RESTRICT format, ...) _NOEXCEPT
-	__attribute__((format(__scanf__, 1, 2)));
+	__attribute__((__format__(__scanf__, 1, 2)));
 
 _LIBC_END
 
