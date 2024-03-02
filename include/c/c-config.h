@@ -108,11 +108,10 @@
 #endif
 #endif
 
-
 /* NOTE(eteran): this is different from the [[assume]] attribute
  * available in C++23, and the associated compiler specific intrinsics
  * because unlike those, this DOES evaluate the condition
-*/
+ */
 #if defined(__GNUC__)
 #define _ASSUME(cond) ((cond) ? (void)(0) : __builtin_unreachable())
 #else
@@ -154,6 +153,14 @@
 		_UNUSED(static_assertion_failed);                        \
 	} while (0)
 #endif
+#endif
+
+#ifdef __cplusplus
+#define _STATIC_CAST(T, v)      static_cast<T>(v)
+#define _REINTERPRET_CAST(T, v) reinterpret_cast<T>(v)
+#else
+#define _STATIC_CAST(T, v)      (T)(v)
+#define _REINTERPRET_CAST(T, v) (T)(v)
 #endif
 
 #endif

@@ -16,7 +16,7 @@
 struct tm;
 
 #ifndef WEOF
-#define WEOF ((wint_t)-1)
+#define WEOF _STATIC_CAST(wint_t, -1)
 #endif
 
 #ifdef __WCHAR_MAX__
