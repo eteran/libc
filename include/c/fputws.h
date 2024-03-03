@@ -7,6 +7,8 @@
 
 _LIBC_BEGIN
 
+_ACCESS((read_only, 1))
+_ACCESS((read_write, 2))
 int fputws(const wchar_t *ws, FILE *stream) _NOEXCEPT;
 
 _LIBC_END
