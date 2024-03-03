@@ -6,6 +6,8 @@
 _PURE const char *strpbrk(const char *s, const char *accept) _NOEXCEPT __asm__("strpbrk");
 _PURE char *strpbrk(char *s, const char *accept) _NOEXCEPT __asm__("strpbrk");
 #else
+_ACCESS((read_only, 1))
+_ACCESS((read_only, 2))
 _PURE char *strpbrk(const char *s, const char *accept) _NOEXCEPT;
 #endif
 

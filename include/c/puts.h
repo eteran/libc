@@ -4,6 +4,7 @@
 
 _LIBC_BEGIN
 
+_ACCESS((read_only, 1))
 int puts(const char *s) _NOEXCEPT;
 
 _LIBC_END

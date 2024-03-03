@@ -6,6 +6,8 @@
 
 _LIBC_BEGIN
 
+_ACCESS((read_only, 1))
+_ACCESS((read_only, 2))
 _PURE size_t strspn(const char *s, const char *accept) _NOEXCEPT;
 
 _LIBC_END

@@ -6,6 +6,8 @@
 
 _LIBC_BEGIN
 
+_ACCESS((read_only, 1))
+_ACCESS((read_only, 2))
 _PURE int memcmp(const void *s1, const void *s2, size_t n) _NOEXCEPT;
 
 _LIBC_END

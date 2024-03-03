@@ -6,6 +6,7 @@
 _PURE const char *strrchr(const char *s, int c) _NOEXCEPT __asm__("strrchr");
 _PURE char *strrchr(char *s, int c) _NOEXCEPT __asm__("strrchr");
 #else
+_ACCESS((read_only, 1))
 _PURE char *strrchr(const char *s, int c) _NOEXCEPT;
 #endif
 

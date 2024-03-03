@@ -6,6 +6,7 @@
 
 _LIBC_BEGIN
 
+_ACCESS((write_only, 2))
 int strerror_r(int errnum, char *buf, size_t n) _NOEXCEPT;
 char *strerror(int errnum) _NOEXCEPT;
 

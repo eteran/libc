@@ -6,7 +6,8 @@
 
 _LIBC_BEGIN
 
-char *strndup(const char *s, size_t n) _NOEXCEPT;
+_ACCESS((read_only, 1))
+char *strndup(const char *s, size_t n) _NOEXCEPT __attribute__((__malloc__));
 
 _LIBC_END
 

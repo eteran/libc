@@ -6,6 +6,8 @@
 
 _LIBC_BEGIN
 
+_ACCESS((write_only, 1))
+_ACCESS((read_only, 2, 3))
 void *memmove(void *dest, const void *src, size_t n) _NOEXCEPT;
 
 _LIBC_END

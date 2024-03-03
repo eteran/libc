@@ -97,6 +97,7 @@
 #define _ALWAYS_INLINE  __attribute__((always_inline))
 #define _LIKELY(expr)   __builtin_expect(!!(expr), 1)
 #define _UNLIKELY(expr) __builtin_expect(!!(expr), 0)
+#define _ACCESS(x)      __attribute__((__access__ x))
 #endif
 #else
 #define _CONST
@@ -105,14 +106,14 @@
 #define _ALWAYS_INLINE
 #define _LIKELY(expr)   (expr)
 #define _UNLIKELY(expr) (expr)
+#define _ACCESS(x)
 #endif
 #endif
-
 
 /* NOTE(eteran): this is different from the [[assume]] attribute
  * available in C++23, and the associated compiler specific intrinsics
  * because unlike those, this DOES evaluate the condition
-*/
+ */
 #if defined(__GNUC__)
 #define _ASSUME(cond) ((cond) ? (void)(0) : __builtin_unreachable())
 #else
