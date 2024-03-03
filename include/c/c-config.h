@@ -94,20 +94,20 @@
 #define _CONST __attribute__((__const__))
 #define _PURE  __attribute__((__pure__))
 #ifndef _ALWAYS_INLINE
-#define _ALWAYS_INLINE  __attribute__((__always_inline__))
+#define _ALWAYS_INLINE __attribute__((__always_inline__))
+#endif
 #define _LIKELY(expr)   __builtin_expect(!!(expr), 1)
 #define _UNLIKELY(expr) __builtin_expect(!!(expr), 0)
 #define _ACCESS(x)      __attribute__((__access__ x))
-#endif
 #else
 #define _CONST
 #define _PURE
 #ifndef _ALWAYS_INLINE
 #define _ALWAYS_INLINE
+#endif
 #define _LIKELY(expr)   (expr)
 #define _UNLIKELY(expr) (expr)
 #define _ACCESS(x)
-#endif
 #endif
 
 /* NOTE(eteran): this is different from the [[assume]] attribute
