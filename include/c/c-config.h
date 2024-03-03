@@ -98,7 +98,6 @@
 #endif
 #define _LIKELY(expr)   __builtin_expect(!!(expr), 1)
 #define _UNLIKELY(expr) __builtin_expect(!!(expr), 0)
-#define _ACCESS(x)      __attribute__((__access__ x))
 #else
 #define _CONST
 #define _PURE
@@ -107,6 +106,11 @@
 #endif
 #define _LIKELY(expr)   (expr)
 #define _UNLIKELY(expr) (expr)
+#endif
+
+#if defined(__GNUC__) && !defined(__clang__)
+#define _ACCESS(x) __attribute__((__access__ x))
+#else
 #define _ACCESS(x)
 #endif
 
