@@ -85,7 +85,7 @@
 #ifdef _HAS_CXX14
 #define _DEPRECATED [[deprecated]]
 #elif defined(__GNUC__)
-#define _DEPRECATED __attribute__((deprecated))
+#define _DEPRECATED __attribute__((__deprecated__))
 #else
 #define _DEPRECATED
 #endif
@@ -94,7 +94,7 @@
 #define _CONST __attribute__((__const__))
 #define _PURE  __attribute__((__pure__))
 #ifndef _ALWAYS_INLINE
-#define _ALWAYS_INLINE  __attribute__((always_inline))
+#define _ALWAYS_INLINE  __attribute__((__always_inline__))
 #define _LIKELY(expr)   __builtin_expect(!!(expr), 1)
 #define _UNLIKELY(expr) __builtin_expect(!!(expr), 0)
 #define _ACCESS(x)      __attribute__((__access__ x))
@@ -155,6 +155,14 @@
 		_UNUSED(static_assertion_failed);                        \
 	} while (0)
 #endif
+#endif
+
+#ifdef __cplusplus
+#define _STATIC_CAST(T, v)      static_cast<T>(v)
+#define _REINTERPRET_CAST(T, v) reinterpret_cast<T>(v)
+#else
+#define _STATIC_CAST(T, v)      (T)(v)
+#define _REINTERPRET_CAST(T, v) (T)(v)
 #endif
 
 #endif

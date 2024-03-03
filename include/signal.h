@@ -8,9 +8,9 @@
 #include "arch_sig_atomic_t.h" /* sig_atomic_t */
 #include "c/_sighandler_t.h"   /* __sighandler_t */
 
-#define SIG_DFL ((__sighandler_t)0)
-#define SIG_ERR ((__sighandler_t)1)
-#define SIG_IGN ((__sighandler_t)-1)
+#define SIG_DFL _REINTERPRET_CAST(__sighandler_t, 0)
+#define SIG_ERR _REINTERPRET_CAST(__sighandler_t, 1)
+#define SIG_IGN _REINTERPRET_CAST(__sighandler_t, -1)
 
 /* made to match Linux */
 #define SIGABRT  6

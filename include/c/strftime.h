@@ -8,7 +8,7 @@
 _LIBC_BEGIN
 
 size_t strftime(char *s, size_t max, const char *format, const struct tm *tm) _NOEXCEPT
-	__attribute__((format(__strftime__, 3, 0)));
+	__attribute__((__format__(__strftime__, 3, 0)));
 
 _LIBC_END
 
