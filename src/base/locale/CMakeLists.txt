@@ -1,11 +1,9 @@
 cmake_minimum_required(VERSION 3.15)
 
-set(SOURCE_FILES
+add_library (c-locale STATIC
 	localeconv.c
 	setlocale.c
 )
-
-add_library (c-locale STATIC ${SOURCE_FILES})
 
 target_link_libraries(c-locale PUBLIC
 	libc-headers
