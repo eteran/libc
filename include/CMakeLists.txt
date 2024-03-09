@@ -2,6 +2,12 @@ cmake_minimum_required(VERSION 3.15)
 
 add_library(libc-headers INTERFACE)
 
+if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
+	set(LIBC_ARCH "x86_64")
+elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i[3456]86")
+	set(LIBC_ARCH "i686")
+endif()
+
 target_sources(libc-headers INTERFACE
 	${CMAKE_CURRENT_SOURCE_DIR}/assert.h
 	${CMAKE_CURRENT_SOURCE_DIR}/complex.h
