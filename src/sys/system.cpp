@@ -114,9 +114,11 @@ long __elibc_sys_signal(int sig, __sighandler_t handler) {
 	memset(&old_action, 0, sizeof(sigaction));
 	memset(&new_action, 0, sizeof(sigaction));
 	new_action.sa_handler = handler;
+	new_action.sa_mask    = 0;
+	new_action.sa_flags   = SA_RESTART;
 
 	/* TODO(eteran): I don't know how this is supposed to work yet */
-	ret = elibc::syscall(__NR_rt_sigaction, sig, &new_action, &old_action, 0);
+	ret = elibc::syscall(__NR_rt_sigaction, sig, &new_action, &old_action, sizeof(sigset_t));
 
 	if (ret < 0) {
 		errno = (__elibc_errno_t)-ret;
