@@ -24,7 +24,7 @@ void *bsearch(const void *key, const void *base, size_t nmemb, size_t size, __co
 	while (high > low) {
 
 		/* split search in to halves */
-		const size_t i = (high + low) / 2;
+		const size_t i = low + ((high - low) / 2);
 
 		/* get item at center of this half */
 		void *const item = ELEMENT_PTR(base, i, size);
