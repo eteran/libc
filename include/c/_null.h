@@ -3,7 +3,9 @@
 #define _C_NULL_H_20051228_
 
 #ifdef __cplusplus
-#ifdef __GNUC__
+#ifdef _HAS_CXX11
+#define NULL nullptr
+#elif defined(__GNUC__)
 #define NULL __null
 #else
 #define NULL 0
