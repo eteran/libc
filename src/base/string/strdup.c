@@ -9,11 +9,11 @@
 //----------------------------------------------------------------------------*/
 char *strdup(const char *s) {
 	const size_t len = strlen(s) + 1;
-	char *const ret  = malloc(len);
+	char *const ptr  = malloc(len);
 
-	if (ret) {
-		strcpy(ret, s);
+	if (ptr) {
+		memcpy(ptr, s, len);
 	}
 
-	return ret;
+	return ptr;
 }
