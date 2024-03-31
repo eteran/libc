@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <time.h>
 
-#define ONE_DAY 86400
+#define ONE_DAY 86400l
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_is_leapyear

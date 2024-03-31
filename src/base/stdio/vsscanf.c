@@ -17,21 +17,21 @@
 		str = endptr;                                                        \
 	} while (0)
 
-#define BITSET(name, N) unsigned char name[N / CHAR_BIT]
+#define BITSET(name, N) unsigned char name[(N) / CHAR_BIT]
 
-#define SET_BIT(name, I)                                      \
-	do {                                                      \
-		name[I / CHAR_BIT] |= (uint8_t)(1 << (I % CHAR_BIT)); \
+#define SET_BIT(name, I)                                            \
+	do {                                                            \
+		(name)[(I) / CHAR_BIT] |= (uint8_t)(1 << ((I) % CHAR_BIT)); \
 	} while (0)
 
-#define TEST_BIT(name, I) (int)(name[I / CHAR_BIT] & (1 << (I % CHAR_BIT)))
+#define TEST_BIT(name, I) (int)((name)[(I) / CHAR_BIT] & (1 << ((I) % CHAR_BIT)))
 
-#define FLIP_BITS(name, N)                     \
-	do {                                       \
-		int i;                                 \
-		for (i = 0; i < (N / CHAR_BIT); ++i) { \
-			name[i] = (uint8_t)(~name[i]);     \
-		}                                      \
+#define FLIP_BITS(name, N)                       \
+	do {                                         \
+		int i;                                   \
+		for (i = 0; i < ((N) / CHAR_BIT); ++i) { \
+			(name)[i] = (uint8_t)(~(name)[i]);   \
+		}                                        \
 	} while (0)
 
 /*------------------------------------------------------------------------------

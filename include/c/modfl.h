@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-long double modfl(long double x, long double *iptr) _NOEXCEPT;
+long double modfl(long double arg, long double *iptr) _NOEXCEPT;
 
 _LIBC_END
 

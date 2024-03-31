@@ -22,7 +22,7 @@ float acosf(float x) {
 	}
 
 	if (x == 1.0f) {
-		return 0.0;
+		return 0.0f;
 	}
 
 	if (isinf(x)) {

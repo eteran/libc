@@ -370,7 +370,9 @@ void *internal_allocate(size_t size, F func) {
 
 #ifndef NDEBUG
 	// for debugging purposes, freshly allocated blocks can be filled
-	memset(ret, 0x7e, orig_size);
+	if (ret) {
+		memset(ret, 0x7e, orig_size);
+	}
 #endif
 	return ret;
 }

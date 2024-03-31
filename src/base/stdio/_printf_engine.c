@@ -421,6 +421,8 @@ static char *_format_float_exponent(char *buf, size_t size, double value, int pr
 static char *_format_float(char *buf, size_t size, double value, int precision, char format,
 						   int width, const flags_t *flags) {
 
+	buf[0] = '\0';
+
 	/* negative means no precision given, default to 6 */
 	if (precision < 0) {
 		precision = 6;
@@ -656,7 +658,6 @@ static const char *_get_modifier(const char *format, int *modifier) {
 static void _output_string(char ch, const char *s_ptr, int precision, int *width,
 						   const flags_t *flags, struct __elibc_write *const ctx) {
 	int len;
-	assert(s_ptr);
 
 	/* on release builds, we are somewhat forgiving ... */
 	if (!s_ptr) {

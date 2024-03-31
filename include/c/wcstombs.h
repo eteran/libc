@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-size_t wcstombs(char *s, const wchar_t *wcs, size_t n) _NOEXCEPT;
+size_t wcstombs(char *dest, const wchar_t *src, size_t n) _NOEXCEPT;
 
 _LIBC_END
 

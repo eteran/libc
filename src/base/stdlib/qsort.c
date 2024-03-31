@@ -7,13 +7,13 @@
 
 #define ELEMENT_PTR(base, index, size) (void *)(((char *)(base)) + ((index) * (size)))
 
-#define ELEMENT_SWP(base, i, j, size)                                    \
-	do {                                                                 \
-		if (i != j) {                                                    \
-			unsigned char *const base_ptr1 = ELEMENT_PTR(base, i, size); \
-			unsigned char *const base_ptr2 = ELEMENT_PTR(base, j, size); \
-			__elibc_memswp(base_ptr1, base_ptr2, size);                  \
-		}                                                                \
+#define ELEMENT_SWP(base, i, j, size)                                          \
+	do {                                                                       \
+		if ((i) != (j)) {                                                      \
+			unsigned char *const base_ptr1 = ELEMENT_PTR((base), (i), (size)); \
+			unsigned char *const base_ptr2 = ELEMENT_PTR((base), (j), (size)); \
+			__elibc_memswp(base_ptr1, base_ptr2, (size));                      \
+		}                                                                      \
 	} while (0)
 
 /* quick and dirty macro that tests if a pointer is properly aligned to it's

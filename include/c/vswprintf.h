@@ -8,7 +8,7 @@
 
 _LIBC_BEGIN
 
-int vswprintf(wchar_t *wcs, size_t n, const wchar_t *format, va_list ap) _NOEXCEPT;
+int vswprintf(wchar_t *wcs, size_t n, const wchar_t *format, va_list args) _NOEXCEPT;
 
 _LIBC_END
 

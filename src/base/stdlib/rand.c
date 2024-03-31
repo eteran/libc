@@ -40,7 +40,7 @@ int rand_r(unsigned int *seedp) {
 
 		*seedp = next;
 
-		return result & RAND_MAX;
+		return (int)(result & RAND_MAX);
 	}
 }
 

@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-int fegetexceptflag(fexcept_t *flagp, int excepts) _NOEXCEPT;
+int fegetexceptflag(fexcept_t *fp, int mask) _NOEXCEPT;
 
 _LIBC_END
 

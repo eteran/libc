@@ -6,7 +6,7 @@
 #ifdef _HAS_FPU
 
 #define TAYLOR_ITERATIONS 20
-#define IS_INTEGER(value) (value == (double)(long int)value)
+#define IS_INTEGER(value) ((value) == (double)(long int)(value))
 
 /*------------------------------------------------------------------------------
 // Name:

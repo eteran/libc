@@ -11,7 +11,7 @@ char *strtok(char *_RESTRICT s, const char *_RESTRICT delim) _NOEXCEPT;
 _ACCESS((read_write, 1))
 _ACCESS((read_only, 2))
 _ACCESS((read_write, 3))
-char *strtok_r(char *_RESTRICT s, const char *_RESTRICT delim, char **ptrptr) _NOEXCEPT;
+char *strtok_r(char *_RESTRICT s, const char *_RESTRICT delim, char **saveptr) _NOEXCEPT;
 
 _LIBC_END
 

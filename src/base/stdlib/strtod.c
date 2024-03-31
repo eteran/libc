@@ -54,7 +54,8 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 	if (strncasecmp(nptr, "nan", 3) == 0) {
 		nptr += 3;
 		if (*nptr == '(') {
-			nptr = strchr(nptr, ')');
+			const char *nptr_end = strchr(nptr, ')');
+			(void)nptr_end;
 		}
 
 		/* TODO(eteran): what do we pass here, if anything? */

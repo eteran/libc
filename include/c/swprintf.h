@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-int swprintf(wchar_t *ws, size_t n, const wchar_t *format, ...) _NOEXCEPT;
+int swprintf(wchar_t *str, size_t n, const wchar_t *format, ...) _NOEXCEPT;
 
 _LIBC_END
 

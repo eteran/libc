@@ -8,7 +8,7 @@
 
 _LIBC_BEGIN
 
-int vfwprintf(FILE *stream, const wchar_t *format, va_list ap) _NOEXCEPT;
+int vfwprintf(FILE *stream, const wchar_t *format, va_list args) _NOEXCEPT;
 
 _LIBC_END
 

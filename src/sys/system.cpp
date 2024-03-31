@@ -86,7 +86,7 @@ int __elibc_sys_unlink(const char *filename) {
 		ret   = -1;
 	}
 
-	return 0;
+	return (int)ret;
 }
 
 //------------------------------------------------------------------------------
@@ -99,7 +99,7 @@ int __elibc_sys_kill(int pid, int sig) {
 		ret   = -1;
 	}
 
-	return 0;
+	return (int)ret;
 }
 
 //------------------------------------------------------------------------------
@@ -150,7 +150,7 @@ ssize_t __elibc_sys_write(int fd, const void *buf, size_t count) {
 		ret   = -1;
 	}
 
-	return ret;
+	return (int)ret;
 }
 
 //------------------------------------------------------------------------------
@@ -163,7 +163,7 @@ ssize_t __elibc_sys_read(int fd, void *buf, size_t count) {
 		ret   = -1;
 	}
 
-	return ret;
+	return (int)ret;
 }
 
 //------------------------------------------------------------------------------
@@ -177,7 +177,7 @@ int __elibc_sys_close(int fd) {
 		ret   = -1;
 	}
 
-	return 0;
+	return (int)ret;
 }
 
 //------------------------------------------------------------------------------
@@ -297,6 +297,7 @@ clock_t __elibc_clock(void) {
 	 */
 
 	struct timeval tv;
+	memset(&tv, 0, sizeof(struct timeval));
 	if (__elibc_sys_gettimeofday(&tv, 0) == -1) {
 		return (clock_t)-1;
 	}
@@ -312,14 +313,15 @@ clock_t __elibc_clock(void) {
 //------------------------------------------------------------------------------
 time_t __elibc_time(time_t *tod) {
 	struct timeval tv;
+	memset(&tv, 0, sizeof(struct timeval));
 
-	if (__elibc_sys_gettimeofday(&tv, 0) == 0) {
-		if (tod) {
-			*tod = tv.tv_sec;
-		}
-
-		return tv.tv_sec;
+	if (__elibc_sys_gettimeofday(&tv, 0) == -1) {
+		return (time_t)-1;
 	}
 
-	return (time_t)-1;
+	if (tod) {
+		*tod = tv.tv_sec;
+	}
+
+	return tv.tv_sec;
 }

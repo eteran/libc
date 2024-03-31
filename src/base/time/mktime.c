@@ -4,9 +4,9 @@
 #include <stdint.h>
 #include <time.h>
 
-#define ONE_DAY    86400
-#define ONE_HOUR   3600
-#define ONE_MINUTE 60
+#define ONE_DAY    86400l
+#define ONE_HOUR   3600l
+#define ONE_MINUTE 60l
 
 /*------------------------------------------------------------------------------
 // Name: __elibc_is_leapyear

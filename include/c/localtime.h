@@ -8,7 +8,7 @@
 _LIBC_BEGIN
 
 struct tm *localtime(const time_t *timer) _NOEXCEPT;
-struct tm *localtime_r(const time_t *timep, struct tm *result) _NOEXCEPT;
+struct tm *localtime_r(const time_t *timer, struct tm *result) _NOEXCEPT;
 
 _LIBC_END
 

@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-double pow(double x, double y) _NOEXCEPT;
+double pow(double base, double exponent) _NOEXCEPT;
 
 _LIBC_END
 

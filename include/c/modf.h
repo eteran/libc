@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-double modf(double x, double *iptr) _NOEXCEPT;
+double modf(double arg, double *iptr) _NOEXCEPT;
 
 _LIBC_END
 
