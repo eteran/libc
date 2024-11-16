@@ -23,6 +23,7 @@ macro(CREATE_TEST NAME)
 	target_link_options(${NAME}-test
 	PUBLIC
 		-nostdlib
+		-Wl,-z,noexecstack
 	)
 
 	add_test(
