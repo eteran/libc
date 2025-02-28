@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-_DEPRECATED char *gets(char *s) _NOEXCEPT;
+_DEPRECATED char *gets(char *s) _NOEXCEPT __attribute__((warning("Never use gets()")));
 
 _LIBC_END
 
