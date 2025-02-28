@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-void *realloc(void *ptr, size_t size) _NOEXCEPT __attribute__((__malloc__));
+void *realloc(void *ptr, size_t size) _NOEXCEPT __attribute__((__malloc__, __alloc_size__(2)));
 
 _LIBC_END
 
