@@ -42,8 +42,18 @@ struct __elibc_strftime_context {
 	size_t written;
 };
 
+/**
+ * @brief Format date and time
+ *
+ * @param format format string
+ * @param ctx pointer to a structure containing the format context
+ * @param tm pointer to a structure containing the date and time
+ * @return size_t number of wide characters written, not including the
+ * terminating null wide-character. If the formatted date and time does
+ * not fit in the buffer, the function returns 0.
+ */
 static size_t __elibc_strftime(const char *format, struct __elibc_strftime_context *ctx,
-							   const struct tm *tm) {
+											 const struct tm *tm) {
 
 	static const char wday_name[][4] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
 
@@ -234,9 +244,17 @@ static size_t __elibc_strftime(const char *format, struct __elibc_strftime_conte
 	return ctx->written < ctx->capacity ? ctx->written - 1 : 0;
 }
 
-/*------------------------------------------------------------------------------
-// Name: strftime
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Format date and time
+ *
+ * @param s pointer to the buffer where the formatted date and time will be stored
+ * @param max maximum number of characters to be written
+ * @param format format string
+ * @param tm pointer to a structure containing the date and time
+ * @return size_t number of wide characters written, not including the
+ * terminating null wide-character. If the formatted date and time does
+ * not fit in the buffer, the function returns 0.
+ */
 size_t strftime(char *s, size_t max, const char *format, const struct tm *tm) {
 
 	struct __elibc_strftime_context ctx;

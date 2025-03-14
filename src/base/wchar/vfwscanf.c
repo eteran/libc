@@ -3,7 +3,7 @@
 #include <wchar.h>
 
 /**
- * @brief Read formatted input from a stream
+ * @brief Read formatted input from a wide-character stream
  *
  * @param stream The input stream to read from
  * @param format The format string that specifies how the input should be interpreted

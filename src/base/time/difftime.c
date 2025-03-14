@@ -4,9 +4,13 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: difftime
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Calculate the difference between two time values
+ *
+ * @param time1 The first time value
+ * @param time0 The second time value
+ * @return double The difference between the two time values in seconds
+ */
 double difftime(time_t time1, time_t time0) {
 	return (double)(time1 - time0);
 }

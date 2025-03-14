@@ -3,9 +3,11 @@
 #include <stdio.h>
 #include <wchar.h>
 
-/*------------------------------------------------------------------------------
-// Name: getwchar
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Read a wide-character from stdin
+ *
+ * @return wint_t the read character, or WEOF if an error occurred
+ */
 wint_t getwchar(void) {
 	return fgetwc(stdin);
 }

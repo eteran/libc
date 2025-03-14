@@ -2,9 +2,18 @@
 #define _ELIBC_SOURCE
 #include <wchar.h>
 
-/*------------------------------------------------------------------------------
-// Name: mbsrtowcs
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Convert a multibyte string to a wide-character string
+ *
+ * @param dest The destination wide-character string
+ * @param src The source multibyte string
+ * @param len The maximum number of wide characters to be written
+ * @param ps The conversion state
+ * @return size_t The number of wide characters written, not including the
+ * terminating null wide-character, or (size_t)-1 if an error occurred.
+ * @note If dest is NULL, len is ignored, and the function returns the number of
+ * wide-characters that would be written if dest was not NULL.
+ */
 size_t mbsrtowcs(wchar_t *dest, const char **src, size_t len, mbstate_t *ps) {
 	_UNUSED(dest);
 	_UNUSED(src);

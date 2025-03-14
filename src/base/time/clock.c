@@ -4,9 +4,11 @@
 #include <stdio.h>
 #include <time.h>
 
-/*------------------------------------------------------------------------------
-// Name: clock
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Get processor time used by the program
+ *
+ * @return clock_t processor time used by the program
+ */
 clock_t clock(void) {
 	return __elibc_clock();
 }

@@ -4,9 +4,14 @@
 #include <stdio.h>
 #include <wchar.h>
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_fputws
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Write a wide-character string to a stream (thread-unsafe)
+ *
+ * @param ws the wide-character string to be written
+ * @param stream the output stream to write to
+ * @return int number of wide characters written, not including the
+ * terminating null wide-character, or EOF if an error occurred.
+ */
 static int __elibc_fputws(const wchar_t *ws, FILE *stream) {
 
 	assert(ws);
@@ -21,9 +26,14 @@ static int __elibc_fputws(const wchar_t *ws, FILE *stream) {
 	return 0;
 }
 
-/*------------------------------------------------------------------------------
-// Name: fputws
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Write a wide-character string to a stream
+ *
+ * @param ws the wide-character string to be written
+ * @param stream the output stream to write to
+ * @return int number of wide characters written, not including the
+ * terminating null wide-character, or EOF if an error occurred.
+ */
 int fputws(const wchar_t *ws, FILE *stream) {
 	int r;
 	__ELIBC_WITH_LOCK(__elibc_fputws(ws, stream), &r);
