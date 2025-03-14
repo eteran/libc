@@ -64,69 +64,116 @@ static const uint16_t __elibc_ctype_tab[] = {
 		return 0;                                        \
 	}
 
-/*------------------------------------------------------------------------------
-// Name: isalnum
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Checks if the given character is an alphanumeric character.
+ *
+ * @param c The character to check.
+ * @return int Returns a non-zero value if the character is alphanumeric, otherwise returns 0.
+ */
 IS_CTYPE(isalnum, CTYPE_ALNUM)
 
-/*------------------------------------------------------------------------------
-// Name: isalpha
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Checks if the given character is an alphabetic character.
+ *
+ * @param c The character to check.
+ * @return int Returns a non-zero value if the character is alphabetic, otherwise returns 0.
+ */
 IS_CTYPE(isalpha, CTYPE_ALPHA)
 
-/*------------------------------------------------------------------------------
-// Name: iscntrl
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Checks if the given character is a control character.
+ *
+ * @param c The character to check.
+ * @return int Returns a non-zero value if the character is a control character, otherwise returns 0.
+ */
 IS_CTYPE(iscntrl, CTYPE_CNTRL)
 
-/*------------------------------------------------------------------------------
-// Name: isdigit
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Checks if the given character is a digit.
+ *
+ * @param c The character to check.
+ * @return int Returns a non-zero value if the character is a digit, otherwise returns 0.
+ */
 IS_CTYPE(isdigit, CTYPE_DIGIT)
 
-/*------------------------------------------------------------------------------
-// Name: isgraph
-//----------------------------------------------------------------------------*/
+
+/**
+ * @brief Checks if the given character is a graphical character.
+ *
+ * @param c The character to check.
+ * @return int Returns a non-zero value if the character is a graphical character, otherwise returns 0.
+ */
 IS_CTYPE(isgraph, CTYPE_GRAPH)
 
-/*------------------------------------------------------------------------------
-// Name: islower
-//----------------------------------------------------------------------------*/
+
+/**
+ * @brief Checks if the given character is a lowercase letter.
+ *
+ * @param c The character to check.
+ * @return int Returns a non-zero value if the character is a lowercase letter, otherwise returns 0.
+ */
 IS_CTYPE(islower, CTYPE_LOWER)
 
-/*------------------------------------------------------------------------------
-// Name: isprint
-//----------------------------------------------------------------------------*/
+
+/**
+ * @brief Checks if the given character is a printable character.
+ *
+ * @param c The character to check.
+ * @return int Returns a non-zero value if the character is printable, otherwise returns 0.
+ */
 IS_CTYPE(isprint, CTYPE_PRINT)
 
-/*------------------------------------------------------------------------------
-// Name: ispunct
-//----------------------------------------------------------------------------*/
+
+/**
+ * @brief Checks if the given character is a punctuation character.
+ *
+ * @param c The character to check.
+ * @return int Returns a non-zero value if the character is punctuation, otherwise returns 0.
+ */
 IS_CTYPE(ispunct, CTYPE_PUNCT)
 
-/*------------------------------------------------------------------------------
-// Name: isspace
-//----------------------------------------------------------------------------*/
+
+/**
+ * @brief Checks if the given character is a whitespace character
+ * (space, form-feed, newline, carriage return, horizontal tab, or vertical tab).
+ *
+ * @param c The character to check.
+ * @return int Returns a non-zero value if the character is whitespace, otherwise returns 0.
+ */
 IS_CTYPE(isspace, CTYPE_SPACE)
 
-/*------------------------------------------------------------------------------
-// Name: isupper
-//----------------------------------------------------------------------------*/
+
+/**
+ * @brief Checks if the given character is an uppercase letter.
+ *
+ * @param c The character to check.
+ * @return int Returns a non-zero value if the character is an uppercase letter, otherwise returns 0.
+ */
 IS_CTYPE(isupper, CTYPE_UPPER)
 
-/*------------------------------------------------------------------------------
-// Name: isxdigit
-//----------------------------------------------------------------------------*/
+
+/**
+ * @brief Checks if the given character is a hexadecimal digit.
+ *
+ * @param c The character to check.
+ * @return int Returns a non-zero value if the character is a hexadecimal digit, otherwise returns 0.
+ */
 IS_CTYPE(isxdigit, CTYPE_XDIGIT)
 
-/*------------------------------------------------------------------------------
-// Name: isblank
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Checks if the given character is a blank character (space or tab).
+ *
+ * @param c The character to check.
+ * @return int Returns a non-zero value if the character is a blank character, otherwise returns 0.
+ */
 IS_CTYPE(isblank, CTYPE_BLANK)
 
-/*------------------------------------------------------------------------------
-// Name: tolower
-//----------------------------------------------------------------------------*/
+/**
+ * @brief converts a character to lowercase.
+ *
+ * @param c The character to convert.
+ * @return int Returns the lowercase equivalent of the character if it is an uppercase letter, otherwise returns the character unchanged.
+ */
 int tolower(int c) {
 	if (_LIKELY(isupper(c))) {
 		/* NOTE(eteran): ASCII specific */
@@ -135,9 +182,12 @@ int tolower(int c) {
 	return c;
 }
 
-/*------------------------------------------------------------------------------
-// Name: toupper
-//----------------------------------------------------------------------------*/
+/**
+ * @brief converts a character to uppercase.
+ *
+ * @param c The character to convert.
+ * @return int Returns the uppercase equivalent of the character if it is a lowercase letter, otherwise returns the character unchanged.
+ */
 int toupper(int c) {
 	if (_LIKELY(islower(c))) {
 		/* NOTE(eteran): ASCII specific */

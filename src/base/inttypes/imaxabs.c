@@ -6,9 +6,12 @@
 #include <stddef.h>
 #include <stdint.h>
 
-/*------------------------------------------------------------------------------
-// Name: imaxabs
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Calculates the absolute value of an integer of type intmax_t.
+ *
+ * @param j The integer value to calculate the absolute value of.
+ * @return intmax_t Returns the absolute value of the input integer.
+ */
 intmax_t imaxabs(intmax_t j) {
 	assert(j != INTMAX_MIN);
 	return (j >= 0) ? j : -j;
