@@ -3,10 +3,16 @@
 #include <stdlib.h>
 #include <wchar.h>
 
-/*------------------------------------------------------------------------------
-// Name: wcsrtombs
-//----------------------------------------------------------------------------*/
-size_t wcsrtombs(char *dest, const wchar_t **src, size_t n, mbstate_t *ps) {
+/**
+ * @brief Converts a wide-character string to a multibyte character string
+ *
+ * @param dest The destination multibyte character string
+ * @param src The source wide-character string
+ * @param n The maximum number of characters to write to dest
+ * @param ps The conversion state
+ * @return size_t The number of bytes written to dest, or (size_t)-1 if an error occurred
+ */
+size_t wcsrtombs(char *_RESTRICT dest, const wchar_t **_RESTRICT src, size_t n, mbstate_t *_RESTRICT ps) {
 
 	const wchar_t *first = *src;
 	const wchar_t *last  = *src + n;

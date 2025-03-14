@@ -307,7 +307,7 @@ static void test_strerror(void) {
 		{EMLINK, "Too many links"},
 		{EPIPE, "Broken pipe"},
 		{EDOM, "Numerical argument out of domain"},
-		{EILSEQ, "Invalid or incomplete multibyte or wide character"},
+		{EILSEQ, "Invalid or incomplete multibyte or wide-character"},
 		{-1, NULL}
 		/* clang-format on */
 	};

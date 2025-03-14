@@ -32,7 +32,7 @@ size_t mbsrtowcs(wchar_t *dest, const char **src, size_t len, mbstate_t *ps) {
   terminating  null  wide  character
   ('\0'),  which  has  the side effect of bringing back *ps to the initial state.
   In this case, *src is set to NULL, and the number of wide characters written to
-  dest, excluding the  terminating  null  wide character, is returned.
+  dest, excluding the  terminating  null  wide-character, is returned.
 
   If  dest  is  NULL,  len is ignored, and the conversion proceeds as above,
   except that the converted wide characters are not written out to memory, and

@@ -6,7 +6,7 @@ _LIBC_BEGIN
 
 _ACCESS((write_only, 1))
 _ACCESS((read_only, 2))
-char *strcpy(char *_RESTRICT dest, const char *_RESTRICT src) _NOEXCEPT;
+char *strcpy(char * dest, const char * src) _NOEXCEPT;
 
 _LIBC_END
 

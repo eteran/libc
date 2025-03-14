@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-int setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode, size_t size) _NOEXCEPT;
+int setvbuf(FILE * stream, char * buf, int mode, size_t size) _NOEXCEPT;
 
 _LIBC_END
 

@@ -134,7 +134,7 @@ IS_CTYPE(ispunct, CTYPE_PUNCT)
 
 
 /**
- * @brief Checks if the given character is a whitespace character
+ * @brief Checks if the given character is a whitespace character,
  * (space, form-feed, newline, carriage return, horizontal tab, or vertical tab).
  *
  * @param c The character to check.
@@ -169,7 +169,7 @@ IS_CTYPE(isxdigit, CTYPE_XDIGIT)
 IS_CTYPE(isblank, CTYPE_BLANK)
 
 /**
- * @brief converts a character to lowercase.
+ * @brief Converts a character to lowercase.
  *
  * @param c The character to convert.
  * @return int Returns the lowercase equivalent of the character if it is an uppercase letter, otherwise returns the character unchanged.
@@ -183,7 +183,7 @@ int tolower(int c) {
 }
 
 /**
- * @brief converts a character to uppercase.
+ * @brief Converts a character to uppercase.
  *
  * @param c The character to convert.
  * @return int Returns the uppercase equivalent of the character if it is a lowercase letter, otherwise returns the character unchanged.

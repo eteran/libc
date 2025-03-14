@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-unsigned long int strtoul(const char *_RESTRICT nptr, char **_RESTRICT endptr, int base) _NOEXCEPT;
+unsigned long int strtoul(const char * nptr, char ** endptr, int base) _NOEXCEPT;
 
 _LIBC_END
 

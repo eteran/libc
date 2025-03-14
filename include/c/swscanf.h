@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-int swscanf(const wchar_t *_RESTRICT ws, const wchar_t *_RESTRICT format, ...) _NOEXCEPT;
+int swscanf(const wchar_t * ws, const wchar_t * format, ...) _NOEXCEPT;
 
 _LIBC_END
 

@@ -120,7 +120,7 @@ int strerror_r(int errnum, char *buf, size_t n) {
 		strlcpy(buf, "Numerical argument out of domain", n);
 		break;
 	case EILSEQ:
-		strlcpy(buf, "Invalid or incomplete multibyte or wide character", n);
+		strlcpy(buf, "Invalid or incomplete multibyte or wide-character", n);
 		break;
 	case EOWNERDEAD:
 		strlcpy(buf, "Owner died", n);

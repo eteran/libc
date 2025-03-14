@@ -5,16 +5,23 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_acosf
-//----------------------------------------------------------------------------*/
-static float __elibc_acosf(float x) {
+/**
+ * @brief Computes the arc cosine of a given value.
+ *
+ * @param x The value for which to compute the arc cosine.
+ * @return float The arc cosine of the input value.
+ * @note This function uses the inverse sine function to compute the arc cosine.
+ */
+_ALWAYS_INLINE static float __elibc_acosf(float x) {
 	return (M_PIf / 2.0f) - asinf(x);
 }
 
-/*------------------------------------------------------------------------------
-// Name: acosf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Computes the arc cosine of a given value.
+ *
+ * @param x The value for which to compute the arc cosine.
+ * @return float The arc cosine of the input value.
+ */
 float acosf(float x) {
 #ifndef __FAST_MATH__
 	if (isnan(x)) {

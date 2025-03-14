@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-int wscanf(const wchar_t *_RESTRICT format, ...) _NOEXCEPT;
+int wscanf(const wchar_t * format, ...) _NOEXCEPT;
 
 _LIBC_END
 

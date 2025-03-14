@@ -39,9 +39,11 @@ static struct locale_meta_t {
 	{"", _ELIBC_ASCII},
 };
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_categories_equal
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Checks if all locale categories are equal.
+ *
+ * @return int Returns 1 if all categories are equal, otherwise returns 0.
+ */
 static int __elibc_categories_equal(void) {
 
 	const char *const name = __elibc_locale_meta[_ELIBC_LC_ALL].name;
@@ -55,16 +57,26 @@ static int __elibc_categories_equal(void) {
 	return 1;
 }
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_get_locale_type
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Gets the type of the specified locale category.
+ *
+ * @param category The locale category to get the type of.
+ * @return int Returns the type of the specified locale category.
+ */
 int __elibc_get_locale_type(int category) {
 	return __elibc_locale_meta[category].type;
 }
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_setlocale
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Sets the locale for the specified category.
+ *
+ * @param current_lconv A pointer to the current locale's numeric and monetary formatting information.
+ * @param category The locale category to set.
+ * @param locname The name of the locale to set.
+ * @param locale_name The buffer to store the locale name.
+ * @param locale_name_size The size of the buffer to store the locale name.
+ * @return char* Returns a pointer to the name of the current locale for the specified category, or NULL if the locale is not supported.
+ */
 static char *__elibc_setlocale(struct lconv *current_lconv, int category, const char *locname, char *locale_name, size_t locale_name_size) {
 
 	if (locname) {
@@ -131,9 +143,13 @@ static char *__elibc_setlocale(struct lconv *current_lconv, int category, const 
 	return 0;
 }
 
-/*------------------------------------------------------------------------------
-// Name: setlocale
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Sets the locale for the specified category.
+ *
+ * @param category The locale category to set.
+ * @param locname The name of the locale to set.
+ * @return char* Returns a pointer to the name of the current locale for the specified category, or NULL if the locale is not supported.
+ */
 char *setlocale(int category, const char *locname) {
 
 	/* ugly, but prevents us from returning a writeable pointer to an entry in

@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-int fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) _NOEXCEPT;
+int fputs(const char *s, FILE *stream) _NOEXCEPT;
 
 _LIBC_END
 

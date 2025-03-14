@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-size_t wcsrtombs(char *dest, const wchar_t **src, size_t len, mbstate_t *ps) _NOEXCEPT;
+size_t wcsrtombs(char * dest, const wchar_t ** src, size_t len, mbstate_t * ps) _NOEXCEPT;
 
 _LIBC_END
 

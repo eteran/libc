@@ -36,6 +36,7 @@ add_library(c-wchar STATIC
 	wcsncat.c
 	wcsncmp.c
 	wcsncpy.c
+	wcsnstr.c
 	wcspbrk.c
 	wcsrchr.c
 	wcsrtombs.c

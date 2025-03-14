@@ -20,10 +20,11 @@ char **__elibc_environment = 0;
 extern int main(int, char *[], char *[]);
 _Noreturn void __elibc_init(int argc, char *argv[], char *envp[]);
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_scan_auxv
-// Desc:
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Scans the auxiliary vector for specific information.
+ *
+ * @param envp The environment pointer, which is used to access the auxiliary vector.
+ */
 static void __elibc_scan_auxv(char *envp[]) {
 	/* skip the envp and get to the auxv */
 	while (*envp++) {
@@ -41,12 +42,14 @@ static void __elibc_scan_auxv(char *envp[]) {
 	}
 }
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_init
-// Desc: this is the first C code which runs, it is _pre_ main and sets up a
-//       sane environment, it will then call main and pass its return value
-//       to exit.
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Initializes the C runtime library.
+ *
+ * @param argc The number of command-line arguments.
+ * @param argv An array of command-line arguments.
+ * @param envp An array of environment variables.
+ * @note This function sets up the environment, initializes the heap, sets the locale, and calls the main function.
+ */
 void __elibc_init(int argc, char *argv[], char *envp[]) {
 
 	/* store the environment */

@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-int vfprintf(FILE *_RESTRICT stream, const char *_RESTRICT format, va_list ap) _NOEXCEPT;
+int vfprintf(FILE * stream, const char * format, va_list ap) _NOEXCEPT;
 
 _LIBC_END
 

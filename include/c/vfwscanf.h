@@ -8,7 +8,7 @@
 
 _LIBC_BEGIN
 
-int vfwscanf(FILE *_RESTRICT stream, const wchar_t *_RESTRICT format, va_list arg) _NOEXCEPT;
+int vfwscanf(FILE * stream, const wchar_t * format, va_list arg) _NOEXCEPT;
 
 _LIBC_END
 

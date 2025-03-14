@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-int fscanf(FILE *_RESTRICT stream, const char *_RESTRICT format, ...) _NOEXCEPT;
+int fscanf(FILE *stream, const char *format, ...) _NOEXCEPT;
 
 _LIBC_END
 

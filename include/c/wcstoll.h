@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-long long wcstoll(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr, int base) _NOEXCEPT;
+long long wcstoll(const wchar_t * nptr, wchar_t ** endptr, int base) _NOEXCEPT;
 
 _LIBC_END
 

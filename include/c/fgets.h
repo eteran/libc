@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-char *fgets(char *_RESTRICT s, int size, FILE *_RESTRICT stream) _NOEXCEPT;
+char *fgets(char *s, int size, FILE *stream) _NOEXCEPT;
 
 _LIBC_END
 

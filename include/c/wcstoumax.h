@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-uintmax_t wcstoumax(const wchar_t *_RESTRICT, wchar_t **_RESTRICT, int) _NOEXCEPT;
+uintmax_t wcstoumax(const wchar_t *, wchar_t **, int) _NOEXCEPT;
 
 _LIBC_END
 

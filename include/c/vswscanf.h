@@ -8,7 +8,7 @@
 
 _LIBC_BEGIN
 
-int vswscanf(const wchar_t *_RESTRICT ws, const wchar_t *_RESTRICT format, va_list arg) _NOEXCEPT;
+int vswscanf(const wchar_t * ws, const wchar_t * format, va_list arg) _NOEXCEPT;
 
 _LIBC_END
 

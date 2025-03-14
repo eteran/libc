@@ -3,9 +3,14 @@
 #include <assert.h>
 #include <wchar.h>
 
-/*------------------------------------------------------------------------------
-// Name: wmemmove
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Copies n wide characters from the source string to the destination string, handling overlapping memory regions.
+ *
+ * @param dest The destination string where the wide characters will be copied to.
+ * @param src The source string from which the wide characters will be copied.
+ * @param n The number of wide characters to copy.
+ * @return wchar_t*
+ */
 wchar_t *wmemmove(wchar_t *dest, const wchar_t *src, size_t n) {
 
 	assert(dest);

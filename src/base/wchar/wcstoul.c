@@ -7,9 +7,14 @@
 #include <wchar.h>
 #include <wctype.h>
 
-/*------------------------------------------------------------------------------
-// Name:
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Converts a wide string to an unsigned long integer
+ *
+ * @param nptr The wide string to convert
+ * @param endptr A pointer to a wide-character pointer that will be set to the first invalid character in the string
+ * @param base The base to use for the conversion. If the value is 0, the base will be determined by the prefix of the string
+ * @return unsigned long int The converted unsigned long integer
+ */
 unsigned long int wcstoul(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr, int base) {
 	typedef unsigned long int T;
 

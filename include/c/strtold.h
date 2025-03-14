@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-long double strtold(const char *_RESTRICT nptr, char **_RESTRICT endptr) _NOEXCEPT;
+long double strtold(const char * nptr, char ** endptr) _NOEXCEPT;
 
 _LIBC_END
 

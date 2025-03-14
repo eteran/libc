@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-size_t mbrlen(const char *_RESTRICT s, size_t n, mbstate_t *_RESTRICT ps) _NOEXCEPT;
+size_t mbrlen(const char * s, size_t n, mbstate_t * ps) _NOEXCEPT;
 
 _LIBC_END
 

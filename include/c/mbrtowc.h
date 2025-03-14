@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-size_t mbrtowc(wchar_t *_RESTRICT pwc, const char *_RESTRICT s, size_t n, mbstate_t *ps) _NOEXCEPT;
+size_t mbrtowc(wchar_t * pwc, const char * s, size_t n, mbstate_t *ps) _NOEXCEPT;
 
 _LIBC_END
 

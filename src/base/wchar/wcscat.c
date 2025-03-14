@@ -2,9 +2,13 @@
 #define _ELIBC_SOURCE
 #include <wchar.h>
 
-/*------------------------------------------------------------------------------
-// Name: strcat
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Concatenate two wide-character strings
+ *
+ * @param dest destination wide-character string
+ * @param src source wide-character string
+ * @return wchar_t* pointer to the destination string dest
+ */
 wchar_t *wcscat(wchar_t *_RESTRICT dest, const wchar_t *_RESTRICT src) {
 	wchar_t *dest_ptr = dest;
 

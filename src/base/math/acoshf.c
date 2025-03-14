@@ -5,9 +5,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: acoshf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Computes the inverse hyperbolic cosine of a given value.
+ *
+ * @param x The value for which to compute the inverse hyperbolic cosine.
+ * @return float The inverse hyperbolic cosine of the input value.
+ */
 float acoshf(float x) {
 	return __builtin_acoshf(x);
 }

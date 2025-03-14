@@ -4,9 +4,13 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name:
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Converts a wide string to a float
+ *
+ * @param nptr The wide string to convert
+ * @param endptr A pointer to a wide-character pointer that will be set to the first invalid character in the string
+ * @return float The converted float
+ */
 float wcstof(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr) {
 	_UNUSED(nptr);
 	_UNUSED(endptr);

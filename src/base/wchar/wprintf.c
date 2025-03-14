@@ -4,9 +4,13 @@
 #include <stdio.h>
 #include <wchar.h>
 
-/*------------------------------------------------------------------------------
-// Name: wprintf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Writes formatted output to stdout.
+ *
+ * @param format The format string that specifies how the output should be formatted.
+ * @param ... The variable arguments that will be formatted and written to the stream.
+ * @return int Returns the number of wide characters written, or a negative value if an error occurs.
+ */
 int wprintf(const wchar_t *_RESTRICT format, ...) {
 	int ret;
 	va_list ap;
