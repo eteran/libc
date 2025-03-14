@@ -4,11 +4,15 @@
 #include <assert.h>
 #include <stdio.h>
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_fflush_stream
-//----------------------------------------------------------------------------*/
-int __elibc_fflush_stream(FILE *stream) {
+/**
+ * @brief Flush a stream (thread-unsafe)
+ *
+ * @param stream the stream to flush
+ * @return int 0 on success, or EOF on error
+ */
+int __elibc_fflush(FILE *stream) {
 
+	assert(stream);
 	struct __elibc_file *const impl = _FDATA(stream);
 	const int fd                    = _ELIBC_FILENO(stream);
 
@@ -33,17 +37,12 @@ int __elibc_fflush_stream(FILE *stream) {
 	return 0;
 }
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_fflush
-//----------------------------------------------------------------------------*/
-int __elibc_fflush(FILE *stream) {
-	assert(stream);
-	return __elibc_fflush_stream(stream);
-}
-
-/*------------------------------------------------------------------------------
-// Name: fflush
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Flush a stream
+ *
+ * @param stream the stream to flush, or NULL to flush all streams
+ * @return int 0 on success, or EOF on error
+ */
 int fflush(FILE *stream) {
 
 	if (stream) {

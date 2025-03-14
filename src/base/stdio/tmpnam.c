@@ -6,9 +6,13 @@
 /* TODO(eteran): what standard defines this? */
 #define P_tmpnam "/tmp/"
 
-/*------------------------------------------------------------------------------
-// Name: tmpnam
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Generate a unique temporary filename
+ *
+ * @param s a pointer to a buffer to store the filename in, or NULL to use a static buffer
+ * @return char* a pointer to the generated filename, or NULL if the limit of TMP_MAX has been reached
+ * @note s must be at least L_tmpnam bytes long
+ */
 char *tmpnam(char *s) {
 	char *p = 0;
 	static _Thread_local char buf[L_tmpnam];

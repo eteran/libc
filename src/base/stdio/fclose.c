@@ -5,9 +5,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_fclose
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Close a stream (thread-unsafe)
+ *
+ * @param stream the stream to close
+ * @return int 0 on success, or EOF on error
+ */
 int __elibc_fclose(FILE *stream) {
 
 	assert(stream);
@@ -53,9 +56,12 @@ int __elibc_fclose(FILE *stream) {
 	return 0;
 }
 
-/*------------------------------------------------------------------------------
-// Name: fclose
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Close a stream
+ *
+ * @param stream the stream to close
+ * @return int 0 on success, or EOF on error
+ */
 int fclose(FILE *stream) {
 	int r;
 	__ELIBC_WITH_LOCK(__elibc_fclose(stream), &r);

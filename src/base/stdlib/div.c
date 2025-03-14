@@ -3,9 +3,13 @@
 #include <assert.h>
 #include <stdlib.h>
 
-/*------------------------------------------------------------------------------
-// Name: div
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Divide two integers and return the quotient and remainder
+ *
+ * @param numerator the numerator of the division
+ * @param denominator the denominator of the division
+ * @return div_t a structure containing the quotient and remainder of the division
+ */
 div_t div(int numerator, int denominator) {
 	div_t ret;
 

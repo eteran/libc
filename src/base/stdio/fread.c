@@ -3,9 +3,15 @@
 #include <assert.h>
 #include <stdio.h>
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_fread
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Read a block of data from a stream (thread-unsafe)
+ *
+ * @param ptr a pointer to the block of data to read
+ * @param size the size of each element to read
+ * @param nmemb the number of elements to read
+ * @param stream the stream to read from
+ * @return size_t the number of elements read, or 0 if an error occurred
+ */
 static size_t __elibc_fread(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 
 	size_t elem_it;
@@ -29,9 +35,15 @@ static size_t __elibc_fread(void *ptr, size_t size, size_t nmemb, FILE *stream) 
 	return elem_it;
 }
 
-/*------------------------------------------------------------------------------
-// Name: fread
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Read a block of data from a stream
+ *
+ * @param ptr a pointer to the block of data to read
+ * @param size the size of each element to read
+ * @param nmemb the number of elements to read
+ * @param stream the stream to read from
+ * @return size_t the number of elements read, or 0 if an error occurred
+ */
 size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 	size_t r;
 	__ELIBC_WITH_LOCK(__elibc_fread(ptr, size, nmemb, stream), &r);

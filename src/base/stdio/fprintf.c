@@ -4,9 +4,14 @@
 #include <stddef.h>
 #include <stdio.h>
 
-/*------------------------------------------------------------------------------
-// Name: fprintf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Write formatted output to a stream
+ *
+ * @param stream the stream to write to
+ * @param format a pointer to the format string
+ * @param ... a variable argument list containing the values to format
+ * @return int the number of characters written, or a negative value on error
+ */
 int fprintf(FILE *_RESTRICT stream, const char *_RESTRICT format, ...) {
 	int ret;
 	va_list ap;

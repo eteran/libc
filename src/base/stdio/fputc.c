@@ -7,11 +7,13 @@
 
 /* TODO(eteran): define constants for orientation */
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_fputc
-// Desc: writes a single byte into a character stream
-//       returns c on success and EOF on error
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Write a single character to a stream (thread-unsafe)
+ *
+ * @param c the character to write
+ * @param stream the stream to write to
+ * @return int the character written, or EOF on error
+ */
 int __elibc_fputc(int c, FILE *stream, int wide) {
 
 	/* TODO(eteran): set stream.err on error */
@@ -63,9 +65,13 @@ int __elibc_fputc(int c, FILE *stream, int wide) {
 	return r;
 }
 
-/*------------------------------------------------------------------------------
-// Name: fputc
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Write a single character to a stream
+ *
+ * @param c the character to write
+ * @param stream the stream to write to
+ * @return int the character written, or EOF on error
+ */
 int fputc(int c, FILE *stream) {
 	int r;
 	__ELIBC_WITH_LOCK(__elibc_fputc(c, stream, _ELIBC_FILE_NARROW), &r);

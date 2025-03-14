@@ -5,9 +5,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-/*------------------------------------------------------------------------------
-// Name: getenv
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Get the value of an environment variable
+ *
+ * @param name the name of the environment variable to get
+ * @return char* a pointer to the value of the environment variable, or NULL if the variable is not found
+ */
 char *getenv(const char *name) {
 
 	assert(name);

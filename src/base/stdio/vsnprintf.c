@@ -14,6 +14,12 @@ struct __elibc_buffer_write {
 	size_t size;
 };
 
+/**
+ * @brief Called when the printf engine needs to write a character
+ *
+ * @param context a pointer to the context structure
+ * @param ch the character to write
+ */
 static void __elibc_buffer_writer(void *context, char ch) {
 	struct __elibc_buffer_write *const c = context;
 
@@ -26,6 +32,11 @@ static void __elibc_buffer_writer(void *context, char ch) {
 	++(c->written);
 }
 
+/**
+ * @brief Called when the printf engine is done writing
+ *
+ * @param context a pointer to the context structure
+ */
 static void __elibc_buffer_writer_done(void *context) {
 	struct __elibc_buffer_write *const c = context;
 
@@ -37,9 +48,15 @@ static void __elibc_buffer_writer_done(void *context) {
 	}
 }
 
-/*------------------------------------------------------------------------------
-// Name: vsnprintf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Write formatted output to a string
+ *
+ * @param str a pointer to the destination string
+ * @param size the maximum number of characters to write to the string
+ * @param format a pointer to the format string
+ * @param ap a pointer to the variable argument list
+ * @return int the number of characters written to the string, or a negative value on error
+ */
 int vsnprintf(char *_RESTRICT str, size_t size, const char *_RESTRICT format, va_list ap) {
 
 	struct __elibc_buffer_write ctx;

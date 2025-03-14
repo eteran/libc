@@ -3,9 +3,11 @@
 #include "c/_support.h"
 #include <stdio.h>
 
-/*------------------------------------------------------------------------------
-// Name: tmpfile
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Create a temporary file
+ *
+ * @return FILE* a pointer to the created file, or NULL on error
+ */
 FILE *tmpfile(void) {
 	FILE *file = 0;
 	char tmp_file[L_tmpnam];

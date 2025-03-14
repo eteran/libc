@@ -34,9 +34,14 @@
 		}                                        \
 	} while (0)
 
-/*------------------------------------------------------------------------------
-// Name: vsscanf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Read formatted input from a string
+ *
+ * @param str a pointer to the string to read from
+ * @param format a pointer to the format string
+ * @param ap a pointer to the variable argument list
+ * @return int the number of input items successfully matched and assigned
+ */
 int vsscanf(const char *_RESTRICT str, const char *_RESTRICT format, va_list ap) {
 	int assign_count    = 0;
 	int done            = 0;

@@ -41,7 +41,7 @@
 #endif
 
 /* some extensions that are just useful */
-#ifdef _ELIBC_STRING_UTIL
+#ifdef _ELIBC_SOURCE
 #include "c/memswp.h"
 #endif
 

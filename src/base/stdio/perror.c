@@ -4,9 +4,11 @@
 #include <stdio.h>
 #include <string.h>
 
-/*------------------------------------------------------------------------------
-// Name: perror
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Write an error message to stderr
+ *
+ * @param s a pointer to the string to write, or NULL
+ */
 void perror(const char *s) {
 	if (s) {
 		fputs(s, stderr);

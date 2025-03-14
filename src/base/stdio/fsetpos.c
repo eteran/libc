@@ -4,9 +4,13 @@
 #include <limits.h>
 #include <stdio.h>
 
-/*------------------------------------------------------------------------------
-// Name: fsetpos
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Set the position indicator of a stream
+ *
+ * @param stream the stream to set the position of
+ * @param pos a pointer to a fpos_t structure containing the new position
+ * @return int 0 on success, or a negative value on error
+ */
 int fsetpos(FILE *stream, const fpos_t *pos) {
 
 	assert(stream);

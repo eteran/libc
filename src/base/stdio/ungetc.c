@@ -3,9 +3,13 @@
 #include <assert.h>
 #include <stdio.h>
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_ungetc
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Push a character back to the input stream (thread-unsafe)
+ *
+ * @param c the character to push back
+ * @param stream the input stream to push the character back to
+ * @return int the character pushed back, or EOF on error
+ */
 static int __elibc_ungetc(int c, FILE *stream) {
 
 	assert(stream);
@@ -27,9 +31,13 @@ static int __elibc_ungetc(int c, FILE *stream) {
 	return c;
 }
 
-/*------------------------------------------------------------------------------
-// Name: ungetc
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Push a character back to the input stream
+ *
+ * @param c the character to push back
+ * @param stream the input stream to push the character back to
+ * @return int the character pushed back, or EOF on error
+ */
 int ungetc(int c, FILE *stream) {
 	int r;
 	__ELIBC_WITH_LOCK(__elibc_ungetc(c, stream), &r);

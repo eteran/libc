@@ -2,9 +2,11 @@
 #define _ELIBC_SOURCE
 #include <stdio.h>
 
-/*------------------------------------------------------------------------------
-// Name: getchar
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Read a character from stdin
+ *
+ * @return int the character read, or EOF on error
+ */
 int getchar(void) {
 	return fgetc(stdin);
 }

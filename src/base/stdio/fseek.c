@@ -4,9 +4,14 @@
 #include <assert.h>
 #include <stdio.h>
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_fseek
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Set the position indicator of a stream (thread-unsafe)
+ *
+ * @param stream the stream to set the position of
+ * @param offset the offset to set the position to
+ * @param whence the reference point for the offset
+ * @return int 0 on success, or a negative value on error
+ */
 int __elibc_fseek(FILE *stream, long offset, int whence) {
 
 	assert(stream);
@@ -28,9 +33,14 @@ int __elibc_fseek(FILE *stream, long offset, int whence) {
 	return 0;
 }
 
-/*------------------------------------------------------------------------------
-// Name: fseek
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Set the position indicator of a stream
+ *
+ * @param stream the stream to set the position of
+ * @param offset the offset to set the position to
+ * @param whence the reference point for the offset
+ * @return int 0 on success, or a negative value on error
+ */
 int fseek(FILE *stream, long offset, int whence) {
 	int r;
 	__ELIBC_WITH_LOCK(__elibc_fseek(stream, offset, whence), &r);

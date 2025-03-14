@@ -5,9 +5,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_setvbuf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Set the buffering mode of a stream (thread-unsafe)
+ *
+ * @param stream the stream to set the buffering mode for
+ * @param buf a pointer to the buffer to use, or NULL to use the default buffer
+ * @param mode the buffering mode to use, one of _IONBF, _IOLBF or _IOFBF
+ * @param size the size of the buffer to use, or 0 to use the default size
+ * @return int 0 on success, or a negative value on error
+ */
 static int __elibc_setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode, size_t size) {
 	int ret = 0;
 
@@ -48,9 +54,15 @@ static int __elibc_setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode
 	return ret;
 }
 
-/*------------------------------------------------------------------------------
-// Name: setvbuf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Set the buffering mode of a stream
+ *
+ * @param stream the stream to set the buffering mode for
+ * @param buf a pointer to the buffer to use, or NULL to use the default buffer
+ * @param mode the buffering mode to use, one of _IONBF, _IOLBF or _IOFBF
+ * @param size the size of the buffer to use, or 0 to use the default size
+ * @return int 0 on success, or a negative value on error
+ */
 int setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode, size_t size) {
 	int r;
 	__ELIBC_WITH_LOCK(__elibc_setvbuf(stream, buf, mode, size), &r);

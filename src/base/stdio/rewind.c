@@ -3,9 +3,12 @@
 #include <assert.h>
 #include <stdio.h>
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_rewind
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Reset the position indicator of a stream (thread-unsafe)
+ *
+ * @param stream the stream to reset
+ * @return int 0 on success, or a negative value on error
+ */
 static int __elibc_rewind(FILE *stream) {
 	assert(stream);
 	__elibc_fseek(stream, 0L, SEEK_SET);
@@ -13,9 +16,11 @@ static int __elibc_rewind(FILE *stream) {
 	return 0;
 }
 
-/*------------------------------------------------------------------------------
-// Name: rewind
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Reset the position indicator of a stream
+ *
+ * @param stream the stream to reset
+ */
 void rewind(FILE *stream) {
 	int r;
 	__ELIBC_WITH_LOCK(__elibc_rewind(stream), &r);

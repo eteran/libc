@@ -4,9 +4,12 @@
 #include <errno.h>
 #include <stdlib.h>
 
-/*------------------------------------------------------------------------------
-// Name: malloc
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Allocate memory for an object of size size
+ *
+ * @param size the size of the object to allocate
+ * @return void* a pointer to the allocated memory, or NULL if the allocation fails
+ */
 void *malloc(size_t size) {
 	void *const p = __elibc_malloc(size);
 	if (!p && size != 0) {

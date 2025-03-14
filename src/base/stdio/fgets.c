@@ -3,9 +3,14 @@
 #include <assert.h>
 #include <stdio.h>
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_fgets
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Read a string from a stream (thread-unsafe)
+ *
+ * @param s a pointer to the buffer to read the string into
+ * @param size the maximum number of characters to read
+ * @param stream the stream to read from
+ * @return char* a pointer to the buffer containing the string, or NULL on error
+ */
 static char *__elibc_fgets(char *_RESTRICT s, int size, FILE *_RESTRICT stream) {
 	char *s_ptr = s;
 
@@ -33,9 +38,14 @@ static char *__elibc_fgets(char *_RESTRICT s, int size, FILE *_RESTRICT stream) 
 	return s;
 }
 
-/*------------------------------------------------------------------------------
-// Name: fgets
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Read a string from a stream
+ *
+ * @param s a pointer to the buffer to read the string into
+ * @param size the maximum number of characters to read
+ * @param stream the stream to read from
+ * @return char* a pointer to the buffer containing the string, or NULL on error
+ */
 char *fgets(char *_RESTRICT s, int size, FILE *_RESTRICT stream) {
 	char *r;
 	__ELIBC_WITH_LOCK(__elibc_fgets(s, size, stream), &r);

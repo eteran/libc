@@ -4,9 +4,15 @@
 #include <assert.h>
 #include <stdio.h>
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_fwrite
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Write a block of data to a stream (thread-unsafe)
+ *
+ * @param ptr a pointer to the block of data to write
+ * @param size the size of each element to write
+ * @param nelem the number of elements to write
+ * @param stream the stream to write to
+ * @return size_t the number of elements written, or 0 if an error occurred
+ */
 static size_t __elibc_fwrite(const void *ptr, size_t size, size_t nelem, FILE *stream) {
 	size_t elem_it;
 	size_t size_it;
@@ -26,9 +32,15 @@ static size_t __elibc_fwrite(const void *ptr, size_t size, size_t nelem, FILE *s
 	return elem_it;
 }
 
-/*------------------------------------------------------------------------------
-// Name: fwrite
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Write a block of data to a stream
+ *
+ * @param ptr a pointer to the block of data to write
+ * @param size the size of each element to write
+ * @param nelem the number of elements to write
+ * @param stream the stream to write to
+ * @return size_t the number of elements written, or 0 if an error occurred
+ */
 size_t fwrite(const void *ptr, size_t size, size_t nelem, FILE *stream) {
 	size_t r;
 	__ELIBC_WITH_LOCK(__elibc_fwrite(ptr, size, nelem, stream), &r);

@@ -2,9 +2,12 @@
 #define _ELIBC_SOURCE
 #include <stdio.h>
 
-/*------------------------------------------------------------------------------
-// Name: remove
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Remove a file or directory
+ *
+ * @param pathname the path to the file or directory to remove
+ * @return int 0 on success, or a negative value on error
+ */
 int remove(const char *pathname) {
 
 	/* TODO(eteran): can pathname be NULL? */

@@ -5,9 +5,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*------------------------------------------------------------------------------
-// Name: _Exit
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Exit the program immediately without calling any cleanup functions
+ *
+ * @param status
+ */
 void _Exit(int status) {
 	/* close all open file descriptors
 	 * this will flush all of the streams,

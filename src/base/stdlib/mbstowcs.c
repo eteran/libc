@@ -5,9 +5,14 @@
 #include <stdlib.h>
 #include <wchar.h>
 
-/*------------------------------------------------------------------------------
-// Name: mbstowcs
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Convert a multibyte string to a wide character string
+ *
+ * @param dest a pointer to the destination wide-character buffer
+ * @param src a pointer to the multibyte string to be converted
+ * @param n the maximum number of bytes to write to the destination buffer
+ * @return size_t the number of wide characters written to dest, or (size_t)-1 on error
+ */
 size_t mbstowcs(wchar_t *dest, const char *src, size_t n) {
 
 	static _Thread_local mbstate_t state;

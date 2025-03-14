@@ -5,9 +5,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_calloc
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Allocate memory for an array of nmemb elements, each of size size
+ *
+ * @param nmemb the number of elements to allocate
+ * @param size the size of each element
+ * @return void* a pointer to the allocated memory, or NULL if the allocation fails
+ * @note this function sets all bytes in the allocated memory to zero
+ */
 static void *__elibc_calloc(size_t nmemb, size_t size) {
 
 	void *ret        = 0;
@@ -27,9 +32,14 @@ static void *__elibc_calloc(size_t nmemb, size_t size) {
 	return ret;
 }
 
-/*------------------------------------------------------------------------------
-// Name: calloc
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Allocate memory for an array of nmemb elements, each of size size
+ *
+ * @param nmemb the number of elements to allocate
+ * @param size the size of each element
+ * @return void* a pointer to the allocated memory, or NULL if the allocation fails
+ * @note this function sets all bytes in the allocated memory to zero
+ */
 void *calloc(size_t nmemb, size_t size) {
 
 	if (nmemb == 0 || size == 0) {

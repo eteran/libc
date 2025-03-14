@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#define _ELIBC_STRING_UTIL
 #include <assert.h>
 #include <stdint.h>
 #include <stdlib.h>

@@ -5,9 +5,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_fgetc
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Read a single character from a stream (thread-unsafe)
+ *
+ * @param stream the stream to read from
+ * @return int the character read, or EOF on error
+ */
 int __elibc_fgetc(FILE *stream) {
 
 	assert(stream);
@@ -64,9 +67,12 @@ int __elibc_fgetc(FILE *stream) {
 	}
 }
 
-/*------------------------------------------------------------------------------
-// Name: fgetc
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Read a single character from a stream
+ *
+ * @param stream the stream to read from
+ * @return int the character read, or EOF on error
+ */
 int fgetc(FILE *stream) {
 	int r;
 	__ELIBC_WITH_LOCK(__elibc_fgetc(stream), &r);

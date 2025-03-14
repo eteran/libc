@@ -42,6 +42,15 @@ typedef struct {
 	int precision;
 } write_context_t;
 
+/**
+ * @brief Create a write context
+ *
+ * @param buffer the buffer to write to
+ * @param size the size of the buffer
+ * @param width the width to use
+ * @param precision the precision to use
+ * @return write_context_t the write context
+ */
 _ALWAYS_INLINE _INLINE static write_context_t _create_context(char *buffer, size_t size, int width,
 															  int precision) {
 	write_context_t ctx;
@@ -53,6 +62,12 @@ _ALWAYS_INLINE _INLINE static write_context_t _create_context(char *buffer, size
 	return ctx;
 }
 
+/**
+ * @brief Write a single character to the write context
+ *
+ * @param ctx the write context
+ * @param ch the character to write
+ */
 _ALWAYS_INLINE _INLINE static void _write_char(write_context_t *ctx, char ch) {
 	if (ctx->size != 1) {
 		*ctx->ptr++ = ch;
@@ -63,6 +78,12 @@ _ALWAYS_INLINE _INLINE static void _write_char(write_context_t *ctx, char ch) {
 	}
 }
 
+/**
+ * @brief Reverse a buffer
+ *
+ * @param p1 the start of the buffer
+ * @param p2 the end of the buffer
+ */
 _ALWAYS_INLINE _INLINE static void _reverse_buffer(char *p1, char *p2) {
 	while (p1 < p2) {
 		const char t_ = *p2;
@@ -73,6 +94,13 @@ _ALWAYS_INLINE _INLINE static void _reverse_buffer(char *p1, char *p2) {
 	}
 }
 
+/**
+ * @brief Get the padding width for a given write context
+ *
+ * @param ctx the write context
+ * @param flags the flags to use for the conversion
+ * @return int the padding width
+ */
 static int _pad_width(write_context_t *ctx, const flags_t *flags) {
 	const int pad_zero  = flags->padding;
 	const int width     = ctx->width;
@@ -85,9 +113,15 @@ static int _pad_width(write_context_t *ctx, const flags_t *flags) {
 	}
 }
 
-/*------------------------------------------------------------------------------
-// Name: _unsigned_itoa
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Common integer conversion function
+ *
+ * @param ctx the write context
+ * @param ud the unsigned integer to convert
+ * @param divisor the divisor to use for the conversion
+ * @param alphabet the alphabet to use for the conversion
+ * @param flags the flags to use for the conversion
+ */
 static void _itoa_common(write_context_t *ctx, uintmax_t ud, unsigned int divisor,
 						 const char *alphabet, const flags_t *flags) {
 
@@ -118,9 +152,17 @@ static void _itoa_common(write_context_t *ctx, uintmax_t ud, unsigned int diviso
 	}
 }
 
-/*------------------------------------------------------------------------------
-// Name: _unsigned_itoa
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Convert a unsigned integer to a string
+ *
+ * @param buffer the buffer to write the string to
+ * @param size the size of the buffer
+ * @param precision the precision to use
+ * @param d the unsigned integer to convert
+ * @param width the width to use
+ * @param flags the flags to use
+ * @return const char* a pointer to the string
+ */
 static const char *_unsigned_itoa(char *buffer, size_t size, char base, int precision, uintmax_t ud,
 								  int width, const flags_t *flags) {
 
@@ -173,9 +215,17 @@ static const char *_unsigned_itoa(char *buffer, size_t size, char base, int prec
 	return ctx.base;
 }
 
-/*------------------------------------------------------------------------------
-// Name: _signed_itoa
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Convert a signed integer to a string
+ *
+ * @param buffer the buffer to write the string to
+ * @param size the size of the buffer
+ * @param precision the precision to use
+ * @param d the signed integer to convert
+ * @param width the width to use
+ * @param flags the flags to use
+ * @return const char* a pointer to the string
+ */
 static const char *_signed_itoa(char *buffer, size_t size, int precision, intmax_t d, int width,
 								const flags_t *flags) {
 
@@ -208,6 +258,14 @@ static const char *_signed_itoa(char *buffer, size_t size, int precision, intmax
 }
 
 #ifdef _HAS_FPU
+
+/**
+ * @brief Get the number of digits in a double in base 10
+ *
+ * @param n the number to get the length of
+ * @return int the number of digits in the number
+ * @note this function assumes that the number is positive
+ */
 static int base10_len(double n) {
 	/* clang-format off */
 	if (n < 10.0) return 1;
@@ -234,6 +292,12 @@ static int base10_len(double n) {
 	return 20;
 }
 
+/**
+ * @brief Get the number of digits in a double in base 10
+ *
+ * @param n the number to get the length of
+ * @return int the number of digits in the number
+ */
 static int _digit10_count(double n) {
 
 	if (n < 0) {
@@ -243,9 +307,13 @@ static int _digit10_count(double n) {
 	return base10_len(n);
 }
 
-/*------------------------------------------------------------------------------
-// Name:
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Round a double to the given precision
+ *
+ * @param value the value to round
+ * @param precision the precision to round to
+ * @return double the rounded value
+ */
 static double _round_double(double value, int precision) {
 	const double x = 0.5 / pow(10, precision);
 	if (value < 0) {
@@ -256,9 +324,14 @@ static double _round_double(double value, int precision) {
 	return value;
 }
 
-/*------------------------------------------------------------------------------
-// Name:
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Get the length of a floating point number in decimal notation
+ *
+ * @param value the value to format
+ * @param precision the precision to use
+ * @param flags the flags to use
+ * @return int the length of the formatted string
+ */
 static int _float_length(double value, int precision, const flags_t *flags) {
 	int n = 0;
 
@@ -275,9 +348,17 @@ static int _float_length(double value, int precision, const flags_t *flags) {
 	return n;
 }
 
-/*------------------------------------------------------------------------------
-// Name:
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Format a floating point number in decimal notation
+ *
+ * @param buf the buffer to write to
+ * @param size the size of the buffer
+ * @param value the value to format
+ * @param precision the precision to use
+ * @param width the width to use
+ * @param flags the flags to use
+ * @return char* a pointer to the formatted string
+ */
 static char *_format_float_decimal(char *buf, size_t size, double value, int precision, int width,
 								   const flags_t *flags) {
 	double x = value;
@@ -345,9 +426,18 @@ static char *_format_float_decimal(char *buf, size_t size, double value, int pre
 	return buf;
 }
 
-/*------------------------------------------------------------------------------
-// Name:
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Format a floating point number in scientific notation
+ *
+ * @param buf the buffer to write to
+ * @param size the size of the buffer
+ * @param value the value to format
+ * @param precision the precision to use
+ * @param format the format to use ('e' or 'E')
+ * @param width the width to use
+ * @param flags the flags to use
+ * @return char* a pointer to the formatted string
+ */
 static char *_format_float_exponent(char *buf, size_t size, double value, int precision,
 									char format, int width, const flags_t *flags) {
 	double x     = value;
@@ -403,7 +493,7 @@ static char *_format_float_exponent(char *buf, size_t size, double value, int pr
 		}
 	}
 
-	_write_char(&ctx, format); /* 'e' or 'E' */
+	_write_char(&ctx, format);
 	{
 		flags_t f = {0, 0, 0, 0, 0};
 		f.sign    = 1;
@@ -415,9 +505,27 @@ static char *_format_float_exponent(char *buf, size_t size, double value, int pr
 	return buf;
 }
 
-/*------------------------------------------------------------------------------
-// Name:
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Format a floating point number
+ *
+ * @param buf the buffer to write to
+ * @param size the size of the buffer
+ * @param value the value to format
+ * @param precision the precision to use
+ * @param format the format to use
+ * @param width the width to use
+ * @param flags the flags to use
+ * @return char* a pointer to the formatted string
+ * @note this function supports the following formats:
+ * - %e: scientific notation (lowercase)
+ * - %E: scientific notation (uppercase)
+ * - %f: fixed point notation (lowercase)
+ * - %F: fixed point notation (uppercase)
+ * - %g: scientific or fixed point notation, depending on the value and precision (lowercase)
+ * - %G: scientific or fixed point notation, depending on the value and precision (uppercase)
+ * - %a: hexadecimal floating point notation (lowercase)
+ * - %A: hexadecimal floating point notation (uppercase)
+ */
 static char *_format_float(char *buf, size_t size, double value, int precision, char format,
 						   int width, const flags_t *flags) {
 
@@ -494,9 +602,13 @@ static char *_format_float(char *buf, size_t size, double value, int precision, 
 }
 #endif
 
-/*------------------------------------------------------------------------------
-// Name: _get_flags
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Get the flags for a format specifier
+ *
+ * @param format the format string
+ * @param flags the flags to set
+ * @return const char* the next character in the format string
+ */
 static const char *_get_flags(const char *format, flags_t *flags) {
 	flags_t f    = {0, 0, 0, 0, 0};
 	uint8_t done = 0;
@@ -546,9 +658,14 @@ static const char *_get_flags(const char *format, flags_t *flags) {
 	return format;
 }
 
-/*------------------------------------------------------------------------------
-// Name: _get_width
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Get the width for a format specifier
+ *
+ * @param format the format string
+ * @param width the width to set
+ * @param ap the variable argument list
+ * @return const char* the next character in the format string
+ */
 static const char *_get_width(const char *format, int *width, va_list *ap) {
 
 	assert(format);
@@ -570,9 +687,14 @@ static const char *_get_width(const char *format, int *width, va_list *ap) {
 	return format;
 }
 
-/*------------------------------------------------------------------------------
-// Name: _get_precision
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Get the precision for a format specifier
+ *
+ * @param format the format string
+ * @param precision the precision to set
+ * @param ap the variable argument list
+ * @return const char* the next character in the format string
+ */
 static const char *_get_precision(const char *format, int *precision, va_list *ap) {
 
 	/* default to non-existant */
@@ -604,9 +726,13 @@ static const char *_get_precision(const char *format, int *precision, va_list *a
 	return format;
 }
 
-/*------------------------------------------------------------------------------
-// Name: _get_modifier
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Get the modifier for a format specifier
+ *
+ * @param format the format string
+ * @param modifier the modifier to set
+ * @return const char* the next character in the format string
+ */
 static const char *_get_modifier(const char *format, int *modifier) {
 
 	assert(format);
@@ -694,9 +820,14 @@ static void _output_string(char ch, const char *s_ptr, int precision, int *width
 
 #define FLT_BUF_SIZE 64
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_printf_engine
-//----------------------------------------------------------------------------*/
+/**
+ * @brief The printf engine, writes formatted output to a context
+ *
+ * @param c the context to write to
+ * @param format the format string
+ * @param ap the variable argument list
+ * @return int the number of characters written
+ */
 int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 
 	va_list aq;

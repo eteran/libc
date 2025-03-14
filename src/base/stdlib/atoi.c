@@ -3,9 +3,12 @@
 #include <assert.h>
 #include <stdlib.h>
 
-/*------------------------------------------------------------------------------
-// Name: atoi
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Convert a string to an integer
+ *
+ * @param nptr a pointer to the string to convert
+ * @return int the converted integer
+ */
 int atoi(const char *nptr) {
 	assert(nptr);
 	return (int)strtol(nptr, 0, 10);

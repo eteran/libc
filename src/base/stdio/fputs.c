@@ -3,9 +3,13 @@
 #include <assert.h>
 #include <stdio.h>
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_fputs
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Write a string to a stream (thread-unsafe)
+ *
+ * @param s a pointer to the string to write
+ * @param stream the stream to write to
+ * @return int 0 on success, or EOF on error
+ */
 static int __elibc_fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) {
 
 	assert(s);
@@ -20,9 +24,13 @@ static int __elibc_fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) {
 	return 0;
 }
 
-/*------------------------------------------------------------------------------
-// Name: fputs
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Write a string to a stream
+ *
+ * @param s a pointer to the string to write
+ * @param stream the stream to write to
+ * @return int 0 on success, or EOF on error
+ */
 int fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) {
 	int r;
 	__ELIBC_WITH_LOCK(__elibc_fputs(s, stream), &r);

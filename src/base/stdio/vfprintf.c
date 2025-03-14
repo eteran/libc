@@ -13,6 +13,12 @@ struct __elibc_stream_write {
 	FILE *stream;
 };
 
+/**
+ * @brief Called when the printf engine needs to write a character
+ *
+ * @param context a pointer to the context structure
+ * @param ch the character to write
+ */
 static void __elibc_stream_writer(void *context, char ch) {
 	struct __elibc_stream_write *const c = context;
 	assert(context);
@@ -20,9 +26,14 @@ static void __elibc_stream_writer(void *context, char ch) {
 	++(c->written);
 }
 
-/*------------------------------------------------------------------------------
-// Name: vfprintf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Write formatted output to a stream
+ *
+ * @param stream the stream to write to
+ * @param format a pointer to the format string
+ * @param ap a pointer to the variable argument list
+ * @return int the number of characters written to the stream, or a negative value on error
+ */
 int vfprintf(FILE *_RESTRICT stream, const char *_RESTRICT format, va_list ap) {
 
 	struct __elibc_stream_write ctx;

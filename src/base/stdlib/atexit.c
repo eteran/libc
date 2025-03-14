@@ -5,9 +5,12 @@
 static _atexit_t __elibc_f_list[ATEXIT_MAX];
 static unsigned int __elibc_f_index = 0;
 
-/*------------------------------------------------------------------------------
-// Name: atexit
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Register a function to be called at program exit
+ *
+ * @param function a pointer to the function to register
+ * @return int 0 on success, -1 on failure
+ */
 int atexit(_atexit_t function) {
 
 	if (__elibc_f_index < ATEXIT_MAX) {
@@ -18,9 +21,10 @@ int atexit(_atexit_t function) {
 	return -1;
 }
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_doexit
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Call all functions registered with atexit in reverse order
+ *
+ */
 void __elibc_doexit(void) {
 	/* execute them in reverse order */
 	while (__elibc_f_index > 0) {

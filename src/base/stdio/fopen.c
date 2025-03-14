@@ -14,9 +14,13 @@
 #define O_TRUNC  01000 /* not fcntl */
 #define O_APPEND 02000
 
-/*------------------------------------------------------------------------------
-// Name: fopen
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Open a file and associate it with a stream
+ *
+ * @param path the path to the file to open
+ * @param mode the mode to open the file in
+ * @return FILE* a pointer to the stream associated with the file, or NULL on error
+ */
 FILE *fopen(const char *path, const char *mode) {
 
 	assert(path);

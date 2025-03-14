@@ -89,6 +89,11 @@ FILE __elibc_stderr[1] = {
 FILE *__elibc_root_file_struct = __elibc_stdin;
 FILE *__elibc_free_file_struct = NULL;
 
+/**
+ * @brief Lock a stream
+ *
+ * @param stream the stream to lock
+ */
 void __elibc_lock_stream(FILE *stream) {
 	assert(stream);
 #if defined(_ELIBC_USE_THREADS)
@@ -97,6 +102,11 @@ void __elibc_lock_stream(FILE *stream) {
 	_UNUSED(stream);
 }
 
+/**
+ * @brief Unlock a stream
+ *
+ * @param stream the stream to unlock
+ */
 void __elibc_unlock_stream(FILE *stream) {
 	assert(stream);
 #if defined(_ELIBC_USE_THREADS)
@@ -105,13 +115,17 @@ void __elibc_unlock_stream(FILE *stream) {
 	_UNUSED(stream);
 }
 
-/* NOTE(eteran): we use this caching strategy of FILE objects for two reasons
- * 1. because it's faster than reaching out to malloc
- * 2. more importantly, by delaying actually freeing the objects, it makes
- * it MUCH easier to deal with future locking strategies. Since we want to
- * store the mutex IN the FILE object, but we also want to wrap the fclose
- * operation in that same mutex
- */
+/**
+  * @brief Allocate a new FILE structure
+  *
+  * @return FILE* a pointer to the allocated FILE structure
+  * @note we use this caching strategy of FILE objects for two reasons
+  * 1. because it's faster than reaching out to malloc
+  * 2. more importantly, by delaying actually freeing the objects, it makes
+  * it MUCH easier to deal with future locking strategies. Since we want to
+  * store the mutex IN the FILE object, but we also want to wrap the fclose
+  * operation in that same mutex
+  */
 FILE *__elibc_allocate_file(void) {
 	/* TODO(eteran): lock the list */
 	if (__elibc_free_file_struct) {
@@ -123,6 +137,11 @@ FILE *__elibc_allocate_file(void) {
 	return malloc(sizeof(FILE));
 }
 
+/**
+ * @brief Free a FILE structure
+ *
+ * @param stream a pointer to the FILE structure to free
+ */
 void __elibc_free_file(FILE *stream) {
 	assert(stream);
 	/* TODO(eteran): lock the list */

@@ -3,9 +3,11 @@
 #include <assert.h>
 #include <stdio.h>
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_clearerr
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Clear the end-of-file and error indicators for a stream (thread-unsafe)
+ *
+ * @param stream the stream to clear the indicators for
+ */
 int __elibc_clearerr(FILE *stream) {
 	assert(stream);
 	_FDATA(stream)->eof = 0;
@@ -13,9 +15,11 @@ int __elibc_clearerr(FILE *stream) {
 	return 0;
 }
 
-/*------------------------------------------------------------------------------
-// Name: clearerr
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Clear the end-of-file and error indicators for a stream
+ *
+ * @param stream the stream to clear the indicators for
+ */
 void clearerr(FILE *stream) {
 	int r;
 	__ELIBC_WITH_LOCK(__elibc_clearerr(stream), &r);
