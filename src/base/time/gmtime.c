@@ -5,16 +5,26 @@
 
 #define ONE_DAY 86400l
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_is_leapyear
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Determine if a given year is a leap year
+ *
+ * @param year the year to check
+ * @return int 1 if the year is a leap year, 0 otherwise
+ * @note A year is a leap year if it is divisible by 4, except for years divisible by 100
+ *       unless the year is also divisible by 400.
+ */
 static int __elibc_is_leapyear(int year) {
 	return (((year % 4) == 0) && ((year % 100) != 0)) || ((year % 400) == 0);
 }
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_get_year
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Determine the year for a given time_t value
+ *
+ * @param t the time_t value to be converted
+ * @param out pointer to a time_t where the result will be stored
+ * @return int the year of the given time_t value
+ * @note The out parameter will contain the time_t value of the first day of the year.
+ */
 static int __elibc_get_year(time_t t, time_t *out) {
 	int year = 1970;
 	/* 64 bit so we can handle the edge cases near INT_MAX/INT_MIN */
@@ -36,9 +46,15 @@ static int __elibc_get_year(time_t t, time_t *out) {
 	return year;
 }
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_get_weekday
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Determine the day of the week for a given date
+ *
+ * @param year the year of the date
+ * @param month the month of the date (0-11)
+ * @param day the day of the month (1-31)
+ * @note The algorithm used is Zeller's Congruence
+ * @return int the day of the week (0-6, where 0 is Sunday)
+ */
 static int __elibc_get_weekday(int year, int month, int day) {
 
 	static const int tab[12] = {0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5};
@@ -54,9 +70,16 @@ static int __elibc_get_weekday(int year, int month, int day) {
 	return r;
 }
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_get_date
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Get the broken out date from a time_t value
+ *
+ * @param t the time_t value to be converted
+ * @param year the year to be used
+ * @param mon  the calculated month (0-11)
+ * @param day the calculated day of the month (1-31)
+ * @param wday the calculated weekday (0-6, where 0 is Sunday)
+ * @return int 0 on success, -1 on failure
+ */
 static int __elibc_get_date(time_t t, int year, int *mon, int *day, int *wday) {
 	static const int day_tab[12]      = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	static const int leap_day_tab[12] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -79,9 +102,13 @@ static int __elibc_get_date(time_t t, int year, int *mon, int *day, int *wday) {
 	return -1;
 }
 
-/*------------------------------------------------------------------------------
-// Name: gmtime_r
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Convert a time_t value to UTC
+ *
+ * @param timep pointer to a time_t value representing the time to be converted
+ * @param result pointer to a struct tm where the result will be stored
+ * @return struct tm* pointer to the struct tm containing the UTC representation of the input time
+ */
 struct tm *gmtime_r(const time_t *timep, struct tm *result) {
 	if (!timep) {
 		/* TODO(eteran): set errno */
@@ -117,9 +144,13 @@ struct tm *gmtime_r(const time_t *timep, struct tm *result) {
 	}
 }
 
-/*------------------------------------------------------------------------------
-// Name: gmtime
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Convert a time_t value to UTC
+ *
+ * @param timep pointer to a time_t value representing the time to be converted
+ * @return struct tm* pointer to a struct tm containing the UTC representation of the input time
+ * @note The returned pointer points to a static struct tm object that is reused on subsequent calls to gmtime.
+ */
 struct tm *gmtime(const time_t *timep) {
 	static _Thread_local struct tm result;
 	return gmtime_r(timep, &result);

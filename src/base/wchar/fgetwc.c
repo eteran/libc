@@ -8,10 +8,13 @@
 #include <wchar.h>
 #include <wctype.h>
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_expected_length
-//----------------------------------------------------------------------------*/
-static wint_t __elibc_expected_length(wint_t ch) {
+/**
+ * @brief Determine the expected length of a UTF-8 character
+ *
+ * @param ch the character to determine the length of
+ * @return int the expected length of the UTF-8 character, or -1 if the character is invalid
+ */
+static int __elibc_expected_length(wint_t ch) {
 	if ((ch & 0x80) == 0) {
 		return 1;
 	} else if ((ch & 0xe0) == 0xc0) {
@@ -21,25 +24,26 @@ static wint_t __elibc_expected_length(wint_t ch) {
 	} else if ((ch & 0xf8) == 0xf0) {
 		return 4;
 	} else if ((ch & 0xfc) == 0xf8) {
-		return (wint_t)-1; /* Restricted by RFC 3629 */
+		return -1; /* Restricted by RFC 3629 */
 #if 0
 		return 5;
 #endif
 	} else if ((ch & 0xfe) == 0xfc) {
-		return (wint_t)-1; /* Restricted by RFC 3629 */
+		return -1; /* Restricted by RFC 3629 */
 #if 0
 		return 6;
 #endif
 	} else {
-		return (wint_t)-1;
+		return -1;
 	}
 }
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_fgetwc
-// Desc: reads a single byte from the stream for use in a MB character
-// TODO(eteran): figure out the best way to reuse the code from __elibc_fgetc here
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Read a wide character from a stream
+ *
+ * @param stream the input stream to read from
+ * @return wint_t the byte of the next wide character read, or WEOF if an error occurred or the end of the stream was reached
+ */
 static wint_t __elibc_fgetwc(FILE *stream) {
 
 	assert(stream);
@@ -95,14 +99,17 @@ static wint_t __elibc_fgetwc(FILE *stream) {
 	}
 }
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_fgetwc_unlocked
-// Desc: returns WEOF or the number of bytes reads
-//----------------------------------------------------------------------------*/
-static wint_t __elibc_fgetwc_unlocked(FILE *stream, char *buf) {
+/**
+ * @brief Read a multibyte character from a stream (thread-unsafe)
+ *
+ * @param stream the input stream to read from
+ * @param buf the buffer to store the read character
+ * @return int the number of bytes read, or -1	 if an error occurred or the end of the stream was reached
+ */
+static int __elibc_fgetwc_unlocked(FILE *stream, char *buf) {
 	wint_t r;
-	wint_t i;
-	wint_t n = 0;
+	int i;
+	int n = 0;
 
 	/* read a character */
 	r = __elibc_fgetwc(stream);
@@ -136,19 +143,22 @@ static wint_t __elibc_fgetwc_unlocked(FILE *stream, char *buf) {
 	return n;
 }
 
-/*------------------------------------------------------------------------------
-// Name:
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Read a wide character from a stream
+ *
+ * @param stream the input stream to read from
+ * @return wint_t the wide character read, or WEOF if an error occurred or the end of the stream was reached
+ */
 wint_t fgetwc(FILE *stream) {
 
-	wint_t r;
+	int r;
 	char buf[MB_LEN_MAX];
 	wchar_t wc;
 
 	__ELIBC_WITH_LOCK(__elibc_fgetwc_unlocked(stream, buf), &r);
 
 	if (r > 0) {
-		if ((wint_t)mbtowc(&wc, buf, r) == r) {
+		if (mbtowc(&wc, buf, (size_t)r) == r) {
 			return (wint_t)wc;
 		}
 	}
