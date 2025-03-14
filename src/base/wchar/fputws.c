@@ -9,7 +9,7 @@
  *
  * @param ws the wide-character string to be written
  * @param stream the output stream to write to
- * @return int number of wide characters written, not including the
+ * @return int number of wide-characters written, not including the
  * terminating null wide-character, or EOF if an error occurred.
  */
 static int __elibc_fputws(const wchar_t *ws, FILE *stream) {
@@ -31,7 +31,7 @@ static int __elibc_fputws(const wchar_t *ws, FILE *stream) {
  *
  * @param ws the wide-character string to be written
  * @param stream the output stream to write to
- * @return int number of wide characters written, not including the
+ * @return int number of wide-characters written, not including the
  * terminating null wide-character, or EOF if an error occurred.
  */
 int fputws(const wchar_t *ws, FILE *stream) {

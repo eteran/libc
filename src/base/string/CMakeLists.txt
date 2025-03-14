@@ -6,6 +6,7 @@ add_library(c-string STATIC
 	memcpy.c
 	memmove.c
 	memset.c
+	memswp.c
 	strcat.c
 	strchr.c
 	strcmp.c

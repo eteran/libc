@@ -26,7 +26,7 @@
  * @param max maximum number of characters to be written
  * @param format format string
  * @param tm pointer to a structure containing the date and time
- * @return size_t number of wide characters written, not including the
+ * @return size_t number of wide-characters written, not including the
  * terminating null wide-character.
  */
 size_t wcsftime(wchar_t *s, size_t max, const wchar_t *format, const struct tm *tm) {

@@ -7,7 +7,7 @@
  * @brief Calculate the length of a wide-character string
  *
  * @param s the wide-character string to be checked
- * @return size_t number of wide characters in the string pointed to by s
+ * @return size_t number of wide-characters in the string pointed to by s
  */
 size_t wcslen(const wchar_t *s) {
 	const wchar_t *s_ptr = s;

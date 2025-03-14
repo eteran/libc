@@ -3,9 +3,13 @@
 #include <assert.h>
 #include <string.h>
 
-/*------------------------------------------------------------------------------
-// Name: strchr
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Find the first occurrence of a character in a string
+ *
+ * @param s the string to be searched
+ * @param c the character to be searched for
+ * @return char* a pointer to the first occurrence of the character in the string, or NULL if the character is not found
+ */
 char *strchr(const char *s, int c) {
 	const char cmp = (char)c;
 

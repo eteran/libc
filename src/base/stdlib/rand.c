@@ -7,16 +7,21 @@
 #define C 12345
 #define A 1103515245
 
-/*------------------------------------------------------------------------------
-// Name: rand
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Generate a random number
+ *
+ * @return int a random number between 0 and RAND_MAX
+ */
 int rand(void) {
 	return rand_r(__elibc_rand_next());
 }
 
-/*------------------------------------------------------------------------------
-// Name: rand_r
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Generate a random number using a seed
+ *
+ * @param seedp a pointer to the seed
+ * @return int a random number between 0 and RAND_MAX
+ */
 int rand_r(unsigned int *seedp) {
 
 	assert(seedp);
@@ -44,9 +49,11 @@ int rand_r(unsigned int *seedp) {
 	}
 }
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_rand_next
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Get the thread-local random number generator state
+ *
+ * @return unsigned int* a pointer to the thread-local random number generator state
+ */
 unsigned int *__elibc_rand_next(void) {
 	static _Thread_local unsigned int next = 1;
 	return &next;

@@ -40,4 +40,9 @@
 #include "c/strndup.h"
 #endif
 
+/* some extensions that are just useful */
+#ifdef _ELIBC_STRING_UTIL
+#include "c/memswp.h"
+#endif
+
 #endif

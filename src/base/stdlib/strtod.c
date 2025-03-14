@@ -9,11 +9,16 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: strtod
-// TODO(eteran): finish this code!
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Convert a string to a double
+ *
+ * @param nptr the string to be converted
+ * @param endptr a pointer to a pointer to the first invalid character in the string
+ * @return double the converted value
+ */
 double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
+
+	// TODO(eteran): finish this code!
 
 	double sign             = 1.0;
 	const char *radix_index = 0;

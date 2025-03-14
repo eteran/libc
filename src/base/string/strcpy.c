@@ -3,9 +3,13 @@
 #include <assert.h>
 #include <string.h>
 
-/*------------------------------------------------------------------------------
-// Name: strcpy
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Copy a string from source to destination
+ *
+ * @param dest the destination buffer
+ * @param src the source string
+ * @return char* pointer to the destination buffer
+ */
 char *strcpy(char *_RESTRICT dest, const char *_RESTRICT src) {
 	char *dest_ptr = dest;
 

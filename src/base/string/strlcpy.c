@@ -4,9 +4,15 @@
 #include <assert.h>
 #include <string.h>
 
-/*------------------------------------------------------------------------------
-// Name: strlcpy
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Copy a string up to a specified number of characters
+ *
+ * @param dest the destination buffer
+ * @param src the source string
+ * @param n the size of the destination buffer
+ * @return size_t the length of the source string
+ * @note This function is not a standard C function. It is included for compatibility with other systems.
+ */
 size_t strlcpy(char *_RESTRICT dest, const char *_RESTRICT src, size_t n) {
 
 	const char *const src_ptr = src;

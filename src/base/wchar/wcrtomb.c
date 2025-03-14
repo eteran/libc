@@ -11,6 +11,7 @@
  * @param wc wide-character to be converted
  * @param ps conversion state information
  * @return size_t number of bytes written, or (size_t)-1 if an error occurred
+ * @note s must be at least MB_CUR_MAX bytes long
  */
 size_t wcrtomb(char *s, wchar_t wc, mbstate_t *ps) {
 

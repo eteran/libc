@@ -8,10 +8,10 @@
  * @brief Write formatted output to a wide-character string
  *
  * @param str pointer to the wide-character string
- * @param n maximum number of wide characters to be written
+ * @param n maximum number of wide-characters to be written
  * @param format format string
  * @param ...  variable arguments to be formatted and written to the stream
- * @return int number of wide characters written, not including the
+ * @return int number of wide-characters written, not including the
  * terminating null wide-character, or a negative value if an error
  * occurred.
  */

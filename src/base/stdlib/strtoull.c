@@ -6,9 +6,15 @@
 #include <limits.h>
 #include <stdlib.h>
 
-/*------------------------------------------------------------------------------
-// Name: strtoull
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Convert a string to an unsigned long long integer
+ *
+ * @param nptr a pointer to the string to be converted
+ * @param endptr a pointer to a pointer to the first invalid character in the string
+ * @param base The base to use for the conversion (between 2 and 36 inclusive, or 0)
+ * @return unsigned long long int the converted value, or ULLONG_MAX if an overflow occurs
+ * @note If the base is 0, the function automatically detects the base from the string format.
+ */
 unsigned long long int strtoull(const char *nptr, char **endptr, int base) {
 	typedef unsigned long long int T;
 

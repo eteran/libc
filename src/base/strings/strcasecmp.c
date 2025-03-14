@@ -4,9 +4,13 @@
 #include <ctype.h>
 #include <strings.h>
 
-/*------------------------------------------------------------------------------
-// Name: strcasecmp
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compare two strings ignoring case
+ *
+ * @param s1 the first string to compare
+ * @param s2 the second string to compare
+ * @return int a negative value if s1 is less than s2, a positive value if s1 is greater than s2, and 0 if they are equal
+ */
 int strcasecmp(const char *s1, const char *s2) {
 	int ret = 0;
 

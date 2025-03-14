@@ -3,9 +3,14 @@
 #include <assert.h>
 #include <string.h>
 
-/*------------------------------------------------------------------------------
-// Name: strxfrm
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Transform a string into a form that can be compared
+ *
+ * @param dest the destination buffer where the transformed string will be stored
+ * @param src the source string to be transformed
+ * @param n the maximum number of characters to be written to the destination buffer
+ * @return size_t the number of characters written to the destination buffer
+ */
 size_t strxfrm(char *_RESTRICT dest, const char *_RESTRICT src, size_t n) {
 
 	/* TODO(eteran): be locale aware */

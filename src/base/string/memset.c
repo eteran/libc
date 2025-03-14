@@ -24,9 +24,14 @@
 
 #ifndef NAIVE_VERSION
 #if MAX_MULTIBYTE >= 8
-/*------------------------------------------------------------------------------
-// Name: __elibc_memset64
-//----------------------------------------------------------------------------*/
+
+/**
+ * @brief Set the bytes of a block of memory to a specified value (8-bytes at a time)
+ *
+ * @param p a pointer to the block of memory to be set
+ * @param ch the value to set the memory to
+ * @param n the number of bytes to set
+ */
 _ALWAYS_INLINE _INLINE static void __elibc_memset64(uint64_t *p, char ch, size_t n) {
 	const uint64_t source = (uint8_t)ch * UINT64_C(0x0101010101010101);
 	n /= 8;
@@ -36,9 +41,13 @@ _ALWAYS_INLINE _INLINE static void __elibc_memset64(uint64_t *p, char ch, size_t
 }
 #endif
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_memset32
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Set the bytes of a block of memory to a specified value (4-bytes at a time)
+ *
+ * @param p a pointer to the block of memory to be set
+ * @param ch the value to set the memory to
+ * @param n the number of bytes to set
+ */
 _ALWAYS_INLINE _INLINE static void __elibc_memset32(uint32_t *p, char ch, size_t n) {
 	const uint32_t source = ((uint8_t)ch * UINT32_C(0x01010101));
 	n /= 4;
@@ -47,9 +56,13 @@ _ALWAYS_INLINE _INLINE static void __elibc_memset32(uint32_t *p, char ch, size_t
 	}
 }
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_memset16
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Set the bytes of a block of memory to a specified value (2-bytes at a time)
+ *
+ * @param p a pointer to the block of memory to be set
+ * @param ch the value to set the memory to
+ * @param n the number of bytes to set
+ */
 _ALWAYS_INLINE _INLINE static void __elibc_memset16(uint16_t *p, char ch, size_t n) {
 	const uint16_t source = (uint16_t)((uint8_t)ch * UINT16_C(0x0101));
 	n /= 2;
@@ -58,9 +71,13 @@ _ALWAYS_INLINE _INLINE static void __elibc_memset16(uint16_t *p, char ch, size_t
 	}
 }
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_memset8
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Set the bytes of a block of memory to a specified value (1-byte at a time)
+ *
+ * @param p a pointer to the block of memory to be set
+ * @param ch the value to set the memory to
+ * @param n the number of bytes to set
+ */
 _ALWAYS_INLINE _INLINE static void __elibc_memset8(uint8_t *p, char ch, size_t n) {
 	while (n--) {
 		*p++ = (uint8_t)ch;
@@ -68,9 +85,14 @@ _ALWAYS_INLINE _INLINE static void __elibc_memset8(uint8_t *p, char ch, size_t n
 }
 #endif
 
-/*------------------------------------------------------------------------------
-// Name: memset
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Set the bytes of a block of memory to a specified value
+ *
+ * @param s a pointer to the block of memory to be set
+ * @param c the value to set the memory to
+ * @param n the number of bytes to set
+ * @return void* a pointer to the block of memory that was set
+ */
 void *memset(void *s, int c, size_t n) {
 
 #ifdef NAIVE_VERSION

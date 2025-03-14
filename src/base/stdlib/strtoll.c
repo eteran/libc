@@ -6,9 +6,15 @@
 #include <limits.h>
 #include <stdlib.h>
 
-/*------------------------------------------------------------------------------
-// Name: strtoll
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Convert a string to a long long integer
+ *
+ * @param nptr the string to be converted
+ * @param endptr a pointer to a pointer to the first invalid character in the string
+ * @param base The base to use for the conversion (between 2 and 36 inclusive, or 0)
+ * @return long long int the converted value, or LLONG_MAX if an overflow occurs
+ * @note If the base is 0, the function automatically detects the base from the string format.
+ */
 long long int strtoll(const char *nptr, char **endptr, int base) {
 	typedef long long int T;
 

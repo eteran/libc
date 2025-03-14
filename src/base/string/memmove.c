@@ -4,9 +4,15 @@
 #include <stdint.h>
 #include <string.h>
 
-/*------------------------------------------------------------------------------
-// Name: memmove
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Copy a block of memory from one location to another, even if the two
+ * locations overlap.
+ *
+ * @param dest a pointer to the destination of the copy
+ * @param src a pointer to the source of the copy
+ * @param n the number of bytes to copy
+ * @return void* a pointer to the destination of the copy
+ */
 void *memmove(void *dest, const void *src, size_t n) {
 
 	assert(dest);

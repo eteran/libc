@@ -23,9 +23,14 @@
 
 #ifndef NAIVE_VERSION
 #if MAX_MULTIBYTE >= 8
-/*------------------------------------------------------------------------------
-// Name: __elibc_memcpy64
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Copy the bytes of a block of memory to another block of memory (8-bytes at a time)
+ *
+ * @param dest a pointer to the destination block of memory
+ * @param src a pointer to the source block of memory
+ * @param n the number of bytes to copy
+ * @return void* a pointer to the destination block of memory
+ */
 _ALWAYS_INLINE _INLINE static void __elibc_memcpy64(uint64_t *_RESTRICT dest,
 													const uint64_t *_RESTRICT src, size_t n) {
 	n /= 8;
@@ -35,9 +40,14 @@ _ALWAYS_INLINE _INLINE static void __elibc_memcpy64(uint64_t *_RESTRICT dest,
 }
 #endif
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_memcpy32
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Copy the bytes of a block of memory to another block of memory (4-bytes at a time)
+ *
+ * @param dest a pointer to the destination block of memory
+ * @param src a pointer to the source block of memory
+ * @param n the number of bytes to copy
+ * @return void* a pointer to the destination block of memory
+ */
 _ALWAYS_INLINE _INLINE static void __elibc_memcpy32(uint32_t *_RESTRICT dest,
 													const uint32_t *_RESTRICT src, size_t n) {
 	n /= 4;
@@ -46,9 +56,14 @@ _ALWAYS_INLINE _INLINE static void __elibc_memcpy32(uint32_t *_RESTRICT dest,
 	}
 }
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_memcpy16
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Copy the bytes of a block of memory to another block of memory (2-bytes at a time)
+ *
+ * @param dest a pointer to the destination block of memory
+ * @param src a pointer to the source block of memory
+ * @param n the number of bytes to copy
+ * @return void* a pointer to the destination block of memory
+ */
 _ALWAYS_INLINE _INLINE static void __elibc_memcpy16(uint16_t *_RESTRICT dest,
 													const uint16_t *_RESTRICT src, size_t n) {
 	n /= 2;
@@ -57,9 +72,14 @@ _ALWAYS_INLINE _INLINE static void __elibc_memcpy16(uint16_t *_RESTRICT dest,
 	}
 }
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_memcpy8
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Copy the bytes of a block of memory to another block of memory (1-byte at a time)
+ *
+ * @param dest a pointer to the destination block of memory
+ * @param src a pointer to the source block of memory
+ * @param n the number of bytes to copy
+ * @return void* a pointer to the destination block of memory
+ */
 _ALWAYS_INLINE _INLINE static void __elibc_memcpy8(uint8_t *_RESTRICT dest,
 												   const uint8_t *_RESTRICT src, size_t n) {
 	while (n--) {
@@ -68,9 +88,14 @@ _ALWAYS_INLINE _INLINE static void __elibc_memcpy8(uint8_t *_RESTRICT dest,
 }
 #endif
 
-/*------------------------------------------------------------------------------
-// Name: memcpy
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Copy the bytes of a block of memory to another block of memory
+ *
+ * @param dest a pointer to the destination block of memory
+ * @param src a pointer to the source block of memory
+ * @param n the number of bytes to copy
+ * @return void* a pointer to the destination block of memory
+ */
 void *memcpy(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) {
 
 #ifdef NAIVE_VERSION

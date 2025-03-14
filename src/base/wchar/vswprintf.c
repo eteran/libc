@@ -8,10 +8,10 @@
  * @brief Write formatted output to a wide-character string
  *
  * @param wcs pointer to the wide-character string
- * @param maxlen maximum number of wide characters to be written
+ * @param maxlen maximum number of wide-characters to be written
  * @param format format string
  * @param args variable argument list
- * @return int number of wide characters written, not including the
+ * @return int number of wide-characters written, not including the
  * terminating null wide-character, or a negative value if an error
  * occurred.
  */

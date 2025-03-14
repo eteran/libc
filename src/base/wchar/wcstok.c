@@ -3,12 +3,12 @@
 #include <wchar.h>
 
 /**
- * @brief Splits a wide string into tokens
+ * @brief Split a wide string into tokens
  *
- * @param s The wide string to split
- * @param delim The delimiters to use for splitting the string
- * @return wchar_t* The next token in the string, or NULL if there are no more tokens
- * @note This function uses a static buffer to store the current position in the string, so it is not thread-safe
+ * @param s the wide string to be split
+ * @param delim the delimiter characters
+ * @return wchar_t* pointer to the next token in the string, or NULL if there are no more tokens
+ * @note This function is not thread-safe. Use wcstok_r instead.
  */
 wchar_t *wcstok(wchar_t *_RESTRICT s, const wchar_t *_RESTRICT delim) {
 	static _Thread_local wchar_t *ptr = 0;
@@ -16,13 +16,12 @@ wchar_t *wcstok(wchar_t *_RESTRICT s, const wchar_t *_RESTRICT delim) {
 }
 
 /**
- * @brief Splits a wide string into tokens
+ * @brief Split a wide string into tokens (thread-safe)
  *
- * @param s The wide string to split
- * @param delim The delimiters to use for splitting the string
- * @param ptrptr A pointer to a wide-character pointer used as the current position in the string
- * @return wchar_t* The next token in the string, or NULL if there are no more tokens
- * @note This function is thread-safe
+ * @param s the wide string to be split
+ * @param delim the delimiter characters
+ * @param saveptr pointer to a wchar_t* where the function will store the next position in the string
+ * @return wchar_t* pointer to the next token in the string, or NULL if there are no more tokens
  */
 wchar_t *wcstok_r(wchar_t *_RESTRICT s, const wchar_t *_RESTRICT delim, wchar_t **ptrptr) {
 

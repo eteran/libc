@@ -6,9 +6,14 @@
 #include <stdio.h>
 #include <string.h>
 
-/*------------------------------------------------------------------------------
-// Name: strerror_r
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Get a string describing an error code
+ *
+ * @param errnum the error code
+ * @param buf the buffer to store the error message
+ * @param n the size of the buffer
+ * @return int 0 on success, or a non-zero value on failure
+ */
 int strerror_r(int errnum, char *buf, size_t n) {
 
 	assert(buf);
@@ -136,9 +141,13 @@ int strerror_r(int errnum, char *buf, size_t n) {
 	return 0;
 }
 
-/*------------------------------------------------------------------------------
-// Name: strerror
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Get a string describing an error code
+ *
+ * @param errnum the error code
+ * @return char* pointer to a string describing the error code
+ * @note This function is not thread-safe. Use strerror_r instead.
+ */
 char *strerror(int errnum) {
 	static _Thread_local char errstr[0x100];
 	strerror_r(errnum, errstr, sizeof(errstr));

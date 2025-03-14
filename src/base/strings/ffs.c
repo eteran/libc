@@ -22,9 +22,13 @@
 1111 - 1
 */
 
-/*------------------------------------------------------------------------------
-// Name: ffs
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Find the first bit set in an integer
+ *
+ * @param i the integer to search in
+ * @return int the index of the first bit set, or 0 if no bits are set
+ * @note This function is not a standard C function. It is included for compatibility with other systems.
+ */
 int ffs(int i) {
 	int ret = 0;
 	int j   = 0;

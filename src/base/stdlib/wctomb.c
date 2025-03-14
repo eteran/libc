@@ -3,9 +3,14 @@
 #include <stdlib.h>
 #include <wchar.h>
 
-/*------------------------------------------------------------------------------
-// Name: wctomb
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Converts a wide character to a multibyte character
+ *
+ * @param s a pointer to the destination multibyte character
+ * @param wc the wide character to convert
+ * @return int the number of bytes written to the destination multibyte character, or -1 if an error occurs
+ * @note s must be at least MB_CUR_MAX bytes long
+ */
 int wctomb(char *s, wchar_t wc) {
 
 	if (!s) {
