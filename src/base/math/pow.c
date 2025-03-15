@@ -7,9 +7,10 @@
 
 #define TAYLOR_ITERATIONS 20
 
-// TODO(eteran): we should probably use bitwise operations to inspect
-// the exponent and mantissa of the floating point number to determine
-// if it is an integer.
+/* TODO(eteran): we should probably use bitwise operations to inspect
+ * the exponent and mantissa of the floating point number to determine
+ * if it is an integer.
+ */
 #define IS_INTEGER(value) ((value) == (double)(long int)(value))
 
 /**

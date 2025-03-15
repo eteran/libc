@@ -18,7 +18,7 @@
  */
 double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 
-	// TODO(eteran): finish this code!
+	/* TODO(eteran): finish this code! */
 
 	double sign             = 1.0;
 	const char *radix_index = 0;
