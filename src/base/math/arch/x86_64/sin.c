@@ -12,6 +12,8 @@
  * @param x the floating point number to compute the sine of
  * @return the sine of the floating point number
  * @note    The input value is in radians.
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
 _ALWAYS_INLINE _INLINE static double __elibc_sin(double x) {
 	double value;

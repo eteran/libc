@@ -11,8 +11,10 @@
  * @param x the first floating point number
  * @param y the second floating point number
  * @return the positive difference between the two floating point numbers
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
-static float __elibc_fdimf(float x, float y) {
+_ALWAYS_INLINE _INLINE static float __elibc_fdimf(float x, float y) {
 	return fmaxf(x - y, 0);
 }
 

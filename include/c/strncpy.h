@@ -8,7 +8,7 @@ _LIBC_BEGIN
 
 _ACCESS((write_only, 1))
 _ACCESS((read_only, 2))
-char *strncpy(char * dest, const char * src, size_t n) _NOEXCEPT;
+char *strncpy(char *dest, const char *src, size_t n) _NOEXCEPT;
 
 _LIBC_END
 

@@ -96,7 +96,6 @@ IS_CTYPE(iscntrl, CTYPE_CNTRL)
  */
 IS_CTYPE(isdigit, CTYPE_DIGIT)
 
-
 /**
  * @brief Checks if the given character is a graphical character.
  *
@@ -104,7 +103,6 @@ IS_CTYPE(isdigit, CTYPE_DIGIT)
  * @return Returns a non-zero value if the character is a graphical character, otherwise returns 0.
  */
 IS_CTYPE(isgraph, CTYPE_GRAPH)
-
 
 /**
  * @brief Checks if the given character is a lowercase letter.
@@ -114,7 +112,6 @@ IS_CTYPE(isgraph, CTYPE_GRAPH)
  */
 IS_CTYPE(islower, CTYPE_LOWER)
 
-
 /**
  * @brief Checks if the given character is a printable character.
  *
@@ -123,7 +120,6 @@ IS_CTYPE(islower, CTYPE_LOWER)
  */
 IS_CTYPE(isprint, CTYPE_PRINT)
 
-
 /**
  * @brief Checks if the given character is a punctuation character.
  *
@@ -131,7 +127,6 @@ IS_CTYPE(isprint, CTYPE_PRINT)
  * @return Returns a non-zero value if the character is punctuation, otherwise returns 0.
  */
 IS_CTYPE(ispunct, CTYPE_PUNCT)
-
 
 /**
  * @brief Checks if the given character is a whitespace character,
@@ -142,7 +137,6 @@ IS_CTYPE(ispunct, CTYPE_PUNCT)
  */
 IS_CTYPE(isspace, CTYPE_SPACE)
 
-
 /**
  * @brief Checks if the given character is an uppercase letter.
  *
@@ -150,7 +144,6 @@ IS_CTYPE(isspace, CTYPE_SPACE)
  * @return Returns a non-zero value if the character is an uppercase letter, otherwise returns 0.
  */
 IS_CTYPE(isupper, CTYPE_UPPER)
-
 
 /**
  * @brief Checks if the given character is a hexadecimal digit.

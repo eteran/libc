@@ -5,12 +5,13 @@
 #ifdef _HAS_FPU
 
 /**
- * @brief Compute the principal value of the arc tangent of y/x, using the signs of the two arguments
- * to determine the quadrant of the result
+ * @brief Computes the arc tangent of y / x using the signs of arguments to determine the correct quadrant.
  *
  * @param y the numerator
  * @param x the denominator
  * @return the principal value of the arc tangent
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
 _ALWAYS_INLINE _INLINE static double __elibc_atan2(double y, double x) {
 	double value;
@@ -22,8 +23,7 @@ _ALWAYS_INLINE _INLINE static double __elibc_atan2(double y, double x) {
 }
 
 /**
- * @brief Compute the principal value of the arc tangent of y/x, using the signs of the two arguments
- * to determine the quadrant of the result
+ * @brief Computes the arc tangent of y / x using the signs of arguments to determine the correct quadrant.
  *
  * @param y the numerator
  * @param x the denominator

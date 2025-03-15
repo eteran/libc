@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-int vwscanf(const wchar_t * format, va_list ap);
+int vwscanf(const wchar_t *format, va_list ap);
 
 _LIBC_END
 

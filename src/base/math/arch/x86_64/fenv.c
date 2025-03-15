@@ -37,7 +37,7 @@
 #endif
 
 /**
- * @brief Clear floating-point exceptions (FPU)
+ * @brief Clear floating point exceptions (FPU)
  *
  * @param excepts the exceptions to clear
  */
@@ -49,7 +49,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_feclearexcept_fpu(int excepts) {
 }
 
 /**
- * @brief Clear floating-point exceptions (SSE)
+ * @brief Clear floating point exceptions (SSE)
  *
  * @param excepts the exceptions to clear
  */
@@ -61,7 +61,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_feclearexcept_sse(int excepts) {
 }
 
 /**
- * @brief Clear floating-point exceptions
+ * @brief Clear floating point exceptions
  *
  * @param excepts the exceptions to clear
  * @return 0 on success, or a non-zero value on error
@@ -130,16 +130,16 @@ _ALWAYS_INLINE _INLINE static int __elibc_fegetround_fpu(void) {
  * @brief Get the current rounding mode
  *
  * @return the current rounding mode
- * @note we set it the same for SSE and FPU, so we'll just fetch from FPU only
+ * @note we set it the same for SSE and FPU, so we just fetch from FPU only
  */
 int fegetround(void) {
 	return __elibc_fegetround_fpu();
 }
 
 /**
- * @brief Get the current floating-point environment
+ * @brief Get the current floating point environment
  *
- * @param envp the floating-point environment to get
+ * @param envp the floating point environment to get
  * @return 0 on success, or a non-zero value on error
  */
 int fegetenv(fenv_t *envp) {
@@ -149,9 +149,9 @@ int fegetenv(fenv_t *envp) {
 }
 
 /**
- * @brief Set the floating-point environment
+ * @brief Set the floating point environment
  *
- * @param envp the floating-point environment to set
+ * @param envp the floating point environment to set
  * @return 0 on success, or a non-zero value on error
  */
 int fesetenv(const fenv_t *envp) {
@@ -168,7 +168,7 @@ int fesetenv(const fenv_t *envp) {
 }
 
 /**
- * @brief Raise floating-point exceptions (FPU)
+ * @brief Raise floating point exceptions (FPU)
  *
  * @param excepts the exceptions to raise
  */
@@ -185,7 +185,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_feraiseexcept_fpu(int excepts) {
 }
 
 /**
- * @brief Raise floating-point exceptions (SSE)
+ * @brief Raise floating point exceptions (SSE)
  *
  * @param excepts the exceptions to raise
  */
@@ -197,7 +197,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_feraiseexcept_sse(int excepts) {
 }
 
 /**
- * @brief Raise floating-point exceptions
+ * @brief Raise floating point exceptions
  *
  * @param excepts the exceptions to raise
  * @return 0 on success, or a non-zero value on error
@@ -210,10 +210,10 @@ int feraiseexcept(int excepts) {
 }
 
 /**
- * @brief Test floating-point exceptions
+ * @brief Test floating point exceptions
  *
  * @param excepts the exceptions to test
- * @return a bitmask for the status of the floating-point exceptions
+ * @return a bitmask for the status of the floating point exceptions
  */
 int fetestexcept(int excepts) {
 

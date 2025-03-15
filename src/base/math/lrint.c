@@ -6,10 +6,11 @@
 #ifdef _HAS_FPU
 
 /**
- * @brief Round a floating point number to the nearest integer, using the current rounding direction
+ * @brief Rounds the floating point argument x to an integer value,
+ * using the current rounding mode.
  *
- * @param x the floating point number to round
- * @return the rounded floating point number
+ * @param x the floating point value to round
+ * @return the rounded value
  */
 long int lrint(double x) {
 	return __builtin_lrint(x);

@@ -35,8 +35,8 @@ _ALWAYS_INLINE _INLINE static void __elibc_memswp64(uint64_t *_RESTRICT s1,
 	n /= 8;
 	while (n--) {
 		const uint64_t temp = *s1;
-		*s1               = *s2;
-		*s2                = temp;
+		*s1                 = *s2;
+		*s2                 = temp;
 
 		++s1;
 		++s2;
@@ -56,8 +56,8 @@ _ALWAYS_INLINE _INLINE static void __elibc_memswp32(uint32_t *_RESTRICT s1,
 	n /= 4;
 	while (n--) {
 		const uint32_t temp = *s1;
-		*s1               = *s2;
-		*s2                = temp;
+		*s1                 = *s2;
+		*s2                 = temp;
 
 		++s1;
 		++s2;
@@ -76,8 +76,8 @@ _ALWAYS_INLINE _INLINE static void __elibc_memswp16(uint16_t *_RESTRICT s1,
 	n /= 2;
 	while (n--) {
 		const uint16_t temp = *s1;
-		*s1               = *s2;
-		*s2                = temp;
+		*s1                 = *s2;
+		*s2                 = temp;
 
 		++s1;
 		++s2;
@@ -95,8 +95,8 @@ _ALWAYS_INLINE _INLINE static void __elibc_memswp8(uint8_t *_RESTRICT s1, uint8_
 												   size_t n) {
 	while (n--) {
 		const uint8_t temp = *s1;
-		*s1              = *s2;
-		*s2               = temp;
+		*s1                = *s2;
+		*s2                = temp;
 
 		++s1;
 		++s2;
@@ -128,8 +128,8 @@ void *memswp(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 
 	while (n--) {
 		const char temp = *s1_ptr;
-		*s1_ptr          = *s2_ptr;
-		*s2_ptr          = temp;
+		*s1_ptr         = *s2_ptr;
+		*s2_ptr         = temp;
 
 		++s1_ptr;
 		++s2_ptr;

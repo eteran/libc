@@ -6,7 +6,8 @@
 #ifdef _HAS_FPU
 
 /**
- * @brief Round a floating point number to the nearest integer, rounding halfway cases away from zero
+ * @brief Computes the nearest integer value to x, rounding halfway cases away from zero,
+ * regardless of the current rounding mode.
  *
  * @param x the floating point number to round
  * @return the rounded floating point number

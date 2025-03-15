@@ -6,10 +6,12 @@
 #ifdef _HAS_FPU
 
 /**
- * @brief Truncate a floating point number to an integer
+ * @brief Compute the nearest integer not greater in magnitude than num.
  *
  * @param x the floating point number to truncate
  * @return the truncated floating point number
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
 _ALWAYS_INLINE _INLINE static double __elibc_trunc(double x) {
 	double value;
@@ -22,7 +24,7 @@ _ALWAYS_INLINE _INLINE static double __elibc_trunc(double x) {
 }
 
 /**
- * @brief Truncate a floating point number to an integer
+ * @brief Compute the nearest integer not greater in magnitude than num.
  *
  * @param x the floating point number to truncate
  * @return the truncated floating point number

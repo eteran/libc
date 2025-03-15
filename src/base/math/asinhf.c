@@ -6,10 +6,10 @@
 #ifdef _HAS_FPU
 
 /**
- * @brief Compute the inverse hyperbolic sine of a floating point number
+ * @brief Compute the hyperbolic arc sine of a floating point number
  *
- * @param x the floating point number to compute the inverse hyperbolic sine of
- * @return the inverse hyperbolic sine of the floating point number
+ * @param x the floating point number to compute the hyperbolic arc sine of
+ * @return the hyperbolic arc sine of the floating point number
  */
 float asinhf(float x) {
 	return __builtin_asinhf(x);

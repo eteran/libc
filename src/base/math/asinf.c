@@ -6,17 +6,19 @@
 #ifdef _HAS_FPU
 
 /**
- * @brief Computes the arc sine of a given value using the inverse tangent function.
+ * @brief Computes the arc sine of a floating point number using the inverse tangent function.
  *
  * @param x The value for which to compute the arc sine.
  * @return The arc sine of the input value.
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
-_ALWAYS_INLINE static float __elibc_asinf(float x) {
+_ALWAYS_INLINE _INLINE static float __elibc_asinf(float x) {
 	return atanf(x / sqrtf(1 - (x * x)));
 }
 
 /**
- * @brief Computes the arc sine of a given value.
+ * @brief Computes the arc sine of a floating point number.
  *
  * @param x The value for which to compute the arc sine.
  * @return The arc sine of the input value.

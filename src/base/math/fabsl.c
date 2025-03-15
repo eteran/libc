@@ -9,8 +9,10 @@
  *
  * @param x the floating point number to compute the absolute value of
  * @return the absolute value of the floating point number
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
-static long double __elibc_fabsl(long double x) {
+_ALWAYS_INLINE _INLINE static long double __elibc_fabsl(long double x) {
 	return x > 0 ? x : -x;
 }
 

@@ -6,11 +6,13 @@
 #ifdef _HAS_FPU
 
 /**
- * @brief Round a floating point number to the nearest integer, but round halfway cases away from zero
- * (regardless of the current rounding direction
+ * @brief Computes the nearest integer value to x, rounding halfway cases away from zero,
+ * regardless of the current rounding mode.
  *
  * @param x the floating point number to round
  * @return the rounded floating point number
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
 _ALWAYS_INLINE _INLINE static double __elibc_round(double x) {
 	double value;
@@ -23,8 +25,8 @@ _ALWAYS_INLINE _INLINE static double __elibc_round(double x) {
 }
 
 /**
- * @brief Round a floating point number to the nearest integer, but round halfway cases away from zero
- * (regardless of the current rounding direction
+ * @brief Computes the nearest integer value to x, rounding halfway cases away from zero,
+ * regardless of the current rounding mode.
  *
  * @param x the floating point number to round
  * @return the rounded floating point number

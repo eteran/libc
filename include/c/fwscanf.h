@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-int fwscanf(FILE * stream, const wchar_t *format, ...) _NOEXCEPT;
+int fwscanf(FILE *stream, const wchar_t *format, ...) _NOEXCEPT;
 
 _LIBC_END
 

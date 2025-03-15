@@ -6,9 +6,10 @@
 #ifdef _HAS_FPU
 
 /**
- * @brief Round a float to the nearest integer value as a long long int
+ * @brief Rounds the floating point argument x to an integer value,
+ * using the current rounding mode.
  *
- * @param x the float to round
+ * @param x the floating point value to round
  * @return the rounded value
  */
 long long int llrintf(float x) {

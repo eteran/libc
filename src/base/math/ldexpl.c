@@ -14,23 +14,24 @@
 
 
 		Range error, overflow
-		errno is set to ERANGE.  An overflow floating-point exception
+		errno is set to ERANGE.  An overflow floating point exception
    (FE_OVERFLOW) is raised.
 
 		Range error, underflow
-		errno is set to ERANGE.  An underflow floating-point exception
+		errno is set to ERANGE.  An underflow floating point exception
    (FE_UNDERFLOW) is raised.
 */
 
 /**
- * @brief Multiply a floating-point number by integral power of 2
+ * @brief Multiply a floating point value by the 2 raised to the exp power.
  *
  * @param x the floating point number to compute the value of
  * @param exp the exponent to raise 2 to
  * @return the value of the floating point number multiplied by 2 raised to the power of exp
- * @note The function returns x * (2^exp).
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
-static long double __elibc_ldexpl(long double x, int exp) {
+_ALWAYS_INLINE _INLINE long double __elibc_ldexpl(long double x, int exp) {
 	/* TODO(eteran): detect overflow/underflow */
 	if (exp > 0) {
 		const long double y = powl(2, exp);
@@ -42,12 +43,11 @@ static long double __elibc_ldexpl(long double x, int exp) {
 }
 
 /**
- * @brief Multiply a floating-point number by integral power of 2
+ * @brief Multiply a floating point value by the 2 raised to the exp power.
  *
  * @param x the floating point number to compute the value of
  * @param exp the exponent to raise 2 to
  * @return the value of the floating point number multiplied by 2 raised to the power of exp
- * @note The function returns x * (2^exp).
  */
 long double ldexpl(long double x, int exp) {
 #ifndef __FAST_MATH__

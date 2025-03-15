@@ -6,18 +6,19 @@
 #ifdef _HAS_FPU
 
 /**
- * @brief Computes the arc cosine (inverse cosine) of a given value.
+ * @brief Computes the arc cosine (inverse cosine) of a floating point number.
  *
  * @param x The value for which to compute the arc cosine.
  * @return Returns the arc cosine of the input value.
- * @note This function uses the relationship between pi and arcsine to compute the arc cosine.
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
 _ALWAYS_INLINE _INLINE static double __elibc_acos(double x) {
 	return (M_PI / 2) - asin(x);
 }
 
 /**
- * @brief Computes the arc cosine (inverse cosine) of a given value.
+ * @brief Computes the arc cosine (inverse cosine) of a floating point number.
  *
  * @param x The value for which to compute the arc cosine.
  * @return Returns the arc cosine of the input value.

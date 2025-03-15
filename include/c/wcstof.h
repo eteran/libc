@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-float wcstof(const wchar_t * nptr, wchar_t ** endptr) _NOEXCEPT;
+float wcstof(const wchar_t *nptr, wchar_t **endptr) _NOEXCEPT;
 
 _LIBC_END
 

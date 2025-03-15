@@ -10,8 +10,10 @@
  *
  * @param x the floating point number to compute the value of 2 raised to the power of
  * @return the value of 2 raised to the power of the floating point number
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
-static float __elibc_exp2f(float x) {
+_ALWAYS_INLINE _INLINE static float __elibc_exp2f(float x) {
 	return powf(2, x);
 }
 

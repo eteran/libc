@@ -18,6 +18,8 @@
  * @param n the number of iterations to use in the taylor series
  * @param x the exponent to raise e to
  * @return the value of e raised to the power of x
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
 _ALWAYS_INLINE _INLINE static double __elibc_pow_e(int n, double x) {
 	double sum = 1.0f;
@@ -36,6 +38,8 @@ _ALWAYS_INLINE _INLINE static double __elibc_pow_e(int n, double x) {
  * @param x the base
  * @param y the exponent
  * @return the value of x raised to the power of y
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
 _ALWAYS_INLINE _INLINE static double __elibc_pow(double base, double exponent) {
 
@@ -87,7 +91,7 @@ double pow(double base, double exponent) {
 	}
 
 #if 0
-If the implementation supports IEEE floating-point arithmetic (IEC 60559),
+If the implementation supports IEEE floating point arithmetic (IEC 60559),
 pow(+0, exponent), where exponent is a negative odd integer, returns +∞ and raises FE_DIVBYZERO
 pow(-0, exponent), where exponent is a negative odd integer, returns -∞ and raises FE_DIVBYZERO
 pow(±0, exponent), where exponent is negative, finite, and is an even integer or a non-integer, returns +∞ and raises FE_DIVBYZERO

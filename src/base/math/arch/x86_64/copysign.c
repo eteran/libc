@@ -13,8 +13,10 @@
  * @param y the floating point number to copy the sign to
  * @return the floating point number with the sign of x
  * @note Assumes IEEE floats
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
-_CONST _ALWAYS_INLINE _INLINE static double __elibc_copysign(double x, double y) {
+_ALWAYS_INLINE _INLINE _CONST static double __elibc_copysign(double x, double y) {
 
 	union double_bits {
 		double f_value;

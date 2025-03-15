@@ -10,8 +10,10 @@
  *
  * @param x the floating point number to compute the value of 2 raised to the power of
  * @return the value of 2 raised to the power of the floating point number
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
-static long double __elibc_exp2l(long double x) {
+_ALWAYS_INLINE _INLINE static long double __elibc_exp2l(long double x) {
 	return powl(2, x);
 }
 

@@ -11,6 +11,8 @@
  * @param x the length of one side of the triangle
  * @param y the length of the other side of the triangle
  * @return the length of the hypotenuse of the triangle
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
 _ALWAYS_INLINE _INLINE static float __elibc_hypotf(float x, float y) {
 	/* TODO(eteran): check for overflow */

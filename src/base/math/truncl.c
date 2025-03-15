@@ -6,7 +6,7 @@
 #ifdef _HAS_FPU
 
 /**
- * @brief Compute the integer value of a floating point number
+ * @brief Compute the nearest integer not greater in magnitude than num.
  *
  * @param x the floating point number to compute the integer value of
  * @return the integer value of the floating point

@@ -9,6 +9,8 @@
  *
  * @param x the floating point number to compute the natural logarithm of
  * @return the natural logarithm of the floating point number
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
 double __elibc_log(double x) {
 	double value;

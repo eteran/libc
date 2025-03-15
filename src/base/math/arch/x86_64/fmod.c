@@ -5,11 +5,14 @@
 #ifdef _HAS_FPU
 
 /**
- * @brief Compute the remainder of the division of two floating point numbers
+ * @brief Compute the floating point remainder of the division operation x / y
  *
  * @param x the dividend
  * @param y the divisor
  * @return the remainder of the division
+ * @note The returned value has the same sign as x and is less than y in magnitude.
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
 _ALWAYS_INLINE _INLINE static double __elibc_fmod(double x, double y) {
 	double value;
@@ -24,11 +27,12 @@ _ALWAYS_INLINE _INLINE static double __elibc_fmod(double x, double y) {
 }
 
 /**
- * @brief Compute the remainder of the division of two floating point numbers
+ * @brief Compute the floating point remainder of the division operation x / y
  *
  * @param x the dividend
  * @param y the divisor
  * @return the remainder of the division
+ * @note The returned value has the same sign as x and is less than y in magnitude.
  */
 double fmod(double x, double y) {
 	return __elibc_fmod(x, y);

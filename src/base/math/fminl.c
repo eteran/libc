@@ -11,8 +11,10 @@
  * @param x the first floating point number
  * @param y the second floating point number
  * @return the minimum of the two floating point numbers
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
-static long double __elibc_fminl(long double x, long double y) {
+_ALWAYS_INLINE _INLINE static long double __elibc_fminl(long double x, long double y) {
 	return x < y ? x : y;
 }
 

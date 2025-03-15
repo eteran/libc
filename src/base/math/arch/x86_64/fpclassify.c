@@ -7,10 +7,10 @@
 #ifdef _HAS_FPU
 
 /**
- * @brief Classify a floating point number
+ * @brief Classify a floating point number.
  *
- * @param x the floating point number to classify
- * @return the classification of the floating point number
+ * @param x the floating point number to classify.
+ * @return the classification of the floating point number.
  * @note Assumes IEEE floats
  */
 int __elibc_fpclassify(double x) {

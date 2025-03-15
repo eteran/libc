@@ -6,8 +6,7 @@
 #ifdef _HAS_FPU
 
 /**
- * @brief Compute the principal value of the arc tangent of y/x, using the signs of the two arguments
- * to determine the quadrant of the result
+ * @brief Computes the arc tangent of y / x using the signs of arguments to determine the correct quadrant.
  *
  * @param y the numerator
  * @param x the denominator

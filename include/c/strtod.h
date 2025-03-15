@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-double strtod(const char * nptr, char ** endptr) _NOEXCEPT;
+double strtod(const char *nptr, char **endptr) _NOEXCEPT;
 
 _LIBC_END
 

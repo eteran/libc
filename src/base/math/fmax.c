@@ -11,6 +11,8 @@
  * @param x the first floating point number
  * @param y the second floating point number
  * @return the maximum of the two floating point numbers
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
 _ALWAYS_INLINE _INLINE static double __elibc_fmax(double x, double y) {
 	return x > y ? x : y;

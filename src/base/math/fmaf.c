@@ -12,8 +12,10 @@
  * @param y the second floating point number
  * @param z the third floating point number
  * @return x * y + z
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
-static float __elibc_fmaf(float x, float y, float z) {
+_ALWAYS_INLINE _INLINE static float __elibc_fmaf(float x, float y, float z) {
 	/* TODO(eteran): account for errors, and rounding mode */
 	return x * y + z;
 }

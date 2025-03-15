@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-int sprintf(char * str, const char * format, ...) _NOEXCEPT
+int sprintf(char *str, const char *format, ...) _NOEXCEPT
 	__attribute__((__format__(printf, 2, 3)));
 
 _LIBC_END

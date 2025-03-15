@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-void setbuf(FILE * stream, char * buf) _NOEXCEPT;
+void setbuf(FILE *stream, char *buf) _NOEXCEPT;
 
 _LIBC_END
 

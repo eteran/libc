@@ -9,6 +9,8 @@
  *
  * @param x the floating point number to compute the base 10 logarithm of
  * @return the base 10 logarithm of the floating point number
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
 _ALWAYS_INLINE _INLINE static double __elibc_log10(double x) {
 	double value;
@@ -20,10 +22,10 @@ _ALWAYS_INLINE _INLINE static double __elibc_log10(double x) {
 }
 
 /**
- * @brief Compute the base 10 logarithm of a floating point number
+ * @brief Compute the base-10 logarithm of a floating point number
  *
- * @param x the floating point number to compute the base 10 logarithm of
- * @return the base 10 logarithm of the floating point number
+ * @param x the floating point number to compute the base-10 logarithm of
+ * @return the base-10 logarithm of the floating point number
  */
 double log10(double x) {
 	return __elibc_log10(x);

@@ -4,7 +4,7 @@
 #include <fenv.h>
 
 /**
- * @brief Retrieves the current floating-point exception flags and stores them in the specified object.
+ * @brief Retrieves the current floating point exception flags and stores them in the specified object.
  *
  * @param fp A pointer to the object where the exception flags will be stored.
  * @param mask The mask specifying which exception flags to retrieve.

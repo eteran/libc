@@ -12,6 +12,8 @@
  * @param y the second floating point number
  * @param z the third floating point number
  * @return x * y + z
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
  */
 _ALWAYS_INLINE _INLINE static double __elibc_fma(double x, double y, double z) {
 	/* TODO(eteran): account for errors, and rounding mode */

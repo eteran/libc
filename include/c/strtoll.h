@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-long long int strtoll(const char * nptr, char ** endptr, int base) _NOEXCEPT;
+long long int strtoll(const char *nptr, char **endptr, int base) _NOEXCEPT;
 
 _LIBC_END
 

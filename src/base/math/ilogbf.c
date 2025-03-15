@@ -6,10 +6,11 @@
 #ifdef _HAS_FPU
 
 /**
- * @brief Compute the integer value of the exponent of a floating-point value
+ * @brief Extract the value of the unbiased exponent from the floating point argument arg,
+ * and returns it as a signed integer value.
  *
- * @param x the floating-point value to compute the exponent of
- * @return the integer value of the exponent
+ * @param x The floating point argument.
+ * @return The value of the unbiased exponent.
  */
 int ilogbf(float x) {
 	return __builtin_ilogbf(x);
