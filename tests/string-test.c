@@ -79,8 +79,9 @@ static void test_strpbrk(void) {
 	unsigned int cnt = 0;
 	do {
 		str = strpbrk(str, sep);
-		if (str)
+		if (str) {
 			str += strspn(str, sep);
+		}
 		++cnt;
 	} while (str && *str);
 

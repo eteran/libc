@@ -1,6 +1,6 @@
 
 #define _ELIBC_SOURCE
-#include <errno.h>
+
 #include <math.h>
 
 #ifdef _HAS_FPU
@@ -33,7 +33,7 @@ float expf(float x) {
 		if (x > 0.0) {
 			return x;
 		} else {
-			return 0.0f;
+			return 0.0F;
 		}
 	}
 

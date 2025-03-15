@@ -49,13 +49,17 @@ static void test_abs(void) {
 }
 
 static int compare(const void *a, const void *b) {
-	int arg1 = *(const int *)(a);
-	int arg2 = *(const int *)(b);
+	const int arg1 = *(const int *)(a);
+	const int arg2 = *(const int *)(b);
 
-	if (arg1 < arg2)
+	if (arg1 < arg2) {
 		return -1;
-	if (arg1 > arg2)
+	}
+
+	if (arg1 > arg2) {
 		return 1;
+	}
+
 	return 0;
 }
 
@@ -405,6 +409,37 @@ static void test_mbtowc(void) {
 	}
 }
 
+static void test_calloc(void) {
+
+	size_t i = 0;
+	size_t j = 0;
+
+	void *ptr = calloc(1, 1);
+	assert(ptr != NULL);
+	free(ptr);
+
+	ptr = calloc(0, 1);
+	assert(ptr != NULL);
+	free(ptr);
+
+	ptr = calloc(1, 0);
+	assert(ptr != NULL);
+	free(ptr);
+
+	ptr = calloc(0, 0);
+	assert(ptr != NULL);
+	free(ptr);
+
+	/* gcc is smart enough to prevent the overflow when we use constants,
+	   so we'll use variables instead */
+	--i;
+	--j;
+	errno = 0;
+	ptr   = calloc(i, j);
+	assert(errno == ENOMEM);
+	assert(ptr == NULL);
+}
+
 int main(void) {
 
 	/* TODO support close enough locales, such as "en_US.utf8" */
@@ -441,6 +476,7 @@ int main(void) {
 	test_strtoull();
 	test_wcstombs();
 	test_wctomb();
+	test_calloc();
 
 	return 0;
 }
@@ -448,7 +484,6 @@ int main(void) {
 /*
 #include "c/abort.h"
 #include "c/atexit.h"
-#include "c/calloc.h"
 #include "c/exit.h"
 #include "c/free.h"
 #include "c/getenv.h"

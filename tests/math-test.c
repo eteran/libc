@@ -20,8 +20,8 @@ static void test_fabs(void) {
 
 	assert(fabs(-INFINITY) == INFINITY);
 
-	assert(fabsf(+3.0f) == 3.0f);
-	assert(fabsf(-3.0f) == 3.0f);
+	assert(fabsf(+3.0F) == 3.0F);
+	assert(fabsf(-3.0F) == 3.0F);
 	assert(fabsf(-0) == 0);
 
 	assert(fabsl(+3.0L) == 3.0L);

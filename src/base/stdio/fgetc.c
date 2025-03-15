@@ -57,6 +57,8 @@ int __elibc_fgetc(FILE *stream) {
 				_FDATA(stream)->buffer_first = _FDATA(stream)->buffer_start;
 				_FDATA(stream)->buffer_last  = _FDATA(stream)->buffer_start;
 				return EOF;
+			default:
+				break;
 			}
 
 			_FDATA(stream)->buffer_first = _FDATA(stream)->buffer_start;

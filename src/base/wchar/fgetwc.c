@@ -15,27 +15,14 @@
  * @return the expected length of the UTF-8 character, or -1 if the character is invalid
  */
 static int __elibc_expected_length(wint_t ch) {
-	if ((ch & 0x80) == 0) {
-		return 1;
-	} else if ((ch & 0xe0) == 0xc0) {
-		return 2;
-	} else if ((ch & 0xf0) == 0xe0) {
-		return 3;
-	} else if ((ch & 0xf8) == 0xf0) {
-		return 4;
-	} else if ((ch & 0xfc) == 0xf8) {
-		return -1; /* Restricted by RFC 3629 */
-#if 0
-		return 5;
-#endif
-	} else if ((ch & 0xfe) == 0xfc) {
-		return -1; /* Restricted by RFC 3629 */
-#if 0
-		return 6;
-#endif
-	} else {
-		return -1;
-	}
+
+	if ((ch & 0x80) == 0x00) return 1;
+	if ((ch & 0xe0) == 0xc0) return 2;
+	if ((ch & 0xf0) == 0xe0) return 3;
+	if ((ch & 0xf8) == 0xf0) return 4;
+	if ((ch & 0xfc) == 0xf8) return -1; /* Restricted by RFC 3629 */
+	if ((ch & 0xfe) == 0xfc) return -1; /* Restricted by RFC 3629 */
+	return -1;
 }
 
 /**

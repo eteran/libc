@@ -23,7 +23,7 @@
  *       gracefully.
  */
 _ALWAYS_INLINE _INLINE static double __elibc_pow_e(int n, double x) {
-	double sum = 1.0f;
+	double sum = 1.0F;
 	int i      = n - 1;
 
 	for (; i > 0; --i) {

@@ -14,7 +14,7 @@
  *       gracefully.
  */
 _ALWAYS_INLINE _INLINE static float __elibc_cosf(float x) {
-	return sinf(x + (M_PIf / 2.0f));
+	return sinf(x + (M_PIf / 2.0F));
 }
 
 /**

@@ -13,7 +13,7 @@
  *
  * @param wc the wide-character to be encoded
  * @return number of bytes that the character should be encoded in,
- * or -1 if the character is not a valid Unicode code point.
+ * or -1 if the character is not a valid Unicode code point, or a UTF-16 surrogate.
  */
 static int __elibc_properly_encoded_length(wchar_t wc) {
 
@@ -25,19 +25,12 @@ static int __elibc_properly_encoded_length(wchar_t wc) {
 	}
 
 	/* return the expected encoding length */
-	if (ch < 0x00000080) {
-		return 1;
-	} else if (ch < 0x00000800) {
-		return 2;
-	} else if (ch < 0x00010000) {
-		return 3;
-	} else if (ch < 0x00200000) {
-		return 4;
-	} else if (ch < 0x04000000) {
-		return 5;
-	} else if (ch < 0x80000000) {
-		return 6;
-	}
+	if (ch < 0x00000080) return 1;
+	if (ch < 0x00000800) return 2;
+	if (ch < 0x00010000) return 3;
+	if (ch < 0x00200000) return 4;
+	if (ch < 0x04000000) return 5;
+	if (ch < 0x80000000) return 6;
 
 	return -1;
 }
@@ -87,7 +80,7 @@ static size_t __elibc_mbrtowc_ascii(wchar_t *_RESTRICT pwc, const char *_RESTRIC
  * returns (size_t)-2 and sets errno to EILSEQ.
  */
 static size_t __elibc_mbrtowc_utf8(wchar_t *_RESTRICT pwc, const char *_RESTRICT s, size_t n,
-								   mbstate_t *ps) {
+								   mbstate_t *_RESTRICT ps) {
 	/* xx_YY.UTF-8 version */
 
 	static mbstate_t internal_ps;
@@ -217,7 +210,7 @@ static size_t __elibc_mbrtowc_utf8(wchar_t *_RESTRICT pwc, const char *_RESTRICT
  * object is in an incomplete multibyte character sequence, the function
  * returns (size_t)-2 and sets errno to EILSEQ.
  */
-size_t mbrtowc(wchar_t *_RESTRICT pwc, const char *_RESTRICT s, size_t n, mbstate_t *ps) {
+size_t mbrtowc(wchar_t *_RESTRICT pwc, const char *_RESTRICT s, size_t n, mbstate_t *_RESTRICT ps) {
 
 	const int locale_type = __elibc_get_locale_type(LC_CTYPE);
 

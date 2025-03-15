@@ -15,7 +15,7 @@
  *       gracefully.
  */
 _ALWAYS_INLINE _INLINE static float __elibc_acosf(float x) {
-	return (M_PIf / 2.0f) - asinf(x);
+	return (M_PIf / 2.0F) - asinf(x);
 }
 
 /**
@@ -30,8 +30,8 @@ float acosf(float x) {
 		return x;
 	}
 
-	if (x == 1.0f) {
-		return 0.0f;
+	if (x == 1.0F) {
+		return 0.0F;
 	}
 
 	if (isinf(x)) {

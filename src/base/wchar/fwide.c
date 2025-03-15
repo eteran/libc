@@ -37,10 +37,10 @@ int __elibc_fwide(FILE *stream, int mode) {
 	if (_FDATA(stream)->orientation_wide) {
 		/* It returns a positive value if stream is wide-character oriented */
 		return 1;
-	} else {
-		/* It returns a negative value if stream is byte oriented. */
-		return -1;
 	}
+
+	/* It returns a negative value if stream is byte oriented. */
+	return -1;
 }
 
 /**

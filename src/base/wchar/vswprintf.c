@@ -1,7 +1,7 @@
 
 #define _ELIBC_SOURCE
 #include <stdarg.h>
-#include <stdio.h>
+#include <stddef.h>
 #include <wchar.h>
 
 /**

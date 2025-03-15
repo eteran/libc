@@ -35,7 +35,7 @@ int main(void) {
 	_Static_assert((1 xor 0), "");
 	_Static_assert(not(0 xor 0), "");
 
-	_Static_assert((compl 0x5a5a5a5au) == 0xa5a5a5a5u, "");
+	_Static_assert((compl 0x5a5a5a5aU) == 0xa5a5a5a5U, "");
 
 	_Static_assert((1 bitand 1) == 1, "");
 	_Static_assert((1 bitand 0) == 0, "");

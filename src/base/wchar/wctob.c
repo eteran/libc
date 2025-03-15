@@ -12,5 +12,5 @@
  * @note For values below 0x80, the function returns the same value as the input
  */
 int wctob(wint_t c) {
-	return (unsigned int)c < 128u ? (int)c : EOF;
+	return (unsigned int)c < 128U ? (int)c : EOF;
 }

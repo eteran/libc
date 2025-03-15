@@ -41,7 +41,7 @@ target_sources(libc-headers INTERFACE
 	${CMAKE_CURRENT_SOURCE_DIR}/wctype.h
 )
 
-target_include_directories(libc-headers INTERFACE
+target_include_directories(libc-headers SYSTEM INTERFACE
 	${CMAKE_CURRENT_SOURCE_DIR}
 	${CMAKE_CURRENT_SOURCE_DIR}/arch/${LIBC_ARCH}
 )
