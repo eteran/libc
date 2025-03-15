@@ -10,19 +10,12 @@
  */
 #define IS_ALIGNED(x) (((uintptr_t)(x) & (sizeof(*(x)) - 1)) == 0)
 
-/* valid options here are, 1, 2, 4 and 8 */
-#ifdef __x86_64__
-#define MAX_MULTIBYTE 8
-#else
-#define MAX_MULTIBYTE 4
-#endif
-
 #ifdef __OPTIMIZE_SIZE__
 #define NAIVE_VERSION
 #endif
 
 #ifndef NAIVE_VERSION
-#if MAX_MULTIBYTE >= 8
+#if _MAX_MULTIBYTE >= 8
 /**
  * @brief Swap the bytes of two blocks of memory (8-bytes at a time)
  *
@@ -159,11 +152,11 @@ void *memswp(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 	s1_ptr.ptr = s1;
 	s2_ptr.ptr = s2;
 
-	switch (n & (MAX_MULTIBYTE - 1)) {
+	switch (n & (_MAX_MULTIBYTE - 1)) {
 	case 0:
-#if MAX_MULTIBYTE >= 2
-#if MAX_MULTIBYTE >= 4
-#if MAX_MULTIBYTE >= 8
+#if _MAX_MULTIBYTE >= 2
+#if _MAX_MULTIBYTE >= 4
+#if _MAX_MULTIBYTE >= 8
 		if (!IS_ALIGNED(s1_ptr.ptr64) || !IS_ALIGNED(s2_ptr.ptr64)) {
 			goto unaligned;
 		}

@@ -169,4 +169,11 @@
 #define _REINTERPRET_CAST(T, v) (T)(v)
 #endif
 
+/* valid options here are, 1, 2, 4 and 8 */
+#ifdef __x86_64__
+#define _MAX_MULTIBYTE 8
+#else
+#define _MAX_MULTIBYTE 4
+#endif
+
 #endif
