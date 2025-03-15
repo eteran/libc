@@ -24,7 +24,7 @@
  * @param right the right index of the array to be sorted
  * @param size the size of each element in the array
  * @param compar a pointer to a comparison function that determines the order of the elements
- * @return size_t the index of the pivot element after partitioning
+ * @return the index of the pivot element after partitioning
  */
 static size_t __elibc_partition(void *base, size_t left, size_t right, size_t size,
 								__compar_fn_t compar) {

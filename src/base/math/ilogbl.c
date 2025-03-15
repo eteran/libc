@@ -5,9 +5,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: ilogbl
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the integer value of the exponent of a floating-point value
+ *
+ * @param x
+ * @return
+ */
 int ilogbl(long double x) {
 	return __builtin_ilogbl(x);
 }

@@ -5,9 +5,13 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: hypot
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the hypotenuse of a right triangle given the lengths of its two sides
+ *
+ * @param x the length of one side of the triangle
+ * @param y the length of the other side of the triangle
+ * @return the length of the hypotenuse of the triangle
+ */
 _ALWAYS_INLINE _INLINE static double __elibc_hypot(double x, double y) {
 	/* TODO(eteran): check for overflow */
 	const double x2 = x * x;
@@ -15,9 +19,13 @@ _ALWAYS_INLINE _INLINE static double __elibc_hypot(double x, double y) {
 	return sqrt(x2 + y2);
 }
 
-/*------------------------------------------------------------------------------
-// Name: hypot
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the hypotenuse of a right triangle given the lengths of its two sides
+ *
+ * @param x the length of one side of the triangle
+ * @param y the length of the other side of the triangle
+ * @return the length of the hypotenuse of the triangle
+ */
 double hypot(double x, double y) {
 	return __elibc_hypot(x, y);
 }

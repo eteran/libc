@@ -9,7 +9,7 @@
  * @param stream the stream to read from
  * @param format a pointer to the format string
  * @param ap a pointer to the variable argument list
- * @return int the number of input items successfully matched and assigned
+ * @return the number of input items successfully matched and assigned
  */
 int vfscanf(FILE *_RESTRICT stream, const char *_RESTRICT format, va_list ap) {
 	_UNUSED(stream);

@@ -8,7 +8,7 @@
  * @brief Duplicate a string
  *
  * @param s the string to be duplicated
- * @return char* pointer to the newly allocated string, or NULL if the allocation fails
+ * @return pointer to the newly allocated string, or NULL if the allocation fails
  * @note This function is not a standard C function. It is included for compatibility with other systems.
  */
 char *strdup(const char *s) {

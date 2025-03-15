@@ -5,16 +5,24 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_fdim
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the positive difference between two floating point numbers
+ *
+ * @param x the first floating point number
+ * @param y the second floating point number
+ * @return the positive difference between the two floating point numbers
+ */
 _ALWAYS_INLINE _INLINE static double __elibc_fdim(double x, double y) {
 	return fmax(x - y, 0);
 }
 
-/*------------------------------------------------------------------------------
-// Name: fdim
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the positive difference between two floating point numbers
+ *
+ * @param x the first floating point number
+ * @param y the second floating point number
+ * @return the positive difference between the two floating point numbers
+ */
 double fdim(double x, double y) {
 #ifndef __FAST_MATH__
 	if (isnan(x)) {

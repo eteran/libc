@@ -22,10 +22,14 @@
    (FE_UNDERFLOW) is raised.
 */
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_ldexpf
-// Desc: On success, these functions return x * (2^exp).
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Multiply a floating-point number by integral power of 2
+ *
+ * @param x the floating point number to compute the value of
+ * @param exp the exponent to raise 2 to
+ * @return the value of the floating point number multiplied by 2 raised to the power of exp
+ * @note The function returns x * (2^exp).
+ */
 static float __elibc_ldexpf(float x, int exp) {
 	/* TODO(eteran): detect overflow/underflow */
 	if (exp > 0) {
@@ -37,10 +41,14 @@ static float __elibc_ldexpf(float x, int exp) {
 	}
 }
 
-/*------------------------------------------------------------------------------
-// Name: ldexpf
-// Desc: On success, these functions return x * (2^exp).
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Multiply a floating-point number by integral power of 2
+ *
+ * @param x the floating point number to compute the value of
+ * @param exp the exponent to raise 2 to
+ * @return the value of the floating point number multiplied by 2 raised to the power of exp
+ * @note The function returns x * (2^exp).
+ */
 float ldexpf(float x, int exp) {
 #ifndef __FAST_MATH__
 	if (exp == 0) {

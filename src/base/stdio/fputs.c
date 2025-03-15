@@ -8,7 +8,7 @@
  *
  * @param s a pointer to the string to write
  * @param stream the stream to write to
- * @return int 0 on success, or EOF on error
+ * @return 0 on success, or EOF on error
  */
 static int __elibc_fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) {
 
@@ -29,7 +29,7 @@ static int __elibc_fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) {
  *
  * @param s a pointer to the string to write
  * @param stream the stream to write to
- * @return int 0 on success, or EOF on error
+ * @return 0 on success, or EOF on error
  */
 int fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) {
 	int r;

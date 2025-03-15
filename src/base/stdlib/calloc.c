@@ -10,7 +10,7 @@
  *
  * @param nmemb the number of elements to allocate
  * @param size the size of each element
- * @return void* a pointer to the allocated memory, or NULL if the allocation fails
+ * @return a pointer to the allocated memory, or NULL if the allocation fails
  * @note this function sets all bytes in the allocated memory to zero
  */
 static void *__elibc_calloc(size_t nmemb, size_t size) {
@@ -37,7 +37,7 @@ static void *__elibc_calloc(size_t nmemb, size_t size) {
  *
  * @param nmemb the number of elements to allocate
  * @param size the size of each element
- * @return void* a pointer to the allocated memory, or NULL if the allocation fails
+ * @return a pointer to the allocated memory, or NULL if the allocation fails
  * @note this function sets all bytes in the allocated memory to zero
  */
 void *calloc(size_t nmemb, size_t size) {

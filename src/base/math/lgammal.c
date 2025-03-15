@@ -5,9 +5,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: lgammal
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the natural logarithm of the gamma function
+ *
+ * @param x the floating point number to compute the natural logarithm of the gamma function of
+ * @return the natural logarithm of the gamma function of the floating point number
+ */
 long double lgammal(long double x) {
 	return __builtin_lgammal(x);
 }

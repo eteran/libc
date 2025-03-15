@@ -8,7 +8,7 @@
  *
  * @param format a pointer to the format string
  * @param ap a pointer to the variable argument list
- * @return int
+ * @return the number of characters read, or EOF on failure
  */
 int vscanf(const char *_RESTRICT format, va_list ap) {
 	return vfscanf(stdin, format, ap);

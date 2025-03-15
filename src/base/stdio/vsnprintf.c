@@ -55,7 +55,7 @@ static void __elibc_buffer_writer_done(void *context) {
  * @param size the maximum number of characters to write to the string
  * @param format a pointer to the format string
  * @param ap a pointer to the variable argument list
- * @return int the number of characters written to the string, or a negative value on error
+ * @return the number of characters written to the string, or a negative value on error
  */
 int vsnprintf(char *_RESTRICT str, size_t size, const char *_RESTRICT format, va_list ap) {
 

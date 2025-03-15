@@ -4,9 +4,13 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_fmod
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the remainder of the division of two floating point numbers
+ *
+ * @param x the dividend
+ * @param y the divisor
+ * @return the remainder of the division
+ */
 _ALWAYS_INLINE _INLINE static double __elibc_fmod(double x, double y) {
 	double value;
 	__asm __volatile__("1: fprem    \n"
@@ -19,9 +23,13 @@ _ALWAYS_INLINE _INLINE static double __elibc_fmod(double x, double y) {
 	return value;
 }
 
-/*------------------------------------------------------------------------------
-// Name: fmod
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the remainder of the division of two floating point numbers
+ *
+ * @param x the dividend
+ * @param y the divisor
+ * @return the remainder of the division
+ */
 double fmod(double x, double y) {
 	return __elibc_fmod(x, y);
 }

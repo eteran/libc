@@ -12,7 +12,7 @@
  * @brief Determine if a given year is a leap year
  *
  * @param year the year to check
- * @return int 1 if the year is a leap year, 0 otherwise
+ * @return 1 if the year is a leap year, 0 otherwise
  * @note A year is a leap year if it is divisible by 4, except for years divisible by 100
  *       unless the year is also divisible by 400.
  */
@@ -24,7 +24,7 @@ static int __elibc_is_leapyear(int year) {
  * @brief Convert broken down time to time_t
  *
  * @param tptr pointer to a struct tm containing the broken down time to be converted
- * @return time_t the time in seconds since the epoch (00:00:00 UTC, January 1, 1970)
+ * @return the time in seconds since the epoch (00:00:00 UTC, January 1, 1970)
  */
 time_t mktime(struct tm *tptr) {
 

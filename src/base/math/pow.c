@@ -6,11 +6,19 @@
 #ifdef _HAS_FPU
 
 #define TAYLOR_ITERATIONS 20
+
+// TODO(eteran): we should probably use bitwise operations to inspect
+// the exponent and mantissa of the floating point number to determine
+// if it is an integer.
 #define IS_INTEGER(value) ((value) == (double)(long int)(value))
 
-/*------------------------------------------------------------------------------
-// Name:
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the value of e raised to the power of x using a taylor series
+ *
+ * @param n the number of iterations to use in the taylor series
+ * @param x the exponent to raise e to
+ * @return the value of e raised to the power of x
+ */
 _ALWAYS_INLINE _INLINE static double __elibc_pow_e(int n, double x) {
 	double sum = 1.0f;
 	int i      = n - 1;
@@ -22,9 +30,13 @@ _ALWAYS_INLINE _INLINE static double __elibc_pow_e(int n, double x) {
 	return sum;
 }
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_pow
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Raise a floating point number to the power of another
+ *
+ * @param x the base
+ * @param y the exponent
+ * @return the value of x raised to the power of y
+ */
 _ALWAYS_INLINE _INLINE static double __elibc_pow(double base, double exponent) {
 
 	/* for integer powers, lets just keep it simple */
@@ -44,9 +56,13 @@ _ALWAYS_INLINE _INLINE static double __elibc_pow(double base, double exponent) {
 	}
 }
 
-/*------------------------------------------------------------------------------
-// Name: pow
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Raise a floating point number to the power of another
+ *
+ * @param x the base
+ * @param y the exponent
+ * @return the value of x raised to the power of y
+ */
 double pow(double base, double exponent) {
 
 #ifndef __FAST_MATH__

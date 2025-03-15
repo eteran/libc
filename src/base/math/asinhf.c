@@ -5,9 +5,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: asinhf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the inverse hyperbolic sine of a floating point number
+ *
+ * @param x the floating point number to compute the inverse hyperbolic sine of
+ * @return the inverse hyperbolic sine of the floating point number
+ */
 float asinhf(float x) {
 	return __builtin_asinhf(x);
 }

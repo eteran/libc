@@ -8,7 +8,7 @@
  * @brief Compute the absolute value of an integer
  *
  * @param j the integer to compute the absolute value of
- * @return long long int the absolute value of the integer
+ * @return the absolute value of the integer
  */
 long long int llabs(long long int j) {
 	assert(j != LLONG_MIN);

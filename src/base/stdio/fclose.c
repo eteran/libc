@@ -9,7 +9,7 @@
  * @brief Close a stream (thread-unsafe)
  *
  * @param stream the stream to close
- * @return int 0 on success, or EOF on error
+ * @return 0 on success, or EOF on error
  */
 int __elibc_fclose(FILE *stream) {
 
@@ -60,7 +60,7 @@ int __elibc_fclose(FILE *stream) {
  * @brief Close a stream
  *
  * @param stream the stream to close
- * @return int 0 on success, or EOF on error
+ * @return 0 on success, or EOF on error
  */
 int fclose(FILE *stream) {
 	int r;

@@ -91,7 +91,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_memset8(uint8_t *p, char ch, size_t n
  * @param s a pointer to the block of memory to be set
  * @param c the value to set the memory to
  * @param n the number of bytes to set
- * @return void* a pointer to the block of memory that was set
+ * @return a pointer to the block of memory that was set
  */
 void *memset(void *s, int c, size_t n) {
 

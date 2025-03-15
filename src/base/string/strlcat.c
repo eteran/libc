@@ -10,7 +10,7 @@
  * @param dest the destination string
  * @param src the source string
  * @param siz the size of the destination buffer
- * @return size_t the length of the concatenated string
+ * @return the length of the concatenated string
  * @note This function is not a standard C function. It is included for compatibility with other systems.
  */
 size_t strlcat(char *_RESTRICT dest, const char *_RESTRICT src, size_t siz) {

@@ -8,7 +8,7 @@
  * @param dest destination wide-character string
  * @param src source wide-character string
  * @param n maximum number of characters to be copied
- * @return wchar_t* pointer to the destination string dest
+ * @return pointer to the destination string dest
  */
 wchar_t *wcsncpy(wchar_t *_RESTRICT dest, const wchar_t *_RESTRICT src, size_t n) {
 

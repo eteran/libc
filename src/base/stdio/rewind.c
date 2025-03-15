@@ -7,7 +7,7 @@
  * @brief Reset the position indicator of a stream (thread-unsafe)
  *
  * @param stream the stream to reset
- * @return int 0 on success, or a negative value on error
+ * @return 0 on success, or a negative value on error
  */
 static int __elibc_rewind(FILE *stream) {
 	assert(stream);

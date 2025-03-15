@@ -7,7 +7,7 @@
  *
  * @param wcs The wide string to measure
  * @param n The maximum number of characters to measure
- * @return int The number of columns required to represent the wide string, or -1 if the string contains an invalid character
+ * @return The number of columns required to represent the wide string, or -1 if the string contains an invalid character
  */
 int wcswidth(const wchar_t *wcs, size_t n) {
 	int l = 0;

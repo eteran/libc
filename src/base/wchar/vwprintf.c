@@ -9,7 +9,7 @@
  *
  * @param format format string
  * @param ap variable argument list
- * @return int number of wide-characters written, not including the
+ * @return number of wide-characters written, not including the
  * terminating null wide-character, or a negative value if an error
  * occurred.
  */

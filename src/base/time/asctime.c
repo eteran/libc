@@ -8,7 +8,7 @@
  *
  * @param timeptr pointer to a struct tm containing the time to be converted
  * @param buf pointer to a buffer where the string representation will be stored
- * @return char* pointer to the buffer containing the time representation
+ * @return pointer to the buffer containing the time representation
  * @note buf must be at least 26 bytes big.
  */
 char *asctime_r(const struct tm *timeptr, char *buf) {
@@ -35,7 +35,7 @@ char *asctime_r(const struct tm *timeptr, char *buf) {
  * @brief Convert a struct tm to a string representation
  *
  * @param timeptr pointer to a struct tm containing the time to be converted
- * @return char* pointer to a string containing the time representation
+ * @return pointer to a string containing the time representation
  * @note The returned pointer points to a static buffer that is reused on subsequent calls to asctime.
  */
 char *asctime(const struct tm *timeptr) {

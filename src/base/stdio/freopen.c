@@ -10,7 +10,7 @@
  * @param path the path to the file to open
  * @param mode the mode to open the file in
  * @param stream the stream to associate the file with
- * @return FILE* a pointer to the stream associated with the file, or NULL on error
+ * @return a pointer to the stream associated with the file, or NULL on error
  */
 static FILE *__elibc_freopen(const char *path, const char *mode, FILE *stream) {
 
@@ -41,7 +41,7 @@ static FILE *__elibc_freopen(const char *path, const char *mode, FILE *stream) {
  * @param path the path to the file to open
  * @param mode the mode to open the file in
  * @param stream the stream to associate the file with
- * @return FILE* a pointer to the stream associated with the file, or NULL on error
+ * @return a pointer to the stream associated with the file, or NULL on error
  */
 FILE *freopen(const char *path, const char *mode, FILE *stream) {
 	FILE *r;

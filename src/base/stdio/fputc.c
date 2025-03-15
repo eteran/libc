@@ -12,7 +12,7 @@
  *
  * @param c the character to write
  * @param stream the stream to write to
- * @return int the character written, or EOF on error
+ * @return the character written, or EOF on error
  */
 int __elibc_fputc(int c, FILE *stream, int wide) {
 
@@ -70,7 +70,7 @@ int __elibc_fputc(int c, FILE *stream, int wide) {
  *
  * @param c the character to write
  * @param stream the stream to write to
- * @return int the character written, or EOF on error
+ * @return the character written, or EOF on error
  */
 int fputc(int c, FILE *stream) {
 	int r;

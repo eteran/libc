@@ -6,7 +6,7 @@
  * @brief Write a character to standard output
  *
  * @param c the character to write
- * @return int the character written, or EOF on error
+ * @return the character written, or EOF on error
  */
 int putchar(int c) {
 	return fputc(c, stdout);

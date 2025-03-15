@@ -36,10 +36,11 @@
 	} while (0)
 #endif
 
-/*------------------------------------------------------------------------------
-// Name:
-// Desc:
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Clear floating-point exceptions (FPU)
+ *
+ * @param excepts the exceptions to clear
+ */
 _ALWAYS_INLINE _INLINE static void __elibc_feclearexcept_fpu(int excepts) {
 	fenv_t envp;
 	FPU_GETENV(envp);
@@ -47,10 +48,11 @@ _ALWAYS_INLINE _INLINE static void __elibc_feclearexcept_fpu(int excepts) {
 	FPU_SETENV(envp);
 }
 
-/*------------------------------------------------------------------------------
-// Name:
-// Desc:
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Clear floating-point exceptions (SSE)
+ *
+ * @param excepts the exceptions to clear
+ */
 _ALWAYS_INLINE _INLINE static void __elibc_feclearexcept_sse(int excepts) {
 	uint32_t xcw;
 	SSE_GETCW(xcw);
@@ -58,20 +60,23 @@ _ALWAYS_INLINE _INLINE static void __elibc_feclearexcept_sse(int excepts) {
 	SSE_SETCW(xcw);
 }
 
-/*------------------------------------------------------------------------------
-// Name: feclearexcept
-// Desc:
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Clear floating-point exceptions
+ *
+ * @param excepts the exceptions to clear
+ * @return 0 on success, or a non-zero value on error
+ */
 int feclearexcept(int excepts) {
 	__elibc_feclearexcept_fpu(excepts);
 	__elibc_feclearexcept_sse(excepts);
 	return 0;
 }
 
-/*------------------------------------------------------------------------------
-// Name:
-// Desc:
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Set the rounding mode (FPU)
+ *
+ * @param round the rounding mode to set
+ */
 _ALWAYS_INLINE _INLINE static void __elibc_fesetround_fpu(int round) {
 
 	uint16_t cw;
@@ -80,10 +85,11 @@ _ALWAYS_INLINE _INLINE static void __elibc_fesetround_fpu(int round) {
 	FPU_SETCW(cw);
 }
 
-/*------------------------------------------------------------------------------
-// Name:
-// Desc:
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Set the rounding mode (SSE)
+ *
+ * @param round the rounding mode to set
+ */
 _ALWAYS_INLINE _INLINE static void __elibc_fesetround_sse(int round) {
 	uint32_t xcw;
 	SSE_GETCW(xcw);
@@ -91,9 +97,12 @@ _ALWAYS_INLINE _INLINE static void __elibc_fesetround_sse(int round) {
 	SSE_SETCW(xcw);
 }
 
-/*------------------------------------------------------------------------------
-// Name: fesetround
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Set the rounding mode
+ *
+ * @param round the rounding mode to set
+ * @return 0 on success, or a non-zero value on error
+ */
 int fesetround(int round) {
 
 	/* make sure that only rounding bits have been set */
@@ -106,36 +115,45 @@ int fesetround(int round) {
 	return 0;
 }
 
-/*------------------------------------------------------------------------------
-// Name:
-// Desc:
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Get the current rounding mode (FPU)
+ *
+ * @return the current rounding mode
+ */
 _ALWAYS_INLINE _INLINE static int __elibc_fegetround_fpu(void) {
 	uint16_t cw;
 	FPU_GETCW(cw);
 	return cw & _ELIBC_FE_ROUND_MASK;
 }
 
-/*------------------------------------------------------------------------------
-// Name: fegetround
-// Note: we set it the same for SSE and FPU, so we'll just fetch from FPU only
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Get the current rounding mode
+ *
+ * @return the current rounding mode
+ * @note we set it the same for SSE and FPU, so we'll just fetch from FPU only
+ */
 int fegetround(void) {
 	return __elibc_fegetround_fpu();
 }
 
-/*------------------------------------------------------------------------------
-// Name: fegetenv
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Get the current floating-point environment
+ *
+ * @param envp the floating-point environment to get
+ * @return 0 on success, or a non-zero value on error
+ */
 int fegetenv(fenv_t *envp) {
 	FPU_GETENV(*envp);
 	SSE_GETCW(envp->__mxcsr);
 	return 0;
 }
 
-/*------------------------------------------------------------------------------
-// Name: fesetenv
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Set the floating-point environment
+ *
+ * @param envp the floating-point environment to set
+ * @return 0 on success, or a non-zero value on error
+ */
 int fesetenv(const fenv_t *envp) {
 
 	if (envp == FE_DFL_ENV) {
@@ -149,10 +167,11 @@ int fesetenv(const fenv_t *envp) {
 	return 0;
 }
 
-/*------------------------------------------------------------------------------
-// Name:
-// Desc:
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Raise floating-point exceptions (FPU)
+ *
+ * @param excepts the exceptions to raise
+ */
 _ALWAYS_INLINE _INLINE static void __elibc_feraiseexcept_fpu(int excepts) {
 	fenv_t envp;
 	/* NOTE(eteran): this temp is to avoid a spurious warning on GCC-9.4.0
@@ -165,10 +184,11 @@ _ALWAYS_INLINE _INLINE static void __elibc_feraiseexcept_fpu(int excepts) {
 	FPU_SETENV(envp);
 }
 
-/*------------------------------------------------------------------------------
-// Name:
-// Desc:
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Raise floating-point exceptions (SSE)
+ *
+ * @param excepts the exceptions to raise
+ */
 _ALWAYS_INLINE _INLINE static void __elibc_feraiseexcept_sse(int excepts) {
 	uint32_t xcw;
 	SSE_GETCW(xcw);
@@ -176,9 +196,12 @@ _ALWAYS_INLINE _INLINE static void __elibc_feraiseexcept_sse(int excepts) {
 	SSE_SETCW(xcw);
 }
 
-/*------------------------------------------------------------------------------
-// Name: feraiseexcept
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Raise floating-point exceptions
+ *
+ * @param excepts the exceptions to raise
+ * @return 0 on success, or a non-zero value on error
+ */
 int feraiseexcept(int excepts) {
 
 	__elibc_feraiseexcept_fpu(excepts);
@@ -186,9 +209,12 @@ int feraiseexcept(int excepts) {
 	return 0;
 }
 
-/*------------------------------------------------------------------------------
-// Name: fetestexcept
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Test floating-point exceptions
+ *
+ * @param excepts the exceptions to test
+ * @return a bitmask for the status of the floating-point exceptions
+ */
 int fetestexcept(int excepts) {
 
 	uint32_t xcw;

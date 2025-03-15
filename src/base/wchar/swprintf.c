@@ -11,7 +11,7 @@
  * @param n maximum number of wide-characters to be written
  * @param format format string
  * @param ...  variable arguments to be formatted and written to the stream
- * @return int number of wide-characters written, not including the
+ * @return number of wide-characters written, not including the
  * terminating null wide-character, or a negative value if an error
  * occurred.
  */

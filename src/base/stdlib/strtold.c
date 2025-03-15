@@ -8,7 +8,7 @@
  *
  * @param nptr the string to be converted
  * @param endptr a pointer to a pointer to the first invalid character in the string
- * @return long double the converted value
+ * @return the converted value
  */
 long double strtold(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 	_UNUSED(nptr);

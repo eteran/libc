@@ -7,7 +7,7 @@
  * @brief Convert a string to an integer
  *
  * @param nptr a pointer to the string to convert
- * @return int the converted integer
+ * @return the converted integer
  */
 int atoi(const char *nptr) {
 	assert(nptr);

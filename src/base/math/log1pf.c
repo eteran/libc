@@ -5,9 +5,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: log1pf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the natural logarithm of 1 plus a floating point number
+ *
+ * @param x the floating point number to compute the natural logarithm of
+ * @return the natural logarithm of 1 plus the floating point number
+ */
 float log1pf(float x) {
 	return __builtin_log1pf(x);
 }

@@ -3,9 +3,14 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-/*------------------------------------------------------------------------------
-// Name: sprintf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Write formatted output to a string
+ *
+ * @param str a pointer to the destination string
+ * @param format a pointer to the format string
+ * @param ... a variable argument list containing the values to format
+ * @return the number of characters written to the string, or a negative value on error
+ */
 int sprintf(char *_RESTRICT str, const char *_RESTRICT format, ...) {
 	int ret;
 	va_list ap;

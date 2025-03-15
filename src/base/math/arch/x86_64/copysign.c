@@ -6,10 +6,14 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_copysign
-// Note: assumes IEEE floats
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Copy the sign of one floating point number to another
+ *
+ * @param x the floating point number to copy the sign from
+ * @param y the floating point number to copy the sign to
+ * @return the floating point number with the sign of x
+ * @note Assumes IEEE floats
+ */
 _CONST _ALWAYS_INLINE _INLINE static double __elibc_copysign(double x, double y) {
 
 	union double_bits {
@@ -33,9 +37,13 @@ _CONST _ALWAYS_INLINE _INLINE static double __elibc_copysign(double x, double y)
 	return r.f_value;
 }
 
-/*------------------------------------------------------------------------------
-// Name: copysign
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Copy the sign of one floating point number to another
+ *
+ * @param x the floating point number to copy the sign from
+ * @param y the floating point number to copy the sign to
+ * @return the floating point number with the sign of x
+ */
 double copysign(double x, double y) {
 	return __elibc_copysign(x, y);
 }

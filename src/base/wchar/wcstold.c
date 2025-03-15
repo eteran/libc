@@ -9,7 +9,7 @@
  *
  * @param nptr The wide string to convert
  * @param endptr A pointer to a wide-character pointer that will be set to the first invalid character in the string
- * @return long double The converted long double
+ * @return The converted long double
  */
 long double wcstold(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr) {
 	_UNUSED(nptr);

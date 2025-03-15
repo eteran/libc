@@ -12,7 +12,7 @@
  * based on the UTF-8 encoding rules.
  *
  * @param wc the wide-character to be encoded
- * @return int number of bytes that the character should be encoded in,
+ * @return number of bytes that the character should be encoded in,
  * or -1 if the character is not a valid Unicode code point.
  */
 static int __elibc_properly_encoded_length(wchar_t wc) {
@@ -49,7 +49,7 @@ static int __elibc_properly_encoded_length(wchar_t wc) {
  * @param s pointer to the multibyte character sequence
  * @param n maximum number of bytes to be converted
  * @param ps pointer to the conversion state object
- * @return size_t number of bytes consumed from the multibyte character
+ * @return number of bytes consumed from the multibyte character
  * sequence, or (size_t)-1 if an error occurred. If the conversion state
  * object is in an incomplete multibyte character sequence, the function
  * returns (size_t)-2 and sets errno to EILSEQ.
@@ -81,7 +81,7 @@ static size_t __elibc_mbrtowc_ascii(wchar_t *_RESTRICT pwc, const char *_RESTRIC
  * @param s pointer to the multibyte character sequence
  * @param n maximum number of bytes to be converted
  * @param ps pointer to the conversion state object
- * @return size_t number of bytes consumed from the multibyte character
+ * @return number of bytes consumed from the multibyte character
  * sequence, or (size_t)-1 if an error occurred. If the conversion state
  * object is in an incomplete multibyte character sequence, the function
  * returns (size_t)-2 and sets errno to EILSEQ.
@@ -212,7 +212,7 @@ static size_t __elibc_mbrtowc_utf8(wchar_t *_RESTRICT pwc, const char *_RESTRICT
  * @param s pointer to the multibyte character sequence
  * @param n maximum number of bytes to be converted
  * @param ps pointer to the conversion state object
- * @return size_t number of bytes consumed from the multibyte character
+ * @return number of bytes consumed from the multibyte character
  * sequence, or (size_t)-1 if an error occurred. If the conversion state
  * object is in an incomplete multibyte character sequence, the function
  * returns (size_t)-2 and sets errno to EILSEQ.

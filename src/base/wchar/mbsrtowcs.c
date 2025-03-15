@@ -9,7 +9,7 @@
  * @param src The source multibyte string
  * @param len The maximum number of wide-characters to be written
  * @param ps The conversion state
- * @return size_t The number of wide-characters written, not including the
+ * @return The number of wide-characters written, not including the
  * terminating null wide-character, or (size_t)-1 if an error occurred.
  * @note If dest is NULL, len is ignored, and the function returns the number of
  * wide-characters that would be written if dest was not NULL.

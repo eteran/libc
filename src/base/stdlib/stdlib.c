@@ -5,7 +5,7 @@
 /**
  * @brief Get the maximum number of bytes in a multibyte character
  *
- * @return size_t the maximum number of bytes in a multibyte character
+ * @return the maximum number of bytes in a multibyte character
  */
 size_t __ctype_get_mb_cur_max(void) {
 	/* TODO(eteran): make this depend on the current locale */

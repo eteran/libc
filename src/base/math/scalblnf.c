@@ -5,9 +5,13 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: scalblnf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the value of a floating point number multiplied by 2 raised to the power of exp
+ *
+ * @param x the floating point number to compute the value of
+ * @param exp the exponent to raise 2 to
+ * @return the value of the floating point number multiplied by 2 raised to the power of exp
+ */
 float scalblnf(float x, long int exp) {
 	return __builtin_scalblnf(x, exp);
 }

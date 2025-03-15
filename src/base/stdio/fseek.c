@@ -10,7 +10,7 @@
  * @param stream the stream to set the position of
  * @param offset the offset to set the position to
  * @param whence the reference point for the offset
- * @return int 0 on success, or a negative value on error
+ * @return 0 on success, or a negative value on error
  */
 int __elibc_fseek(FILE *stream, long offset, int whence) {
 
@@ -39,7 +39,7 @@ int __elibc_fseek(FILE *stream, long offset, int whence) {
  * @param stream the stream to set the position of
  * @param offset the offset to set the position to
  * @param whence the reference point for the offset
- * @return int 0 on success, or a negative value on error
+ * @return 0 on success, or a negative value on error
  */
 int fseek(FILE *stream, long offset, int whence) {
 	int r;

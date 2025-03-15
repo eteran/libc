@@ -7,7 +7,7 @@
  * @brief Write a string to standard output, followed by a newline.
  *
  * @param s a pointer to the string to write
- * @return int the number of characters written, or EOF on error
+ * @return the number of characters written, or EOF on error
  */
 int puts(const char *s) {
 

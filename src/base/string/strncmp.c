@@ -9,7 +9,7 @@
  * @param s1 the first string to be compared
  * @param s2 the second string to be compared
  * @param n the maximum number of characters to be compared
- * @return int a negative value if s1 is less than s2, a positive value if s1 is greater than s2, or 0 if they are equal
+ * @return a negative value if s1 is less than s2, a positive value if s1 is greater than s2, or 0 if they are equal
  */
 int strncmp(const char *s1, const char *s2, size_t n) {
 	int ret = 0;

@@ -5,9 +5,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: tanh
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the hyperbolic tangent of a floating point number
+ *
+ * @param x the floating point number to compute the hyperbolic tangent of
+ * @return the hyperbolic tangent of the floating point number
+ */
 double tanh(double x) {
 
 #ifndef __FAST_MATH__

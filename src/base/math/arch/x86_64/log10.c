@@ -4,9 +4,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_log10
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the base 10 logarithm of a floating point number
+ *
+ * @param x the floating point number to compute the base 10 logarithm of
+ * @return the base 10 logarithm of the floating point number
+ */
 _ALWAYS_INLINE _INLINE static double __elibc_log10(double x) {
 	double value;
 	__asm__ __volatile__("fldlg2; fxch; fyl2x"
@@ -16,9 +19,12 @@ _ALWAYS_INLINE _INLINE static double __elibc_log10(double x) {
 	return value;
 }
 
-/*------------------------------------------------------------------------------
-// Name: log10
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the base 10 logarithm of a floating point number
+ *
+ * @param x the floating point number to compute the base 10 logarithm of
+ * @return the base 10 logarithm of the floating point number
+ */
 double log10(double x) {
 	return __elibc_log10(x);
 }

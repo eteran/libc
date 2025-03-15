@@ -13,7 +13,7 @@
  * @param nmemb the number of elements in the array
  * @param size the size of each element in the array
  * @param compar a pointer to a comparison function that determines the order of the elements
- * @return void* a pointer to the found element, or NULL if the key is not found
+ * @return a pointer to the found element, or NULL if the key is not found
  */
 void *bsearch(const void *key, const void *base, size_t nmemb, size_t size, __compar_fn_t compar) {
 

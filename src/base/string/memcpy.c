@@ -29,7 +29,7 @@
  * @param dest a pointer to the destination block of memory
  * @param src a pointer to the source block of memory
  * @param n the number of bytes to copy
- * @return void* a pointer to the destination block of memory
+ * @return a pointer to the destination block of memory
  */
 _ALWAYS_INLINE _INLINE static void __elibc_memcpy64(uint64_t *_RESTRICT dest,
 													const uint64_t *_RESTRICT src, size_t n) {
@@ -46,7 +46,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_memcpy64(uint64_t *_RESTRICT dest,
  * @param dest a pointer to the destination block of memory
  * @param src a pointer to the source block of memory
  * @param n the number of bytes to copy
- * @return void* a pointer to the destination block of memory
+ * @return a pointer to the destination block of memory
  */
 _ALWAYS_INLINE _INLINE static void __elibc_memcpy32(uint32_t *_RESTRICT dest,
 													const uint32_t *_RESTRICT src, size_t n) {
@@ -62,7 +62,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_memcpy32(uint32_t *_RESTRICT dest,
  * @param dest a pointer to the destination block of memory
  * @param src a pointer to the source block of memory
  * @param n the number of bytes to copy
- * @return void* a pointer to the destination block of memory
+ * @return a pointer to the destination block of memory
  */
 _ALWAYS_INLINE _INLINE static void __elibc_memcpy16(uint16_t *_RESTRICT dest,
 													const uint16_t *_RESTRICT src, size_t n) {
@@ -78,7 +78,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_memcpy16(uint16_t *_RESTRICT dest,
  * @param dest a pointer to the destination block of memory
  * @param src a pointer to the source block of memory
  * @param n the number of bytes to copy
- * @return void* a pointer to the destination block of memory
+ * @return a pointer to the destination block of memory
  */
 _ALWAYS_INLINE _INLINE static void __elibc_memcpy8(uint8_t *_RESTRICT dest,
 												   const uint8_t *_RESTRICT src, size_t n) {
@@ -94,7 +94,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_memcpy8(uint8_t *_RESTRICT dest,
  * @param dest a pointer to the destination block of memory
  * @param src a pointer to the source block of memory
  * @param n the number of bytes to copy
- * @return void* a pointer to the destination block of memory
+ * @return a pointer to the destination block of memory
  */
 void *memcpy(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) {
 

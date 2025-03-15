@@ -10,7 +10,7 @@
  * @param size the maximum number of bytes to write to the destination string
  * @param format a pointer to the format string
  * @param ... a variable argument list containing the values to format
- * @return int the number of characters written to the string, or a negative value on error
+ * @return the number of characters written to the string, or a negative value on error
  */
 int snprintf(char *str, size_t size, const char *format, ...) {
 	int ret;

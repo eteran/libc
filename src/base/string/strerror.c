@@ -12,7 +12,7 @@
  * @param errnum the error code
  * @param buf the buffer to store the error message
  * @param n the size of the buffer
- * @return int 0 on success, or a non-zero value on failure
+ * @return 0 on success, or a non-zero value on failure
  */
 int strerror_r(int errnum, char *buf, size_t n) {
 
@@ -145,7 +145,7 @@ int strerror_r(int errnum, char *buf, size_t n) {
  * @brief Get a string describing an error code
  *
  * @param errnum the error code
- * @return char* pointer to a string describing the error code
+ * @return pointer to a string describing the error code
  * @note This function is not thread-safe. Use strerror_r instead.
  */
 char *strerror(int errnum) {

@@ -49,7 +49,7 @@ typedef struct {
  * @param size the size of the buffer
  * @param width the width to use
  * @param precision the precision to use
- * @return write_context_t the write context
+ * @return the write context
  */
 _ALWAYS_INLINE _INLINE static write_context_t _create_context(char *buffer, size_t size, int width,
 															  int precision) {
@@ -99,7 +99,7 @@ _ALWAYS_INLINE _INLINE static void _reverse_buffer(char *p1, char *p2) {
  *
  * @param ctx the write context
  * @param flags the flags to use for the conversion
- * @return int the padding width
+ * @return the padding width
  */
 static int _pad_width(write_context_t *ctx, const flags_t *flags) {
 	const int pad_zero  = flags->padding;
@@ -161,7 +161,7 @@ static void _itoa_common(write_context_t *ctx, uintmax_t ud, unsigned int diviso
  * @param d the unsigned integer to convert
  * @param width the width to use
  * @param flags the flags to use
- * @return const char* a pointer to the string
+ * @return a pointer to the string
  */
 static const char *_unsigned_itoa(char *buffer, size_t size, char base, int precision, uintmax_t ud,
 								  int width, const flags_t *flags) {
@@ -224,7 +224,7 @@ static const char *_unsigned_itoa(char *buffer, size_t size, char base, int prec
  * @param d the signed integer to convert
  * @param width the width to use
  * @param flags the flags to use
- * @return const char* a pointer to the string
+ * @return a pointer to the string
  */
 static const char *_signed_itoa(char *buffer, size_t size, int precision, intmax_t d, int width,
 								const flags_t *flags) {
@@ -263,7 +263,7 @@ static const char *_signed_itoa(char *buffer, size_t size, int precision, intmax
  * @brief Get the number of digits in a double in base 10
  *
  * @param n the number to get the length of
- * @return int the number of digits in the number
+ * @return the number of digits in the number
  * @note this function assumes that the number is positive
  */
 static int base10_len(double n) {
@@ -296,7 +296,7 @@ static int base10_len(double n) {
  * @brief Get the number of digits in a double in base 10
  *
  * @param n the number to get the length of
- * @return int the number of digits in the number
+ * @return the number of digits in the number
  */
 static int _digit10_count(double n) {
 
@@ -312,7 +312,7 @@ static int _digit10_count(double n) {
  *
  * @param value the value to round
  * @param precision the precision to round to
- * @return double the rounded value
+ * @return the rounded value
  */
 static double _round_double(double value, int precision) {
 	const double x = 0.5 / pow(10, precision);
@@ -330,7 +330,7 @@ static double _round_double(double value, int precision) {
  * @param value the value to format
  * @param precision the precision to use
  * @param flags the flags to use
- * @return int the length of the formatted string
+ * @return the length of the formatted string
  */
 static int _float_length(double value, int precision, const flags_t *flags) {
 	int n = 0;
@@ -357,7 +357,7 @@ static int _float_length(double value, int precision, const flags_t *flags) {
  * @param precision the precision to use
  * @param width the width to use
  * @param flags the flags to use
- * @return char* a pointer to the formatted string
+ * @return a pointer to the formatted string
  */
 static char *_format_float_decimal(char *buf, size_t size, double value, int precision, int width,
 								   const flags_t *flags) {
@@ -436,7 +436,7 @@ static char *_format_float_decimal(char *buf, size_t size, double value, int pre
  * @param format the format to use ('e' or 'E')
  * @param width the width to use
  * @param flags the flags to use
- * @return char* a pointer to the formatted string
+ * @return a pointer to the formatted string
  */
 static char *_format_float_exponent(char *buf, size_t size, double value, int precision,
 									char format, int width, const flags_t *flags) {
@@ -515,7 +515,7 @@ static char *_format_float_exponent(char *buf, size_t size, double value, int pr
  * @param format the format to use
  * @param width the width to use
  * @param flags the flags to use
- * @return char* a pointer to the formatted string
+ * @return a pointer to the formatted string
  * @note this function supports the following formats:
  * - %e: scientific notation (lowercase)
  * - %E: scientific notation (uppercase)
@@ -607,7 +607,7 @@ static char *_format_float(char *buf, size_t size, double value, int precision, 
  *
  * @param format the format string
  * @param flags the flags to set
- * @return const char* the next character in the format string
+ * @return the next character in the format string
  */
 static const char *_get_flags(const char *format, flags_t *flags) {
 	flags_t f    = {0, 0, 0, 0, 0};
@@ -664,7 +664,7 @@ static const char *_get_flags(const char *format, flags_t *flags) {
  * @param format the format string
  * @param width the width to set
  * @param ap the variable argument list
- * @return const char* the next character in the format string
+ * @return the next character in the format string
  */
 static const char *_get_width(const char *format, int *width, va_list *ap) {
 
@@ -693,7 +693,7 @@ static const char *_get_width(const char *format, int *width, va_list *ap) {
  * @param format the format string
  * @param precision the precision to set
  * @param ap the variable argument list
- * @return const char* the next character in the format string
+ * @return the next character in the format string
  */
 static const char *_get_precision(const char *format, int *precision, va_list *ap) {
 
@@ -731,7 +731,7 @@ static const char *_get_precision(const char *format, int *precision, va_list *a
  *
  * @param format the format string
  * @param modifier the modifier to set
- * @return const char* the next character in the format string
+ * @return the next character in the format string
  */
 static const char *_get_modifier(const char *format, int *modifier) {
 
@@ -826,7 +826,7 @@ static void _output_string(char ch, const char *s_ptr, int precision, int *width
  * @param c the context to write to
  * @param format the format string
  * @param ap the variable argument list
- * @return int the number of characters written
+ * @return the number of characters written
  */
 int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 

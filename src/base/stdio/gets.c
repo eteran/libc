@@ -7,7 +7,7 @@
  * @brief Read a string from standard input
  *
  * @param s a pointer to the buffer to read the string into
- * @return char* a pointer to the buffer containing the string read from standard input
+ * @return a pointer to the buffer containing the string read from standard input
  * @warning This function is unsafe and should not be used in new code. It is provided for compatibility with legacy code.
  * @see fgets
  */

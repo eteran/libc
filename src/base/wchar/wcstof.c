@@ -9,7 +9,7 @@
  *
  * @param nptr The wide string to convert
  * @param endptr A pointer to a wide-character pointer that will be set to the first invalid character in the string
- * @return float The converted float
+ * @return The converted float
  */
 float wcstof(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr) {
 	_UNUSED(nptr);

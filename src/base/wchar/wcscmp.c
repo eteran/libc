@@ -8,7 +8,7 @@
  *
  * @param s1 The first wide-character string to be compared
  * @param s2 The second wide-character string to be compared
- * @return int less than, equal to, or greater than zero if s1 is
+ * @return less than, equal to, or greater than zero if s1 is
  * lexicographically less than, equal to, or greater than s2.
  */
 int wcscmp(const wchar_t *s1, const wchar_t *s2) {

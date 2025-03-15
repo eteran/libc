@@ -5,16 +5,24 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_fminl
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the minimum of two floating point numbers
+ *
+ * @param x the first floating point number
+ * @param y the second floating point number
+ * @return the minimum of the two floating point numbers
+ */
 static long double __elibc_fminl(long double x, long double y) {
 	return x < y ? x : y;
 }
 
-/*------------------------------------------------------------------------------
-// Name: fminl
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the minimum of two floating point numbers
+ *
+ * @param x the first floating point number
+ * @param y the second floating point number
+ * @return the minimum of the two floating point numbers
+ */
 long double fminl(long double x, long double y) {
 #ifndef __FAST_MATH__
 	if (isnan(x)) {

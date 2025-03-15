@@ -9,7 +9,7 @@
  * @param s a pointer to the block of memory to search
  * @param c the character to search for
  * @param n the number of bytes to search
- * @return void* a pointer to the first occurrence of the character in the block of memory, or NULL if the character is not found
+ * @return a pointer to the first occurrence of the character in the block of memory, or NULL if the character is not found
  */
 void *memchr(const void *s, int c, size_t n) {
 

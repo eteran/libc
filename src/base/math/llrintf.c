@@ -5,9 +5,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: llrintf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Round a float to the nearest integer value as a long long int
+ *
+ * @param x the float to round
+ * @return the rounded value
+ */
 long long int llrintf(float x) {
 	return __builtin_llrintf(x);
 }

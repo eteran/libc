@@ -9,7 +9,7 @@
  * @param dest The destination string where the wide-characters will be copied to.
  * @param src The source string from which the wide-characters will be copied.
  * @param n The number of wide-characters to copy.
- * @return wchar_t*
+ * @return A pointer to the destination string.
  */
 wchar_t *wmemmove(wchar_t *dest, const wchar_t *src, size_t n) {
 

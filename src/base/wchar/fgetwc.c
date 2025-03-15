@@ -12,7 +12,7 @@
  * @brief Determine the expected length of a UTF-8 character
  *
  * @param ch the character to determine the length of
- * @return int the expected length of the UTF-8 character, or -1 if the character is invalid
+ * @return the expected length of the UTF-8 character, or -1 if the character is invalid
  */
 static int __elibc_expected_length(wint_t ch) {
 	if ((ch & 0x80) == 0) {
@@ -42,7 +42,7 @@ static int __elibc_expected_length(wint_t ch) {
  * @brief Read a wide character from a stream
  *
  * @param stream the input stream to read from
- * @return wint_t the byte of the next wide character read, or WEOF if an error occurred or the end of the stream was reached
+ * @return the byte of the next wide character read, or WEOF if an error occurred or the end of the stream was reached
  */
 static wint_t __elibc_fgetwc(FILE *stream) {
 
@@ -104,7 +104,7 @@ static wint_t __elibc_fgetwc(FILE *stream) {
  *
  * @param stream the input stream to read from
  * @param buf the buffer to store the read character
- * @return int the number of bytes read, or -1	 if an error occurred or the end of the stream was reached
+ * @return the number of bytes read, or -1	 if an error occurred or the end of the stream was reached
  */
 static int __elibc_fgetwc_unlocked(FILE *stream, char *buf) {
 	wint_t r;
@@ -147,7 +147,7 @@ static int __elibc_fgetwc_unlocked(FILE *stream, char *buf) {
  * @brief Read a wide character from a stream
  *
  * @param stream the input stream to read from
- * @return wint_t the wide character read, or WEOF if an error occurred or the end of the stream was reached
+ * @return the wide character read, or WEOF if an error occurred or the end of the stream was reached
  */
 wint_t fgetwc(FILE *stream) {
 

@@ -13,7 +13,7 @@
  *
  * @param wc the wide-character to be written
  * @param stream the output stream to write to
- * @return wint_t the wide-character written, or WEOF if an error occurred
+ * @return the wide-character written, or WEOF if an error occurred
  */
 wint_t __elibc_fputwc_unlocked(wchar_t wc, FILE *stream) {
 	char buf[MB_LEN_MAX];
@@ -38,7 +38,7 @@ wint_t __elibc_fputwc_unlocked(wchar_t wc, FILE *stream) {
  *
  * @param wc the wide-character to be written
  * @param stream the output stream to write to
- * @return wint_t the wide-character written, or WEOF if an error occurred
+ * @return the wide-character written, or WEOF if an error occurred
  */
 wint_t fputwc(wchar_t wc, FILE *stream) {
 	wint_t r;

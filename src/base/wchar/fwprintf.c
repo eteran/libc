@@ -11,7 +11,7 @@
  * @param stream the output stream to write to
  * @param format the format string that specifies how the output should be formatted
  * @param ... variable arguments to be formatted and written to the stream
- * @return int number of wide-characters written, not including the
+ * @return number of wide-characters written, not including the
  * terminating null wide-character, or a negative value if an error
  * occurred.
  */

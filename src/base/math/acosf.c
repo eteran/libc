@@ -9,7 +9,7 @@
  * @brief Computes the arc cosine of a given value.
  *
  * @param x The value for which to compute the arc cosine.
- * @return float The arc cosine of the input value.
+ * @return The arc cosine of the input value.
  * @note This function uses the inverse sine function to compute the arc cosine.
  */
 _ALWAYS_INLINE static float __elibc_acosf(float x) {
@@ -20,7 +20,7 @@ _ALWAYS_INLINE static float __elibc_acosf(float x) {
  * @brief Computes the arc cosine of a given value.
  *
  * @param x The value for which to compute the arc cosine.
- * @return float The arc cosine of the input value.
+ * @return The arc cosine of the input value.
  */
 float acosf(float x) {
 #ifndef __FAST_MATH__

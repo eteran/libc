@@ -4,16 +4,22 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_floor
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the largest integer value less than or equal to a floating point number
+ *
+ * @param x the floating point number to compute the largest integer value less than or equal to
+ * @return the largest integer value less than or equal to the floating point number
+ */
 _ALWAYS_INLINE _INLINE static double __elibc_floor(double x) {
 	return __builtin_floor(x);
 }
 
-/*------------------------------------------------------------------------------
-// Name: floor
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the largest integer value less than or equal to a floating point number
+ *
+ * @param x the floating point number to compute the largest integer value less than or equal to
+ * @return the largest integer value less than or equal to the floating point number
+ */
 double floor(double x) {
 	return __elibc_floor(x);
 }

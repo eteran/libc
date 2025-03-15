@@ -9,7 +9,7 @@
  * @param haystack the string to be searched
  * @param needle the substring to be searched for
  * @param n the maximum number of characters to be searched
- * @return char* pointer to the first occurrence of the substring in the string, or NULL if the substring is not found
+ * @return pointer to the first occurrence of the substring in the string, or NULL if the substring is not found
  */
 char *strnstr(const char *haystack, const char *needle, size_t n) {
 
@@ -35,7 +35,7 @@ char *strnstr(const char *haystack, const char *needle, size_t n) {
  *
  * @param haystack the string to be searched
  * @param needle the substring to be searched for
- * @return char* pointer to the first occurrence of the substring in the string, or NULL if the substring is not found
+ * @return pointer to the first occurrence of the substring in the string, or NULL if the substring is not found
  */
 char *strstr(const char *haystack, const char *needle) {
 	return strnstr(haystack, needle, strlen(needle));

@@ -4,16 +4,22 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_fabs
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the absolute value of a floating point number
+ *
+ * @param x the floating point number to compute the absolute value of
+ * @return the absolute value of the floating point number
+ */
 _ALWAYS_INLINE _INLINE static double __elibc_fabs(double x) {
 	return __builtin_fabs(x);
 }
 
-/*------------------------------------------------------------------------------
-// Name: fabs
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the absolute value of a floating point number
+ *
+ * @param x the floating point number to compute the absolute value of
+ * @return the absolute value of the floating point number
+ */
 double fabs(double x) {
 	return __elibc_fabs(x);
 }

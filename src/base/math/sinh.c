@@ -5,16 +5,22 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_sinh
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the hyperbolic sine of a floating point number
+ *
+ * @param x the floating point number to compute the hyperbolic sine of
+ * @return the hyperbolic sine of the floating point number
+ */
 _ALWAYS_INLINE _INLINE static double __elibc_sinh(double x) {
 	return (exp(x) - exp(-x)) / 2;
 }
 
-/*------------------------------------------------------------------------------
-// Name: sinh
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the hyperbolic sine of a floating point number
+ *
+ * @param x the floating point number to compute the hyperbolic sine of
+ * @return the hyperbolic sine of the floating point number
+ */
 double sinh(double x) {
 
 #ifndef __FAST_MATH__

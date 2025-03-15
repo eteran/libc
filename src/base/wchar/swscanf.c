@@ -8,7 +8,7 @@
  * @param ws the wide-character string to be read
  * @param format format string
  * @param ... variable arguments to be filled with the input data
- * @return int number of input items successfully matched and assigned
+ * @return number of input items successfully matched and assigned
  * or EOF if an error occurred or the end of the input stream was reached.
  */
 int swscanf(const wchar_t *_RESTRICT ws, const wchar_t *_RESTRICT format, ...) {

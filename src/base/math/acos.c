@@ -9,7 +9,7 @@
  * @brief Computes the arc cosine (inverse cosine) of a given value.
  *
  * @param x The value for which to compute the arc cosine.
- * @return double Returns the arc cosine of the input value.
+ * @return Returns the arc cosine of the input value.
  * @note This function uses the relationship between pi and arcsine to compute the arc cosine.
  */
 _ALWAYS_INLINE _INLINE static double __elibc_acos(double x) {
@@ -20,7 +20,7 @@ _ALWAYS_INLINE _INLINE static double __elibc_acos(double x) {
  * @brief Computes the arc cosine (inverse cosine) of a given value.
  *
  * @param x The value for which to compute the arc cosine.
- * @return double Returns the arc cosine of the input value.
+ * @return Returns the arc cosine of the input value.
  */
 double acos(double x) {
 

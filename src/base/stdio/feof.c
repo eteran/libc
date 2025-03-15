@@ -7,7 +7,7 @@
  * @brief Check if the end-of-file indicator for a stream is set (thread-unsafe)
  *
  * @param stream the stream to check
- * @return int non-zero if the end-of-file indicator is set, zero otherwise
+ * @return non-zero if the end-of-file indicator is set, zero otherwise
  */
 static int __elibc_feof(FILE *stream) {
 	assert(stream);
@@ -18,7 +18,7 @@ static int __elibc_feof(FILE *stream) {
  * @brief Check if the end-of-file indicator for a stream is set
  *
  * @param stream the stream to check
- * @return int non-zero if the end-of-file indicator is set, zero otherwise
+ * @return non-zero if the end-of-file indicator is set, zero otherwise
  */
 int feof(FILE *stream) {
 	int r;

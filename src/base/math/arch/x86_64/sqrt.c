@@ -5,9 +5,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_sqrt
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the square root of a floating point number
+ *
+ * @param x the floating point number to compute the square root of
+ * @return the square root of the floating point number
+ */
 _ALWAYS_INLINE _INLINE static double __elibc_sqrt(double x) {
 	double value;
 	__asm__ __volatile__("fsqrt"
@@ -16,9 +19,12 @@ _ALWAYS_INLINE _INLINE static double __elibc_sqrt(double x) {
 	return value;
 }
 
-/*------------------------------------------------------------------------------
-// Name:  sqrt
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the square root of a floating point number
+ *
+ * @param x the floating point number to compute the square root of
+ * @return the square root of the floating point number
+ */
 double sqrt(double x) {
 #ifndef __FAST_MATH__
 	if (x < -0) {

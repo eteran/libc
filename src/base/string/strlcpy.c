@@ -10,7 +10,7 @@
  * @param dest the destination buffer
  * @param src the source string
  * @param n the size of the destination buffer
- * @return size_t the length of the source string
+ * @return the length of the source string
  * @note This function is not a standard C function. It is included for compatibility with other systems.
  */
 size_t strlcpy(char *_RESTRICT dest, const char *_RESTRICT src, size_t n) {

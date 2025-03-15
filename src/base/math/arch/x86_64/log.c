@@ -4,9 +4,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_log
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the natural logarithm of a floating point number
+ *
+ * @param x the floating point number to compute the natural logarithm of
+ * @return the natural logarithm of the floating point number
+ */
 double __elibc_log(double x) {
 	double value;
 	__asm__ __volatile__("fldln2; fxch; fyl2x"
@@ -16,9 +19,12 @@ double __elibc_log(double x) {
 	return value;
 }
 
-/*------------------------------------------------------------------------------
-// Name: log
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the natural logarithm of a floating point number
+ *
+ * @param x the floating point number to compute the natural logarithm of
+ * @return the natural logarithm of the floating point number
+ */
 double log(double x) {
 	return __elibc_log(x);
 }

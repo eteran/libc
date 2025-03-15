@@ -48,7 +48,7 @@ struct __elibc_strftime_context {
  * @param format format string
  * @param ctx pointer to a structure containing the format context
  * @param tm pointer to a structure containing the date and time
- * @return size_t number of wide-characters written, not including the
+ * @return number of wide-characters written, not including the
  * terminating null wide-character. If the formatted date and time does
  * not fit in the buffer, the function returns 0.
  */
@@ -251,7 +251,7 @@ static size_t __elibc_strftime(const char *format, struct __elibc_strftime_conte
  * @param max maximum number of characters to be written
  * @param format format string
  * @param tm pointer to a structure containing the date and time
- * @return size_t number of wide-characters written, not including the
+ * @return number of wide-characters written, not including the
  * terminating null wide-character. If the formatted date and time does
  * not fit in the buffer, the function returns 0.
  */

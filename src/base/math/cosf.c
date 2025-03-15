@@ -5,16 +5,22 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_cosf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the cosine of a floating point number
+ *
+ * @param x the floating point number to compute the cosine of
+ * @return the cosine of the floating point number
+ */
 static float __elibc_cosf(float x) {
 	return sinf(x + (M_PIf / 2.0f));
 }
 
-/*------------------------------------------------------------------------------
-// Name: cosf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the cosine of a floating point number
+ *
+ * @param x the floating point number to compute the cosine of
+ * @return the cosine of the floating point number
+ */
 float cosf(float x) {
 
 #ifndef __FAST_MATH__

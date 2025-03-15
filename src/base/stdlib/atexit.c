@@ -9,7 +9,7 @@ static unsigned int __elibc_f_index = 0;
  * @brief Register a function to be called at program exit
  *
  * @param function a pointer to the function to register
- * @return int 0 on success, -1 on failure
+ * @return 0 on success, -1 on failure
  */
 int atexit(_atexit_t function) {
 

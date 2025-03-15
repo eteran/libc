@@ -8,7 +8,7 @@
  * @brief Compute the absolute value of an integer
  *
  * @param j the integer to compute the absolute value of
- * @return int the absolute value of the integer
+ * @return the absolute value of the integer
  */
 int abs(int j) {
 	assert(j != INT_MIN);

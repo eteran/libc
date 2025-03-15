@@ -12,7 +12,7 @@
  * @param buf a pointer to the buffer to use, or NULL to use the default buffer
  * @param mode the buffering mode to use, one of _IONBF, _IOLBF or _IOFBF
  * @param size the size of the buffer to use, or 0 to use the default size
- * @return int 0 on success, or a negative value on error
+ * @return 0 on success, or a negative value on error
  */
 static int __elibc_setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode, size_t size) {
 	int ret = 0;
@@ -61,7 +61,7 @@ static int __elibc_setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode
  * @param buf a pointer to the buffer to use, or NULL to use the default buffer
  * @param mode the buffering mode to use, one of _IONBF, _IOLBF or _IOFBF
  * @param size the size of the buffer to use, or 0 to use the default size
- * @return int 0 on success, or a negative value on error
+ * @return 0 on success, or a negative value on error
  */
 int setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode, size_t size) {
 	int r;

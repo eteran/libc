@@ -9,7 +9,7 @@
  *
  * @param stream the stream to be checked
  * @param mode orientation mode
- * @return int returns a positive value if stream is wide-character oriented,
+ * @return returns a positive value if stream is wide-character oriented,
  * a negative value if stream is byte oriented, or zero if the orientation
  * is indeterminate.
  */
@@ -48,7 +48,7 @@ int __elibc_fwide(FILE *stream, int mode) {
  *
  * @param stream the stream to be checked
  * @param mode orientation mode
- * @return int returns a positive value if stream is wide-character oriented,
+ * @return returns a positive value if stream is wide-character oriented,
  * a negative value if stream is byte oriented, or zero if the orientation
  * is indeterminate.
  */

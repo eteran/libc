@@ -10,7 +10,7 @@
 /**
  * @brief Generate a random number
  *
- * @return int a random number between 0 and RAND_MAX
+ * @return a random number between 0 and RAND_MAX
  */
 int rand(void) {
 	return rand_r(__elibc_rand_next());
@@ -20,7 +20,7 @@ int rand(void) {
  * @brief Generate a random number using a seed
  *
  * @param seedp a pointer to the seed
- * @return int a random number between 0 and RAND_MAX
+ * @return a random number between 0 and RAND_MAX
  */
 int rand_r(unsigned int *seedp) {
 
@@ -52,7 +52,7 @@ int rand_r(unsigned int *seedp) {
 /**
  * @brief Get the thread-local random number generator state
  *
- * @return unsigned int* a pointer to the thread-local random number generator state
+ * @return a pointer to the thread-local random number generator state
  */
 unsigned int *__elibc_rand_next(void) {
 	static _Thread_local unsigned int next = 1;

@@ -8,7 +8,7 @@
  *
  * @param dest the destination string
  * @param src the source string
- * @return char* pointer to the destination string
+ * @return pointer to the destination string
  */
 char *strcat(char *_RESTRICT dest, const char *_RESTRICT src) {
 	char *dest_ptr = dest;

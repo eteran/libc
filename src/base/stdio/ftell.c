@@ -8,7 +8,7 @@
  * @brief Get the current position of the file pointer in a stream
  *
  * @param stream the stream to get the position of
- * @return long the current position of the file pointer, or -1 on error
+ * @return the current position of the file pointer, or -1 on error
  */
 long ftell(FILE *stream) {
 

@@ -8,7 +8,7 @@
  * @param haystack The wide string to search in
  * @param needle The wide string to search for
  * @param n The maximum number of characters to search for
- * @return wchar_t* A pointer to the first occurrence of needle in haystack, or NULL if needle is not found
+ * @return A pointer to the first occurrence of needle in haystack, or NULL if needle is not found
  */
 wchar_t *wcsnstr(const wchar_t *haystack, const wchar_t *needle, size_t n) {
 

@@ -8,7 +8,7 @@
  *
  * @param c the character to push back
  * @param stream the input stream to push the character back to
- * @return int the character pushed back, or EOF on error
+ * @return the character pushed back, or EOF on error
  */
 static int __elibc_ungetc(int c, FILE *stream) {
 
@@ -36,7 +36,7 @@ static int __elibc_ungetc(int c, FILE *stream) {
  *
  * @param c the character to push back
  * @param stream the input stream to push the character back to
- * @return int the character pushed back, or EOF on error
+ * @return the character pushed back, or EOF on error
  */
 int ungetc(int c, FILE *stream) {
 	int r;

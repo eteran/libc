@@ -9,7 +9,7 @@
  *
  * @param ptr a pointer to the block of memory to be reallocated
  * @param size the new size of the block of memory
- * @return void* a pointer to the reallocated block of memory, or NULL if the reallocation fails
+ * @return a pointer to the reallocated block of memory, or NULL if the reallocation fails
  * @note If the new size is zero and the pointer is not NULL, the block of memory is freed and NULL is returned.
  * @note If the pointer is NULL, the function behaves like malloc(size).
  */

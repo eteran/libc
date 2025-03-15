@@ -6,9 +6,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_tan
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the tangent of a floating point number
+ *
+ * @param x the floating point number to compute the tangent of
+ * @return the tangent of the floating point number
+ */
 _ALWAYS_INLINE _INLINE static double __elibc_tan(double x) {
 
 	/* TODO(eteran): account for possible overflow */
@@ -21,9 +24,12 @@ _ALWAYS_INLINE _INLINE static double __elibc_tan(double x) {
 	}
 }
 
-/*------------------------------------------------------------------------------
-// Name: tan
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the tangent of a floating point number
+ *
+ * @param x the floating point number to compute the tangent of
+ * @return the tangent of the floating point number
+ */
 double tan(double x) {
 #ifndef __FAST_MATH__
 	if (isnan(x)) {

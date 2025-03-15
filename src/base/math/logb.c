@@ -5,9 +5,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: logb
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Get exponent of a floating-point value
+ *
+ * @param x the floating-point value to get the exponent of
+ * @return the exponent of the floating-point value
+ */
 double logb(double x) {
 	return __builtin_logb(x);
 }

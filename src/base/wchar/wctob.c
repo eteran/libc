@@ -7,7 +7,7 @@
  * @brief Converts a wide-character to a byte character
  *
  * @param c The wide-character to convert
- * @return int The byte character, or EOF if the wide-character is not a valid byte character
+ * @return The byte character, or EOF if the wide-character is not a valid byte character
  * @note This function only supports ASCII and UTF-8 characters
  * @note For values below 0x80, the function returns the same value as the input
  */

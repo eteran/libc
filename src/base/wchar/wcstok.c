@@ -7,7 +7,7 @@
  *
  * @param s the wide string to be split
  * @param delim the delimiter characters
- * @return wchar_t* pointer to the next token in the string, or NULL if there are no more tokens
+ * @return pointer to the next token in the string, or NULL if there are no more tokens
  * @note This function is not thread-safe. Use wcstok_r instead.
  */
 wchar_t *wcstok(wchar_t *_RESTRICT s, const wchar_t *_RESTRICT delim) {
@@ -21,7 +21,7 @@ wchar_t *wcstok(wchar_t *_RESTRICT s, const wchar_t *_RESTRICT delim) {
  * @param s the wide string to be split
  * @param delim the delimiter characters
  * @param saveptr pointer to a wchar_t* where the function will store the next position in the string
- * @return wchar_t* pointer to the next token in the string, or NULL if there are no more tokens
+ * @return pointer to the next token in the string, or NULL if there are no more tokens
  */
 wchar_t *wcstok_r(wchar_t *_RESTRICT s, const wchar_t *_RESTRICT delim, wchar_t **ptrptr) {
 

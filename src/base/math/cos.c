@@ -6,16 +6,22 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_cos
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the cosine of a floating point number
+ *
+ * @param x the floating point number to compute the cosine of
+ * @return the cosine of the floating point number
+ */
 _ALWAYS_INLINE _INLINE static double __elibc_cos(double x) {
 	return sin(x + (M_PI / 2.0));
 }
 
-/*------------------------------------------------------------------------------
-// Name: cos
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the cosine of a floating point number
+ *
+ * @param x the floating point number to compute the cosine of
+ * @return the cosine of the floating point number
+ */
 double cos(double x) {
 
 #ifndef __FAST_MATH__

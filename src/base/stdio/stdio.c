@@ -118,7 +118,7 @@ void __elibc_unlock_stream(FILE *stream) {
 /**
   * @brief Allocate a new FILE structure
   *
-  * @return FILE* a pointer to the allocated FILE structure
+  * @return a pointer to the allocated FILE structure
   * @note we use this caching strategy of FILE objects for two reasons
   * 1. because it's faster than reaching out to malloc
   * 2. more importantly, by delaying actually freeing the objects, it makes

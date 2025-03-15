@@ -6,7 +6,7 @@
 /**
  * @brief Read a wide-character from stdin
  *
- * @return wint_t the read character, or WEOF if an error occurred
+ * @return the read character, or WEOF if an error occurred
  */
 wint_t getwchar(void) {
 	return fgetwc(stdin);

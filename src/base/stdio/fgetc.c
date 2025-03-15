@@ -9,7 +9,7 @@
  * @brief Read a single character from a stream (thread-unsafe)
  *
  * @param stream the stream to read from
- * @return int the character read, or EOF on error
+ * @return the character read, or EOF on error
  */
 int __elibc_fgetc(FILE *stream) {
 
@@ -71,7 +71,7 @@ int __elibc_fgetc(FILE *stream) {
  * @brief Read a single character from a stream
  *
  * @param stream the stream to read from
- * @return int the character read, or EOF on error
+ * @return the character read, or EOF on error
  */
 int fgetc(FILE *stream) {
 	int r;

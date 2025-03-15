@@ -7,7 +7,7 @@
  *
  * @param dest destination wide-character string
  * @param src source wide-character string
- * @return wchar_t* pointer to the destination string dest
+ * @return pointer to the destination string dest
  */
 wchar_t *wcscpy(wchar_t *_RESTRICT dest, const wchar_t *_RESTRICT src) {
 	wchar_t *dest_ptr = dest;

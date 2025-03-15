@@ -38,7 +38,7 @@
  * @brief Checks if the given wide-character is an alphanumeric character.
  *
  * @param wc The wide-character to check.
- * @return int Returns a non-zero value if the wide-character is alphanumeric, otherwise returns 0.
+ * @return Returns a non-zero value if the wide-character is alphanumeric, otherwise returns 0.
  */
 IS_WCTYPE(alnum)
 
@@ -46,7 +46,7 @@ IS_WCTYPE(alnum)
  * @brief Checks if the given wide-character is an alphabetic character.
  *
  * @param wc The wide-character to check.
- * @return int Returns a non-zero value if the wide-character is alphabetic, otherwise returns 0.
+ * @return Returns a non-zero value if the wide-character is alphabetic, otherwise returns 0.
  */
 IS_WCTYPE(alpha)
 
@@ -54,7 +54,7 @@ IS_WCTYPE(alpha)
  * @brief Checks if the given wide-character is a control character.
  *
  * @param wc The wide-character to check.
- * @return int Returns a non-zero value if the wide-character is a control character, otherwise returns 0.
+ * @return Returns a non-zero value if the wide-character is a control character, otherwise returns 0.
  */
 IS_WCTYPE(cntrl)
 
@@ -62,7 +62,7 @@ IS_WCTYPE(cntrl)
  * @brief Checks if the given wide-character is a digit.
  *
  * @param wc The wide-character to check.
- * @return int Returns a non-zero value if the wide-character is a digit, otherwise returns 0.
+ * @return Returns a non-zero value if the wide-character is a digit, otherwise returns 0.
  */
 IS_WCTYPE(digit)
 
@@ -70,7 +70,7 @@ IS_WCTYPE(digit)
  * @brief Checks if the given wide-character is a graphical character.
  *
  * @param wc The wide-character to check.
- * @return int Returns a non-zero value if the wide-character is a graphical character, otherwise returns 0.
+ * @return Returns a non-zero value if the wide-character is a graphical character, otherwise returns 0.
  */
 IS_WCTYPE(graph)
 
@@ -78,7 +78,7 @@ IS_WCTYPE(graph)
  * @brief Checks if the given wide-character is a lowercase letter.
  *
  * @param wc The wide-character to check.
- * @return int Returns a non-zero value if the wide-character is a lowercase letter, otherwise returns 0.
+ * @return Returns a non-zero value if the wide-character is a lowercase letter, otherwise returns 0.
  */
 IS_WCTYPE(lower)
 
@@ -86,7 +86,7 @@ IS_WCTYPE(lower)
  * @brief Checks if the given wide-character is a printable character.
  *
  * @param wc The wide-character to check.
- * @return int Returns a non-zero value if the wide-character is printable, otherwise returns 0.
+ * @return Returns a non-zero value if the wide-character is printable, otherwise returns 0.
  */
 IS_WCTYPE(print)
 
@@ -94,7 +94,7 @@ IS_WCTYPE(print)
  * @brief Checks if the given wide-character is a punctuation character.
  *
  * @param wc The wide-character to check.
- * @return int Returns a non-zero value if the wide-character is a punctuation character, otherwise returns 0.
+ * @return Returns a non-zero value if the wide-character is a punctuation character, otherwise returns 0.
  */
 IS_WCTYPE(punct)
 
@@ -103,7 +103,7 @@ IS_WCTYPE(punct)
  * (space, form-feed, newline, carriage return, horizontal tab, or vertical tab).
  *
  * @param wc The wide-character to check.
- * @return int Returns a non-zero value if the wide-character is whitespace, otherwise returns 0.
+ * @return Returns a non-zero value if the wide-character is whitespace, otherwise returns 0.
  */
 IS_WCTYPE(space)
 
@@ -111,7 +111,7 @@ IS_WCTYPE(space)
  * @brief Checks if the given wide-character is an uppercase letter.
  *
  * @param wc The wide-character to check.
- * @return int Returns a non-zero value if the wide-character is an uppercase letter, otherwise returns 0.
+ * @return Returns a non-zero value if the wide-character is an uppercase letter, otherwise returns 0.
  */
 IS_WCTYPE(upper)
 
@@ -119,7 +119,7 @@ IS_WCTYPE(upper)
  * @brief Checks if the given wide-character is a hexadecimal digit.
  *
  * @param wc The wide-character to check.
- * @return int Returns a non-zero value if the wide-character is a hexadecimal digit, otherwise returns 0.
+ * @return Returns a non-zero value if the wide-character is a hexadecimal digit, otherwise returns 0.
  */
 IS_WCTYPE(xdigit)
 
@@ -127,7 +127,7 @@ IS_WCTYPE(xdigit)
  * @brief Checks if the given wide-character is a blank character (space or tab).
  *
  * @param wc The wide-character to check.
- * @return int Returns a non-zero value if the wide-character is a blank character, otherwise returns 0.
+ * @return Returns a non-zero value if the wide-character is a blank character, otherwise returns 0.
  */
 IS_WCTYPE(blank)
 
@@ -135,7 +135,7 @@ IS_WCTYPE(blank)
  * @brief Converts a wide-character to lowercase.
  *
  * @param wc The wide-character to convert.
- * @return wint_t Returns the lowercase equivalent of the wide-character if it exists, otherwise returns the original wide-character.
+ * @return Returns the lowercase equivalent of the wide-character if it exists, otherwise returns the original wide-character.
  */
 wint_t towlower(wint_t c) {
 	if (iswupper(c)) {
@@ -149,7 +149,7 @@ wint_t towlower(wint_t c) {
  * @brief Converts a wide-character to uppercase.
  *
  * @param wc The wide-character to convert.
- * @return wint_t Returns the uppercase equivalent of the wide-character if it exists, otherwise returns the original wide-character.
+ * @return Returns the uppercase equivalent of the wide-character if it exists, otherwise returns the original wide-character.
  */
 wint_t towupper(wint_t c) {
 	if (iswlower(c)) {
@@ -163,7 +163,7 @@ wint_t towupper(wint_t c) {
  * @brief Returns a wide-character translation mapping, given by its name.
  *
  * @param str The name of the translation mapping.
- * @return wctrans_t Returns a wide-character translation mapping if the name is valid, otherwise returns 0.
+ * @return Returns a wide-character translation mapping if the name is valid, otherwise returns 0.
  * @note The function supports two mappings: "toupper" and "tolower".
  */
 wctrans_t wctrans(const char *str) {
@@ -183,7 +183,7 @@ wctrans_t wctrans(const char *str) {
  * @brief Returns a wide-character class, given by its name.
  *
  * @param st The name of the wide-character class.
- * @return wctype_t Returns a wide-character class if the name is valid, otherwise returns 0.
+ * @return Returns a wide-character class if the name is valid, otherwise returns 0.
  * @note The function supports various classes such as "alnum", "alpha", "blank", "cntrl", "digit", "graph", "lower", "print", "space", "upper", and "xdigit".
  */
 wctype_t wctype(const char *str) {
@@ -222,7 +222,7 @@ wctype_t wctype(const char *str) {
  *
  * @param wc The wide-character to check.
  * @param desc The character class to check against.
- * @return int Returns a non-zero value if the wide-character belongs to the specified class, otherwise returns 0.
+ * @return Returns a non-zero value if the wide-character belongs to the specified class, otherwise returns 0.
  */
 int iswctype(wint_t wc, wctype_t desc) {
 	switch (desc) {
@@ -260,7 +260,7 @@ int iswctype(wint_t wc, wctype_t desc) {
  *
  * @param wc The wide-character to convert.
  * @param desc The translation mapping to use.
- * @return wint_t Returns the converted wide-character if the mapping is valid, otherwise returns 0.
+ * @return Returns the converted wide-character if the mapping is valid, otherwise returns 0.
  */
 wint_t towctrans(wint_t wc, wctrans_t desc) {
 	switch (desc) {

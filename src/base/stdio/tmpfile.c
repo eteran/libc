@@ -6,7 +6,7 @@
 /**
  * @brief Create a temporary file
  *
- * @return FILE* a pointer to the created file, or NULL on error
+ * @return a pointer to the created file, or NULL on error
  */
 FILE *tmpfile(void) {
 	FILE *file = 0;

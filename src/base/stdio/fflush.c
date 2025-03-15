@@ -8,7 +8,7 @@
  * @brief Flush a stream (thread-unsafe)
  *
  * @param stream the stream to flush
- * @return int 0 on success, or EOF on error
+ * @return 0 on success, or EOF on error
  */
 int __elibc_fflush(FILE *stream) {
 
@@ -41,7 +41,7 @@ int __elibc_fflush(FILE *stream) {
  * @brief Flush a stream
  *
  * @param stream the stream to flush, or NULL to flush all streams
- * @return int 0 on success, or EOF on error
+ * @return 0 on success, or EOF on error
  */
 int fflush(FILE *stream) {
 

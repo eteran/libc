@@ -10,7 +10,7 @@
  * @param s1 the first string to compare
  * @param s2 the second string to compare
  * @param n the maximum number of characters to compare
- * @return int a negative value if s1 is less than s2, a positive value if s1 is greater than s2, and 0 if they are equal
+ * @return a negative value if s1 is less than s2, a positive value if s1 is greater than s2, and 0 if they are equal
  */
 int strncasecmp(const char *s1, const char *s2, size_t n) {
 	int ret = 0;

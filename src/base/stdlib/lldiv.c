@@ -8,7 +8,7 @@
  *
  * @param numerator the numerator of the division
  * @param denominator the denominator of the division
- * @return lldiv_t a structure containing the quotient and remainder of the division
+ * @return a structure containing the quotient and remainder of the division
  */
 lldiv_t lldiv(long long numerator, long long denominator) {
 	lldiv_t ret;

@@ -42,7 +42,7 @@ static struct locale_meta_t {
 /**
  * @brief Checks if all locale categories are equal.
  *
- * @return int Returns 1 if all categories are equal, otherwise returns 0.
+ * @return Returns 1 if all categories are equal, otherwise returns 0.
  */
 static int __elibc_categories_equal(void) {
 
@@ -61,7 +61,7 @@ static int __elibc_categories_equal(void) {
  * @brief Gets the type of the specified locale category.
  *
  * @param category The locale category to get the type of.
- * @return int Returns the type of the specified locale category.
+ * @return Returns the type of the specified locale category.
  */
 int __elibc_get_locale_type(int category) {
 	return __elibc_locale_meta[category].type;
@@ -75,7 +75,7 @@ int __elibc_get_locale_type(int category) {
  * @param locname The name of the locale to set.
  * @param locale_name The buffer to store the locale name.
  * @param locale_name_size The size of the buffer to store the locale name.
- * @return char* Returns a pointer to the name of the current locale for the specified category, or NULL if the locale is not supported.
+ * @return Returns a pointer to the name of the current locale for the specified category, or NULL if the locale is not supported.
  */
 static char *__elibc_setlocale(struct lconv *current_lconv, int category, const char *locname, char *locale_name, size_t locale_name_size) {
 
@@ -148,7 +148,7 @@ static char *__elibc_setlocale(struct lconv *current_lconv, int category, const 
  *
  * @param category The locale category to set.
  * @param locname The name of the locale to set.
- * @return char* Returns a pointer to the name of the current locale for the specified category, or NULL if the locale is not supported.
+ * @return Returns a pointer to the name of the current locale for the specified category, or NULL if the locale is not supported.
  */
 char *setlocale(int category, const char *locname) {
 

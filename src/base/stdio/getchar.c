@@ -5,7 +5,7 @@
 /**
  * @brief Read a character from stdin
  *
- * @return int the character read, or EOF on error
+ * @return the character read, or EOF on error
  */
 int getchar(void) {
 	return fgetc(stdin);

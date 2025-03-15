@@ -5,9 +5,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_trunc
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Truncate a floating point number to an integer
+ *
+ * @param x the floating point number to truncate
+ * @return the truncated floating point number
+ */
 _ALWAYS_INLINE _INLINE static double __elibc_trunc(double x) {
 	double value;
 	const int save_round = fesetround(FE_TOWARDZERO);
@@ -18,9 +21,12 @@ _ALWAYS_INLINE _INLINE static double __elibc_trunc(double x) {
 	return value;
 }
 
-/*------------------------------------------------------------------------------
-// Name: trunc
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Truncate a floating point number to an integer
+ *
+ * @param x the floating point number to truncate
+ * @return the truncated floating point number
+ */
 double trunc(double x) {
 #ifndef __FAST_MATH__
 	if (isnan(x)) {

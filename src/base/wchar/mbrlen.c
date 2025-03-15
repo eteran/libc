@@ -9,7 +9,7 @@
  * @param s the multibyte character to be checked
  * @param n maximum number of bytes to be examined
  * @param ps pointer to the multibyte conversion state
- * @return size_t number of bytes in the multibyte character, or (size_t)-2
+ * @return number of bytes in the multibyte character, or (size_t)-2
  * if an incomplete multibyte character was encountered, or (size_t)-1
  */
 size_t mbrlen(const char *_RESTRICT s, size_t n, mbstate_t *_RESTRICT ps) {

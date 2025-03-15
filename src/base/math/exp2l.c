@@ -5,16 +5,22 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_exp2l
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the value of 2 raised to the power of a floating point number
+ *
+ * @param x the floating point number to compute the value of 2 raised to the power of
+ * @return the value of 2 raised to the power of the floating point number
+ */
 static long double __elibc_exp2l(long double x) {
 	return powl(2, x);
 }
 
-/*------------------------------------------------------------------------------
-// Name: exp2l
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the value of 2 raised to the power of a floating point number
+ *
+ * @param x the floating point number to compute the value of 2 raised to the power of
+ * @return the value of 2 raised to the power of the floating point number
+ */
 long double exp2l(long double x) {
 #ifndef __FAST_MATH__
 	if (isnan(x)) {

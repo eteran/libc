@@ -4,9 +4,14 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_atan2
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the principal value of the arc tangent of y/x, using the signs of the two arguments
+ * to determine the quadrant of the result
+ *
+ * @param y the numerator
+ * @param x the denominator
+ * @return the principal value of the arc tangent
+ */
 _ALWAYS_INLINE _INLINE static double __elibc_atan2(double y, double x) {
 	double value;
 	__asm__ __volatile__("fpatan"
@@ -16,9 +21,14 @@ _ALWAYS_INLINE _INLINE static double __elibc_atan2(double y, double x) {
 	return value;
 }
 
-/*------------------------------------------------------------------------------
-// Name: atan2
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the principal value of the arc tangent of y/x, using the signs of the two arguments
+ * to determine the quadrant of the result
+ *
+ * @param y the numerator
+ * @param x the denominator
+ * @return the principal value of the arc tangent
+ */
 double atan2(double y, double x) {
 
 #ifndef __FAST_MATH__

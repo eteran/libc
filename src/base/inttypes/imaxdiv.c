@@ -10,7 +10,7 @@
  *
  * @param numerator The numerator of the division.
  * @param denominator The denominator of the division.
- * @return imaxdiv_t Returns a structure containing the quotient and remainder of the division.
+ * @return Returns a structure containing the quotient and remainder of the division.
  */
 imaxdiv_t imaxdiv(intmax_t numerator, intmax_t denominator) {
 	imaxdiv_t ret;

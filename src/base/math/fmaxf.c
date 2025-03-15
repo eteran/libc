@@ -5,16 +5,24 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_fmaxf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the maximum of two floating point numbers
+ *
+ * @param x the first floating point number
+ * @param y the second floating point number
+ * @return the maximum of the two floating point numbers
+ */
 static float __elibc_fmaxf(float x, float y) {
 	return x > y ? x : y;
 }
 
-/*------------------------------------------------------------------------------
-// Name: fmaxf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the maximum of two floating point numbers
+ *
+ * @param x the first floating point number
+ * @param y the second floating point number
+ * @return the maximum of the two floating point numbers
+ */
 float fmaxf(float x, float y) {
 #ifndef __FAST_MATH__
 	if (isnan(x)) {

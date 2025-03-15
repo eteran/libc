@@ -8,7 +8,7 @@
  *
  * @param stream the stream to get the position of
  * @param pos a pointer to a fpos_t structure to store the position in
- * @return int 0 on success, or a negative value on error
+ * @return 0 on success, or a negative value on error
  */
 int fgetpos(FILE *stream, fpos_t *pos) {
 

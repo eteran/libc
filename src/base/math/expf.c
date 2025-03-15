@@ -5,16 +5,22 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: _elibc_expf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the value of e raised to the power of a floating point number
+ *
+ * @param x the floating point number to compute the value of e raised to the power of
+ * @return the value of e raised to the power of the floating point number
+ */
 static float _elibc_expf(float x) {
 	return powf(M_Ef, x);
 }
 
-/*------------------------------------------------------------------------------
-// Name: expf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the value of e raised to the power of a floating point number
+ *
+ * @param x the floating point number to compute the value of e raised to the power of
+ * @return the value of e raised to the power of the floating point number
+ */
 float expf(float x) {
 #ifndef __FAST_MATH__
 	if (isnan(x)) {

@@ -5,9 +5,13 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_round
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Round a floating point number to the nearest integer, but round halfway cases away from zero
+ * (regardless of the current rounding direction
+ *
+ * @param x the floating point number to round
+ * @return the rounded floating point number
+ */
 _ALWAYS_INLINE _INLINE static double __elibc_round(double x) {
 	double value;
 	const int save_round = fesetround(FE_TONEAREST);
@@ -18,9 +22,13 @@ _ALWAYS_INLINE _INLINE static double __elibc_round(double x) {
 	return value;
 }
 
-/*------------------------------------------------------------------------------
-// Name: round
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Round a floating point number to the nearest integer, but round halfway cases away from zero
+ * (regardless of the current rounding direction
+ *
+ * @param x the floating point number to round
+ * @return the rounded floating point number
+ */
 double round(double x) {
 	return __elibc_round(x);
 }

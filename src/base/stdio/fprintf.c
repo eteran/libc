@@ -10,7 +10,7 @@
  * @param stream the stream to write to
  * @param format a pointer to the format string
  * @param ... a variable argument list containing the values to format
- * @return int the number of characters written, or a negative value on error
+ * @return the number of characters written, or a negative value on error
  */
 int fprintf(FILE *_RESTRICT stream, const char *_RESTRICT format, ...) {
 	int ret;

@@ -9,7 +9,7 @@
  * @param s The pointer to the block of memory to be set.
  * @param c The wide-character to set.
  * @param n The number of wide-characters to set.
- * @return wchar_t* a pointer to the block of memory that was set.
+ * @return a pointer to the block of memory that was set.
  */
 wchar_t *wmemset(wchar_t *s, wchar_t c, size_t n) {
 

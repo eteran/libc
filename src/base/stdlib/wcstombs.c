@@ -9,7 +9,7 @@
  * @param dest the destination multibyte character string
  * @param src the source wide character string
  * @param n the maximum number of wide characters to convert
- * @return size_t the number of bytes written to the destination multibyte character string, or (size_t)-1 if an error occurs
+ * @return the number of bytes written to the destination multibyte character string, or (size_t)-1 if an error occurs
  */
 size_t wcstombs(char *dest, const wchar_t *src, size_t n) {
 	static _Thread_local mbstate_t state;

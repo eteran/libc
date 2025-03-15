@@ -5,9 +5,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: cbrtl
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the cube root of a floating point number
+ *
+ * @param x the floating point number to compute the cube root of
+ * @return the cube root of the floating point number
+ */
 long double cbrtl(long double x) {
 	return __builtin_cbrtl(x);
 }

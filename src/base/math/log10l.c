@@ -5,9 +5,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: log10l
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the base-10 logarithm of a floating point number
+ *
+ * @param x the floating point number to compute the base-10 logarithm of
+ * @return the base-10 logarithm of the floating point number
+ */
 long double log10l(long double x) {
 	return __builtin_log10l(x);
 }

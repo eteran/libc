@@ -8,7 +8,7 @@
  *
  * @param s a pointer to the destination multibyte character
  * @param wc the wide character to convert
- * @return int the number of bytes written to the destination multibyte character, or -1 if an error occurs
+ * @return the number of bytes written to the destination multibyte character, or -1 if an error occurs
  * @note s must be at least MB_CUR_MAX bytes long
  */
 int wctomb(char *s, wchar_t wc) {

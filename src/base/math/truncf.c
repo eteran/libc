@@ -6,9 +6,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: truncf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the integer value of a floating point number
+ *
+ * @param x the floating point number to compute the integer value of
+ * @return the integer value of the floating point
+ */
 float truncf(float x) {
 #ifndef __FAST_MATH__
 	if (isnan(x)) {

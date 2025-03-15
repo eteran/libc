@@ -10,7 +10,7 @@
  * @param size the size of each element to read
  * @param nmemb the number of elements to read
  * @param stream the stream to read from
- * @return size_t the number of elements read, or 0 if an error occurred
+ * @return the number of elements read, or 0 if an error occurred
  */
 static size_t __elibc_fread(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 
@@ -42,7 +42,7 @@ static size_t __elibc_fread(void *ptr, size_t size, size_t nmemb, FILE *stream) 
  * @param size the size of each element to read
  * @param nmemb the number of elements to read
  * @param stream the stream to read from
- * @return size_t the number of elements read, or 0 if an error occurred
+ * @return the number of elements read, or 0 if an error occurred
  */
 size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 	size_t r;

@@ -10,7 +10,7 @@
  * @param src The source wide-character string
  * @param n The maximum number of characters to write to dest
  * @param ps The conversion state
- * @return size_t The number of bytes written to dest, or (size_t)-1 if an error occurred
+ * @return The number of bytes written to dest, or (size_t)-1 if an error occurred
  */
 size_t wcsrtombs(char *_RESTRICT dest, const wchar_t **_RESTRICT src, size_t n, mbstate_t *_RESTRICT ps) {
 

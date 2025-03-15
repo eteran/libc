@@ -9,7 +9,7 @@
  * @param s The string to be searched.
  * @param c The wide-character to be located.
  * @param n The maximum number of wide-characters to be searched.
- * @return wchar_t* A pointer to the first occurrence of the wide-character c in the first n wide-characters of the string pointed to by s, or NULL if the character is not found.
+ * @return A pointer to the first occurrence of the wide-character c in the first n wide-characters of the string pointed to by s, or NULL if the character is not found.
  */
 wchar_t *wmemchr(const wchar_t *s, wchar_t c, size_t n) {
 

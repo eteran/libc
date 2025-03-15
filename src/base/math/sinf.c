@@ -5,9 +5,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: sinf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the sine of a floating point number
+ *
+ * @param x the floating point number to compute the sine of
+ * @return the sine of the floating point number
+ */
 float sinf(float x) {
 	return (float)sin(x);
 }

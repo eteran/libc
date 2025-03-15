@@ -5,16 +5,22 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_expl
-//----------------------------------------------------------------------------*/
-static long double __elibc_expl(long double x) {
+/**
+ * @brief Compute the value of e raised to the power of a floating point number
+ *
+ * @param x the floating point number to compute the value of e raised to the power of
+ * @return the value of e raised to the power of the floating point number
+ */
+_ALWAYS_INLINE _INLINE static long double __elibc_expl(long double x) {
 	return powl(M_E, x);
 }
 
-/*------------------------------------------------------------------------------
-// Name: expl
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the value of e raised to the power of a floating point number
+ *
+ * @param x the floating point number to compute the value of e raised to the power of
+ * @return the value of e raised to the power of the floating point number
+ */
 long double expl(long double x) {
 #ifndef __FAST_MATH__
 	if (isnan(x)) {

@@ -7,7 +7,7 @@
  * @brief Convert a string to a long integer
  *
  * @param nptr a pointer to the string to convert
- * @return long the converted long integer
+ * @return the converted long integer
  */
 long atol(const char *nptr) {
 	assert(nptr);

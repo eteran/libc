@@ -5,9 +5,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: atanhf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the inverse hyperbolic tangent tangent of a floating point number
+ *
+ * @param x the floating point number to compute the inverse hyperbolic tangent of
+ * @return the inverse hyperbolic tangent of the floating point number
+ */
 float atanhf(float x) {
 	return __builtin_atanhf(x);
 }

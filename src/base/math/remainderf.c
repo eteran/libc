@@ -5,9 +5,13 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: remainderf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the remainder of the division of two floating point numbers
+ *
+ * @param x the dividend
+ * @param y the divisor
+ * @return The remainder division of x by y.
+ */
 float remainderf(float x, float y) {
 	return __builtin_remainderf(x, y);
 }

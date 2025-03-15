@@ -19,7 +19,7 @@
  *
  * @param path the path to the file to open
  * @param mode the mode to open the file in
- * @return FILE* a pointer to the stream associated with the file, or NULL on error
+ * @return a pointer to the stream associated with the file, or NULL on error
  */
 FILE *fopen(const char *path, const char *mode) {
 

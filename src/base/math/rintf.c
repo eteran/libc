@@ -5,9 +5,12 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: rintf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Round a floating-point value to the nearest integer value according to the current rounding mode
+ *
+ * @param x the floating-point value to round
+ * @return the rounded value
+ */
 float rintf(float x) {
 	return __builtin_rintf(x);
 }

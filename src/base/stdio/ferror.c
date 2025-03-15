@@ -7,7 +7,7 @@
  * @brief Check if a stream has encountered an error (thread-unsafe)
  *
  * @param stream the stream to check
- * @return int non-zero if the stream has encountered an error, zero otherwise
+ * @return non-zero if the stream has encountered an error, zero otherwise
  */
 static int __elibc_ferror(FILE *stream) {
 	assert(stream);
@@ -18,7 +18,7 @@ static int __elibc_ferror(FILE *stream) {
  * @brief Check if a stream has encountered an error
  *
  * @param stream the stream to check
- * @return int non-zero if the stream has encountered an error, zero otherwise
+ * @return non-zero if the stream has encountered an error, zero otherwise
  */
 int ferror(FILE *stream) {
 	int r;

@@ -13,7 +13,7 @@
  * @param nptr The wide string to convert
  * @param endptr A pointer to a wide-character pointer that will be set to the first invalid character in the string
  * @param base The base to use for the conversion (between 2 and 36 inclusive, or 0)
- * @return unsigned long long The converted unsigned long long integer
+ * @return The converted unsigned long long integer
  * @note If the base is 0, the function automatically detects the base from the string format.
  */
 unsigned long long wcstoull(const wchar_t *_RESTRICT nptr, wchar_t **_RESTRICT endptr, int base) {

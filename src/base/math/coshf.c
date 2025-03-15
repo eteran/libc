@@ -5,16 +5,22 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_coshf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the hyperbolic cosine of a floating point number
+ *
+ * @param x the floating point number to compute the hyperbolic cosine of
+ * @return the hyperbolic cosine of the floating point number
+ */
 static float __elibc_coshf(float x) {
 	return (expf(x) + expf(-x)) / 2;
 }
 
-/*------------------------------------------------------------------------------
-// Name: coshf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Compute the hyperbolic cosine of a floating point number
+ *
+ * @param x the floating point number to compute the hyperbolic cosine of
+ * @return the hyperbolic cosine of the floating point number
+ */
 float coshf(float x) {
 #ifndef __FAST_MATH__
 	if (isnan(x)) {

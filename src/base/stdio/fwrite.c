@@ -11,7 +11,7 @@
  * @param size the size of each element to write
  * @param nelem the number of elements to write
  * @param stream the stream to write to
- * @return size_t the number of elements written, or 0 if an error occurred
+ * @return the number of elements written, or 0 if an error occurred
  */
 static size_t __elibc_fwrite(const void *ptr, size_t size, size_t nelem, FILE *stream) {
 	size_t elem_it;
@@ -39,7 +39,7 @@ static size_t __elibc_fwrite(const void *ptr, size_t size, size_t nelem, FILE *s
  * @param size the size of each element to write
  * @param nelem the number of elements to write
  * @param stream the stream to write to
- * @return size_t the number of elements written, or 0 if an error occurred
+ * @return the number of elements written, or 0 if an error occurred
  */
 size_t fwrite(const void *ptr, size_t size, size_t nelem, FILE *stream) {
 	size_t r;

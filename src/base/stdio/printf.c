@@ -8,7 +8,7 @@
  *
  * @param format a pointer to the format string
  * @param ... a variable argument list containing the values to format
- * @return int the number of characters written to the output, or a negative value on error
+ * @return the number of characters written to the output, or a negative value on error
  */
 int printf(const char *_RESTRICT format, ...) {
 	int ret;

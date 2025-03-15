@@ -5,9 +5,13 @@
 
 #ifdef _HAS_FPU
 
-/*------------------------------------------------------------------------------
-// Name: __elibc_modf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Split a floating-point value into its integer and fractional parts
+ *
+ * @param arg the floating-point value to split
+ * @param iptr a pointer to store the integer part of the floating-point value
+ * @return the fractional part of the floating-point value
+ */
 _ALWAYS_INLINE _INLINE static double __elibc_modf(double arg, double *iptr) {
 	int sign = 1;
 	double i_portion;
@@ -24,9 +28,13 @@ _ALWAYS_INLINE _INLINE static double __elibc_modf(double arg, double *iptr) {
 	return copysign(isinf(arg) ? 0.0 : arg - (*iptr), arg);
 }
 
-/*------------------------------------------------------------------------------
-// Name: modf
-//----------------------------------------------------------------------------*/
+/**
+ * @brief Split a floating-point value into its integer and fractional parts
+ *
+ * @param arg the floating-point value to split
+ * @param iptr a pointer to store the integer part of the floating-point value
+ * @return the fractional part of the floating-point value
+ */
 double modf(double arg, double *iptr) {
 	return __elibc_modf(arg, iptr);
 }
