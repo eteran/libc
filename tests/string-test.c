@@ -183,6 +183,9 @@ static void test_strlcat(void) {
 	n = strlcat(buffer, "!", sizeof(buffer));
 	assert(strcmp(buffer, "Hello, Wo") == 0);
 	assert(n == 10);
+	n = strlcat(buffer, "!", 0);
+	assert(strcmp(buffer, "Hello, Wo") == 0);
+	assert(n == 1);
 }
 
 static void test_strlcpy(void) {
