@@ -5,6 +5,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* This is the threshold at which we switch from quicksort to insertion sort.
+ * It is defined in terms of the number of bytes in the array, not the number of
+ * elements.
+ */
+#define INSERTION_SORT_THRESHOLD 16
+
 #define ELEMENT_PTR(base, index, size) (void *)(((char *)(base)) + ((index) * (size)))
 
 #define ELEMENT_SWP(base, i, j, size)                                          \
@@ -47,6 +53,16 @@ static size_t __elibc_partition(void *base, size_t left, size_t right, size_t si
 	return index + 1;
 }
 
+static void __elibc_insertion_sort(void *base, size_t n, size_t size, __compar_fn_t compar) {
+	for (size_t i = 1; i < n; ++i) {
+		for (size_t j = i; j > 0 && compar(ELEMENT_PTR(base, j - 1, size), ELEMENT_PTR(base, j, size)) > 0; --j) {
+			ELEMENT_SWP(base, j - 1, j, size);
+		}
+	}
+}
+
+#include <stdio.h>
+
 /**
  * @brief Sort an array of elements using the quicksort algorithm
  *
@@ -59,6 +75,11 @@ static size_t __elibc_partition(void *base, size_t left, size_t right, size_t si
 static void __elibc_quick_sort(void *base, size_t l, size_t r, size_t size, __compar_fn_t compar) {
 	assert(base);
 	assert(compar);
+
+	if ((r - l) < INSERTION_SORT_THRESHOLD) {
+		__elibc_insertion_sort(ELEMENT_PTR(base, l, size), r - l + 1, size, compar);
+		return;
+	}
 
 	if (l < r) {
 		const size_t q = __elibc_partition(base, l, r, size, compar);

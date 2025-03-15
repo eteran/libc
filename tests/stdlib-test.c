@@ -61,17 +61,40 @@ static int compare(const void *a, const void *b) {
 
 static void test_qsort(void) {
 
-	size_t i;
-	int last = INT_MIN;
-	int a[]  = {-2, 99, 0, -743, 2, INT_MIN, 4};
+	/* test small array */
+	{
+		size_t i;
+		int last = INT_MIN;
+		int a[]  = {-2, 99, 0, -743, 2, INT_MIN, 4};
 
-	const size_t size = sizeof(a) / sizeof(*a);
+		const size_t size = sizeof(a) / sizeof(*a);
 
-	qsort(a, size, sizeof(*a), compare);
+		qsort(a, size, sizeof(*a), compare);
 
-	for (i = 0; i < sizeof(a) / sizeof(*a); ++i) {
-		assert(a[i] >= last);
-		last = a[i];
+		for (i = 0; i < sizeof(a) / sizeof(*a); ++i) {
+			assert(a[i] >= last);
+			last = a[i];
+		}
+	}
+
+	/* test large array*/
+	{
+		size_t i;
+		int last = INT_MIN;
+		int a[1000];
+
+		for (i = 0; i < sizeof(a) / sizeof(*a); ++i) {
+			a[i] = rand();
+		}
+
+		const size_t size = sizeof(a) / sizeof(*a);
+
+		qsort(a, size, sizeof(*a), compare);
+
+		for (i = 0; i < sizeof(a) / sizeof(*a); ++i) {
+			assert(a[i] >= last);
+			last = a[i];
+		}
 	}
 }
 
