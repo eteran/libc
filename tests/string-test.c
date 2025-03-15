@@ -110,6 +110,15 @@ static void test_memcmp(void) {
 	assert(memcmp(a1, a1, 3) == 0);
 }
 
+static void test_memcmp_simd(void) {
+	const char a1[] = "abcdefghijklmopqrstuvwxyz012345";
+	const char a2[] = "abcdefghijklmopqsstuvwxyz012345";
+
+	assert(memcmp(a1, a2, 32) < 0);
+	assert(memcmp(a2, a1, 32) > 0);
+	assert(memcmp(a1, a1, 32) == 0);
+}
+
 static void test_memcpy(void) {
 	const char source[] = "once upon a midnight dreary...";
 	char dest[4];
@@ -351,6 +360,7 @@ int main(void) {
 	test_strstr();
 	test_strspn();
 	test_memcmp();
+	test_memcmp_simd();
 	test_memcpy();
 	test_memset();
 	test_strcat();
