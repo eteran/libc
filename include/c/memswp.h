@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-void *memswp(void *dest, void *src, size_t n) _NOEXCEPT;
+void *memswp(void *s1, void *s2, size_t n) _NOEXCEPT;
 
 _LIBC_END
 
