@@ -5,6 +5,7 @@
 #include "test_util.h"
 #include <assert.h>
 #include <errno.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -117,6 +118,25 @@ static void test_memcmp_simd(void) {
 	assert(memcmp(a1, a2, 32) < 0);
 	assert(memcmp(a2, a1, 32) > 0);
 	assert(memcmp(a1, a1, 32) == 0);
+}
+
+static void test_memswp(void) {
+	char str1[] = "1234567890";
+	char str2[] = "abcdefghij";
+	assert(strcmp(str1, "1234567890") == 0);
+	assert(strcmp(str2, "abcdefghij") == 0);
+	memswp(str1, str2, 10);
+	assert(strcmp(str1, "abcdefghij") == 0);
+	assert(strcmp(str2, "1234567890") == 0);
+
+	uint32_t nums1[] = {1, 2, 3, 4, 5, 6, 7, 8};
+	uint32_t nums2[] = {9, 10, 11, 12, 13, 14, 15, 16};
+	memswp(nums1, nums2, sizeof(nums1));
+
+	for (size_t i = 0; i < 8; ++i) {
+		assert(nums1[i] == (9 + i));
+		assert(nums2[i] == (1 + i));
+	}
 }
 
 static void test_memcpy(void) {
@@ -380,5 +400,6 @@ int main(void) {
 	test_strncmp();
 	test_strerror();
 	test_strxfrm();
+	test_memswp();
 	return 0;
 }

@@ -23,9 +23,7 @@
  * @param s2 a pointer to the second block of memory
  * @param n the number of bytes to swap
  */
-_ALWAYS_INLINE _INLINE static void __elibc_memswp64(uint64_t *_RESTRICT s1,
-													uint64_t *_RESTRICT s2, size_t n) {
-	n /= 8;
+_ALWAYS_INLINE _INLINE static void __elibc_memswp64(uint64_t *_RESTRICT s1, uint64_t *_RESTRICT s2, size_t n) {
 	while (n--) {
 		const uint64_t temp = *s1;
 		*s1                 = *s2;
@@ -37,6 +35,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_memswp64(uint64_t *_RESTRICT s1,
 }
 #endif
 
+#if _MAX_MULTIBYTE >= 4
 /**
  * @brief Swap the bytes of two blocks of memory (4-bytes at a time)
  *
@@ -44,9 +43,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_memswp64(uint64_t *_RESTRICT s1,
  * @param s2 a pointer to the second block of memory
  * @param n the number of bytes to swap
  */
-_ALWAYS_INLINE _INLINE static void __elibc_memswp32(uint32_t *_RESTRICT s1,
-													uint32_t *_RESTRICT s2, size_t n) {
-	n /= 4;
+_ALWAYS_INLINE _INLINE static void __elibc_memswp32(uint32_t *_RESTRICT s1, uint32_t *_RESTRICT s2, size_t n) {
 	while (n--) {
 		const uint32_t temp = *s1;
 		*s1                 = *s2;
@@ -56,7 +53,9 @@ _ALWAYS_INLINE _INLINE static void __elibc_memswp32(uint32_t *_RESTRICT s1,
 		++s2;
 	}
 }
+#endif
 
+#if _MAX_MULTIBYTE >= 2
 /**
  * @brief Swap the bytes of two blocks of memory (2-bytes at a time)
  *
@@ -64,9 +63,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_memswp32(uint32_t *_RESTRICT s1,
  * @param s2 a pointer to the second block of memory
  * @param n the number of bytes to swap
  */
-_ALWAYS_INLINE _INLINE static void __elibc_memswp16(uint16_t *_RESTRICT s1,
-													uint16_t *_RESTRICT s2, size_t n) {
-	n /= 2;
+_ALWAYS_INLINE _INLINE static void __elibc_memswp16(uint16_t *_RESTRICT s1, uint16_t *_RESTRICT s2, size_t n) {
 	while (n--) {
 		const uint16_t temp = *s1;
 		*s1                 = *s2;
@@ -76,6 +73,7 @@ _ALWAYS_INLINE _INLINE static void __elibc_memswp16(uint16_t *_RESTRICT s1,
 		++s2;
 	}
 }
+#endif
 
 /**
  * @brief Swap the bytes of two blocks of memory (1-byte at a time)
@@ -84,8 +82,8 @@ _ALWAYS_INLINE _INLINE static void __elibc_memswp16(uint16_t *_RESTRICT s1,
  * @param s2 a pointer to the second block of memory
  * @param n the number of bytes to swap
  */
-_ALWAYS_INLINE _INLINE static void __elibc_memswp8(uint8_t *_RESTRICT s1, uint8_t *_RESTRICT s2,
-												   size_t n) {
+_ALWAYS_INLINE _INLINE static void __elibc_memswp8(uint8_t *_RESTRICT s1, uint8_t *_RESTRICT s2, size_t n) {
+
 	while (n--) {
 		const uint8_t temp = *s1;
 		*s1                = *s2;
@@ -136,15 +134,7 @@ void *memswp(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 		uint32_t *ptr32;
 		uint16_t *ptr16;
 		uint8_t *ptr8;
-	} s1_ptr;
-
-	union {
-		void *ptr;
-		uint64_t *ptr64;
-		uint32_t *ptr32;
-		uint16_t *ptr16;
-		uint8_t *ptr8;
-	} s2_ptr;
+	} s1_ptr, s2_ptr;
 
 	assert(s1);
 	assert(s2);
@@ -152,41 +142,41 @@ void *memswp(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 	s1_ptr.ptr = s1;
 	s2_ptr.ptr = s2;
 
-	switch (n & (_MAX_MULTIBYTE - 1)) {
-	case 0:
-#if _MAX_MULTIBYTE >= 2
-#if _MAX_MULTIBYTE >= 4
 #if _MAX_MULTIBYTE >= 8
-		if (!IS_ALIGNED(s1_ptr.ptr64) || !IS_ALIGNED(s2_ptr.ptr64)) {
-			goto unaligned;
-		}
-
-		/* multiple of 8 */
-		__elibc_memswp64(s1_ptr.ptr64, s2_ptr.ptr64, n);
-		break;
-	case 4:
+	// Handle 8-byte swaps if possible
+	if (n >= 8 && IS_ALIGNED(s1_ptr.ptr64) && IS_ALIGNED(s2_ptr.ptr64)) {
+		const size_t count = n / 8;
+		__elibc_memswp64(s1_ptr.ptr64, s2_ptr.ptr64, count);
+		n -= count * 8;
+		s1_ptr.ptr64 += count;
+		s2_ptr.ptr64 += count;
+	}
 #endif
-		if (!IS_ALIGNED(s1_ptr.ptr32) || !IS_ALIGNED(s2_ptr.ptr32)) {
-			goto unaligned;
-		}
 
-		/* multiple of 4 */
-		__elibc_memswp32(s1_ptr.ptr32, s2_ptr.ptr32, n);
-		break;
-	case 6:
-	case 2:
+#if _MAX_MULTIBYTE >= 4
+	// Handle 4-byte swaps if possible
+	if (n >= 4 && IS_ALIGNED(s1_ptr.ptr32) && IS_ALIGNED(s2_ptr.ptr32)) {
+		const size_t count = n / 4;
+		__elibc_memswp32(s1_ptr.ptr32, s2_ptr.ptr32, count);
+		n -= count * 4;
+		s1_ptr.ptr32 += count;
+		s2_ptr.ptr32 += count;
+	}
 #endif
-		if (!IS_ALIGNED(s1_ptr.ptr16) || !IS_ALIGNED(s2_ptr.ptr16)) {
-			goto unaligned;
-		}
 
-		/* multiple of 2 */
-		__elibc_memswp16(s1_ptr.ptr16, s2_ptr.ptr16, n);
-		break;
-	unaligned:
-	default:
+#if _MAX_MULTIBYTE >= 2
+	// Handle 2-byte swaps if possible
+	if (n >= 2 && IS_ALIGNED(s1_ptr.ptr16) && IS_ALIGNED(s2_ptr.ptr16)) {
+		const size_t count = n / 2;
+		__elibc_memswp16(s1_ptr.ptr16, s2_ptr.ptr16, count);
+		n -= count * 2;
+		s1_ptr.ptr16 += count;
+		s2_ptr.ptr16 += count;
+	}
 #endif
-		/* multiple of 1 */
+
+	// Handle remaining 1-byte swaps
+	if (n > 0) {
 		__elibc_memswp8(s1_ptr.ptr8, s2_ptr.ptr8, n);
 	}
 #endif
