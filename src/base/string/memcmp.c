@@ -2,6 +2,7 @@
 #define _ELIBC_SOURCE
 #include <assert.h>
 #include <stdint.h>
+#include <stdlib.h>
 #include <string.h>
 
 /* quick and dirty macro that tests if a pointer is properly aligned to it's
@@ -46,23 +47,16 @@ _ALWAYS_INLINE _INLINE static int __elibc_memcmp8(const void *s1, const void *s2
  * @return 0 if the blocks are equal, a negative value if s1 is less than s2, or a positive value if s1 is greater than s2
  */
 _ALWAYS_INLINE _INLINE static int __elibc_memcmp16(const void *s1, const void *s2, size_t n) {
-	const uint8_t *p1 = s1;
-	const uint8_t *p2 = s2;
+	const uint16_t *p1 = s1;
+	const uint16_t *p2 = s2;
 
-	while (n >= 4) {
-		uint16_t u1 = *(const uint16_t *)p1;
-		uint16_t u2 = *(const uint16_t *)p2;
-		if (u1 != u2) {
-			// If the 2-byte chunks are not equal, compare byte by byte
-			for (size_t i = 0; i < 2; ++i) {
-				if (p1[i] != p2[i]) {
-					return p1[i] - p2[i];
-				}
-			}
+	while (n >= 2) {
+		if (*p1 != *p2) {
+			return __elibc_memcmp8(p1, p2, sizeof(uint16_t));
 		}
-		p1 += 2;
-		p2 += 2;
-		n -= 2;
+		++p1;
+		++p2;
+		n -= sizeof(uint16_t);
 	}
 
 	if (n >= 1) {
@@ -83,23 +77,16 @@ _ALWAYS_INLINE _INLINE static int __elibc_memcmp16(const void *s1, const void *s
  * @return 0 if the blocks are equal, a negative value if s1 is less than s2, or a positive value if s1 is greater than s2
  */
 _ALWAYS_INLINE _INLINE static int __elibc_memcmp32(const void *s1, const void *s2, size_t n) {
-	const uint8_t *p1 = s1;
-	const uint8_t *p2 = s2;
+	const uint32_t *p1 = s1;
+	const uint32_t *p2 = s2;
 
 	while (n >= 4) {
-		uint32_t u1 = *(const uint32_t *)p1;
-		uint32_t u2 = *(const uint32_t *)p2;
-		if (u1 != u2) {
-			// If the 4-byte chunks are not equal, compare byte by byte
-			for (size_t i = 0; i < 4; ++i) {
-				if (p1[i] != p2[i]) {
-					return p1[i] - p2[i];
-				}
-			}
+		if (*p1 != *p2) {
+			return __elibc_memcmp8(p1, p2, sizeof(uint32_t));
 		}
-		p1 += 4;
-		p2 += 4;
-		n -= 4;
+		++p1;
+		++p2;
+		n -= sizeof(uint32_t);
 	}
 
 	if (n >= 2) {
@@ -124,23 +111,17 @@ _ALWAYS_INLINE _INLINE static int __elibc_memcmp32(const void *s1, const void *s
  * @return 0 if the blocks are equal, a negative value if s1 is less than s2, or a positive value if s1 is greater than s2
  */
 _ALWAYS_INLINE _INLINE static int __elibc_memcmp64(const void *s1, const void *s2, size_t n) {
-	const uint8_t *p1 = s1;
-	const uint8_t *p2 = s2;
+
+	const uint64_t *p1 = s1;
+	const uint64_t *p2 = s2;
 
 	while (n >= 8) {
-		uint64_t u1 = *(const uint64_t *)p1;
-		uint64_t u2 = *(const uint64_t *)p2;
-		if (u1 != u2) {
-			// If the 8-byte chunks are not equal, compare byte by byte
-			for (size_t i = 0; i < 8; ++i) {
-				if (p1[i] != p2[i]) {
-					return p1[i] - p2[i];
-				}
-			}
+		if (*p1 != *p2) {
+			return __elibc_memcmp8(p1, p2, sizeof(uint64_t));
 		}
-		p1 += 8;
-		p2 += 8;
-		n -= 8;
+		++p1;
+		++p2;
+		n -= sizeof(uint64_t);
 	}
 
 	if (n >= 4) {

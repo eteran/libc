@@ -14,24 +14,54 @@
 #define NAIVE_VERSION
 #endif
 
-#ifndef NAIVE_VERSION
-#if _MAX_MULTIBYTE >= 8
 /**
- * @brief Swap the bytes of two blocks of memory (8-bytes at a time)
+ * @brief Swap the bytes of two blocks of memory (1-byte at a time)
  *
  * @param s1 a pointer to the first block of memory
  * @param s2 a pointer to the second block of memory
  * @param n the number of bytes to swap
  */
-_ALWAYS_INLINE _INLINE static void __elibc_memswp64(uint64_t *_RESTRICT s1, uint64_t *_RESTRICT s2, size_t n) {
-	while (n--) {
-		const uint64_t temp = *s1;
-		*s1                 = *s2;
-		*s2                 = temp;
+_ALWAYS_INLINE _INLINE static void *__elibc_memswp8(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 
-		++s1;
-		++s2;
+	uint8_t *p1 = s1;
+	uint8_t *p2 = s2;
+	while (n--) {
+		const uint8_t temp = *p1;
+		*p1                = *p2;
+		*p2                = temp;
+
+		++p1;
+		++p2;
 	}
+
+	return s1;
+}
+
+#ifndef NAIVE_VERSION
+
+#if _MAX_MULTIBYTE >= 2
+/**
+ * @brief Swap the bytes of two blocks of memory (2-bytes at a time)
+ *
+ * @param s1 a pointer to the first block of memory
+ * @param s2 a pointer to the second block of memory
+ * @param n the number of bytes to swap
+ */
+_ALWAYS_INLINE _INLINE static void *__elibc_memswp16(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
+
+	uint16_t *p1 = s1;
+	uint16_t *p2 = s2;
+	while (n >= 2) {
+		const uint16_t temp = *p1;
+		*p1                 = *p2;
+		*p2                 = temp;
+
+		++p1;
+		++p2;
+		n -= sizeof(uint16_t);
+	}
+
+	return s1;
 }
 #endif
 
@@ -43,56 +73,50 @@ _ALWAYS_INLINE _INLINE static void __elibc_memswp64(uint64_t *_RESTRICT s1, uint
  * @param s2 a pointer to the second block of memory
  * @param n the number of bytes to swap
  */
-_ALWAYS_INLINE _INLINE static void __elibc_memswp32(uint32_t *_RESTRICT s1, uint32_t *_RESTRICT s2, size_t n) {
-	while (n--) {
-		const uint32_t temp = *s1;
-		*s1                 = *s2;
-		*s2                 = temp;
+_ALWAYS_INLINE _INLINE static void *__elibc_memswp32(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 
-		++s1;
-		++s2;
+	uint32_t *p1 = s1;
+	uint32_t *p2 = s2;
+	while (n >= 4) {
+		const uint32_t temp = *p1;
+		*p1                 = *p2;
+		*p2                 = temp;
+
+		++p1;
+		++p2;
+		n -= sizeof(uint32_t);
 	}
+
+	return s1;
 }
 #endif
 
-#if _MAX_MULTIBYTE >= 2
+#if _MAX_MULTIBYTE >= 8
 /**
- * @brief Swap the bytes of two blocks of memory (2-bytes at a time)
+ * @brief Swap the bytes of two blocks of memory (8-bytes at a time)
  *
  * @param s1 a pointer to the first block of memory
  * @param s2 a pointer to the second block of memory
  * @param n the number of bytes to swap
  */
-_ALWAYS_INLINE _INLINE static void __elibc_memswp16(uint16_t *_RESTRICT s1, uint16_t *_RESTRICT s2, size_t n) {
-	while (n--) {
-		const uint16_t temp = *s1;
-		*s1                 = *s2;
-		*s2                 = temp;
+_ALWAYS_INLINE _INLINE static void *__elibc_memswp64(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 
-		++s1;
-		++s2;
+	uint64_t *p1 = s1;
+	uint64_t *p2 = s2;
+	while (n >= 8) {
+		const uint64_t temp = *p1;
+		*p1                 = *p2;
+		*p2                 = temp;
+
+		++p1;
+		++p2;
+		n -= sizeof(uint64_t);
 	}
+
+	return s1;
 }
 #endif
 
-/**
- * @brief Swap the bytes of two blocks of memory (1-byte at a time)
- *
- * @param s1 a pointer to the first block of memory
- * @param s2 a pointer to the second block of memory
- * @param n the number of bytes to swap
- */
-_ALWAYS_INLINE _INLINE static void __elibc_memswp8(uint8_t *_RESTRICT s1, uint8_t *_RESTRICT s2, size_t n) {
-
-	while (n--) {
-		const uint8_t temp = *s1;
-		*s1                = *s2;
-		*s2                = temp;
-
-		++s1;
-		++s2;
-	}
-}
 #endif
 
 /**
@@ -111,20 +135,10 @@ void *memswp(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 
 #ifdef NAIVE_VERSION
 	/* traditional version */
-	char *s1_ptr = s1;
-	char *s2_ptr = s2;
-
 	assert(s1);
 	assert(s2);
+	return __elibc_memswp8(s1, s2, n);
 
-	while (n--) {
-		const char temp = *s1_ptr;
-		*s1_ptr         = *s2_ptr;
-		*s2_ptr         = temp;
-
-		++s1_ptr;
-		++s2_ptr;
-	}
 #else
 
 	/* this one is optimized for dword and word aligned copies */
@@ -146,7 +160,7 @@ void *memswp(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 	// Handle 8-byte swaps if possible
 	if (n >= 8 && IS_ALIGNED(s1_ptr.ptr64) && IS_ALIGNED(s2_ptr.ptr64)) {
 		const size_t count = n / 8;
-		__elibc_memswp64(s1_ptr.ptr64, s2_ptr.ptr64, count);
+		__elibc_memswp64(s1_ptr.ptr64, s2_ptr.ptr64, n);
 		n -= count * 8;
 		s1_ptr.ptr64 += count;
 		s2_ptr.ptr64 += count;
@@ -157,7 +171,7 @@ void *memswp(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 	// Handle 4-byte swaps if possible
 	if (n >= 4 && IS_ALIGNED(s1_ptr.ptr32) && IS_ALIGNED(s2_ptr.ptr32)) {
 		const size_t count = n / 4;
-		__elibc_memswp32(s1_ptr.ptr32, s2_ptr.ptr32, count);
+		__elibc_memswp32(s1_ptr.ptr32, s2_ptr.ptr32, n);
 		n -= count * 4;
 		s1_ptr.ptr32 += count;
 		s2_ptr.ptr32 += count;
@@ -168,7 +182,7 @@ void *memswp(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 	// Handle 2-byte swaps if possible
 	if (n >= 2 && IS_ALIGNED(s1_ptr.ptr16) && IS_ALIGNED(s2_ptr.ptr16)) {
 		const size_t count = n / 2;
-		__elibc_memswp16(s1_ptr.ptr16, s2_ptr.ptr16, count);
+		__elibc_memswp16(s1_ptr.ptr16, s2_ptr.ptr16, n);
 		n -= count * 2;
 		s1_ptr.ptr16 += count;
 		s2_ptr.ptr16 += count;
@@ -177,7 +191,7 @@ void *memswp(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 
 	// Handle remaining 1-byte swaps
 	if (n > 0) {
-		__elibc_memswp8(s1_ptr.ptr8, s2_ptr.ptr8, n);
+		return __elibc_memswp8(s1_ptr.ptr8, s2_ptr.ptr8, n);
 	}
 #endif
 	return s1;

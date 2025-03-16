@@ -104,21 +104,55 @@ static void test_strspn(void) {
 }
 
 static void test_memcmp(void) {
-	const char a1[] = {'a', 'b', 'c'};
-	const char a2[] = {'a', 'b', 'd'};
+	{
+		const char a1[] = {'a', 'b', 'c'};
+		const char a2[] = {'a', 'b', 'd'};
 
-	assert(memcmp(a1, a2, 3) < 0);
-	assert(memcmp(a2, a1, 3) > 0);
-	assert(memcmp(a1, a1, 3) == 0);
-}
+		assert(memcmp(a1, a2, 3) < 0);
+		assert(memcmp(a2, a1, 3) > 0);
+		assert(memcmp(a1, a1, 3) == 0);
+	}
 
-static void test_memcmp_simd(void) {
-	const char a1[] = "abcdefghijklmopqrstuvwxyz012345";
-	const char a2[] = "abcdefghijklmopqsstuvwxyz012345";
+	{
+		const char a1[] = {'a', 'b', 'c', 'd'};
+		const char a2[] = {'a', 'b', 'c', 'e'};
 
-	assert(memcmp(a1, a2, 32) < 0);
-	assert(memcmp(a2, a1, 32) > 0);
-	assert(memcmp(a1, a1, 32) == 0);
+		assert(memcmp(a1, a2, 4) < 0);
+		assert(memcmp(a2, a1, 4) > 0);
+		assert(memcmp(a1, a1, 4) == 0);
+	}
+	{
+		const char a1[] = {'a', 'b', 'c', 'd', 'e'};
+		const char a2[] = {'a', 'b', 'c', 'd', 'f'};
+
+		assert(memcmp(a1, a2, 5) < 0);
+		assert(memcmp(a2, a1, 5) > 0);
+		assert(memcmp(a1, a1, 5) == 0);
+	}
+	{
+		const int16_t a1[] = {1, 2, 3, 4, 5, 6};
+		const int16_t a2[] = {1, 2, 3, 4, 5, 7};
+
+		assert(memcmp(a1, a2, sizeof(a1)) < 0);
+		assert(memcmp(a2, a1, sizeof(a1)) > 0);
+		assert(memcmp(a1, a1, sizeof(a1)) == 0);
+	}
+	{
+		const int32_t a1[] = {1, 2, 3, 4, 5, 6};
+		const int32_t a2[] = {1, 2, 3, 4, 5, 7};
+
+		assert(memcmp(a1, a2, sizeof(a1)) < 0);
+		assert(memcmp(a2, a1, sizeof(a1)) > 0);
+		assert(memcmp(a1, a1, sizeof(a1)) == 0);
+	}
+	{
+		const int64_t a1[] = {1, 2, 3, 4, 5, 6};
+		const int64_t a2[] = {1, 2, 3, 4, 5, 7};
+
+		assert(memcmp(a1, a2, sizeof(a1)) < 0);
+		assert(memcmp(a2, a1, sizeof(a1)) > 0);
+		assert(memcmp(a1, a1, sizeof(a1)) == 0);
+	}
 }
 
 static void test_memswp(void) {
@@ -384,7 +418,6 @@ int main(void) {
 	test_strstr();
 	test_strspn();
 	test_memcmp();
-	test_memcmp_simd();
 	test_memcpy();
 	test_memset();
 	test_strcat();
