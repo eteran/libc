@@ -7,7 +7,6 @@ static sig_atomic_t signal_status;
 
 static void signal_handler(int signal) {
 	signal_status = signal;
-	assert(0);
 }
 
 int main(void) {

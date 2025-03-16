@@ -30,7 +30,7 @@ _ALWAYS_INLINE _INLINE static double __elibc_trunc(double x) {
  * @return the truncated floating point number
  */
 double trunc(double x) {
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		return x;
 	}

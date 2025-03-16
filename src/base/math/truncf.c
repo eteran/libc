@@ -13,7 +13,7 @@
  * @return the integer value of the floating point
  */
 float truncf(float x) {
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		return x;
 	}

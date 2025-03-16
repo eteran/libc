@@ -13,7 +13,7 @@
  */
 double tanh(double x) {
 
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		return x;
 	}

@@ -31,7 +31,7 @@ _ALWAYS_INLINE _INLINE static double __elibc_sin(double x) {
  * @note    The input value is in radians.
  */
 double sin(double x) {
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (x == 0.0) {
 		return x;
 	}

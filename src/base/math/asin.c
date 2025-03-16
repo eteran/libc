@@ -25,7 +25,7 @@ _ALWAYS_INLINE _INLINE static double __elibc_asin(double x) {
  */
 double asin(double x) {
 
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		return x;
 	}

@@ -50,7 +50,7 @@ _ALWAYS_INLINE _INLINE long double __elibc_ldexpl(long double x, int exp) {
  * @return the value of the floating point number multiplied by 2 raised to the power of exp
  */
 long double ldexpl(long double x, int exp) {
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (exp == 0) {
 		/* If exp is zero, then x is returned. */
 		return x;

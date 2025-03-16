@@ -70,7 +70,7 @@ _ALWAYS_INLINE _INLINE static double __elibc_pow(double base, double exponent) {
  */
 double pow(double base, double exponent) {
 
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 
 	/* If base is finite and negative and exponent is finite and non-integer, a domain error occurs
 	 * and a range error may occur.*/

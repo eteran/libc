@@ -24,7 +24,7 @@ _ALWAYS_INLINE _INLINE static double __elibc_cosh(double x) {
  * @return the hyperbolic cosine of the floating point number
  */
 double cosh(double x) {
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		return x;
 	}

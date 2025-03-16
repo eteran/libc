@@ -12,6 +12,7 @@
  * @return the sine of the floating point number
  */
 float sinf(float x) {
+	/* TODO(eteran): is this a valid approach? */
 	return (float)sin(x);
 }
 

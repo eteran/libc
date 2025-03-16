@@ -26,7 +26,7 @@ _ALWAYS_INLINE _INLINE static long double __elibc_fminl(long double x, long doub
  * @return the minimum of the two floating point numbers
  */
 long double fminl(long double x, long double y) {
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		return y;
 	}

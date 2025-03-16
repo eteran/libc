@@ -26,7 +26,7 @@ _ALWAYS_INLINE _INLINE static float __elibc_fminf(float x, float y) {
  * @return the minimum of the two floating point numbers
  */
 float fminf(float x, float y) {
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		return y;
 	}

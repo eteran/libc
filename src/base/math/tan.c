@@ -33,7 +33,7 @@ _ALWAYS_INLINE _INLINE static double __elibc_tan(double x) {
  * @return the tangent of the floating point number
  */
 double tan(double x) {
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		errno = EDOM;
 		return x;

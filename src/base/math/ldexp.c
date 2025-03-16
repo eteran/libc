@@ -50,7 +50,7 @@ _ALWAYS_INLINE _INLINE static double __elibc_ldexp(double x, int exp) {
  * @return the value of the floating point number multiplied by 2 raised to the power of exp
  */
 double ldexp(double x, int exp) {
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (exp == 0) {
 		/* If exp is zero, then x is returned. */
 		return x;

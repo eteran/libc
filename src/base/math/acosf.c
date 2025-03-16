@@ -25,7 +25,7 @@ _ALWAYS_INLINE _INLINE static float __elibc_acosf(float x) {
  * @return The arc cosine of the input value.
  */
 float acosf(float x) {
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		return x;
 	}

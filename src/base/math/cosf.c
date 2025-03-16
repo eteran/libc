@@ -1,6 +1,7 @@
 
 #define _ELIBC_SOURCE
 #include <errno.h>
+#include <fenv.h>
 #include <math.h>
 
 #ifdef _HAS_FPU
@@ -25,13 +26,14 @@ _ALWAYS_INLINE _INLINE static float __elibc_cosf(float x) {
  */
 float cosf(float x) {
 
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		return x;
 	}
 
 	if (isinf(x)) {
 		errno = EDOM;
+		feraiseexcept(FE_INVALID);
 		return NAN;
 	}
 #endif

@@ -24,7 +24,7 @@ _ALWAYS_INLINE _INLINE static float __elibc_coshf(float x) {
  * @return the hyperbolic cosine of the floating point number
  */
 float coshf(float x) {
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		return x;
 	}

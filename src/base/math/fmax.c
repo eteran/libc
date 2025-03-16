@@ -26,7 +26,7 @@ _ALWAYS_INLINE _INLINE static double __elibc_fmax(double x, double y) {
  * @return the maximum of the two floating point numbers
  */
 double fmax(double x, double y) {
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		return y;
 	}

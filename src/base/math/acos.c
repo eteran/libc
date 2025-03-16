@@ -25,7 +25,7 @@ _ALWAYS_INLINE _INLINE static double __elibc_acos(double x) {
  */
 double acos(double x) {
 
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		return x;
 	}

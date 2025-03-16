@@ -18,7 +18,7 @@ static void test_fabs(void) {
 	assert(fabs(-3.0) == 3.0);
 	assert(fabs(-0) == 0);
 
-	assert(fabs(-INFINITY) == INFINITY);
+	assert(fabsf(-INFINITY) == INFINITY);
 
 	assert(fabsf(+3.0F) == 3.0F);
 	assert(fabsf(-3.0F) == 3.0F);
@@ -41,7 +41,7 @@ static void test_cos(void) {
 	/* error handling */
 	feclearexcept(FE_ALL_EXCEPT);
 	assert(!fetestexcept(FE_INVALID));
-	assert(isnan(cos(INFINITY)));
+	assert(isnan(cosf(INFINITY)));
 	assert(fetestexcept(FE_INVALID));
 }
 
@@ -57,7 +57,7 @@ static void test_sin(void) {
 	/* error handling */
 	feclearexcept(FE_ALL_EXCEPT);
 	assert(!fetestexcept(FE_INVALID));
-	assert(isnan(sin(INFINITY)));
+	assert(isnan(sinf(INFINITY)));
 	assert(fetestexcept(FE_INVALID));
 }
 
@@ -74,7 +74,7 @@ static void test_tan(void) {
 	/* error handling */
 	feclearexcept(FE_ALL_EXCEPT);
 	assert(!fetestexcept(FE_INVALID));
-	assert(isnan(tan(INFINITY)));
+	assert(isnan(tanf(INFINITY)));
 	assert(fetestexcept(FE_INVALID));
 }
 
@@ -167,7 +167,7 @@ static void test_exp2(void) {
 
 	/* special values */
 	assert(float_compare(exp2(-0.9), 0.535887));
-	assert(float_compare(exp2(-INFINITY), 0.0));
+	assert(float_compare(exp2f(-INFINITY), 0.0));
 
 #if 0
 	// error handling
@@ -179,6 +179,24 @@ static void test_exp2(void) {
 	if (fetestexcept(FE_OVERFLOW))
 		puts("    FE_OVERFLOW raised");
 #endif
+}
+
+static void test_sqrt(void) {
+	assert(float_compare(sqrt(4.0), 2.0));
+	assert(float_compare(sqrt(0.25), 0.5));
+	assert(float_compare(sqrt(0.0), 0.0));
+	assert(float_compare(sqrt(-0.0), -0.0));
+
+	/* special values */
+
+	assert(isnan(sqrt(NAN)));
+	assert(isinf(sqrt(INFINITY)));
+
+	/* error handling */
+	feclearexcept(FE_ALL_EXCEPT);
+	assert(!fetestexcept(FE_INVALID));
+	assert(isnan(sqrt(-1)));
+	assert(fetestexcept(FE_INVALID));
 }
 
 #if 0
@@ -218,6 +236,7 @@ int main(void) {
 	test_sin();
 	test_tan();
 	test_exp2();
+	test_sqrt();
 
 	return 0;
 }

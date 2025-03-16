@@ -24,7 +24,7 @@ _ALWAYS_INLINE _INLINE static float __elibc_asinf(float x) {
  * @return The arc sine of the input value.
  */
 float asinf(float x) {
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		return x;
 	}

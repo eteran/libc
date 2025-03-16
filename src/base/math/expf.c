@@ -24,7 +24,7 @@ _ALWAYS_INLINE _INLINE static float _elibc_expf(float x) {
  * @return the value of e raised to the power of the floating point number
  */
 float expf(float x) {
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		return x;
 	}

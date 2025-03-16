@@ -24,7 +24,7 @@ _ALWAYS_INLINE _INLINE static long double __elibc_exp2l(long double x) {
  * @return the value of 2 raised to the power of the floating point number
  */
 long double exp2l(long double x) {
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		return x;
 	}

@@ -26,7 +26,7 @@ _ALWAYS_INLINE _INLINE static long double __elibc_fmaxl(long double x, long doub
  * @return the maximum of the two floating point numbers
  */
 long double fmaxl(long double x, long double y) {
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		return y;
 	}

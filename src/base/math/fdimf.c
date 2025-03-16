@@ -26,7 +26,7 @@ _ALWAYS_INLINE _INLINE static float __elibc_fdimf(float x, float y) {
  * @return the positive difference between the two floating point numbers
  */
 float fdimf(float x, float y) {
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		return x;
 	}

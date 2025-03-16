@@ -411,9 +411,6 @@ static void test_mbtowc(void) {
 
 static void test_calloc(void) {
 
-	size_t i = 0;
-	size_t j = 0;
-
 	void *ptr = calloc(1, 1);
 	assert(ptr != NULL);
 	free(ptr);
@@ -430,14 +427,15 @@ static void test_calloc(void) {
 	assert(ptr != NULL);
 	free(ptr);
 
-	/* gcc is smart enough to prevent the overflow when we use constants,
-	   so we'll use variables instead */
-	--i;
-	--j;
+/* gcc is smart enough to detect the overflow, so let's disable
+ * that for this one part of the test */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Walloc-size-larger-than="
 	errno = 0;
-	ptr   = calloc(i, j);
+	ptr   = calloc(LLONG_MAX, LLONG_MAX);
 	assert(errno == ENOMEM);
 	assert(ptr == NULL);
+#pragma GCC diagnostic pop
 }
 
 int main(void) {

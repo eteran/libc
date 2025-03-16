@@ -31,7 +31,7 @@ _ALWAYS_INLINE _INLINE static double __elibc_atan2(double y, double x) {
  */
 double atan2(double y, double x) {
 
-#ifndef __FAST_MATH__
+#if !defined(__FAST_MATH__)
 	if (isnan(x)) {
 		return x;
 	}
