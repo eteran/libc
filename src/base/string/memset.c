@@ -100,7 +100,7 @@ void *memset(void *s, int c, size_t n) {
 	}
 
 #else
-	/* this one is optimized for dword and word aligned copies */
+
 	union {
 		void *ptr;
 		uint64_t *ptr64;

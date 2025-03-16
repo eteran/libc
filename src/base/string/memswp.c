@@ -61,6 +61,10 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memswp16(void *_RESTRICT s1, void *_
 		n -= sizeof(uint16_t);
 	}
 
+	if (n >= 1) {
+		return __elibc_memswp8(p1, p2, n);
+	}
+
 	return s1;
 }
 #endif
@@ -85,6 +89,14 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memswp32(void *_RESTRICT s1, void *_
 		++p1;
 		++p2;
 		n -= sizeof(uint32_t);
+	}
+
+	if (n >= 2) {
+		return __elibc_memswp16(p1, p2, n);
+	}
+
+	if (n >= 1) {
+		return __elibc_memswp8(p1, p2, n);
 	}
 
 	return s1;
@@ -113,6 +125,18 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memswp64(void *_RESTRICT s1, void *_
 		n -= sizeof(uint64_t);
 	}
 
+	if (n >= 4) {
+		return __elibc_memswp32(p1, p2, n);
+	}
+
+	if (n >= 2) {
+		return __elibc_memswp16(p1, p2, n);
+	}
+
+	if (n >= 1) {
+		return __elibc_memswp8(p1, p2, n);
+	}
+
 	return s1;
 }
 #endif
@@ -126,8 +150,6 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memswp64(void *_RESTRICT s1, void *_
  * @param s2 a pointer to the second block of memory
  * @param n the number of bytes to swap
  * @return a pointer to the first block of memory
- * @note this function swaps the bytes of two blocks of memory, it does not
- * copy the bytes from one block to another, it swaps them in place.
  * @note The function assumes that the two blocks of memory are of the same size.
  * @note The function does not check for overlapping memory regions.
  */
@@ -141,7 +163,6 @@ void *memswp(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 
 #else
 
-	/* this one is optimized for dword and word aligned copies */
 	union {
 		void *ptr;
 		uint64_t *ptr64;
@@ -157,42 +178,24 @@ void *memswp(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 	s2_ptr.ptr = s2;
 
 #if _MAX_MULTIBYTE >= 8
-	// Handle 8-byte swaps if possible
 	if (n >= 8 && IS_ALIGNED(s1_ptr.ptr64) && IS_ALIGNED(s2_ptr.ptr64)) {
-		const size_t count = n / 8;
-		__elibc_memswp64(s1_ptr.ptr64, s2_ptr.ptr64, n);
-		n -= count * 8;
-		s1_ptr.ptr64 += count;
-		s2_ptr.ptr64 += count;
+		return __elibc_memswp64(s1_ptr.ptr64, s2_ptr.ptr64, n);
 	}
 #endif
 
 #if _MAX_MULTIBYTE >= 4
-	// Handle 4-byte swaps if possible
 	if (n >= 4 && IS_ALIGNED(s1_ptr.ptr32) && IS_ALIGNED(s2_ptr.ptr32)) {
-		const size_t count = n / 4;
-		__elibc_memswp32(s1_ptr.ptr32, s2_ptr.ptr32, n);
-		n -= count * 4;
-		s1_ptr.ptr32 += count;
-		s2_ptr.ptr32 += count;
+		return __elibc_memswp32(s1_ptr.ptr32, s2_ptr.ptr32, n);
 	}
 #endif
 
 #if _MAX_MULTIBYTE >= 2
-	// Handle 2-byte swaps if possible
 	if (n >= 2 && IS_ALIGNED(s1_ptr.ptr16) && IS_ALIGNED(s2_ptr.ptr16)) {
-		const size_t count = n / 2;
-		__elibc_memswp16(s1_ptr.ptr16, s2_ptr.ptr16, n);
-		n -= count * 2;
-		s1_ptr.ptr16 += count;
-		s2_ptr.ptr16 += count;
+		return __elibc_memswp16(s1_ptr.ptr16, s2_ptr.ptr16, n);
 	}
 #endif
 
-	// Handle remaining 1-byte swaps
-	if (n > 0) {
-		return __elibc_memswp8(s1_ptr.ptr8, s2_ptr.ptr8, n);
-	}
+	return __elibc_memswp8(s1_ptr.ptr8, s2_ptr.ptr8, n);
+
 #endif
-	return s1;
 }

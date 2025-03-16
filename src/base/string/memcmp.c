@@ -157,7 +157,6 @@ int memcmp(const void *s1, const void *s2, size_t n) {
 	return __elibc_memcmp8(s1, s2, n);
 #else
 
-	/* this one is optimized for dword and word aligned copies */
 	union {
 		const void *ptr;
 		const uint64_t *ptr64;
@@ -190,7 +189,6 @@ int memcmp(const void *s1, const void *s2, size_t n) {
 	}
 #endif
 
-	/* compare the remaining bytes */
 	return __elibc_memcmp8(s1_ptr.ptr8, s2_ptr.ptr8, n);
 #endif
 }
