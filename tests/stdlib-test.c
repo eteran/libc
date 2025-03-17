@@ -86,12 +86,11 @@ static void test_qsort(void) {
 		size_t i;
 		int last = INT_MIN;
 		int a[1000];
+		const size_t size = sizeof(a) / sizeof(*a);
 
 		for (i = 0; i < sizeof(a) / sizeof(*a); ++i) {
 			a[i] = rand();
 		}
-
-		const size_t size = sizeof(a) / sizeof(*a);
 
 		qsort(a, size, sizeof(*a), compare);
 

@@ -54,8 +54,10 @@ static size_t __elibc_partition(void *base, size_t left, size_t right, size_t si
 }
 
 static void __elibc_insertion_sort(void *base, size_t n, size_t size, __compar_fn_t compar) {
-	for (size_t i = 1; i < n; ++i) {
-		for (size_t j = i; j > 0 && compar(ELEMENT_PTR(base, j - 1, size), ELEMENT_PTR(base, j, size)) > 0; --j) {
+	size_t i;
+	size_t j;
+	for (i = 1; i < n; ++i) {
+		for (j = i; j > 0 && compar(ELEMENT_PTR(base, j - 1, size), ELEMENT_PTR(base, j, size)) > 0; --j) {
 			ELEMENT_SWP(base, j - 1, j, size);
 		}
 	}
