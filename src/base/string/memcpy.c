@@ -5,8 +5,7 @@
 #include <string.h>
 
 /* quick and dirty macro that tests if a pointer is properly aligned to it's
- * native boundary, we need this because some arches (x86) don't like multibyte
- * accesses to cross a page boundary
+ * native boundary
  */
 #define IS_ALIGNED(x) (((uintptr_t)(x) & (sizeof(*(x)) - 1)) == 0)
 
