@@ -15,67 +15,120 @@
 #define NAIVE_VERSION
 #endif
 
+/**
+ * @brief Set the bytes of a block of memory to a specified value (1-byte at a time)
+ *
+ * @param base the base address of the block of memory
+ * @param p a pointer to the block of memory to be set
+ * @param ch the value to set the memory to
+ * @param n the number of bytes to set
+ * @return a pointer to the block of memory that was set
+ */
+_ALWAYS_INLINE _INLINE static void *__elibc_memset8(void *base, void *p, char ch, size_t n) {
+
+	const uint8_t value = (uint8_t)ch;
+	uint8_t *dest       = p;
+	while (n--) {
+		*dest++ = value;
+	}
+	return base;
+}
+
 #ifndef NAIVE_VERSION
+
+#if _MAX_MULTIBYTE >= 2
+/**
+ * @brief Set the bytes of a block of memory to a specified value (2-bytes at a time)
+ *
+ * @param base the base address of the block of memory
+ * @param p a pointer to the block of memory to be set
+ * @param ch the value to set the memory to
+ * @param n the number of bytes to set
+ * @return a pointer to the block of memory that was set
+ */
+_ALWAYS_INLINE _INLINE static void *__elibc_memset16(void *base, void *p, char ch, size_t n) {
+
+	const uint16_t value = (uint16_t)((uint8_t)ch * UINT16_C(0x0101));
+	uint16_t *dest       = p;
+	while (n >= 2) {
+		*dest++ = value;
+		n -= sizeof(uint16_t);
+	}
+
+	if (n >= 1) {
+		return __elibc_memset8(base, dest, ch, n);
+	}
+
+	return base;
+}
+#endif
+
+#if _MAX_MULTIBYTE >= 4
+/**
+ * @brief Set the bytes of a block of memory to a specified value (4-bytes at a time)
+ *
+ * @param base the base address of the block of memory
+ * @param p a pointer to the block of memory to be set
+ * @param ch the value to set the memory to
+ * @param n the number of bytes to set
+ * @return a pointer to the block of memory that was set
+ */
+_ALWAYS_INLINE _INLINE static void *__elibc_memset32(void *base, void *p, char ch, size_t n) {
+
+	const uint32_t value = ((uint8_t)ch * UINT32_C(0x01010101));
+	uint32_t *dest       = p;
+	while (n >= 4) {
+		*dest++ = value;
+		n -= sizeof(uint32_t);
+	}
+
+	if (n >= 2) {
+		return __elibc_memset16(base, dest, ch, n);
+	}
+
+	if (n >= 1) {
+		return __elibc_memset8(base, dest, ch, n);
+	}
+
+	return base;
+}
+#endif
+
 #if _MAX_MULTIBYTE >= 8
 
 /**
  * @brief Set the bytes of a block of memory to a specified value (8-bytes at a time)
  *
+ * @param base the base address of the block of memory
  * @param p a pointer to the block of memory to be set
  * @param ch the value to set the memory to
  * @param n the number of bytes to set
+ * @return a pointer to the block of memory that was set
  */
-_ALWAYS_INLINE _INLINE static void __elibc_memset64(uint64_t *p, char ch, size_t n) {
-	const uint64_t source = (uint8_t)ch * UINT64_C(0x0101010101010101);
-	n /= 8;
-	while (n--) {
-		*p++ = source;
+_ALWAYS_INLINE _INLINE static void *__elibc_memset64(void *base, void *p, char ch, size_t n) {
+
+	const uint64_t value = (uint8_t)ch * UINT64_C(0x0101010101010101);
+	uint64_t *dest       = p;
+	while (n >= 8) {
+		*dest++ = value;
+		n -= sizeof(uint64_t);
 	}
+
+	if (n >= 4) {
+		return __elibc_memset32(base, dest, ch, n);
+	}
+
+	if (n >= 2) {
+		return __elibc_memset16(base, dest, ch, n);
+	}
+
+	if (n >= 1) {
+		return __elibc_memset8(base, dest, ch, n);
+	}
+
+	return base;
 }
 #endif
-
-/**
- * @brief Set the bytes of a block of memory to a specified value (4-bytes at a time)
- *
- * @param p a pointer to the block of memory to be set
- * @param ch the value to set the memory to
- * @param n the number of bytes to set
- */
-_ALWAYS_INLINE _INLINE static void __elibc_memset32(uint32_t *p, char ch, size_t n) {
-	const uint32_t source = ((uint8_t)ch * UINT32_C(0x01010101));
-	n /= 4;
-	while (n--) {
-		*p++ = source;
-	}
-}
-
-/**
- * @brief Set the bytes of a block of memory to a specified value (2-bytes at a time)
- *
- * @param p a pointer to the block of memory to be set
- * @param ch the value to set the memory to
- * @param n the number of bytes to set
- */
-_ALWAYS_INLINE _INLINE static void __elibc_memset16(uint16_t *p, char ch, size_t n) {
-	const uint16_t source = (uint16_t)((uint8_t)ch * UINT16_C(0x0101));
-	n /= 2;
-	while (n--) {
-		*p++ = source;
-	}
-}
-
-/**
- * @brief Set the bytes of a block of memory to a specified value (1-byte at a time)
- *
- * @param p a pointer to the block of memory to be set
- * @param ch the value to set the memory to
- * @param n the number of bytes to set
- */
-_ALWAYS_INLINE _INLINE static void __elibc_memset8(uint8_t *p, char ch, size_t n) {
-	while (n--) {
-		*p++ = (uint8_t)ch;
-	}
-}
 #endif
 
 /**
@@ -90,15 +143,8 @@ void *memset(void *s, int c, size_t n) {
 
 #ifdef NAIVE_VERSION
 	/* traditional memset */
-	char *s_ptr   = s;
-	const char ch = (char)(c & 0xff);
-
 	assert(s);
-
-	while (n--) {
-		*s_ptr++ = ch;
-	}
-
+	return __elibc_memset8(s, s, c, n);
 #else
 
 	union {
@@ -109,49 +155,27 @@ void *memset(void *s, int c, size_t n) {
 		uint8_t *ptr8;
 	} d_ptr;
 
-	const char ch = (char)(c & 0xff);
-
 	assert(s);
 
 	d_ptr.ptr = s;
 
-	switch (n & (_MAX_MULTIBYTE - 1)) {
-	case 0:
-#if _MAX_MULTIBYTE >= 2
-#if _MAX_MULTIBYTE >= 4
 #if _MAX_MULTIBYTE >= 8
-		if (!IS_ALIGNED(d_ptr.ptr64)) {
-			goto unaligned;
-		}
-
-		/* multiple of 8 */
-		__elibc_memset64(d_ptr.ptr64, ch, n);
-		break;
-	case 4:
-#endif
-		if (!IS_ALIGNED(d_ptr.ptr32)) {
-			goto unaligned;
-		}
-
-		/* multiple of 4 */
-		__elibc_memset32(d_ptr.ptr32, ch, n);
-		break;
-	case 6:
-	case 2:
-#endif
-		if (!IS_ALIGNED(d_ptr.ptr16)) {
-			goto unaligned;
-		}
-
-		/* multiple of 2 */
-		__elibc_memset16(d_ptr.ptr16, ch, n);
-		break;
-	unaligned:
-	default:
-#endif
-		/* multiple of 1 */
-		__elibc_memset8(d_ptr.ptr8, ch, n);
+	if (n >= 8 && (IS_ALIGNED(d_ptr.ptr64))) {
+		return __elibc_memset64(d_ptr.ptr64, d_ptr.ptr64, c, n);
 	}
 #endif
-	return s;
+
+#if _MAX_MULTIBYTE >= 4
+	if (n >= 4 && (IS_ALIGNED(d_ptr.ptr32))) {
+		return __elibc_memset32(d_ptr.ptr32, d_ptr.ptr32, c, n);
+	}
+#endif
+
+#if _MAX_MULTIBYTE >= 2
+	if (n >= 2 && (IS_ALIGNED(d_ptr.ptr16))) {
+		return __elibc_memset16(d_ptr.ptr16, d_ptr.ptr16, c, n);
+	}
+#endif
+	return __elibc_memset8(d_ptr.ptr8, d_ptr.ptr8, c, n);
+#endif
 }

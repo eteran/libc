@@ -78,30 +78,6 @@ static void test_tan(void) {
 	assert(fetestexcept(FE_INVALID));
 }
 
-static void test_floor(void) {
-#ifndef __clang__
-	double d;
-	d = floor(-INFINITY);
-	assert(isinf(d) && d < 0.0);
-
-	assert(float_compare(floor(2.7), +2.0));
-	assert(float_compare(floor(-2.7), -3.0));
-	assert(float_compare(floor(-0.0), -0.0));
-#endif
-}
-
-static void test_ceil(void) {
-#ifndef __clang__
-	double d;
-	d = ceil(-INFINITY);
-	assert(isinf(d) && d < 0.0);
-
-	assert(float_compare(ceil(2.4), +3.0));
-	assert(float_compare(ceil(-2.4), -2.0));
-	assert(float_compare(ceil(-0.0), -0.0));
-#endif
-}
-
 static void test_isnormal(void) {
 	assert(!isnormal(NAN));
 	assert(!isnormal(INFINITY));
@@ -204,8 +180,10 @@ static void test_sqrt(void) {
 #include "c/asin.h"
 #include "c/atan.h"
 #include "c/atan2.h"
+#include "c/ceil.h"
 #include "c/cosh.h"
 #include "c/exp.h"
+#include "c/floor.h"
 #include "c/fmod.h"
 #include "c/frexp.h"
 #include "c/ldexp.h"
@@ -223,11 +201,9 @@ int main(void) {
 	printf("double size: %lu\n", sizeof(double));
 	printf("float size: %lu\n", sizeof(float));
 
-	test_ceil();
 	test_copysign();
 	test_cos();
 	test_fabs();
-	test_floor();
 	test_fpclassify();
 	test_isfinite();
 	test_isinf();

@@ -62,7 +62,8 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memswp16(void *_RESTRICT s1, void *_
 	}
 
 	if (n >= 1) {
-		return __elibc_memswp8(p1, p2, n);
+		__elibc_memswp8(p1, p2, n);
+		return s1;
 	}
 
 	return s1;
@@ -92,11 +93,13 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memswp32(void *_RESTRICT s1, void *_
 	}
 
 	if (n >= 2) {
-		return __elibc_memswp16(p1, p2, n);
+		__elibc_memswp16(p1, p2, n);
+		return s1;
 	}
 
 	if (n >= 1) {
-		return __elibc_memswp8(p1, p2, n);
+		__elibc_memswp8(p1, p2, n);
+		return s1;
 	}
 
 	return s1;
@@ -126,15 +129,18 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memswp64(void *_RESTRICT s1, void *_
 	}
 
 	if (n >= 4) {
-		return __elibc_memswp32(p1, p2, n);
+		__elibc_memswp32(p1, p2, n);
+		return s1;
 	}
 
 	if (n >= 2) {
-		return __elibc_memswp16(p1, p2, n);
+		__elibc_memswp16(p1, p2, n);
+		return s1;
 	}
 
 	if (n >= 1) {
-		return __elibc_memswp8(p1, p2, n);
+		__elibc_memswp8(p1, p2, n);
+		return s1;
 	}
 
 	return s1;

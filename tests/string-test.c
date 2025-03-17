@@ -182,13 +182,41 @@ static void test_memcpy(void) {
 }
 
 static void test_memset(void) {
-	char buffer[32];
-	int i;
-	for (i = 0; i < 256; ++i) {
-		size_t j;
-		memset(buffer, (char)i, sizeof(buffer));
-		for (j = 0; j < sizeof(buffer); ++j) {
-			assert(buffer[j] == (char)i);
+
+	{
+		char buffer[32];
+		int i;
+		for (i = 0; i < 256; ++i) {
+			size_t j;
+			memset(buffer, (char)i, sizeof(buffer));
+			for (j = 0; j < sizeof(buffer); ++j) {
+				assert(buffer[j] == (char)i);
+			}
+		}
+	}
+
+	{
+		uint32_t buffer[32];
+		int i;
+		for (i = 0; i < 256; ++i) {
+			const uint32_t value = ((uint8_t)i * UINT32_C(0x01010101));
+			size_t j;
+			memset(buffer, i, sizeof(buffer));
+			for (j = 0; j < 32; ++j) {
+				assert(buffer[j] == value);
+			}
+		}
+	}
+	{
+		uint64_t buffer[32];
+		int i;
+		for (i = 0; i < 256; ++i) {
+			const uint64_t value = ((uint8_t)i * UINT64_C(0x0101010101010101));
+			size_t j;
+			memset(buffer, i, sizeof(buffer));
+			for (j = 0; j < 32; ++j) {
+				assert(buffer[j] == value);
+			}
 		}
 	}
 }
