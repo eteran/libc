@@ -13,6 +13,13 @@
 #define NAIVE_VERSION
 #endif
 
+#define SWAP(T, a, b)        \
+	do {                     \
+		const T temp = *(a); \
+		*(a)         = *(b); \
+		*(b)         = temp; \
+	} while (0)
+
 /**
  * @brief Swap the bytes of two blocks of memory (1-byte at a time)
  *
@@ -25,10 +32,7 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memswp8(void *_RESTRICT s1, void *_R
 	uint8_t *p1 = s1;
 	uint8_t *p2 = s2;
 	while (n--) {
-		const uint8_t temp = *p1;
-		*p1                = *p2;
-		*p2                = temp;
-
+		SWAP(uint8_t, p1, p2);
 		++p1;
 		++p2;
 	}
@@ -51,20 +55,13 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memswp16(void *_RESTRICT s1, void *_
 	uint16_t *p1 = s1;
 	uint16_t *p2 = s2;
 	while (n >= 2) {
-		const uint16_t temp = *p1;
-		*p1                 = *p2;
-		*p2                 = temp;
-
+		SWAP(uint16_t, p1, p2);
 		++p1;
 		++p2;
 		n -= sizeof(uint16_t);
 	}
 
-	if (n >= 1) {
-		__elibc_memswp8(p1, p2, n);
-		return s1;
-	}
-
+	__elibc_memswp8(p1, p2, n);
 	return s1;
 }
 #endif
@@ -82,25 +79,13 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memswp32(void *_RESTRICT s1, void *_
 	uint32_t *p1 = s1;
 	uint32_t *p2 = s2;
 	while (n >= 4) {
-		const uint32_t temp = *p1;
-		*p1                 = *p2;
-		*p2                 = temp;
-
+		SWAP(uint32_t, p1, p2);
 		++p1;
 		++p2;
 		n -= sizeof(uint32_t);
 	}
 
-	if (n >= 2) {
-		__elibc_memswp16(p1, p2, n);
-		return s1;
-	}
-
-	if (n >= 1) {
-		__elibc_memswp8(p1, p2, n);
-		return s1;
-	}
-
+	__elibc_memswp16(p1, p2, n);
 	return s1;
 }
 #endif
@@ -118,30 +103,13 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memswp64(void *_RESTRICT s1, void *_
 	uint64_t *p1 = s1;
 	uint64_t *p2 = s2;
 	while (n >= 8) {
-		const uint64_t temp = *p1;
-		*p1                 = *p2;
-		*p2                 = temp;
-
+		SWAP(uint64_t, p1, p2);
 		++p1;
 		++p2;
 		n -= sizeof(uint64_t);
 	}
 
-	if (n >= 4) {
-		__elibc_memswp32(p1, p2, n);
-		return s1;
-	}
-
-	if (n >= 2) {
-		__elibc_memswp16(p1, p2, n);
-		return s1;
-	}
-
-	if (n >= 1) {
-		__elibc_memswp8(p1, p2, n);
-		return s1;
-	}
-
+	__elibc_memswp32(p1, p2, n);
 	return s1;
 }
 #endif
@@ -165,7 +133,6 @@ void *memswp(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 	assert(s1);
 	assert(s2);
 	return __elibc_memswp8(s1, s2, n);
-
 #else
 
 	union {
@@ -201,6 +168,5 @@ void *memswp(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 #endif
 
 	return __elibc_memswp8(s1_ptr.ptr8, s2_ptr.ptr8, n);
-
 #endif
 }

@@ -69,7 +69,7 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memset16(void *p, char ch, size_t n)
  */
 _ALWAYS_INLINE _INLINE static void *__elibc_memset32(void *p, char ch, size_t n) {
 
-	const uint32_t value = ((uint8_t)ch * UINT32_C(0x01010101));
+	const uint32_t value = (uint32_t)((uint8_t)ch * UINT32_C(0x01010101));
 	uint32_t *dest       = p;
 	while (n >= 4) {
 		*dest++ = value;
@@ -82,7 +82,6 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memset32(void *p, char ch, size_t n)
 #endif
 
 #if _MAX_MULTIBYTE >= 8
-
 /**
  * @brief Set the bytes of a block of memory to a specified value (8-bytes at a time)
  *
@@ -93,7 +92,7 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memset32(void *p, char ch, size_t n)
  */
 _ALWAYS_INLINE _INLINE static void *__elibc_memset64(void *p, char ch, size_t n) {
 
-	const uint64_t value = (uint8_t)ch * UINT64_C(0x0101010101010101);
+	const uint64_t value = (uint64_t)((uint8_t)ch * UINT64_C(0x0101010101010101));
 	uint64_t *dest       = p;
 	while (n >= 8) {
 		*dest++ = value;
