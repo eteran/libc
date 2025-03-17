@@ -13,7 +13,73 @@
 #define NAIVE_VERSION
 #endif
 
+/**
+ * @brief Copy the bytes of a block of memory to another block of memory (1-byte at a time)
+ *
+ * @param dest a pointer to the destination block of memory
+ * @param src a pointer to the source block of memory
+ * @param n the number of bytes to copy
+ * @return a pointer to the destination block of memory
+ */
+_ALWAYS_INLINE _INLINE static void *__elibc_memcpy8(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) {
+
+	uint8_t *p1       = dest;
+	const uint8_t *p2 = src;
+	while (n--) {
+		*p1++ = *p2++;
+	}
+
+	return dest;
+}
+
 #ifndef NAIVE_VERSION
+
+#if _MAX_MULTIBYTE >= 2
+/**
+ * @brief Copy the bytes of a block of memory to another block of memory (2-bytes at a time)
+ *
+ * @param dest a pointer to the destination block of memory
+ * @param src a pointer to the source block of memory
+ * @param n the number of bytes to copy
+ * @return a pointer to the destination block of memory
+ */
+_ALWAYS_INLINE _INLINE static void *__elibc_memcpy16(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) {
+
+	uint16_t *p1       = dest;
+	const uint16_t *p2 = src;
+	while (n >= 2) {
+		*p1++ = *p2++;
+		n -= sizeof(uint16_t);
+	}
+
+	__elibc_memcpy8(dest, src, n);
+	return dest;
+}
+#endif
+
+#if _MAX_MULTIBYTE >= 4
+/**
+ * @brief Copy the bytes of a block of memory to another block of memory (4-bytes at a time)
+ *
+ * @param dest a pointer to the destination block of memory
+ * @param src a pointer to the source block of memory
+ * @param n the number of bytes to copy
+ * @return a pointer to the destination block of memory
+ */
+_ALWAYS_INLINE _INLINE static void *__elibc_memcpy32(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) {
+
+	uint32_t *p1       = dest;
+	const uint32_t *p2 = src;
+	while (n >= 4) {
+		*p1++ = *p2++;
+		n -= sizeof(uint32_t);
+	}
+
+	__elibc_memcpy16(dest, src, n);
+	return dest;
+}
+#endif
+
 #if _MAX_MULTIBYTE >= 8
 /**
  * @brief Copy the bytes of a block of memory to another block of memory (8-bytes at a time)
@@ -23,61 +89,20 @@
  * @param n the number of bytes to copy
  * @return a pointer to the destination block of memory
  */
-_ALWAYS_INLINE _INLINE static void __elibc_memcpy64(uint64_t *_RESTRICT dest,
-													const uint64_t *_RESTRICT src, size_t n) {
-	n /= 8;
-	while (n--) {
-		*dest++ = *src++;
+_ALWAYS_INLINE _INLINE static void *__elibc_memcpy64(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) {
+
+	uint64_t *p1       = dest;
+	const uint64_t *p2 = src;
+	while (n >= 8) {
+		*p1++ = *p2++;
+		n -= sizeof(uint64_t);
 	}
+
+	__elibc_memcpy32(dest, src, n);
+	return dest;
 }
 #endif
 
-/**
- * @brief Copy the bytes of a block of memory to another block of memory (4-bytes at a time)
- *
- * @param dest a pointer to the destination block of memory
- * @param src a pointer to the source block of memory
- * @param n the number of bytes to copy
- * @return a pointer to the destination block of memory
- */
-_ALWAYS_INLINE _INLINE static void __elibc_memcpy32(uint32_t *_RESTRICT dest,
-													const uint32_t *_RESTRICT src, size_t n) {
-	n /= 4;
-	while (n--) {
-		*dest++ = *src++;
-	}
-}
-
-/**
- * @brief Copy the bytes of a block of memory to another block of memory (2-bytes at a time)
- *
- * @param dest a pointer to the destination block of memory
- * @param src a pointer to the source block of memory
- * @param n the number of bytes to copy
- * @return a pointer to the destination block of memory
- */
-_ALWAYS_INLINE _INLINE static void __elibc_memcpy16(uint16_t *_RESTRICT dest,
-													const uint16_t *_RESTRICT src, size_t n) {
-	n /= 2;
-	while (n--) {
-		*dest++ = *src++;
-	}
-}
-
-/**
- * @brief Copy the bytes of a block of memory to another block of memory (1-byte at a time)
- *
- * @param dest a pointer to the destination block of memory
- * @param src a pointer to the source block of memory
- * @param n the number of bytes to copy
- * @return a pointer to the destination block of memory
- */
-_ALWAYS_INLINE _INLINE static void __elibc_memcpy8(uint8_t *_RESTRICT dest,
-												   const uint8_t *_RESTRICT src, size_t n) {
-	while (n--) {
-		*dest++ = *src++;
-	}
-}
 #endif
 
 /**
@@ -92,15 +117,9 @@ void *memcpy(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) {
 
 #ifdef NAIVE_VERSION
 	/* traditional memory copy */
-	char *d_ptr       = dest;
-	const char *s_ptr = src;
-
 	assert(dest);
 	assert(src);
-
-	while (n--) {
-		*d_ptr++ = *s_ptr++;
-	}
+	return __elibc_memcpy8(dest, src, n);
 #else
 
 	union {
@@ -125,43 +144,24 @@ void *memcpy(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) {
 	d_ptr.ptr = dest;
 	s_ptr.ptr = src;
 
-	switch (n & (_MAX_MULTIBYTE - 1)) {
-	case 0:
-#if _MAX_MULTIBYTE >= 2
-#if _MAX_MULTIBYTE >= 4
 #if _MAX_MULTIBYTE >= 8
-		if (!IS_ALIGNED(d_ptr.ptr64) || !IS_ALIGNED(s_ptr.ptr64)) {
-			goto unaligned;
-		}
-
-		/* multiple of 8 */
-		__elibc_memcpy64(d_ptr.ptr64, s_ptr.ptr64, n);
-		break;
-	case 4:
-#endif
-		if (!IS_ALIGNED(d_ptr.ptr32) || !IS_ALIGNED(s_ptr.ptr32)) {
-			goto unaligned;
-		}
-
-		/* multiple of 4 */
-		__elibc_memcpy32(d_ptr.ptr32, s_ptr.ptr32, n);
-		break;
-	case 6:
-	case 2:
-#endif
-		if (!IS_ALIGNED(d_ptr.ptr16) || !IS_ALIGNED(s_ptr.ptr16)) {
-			goto unaligned;
-		}
-
-		/* multiple of 2 */
-		__elibc_memcpy16(d_ptr.ptr16, s_ptr.ptr16, n);
-		break;
-	unaligned:
-	default:
-#endif
-		/* multiple of 1 */
-		__elibc_memcpy8(d_ptr.ptr8, s_ptr.ptr8, n);
+	if (n >= 8 && IS_ALIGNED(d_ptr.ptr64) && IS_ALIGNED(s_ptr.ptr64)) {
+		return __elibc_memcpy64(d_ptr.ptr64, s_ptr.ptr64, n);
 	}
 #endif
-	return dest;
+
+#if _MAX_MULTIBYTE >= 4
+	if (n >= 4 && IS_ALIGNED(d_ptr.ptr32) && IS_ALIGNED(s_ptr.ptr32)) {
+		return __elibc_memcpy32(d_ptr.ptr32, s_ptr.ptr32, n);
+	}
+#endif
+
+#if _MAX_MULTIBYTE >= 2
+	if (n >= 2 && IS_ALIGNED(d_ptr.ptr16) && IS_ALIGNED(s_ptr.ptr16)) {
+		return __elibc_memcpy16(d_ptr.ptr16, s_ptr.ptr16, n);
+	}
+#endif
+
+	return __elibc_memcpy8(d_ptr.ptr8, s_ptr.ptr8, n);
+#endif
 }

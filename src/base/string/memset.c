@@ -17,20 +17,20 @@
 /**
  * @brief Set the bytes of a block of memory to a specified value (1-byte at a time)
  *
- * @param base the base address of the block of memory
  * @param p a pointer to the block of memory to be set
  * @param ch the value to set the memory to
  * @param n the number of bytes to set
  * @return a pointer to the block of memory that was set
  */
-_ALWAYS_INLINE _INLINE static void *__elibc_memset8(void *base, void *p, char ch, size_t n) {
+_ALWAYS_INLINE _INLINE static void *__elibc_memset8(void *p, char ch, size_t n) {
 
 	const uint8_t value = (uint8_t)ch;
 	uint8_t *dest       = p;
 	while (n--) {
 		*dest++ = value;
 	}
-	return base;
+
+	return p;
 }
 
 #ifndef NAIVE_VERSION
@@ -39,13 +39,12 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memset8(void *base, void *p, char ch
 /**
  * @brief Set the bytes of a block of memory to a specified value (2-bytes at a time)
  *
- * @param base the base address of the block of memory
  * @param p a pointer to the block of memory to be set
  * @param ch the value to set the memory to
  * @param n the number of bytes to set
  * @return a pointer to the block of memory that was set
  */
-_ALWAYS_INLINE _INLINE static void *__elibc_memset16(void *base, void *p, char ch, size_t n) {
+_ALWAYS_INLINE _INLINE static void *__elibc_memset16(void *p, char ch, size_t n) {
 
 	const uint16_t value = (uint16_t)((uint8_t)ch * UINT16_C(0x0101));
 	uint16_t *dest       = p;
@@ -54,7 +53,8 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memset16(void *base, void *p, char c
 		n -= sizeof(uint16_t);
 	}
 
-	return __elibc_memset8(base, dest, ch, n);
+	__elibc_memset8(dest, ch, n);
+	return p;
 }
 #endif
 
@@ -62,13 +62,12 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memset16(void *base, void *p, char c
 /**
  * @brief Set the bytes of a block of memory to a specified value (4-bytes at a time)
  *
- * @param base the base address of the block of memory
  * @param p a pointer to the block of memory to be set
  * @param ch the value to set the memory to
  * @param n the number of bytes to set
  * @return a pointer to the block of memory that was set
  */
-_ALWAYS_INLINE _INLINE static void *__elibc_memset32(void *base, void *p, char ch, size_t n) {
+_ALWAYS_INLINE _INLINE static void *__elibc_memset32(void *p, char ch, size_t n) {
 
 	const uint32_t value = ((uint8_t)ch * UINT32_C(0x01010101));
 	uint32_t *dest       = p;
@@ -77,7 +76,8 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memset32(void *base, void *p, char c
 		n -= sizeof(uint32_t);
 	}
 
-	return __elibc_memset16(base, dest, ch, n);
+	__elibc_memset16(dest, ch, n);
+	return p;
 }
 #endif
 
@@ -86,13 +86,12 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memset32(void *base, void *p, char c
 /**
  * @brief Set the bytes of a block of memory to a specified value (8-bytes at a time)
  *
- * @param base the base address of the block of memory
  * @param p a pointer to the block of memory to be set
  * @param ch the value to set the memory to
  * @param n the number of bytes to set
  * @return a pointer to the block of memory that was set
  */
-_ALWAYS_INLINE _INLINE static void *__elibc_memset64(void *base, void *p, char ch, size_t n) {
+_ALWAYS_INLINE _INLINE static void *__elibc_memset64(void *p, char ch, size_t n) {
 
 	const uint64_t value = (uint8_t)ch * UINT64_C(0x0101010101010101);
 	uint64_t *dest       = p;
@@ -101,7 +100,8 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memset64(void *base, void *p, char c
 		n -= sizeof(uint64_t);
 	}
 
-	return __elibc_memset32(base, dest, ch, n);
+	__elibc_memset32(dest, ch, n);
+	return p;
 }
 #endif
 #endif
@@ -136,21 +136,21 @@ void *memset(void *s, int c, size_t n) {
 
 #if _MAX_MULTIBYTE >= 8
 	if (n >= 8 && (IS_ALIGNED(d_ptr.ptr64))) {
-		return __elibc_memset64(d_ptr.ptr64, d_ptr.ptr64, c, n);
+		return __elibc_memset64(d_ptr.ptr64, c, n);
 	}
 #endif
 
 #if _MAX_MULTIBYTE >= 4
 	if (n >= 4 && (IS_ALIGNED(d_ptr.ptr32))) {
-		return __elibc_memset32(d_ptr.ptr32, d_ptr.ptr32, c, n);
+		return __elibc_memset32(d_ptr.ptr32, c, n);
 	}
 #endif
 
 #if _MAX_MULTIBYTE >= 2
 	if (n >= 2 && (IS_ALIGNED(d_ptr.ptr16))) {
-		return __elibc_memset16(d_ptr.ptr16, d_ptr.ptr16, c, n);
+		return __elibc_memset16(d_ptr.ptr16, c, n);
 	}
 #endif
-	return __elibc_memset8(d_ptr.ptr8, d_ptr.ptr8, c, n);
+	return __elibc_memset8(d_ptr.ptr8, c, n);
 #endif
 }
