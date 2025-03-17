@@ -55,11 +55,7 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memset16(void *base, void *p, char c
 		n -= sizeof(uint16_t);
 	}
 
-	if (n >= 1) {
-		return __elibc_memset8(base, dest, ch, n);
-	}
-
-	return base;
+	return __elibc_memset8(base, dest, ch, n);
 }
 #endif
 
@@ -82,15 +78,7 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memset32(void *base, void *p, char c
 		n -= sizeof(uint32_t);
 	}
 
-	if (n >= 2) {
-		return __elibc_memset16(base, dest, ch, n);
-	}
-
-	if (n >= 1) {
-		return __elibc_memset8(base, dest, ch, n);
-	}
-
-	return base;
+	return __elibc_memset16(base, dest, ch, n);
 }
 #endif
 
@@ -114,19 +102,7 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memset64(void *base, void *p, char c
 		n -= sizeof(uint64_t);
 	}
 
-	if (n >= 4) {
-		return __elibc_memset32(base, dest, ch, n);
-	}
-
-	if (n >= 2) {
-		return __elibc_memset16(base, dest, ch, n);
-	}
-
-	if (n >= 1) {
-		return __elibc_memset8(base, dest, ch, n);
-	}
-
-	return base;
+	return __elibc_memset32(base, dest, ch, n);
 }
 #endif
 #endif
