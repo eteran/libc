@@ -118,7 +118,7 @@ void *memset(void *s, int c, size_t n) {
 #ifdef NAIVE_VERSION
 	/* traditional memset */
 	assert(s);
-	return __elibc_memset8(s, s, c, n);
+	return __elibc_memset8(s, c, n);
 #else
 
 	union {

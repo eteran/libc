@@ -23,15 +23,19 @@
  * @return 0 if the blocks are equal, a negative value if s1 is less than s2, or a positive value if s1 is greater than s2
  */
 _ALWAYS_INLINE _INLINE static int __elibc_memcmp8(const void *s1, const void *s2, size_t n) {
-	int ret           = 0;
 	const uint8_t *p1 = s1;
 	const uint8_t *p2 = s2;
 
-	while (!ret && n--) {
-		ret = (*p1++ - *p2++);
+	while (n >= 1) {
+		if (*p1 != *p2) {
+			return *p1 - *p2;
+		}
+		++p1;
+		++p2;
+		n -= sizeof(uint8_t);
 	}
 
-	return ret;
+	return 0;
 }
 
 #ifndef NAIVE_VERSION

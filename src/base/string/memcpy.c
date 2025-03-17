@@ -25,8 +25,9 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memcpy8(void *_RESTRICT dest, const 
 
 	uint8_t *p1       = dest;
 	const uint8_t *p2 = src;
-	while (n--) {
+	while (n >= 1) {
 		*p1++ = *p2++;
+		n -= sizeof(uint8_t);
 	}
 
 	return dest;
@@ -52,7 +53,7 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memcpy16(void *_RESTRICT dest, const
 		n -= sizeof(uint16_t);
 	}
 
-	__elibc_memcpy8(dest, src, n);
+	__elibc_memcpy8(p1, p2, n);
 	return dest;
 }
 #endif
@@ -75,7 +76,7 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memcpy32(void *_RESTRICT dest, const
 		n -= sizeof(uint32_t);
 	}
 
-	__elibc_memcpy16(dest, src, n);
+	__elibc_memcpy16(p1, p2, n);
 	return dest;
 }
 #endif
@@ -98,7 +99,7 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memcpy64(void *_RESTRICT dest, const
 		n -= sizeof(uint64_t);
 	}
 
-	__elibc_memcpy32(dest, src, n);
+	__elibc_memcpy32(p1, p2, n);
 	return dest;
 }
 #endif
