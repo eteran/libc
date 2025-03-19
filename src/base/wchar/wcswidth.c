@@ -3,9 +3,9 @@
 #include <wchar.h>
 
 /**
- * @brief Returns the number of columns required to represent a wide string
+ * @brief Returns the number of columns required to represent a wide string.
  *
- * @param wcs The wide string to measure
+ * @param wcs The wide string to measure.
  * @param n The maximum number of characters to measure
  * @return The number of columns required to represent the wide string, or -1 if the string contains an invalid character
  */
