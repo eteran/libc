@@ -6,8 +6,8 @@
 
 _LIBC_BEGIN
 
-int __elibc_fputc(int c, FILE *stream, int wide) _NOEXCEPT;
-int fputc(int c, FILE *stream) _NOEXCEPT;
+int __elibc_fputc(int c, FILE *stream, int wide) _NOEXCEPT _NON_NULL(2);
+int fputc(int c, FILE *stream) _NOEXCEPT _NON_NULL(2);
 
 _LIBC_END
 

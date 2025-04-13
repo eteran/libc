@@ -5,7 +5,7 @@
 _LIBC_BEGIN
 
 int rand(void) _NOEXCEPT;
-int rand_r(unsigned int *seedp) _NOEXCEPT;
+int rand_r(unsigned int *seedp) _NOEXCEPT _NON_NULL(1);
 
 unsigned int *__elibc_rand_next(void);
 

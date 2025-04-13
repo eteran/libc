@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-int fesetexceptflag(const fexcept_t *fp, int mask) _NOEXCEPT;
+int fesetexceptflag(const fexcept_t *fp, int mask) _NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

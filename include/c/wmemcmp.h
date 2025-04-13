@@ -7,7 +7,8 @@
 
 _LIBC_BEGIN
 
-_PURE int wmemcmp(const wchar_t *, const wchar_t *, size_t) _NOEXCEPT;
+_PURE int wmemcmp(const wchar_t *, const wchar_t *, size_t)
+_NOEXCEPT _NON_NULL(1, 2);
 
 _LIBC_END
 

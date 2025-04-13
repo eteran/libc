@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-int rename(const char *oldpath, const char *newpath) _NOEXCEPT;
+int rename(const char *oldpath, const char *newpath) _NOEXCEPT _NON_NULL(1, 2);
 
 _LIBC_END
 

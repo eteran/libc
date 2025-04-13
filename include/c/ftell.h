@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-long ftell(FILE *stream) _NOEXCEPT;
+long ftell(FILE *stream) _NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

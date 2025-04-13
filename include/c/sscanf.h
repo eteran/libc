@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-int sscanf(const char *str, const char *format, ...) _NOEXCEPT;
+int sscanf(const char *str, const char *format, ...) _NOEXCEPT _NON_NULL(1, 2);
 
 _LIBC_END
 

@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-int atoi(const char *nptr) _NOEXCEPT;
+int atoi(const char *nptr) _NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

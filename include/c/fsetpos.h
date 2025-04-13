@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-int fsetpos(FILE *stream, const fpos_t *pos) _NOEXCEPT;
+int fsetpos(FILE *stream, const fpos_t *pos) _NOEXCEPT _NON_NULL(1, 2);
 
 _LIBC_END
 

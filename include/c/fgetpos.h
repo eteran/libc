@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-int fgetpos(FILE *stream, fpos_t *pos) _NOEXCEPT;
+int fgetpos(FILE *stream, fpos_t *pos) _NOEXCEPT _NON_NULL(1, 2);
 
 _LIBC_END
 

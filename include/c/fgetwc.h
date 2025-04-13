@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-wint_t fgetwc(FILE *stream) _NOEXCEPT;
+wint_t fgetwc(FILE *stream) _NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

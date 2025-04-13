@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-_PURE wctype_t wctype(const char *str) _NOEXCEPT;
+_PURE wctype_t wctype(const char *str) _NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

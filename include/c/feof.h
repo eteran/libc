@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-int feof(FILE *stream) _NOEXCEPT;
+int feof(FILE *stream) _NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

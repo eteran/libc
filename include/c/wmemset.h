@@ -7,7 +7,8 @@
 
 _LIBC_BEGIN
 
-wchar_t *wmemset(wchar_t *, wchar_t, size_t) _NOEXCEPT;
+wchar_t *wmemset(wchar_t *, wchar_t, size_t)
+_NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

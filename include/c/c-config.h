@@ -126,6 +126,16 @@
 	} while (0)
 #endif
 
+#if defined(__GNUC__)
+#define _RETURNS_NONNULL __attribute__((__returns_nonnull__))
+#define _NON_NULL(...)   __attribute__((__nonnull__(__VA_ARGS__)))
+#define _C_STRING(...)   __attribute__((null_terminated_string_arg(__VA_ARGS__)))
+#else
+#define _RETURNS_NONNULL
+#define _NON_NULL(...)
+#define _C_STRING(...)
+#endif
+
 /* TODO(eteran): enable TLS */
 #if !defined(_HAS_C11) && defined(__GNUC__) && 0
 #define _Thread_local __thread

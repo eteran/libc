@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-wint_t ungetwc(wint_t wc, FILE *stream) _NOEXCEPT;
+wint_t ungetwc(wint_t wc, FILE *stream) _NOEXCEPT _NON_NULL(2);
 
 _LIBC_END
 

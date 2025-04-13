@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-float remquof(float x, float y, int *quo) _NOEXCEPT;
+float remquof(float x, float y, int *quo) _NOEXCEPT _NON_NULL(3);
 
 _LIBC_END
 

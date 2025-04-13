@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-int fegetenv(fenv_t *envp) _NOEXCEPT;
+int fegetenv(fenv_t *envp) _NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

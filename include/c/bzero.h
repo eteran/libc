@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-_DEPRECATED void bzero(void *s, size_t n) _NOEXCEPT;
+_DEPRECATED void bzero(void *s, size_t n) _NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

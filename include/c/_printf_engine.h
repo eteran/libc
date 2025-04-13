@@ -20,7 +20,7 @@ struct __elibc_write {
 	size_t written;
 };
 
-int __elibc_printf_engine(void *ctx, const char *format, va_list ap);
+int __elibc_printf_engine(void *ctx, const char *format, va_list ap) _NON_NULL(1, 2);
 
 _LIBC_END
 

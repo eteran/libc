@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-int vscanf(const char *format, va_list ap) _NOEXCEPT;
+int vscanf(const char *format, va_list ap) _NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

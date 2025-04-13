@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-double frexp(double x, int *exp) _NOEXCEPT;
+double frexp(double x, int *exp) _NOEXCEPT _NON_NULL(2);
 
 _LIBC_END
 

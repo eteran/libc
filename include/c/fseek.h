@@ -6,8 +6,8 @@
 
 _LIBC_BEGIN
 
-int __elibc_fseek(FILE *stream, long offset, int whence) _NOEXCEPT;
-int fseek(FILE *stream, long offset, int whence) _NOEXCEPT;
+int __elibc_fseek(FILE *stream, long offset, int whence) _NOEXCEPT _NON_NULL(1);
+int fseek(FILE *stream, long offset, int whence) _NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-size_t mbsrtowcs(wchar_t *dest, const char **src, size_t len, mbstate_t *ps) _NOEXCEPT;
+size_t mbsrtowcs(wchar_t *dest, const char **src, size_t len, mbstate_t *ps) _NOEXCEPT _NON_NULL(2, 4);
 
 _LIBC_END
 

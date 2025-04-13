@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-long double remquol(long double x, long double y, int *quo) _NOEXCEPT;
+long double remquol(long double x, long double y, int *quo) _NOEXCEPT _NON_NULL(3);
 
 _LIBC_END
 

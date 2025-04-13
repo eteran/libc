@@ -8,7 +8,7 @@
 _LIBC_BEGIN
 
 char *asctime(const struct tm *timeptr) _NOEXCEPT;
-char *asctime_r(const struct tm *timeptr, char *buf) _NOEXCEPT;
+char *asctime_r(const struct tm *timeptr, char *buf) _NOEXCEPT _NON_NULL(2);
 
 _LIBC_END
 

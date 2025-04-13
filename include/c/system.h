@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-int system(const char *command) _NOEXCEPT;
+int system(const char *command) _NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

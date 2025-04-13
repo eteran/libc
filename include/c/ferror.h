@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-int ferror(FILE *stream) _NOEXCEPT;
+int ferror(FILE *stream) _NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

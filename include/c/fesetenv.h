@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-int fesetenv(const fenv_t *envp) _NOEXCEPT;
+int fesetenv(const fenv_t *envp) _NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

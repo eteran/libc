@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-intmax_t strtoimax(const char *nptr, char **endptr, int base) _NOEXCEPT;
+intmax_t strtoimax(const char *nptr, char **endptr, int base) _NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

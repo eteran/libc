@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-size_t fwrite(const void *ptr, size_t size, size_t nelem, FILE *stream) _NOEXCEPT;
+size_t fwrite(const void *ptr, size_t size, size_t nelem, FILE *stream) _NOEXCEPT _NON_NULL(1, 4);
 
 _LIBC_END
 

@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-float strtof(const char *nptr, char **endptr) _NOEXCEPT;
+float strtof(const char *nptr, char **endptr) _NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

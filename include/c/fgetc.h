@@ -6,8 +6,8 @@
 
 _LIBC_BEGIN
 
-int __elibc_fgetc(FILE *stream) _NOEXCEPT;
-int fgetc(FILE *stream) _NOEXCEPT;
+int __elibc_fgetc(FILE *stream) _NOEXCEPT _NON_NULL(1);
+int fgetc(FILE *stream) _NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

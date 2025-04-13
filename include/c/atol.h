@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-long atol(const char *nptr) _NOEXCEPT;
+long atol(const char *nptr) _NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-float modff(float arg, float *iptr) _NOEXCEPT;
+float modff(float arg, float *iptr) _NOEXCEPT _NON_NULL(2);
 
 _LIBC_END
 

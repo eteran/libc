@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-int ungetc(int c, FILE *stream) _NOEXCEPT;
+int ungetc(int c, FILE *stream) _NOEXCEPT _NON_NULL(2);
 
 _LIBC_END
 

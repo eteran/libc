@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-void qsort(void *base, size_t nmemb, size_t size, __compar_fn_t compar);
+void qsort(void *base, size_t nmemb, size_t size, __compar_fn_t compar) _NON_NULL(1, 4);
 
 _LIBC_END
 

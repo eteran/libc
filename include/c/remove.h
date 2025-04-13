@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-int remove(const char *pathname) _NOEXCEPT;
+int remove(const char *pathname) _NOEXCEPT _NON_NULL(1);
 
 _LIBC_END
 

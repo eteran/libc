@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-size_t wcsxfrm(wchar_t *ws1, const wchar_t *ws2, size_t n) _NOEXCEPT;
+size_t wcsxfrm(wchar_t *ws1, const wchar_t *ws2, size_t n) _NOEXCEPT _NON_NULL(1, 2);
 
 _LIBC_END
 

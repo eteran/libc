@@ -4,7 +4,7 @@
 
 _LIBC_BEGIN
 
-float frexpf(float x, int *exp) _NOEXCEPT;
+float frexpf(float x, int *exp) _NOEXCEPT _NON_NULL(2);
 
 _LIBC_END
 
