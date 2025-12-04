@@ -3,22 +3,24 @@ cmake_minimum_required(VERSION 3.15)
 add_library(c-base INTERFACE)
 
 target_link_libraries(c-base INTERFACE
-	c-assert
-	c-ctype
-	c-errno
-	c-fenv
-	c-inttypes
-	c-locale
-	c-math
-	c-setjmp
-	c-signal
-	c-stdio
-	c-stdlib
-	c-string
-	c-strings
-	c-time
-	c-wchar
-	c-wctype
+	libc-headers
+	$<LINK_GROUP:RESCAN,
+	c-assert;
+	c-ctype;
+	c-errno;
+	c-fenv;
+	c-inttypes;
+	c-locale;
+	c-math;
+	c-setjmp;
+	c-signal;
+	c-stdio;
+	c-stdlib;
+	c-string;
+	c-strings;
+	c-time;
+	c-wchar;
+	c-wctype>
 )
 
 add_subdirectory(assert)

@@ -18,6 +18,7 @@ add_compile_options(
 	-ffreestanding
 	-Wno-long-long
 	-Werror
+	# -ftrivial-auto-var-init=pattern
 )
 
 add_subdirectory(include)
