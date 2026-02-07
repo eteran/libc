@@ -26,6 +26,7 @@ static void test_strcpy(void) {
 
 static void test_strchr(void) {
 	const char str[]   = "Try not. Do, or do not. There is no try.";
+	const char hi_bit[] = {(char)0xFF, 'A', (char)0xFF, '\0'};
 	char target        = 'T';
 	const char *result = str;
 
@@ -42,10 +43,14 @@ static void test_strchr(void) {
 
 	result = strchr(str, '\0');
 	assert(result == &str[sizeof(str) - 1]);
+
+	result = strchr(hi_bit, 0xFF);
+	assert(result == hi_bit);
 }
 
 static void test_strrchr(void) {
 	const char str[]   = "Try not. Do, or do not. There is no try.";
+	const char hi_bit[] = {(char)0xFF, 'A', (char)0xFF, '\0'};
 	char target        = 'T';
 	const char *result = str;
 
@@ -57,12 +62,16 @@ static void test_strrchr(void) {
 
 	result = strrchr(str, '\0');
 	assert(result == &str[sizeof(str) - 1]);
+
+	result = strrchr(hi_bit, 0xFF);
+	assert(result == hi_bit + 2);
 }
 
 static void test_memchr(void) {
 	char str[] = "ABCDEFG";
 	char *ps   = memchr(str, 'D', sizeof(str) - 1);
 	assert(*ps == 'D');
+	assert(memchr(NULL, 'D', 0) == NULL);
 }
 
 static void test_strlen(void) {
@@ -93,7 +102,11 @@ static void test_strstr(void) {
 	assert((strstr(str, "") - str) == 0);
 	assert((strstr(str, "two") - str) == 4);
 	assert((strstr(str, "n") - str) == 1);
+	assert((strstr("abcde", "de") - "abcde") == 3);
 	assert(strstr(str, "nine") == NULL);
+
+	assert(strnstr("abcde", "cd", 3) == NULL);
+	assert((strnstr("abcde", "cd", 4) - "abcde") == 2);
 }
 
 static void test_strspn(void) {
@@ -104,6 +117,7 @@ static void test_strspn(void) {
 }
 
 static void test_memcmp(void) {
+	assert(memcmp(NULL, NULL, 0) == 0);
 	{
 		const char a1[] = {'a', 'b', 'c'};
 		const char a2[] = {'a', 'b', 'd'};
@@ -184,9 +198,11 @@ static void test_memcpy(void) {
 	char dest[4];
 	memcpy(dest, source, sizeof(dest));
 	assert(memcmp(dest, "once", sizeof(dest)) == 0);
+	(void)memcpy(NULL, NULL, 0);
 }
 
 static void test_memset(void) {
+	(void)memset(NULL, 0, 0);
 
 	{
 		char buffer[32];
@@ -273,6 +289,8 @@ static void test_strlcat(void) {
 	n = strlcat(buffer, "!", 0);
 	assert(strcmp(buffer, "Hello, Wo") == 0);
 	assert(n == 1);
+	n = strlcat(NULL, "Hello", 0);
+	assert(n == 5);
 }
 
 static void test_strlcpy(void) {
@@ -288,6 +306,8 @@ static void test_strlcpy(void) {
 	n = strlcpy(buffer, "Hello, World", sizeof(buffer));
 	assert(n == 12);
 	assert(strcmp(buffer, "Hello, Wo") == 0);
+	n = strlcpy(NULL, "Hello", 0);
+	assert(n == 5);
 }
 
 static void test_memmove(void) {
@@ -295,6 +315,14 @@ static void test_memmove(void) {
 	assert(strcmp(str, "1234567890") == 0);
 	memmove(str + 4, str + 3, 3);
 	assert(strcmp(str, "1234456890") == 0);
+
+	{
+		char overlap[] = "abcdef";
+		memmove(overlap, overlap + 1, 4);
+		assert(strcmp(overlap, "bcdeef") == 0);
+	}
+
+	(void)memmove(NULL, NULL, 0);
 }
 
 static void test_strcoll(void) {
@@ -340,6 +368,14 @@ static void test_strtok(void) {
 	assert(strcmp(tokens[3], "down") == 0);
 	assert(strcmp(tokens[4], "the") == 0);
 	assert(strcmp(tokens[5], "walk") == 0);
+
+	{
+		char only_delims[] = "   ";
+		char *save         = (char *)1;
+		char *out          = strtok_r(only_delims, " ", &save);
+		assert(out == NULL);
+		assert(save == NULL);
+	}
 }
 
 static void test_strncpy(void) {
@@ -360,6 +396,7 @@ static void test_strncmp(void) {
 	assert(strncmp(string, "Hello", 10) > 0);
 	assert(strncmp(string, "Hello there", 10) < 0);
 	assert(strncmp(("Hello, everybody!") + 12, ("Hello, somebody!") + 11, 5) == 0);
+	assert(strncmp(NULL, NULL, 0) == 0);
 }
 
 static void test_strerror(void) {
@@ -432,7 +469,7 @@ static void test_strxfrm(void) {
 
 	n = strxfrm(dest2, src, 2);
 	assert(memcmp(dest2, "h", 1) == 0);
-	assert(n == 1);
+	assert(n == 2);
 }
 
 int main(void) {

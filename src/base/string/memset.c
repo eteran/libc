@@ -117,6 +117,10 @@ void *memset(void *s, int c, size_t n) {
 
 #ifdef NAIVE_VERSION
 	/* traditional memset */
+	if (n == 0) {
+		return s;
+	}
+
 	assert(s);
 	return __elibc_memset8(s, c, n);
 #else
@@ -128,6 +132,10 @@ void *memset(void *s, int c, size_t n) {
 		uint16_t *ptr16;
 		uint8_t *ptr8;
 	} d_ptr;
+
+	if (n == 0) {
+		return s;
+	}
 
 	assert(s);
 

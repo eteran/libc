@@ -118,6 +118,10 @@ void *memcpy(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) {
 
 #ifdef NAIVE_VERSION
 	/* traditional memory copy */
+	if (n == 0) {
+		return dest;
+	}
+
 	assert(dest);
 	assert(src);
 	return __elibc_memcpy8(dest, src, n);
@@ -138,6 +142,10 @@ void *memcpy(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) {
 		const uint16_t *ptr16;
 		const uint8_t *ptr8;
 	} s_ptr;
+
+	if (n == 0) {
+		return dest;
+	}
 
 	assert(dest);
 	assert(src);

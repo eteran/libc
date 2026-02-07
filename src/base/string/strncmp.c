@@ -14,6 +14,10 @@
 int strncmp(const char *s1, const char *s2, size_t n) {
 	int ret = 0;
 
+	if (n == 0) {
+		return 0;
+	}
+
 	assert(s1);
 	assert(s2);
 

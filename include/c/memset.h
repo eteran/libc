@@ -7,7 +7,7 @@
 _LIBC_BEGIN
 
 _ACCESS((write_only, 1))
-void *memset(void *s, int c, size_t n) _NOEXCEPT _NON_NULL(1);
+void *memset(void *s, int c, size_t n) _NOEXCEPT;
 
 _LIBC_END
 

@@ -12,6 +12,9 @@
  * @return pointer to the first occurrence of the substring in the string, or NULL if the substring is not found
  */
 char *strnstr(const char *haystack, const char *needle, size_t n) {
+	const char *h_ptr;
+	size_t needle_len;
+	size_t i;
 
 	assert(needle);
 	assert(haystack);
@@ -20,11 +23,16 @@ char *strnstr(const char *haystack, const char *needle, size_t n) {
 		return (char *)haystack;
 	}
 
-	while (*haystack != '\0') {
-		if (strncmp(haystack, needle, n) == 0) {
-			return (char *)haystack;
+	needle_len = strlen(needle);
+	if (n < needle_len) {
+		return 0;
+	}
+
+	h_ptr = haystack;
+	for (i = 0; i + needle_len <= n && h_ptr[i] != '\0'; ++i) {
+		if (h_ptr[i] == needle[0] && memcmp(h_ptr + i, needle, needle_len) == 0) {
+			return (char *)(h_ptr + i);
 		}
-		++haystack;
 	}
 
 	return 0;
@@ -38,5 +46,5 @@ char *strnstr(const char *haystack, const char *needle, size_t n) {
  * @return pointer to the first occurrence of the substring in the string, or NULL if the substring is not found
  */
 char *strstr(const char *haystack, const char *needle) {
-	return strnstr(haystack, needle, strlen(needle));
+	return strnstr(haystack, needle, strlen(haystack));
 }

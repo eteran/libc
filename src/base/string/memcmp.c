@@ -131,6 +131,10 @@ _ALWAYS_INLINE _INLINE static int __elibc_memcmp64(const void *s1, const void *s
  */
 int memcmp(const void *s1, const void *s2, size_t n) {
 #ifdef NAIVE_VERSION
+	if (n == 0) {
+		return 0;
+	}
+
 	assert(s1);
 	assert(s2);
 	return __elibc_memcmp8(s1, s2, n);
@@ -143,6 +147,10 @@ int memcmp(const void *s1, const void *s2, size_t n) {
 		const uint16_t *ptr16;
 		const uint8_t *ptr8;
 	} s1_ptr, s2_ptr;
+
+	if (n == 0) {
+		return 0;
+	}
 
 	assert(s1);
 	assert(s2);

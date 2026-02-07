@@ -15,6 +15,14 @@
  */
 void *memmove(void *dest, const void *src, size_t n) {
 
+	unsigned char *dest_ptr;
+	const unsigned char *src_ptr;
+	size_t i;
+
+	if (n == 0) {
+		return dest;
+	}
+
 	assert(dest);
 	assert(src);
 
@@ -22,17 +30,20 @@ void *memmove(void *dest, const void *src, size_t n) {
 		return dest;
 	}
 
-	if ((uintptr_t)dest > (uintptr_t)src) {
-		/* copy backwards */
-		char *dest_ptr      = dest;
-		const char *src_ptr = src;
+	dest_ptr = dest;
+	src_ptr  = src;
 
-		while (n--) {
-			dest_ptr[n] = src_ptr[n];
+	if ((uintptr_t)dest_ptr > (uintptr_t)src_ptr) {
+		/* copy backwards */
+		for (i = n; i > 0; --i) {
+			dest_ptr[i - 1] = src_ptr[i - 1];
 		}
 		return dest;
-	} else {
-		/* copy normally */
-		return memcpy(dest, src, n);
 	}
+
+	/* copy forwards */
+	for (i = 0; i < n; ++i) {
+		dest_ptr[i] = src_ptr[i];
+	}
+	return dest;
 }

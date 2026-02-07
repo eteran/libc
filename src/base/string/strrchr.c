@@ -12,11 +12,12 @@
  */
 char *strrchr(const char *s, int c) {
 	char *retval = 0;
+	const unsigned char cmp = (unsigned char)c;
 
 	assert(s);
 
 	do {
-		if (*s == c) {
+		if ((unsigned char)*s == cmp) {
 			retval = (char *)s;
 		}
 	} while (*s++ != '\0');

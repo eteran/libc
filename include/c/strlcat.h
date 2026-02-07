@@ -8,7 +8,7 @@ _LIBC_BEGIN
 
 _ACCESS((read_write, 1))
 _ACCESS((read_only, 2))
-size_t strlcat(char *dest, const char *src, size_t siz) _NOEXCEPT _NON_NULL(1, 2);
+size_t strlcat(char *dest, const char *src, size_t siz) _NOEXCEPT;
 
 _LIBC_END
 

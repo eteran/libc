@@ -14,21 +14,17 @@
 size_t strxfrm(char *_RESTRICT dest, const char *_RESTRICT src, size_t n) {
 
 	/* TODO(eteran): be locale aware */
-	size_t count = 0;
+	size_t src_len;
 	assert(src);
 
-	if (n != 0) {
-		size_t i;
-		assert(dest);
-		for (i = 0; i < n - 1; ++i) {
-			*dest++ = *src++;
-			++count;
-			if (!*src) {
-				break;
-			}
-		}
+	src_len = strlen(src);
 
-		*dest = '\0';
+	if (n != 0) {
+		size_t copy_len;
+		assert(dest);
+		copy_len = (src_len < (n - 1)) ? src_len : (n - 1);
+		memcpy(dest, src, copy_len);
+		dest[copy_len] = '\0';
 	}
-	return count;
+	return src_len;
 }

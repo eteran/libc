@@ -130,6 +130,10 @@ void *memswp(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 
 #ifdef NAIVE_VERSION
 	/* traditional version */
+	if (n == 0) {
+		return s1;
+	}
+
 	assert(s1);
 	assert(s2);
 	return __elibc_memswp8(s1, s2, n);
@@ -142,6 +146,10 @@ void *memswp(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 		uint16_t *ptr16;
 		uint8_t *ptr8;
 	} s1_ptr, s2_ptr;
+
+	if (n == 0) {
+		return s1;
+	}
 
 	assert(s1);
 	assert(s2);

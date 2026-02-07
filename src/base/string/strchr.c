@@ -11,11 +11,11 @@
  * @return a pointer to the first occurrence of the character in the string, or NULL if the character is not found
  */
 char *strchr(const char *s, int c) {
-	const char cmp = (char)c;
+	const unsigned char cmp = (unsigned char)c;
 
 	assert(s);
 
-	while (*s != cmp) {
+	while ((unsigned char)*s != cmp) {
 		if (*s == '\0') {
 			return 0;
 		}

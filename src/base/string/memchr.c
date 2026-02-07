@@ -13,10 +13,16 @@
  */
 void *memchr(const void *s, int c, size_t n) {
 
-	const unsigned char *s_ptr = s;
-	const unsigned char cmp    = (const unsigned char)(c & 0xff);
+	const unsigned char *s_ptr;
+	const unsigned char cmp = (unsigned char)c;
+
+	if (n == 0) {
+		return 0;
+	}
 
 	assert(s);
+
+	s_ptr = s;
 
 	while (n--) {
 		if (*s_ptr == cmp) {

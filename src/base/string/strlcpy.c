@@ -17,8 +17,13 @@ size_t strlcpy(char *_RESTRICT dest, const char *_RESTRICT src, size_t n) {
 
 	const char *const src_ptr = src;
 
-	assert(dest);
 	assert(src);
+
+	if (n == 0) {
+		return strlen(src);
+	}
+
+	assert(dest);
 
 	/* iterate over source string */
 	while (*src != '\0') {
@@ -36,9 +41,7 @@ size_t strlcpy(char *_RESTRICT dest, const char *_RESTRICT src, size_t n) {
 	}
 
 	/* this should only be false if they passed 0 to n */
-	if (n != 0) {
-		*dest = '\0';
-	}
+	*dest = '\0';
 
 	return (size_t)(src - src_ptr);
 }

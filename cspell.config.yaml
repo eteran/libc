@@ -3,6 +3,7 @@ ignorePaths: []
 dictionaryDefinitions: []
 dictionaries: []
 words:
+  - elibc
   - eteran
   - memswp
 ignoreWords: []

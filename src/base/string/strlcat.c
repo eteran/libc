@@ -20,8 +20,12 @@ size_t strlcat(char *_RESTRICT dest, const char *_RESTRICT src, size_t siz) {
 	size_t n      = siz;
 	size_t dlen;
 
-	assert(dest);
 	assert(src);
+	if (siz == 0) {
+		return strlen(s);
+	}
+
+	assert(dest);
 
 	/* Find the end of dest and adjust bytes left but don't go past end */
 	while (n-- && *d != '\0') {
