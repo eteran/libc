@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <wchar.h>
 
 /**
@@ -18,27 +19,13 @@ size_t mbstowcs(wchar_t *dest, const char *src, size_t n) {
 	static _Thread_local mbstate_t state;
 
 	const char *first = src;
-	const char *last  = src + n;
 	size_t count      = 0;
 
-	if (dest) {
-		while (1) {
-			const size_t rc = mbrtowc(dest, first, (size_t)(last - first), &state);
-			if (rc == (size_t)-1 || rc == (size_t)-2) {
-				return (size_t)-1;
-			}
+	memset(&state, 0, sizeof(state));
 
-			if (rc == 0) {
-				break;
-			}
-
-			first += rc;
-			++dest;
-			++count;
-		}
-	} else {
+	if (!dest) {
 		while (1) {
-			const size_t rc = mbrtowc(0, first, (size_t)(last - first), &state);
+			const size_t rc = mbrtowc(0, first, MB_CUR_MAX, &state);
 			if (rc == (size_t)-1 || rc == (size_t)-2) {
 				return (size_t)-1;
 			}
@@ -50,6 +37,26 @@ size_t mbstowcs(wchar_t *dest, const char *src, size_t n) {
 			first += rc;
 			++count;
 		}
+		return count;
+	}
+
+	if (n == 0) {
+		return 0;
+	}
+
+	while (count < n) {
+		const size_t rc = mbrtowc(dest, first, MB_CUR_MAX, &state);
+		if (rc == (size_t)-1 || rc == (size_t)-2) {
+			return (size_t)-1;
+		}
+
+		if (rc == 0) {
+			break;
+		}
+
+		first += rc;
+		++dest;
+		++count;
 	}
 
 	return count;

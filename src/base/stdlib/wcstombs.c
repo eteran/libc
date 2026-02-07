@@ -1,6 +1,7 @@
 
 #define _ELIBC_SOURCE
 #include <stdlib.h>
+#include <string.h>
 #include <wchar.h>
 
 /**
@@ -15,35 +16,15 @@ size_t wcstombs(char *dest, const wchar_t *src, size_t n) {
 	static _Thread_local mbstate_t state;
 
 	const wchar_t *first = src;
-	const wchar_t *last  = src + n;
 	size_t count         = 0;
 
-	if (dest) {
-		while (1) {
-			if ((size_t)(last - first) < MB_CUR_MAX) {
-				break;
-			} else {
+	memset(&state, 0, sizeof(state));
 
-				const wchar_t ch = *first;
-				const size_t rc  = wcrtomb(dest, ch, &state);
-
-				if (rc == (size_t)-1) {
-					return (size_t)-1;
-				}
-
-				if (ch == L'\0') {
-					break;
-				}
-
-				dest += rc;
-				count += rc;
-				++first;
-			}
-		}
-	} else {
+	if (!dest) {
 		while (1) {
 			const wchar_t ch = *first;
-			const size_t rc  = wcrtomb(0, ch, &state);
+			char buffer[MB_CUR_MAX];
+			const size_t rc = wcrtomb(buffer, ch, &state);
 			if (rc == (size_t)-1) {
 				return (size_t)-1;
 			}
@@ -55,6 +36,34 @@ size_t wcstombs(char *dest, const wchar_t *src, size_t n) {
 			count += rc;
 			++first;
 		}
+		return count;
+	}
+
+	if (n == 0) {
+		return 0;
+	}
+
+	while (1) {
+		const wchar_t ch = *first;
+		char buffer[MB_CUR_MAX];
+		const size_t rc = wcrtomb(buffer, ch, &state);
+		if (rc == (size_t)-1) {
+			return (size_t)-1;
+		}
+
+		if (rc > n) {
+			break;
+		}
+
+		memcpy(dest, buffer, rc);
+		if (ch == L'\0') {
+			return count;
+		}
+
+		dest += rc;
+		n -= rc;
+		count += rc;
+		++first;
 	}
 
 	return count;

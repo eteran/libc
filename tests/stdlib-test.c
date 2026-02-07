@@ -99,6 +99,13 @@ static void test_qsort(void) {
 			last = a[i];
 		}
 	}
+
+	/* test empty array */
+	{
+		int a[] = {42};
+		qsort(a, 0, sizeof(*a), compare);
+		assert(a[0] == 42);
+	}
 }
 
 static void test_bsearch(void) {
@@ -141,6 +148,14 @@ static void test_mbstowcs(void) {
 	assert(rc == 4);
 	assert(memcmp(output, wchar_test_string, rc + 1) == 0);
 	assert(mbstowcs(NULL, mb_test_string, 1024) == 4);
+	assert(mbstowcs(NULL, mb_test_string, 0) == 4);
+
+	{
+		wchar_t small[2] = {0};
+		rc               = mbstowcs(small, mb_test_string, 1);
+		assert(rc == 1);
+		assert(small[0] == wchar_test_string[0]);
+	}
 }
 
 static void reverse(char *first, char *last) {
@@ -267,6 +282,24 @@ static void test_strtol(void) {
 	assert(errno == 0);
 	assert(i == -40);
 	p = end;
+
+	{
+		const char *s = "+";
+		errno         = 0;
+		i             = strtol(s, &end, 10);
+		assert(errno == 0);
+		assert(i == 0);
+		assert(end == s);
+	}
+
+	{
+		const char *s = "0x";
+		errno         = 0;
+		i             = strtol(s, &end, 0);
+		assert(errno == 0);
+		assert(i == 0);
+		assert(end == s + 1);
+	}
 }
 
 static void test_strtoll(void) {
@@ -298,6 +331,24 @@ static void test_strtoll(void) {
 	assert(errno == 0);
 	assert(i == -40);
 	p = end;
+
+	{
+		const char *s = "+";
+		errno         = 0;
+		i             = strtoll(s, &end, 10);
+		assert(errno == 0);
+		assert(i == 0);
+		assert(end == s);
+	}
+
+	{
+		const char *s = "0x";
+		errno         = 0;
+		i             = strtoll(s, &end, 0);
+		assert(errno == 0);
+		assert(i == 0);
+		assert(end == s + 1);
+	}
 }
 
 static void test_strtoul(void) {
@@ -328,6 +379,24 @@ static void test_strtoul(void) {
 	assert(errno == 0);
 	assert(i == 40);
 	p = end;
+
+	{
+		const char *s = "+";
+		errno         = 0;
+		i             = strtoul(s, &end, 10);
+		assert(errno == 0);
+		assert(i == 0);
+		assert(end == s);
+	}
+
+	{
+		const char *s = "0x";
+		errno         = 0;
+		i             = strtoul(s, &end, 0);
+		assert(errno == 0);
+		assert(i == 0);
+		assert(end == s + 1);
+	}
 }
 
 static void test_strtoull(void) {
@@ -358,6 +427,24 @@ static void test_strtoull(void) {
 	assert(errno == 0);
 	assert(i == 40);
 	p = end;
+
+	{
+		const char *s = "+";
+		errno         = 0;
+		i             = strtoull(s, &end, 10);
+		assert(errno == 0);
+		assert(i == 0);
+		assert(end == s);
+	}
+
+	{
+		const char *s = "0x";
+		errno         = 0;
+		i             = strtoull(s, &end, 0);
+		assert(errno == 0);
+		assert(i == 0);
+		assert(end == s + 1);
+	}
 }
 
 static void test_mblen(void) {
@@ -389,6 +476,41 @@ static void test_wcstombs(void) {
 	const size_t result = wcstombs(dst, wchar_test_string, sizeof dst);
 	assert(result == 10);
 	assert(memcmp(dst, mb_test_string, result) == 0);
+
+	{
+		char small[5];
+		const size_t rc = wcstombs(small, wchar_test_string, sizeof small);
+		assert(rc == 3);
+		assert(memcmp(small, mb_test_string, rc) == 0);
+	}
+
+	assert(wcstombs(NULL, wchar_test_string, 0) == 10);
+}
+
+static void test_strtod(void) {
+	char *end;
+	const char *s;
+	double v;
+
+	s = "infjunk";
+	v = strtod(s, &end);
+	assert(isinf(v));
+	assert(end == s + 3);
+
+	s = "NaN(payload)tail";
+	v = strtod(s, &end);
+	assert(isnan(v));
+	assert(end == s + 12);
+
+	s = "  +";
+	v = strtod(s, &end);
+	assert(v == 0.0);
+	assert(end == s);
+
+	s = "junk";
+	v = strtod(s, &end);
+	assert(v == 0.0);
+	assert(end == s);
 }
 
 static void test_mbtowc(void) {
@@ -471,6 +593,7 @@ int main(void) {
 	test_strtoll();
 	test_strtoul();
 	test_strtoull();
+	test_strtod();
 	test_wcstombs();
 	test_wctomb();
 	test_calloc();

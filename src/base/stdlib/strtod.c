@@ -23,6 +23,8 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 	double sign             = 1.0;
 	const char *radix_index = 0;
 	double ret              = 0.0;
+	int any_digits          = 0;
+	const char *start       = nptr;
 
 	assert(nptr);
 
@@ -47,8 +49,15 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 	}
 
 	/* An infinity is either "INF" or "INFINITY", disregarding case. */
-	if (strcasecmp(nptr, "inf") == 0 || strcasecmp(nptr, "infinity") == 0) {
-		return INFINITY;
+	if (strncasecmp(nptr, "inf", 3) == 0) {
+		nptr += 3;
+		if (strncasecmp(nptr, "inity", 5) == 0) {
+			nptr += 5;
+		}
+		if (endptr) {
+			*endptr = (char *)nptr;
+		}
+		return sign * INFINITY;
 	}
 
 	/*
@@ -60,10 +69,15 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 		nptr += 3;
 		if (*nptr == '(') {
 			const char *nptr_end = strchr(nptr, ')');
-			(void)nptr_end;
+			if (nptr_end) {
+				nptr = nptr_end + 1;
+			}
 		}
 
 		/* TODO(eteran): what do we pass here, if anything? */
+		if (endptr) {
+			*endptr = (char *)nptr;
+		}
 		return NAN;
 	}
 
@@ -83,6 +97,7 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 		if (isdigit(c)) {
 			ret *= 10.0;
 			ret += (c - '0');
+			any_digits = 1;
 		} else if (c == '.') { /* TODO(eteran): make this locale dependant */
 			radix_index = nptr;
 		} else {
@@ -140,7 +155,11 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 	*/
 
 	if (endptr) {
-		*endptr = (char *)nptr;
+		*endptr = (char *)(any_digits ? nptr : start);
+	}
+
+	if (!any_digits) {
+		return 0.0;
 	}
 
 	ret *= sign;

@@ -18,9 +18,11 @@
 unsigned long int strtoul(const char *nptr, char **endptr, int base) {
 	typedef unsigned long int T;
 
-	T neg   = 0;
-	T ret   = 0;
-	int err = 0;
+	T neg            = 0;
+	T ret            = 0;
+	int err          = 0;
+	int any_digits   = 0;
+	const char *start = nptr;
 
 	assert(nptr);
 
@@ -54,22 +56,21 @@ unsigned long int strtoul(const char *nptr, char **endptr, int base) {
 		++nptr;
 	}
 
-	if (base == 16 || base == 0) {
-		if (nptr[0] == '0' && (nptr[1] == 'x' || nptr[1] == 'X')) {
-			base = 16;
+	if (base == 0) {
+		if (nptr[0] == '0') {
+			if ((nptr[1] == 'x' || nptr[1] == 'X') && isxdigit((unsigned char)nptr[2])) {
+				base = 16;
+				nptr += 2;
+			} else {
+				base = 8;
+			}
+		} else {
+			base = 10;
+		}
+	} else if (base == 16) {
+		if (nptr[0] == '0' && (nptr[1] == 'x' || nptr[1] == 'X') && isxdigit((unsigned char)nptr[2])) {
 			nptr += 2;
 		}
-	}
-
-	if (base == 8 || base == 0) {
-		if (nptr[0] == '0') {
-			base = 8;
-			++nptr;
-		}
-	}
-
-	if (base == 0) {
-		base = 10;
 	}
 
 	/*
@@ -109,6 +110,8 @@ unsigned long int strtoul(const char *nptr, char **endptr, int base) {
 			break;
 		}
 
+		any_digits = 1;
+
 		ret = (ret * (T)base) + (T)digit;
 		if (ret < old_ret) {
 
@@ -128,7 +131,7 @@ unsigned long int strtoul(const char *nptr, char **endptr, int base) {
 	 * valid.
 	 */
 	if (endptr) {
-		*endptr = (char *)nptr;
+		*endptr = (char *)(any_digits ? nptr : start);
 	}
 
 	/*
@@ -144,6 +147,10 @@ unsigned long int strtoul(const char *nptr, char **endptr, int base) {
 	/* NOTE: No need to special case the overflow with negation, it is covered
 	 * by the primary check above
 	 */
+
+	if (!any_digits) {
+		return 0;
+	}
 
 	if (!err) {
 		return neg ? -ret : ret;

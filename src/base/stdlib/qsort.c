@@ -104,6 +104,10 @@ void qsort(void *base, size_t nmemb, size_t size, __compar_fn_t compar) {
 	assert(base);
 	assert(compar);
 
+	if (size == 0 || nmemb == 0) {
+		return;
+	}
+
 	if (size != 0) {
 		__elibc_quick_sort(base, 0, nmemb - 1, size, compar);
 	}

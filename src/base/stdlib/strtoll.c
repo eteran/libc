@@ -18,9 +18,11 @@
 long long int strtoll(const char *nptr, char **endptr, int base) {
 	typedef long long int T;
 
-	T neg   = 0;
-	T ret   = 0;
-	int err = 0;
+	T neg            = 0;
+	T ret            = 0;
+	int err          = 0;
+	int any_digits   = 0;
+	const char *start = nptr;
 
 	assert(nptr);
 
@@ -54,22 +56,21 @@ long long int strtoll(const char *nptr, char **endptr, int base) {
 		++nptr;
 	}
 
-	if (base == 16 || base == 0) {
-		if (nptr[0] == '0' && (nptr[1] == 'x' || nptr[1] == 'X')) {
-			base = 16;
+	if (base == 0) {
+		if (nptr[0] == '0') {
+			if ((nptr[1] == 'x' || nptr[1] == 'X') && isxdigit((unsigned char)nptr[2])) {
+				base = 16;
+				nptr += 2;
+			} else {
+				base = 8;
+			}
+		} else {
+			base = 10;
+		}
+	} else if (base == 16) {
+		if (nptr[0] == '0' && (nptr[1] == 'x' || nptr[1] == 'X') && isxdigit((unsigned char)nptr[2])) {
 			nptr += 2;
 		}
-	}
-
-	if (base == 8 || base == 0) {
-		if (nptr[0] == '0') {
-			base = 8;
-			++nptr;
-		}
-	}
-
-	if (base == 0) {
-		base = 10;
 	}
 
 	/*
@@ -109,6 +110,8 @@ long long int strtoll(const char *nptr, char **endptr, int base) {
 			break;
 		}
 
+		any_digits = 1;
+
 		/* calculate as negative so we can properly calculate LLONG_MIN
 		 * but catch the overflow of LLONG_MAX + 1
 		 */
@@ -131,7 +134,7 @@ long long int strtoll(const char *nptr, char **endptr, int base) {
 	 * valid.
 	 */
 	if (endptr) {
-		*endptr = (char *)nptr;
+		*endptr = (char *)(any_digits ? nptr : start);
 	}
 
 	/*
@@ -144,6 +147,10 @@ long long int strtoll(const char *nptr, char **endptr, int base) {
 
 	if (!err && ret == LLONG_MIN && !neg) {
 		err = ERANGE;
+	}
+
+	if (!any_digits) {
+		return 0;
 	}
 
 	if (!err) {

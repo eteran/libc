@@ -2,6 +2,7 @@
 #define _ELIBC_SOURCE
 #include <assert.h>
 #include <stdint.h>
+#include <string.h>
 #include <wchar.h>
 
 /**
@@ -18,11 +19,14 @@ size_t wcrtomb(char *s, wchar_t wc, mbstate_t *ps) {
 	const unsigned long ch = (unsigned long)wc;
 	unsigned char *s_ptr   = (unsigned char *)s;
 
-	_UNUSED(ps);
-
 	_Static_assert(sizeof(unsigned long) >= sizeof(wchar_t), "unsupported wchar_t size");
 
-	assert(s);
+	if (!s) {
+		if (ps) {
+			memset(ps, 0, sizeof(*ps));
+		}
+		return 1;
+	}
 
 	if (ch >= 0xd800 && ch < 0xe000) {
 		/* reserved for use by UTF-16 surrogates */
