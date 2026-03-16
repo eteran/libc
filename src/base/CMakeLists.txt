@@ -4,23 +4,22 @@ add_library(c-base INTERFACE)
 
 target_link_libraries(c-base INTERFACE
 	libc-headers
-	$<LINK_GROUP:RESCAN,
-	c-assert;
-	c-ctype;
-	c-errno;
-	c-fenv;
-	c-inttypes;
-	c-locale;
-	c-math;
-	c-setjmp;
-	c-signal;
-	c-stdio;
-	c-stdlib;
-	c-string;
-	c-strings;
-	c-time;
-	c-wchar;
-	c-wctype>
+	c-assert
+	c-ctype
+	c-errno
+	c-fenv
+	c-inttypes
+	c-locale
+	c-math
+	c-setjmp
+	c-signal
+	c-stdio
+	c-stdlib
+	c-string
+	c-strings
+	c-time
+	c-wchar
+	c-wctype
 )
 
 add_subdirectory(assert)
