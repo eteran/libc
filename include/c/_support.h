@@ -19,7 +19,7 @@ extern "C" {
 int __elibc_sys_close(int fd);
 int __elibc_sys_gettimeofday(struct timeval *tv, struct timezone *tz);
 int __elibc_sys_kill(int pid, int sig);
-int __elibc_sys_open(const char *pathname, int flags);
+int __elibc_sys_open(const char *pathname, int flags, unsigned int mode);
 int __elibc_sys_unlink(const char *filename);
 long __elibc_sys_signal(int sig, __sighandler_t handler);
 off_t __elibc_sys_lseek(int fildes, off_t offset, int whence);

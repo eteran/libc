@@ -223,8 +223,8 @@ int __elibc_sys_close(int fd) {
  * @param flags the file access mode
  * @return the file descriptor on success, or -1 on error
  */
-int __elibc_sys_open(const char *pathname, int flags) {
-	long ret = elibc::syscall(__NR_open, pathname, flags);
+int __elibc_sys_open(const char *pathname, int flags, unsigned int mode) {
+	long ret = elibc::syscall(__NR_open, pathname, flags, mode);
 	if (ret < 0) {
 		errno = (__elibc_errno_t)-ret;
 		ret   = -1;

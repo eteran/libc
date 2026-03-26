@@ -27,35 +27,40 @@ FILE *fopen(const char *path, const char *mode) {
 	assert(mode);
 
 	{
-		int fd         = -1;
-		int mode_flags = 0;
+		int fd                 = -1;
+		int open_flags         = 0;
+		unsigned int open_mode = 0;
 
 		FILE *f = __elibc_allocate_file();
 		if (!f) {
+			errno = ENOMEM;
 			return 0;
 		}
 
 		_FDATA(f) = malloc(sizeof(struct __elibc_file));
 		if (!_FDATA(f)) {
 			__elibc_free_file(f);
+			errno = ENOMEM;
 			return 0;
 		}
 
 		/* get the basic mode */
 		switch (*mode) {
 		case 'r':
-			mode_flags = O_RDONLY;
+			open_flags = O_RDONLY;
 			break;
 		case 'w':
-			mode_flags = (O_WRONLY | O_CREAT | O_TRUNC);
+			open_flags = (O_WRONLY | O_CREAT | O_TRUNC);
+			open_mode  = 0666;
 			break;
 		case 'a':
-			mode_flags = (O_WRONLY | O_CREAT | O_APPEND);
+			open_flags = (O_WRONLY | O_CREAT | O_APPEND);
+			open_mode  = 0666;
 			break;
 		default:
 			free(_FDATA(f));
 			__elibc_free_file(f);
-			/* TODO; what's the correct error code */
+			errno = EINVAL;
 			return 0;
 		}
 
@@ -71,8 +76,8 @@ FILE *fopen(const char *path, const char *mode) {
 		/* modifier */
 		if (*mode == '+') {
 			++mode;
-			mode_flags &= ~(O_RDONLY | O_WRONLY);
-			mode_flags |= O_RDWR;
+			open_flags &= ~(O_RDONLY | O_WRONLY);
+			open_flags |= O_RDWR;
 		}
 
 		/* ignore the rest, we can add expansion flags here */
@@ -93,10 +98,10 @@ FILE *fopen(const char *path, const char *mode) {
 			return 0;
 		}
 
-		if ((fd = __elibc_sys_open(path, mode_flags)) == -1) {
+		if ((fd = __elibc_sys_open(path, open_flags, open_mode)) == -1) {
 			free(_FDATA(f));
 			__elibc_free_file(f);
-			/* TODO; what's the correct error code */
+			errno = EIO;
 			return 0;
 		}
 
