@@ -93,7 +93,7 @@ static wint_t __elibc_fgetwc(FILE *stream) {
  * @param buf the buffer to store the read character
  * @return the number of bytes read, or -1	 if an error occurred or the end of the stream was reached
  */
-static int __elibc_fgetwc_unlocked(FILE *stream, char *buf) {
+static wint_t __elibc_fgetwc_unlocked(FILE *stream, char *buf) {
 	wint_t r;
 	int i;
 	int n = 0;
@@ -127,7 +127,7 @@ static int __elibc_fgetwc_unlocked(FILE *stream, char *buf) {
 		buf[i] = (char)r;
 	}
 
-	return n;
+	return (wint_t)n;
 }
 
 /**
@@ -138,14 +138,14 @@ static int __elibc_fgetwc_unlocked(FILE *stream, char *buf) {
  */
 wint_t fgetwc(FILE *stream) {
 
-	int r;
+	wint_t r;
 	char buf[MB_LEN_MAX];
 	wchar_t wc;
 
 	__ELIBC_WITH_LOCK(__elibc_fgetwc_unlocked(stream, buf), &r);
 
-	if (r > 0) {
-		if (mbtowc(&wc, buf, (size_t)r) == r) {
+	if (r != WEOF) {
+		if (mbtowc(&wc, buf, (size_t)r) == (int)r) {
 			return (wint_t)wc;
 		}
 	}

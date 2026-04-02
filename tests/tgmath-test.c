@@ -10,7 +10,7 @@ static void test_float(void) {
 }
 
 static void test_double(void) {
-	double n = sin(123.4);
+	double n = sin(123.4f);
 	printf("%f\n", n);
 }
 

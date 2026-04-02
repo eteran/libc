@@ -18,6 +18,7 @@ add_compile_options(
 	-ffreestanding
 	-Wno-long-long
 	-Werror
+	-Wconversion
 	# -ftrivial-auto-var-init=pattern
 )
 

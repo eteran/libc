@@ -26,7 +26,7 @@ int __elibc_fputc(int c, FILE *stream, int wide) {
 	assert(_FDATA(stream)->orientation_set == 0 || _FDATA(stream)->orientation_wide == wide);
 
 	_FDATA(stream)->orientation_set  = 1;
-	_FDATA(stream)->orientation_wide = wide;
+	_FDATA(stream)->orientation_wide = !!wide;
 
 	if (!_FDATA(stream)->buffer_start) {
 		_ELIBC_ALLOCATE_FILE_BUFFER(stream);

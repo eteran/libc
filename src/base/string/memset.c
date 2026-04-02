@@ -22,7 +22,7 @@
  * @param n the number of bytes to set
  * @return a pointer to the block of memory that was set
  */
-_ALWAYS_INLINE _INLINE static void *__elibc_memset8(void *p, char ch, size_t n) {
+_ALWAYS_INLINE _INLINE static void *__elibc_memset8(void *p, int ch, size_t n) {
 
 	const uint8_t value = (uint8_t)ch;
 	uint8_t *dest       = p;
@@ -44,7 +44,7 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memset8(void *p, char ch, size_t n) 
  * @param n the number of bytes to set
  * @return a pointer to the block of memory that was set
  */
-_ALWAYS_INLINE _INLINE static void *__elibc_memset16(void *p, char ch, size_t n) {
+_ALWAYS_INLINE _INLINE static void *__elibc_memset16(void *p, int ch, size_t n) {
 
 	const uint16_t value = (uint16_t)((uint8_t)ch * UINT16_C(0x0101));
 	uint16_t *dest       = p;
@@ -67,7 +67,7 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memset16(void *p, char ch, size_t n)
  * @param n the number of bytes to set
  * @return a pointer to the block of memory that was set
  */
-_ALWAYS_INLINE _INLINE static void *__elibc_memset32(void *p, char ch, size_t n) {
+_ALWAYS_INLINE _INLINE static void *__elibc_memset32(void *p, int ch, size_t n) {
 
 	const uint32_t value = (uint32_t)((uint8_t)ch * UINT32_C(0x01010101));
 	uint32_t *dest       = p;
@@ -90,7 +90,7 @@ _ALWAYS_INLINE _INLINE static void *__elibc_memset32(void *p, char ch, size_t n)
  * @param n the number of bytes to set
  * @return a pointer to the block of memory that was set
  */
-_ALWAYS_INLINE _INLINE static void *__elibc_memset64(void *p, char ch, size_t n) {
+_ALWAYS_INLINE _INLINE static void *__elibc_memset64(void *p, int ch, size_t n) {
 
 	const uint64_t value = (uint64_t)((uint8_t)ch * UINT64_C(0x0101010101010101));
 	uint64_t *dest       = p;
