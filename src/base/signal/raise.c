@@ -10,6 +10,5 @@
  * @return 0 on success, or -1 on error
  */
 int raise(int sig) {
-	/* TODO(eteran): replace 0 with getpid? */
-	return __elibc_sys_kill(0, sig);
+	return __elibc_raise(sig);
 }

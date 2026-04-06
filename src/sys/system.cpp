@@ -16,7 +16,6 @@
 
 #define __intptr_t_defined
 #define __off_t_defined
-#define __pid_t_defined
 
 #include <asm/unistd.h>
 #include <linux/signal.h>
@@ -38,7 +37,7 @@ x	write
 ?	times
 x	_exit
 x	close
-x	kill
+x	raise
 x	lseek
 x	open
 x	read
@@ -100,14 +99,16 @@ int __elibc_sys_unlink(const char *filename) {
 }
 
 /**
- * @brief Sends a signal to a process or a process group.
+ * @brief Raises a signal in the current process.
  *
- * @param pid the process id of the process to send the signal to
- * @param sig the signal to send
+ * @param sig the signal to raise
  * @return 0 on success, or -1 on error
  */
-int __elibc_sys_kill(pid_t pid, int sig) {
-	long ret = elibc::syscall(__NR_kill, pid, sig);
+int __elibc_raise(int sig) {
+	/* TODO(eteran): in single-threaded context, this should be `kill(getpid(), sig);`
+	 * In a multi-threaded context, this should be `pthread_kill(pthread_self(), sig);`.
+	 */
+	long ret = elibc::syscall(__NR_kill, 0, sig);
 	if (ret < 0) {
 		errno = (__elibc_errno_t)-ret;
 		ret   = -1;
