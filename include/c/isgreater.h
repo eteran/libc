@@ -4,8 +4,7 @@
 
 _LIBC_BEGIN
 
-/* TODO(eteran): handle NaNs */
-#define isgreater(x, y) (x > y)
+#define isgreater(x, y) __builtin_isgreater((x), (y))
 
 _LIBC_END
 

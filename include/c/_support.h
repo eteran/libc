@@ -8,6 +8,8 @@
 #include "arch_pid_t.h"
 #include "arch_size_t.h"
 
+/* TODO(eteran): maybe abstract off_t and pid_t such that they are supplied by the target OS in a cleaner way */
+
 struct timeval;
 struct timezone;
 
@@ -18,7 +20,7 @@ extern "C" {
 /* basic system calls we need */
 int __elibc_sys_close(int fd);
 int __elibc_sys_gettimeofday(struct timeval *tv, struct timezone *tz);
-int __elibc_sys_kill(int pid, int sig);
+int __elibc_sys_kill(pid_t pid, int sig);
 int __elibc_sys_open(const char *pathname, int flags, unsigned int mode);
 int __elibc_sys_unlink(const char *filename);
 long __elibc_sys_signal(int sig, __sighandler_t handler);

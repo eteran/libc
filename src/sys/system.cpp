@@ -106,7 +106,7 @@ int __elibc_sys_unlink(const char *filename) {
  * @param sig the signal to send
  * @return 0 on success, or -1 on error
  */
-int __elibc_sys_kill(int pid, int sig) {
+int __elibc_sys_kill(pid_t pid, int sig) {
 	long ret = elibc::syscall(__NR_kill, pid, sig);
 	if (ret < 0) {
 		errno = (__elibc_errno_t)-ret;
@@ -376,6 +376,9 @@ clock_t __elibc_clock(void) {
  *
  * @param tod a pointer to a time_t object where the current time will be stored
  * @return the current time, or (time_t)-1 on error
+ *
+ * @note This is implemented and not in the libc because it is a thin wrapper around gettimeofday,
+ * which is implemented based on parameters defined in <linux/time.h>, which are not part of the libc API.
  */
 time_t __elibc_time(time_t *tod) {
 	struct timeval tv;

@@ -4,8 +4,7 @@
 
 _LIBC_BEGIN
 
-/* TODO(eteran): handle NaNs */
-#define islessequal(x, y) (x <= y)
+#define islessequal(x, y) __builtin_islessequal((x), (y))
 
 _LIBC_END
 

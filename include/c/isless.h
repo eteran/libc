@@ -4,8 +4,7 @@
 
 _LIBC_BEGIN
 
-/* TODO(eteran): handle NaNs */
-#define isless(x, y) (x < y)
+#define isless(x, y) __builtin_isless((x), (y))
 
 _LIBC_END
 
