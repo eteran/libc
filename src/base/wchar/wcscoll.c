@@ -11,9 +11,10 @@
  * lexicographically less than, equal to, or greater than ws2.
  */
 int wcscoll(const wchar_t *ws1, const wchar_t *ws2) {
-	_UNUSED(ws1);
-	_UNUSED(ws2);
+	/* TODO(eteran): make this locale aware */
 
-	/* TODO(eteran): implement this */
-	return -1;
+	assert(ws1);
+	assert(ws2);
+
+	return wcscmp(ws1, ws2);
 }
