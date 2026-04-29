@@ -96,16 +96,24 @@
 #ifndef _ALWAYS_INLINE
 #define _ALWAYS_INLINE __attribute__((__always_inline__))
 #endif
-#define _LIKELY(expr)   __builtin_expect(!!(expr), 1)
+#ifndef _LIKELY
+#define _LIKELY(expr) __builtin_expect(!!(expr), 1)
+#endif
+#ifndef _UNLIKELY
 #define _UNLIKELY(expr) __builtin_expect(!!(expr), 0)
+#endif
 #else
 #define _CONST
 #define _PURE
 #ifndef _ALWAYS_INLINE
 #define _ALWAYS_INLINE
 #endif
-#define _LIKELY(expr)   (expr)
+#ifndef _LIKELY
+#define _LIKELY(expr) (expr)
+#endif
+#ifndef _UNLIKELY
 #define _UNLIKELY(expr) (expr)
+#endif
 #endif
 
 #if defined(__GNUC__) && !defined(__clang__)
@@ -118,12 +126,14 @@
  * available in C++23, and the associated compiler specific intrinsics
  * because unlike those, this DOES evaluate the condition
  */
+#ifndef _ASSUME
 #if defined(__GNUC__)
 #define _ASSUME(cond) ((cond) ? (void)(0) : __builtin_unreachable())
 #else
 #define _ASSUME(cond) \
 	do {              \
 	} while (0)
+#endif
 #endif
 
 #if defined(__GNUC__)
