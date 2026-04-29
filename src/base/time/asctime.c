@@ -12,6 +12,9 @@
  * @note buf must be at least 26 bytes big.
  */
 char *asctime_r(const struct tm *timeptr, char *buf) {
+
+	assert(buf);
+
 	if (timeptr) {
 		if (timeptr->tm_wday < 7 && timeptr->tm_mon < 12) {
 
