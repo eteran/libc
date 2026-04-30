@@ -45,6 +45,6 @@ static size_t __elibc_fread(void *ptr, size_t size, size_t nmemb, FILE *stream) 
  * @return the number of elements read, or 0 if an error occurred
  */
 size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream) {
-	_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
-	return __elibc_fread(ptr, size, nmemb, s);
+	_DEFER_UNLOCK FILE *fp = __elibc_lock_stream(stream);
+	return __elibc_fread(ptr, size, nmemb, fp);
 }

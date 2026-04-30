@@ -22,6 +22,6 @@ static int __elibc_rewind(FILE *stream) {
  * @param stream the stream to reset
  */
 void rewind(FILE *stream) {
-	_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
-	(void)__elibc_rewind(s);
+	_DEFER_UNLOCK FILE *fp = __elibc_lock_stream(stream);
+	(void)__elibc_rewind(fp);
 }

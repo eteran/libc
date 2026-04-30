@@ -41,6 +41,6 @@ wint_t __elibc_fputwc_unlocked(wchar_t wc, FILE *stream) {
  * @return the wide-character written, or WEOF if an error occurred
  */
 wint_t fputwc(wchar_t wc, FILE *stream) {
-	_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
-	return __elibc_fputwc_unlocked(wc, s);
+	_DEFER_UNLOCK FILE *fp = __elibc_lock_stream(stream);
+	return __elibc_fputwc_unlocked(wc, fp);
 }

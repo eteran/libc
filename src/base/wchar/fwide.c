@@ -54,6 +54,6 @@ int __elibc_fwide(FILE *stream, int mode) {
  */
 int fwide(FILE *stream, int mode) {
 
-	_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
-	return __elibc_fwide(s, mode);
+	_DEFER_UNLOCK FILE *fp = __elibc_lock_stream(stream);
+	return __elibc_fwide(fp, mode);
 }

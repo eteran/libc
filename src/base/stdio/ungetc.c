@@ -39,6 +39,6 @@ static int __elibc_ungetc(int c, FILE *stream) {
  * @return the character pushed back, or EOF on error
  */
 int ungetc(int c, FILE *stream) {
-	_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
-	return __elibc_ungetc(c, s);
+	_DEFER_UNLOCK FILE *fp = __elibc_lock_stream(stream);
+	return __elibc_ungetc(c, fp);
 }

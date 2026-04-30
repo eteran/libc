@@ -21,6 +21,6 @@ int __elibc_clearerr(FILE *stream) {
  * @param stream the stream to clear the indicators for
  */
 void clearerr(FILE *stream) {
-	_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
-	(void)__elibc_clearerr(s);
+	_DEFER_UNLOCK FILE *fp = __elibc_lock_stream(stream);
+	(void)__elibc_clearerr(fp);
 }

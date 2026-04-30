@@ -21,6 +21,6 @@ static int __elibc_feof(FILE *stream) {
  * @return non-zero if the end-of-file indicator is set, zero otherwise
  */
 int feof(FILE *stream) {
-	_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
-	return __elibc_feof(s);
+	_DEFER_UNLOCK FILE *fp = __elibc_lock_stream(stream);
+	return __elibc_feof(fp);
 }
