@@ -91,16 +91,12 @@ extern FILE __elibc_stderr[1];
 /* POSIX only */
 #include "c/fileno.h"
 
-void __elibc_lock_stream(FILE *stream);
-void __elibc_unlock_stream(FILE *stream);
+FILE *__elibc_lock_stream(FILE *stream);
+void __elibc_unlock_stream(FILE * _RESTRICT * stream);
 FILE *__elibc_allocate_file(void);
 void __elibc_free_file(FILE *stream);
 
-#define __ELIBC_WITH_LOCK(call, result) \
-	do {                                \
-		__elibc_lock_stream(stream);    \
-		(*(result)) = call;             \
-		__elibc_unlock_stream(stream);  \
-	} while (0)
+/* file stream cleanup helper */
+#define _DEFER_UNLOCK __attribute__((cleanup(__elibc_unlock_stream)))
 
 #endif

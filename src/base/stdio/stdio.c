@@ -94,12 +94,14 @@ FILE *__elibc_free_file_struct = NULL;
  *
  * @param stream the stream to lock
  */
-void __elibc_lock_stream(FILE *stream) {
-	assert(stream);
+FILE *__elibc_lock_stream(FILE *stream) {
+
+	if (stream) {
 #if defined(_ELIBC_USE_THREADS)
-	pthread_mutex_lock(&stream->mutex);
+		pthread_mutex_lock(&stream->mutex);
 #endif
-	_UNUSED(stream);
+	}
+	return stream;
 }
 
 /**
@@ -107,12 +109,13 @@ void __elibc_lock_stream(FILE *stream) {
  *
  * @param stream the stream to unlock
  */
-void __elibc_unlock_stream(FILE *stream) {
-	assert(stream);
+void __elibc_unlock_stream(FILE * _RESTRICT * stream) {
+	FILE *s = *stream;
+	if (s) {
 #if defined(_ELIBC_USE_THREADS)
-	pthread_mutex_unlock(&stream->mutex);
+		pthread_mutex_unlock(&s->mutex);
 #endif
-	_UNUSED(stream);
+	}
 }
 
 /**
@@ -148,3 +151,14 @@ void __elibc_free_file(FILE *stream) {
 	stream->next             = __elibc_free_file_struct;
 	__elibc_free_file_struct = stream;
 }
+
+#if 0
+void cleanup_file(FILE **f) {
+	if (*f) fclose(*f);
+}
+
+void demo() {
+	__attribute__((cleanup(cleanup_file))) FILE *fp = fopen("test.txt", "r");
+	// fp is closed automatically when demo() returns or exits the scope.
+}
+#endif

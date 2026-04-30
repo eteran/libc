@@ -73,7 +73,6 @@ int __elibc_fputc(int c, FILE *stream, int wide) {
  * @return the character written, or EOF on error
  */
 int fputc(int c, FILE *stream) {
-	int r;
-	__ELIBC_WITH_LOCK(__elibc_fputc(c, stream, _ELIBC_FILE_NARROW), &r);
-	return r;
+	_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
+	return __elibc_fputc(c, s, _ELIBC_FILE_NARROW);
 }

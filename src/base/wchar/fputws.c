@@ -35,7 +35,6 @@ static int __elibc_fputws(const wchar_t *ws, FILE *stream) {
  * terminating null wide-character, or EOF if an error occurred.
  */
 int fputws(const wchar_t *ws, FILE *stream) {
-	int r;
-	__ELIBC_WITH_LOCK(__elibc_fputws(ws, stream), &r);
-	return r;
+	_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
+	return __elibc_fputws(ws, s);
 }

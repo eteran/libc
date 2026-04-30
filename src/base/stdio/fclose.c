@@ -63,7 +63,6 @@ int __elibc_fclose(FILE *stream) {
  * @return 0 on success, or EOF on error
  */
 int fclose(FILE *stream) {
-	int r;
-	__ELIBC_WITH_LOCK(__elibc_fclose(stream), &r);
-	return r;
+	_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
+	return __elibc_fclose(s);
 }

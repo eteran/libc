@@ -76,7 +76,6 @@ int __elibc_fgetc(FILE *stream) {
  * @return the character read, or EOF on error
  */
 int fgetc(FILE *stream) {
-	int r;
-	__ELIBC_WITH_LOCK(__elibc_fgetc(stream), &r);
-	return r;
+	_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
+	return __elibc_fgetc(s);
 }

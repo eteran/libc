@@ -42,7 +42,6 @@ int __elibc_fseek(FILE *stream, long offset, int whence) {
  * @return 0 on success, or a negative value on error
  */
 int fseek(FILE *stream, long offset, int whence) {
-	int r;
-	__ELIBC_WITH_LOCK(__elibc_fseek(stream, offset, whence), &r);
-	return r;
+	_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
+	return __elibc_fseek(s, offset, whence);
 }

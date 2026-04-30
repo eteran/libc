@@ -32,7 +32,6 @@ static int __elibc_fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) {
  * @return 0 on success, or EOF on error
  */
 int fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) {
-	int r;
-	__ELIBC_WITH_LOCK(__elibc_fputs(s, stream), &r);
-	return r;
+	_DEFER_UNLOCK FILE *str = __elibc_lock_stream(stream);
+	return __elibc_fputs(s, str);
 }

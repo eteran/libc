@@ -53,7 +53,7 @@ int __elibc_fwide(FILE *stream, int mode) {
  * is indeterminate.
  */
 int fwide(FILE *stream, int mode) {
-	int r;
-	__ELIBC_WITH_LOCK(__elibc_fwide(stream, mode), &r);
-	return r;
+
+	_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
+	return __elibc_fwide(s, mode);
 }

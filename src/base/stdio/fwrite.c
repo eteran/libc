@@ -42,7 +42,6 @@ static size_t __elibc_fwrite(const void *ptr, size_t size, size_t nelem, FILE *s
  * @return the number of elements written, or 0 if an error occurred
  */
 size_t fwrite(const void *ptr, size_t size, size_t nelem, FILE *stream) {
-	size_t r;
-	__ELIBC_WITH_LOCK(__elibc_fwrite(ptr, size, nelem, stream), &r);
-	return r;
+	_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
+	return __elibc_fwrite(ptr, size, nelem, s);
 }

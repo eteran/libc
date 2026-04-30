@@ -142,7 +142,8 @@ wint_t fgetwc(FILE *stream) {
 	char buf[MB_LEN_MAX];
 	wchar_t wc;
 
-	__ELIBC_WITH_LOCK(__elibc_fgetwc_unlocked(stream, buf), &r);
+	_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
+	r = __elibc_fgetwc_unlocked(s, buf);
 
 	if (r != WEOF) {
 		if (mbtowc(&wc, buf, (size_t)r) == (int)r) {

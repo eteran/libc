@@ -21,7 +21,6 @@ static int __elibc_ferror(FILE *stream) {
  * @return non-zero if the stream has encountered an error, zero otherwise
  */
 int ferror(FILE *stream) {
-	int r;
-	__ELIBC_WITH_LOCK(__elibc_ferror(stream), &r);
-	return r;
+	_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
+	return __elibc_ferror(s);
 }

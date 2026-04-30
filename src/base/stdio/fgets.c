@@ -47,7 +47,6 @@ static char *__elibc_fgets(char *_RESTRICT s, int size, FILE *_RESTRICT stream) 
  * @return a pointer to the buffer containing the string, or NULL on error
  */
 char *fgets(char *_RESTRICT s, int size, FILE *_RESTRICT stream) {
-	char *r;
-	__ELIBC_WITH_LOCK(__elibc_fgets(s, size, stream), &r);
-	return r;
+	_DEFER_UNLOCK FILE *str = __elibc_lock_stream(stream);
+	return __elibc_fgets(s, size, str);
 }

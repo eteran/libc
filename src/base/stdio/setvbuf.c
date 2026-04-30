@@ -65,7 +65,6 @@ static int __elibc_setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode
  * @return 0 on success, or a negative value on error
  */
 int setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode, size_t size) {
-	int r;
-	__ELIBC_WITH_LOCK(__elibc_setvbuf(stream, buf, mode, size), &r);
-	return r;
+	_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
+	return __elibc_setvbuf(s, buf, mode, size);
 }

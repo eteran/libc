@@ -44,7 +44,6 @@ static FILE *__elibc_freopen(const char *path, const char *mode, FILE *stream) {
  * @return a pointer to the stream associated with the file, or NULL on error
  */
 FILE *freopen(const char *path, const char *mode, FILE *stream) {
-	FILE *r;
-	__ELIBC_WITH_LOCK(__elibc_freopen(path, mode, stream), &r);
-	return r;
+	_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
+	return __elibc_freopen(path, mode, s);
 }

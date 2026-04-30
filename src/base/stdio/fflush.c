@@ -48,17 +48,16 @@ int __elibc_fflush(FILE *stream) {
 int fflush(FILE *stream) {
 
 	if (stream) {
-		int r;
-		__ELIBC_WITH_LOCK(__elibc_fflush(stream), &r);
-		return r;
+		_DEFER_UNLOCK FILE *s = __elibc_lock_stream(stream);
+		return __elibc_fflush(s);
 	} else {
 		/* flush all open output streams */
 		FILE *p;
 
 		/* TODO(eteran): lock the list */
 		for (p = __elibc_root_file_struct; p; p = p->next) {
-			int r;
-			__ELIBC_WITH_LOCK(__elibc_fflush(p), &r);
+			_DEFER_UNLOCK FILE *s = __elibc_lock_stream(p);
+			int r                 = __elibc_fflush(s);
 			if (r != 0) {
 				return r;
 			}
