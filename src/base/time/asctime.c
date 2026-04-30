@@ -1,5 +1,6 @@
 
 #define _ELIBC_SOURCE
+#include <assert.h>
 #include <stdio.h>
 #include <time.h>
 
