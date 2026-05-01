@@ -13,7 +13,7 @@
  * @param stream the stream to write to
  * @return the number of elements written, or 0 if an error occurred
  */
-static size_t __elibc_fwrite(const void *ptr, size_t size, size_t nelem, FILE *stream) {
+static size_t __elibc_fwrite(const void *_RESTRICT ptr, size_t size, size_t nelem, FILE *_RESTRICT stream) {
 	size_t elem_it;
 	size_t size_it;
 	const char *p = ptr;
@@ -41,7 +41,7 @@ static size_t __elibc_fwrite(const void *ptr, size_t size, size_t nelem, FILE *s
  * @param stream the stream to write to
  * @return the number of elements written, or 0 if an error occurred
  */
-size_t fwrite(const void *ptr, size_t size, size_t nelem, FILE *stream) {
+size_t fwrite(const void *_RESTRICT ptr, size_t size, size_t nelem, FILE *_RESTRICT stream) {
 	_DEFER_UNLOCK FILE *fp = __elibc_lock_stream(stream);
 	return __elibc_fwrite(ptr, size, nelem, fp);
 }

@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream) _NOEXCEPT _NON_NULL(1, 4);
+size_t fread(void *_RESTRICT ptr, size_t size, size_t nmemb, FILE *_RESTRICT stream) _NOEXCEPT _NON_NULL(1, 4);
 
 _LIBC_END
 

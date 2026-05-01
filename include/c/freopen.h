@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-FILE *freopen(const char *path, const char *mode, FILE *stream) _NOEXCEPT;
+FILE *freopen(const char *_RESTRICT path, const char *_RESTRICT mode, FILE *_RESTRICT stream) _NOEXCEPT;
 
 _LIBC_END
 

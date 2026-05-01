@@ -8,11 +8,10 @@
  *
  * @param stream the stream to clear the indicators for
  */
-int __elibc_clearerr(FILE *stream) {
+void __elibc_clearerr(FILE *stream) {
 	assert(stream);
 	_FDATA(stream)->eof = 0;
 	_FDATA(stream)->err = 0;
-	return 0;
 }
 
 /**
@@ -22,5 +21,5 @@ int __elibc_clearerr(FILE *stream) {
  */
 void clearerr(FILE *stream) {
 	_DEFER_UNLOCK FILE *fp = __elibc_lock_stream(stream);
-	(void)__elibc_clearerr(fp);
+	__elibc_clearerr(fp);
 }

@@ -12,7 +12,7 @@
  * @param stream the stream to read from
  * @return the number of elements read, or 0 if an error occurred
  */
-static size_t __elibc_fread(void *ptr, size_t size, size_t nmemb, FILE *stream) {
+static size_t __elibc_fread(void *_RESTRICT ptr, size_t size, size_t nmemb, FILE *_RESTRICT stream) {
 
 	size_t elem_it;
 	size_t size_it;
@@ -44,7 +44,7 @@ static size_t __elibc_fread(void *ptr, size_t size, size_t nmemb, FILE *stream) 
  * @param stream the stream to read from
  * @return the number of elements read, or 0 if an error occurred
  */
-size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream) {
+size_t fread(void *_RESTRICT ptr, size_t size, size_t nmemb, FILE *_RESTRICT stream) {
 	_DEFER_UNLOCK FILE *fp = __elibc_lock_stream(stream);
 	return __elibc_fread(ptr, size, nmemb, fp);
 }

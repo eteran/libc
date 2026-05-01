@@ -12,7 +12,7 @@
  * @param stream the stream to associate the file with
  * @return a pointer to the stream associated with the file, or NULL on error
  */
-static FILE *__elibc_freopen(const char *path, const char *mode, FILE *stream) {
+static FILE *__elibc_freopen(const char *_RESTRICT path, const char *_RESTRICT mode, FILE *_RESTRICT stream) {
 
 	/* open up the new file */
 	FILE *const new_file = fopen(path, mode);
@@ -43,7 +43,7 @@ static FILE *__elibc_freopen(const char *path, const char *mode, FILE *stream) {
  * @param stream the stream to associate the file with
  * @return a pointer to the stream associated with the file, or NULL on error
  */
-FILE *freopen(const char *path, const char *mode, FILE *stream) {
+FILE *freopen(const char *_RESTRICT path, const char *_RESTRICT mode, FILE *_RESTRICT stream) {
 	_DEFER_UNLOCK FILE *fp = __elibc_lock_stream(stream);
 	return __elibc_freopen(path, mode, fp);
 }
