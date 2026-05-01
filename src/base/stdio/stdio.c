@@ -151,14 +151,3 @@ void __elibc_free_file(FILE *stream) {
 	stream->next             = __elibc_free_file_struct;
 	__elibc_free_file_struct = stream;
 }
-
-#if 0
-void cleanup_file(FILE **f) {
-	if (*f) fclose(*f);
-}
-
-void demo() {
-	__attribute__((cleanup(cleanup_file))) FILE *fp = fopen("test.txt", "r");
-	// fp is closed automatically when demo() returns or exits the scope.
-}
-#endif
