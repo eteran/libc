@@ -1,49 +1,82 @@
 
 #define _ELIBC_SOURCE
+#include <assert.h>
+#include <errno.h>
 #include <stdint.h>
 #include <time.h>
 
 #define ONE_DAY 86400l
 
 /**
- * @brief Determine if a given year is a leap year
+ * @brief Compute the floor division of `a` by `b` for positive `b`.
  *
- * @param year the year to check
- * @return 1 if the year is a leap year, 0 otherwise
- * @note A year is a leap year if it is divisible by 4, except for years divisible by 100
- *       unless the year is also divisible by 400.
+ * @param a the dividend.
+ * @param b the divisor (must be positive).
+ * @return floor(a / b).
+ * @note C integer division truncates toward zero, which differs from floor
+ *       division for negative `a`. This helper corrects that difference.
  */
-static int __elibc_is_leapyear(int year) {
-	return (((year % 4) == 0) && ((year % 100) != 0)) || ((year % 400) == 0);
+static int64_t __elibc_idiv(int64_t a, int64_t b) {
+	return a / b - (a % b != 0 && a < 0 ? 1 : 0);
 }
 
 /**
- * @brief Determine the year for a given time_t value
+ * @brief Compute the number of days from the Unix epoch to the start of `year`.
  *
- * @param t the time_t value to be converted
- * @param out pointer to a time_t where the result will be stored
- * @return value
- * @note The out parameter will contain the time_t value of the first day of the year.
+ * @param year the proleptic Gregorian year number.
+ * @return the number of days from 1970-01-01 to January 1 of `year`.
+ * @note The constants 492, 19, and 4 are the counts of years in [1, 1969]
+ *       divisible by 4, 100, and 400 respectively, used to anchor the formula
+ *       to the Unix epoch.
+ */
+static int64_t __elibc_days_to_year(int year) {
+	const int64_t y = (int64_t)year - 1;
+	return 365LL * (year - 1970) + (__elibc_idiv(y, 4) - 492) - (__elibc_idiv(y, 100) - 19) + (__elibc_idiv(y, 400) - 4);
+}
+
+/**
+ * @brief Determine the year for a given time_t value.
+ *
+ * @param t the time_t value to be converted.
+ * @param out pointer to a time_t where the seconds since the Unix epoch of
+ *            January 1 of the returned year will be stored.
+ * @return the proleptic Gregorian year containing `t`.
  */
 static int __elibc_get_year(time_t t, time_t *out) {
-	int year = 1970;
-	/* 64 bit so we can handle the edge cases near INT_MAX/INT_MIN */
-	/* TODO(eteran): handle this better */
-	int64_t x = 0;
 
-	while (x < t) {
-		x += ONE_DAY * (__elibc_is_leapyear(year) ? 366 : 365);
-		year += 1;
+	int year;
+	/* Floor-divide to get the day number (handles negative t correctly). */
+	int64_t days = (int64_t)t / ONE_DAY;
+	if (t < 0 && (int64_t)t % ONE_DAY != 0) {
+		days--;
 	}
 
-	while (x > t) {
-		x -= ONE_DAY * (__elibc_is_leapyear(year - 1) ? 366 : 365);
-		year -= 1;
+	/* Initial estimate using the 400-year Gregorian cycle (146097 days). */
+	year = (int)(1970 + days * 400 / 146097);
+
+	/* Correct the estimate; converges in at most a few iterations. */
+	while (__elibc_days_to_year(year + 1) <= days) {
+		year++;
 	}
 
-	*out = x;
+	while (__elibc_days_to_year(year) > days) {
+		year--;
+	}
 
+	*out = (time_t)(__elibc_days_to_year(year) * ONE_DAY);
 	return year;
+}
+
+/**
+ * @brief Determine if a given year is a leap year.
+ *
+ * @param year the year to check.
+ * @return 1 if the year is a leap year, 0 otherwise.
+ * @note A year is a leap year if it is divisible by 4, except for years
+ *       divisible by 100, unless it is also divisible by 400.
+ */
+static int __elibc_is_leapyear(int year) {
+	return (((year % 4) == 0) && ((year % 100) != 0)) || ((year % 400) == 0);
 }
 
 /**
@@ -60,6 +93,10 @@ static int __elibc_get_weekday(int year, int month, int day) {
 	static const int tab[12] = {0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5};
 
 	int r = year;
+
+	assert(month >= 0 && month < 12);
+	assert(day > 0 && day <= 31);
+
 	r += (year / 4);
 	r -= (year / 100);
 	r += (year / 400);
@@ -111,7 +148,7 @@ static int __elibc_get_date(time_t t, int year, int *mon, int *day, int *wday) {
  */
 struct tm *gmtime_r(const time_t *timep, struct tm *result) {
 	if (!timep) {
-		/* TODO(eteran): set errno */
+		errno = EINVAL;
 		return 0;
 	} else {
 		time_t year_offset;
