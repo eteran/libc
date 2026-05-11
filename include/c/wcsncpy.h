@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-wchar_t *wcsncpy(wchar_t *, const wchar_t *, size_t) _NOEXCEPT;
+wchar_t *wcsncpy(wchar_t *_RESTRICT, const wchar_t *_RESTRICT, size_t) _NOEXCEPT;
 
 _LIBC_END
 

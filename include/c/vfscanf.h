@@ -6,7 +6,7 @@
 
 _LIBC_BEGIN
 
-int vfscanf(FILE *stream, const char *format, va_list ap) _NOEXCEPT _NON_NULL(1, 2);
+int vfscanf(FILE *_RESTRICT stream, const char *_RESTRICT format, va_list ap) _NOEXCEPT _NON_NULL(1, 2);
 
 _LIBC_END
 
