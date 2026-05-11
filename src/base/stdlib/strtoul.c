@@ -15,7 +15,7 @@
  * @return the converted value, or ULONG_MAX if an overflow occurs
  * @note If the base is 0, the function automatically detects the base from the string format.
  */
-unsigned long int strtoul(const char *nptr, char **endptr, int base) {
+unsigned long int strtoul(const char *_RESTRICT nptr, char **_RESTRICT endptr, int base) {
 	typedef unsigned long int T;
 
 	T neg            = 0;

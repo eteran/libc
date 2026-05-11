@@ -13,7 +13,7 @@
  * @param n the number of bytes to copy
  * @return a pointer to the destination of the copy
  */
-void *memmove(void *dest, const void *src, size_t n) {
+void *memmove(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) {
 
 	unsigned char *dest_ptr;
 	const unsigned char *src_ptr;

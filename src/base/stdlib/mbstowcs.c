@@ -14,7 +14,7 @@
  * @param n the maximum number of bytes to write to the destination buffer
  * @return the number of wide characters written to dest, or (size_t)-1 on error
  */
-size_t mbstowcs(wchar_t *dest, const char *src, size_t n) {
+size_t mbstowcs(wchar_t *_RESTRICT dest, const char *_RESTRICT src, size_t n) {
 
 	static _Thread_local mbstate_t state;
 

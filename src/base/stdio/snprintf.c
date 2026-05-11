@@ -12,7 +12,7 @@
  * @param ... a variable argument list containing the values to format
  * @return the number of characters written to the string, or a negative value on error
  */
-int snprintf(char *str, size_t size, const char *format, ...) {
+int snprintf(char *_RESTRICT str, size_t size, const char *_RESTRICT format, ...) {
 	int ret;
 	va_list ap;
 	va_start(ap, format);

@@ -7,7 +7,7 @@
 
 _LIBC_BEGIN
 
-size_t mbstowcs(wchar_t *dest, const char *s, size_t n) _NOEXCEPT;
+size_t mbstowcs(wchar_t *_RESTRICT dest, const char *_RESTRICT s, size_t n) _NOEXCEPT;
 
 _LIBC_END
 

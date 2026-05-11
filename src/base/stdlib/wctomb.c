@@ -11,7 +11,7 @@
  * @return the number of bytes written to the destination multibyte character, or -1 if an error occurs
  * @note s must be at least MB_CUR_MAX bytes long
  */
-int wctomb(char *s, wchar_t wc) {
+int wctomb(char *_RESTRICT s, wchar_t wc) {
 
 	if (!s) {
 		/* does the encoding have a non-trivial shift state?

@@ -15,7 +15,7 @@
  * @return the converted value, or LONG_MAX if an overflow occurs
  * @note If the base is 0, the function automatically detects the base from the string format.
  */
-long int strtol(const char *nptr, char **endptr, int base) {
+long int strtol(const char *_RESTRICT nptr, char **_RESTRICT endptr, int base) {
 	typedef long int T;
 
 	T neg            = 0;

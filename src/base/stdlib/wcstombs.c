@@ -12,7 +12,7 @@
  * @param n the maximum number of wide characters to convert
  * @return the number of bytes written to the destination multibyte character string, or (size_t)-1 if an error occurs
  */
-size_t wcstombs(char *dest, const wchar_t *src, size_t n) {
+size_t wcstombs(char *_RESTRICT dest, const wchar_t *_RESTRICT src, size_t n) {
 	static _Thread_local mbstate_t state;
 
 	const wchar_t *first = src;
