@@ -97,6 +97,10 @@ FILE *__elibc_allocate_file(void);
 void __elibc_free_file(FILE *stream);
 
 /* file stream cleanup helper */
+#if defined(__GNUC__)
 #define _DEFER_UNLOCK __attribute__((cleanup(__elibc_unlock_stream)))
+#else
+#error "Compiler does not support cleanup attribute, so _DEFER_UNLOCK is unavailable"
+#endif
 
 #endif
