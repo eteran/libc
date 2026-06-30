@@ -2,7 +2,8 @@
 #ifndef _C_C_CONFIG_H_20051228_
 #define _C_C_CONFIG_H_20051228_
 
-/* C Version detection */
+/*============================================================================*/
+/*                               C Version                                    */
 #ifdef __STDC_VERSION__
 #if __STDC_VERSION__ >= 201112L
 #define _HAS_C11
@@ -19,7 +20,8 @@
 #define _HAS_C90
 #endif
 
-/* C++ Version detection */
+/*============================================================================*/
+/*                               C++ Version                                  */
 #ifdef __cplusplus
 #if __cplusplus >= 202002L
 #define _HAS_CXX20
@@ -43,7 +45,8 @@
 #endif
 #endif
 
-/* C++ header compatibility */
+/*============================================================================*/
+/*                               C++ header compatibility                     */
 #ifdef __cplusplus
 #define _LIBC_BEGIN extern "C" {
 #define _LIBC_END   }
@@ -52,15 +55,18 @@
 #define _LIBC_END
 #endif
 
-/* floating point math supported */
+/*============================================================================*/
+/*                               Floating Point Math Support                  */
 #if (defined(__x86_64__) && (defined(__SSE2_MATH__) || defined(__SSE_MATH__))) || defined(__i386__)
 #define _HAS_FPU
 #endif
 
-/* unused */
+/*============================================================================*/
+/*                               Unused Variables                             */
 #define _UNUSED(x) (void)x
 
-/* restrict/inline keyword support */
+/*============================================================================*/
+/*                               Restrict/Inline Support                      */
 #if defined(_HAS_C99)
 #define _RESTRICT restrict
 #define _INLINE   inline
@@ -72,6 +78,8 @@
 #define _INLINE
 #endif
 
+/*============================================================================*/
+/*                               Noexcept Support                             */
 #if defined(_HAS_CXX11)
 #define _NOEXCEPT noexcept
 #elif defined(_HAS_CXX89)
@@ -82,6 +90,8 @@
 #define _NOEXCEPT
 #endif
 
+/*============================================================================*/
+/*                               Deprecated Support                           */
 #ifdef _HAS_CXX14
 #define _DEPRECATED [[deprecated]]
 #elif defined(__GNUC__)
@@ -90,17 +100,13 @@
 #define _DEPRECATED
 #endif
 
+/*============================================================================*/
+/*                               Function Attributes                          */
 #if defined(__GNUC__)
 #define _CONST __attribute__((__const__))
 #define _PURE  __attribute__((__pure__))
 #ifndef _ALWAYS_INLINE
 #define _ALWAYS_INLINE __attribute__((__always_inline__))
-#endif
-#ifndef _LIKELY
-#define _LIKELY(expr) __builtin_expect(!!(expr), 1)
-#endif
-#ifndef _UNLIKELY
-#define _UNLIKELY(expr) __builtin_expect(!!(expr), 0)
 #endif
 #else
 #define _CONST
@@ -108,6 +114,18 @@
 #ifndef _ALWAYS_INLINE
 #define _ALWAYS_INLINE
 #endif
+#endif
+
+/*============================================================================*/
+/*                               Likely/Unlikely                          */
+#if defined(__GNUC__)
+#ifndef _LIKELY
+#define _LIKELY(expr) __builtin_expect(!!(expr), 1)
+#endif
+#ifndef _UNLIKELY
+#define _UNLIKELY(expr) __builtin_expect(!!(expr), 0)
+#endif
+#else
 #ifndef _LIKELY
 #define _LIKELY(expr) (expr)
 #endif
@@ -116,12 +134,8 @@
 #endif
 #endif
 
-#if defined(__GNUC__) && !defined(__clang__)
-#define _ACCESS(x) __attribute__((__access__ x))
-#else
-#define _ACCESS(x)
-#endif
-
+/*============================================================================*/
+/*                               Assume                                       */
 /* NOTE(eteran): this is different from the [[assume]] attribute
  * available in C++23, and the associated compiler specific intrinsics
  * because unlike those, this DOES evaluate the condition
@@ -136,6 +150,8 @@
 #endif
 #endif
 
+/*============================================================================*/
+/*                               Param Attributes                             */
 #if defined(__GNUC__)
 #define _RETURNS_NONNULL __attribute__((__returns_nonnull__))
 #define _NON_NULL(...)   __attribute__((__nonnull__(__VA_ARGS__)))
@@ -146,6 +162,14 @@
 #define _C_STRING(...)
 #endif
 
+#if defined(__GNUC__) && !defined(__clang__)
+#define _ACCESS(x) __attribute__((__access__ x))
+#else
+#define _ACCESS(x)
+#endif
+
+/*============================================================================*/
+/*                               Thread Local Storage                         */
 /* TODO(eteran): enable TLS */
 #if !defined(_HAS_C11) && defined(__GNUC__) && 0
 #define _Thread_local __thread
@@ -153,7 +177,8 @@
 #define _Thread_local
 #endif
 
-/* Some misc keywords */
+/*============================================================================*/
+/*                               Keywords                                     */
 #ifndef _HAS_C11
 #ifdef _HAS_CXX11
 #define _Noreturn     [[noreturn]]
@@ -168,11 +193,13 @@
 #endif
 #endif
 
-/* requires c11 or c++11, otherwise we fake it with a negative size array */
+/*============================================================================*/
+/*                               Static Assertions                            */
 #if !defined(_HAS_C11)
 #if defined(_HAS_CXX11)
 #define _Static_assert(expr, error) static_assert((expr), error)
 #else
+/* requires c11 or c++11, otherwise we fake it with a negative size array */
 #define _Static_assert(x, error)                                 \
 	do {                                                         \
 		static const char static_assertion_failed[(x) ? 1 : -1]; \
@@ -181,6 +208,8 @@
 #endif
 #endif
 
+/*============================================================================*/
+/*                               Casts                                        */
 #ifdef __cplusplus
 #define _STATIC_CAST(T, v)      static_cast<T>(v)
 #define _REINTERPRET_CAST(T, v) reinterpret_cast<T>(v)
@@ -189,6 +218,8 @@
 #define _REINTERPRET_CAST(T, v) (T)(v)
 #endif
 
+/*============================================================================*/
+/*                               Multibyte Config                             */
 /* valid options here are, 1, 2, 4 and 8 */
 #ifdef __x86_64__
 #define _MAX_MULTIBYTE 8
