@@ -57,7 +57,7 @@
 
 /*============================================================================*/
 /*                               Floating Point Math Support                  */
-#if (defined(__x86_64__) && (defined(__SSE2_MATH__) || defined(__SSE_MATH__))) || defined(__i386__)
+#if (defined(__x86_64__) && (defined(__SSE2_MATH__) || defined(__SSE_MATH__)))
 #define _HAS_FPU
 #endif
 
