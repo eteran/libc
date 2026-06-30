@@ -1,7 +1,6 @@
 
 #define _ELIBC_SOURCE
 #include "c/_printf_engine.h"
-#include <assert.h>
 #include <stdarg.h>
 #include <stdio.h>
 
@@ -21,7 +20,7 @@ struct __elibc_stream_write {
  */
 static void __elibc_stream_writer(void *context, char ch) {
 	struct __elibc_stream_write *const c = context;
-	assert(context);
+	_LIBC_PRECOND(context);
 	fputc(ch, c->stream);
 	++(c->written);
 }

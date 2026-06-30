@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdio.h>
 #include <time.h>
 
@@ -14,7 +13,7 @@
  */
 char *asctime_r(const struct tm *timeptr, char *buf) {
 
-	assert(buf);
+	_LIBC_PRECOND(buf);
 
 	if (timeptr) {
 		if (timeptr->tm_wday < 7 && timeptr->tm_mon < 12) {

@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdio.h>
 
 /**
@@ -10,6 +9,6 @@
  * @param buf a pointer to the buffer to use, or NULL to use the default buffer
  */
 void setbuf(FILE *_RESTRICT stream, char *_RESTRICT buf) {
-	assert(stream);
+	_LIBC_PRECOND(stream);
 	setvbuf(stream, buf, buf ? _IOFBF : _IONBF, BUFSIZ);
 }

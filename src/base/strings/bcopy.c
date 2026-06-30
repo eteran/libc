@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <string.h>
 #include <strings.h>
 
@@ -14,8 +13,8 @@
  *       It is included for compatibility with other systems.
  */
 void bcopy(const void *src, void *dest, size_t n) {
-	assert(src);
-	assert(dest);
+	_LIBC_PRECOND(src);
+	_LIBC_PRECOND(dest);
 
 	/* we use memmove because spec for bcopy says it is correct
 	   even for overlapping regions */

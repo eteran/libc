@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <ctype.h>
 #include <math.h>
 #include <stdlib.h>
@@ -26,7 +25,7 @@ double strtod(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
 	int any_digits          = 0;
 	const char *start       = nptr;
 
-	assert(nptr);
+	_LIBC_PRECOND(nptr);
 
 	/*
 	The  expected  form  of the (initial portion of the) string is optional

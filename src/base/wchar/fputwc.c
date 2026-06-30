@@ -1,7 +1,6 @@
 
 #define _ELIBC_SOURCE
 #include "c/_support.h"
-#include <assert.h>
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>

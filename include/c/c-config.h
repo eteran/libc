@@ -231,11 +231,11 @@
 /*                               Preconditions                                */
 #if !defined(NDEBUG)
 #if defined(__GNUC__)
-#define _LIBC_PRECOND(expr)   \
-	do {                      \
-		if (!(expr)) {        \
-			__builtin_trap(); \
-		}                     \
+#define _LIBC_PRECOND(expr)       \
+	do {                          \
+		if (_UNLIKELY(!(expr))) { \
+			__builtin_trap();     \
+		}                         \
 	} while (0)
 #else
 #error "_LIBC_PRECOND hardening is enabled, but this compiler is unsupported. Add a compiler-specific trap implementation."

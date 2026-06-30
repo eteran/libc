@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <inttypes.h>
 #include <wchar.h>
 
@@ -14,6 +13,6 @@
  * @note If the base is 0, the function automatically detects the base from the wide string format.
  */
 uintmax_t wcstoumax(const wchar_t *nptr, wchar_t **endptr, int base) {
-	assert(nptr);
+	_LIBC_PRECOND(nptr);
 	return (uintmax_t)wcstoull(nptr, endptr, base);
 }

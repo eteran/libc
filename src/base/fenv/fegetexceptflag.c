@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <fenv.h>
 
 /**
@@ -13,7 +12,7 @@
  * @return Returns 0 on success, or a non-zero value if an error occurs.
  */
 int fegetexceptflag(fexcept_t *fp, int mask) {
-	assert(fp);
+	_LIBC_PRECOND(fp);
 	*fp = fetestexcept(mask);
 	return 0;
 }

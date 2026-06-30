@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdio.h>
 
 /**
@@ -18,8 +17,8 @@ static size_t __elibc_fread(void *_RESTRICT ptr, size_t size, size_t nmemb, FILE
 	size_t size_it;
 	char *p = ptr;
 
-	assert(ptr);
-	assert(stream);
+	_LIBC_PRECOND(ptr);
+	_LIBC_PRECOND(stream);
 
 	for (elem_it = 0; elem_it < nmemb; ++elem_it) {
 		for (size_it = 0; size_it < size; ++size_it) {

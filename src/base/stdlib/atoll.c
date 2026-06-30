@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdlib.h>
 
 /**
@@ -10,6 +9,6 @@
  * @return the converted long long integer
  */
 long long atoll(const char *nptr) {
-	assert(nptr);
+	_LIBC_PRECOND(nptr);
 	return strtoll(nptr, 0, 10);
 }

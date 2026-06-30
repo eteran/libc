@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <limits.h>
 #include <stdio.h>
 
@@ -13,8 +12,8 @@
  */
 int fsetpos(FILE *stream, const fpos_t *pos) {
 
-	assert(stream);
-	assert(pos);
+	_LIBC_PRECOND(stream);
+	_LIBC_PRECOND(pos);
 
 	return fseek(stream, pos->offset, SEEK_SET);
 }

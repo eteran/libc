@@ -66,9 +66,9 @@ static size_t __elibc_strftime(const char *format, struct __elibc_strftime_conte
 	static const char mon_name_full[][10] = {"January", "February", "March", "April",
 											 "May", "June", "July", "August",
 											 "September", "October", "November", "December"};
-	assert(ctx);
-	assert(tm);
-	assert(format);
+	_LIBC_PRECOND(ctx);
+	_LIBC_PRECOND(tm);
+	_LIBC_PRECOND(format);
 
 	while (*format != '\0') {
 		if (*format == '%') {

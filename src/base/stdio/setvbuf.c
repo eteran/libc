@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <errno.h>
 #include <stddef.h>
 #include <stdio.h>
@@ -18,7 +17,7 @@
 static int __elibc_setvbuf(FILE *_RESTRICT stream, char *_RESTRICT buf, int mode, size_t size) {
 	int ret = 0;
 
-	assert(stream);
+	_LIBC_PRECOND(stream);
 
 	/* we use the existence of a buffer to tell if any operations have been
 	 * performed on this stream, strictly speaking we don't even need

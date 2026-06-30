@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdint.h>
 #include <time.h>
 
@@ -28,7 +27,7 @@ static int __elibc_is_leapyear(int year) {
  */
 time_t mktime(struct tm *tptr) {
 
-	assert(tptr);
+	_LIBC_PRECOND(tptr);
 	{
 		static const int day_tab[12]      = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 		static const int leap_day_tab[12] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};

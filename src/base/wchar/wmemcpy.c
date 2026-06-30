@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <wchar.h>
 
 /**
@@ -17,8 +16,8 @@ wchar_t *wmemcpy(wchar_t *_RESTRICT dest, const wchar_t *_RESTRICT src, size_t n
 	wchar_t *d_ptr       = dest;
 	const wchar_t *s_ptr = src;
 
-	assert(dest);
-	assert(src);
+	_LIBC_PRECOND(dest);
+	_LIBC_PRECOND(src);
 
 	while (n--) {
 		*d_ptr++ = *s_ptr++;

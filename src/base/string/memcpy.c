@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdint.h>
 #include <string.h>
 
@@ -122,8 +121,8 @@ void *memcpy(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) {
 		return dest;
 	}
 
-	assert(dest);
-	assert(src);
+	_LIBC_PRECOND(dest);
+	_LIBC_PRECOND(src);
 	return __elibc_memcpy8(dest, src, n);
 #else
 
@@ -147,8 +146,8 @@ void *memcpy(void *_RESTRICT dest, const void *_RESTRICT src, size_t n) {
 		return dest;
 	}
 
-	assert(dest);
-	assert(src);
+	_LIBC_PRECOND(dest);
+	_LIBC_PRECOND(src);
 
 	d_ptr.ptr = dest;
 	s_ptr.ptr = src;

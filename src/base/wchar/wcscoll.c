@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <wchar.h>
 
 /**
@@ -14,8 +13,8 @@
 int wcscoll(const wchar_t *ws1, const wchar_t *ws2) {
 	/* TODO(eteran): make this locale aware */
 
-	assert(ws1);
-	assert(ws2);
+	_LIBC_PRECOND(ws1);
+	_LIBC_PRECOND(ws2);
 
 	return wcscmp(ws1, ws2);
 }

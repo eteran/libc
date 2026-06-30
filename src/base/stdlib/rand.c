@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <limits.h>
 #include <stdlib.h>
 
@@ -24,7 +23,7 @@ int rand(void) {
  */
 int rand_r(unsigned int *seedp) {
 
-	assert(seedp);
+	_LIBC_PRECOND(seedp);
 	{
 		unsigned int next = *seedp;
 		unsigned int result;

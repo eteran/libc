@@ -1,7 +1,6 @@
 
 #define _ELIBC_SOURCE
 #include "c/_support.h"
-#include <assert.h>
 #include <stdio.h>
 
 /**
@@ -14,7 +13,7 @@
  */
 int __elibc_fseek(FILE *stream, long offset, int whence) {
 
-	assert(stream);
+	_LIBC_PRECOND(stream);
 
 	/* a seek is a synchronizing operation */
 	if (__elibc_fflush(stream) != 0) {

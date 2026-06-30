@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <wchar.h>
 
 /**
@@ -13,8 +12,8 @@
  */
 wchar_t *wmemmove(wchar_t *dest, const wchar_t *src, size_t n) {
 
-	assert(dest);
-	assert(src);
+	_LIBC_PRECOND(dest);
+	_LIBC_PRECOND(src);
 
 	if (dest > src) {
 		/* copy backwards */

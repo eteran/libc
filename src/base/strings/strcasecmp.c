@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <ctype.h>
 #include <strings.h>
 
@@ -14,8 +13,8 @@
 int strcasecmp(const char *s1, const char *s2) {
 	int ret = 0;
 
-	assert(s1);
-	assert(s2);
+	_LIBC_PRECOND(s1);
+	_LIBC_PRECOND(s2);
 
 	while (!ret && (*s1 || *s2)) {
 		const char cs1 = (char)tolower((unsigned char)*s1++);

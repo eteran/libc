@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <wchar.h>
 
 /**
@@ -14,8 +13,8 @@
 wchar_t *wcsncat(wchar_t *_RESTRICT dest, const wchar_t *_RESTRICT src, size_t n) {
 	wchar_t *dest_ptr = dest;
 
-	assert(dest);
-	assert(src);
+	_LIBC_PRECOND(dest);
+	_LIBC_PRECOND(src);
 
 	if (n != 0) {
 		/* find the end of the string... */

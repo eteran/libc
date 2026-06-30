@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdio.h>
 #include <wchar.h>
 
@@ -15,7 +14,7 @@
  */
 int __elibc_fwide(FILE *stream, int mode) {
 
-	assert(stream);
+	_LIBC_PRECOND(stream);
 
 	/* When mode is nonzero, we first attempt to set the orientation */
 	if (mode != 0) {

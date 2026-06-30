@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdlib.h>
 
 #ifdef _HAS_FPU
@@ -12,7 +11,7 @@
  * @return the converted double
  */
 double atof(const char *nptr) {
-	assert(nptr);
+	_LIBC_PRECOND(nptr);
 	return strtod(nptr, 0);
 }
 

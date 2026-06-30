@@ -1,7 +1,6 @@
 
 #define _ELIBC_SOURCE
 #include "c/_support.h"
-#include <assert.h>
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -33,8 +32,8 @@ static int __elibc_expected_length(wint_t ch) {
  */
 static wint_t __elibc_fgetwc(FILE *stream) {
 
-	assert(stream);
-	assert(_FDATA(stream)->orientation_set == 0 || _FDATA(stream)->orientation_wide == 1);
+	_LIBC_PRECOND(stream);
+	_LIBC_PRECOND(_FDATA(stream)->orientation_set == 0 || _FDATA(stream)->orientation_wide == 1);
 
 	_FDATA(stream)->orientation_set  = 1;
 	_FDATA(stream)->orientation_wide = _ELIBC_FILE_WIDE;

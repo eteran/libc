@@ -1,7 +1,6 @@
 
 #define _ELIBC_SOURCE
 #define __STDC_CONSTANT_MACROS
-#include <assert.h>
 #include <stdint.h>
 #include <string.h>
 
@@ -121,7 +120,7 @@ void *memset(void *s, int c, size_t n) {
 		return s;
 	}
 
-	assert(s);
+	_LIBC_PRECOND(s);
 	return __elibc_memset8(s, c, n);
 #else
 
@@ -137,7 +136,7 @@ void *memset(void *s, int c, size_t n) {
 		return s;
 	}
 
-	assert(s);
+	_LIBC_PRECOND(s);
 
 	d_ptr.ptr = s;
 

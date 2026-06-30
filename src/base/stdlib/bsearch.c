@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdlib.h>
 
 #define ELEMENT_PTR(base, index, size) (((char *)(base)) + ((index) * (size)))
@@ -20,9 +19,9 @@ void *bsearch(const void *key, const void *base, size_t nmemb, size_t size, __co
 	size_t low  = 0;
 	size_t high = nmemb;
 
-	assert(key);
-	assert(base);
-	assert(compar);
+	_LIBC_PRECOND(key);
+	_LIBC_PRECOND(base);
+	_LIBC_PRECOND(compar);
 
 	if (size == 0 || nmemb == 0) {
 		return 0;

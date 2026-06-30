@@ -1,7 +1,6 @@
 
 #define _ELIBC_SOURCE
 #include "c/_support.h"
-#include <assert.h>
 #include <stdio.h>
 
 /**
@@ -12,7 +11,7 @@
  */
 int __elibc_fflush(FILE *stream) {
 
-	assert(stream);
+	_LIBC_PRECOND(stream);
 	{
 		struct __elibc_file *const impl = _FDATA(stream);
 		const int fd                    = _ELIBC_FILENO(stream);

@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <string.h>
 
 /**
@@ -13,8 +12,8 @@
 char *strcat(char *_RESTRICT dest, const char *_RESTRICT src) {
 	char *dest_ptr = dest;
 
-	assert(dest);
-	assert(src);
+	_LIBC_PRECOND(dest);
+	_LIBC_PRECOND(src);
 
 	/* find the end of the string... */
 	while (*dest_ptr != '\0') {

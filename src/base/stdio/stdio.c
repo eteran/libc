@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -109,7 +108,7 @@ FILE *__elibc_lock_stream(FILE *stream) {
  *
  * @param stream the stream to unlock
  */
-void __elibc_unlock_stream(FILE * _RESTRICT * stream) {
+void __elibc_unlock_stream(FILE *_RESTRICT *stream) {
 	FILE *s = *stream;
 	if (s) {
 #if defined(_ELIBC_USE_THREADS)
@@ -146,7 +145,7 @@ FILE *__elibc_allocate_file(void) {
  * @param stream a pointer to the FILE structure to free
  */
 void __elibc_free_file(FILE *stream) {
-	assert(stream);
+	_LIBC_PRECOND(stream);
 	/* TODO(eteran): lock the list */
 	stream->next             = __elibc_free_file_struct;
 	__elibc_free_file_struct = stream;

@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
@@ -135,8 +134,8 @@ int memcmp(const void *s1, const void *s2, size_t n) {
 		return 0;
 	}
 
-	assert(s1);
-	assert(s2);
+	_LIBC_PRECOND(s1);
+	_LIBC_PRECOND(s2);
 	return __elibc_memcmp8(s1, s2, n);
 #else
 
@@ -152,8 +151,8 @@ int memcmp(const void *s1, const void *s2, size_t n) {
 		return 0;
 	}
 
-	assert(s1);
-	assert(s2);
+	_LIBC_PRECOND(s1);
+	_LIBC_PRECOND(s2);
 
 	s1_ptr.ptr = s1;
 	s2_ptr.ptr = s2;

@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
@@ -39,8 +38,8 @@ static size_t __elibc_partition(void *base, size_t left, size_t right, size_t si
 	size_t index        = left - 1;
 	size_t i;
 
-	assert(base);
-	assert(compar);
+	_LIBC_PRECOND(base);
+	_LIBC_PRECOND(compar);
 
 	for (i = left; i < right; ++i) {
 		if (compar(ELEMENT_PTR(base, i, size), x) <= 0) {
@@ -75,8 +74,8 @@ static void __elibc_insertion_sort(void *base, size_t n, size_t size, __compar_f
  * @param compar a pointer to a comparison function that determines the order of the elements
  */
 static void __elibc_quick_sort(void *base, size_t l, size_t r, size_t size, __compar_fn_t compar) {
-	assert(base);
-	assert(compar);
+	_LIBC_PRECOND(base);
+	_LIBC_PRECOND(compar);
 
 	if ((r - l) < INSERTION_SORT_THRESHOLD) {
 		__elibc_insertion_sort(ELEMENT_PTR(base, l, size), r - l + 1, size, compar);
@@ -101,8 +100,8 @@ static void __elibc_quick_sort(void *base, size_t l, size_t r, size_t size, __co
  * @param compar a pointer to a comparison function that determines the order of the elements
  */
 void qsort(void *base, size_t nmemb, size_t size, __compar_fn_t compar) {
-	assert(base);
-	assert(compar);
+	_LIBC_PRECOND(base);
+	_LIBC_PRECOND(compar);
 
 	if (size == 0 || nmemb == 0) {
 		return;

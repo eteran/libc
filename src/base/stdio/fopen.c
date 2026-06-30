@@ -1,7 +1,6 @@
 
 #define _ELIBC_SOURCE
 #include "c/_support.h"
-#include <assert.h>
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,8 +22,8 @@
  */
 FILE *fopen(const char *path, const char *mode) {
 
-	assert(path);
-	assert(mode);
+	_LIBC_PRECOND(path);
+	_LIBC_PRECOND(mode);
 
 	{
 		int fd                 = -1;

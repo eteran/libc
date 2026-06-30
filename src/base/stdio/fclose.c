@@ -1,7 +1,6 @@
 
 #define _ELIBC_SOURCE
 #include "c/_support.h"
-#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -13,7 +12,7 @@
  */
 int __elibc_fclose(FILE *stream) {
 
-	assert(stream);
+	_LIBC_PRECOND(stream);
 
 	if (__elibc_fflush(stream) != 0) {
 		return EOF;

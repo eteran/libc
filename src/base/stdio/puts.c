@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdio.h>
 
 /**
@@ -11,7 +10,7 @@
  */
 int puts(const char *s) {
 
-	assert(s);
+	_LIBC_PRECOND(s);
 
 	while (*s != '\0') {
 		if (putchar(*s++) == EOF) {

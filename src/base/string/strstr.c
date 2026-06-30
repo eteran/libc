@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <string.h>
 
 /**
@@ -16,8 +15,8 @@ char *strnstr(const char *haystack, const char *needle, size_t n) {
 	size_t needle_len;
 	size_t i;
 
-	assert(needle);
-	assert(haystack);
+	_LIBC_PRECOND(needle);
+	_LIBC_PRECOND(haystack);
 
 	if (*needle == '\0') {
 		return (char *)haystack;

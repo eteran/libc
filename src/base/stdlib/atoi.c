@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdlib.h>
 
 /**
@@ -10,6 +9,6 @@
  * @return the converted integer
  */
 int atoi(const char *nptr) {
-	assert(nptr);
+	_LIBC_PRECOND(nptr);
 	return (int)strtol(nptr, 0, 10);
 }

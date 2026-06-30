@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <errno.h>
 #include <locale.h>
 #include <stdlib.h>

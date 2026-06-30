@@ -1,7 +1,6 @@
 
 #define _ELIBC_SOURCE
 #include "c/_support.h"
-#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -21,9 +20,9 @@ int __elibc_fputc(int c, FILE *stream, int wide) {
 	const unsigned char ch = (unsigned char)c;
 	int r;
 
-	assert(stream);
+	_LIBC_PRECOND(stream);
 
-	assert(_FDATA(stream)->orientation_set == 0 || _FDATA(stream)->orientation_wide == wide);
+	_LIBC_PRECOND(_FDATA(stream)->orientation_set == 0 || _FDATA(stream)->orientation_wide == wide);
 
 	_FDATA(stream)->orientation_set  = 1;
 	_FDATA(stream)->orientation_wide = !!wide;

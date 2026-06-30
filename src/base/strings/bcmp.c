@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <string.h>
 #include <strings.h>
 
@@ -15,7 +14,7 @@
  *       It is included for compatibility with other systems.
  */
 int bcmp(const void *s1, const void *s2, size_t n) {
-	assert(s1);
-	assert(s2);
+	_LIBC_PRECOND(s1);
+	_LIBC_PRECOND(s2);
 	return memcmp(s1, s2, n);
 }

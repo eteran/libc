@@ -1,7 +1,6 @@
 
 #define _ELIBC_SOURCE
 #define _ELIBC_SAFE_STRING
-#include <assert.h>
 #include <string.h>
 
 /**
@@ -17,13 +16,13 @@ size_t strlcpy(char *_RESTRICT dest, const char *_RESTRICT src, size_t n) {
 
 	const char *const src_ptr = src;
 
-	assert(src);
+	_LIBC_PRECOND(src);
 
 	if (n == 0) {
 		return strlen(src);
 	}
 
-	assert(dest);
+	_LIBC_PRECOND(dest);
 
 	/* iterate over source string */
 	while (*src != '\0') {

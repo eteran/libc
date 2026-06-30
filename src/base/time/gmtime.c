@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <errno.h>
 #include <stdint.h>
 #include <time.h>
@@ -94,8 +93,8 @@ static int __elibc_get_weekday(int year, int month, int day) {
 
 	int r = year;
 
-	assert(month >= 0 && month < 12);
-	assert(day > 0 && day <= 31);
+	_LIBC_PRECOND(month >= 0 && month < 12);
+	_LIBC_PRECOND(day > 0 && day <= 31);
 
 	r += (year / 4);
 	r -= (year / 100);

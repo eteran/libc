@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdio.h>
 
 /**
@@ -10,7 +9,7 @@
  * @return non-zero if the end-of-file indicator is set, zero otherwise
  */
 static int __elibc_feof(FILE *stream) {
-	assert(stream);
+	_LIBC_PRECOND(stream);
 	return _FDATA(stream)->eof != 0;
 }
 

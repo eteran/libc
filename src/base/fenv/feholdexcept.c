@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <fenv.h>
 #include <stdint.h>
 
@@ -12,7 +11,7 @@
  */
 int feholdexcept(fenv_t *envp) {
 	fenv_t env;
-	assert(envp);
+	_LIBC_PRECOND(envp);
 	fegetenv(envp);
 
 	env = *envp;

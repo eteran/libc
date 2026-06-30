@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <string.h>
 
 /**
@@ -13,8 +12,8 @@
 char *strcpy(char *_RESTRICT dest, const char *_RESTRICT src) {
 	char *dest_ptr = dest;
 
-	assert(dest);
-	assert(src);
+	_LIBC_PRECOND(dest);
+	_LIBC_PRECOND(src);
 
 	while (*src != '\0') {
 		*dest_ptr++ = *src++;

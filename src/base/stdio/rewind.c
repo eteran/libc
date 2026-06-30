@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdio.h>
 
 /**
@@ -9,7 +8,7 @@
  * @param stream the stream to reset
  */
 static void __elibc_rewind(FILE *stream) {
-	assert(stream);
+	_LIBC_PRECOND(stream);
 	__elibc_fseek(stream, 0L, SEEK_SET);
 	__elibc_clearerr(stream);
 }

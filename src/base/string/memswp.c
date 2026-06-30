@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdint.h>
 #include <string.h>
 
@@ -134,8 +133,8 @@ void *memswp(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 		return s1;
 	}
 
-	assert(s1);
-	assert(s2);
+	_LIBC_PRECOND(s1);
+	_LIBC_PRECOND(s2);
 	return __elibc_memswp8(s1, s2, n);
 #else
 
@@ -151,8 +150,8 @@ void *memswp(void *_RESTRICT s1, void *_RESTRICT s2, size_t n) {
 		return s1;
 	}
 
-	assert(s1);
-	assert(s2);
+	_LIBC_PRECOND(s1);
+	_LIBC_PRECOND(s2);
 
 	s1_ptr.ptr = s1;
 	s2_ptr.ptr = s2;

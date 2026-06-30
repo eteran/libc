@@ -613,8 +613,8 @@ static const char *_get_flags(const char *format, flags_t *flags) {
 	flags_t f    = {0, 0, 0, 0, 0};
 	uint8_t done = 0;
 
-	assert(format);
-	assert(flags);
+	_LIBC_PRECOND(format);
+	_LIBC_PRECOND(flags);
 
 	/* skip past the % char */
 	++format;
@@ -668,9 +668,9 @@ static const char *_get_flags(const char *format, flags_t *flags) {
  */
 static const char *_get_width(const char *format, int *width, va_list *ap) {
 
-	assert(format);
-	assert(width);
-	assert(ap);
+	_LIBC_PRECOND(format);
+	_LIBC_PRECOND(width);
+	_LIBC_PRECOND(ap);
 
 	if (*format == '*') {
 		++format;
@@ -700,9 +700,9 @@ static const char *_get_precision(const char *format, int *precision, va_list *a
 	/* default to non-existant */
 	long int p = -1;
 
-	assert(format);
-	assert(precision);
-	assert(ap);
+	_LIBC_PRECOND(format);
+	_LIBC_PRECOND(precision);
+	_LIBC_PRECOND(ap);
 
 	if (*format == '.') {
 		++format;
@@ -735,8 +735,8 @@ static const char *_get_precision(const char *format, int *precision, va_list *a
  */
 static const char *_get_modifier(const char *format, int *modifier) {
 
-	assert(format);
-	assert(modifier);
+	_LIBC_PRECOND(format);
+	_LIBC_PRECOND(modifier);
 
 	*modifier = MOD_NONE;
 
@@ -845,7 +845,7 @@ int __elibc_printf_engine(void *c, const char *_RESTRICT format, va_list ap) {
 
 	__elibc_va_copy(aq, ap);
 
-	assert(format);
+	_LIBC_PRECOND(format);
 
 	while (*format != '\0') {
 		if (*format == '%') {

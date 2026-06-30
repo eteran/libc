@@ -92,7 +92,7 @@ extern FILE __elibc_stderr[1];
 #include "c/fileno.h"
 
 FILE *__elibc_lock_stream(FILE *stream);
-void __elibc_unlock_stream(FILE * _RESTRICT * stream);
+void __elibc_unlock_stream(FILE *_RESTRICT *stream);
 FILE *__elibc_allocate_file(void);
 void __elibc_free_file(FILE *stream);
 

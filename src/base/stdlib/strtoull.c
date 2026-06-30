@@ -18,13 +18,13 @@
 unsigned long long int strtoull(const char *_RESTRICT nptr, char **_RESTRICT endptr, int base) {
 	typedef unsigned long long int T;
 
-	T neg            = 0;
-	T ret            = 0;
-	int err          = 0;
-	int any_digits   = 0;
+	T neg             = 0;
+	T ret             = 0;
+	int err           = 0;
+	int any_digits    = 0;
 	const char *start = nptr;
 
-	assert(nptr);
+	_LIBC_PRECOND(nptr);
 
 	/*
 	 * The strtoul() function converts the initial part of the string in nptr to

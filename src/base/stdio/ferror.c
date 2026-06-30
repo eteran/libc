@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdio.h>
 
 /**
@@ -10,7 +9,7 @@
  * @return non-zero if the stream has encountered an error, zero otherwise
  */
 static int __elibc_ferror(FILE *stream) {
-	assert(stream);
+	_LIBC_PRECOND(stream);
 	return _FDATA(stream)->err != 0;
 }
 

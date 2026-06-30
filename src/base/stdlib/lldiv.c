@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdlib.h>
 
 /**
@@ -13,7 +12,7 @@
 lldiv_t lldiv(long long numerator, long long denominator) {
 	lldiv_t ret;
 
-	assert(denominator);
+	_LIBC_PRECOND(denominator);
 
 	ret.quot = numerator / denominator;
 	ret.rem  = numerator % denominator;

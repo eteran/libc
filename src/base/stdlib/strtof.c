@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdlib.h>
 
 #ifdef _HAS_FPU
@@ -13,7 +12,7 @@
  * @return the converted value
  */
 float strtof(const char *_RESTRICT nptr, char **_RESTRICT endptr) {
-	assert(nptr);
+	_LIBC_PRECOND(nptr);
 	return (float)strtod(nptr, endptr);
 }
 

@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdio.h>
 
 /**
@@ -14,7 +13,7 @@
 char *gets(char *s) {
 	char *s_ptr = s;
 
-	assert(s);
+	_LIBC_PRECOND(s);
 
 	while (1) {
 		const int ch = getchar();

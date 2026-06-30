@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdio.h>
 
 /**
@@ -9,7 +8,7 @@
  * @param stream the stream to clear the indicators for
  */
 void __elibc_clearerr(FILE *stream) {
-	assert(stream);
+	_LIBC_PRECOND(stream);
 	_FDATA(stream)->eof = 0;
 	_FDATA(stream)->err = 0;
 }

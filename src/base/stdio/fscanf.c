@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdarg.h>
 #include <stdio.h>
 
@@ -16,8 +15,8 @@ int fscanf(FILE *_RESTRICT stream, const char *_RESTRICT format, ...) {
 	int ret;
 	va_list ap;
 
-	assert(stream);
-	assert(format);
+	_LIBC_PRECOND(stream);
+	_LIBC_PRECOND(format);
 
 	va_start(ap, format);
 	ret = vfscanf(stream, format, ap);

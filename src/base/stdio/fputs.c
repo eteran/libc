@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdio.h>
 
 /**
@@ -12,8 +11,8 @@
  */
 static int __elibc_fputs(const char *_RESTRICT s, FILE *_RESTRICT stream) {
 
-	assert(s);
-	assert(stream);
+	_LIBC_PRECOND(s);
+	_LIBC_PRECOND(stream);
 
 	while (*s != '\0') {
 		if (__elibc_fputc(*s++, stream, _ELIBC_FILE_NARROW) == EOF) {

@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdio.h>
 #include <wchar.h>
 
@@ -14,8 +13,8 @@
  */
 static int __elibc_fputws(const wchar_t *ws, FILE *stream) {
 
-	assert(ws);
-	assert(stream);
+	_LIBC_PRECOND(ws);
+	_LIBC_PRECOND(stream);
 
 	while (*ws != '\0') {
 		if (__elibc_fputc(*ws++, stream, _ELIBC_FILE_WIDE) == EOF) {

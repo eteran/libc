@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <string.h>
 #include <strings.h>
 
@@ -13,6 +12,6 @@
  *       It is included for compatibility with other systems.
  */
 void bzero(void *s, size_t n) {
-	assert(s);
+	_LIBC_PRECOND(s);
 	memset(s, 0, n);
 }

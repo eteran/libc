@@ -1,7 +1,6 @@
 
 #define _ELIBC_SOURCE
 #define _ELIBC_SAFE_STRING
-#include <assert.h>
 #include <errno.h>
 #include <stdio.h>
 #include <string.h>
@@ -16,7 +15,7 @@
  */
 int strerror_r(int errnum, char *buf, size_t n) {
 
-	assert(buf);
+	_LIBC_PRECOND(buf);
 
 	switch (errnum) {
 	case 0:

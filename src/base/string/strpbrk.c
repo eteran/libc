@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <string.h>
 
 /**
@@ -13,8 +12,8 @@
 char *strpbrk(const char *s, const char *accept) {
 	char *ret = 0;
 
-	assert(s);
-	assert(accept);
+	_LIBC_PRECOND(s);
+	_LIBC_PRECOND(accept);
 
 	while (*s != '\0') {
 		if (strchr(accept, *s) != 0) {

@@ -15,7 +15,6 @@
 #define MB_CUR_MAX ((size_t)4)
 #endif
 
-
 #include "arch_size_t.h"
 #include "arch_stdlib.h"
 #include "arch_wchar_t.h"

@@ -1,7 +1,6 @@
 
 #define _ELIBC_SOURCE
 #include "c/_support.h"
-#include <assert.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -13,7 +12,7 @@
  */
 char *getenv(const char *name) {
 
-	assert(name);
+	_LIBC_PRECOND(name);
 
 	if (__elibc_environment) {
 		char **ep        = __elibc_environment;

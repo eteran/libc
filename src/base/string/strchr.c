@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <string.h>
 
 /**
@@ -13,7 +12,7 @@
 char *strchr(const char *s, int c) {
 	const unsigned char cmp = (unsigned char)c;
 
-	assert(s);
+	_LIBC_PRECOND(s);
 
 	while ((unsigned char)*s != cmp) {
 		if (*s == '\0') {

@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <string.h>
 
 /**
@@ -13,8 +12,8 @@
 size_t strspn(const char *s, const char *accept) {
 	const char *s_ptr = s;
 
-	assert(s);
-	assert(accept);
+	_LIBC_PRECOND(s);
+	_LIBC_PRECOND(accept);
 
 	while (*s_ptr != '\0') {
 		if (strchr(accept, *s_ptr) == 0) {

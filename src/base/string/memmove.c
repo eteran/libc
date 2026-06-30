@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdint.h>
 #include <string.h>
 
@@ -23,8 +22,8 @@ void *memmove(void *dest, const void *src, size_t n) {
 		return dest;
 	}
 
-	assert(dest);
-	assert(src);
+	_LIBC_PRECOND(dest);
+	_LIBC_PRECOND(src);
 
 	if (dest == src) {
 		return dest;

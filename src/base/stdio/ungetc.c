@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdio.h>
 
 /**
@@ -12,9 +11,9 @@
  */
 static int __elibc_ungetc(int c, FILE *stream) {
 
-	assert(stream);
+	_LIBC_PRECOND(stream);
 
-	assert(_FDATA(stream)->orientation_set == 0 || _FDATA(stream)->orientation_wide == 0);
+	_LIBC_PRECOND(_FDATA(stream)->orientation_set == 0 || _FDATA(stream)->orientation_wide == 0);
 
 	_FDATA(stream)->orientation_set  = 1;
 	_FDATA(stream)->orientation_wide = _ELIBC_FILE_NARROW;

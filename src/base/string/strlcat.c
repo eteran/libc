@@ -1,7 +1,6 @@
 
 #define _ELIBC_SOURCE
 #define _ELIBC_SAFE_STRING
-#include <assert.h>
 #include <string.h>
 
 /**
@@ -20,12 +19,12 @@ size_t strlcat(char *_RESTRICT dest, const char *_RESTRICT src, size_t siz) {
 	size_t n      = siz;
 	size_t dlen;
 
-	assert(src);
+	_LIBC_PRECOND(src);
 	if (siz == 0) {
 		return strlen(s);
 	}
 
-	assert(dest);
+	_LIBC_PRECOND(dest);
 
 	/* Find the end of dest and adjust bytes left but don't go past end */
 	while (n-- && *d != '\0') {

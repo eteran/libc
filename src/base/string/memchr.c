@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <string.h>
 
 /**
@@ -20,7 +19,7 @@ void *memchr(const void *s, int c, size_t n) {
 		return 0;
 	}
 
-	assert(s);
+	_LIBC_PRECOND(s);
 
 	s_ptr = s;
 

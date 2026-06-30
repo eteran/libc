@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <math.h>
 
 #ifdef _HAS_FPU
@@ -18,7 +17,7 @@ _ALWAYS_INLINE _INLINE static double __elibc_modf(double arg, double *iptr) {
 	int sign = 1;
 	double i_portion;
 
-	assert(iptr);
+	_LIBC_PRECOND(iptr);
 
 	if (arg < 0) {
 		arg  = -arg;

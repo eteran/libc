@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <stdio.h>
 
 /**
@@ -14,8 +13,8 @@ int fgetpos(FILE *stream, fpos_t *pos) {
 
 	long ret;
 
-	assert(stream);
-	assert(pos);
+	_LIBC_PRECOND(stream);
+	_LIBC_PRECOND(pos);
 
 	ret = ftell(stream);
 

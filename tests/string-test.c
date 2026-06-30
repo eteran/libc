@@ -25,10 +25,10 @@ static void test_strcpy(void) {
 }
 
 static void test_strchr(void) {
-	const char str[]   = "Try not. Do, or do not. There is no try.";
+	const char str[]    = "Try not. Do, or do not. There is no try.";
 	const char hi_bit[] = {(char)0xFF, 'A', (char)0xFF, '\0'};
-	char target        = 'T';
-	const char *result = str;
+	char target         = 'T';
+	const char *result  = str;
 
 	result = strchr(result, target);
 	assert(strcmp(result, "Try not. Do, or do not. There is no try.") == 0);
@@ -49,10 +49,10 @@ static void test_strchr(void) {
 }
 
 static void test_strrchr(void) {
-	const char str[]   = "Try not. Do, or do not. There is no try.";
+	const char str[]    = "Try not. Do, or do not. There is no try.";
 	const char hi_bit[] = {(char)0xFF, 'A', (char)0xFF, '\0'};
-	char target        = 'T';
-	const char *result = str;
+	char target         = 'T';
+	const char *result  = str;
 
 	result = strrchr(str, target);
 	assert(strcmp(result, "There is no try.") == 0);

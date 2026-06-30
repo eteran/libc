@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <limits.h>
 #include <stdlib.h>
 
@@ -11,6 +10,6 @@
  * @return the absolute value of the integer
  */
 int abs(int j) {
-	assert(j != INT_MIN);
+	_LIBC_PRECOND(j != INT_MIN);
 	return (j >= 0) ? j : -j;
 }

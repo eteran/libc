@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <string.h>
 
 /**
@@ -15,13 +14,13 @@ size_t strxfrm(char *_RESTRICT dest, const char *_RESTRICT src, size_t n) {
 
 	/* TODO(eteran): be locale aware */
 	size_t src_len;
-	assert(src);
+	_LIBC_PRECOND(src);
 
 	src_len = strlen(src);
 
 	if (n != 0) {
 		size_t copy_len;
-		assert(dest);
+		_LIBC_PRECOND(dest);
 		copy_len = (src_len < (n - 1)) ? src_len : (n - 1);
 		memcpy(dest, src, copy_len);
 		dest[copy_len] = '\0';

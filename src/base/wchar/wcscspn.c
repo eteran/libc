@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <wchar.h>
 
 /**
@@ -14,8 +13,8 @@
 size_t wcscspn(const wchar_t *s, const wchar_t *reject) {
 	const wchar_t *s_ptr = s;
 
-	assert(s);
-	assert(reject);
+	_LIBC_PRECOND(s);
+	_LIBC_PRECOND(reject);
 
 	while (*s_ptr != L'\0') {
 		if (wcschr(reject, *s_ptr) != 0) {

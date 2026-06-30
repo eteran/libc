@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <inttypes.h>
 #include <stdlib.h>
 #include <wchar.h> /* supposed to be necessary */
@@ -15,6 +14,6 @@
  * @note If the base is 0, the function automatically detects the base from the string format.
  */
 intmax_t strtoimax(const char *nptr, char **endptr, int base) {
-	assert(nptr);
+	_LIBC_PRECOND(nptr);
 	return (intmax_t)strtoll(nptr, endptr, base);
 }

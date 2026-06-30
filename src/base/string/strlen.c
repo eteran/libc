@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <string.h>
 
 /**
@@ -12,7 +11,7 @@
 size_t strlen(const char *s) {
 	const char *s_ptr = s;
 
-	assert(s);
+	_LIBC_PRECOND(s);
 
 	while (*s != '\0') {
 		++s;

@@ -1,6 +1,5 @@
 
 #define _ELIBC_SOURCE
-#include <assert.h>
 #include <fenv.h>
 
 /**
@@ -11,7 +10,7 @@
  */
 int feupdateenv(const fenv_t *envp) {
 	const int ex = fetestexcept(FE_ALL_EXCEPT);
-	assert(envp);
+	_LIBC_PRECOND(envp);
 	fesetenv(envp);
 	feraiseexcept(ex);
 	return 0;
