@@ -34,6 +34,31 @@ _ALWAYS_INLINE _INLINE static double __elibc_pow_e(int n, double x) {
 }
 
 /**
+ * @brief Compute the value of a positive integer raised to the power of a long integer
+ *
+ * @param n the positive integer to raise to the power of x
+ * @param x the exponent
+ * @return the value of n raised to the power of x
+ * @note This function does not handle special cases such as NaN or infinity
+ *       gracefully.
+ */
+_ALWAYS_INLINE _INLINE static double __elibc_pow_int(double n, long int x) {
+	_LIBC_PRECOND(n > 0);
+	_LIBC_PRECOND(x >= 0);
+
+	{
+		double ret = 1;
+		long int i;
+
+		for (i = 0; i < x; ++i) {
+			ret *= n;
+		}
+
+		return ret;
+	}
+}
+
+/**
  * @brief Raise a floating point number to the power of another
  *
  * @param x the base
@@ -44,21 +69,13 @@ _ALWAYS_INLINE _INLINE static double __elibc_pow_e(int n, double x) {
  */
 _ALWAYS_INLINE _INLINE static double __elibc_pow(double base, double exponent) {
 
-	/* for integer powers, lets just keep it simple */
+	/* for positive integer powers, lets just keep it simple */
 	if (exponent > 0.0 && IS_INTEGER(exponent)) {
-		double ret = 1;
-		long int i;
-		const long int y_int = (long int)exponent;
-
-		for (i = 0; i < y_int; ++i) {
-			ret *= base;
-		}
-
-		return ret;
-	} else {
-		/* b^x == e^(ln(b) * x) */
-		return __elibc_pow_e(TAYLOR_ITERATIONS, __elibc_log(base) * exponent);
+		return __elibc_pow_int(base, (long int)exponent);
 	}
+
+	/* b^x == e^(ln(b) * x) */
+	return __elibc_pow_e(TAYLOR_ITERATIONS, __elibc_log(base) * exponent);
 }
 
 /**
